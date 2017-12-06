@@ -11,6 +11,10 @@ p{
   margin: 0;
 }
 
+a{
+  color: #333333;
+  text-decoration: none;
+}
 .divBlanco{
   margin-left: 30%;
   background: #FFFFFF;
