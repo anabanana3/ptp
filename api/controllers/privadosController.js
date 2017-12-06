@@ -41,12 +41,7 @@ PrivadosController.addPrivado = function(req, res, callback){
 //para que el administrador pueda validarlo
 PrivadosController.publicarPrivado = function(req, res, callback){
 	var id = req.params.id;
-	PendietesVModel.addPendienteV(id);
-}
-
-PrivadosController.deletePrivado = function(req, res, callback){
-	var id = req.params.id;
-	PrivadosModel.deletePrivado(id, function(err, rows){
+	PendietesVModel.addPendienteV(id, function(err, rows){
 		if(err){
 			res.json(err);
 		}else{

@@ -25,7 +25,10 @@ PendientesVController.getPendientesUser = function(req, res, callback){
 	});
 }
 
-PendientesVModel.publicarExpediente = function(req, res, callback){
+
+//Este metodo solo lo va a poder hacer el administrador cuando decida que 
+//un expediente pueda ser publicado.
+PendientesVController.publicarExpediente = function(req, res, callback){
 	var id = req.params.id;
 	PendientesVModel.publicarExpediente(id, function(err, rows){
 		if(err){
@@ -35,3 +38,17 @@ PendientesVModel.publicarExpediente = function(req, res, callback){
 		}
 	});
 }
+
+//Este metodo es cuando el administrador decide que el expediente no se publica
+PendientesVController.deleteExpediente = function(req, res, callback){
+	var id = req.params.id;
+	PendientesVModel.deleteExpediente(id, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+
+module.exports = PendientesVController;

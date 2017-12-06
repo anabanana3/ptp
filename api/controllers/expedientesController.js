@@ -1,5 +1,7 @@
 var ExpedientesModel = require('../models/expedientes');
 var PrivadosModel = require('../models/privados');
+var PendientesVModel = require('../models/pensientesV');
+var PublicosModel = require('../models/publicos');
 
 var ExpedientesController = function() {}
 
@@ -42,6 +44,9 @@ ExpedientesController.deleteExpediente = function(req, res, callback){
 		if(err){
 			res.json(err);
 		}else{
+			PrivadosModel.deleteExpediente(id);
+			PublicosModel.deleteExpediente(id);
+			PendientesVModel.deleteExpediente(id, function(err, rows){});
 			res.json(rows);
 		}
 	});

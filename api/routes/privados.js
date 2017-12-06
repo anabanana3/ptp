@@ -18,7 +18,8 @@ router.post('/publicar/:id?', PrivadosController.publicarPrivado);
 
 
 /*DELETE*/
-router.delete('/:id?', PrivadosController.deletePrivado);
+//NO HACE FALTA PORQUE LO VAMOS A HACER DESDE EXPEDIENTES
+//router.delete('/:id?', PrivadosController.deletePrivado);
 
 
 module.exports = router;

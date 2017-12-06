@@ -33,6 +33,7 @@ var edita = require('./routes/edita');
 var camposb1 = require('./routes/camposb1');
 var privados = require('./routes/privados');
 var pendientesV = require('./routes/pendientesV');
+var publicos = require('./routes/publicos');
 
 var http = require('https');
 var fs = require('fs');
@@ -79,7 +80,8 @@ app.use('/api/expedientes', expediente);
 app.use('/api/edita', edita);
 app.use('/api/camposb1', camposb1);
 app.use('/api/privados', privados);
-app.use('/api/pendientesV');
+app.use('/api/pendientesV', pendientesV);
+app.use('/api/publicos', publicos);
 
 app.set('trust proxy', true);
 //app.use('/Tasks',Tasks);
