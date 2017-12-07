@@ -7,17 +7,21 @@ import {APP_ROUTING} from "./app.routes";
 //Components
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { UsuariosComponent } from './components/admin/usuarios.component';
+
 import { KeysPipe } from './pipes/keys.pipe';
 
 //Services
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
-    KeysPipe
+    KeysPipe,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import {AsociacionesService} from "./services/asociaciones.service";
   ],
   providers: [
     ProfesionesService,
-    AsociacionesService
+    AsociacionesService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

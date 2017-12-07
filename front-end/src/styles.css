@@ -66,3 +66,20 @@ a{
 .textoBlanco{
   color: #FFFFFF;
 }
+
+table{
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  width: 90%;
+  margin-left: 5%;
+  background-color: #FFFFFF;
+}
+
+thead{
+  background-color: black;
+  color: #FFFFFF;
+}
+
+th, td, button{
+  padding: 15px;
+}

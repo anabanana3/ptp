@@ -3,33 +3,31 @@
     <img style="margin-top:20px;" src="../assets/img/AISHA.png" alt="">
   </header>
   <div class="lineaDiv"></div>
-  <form (ngSubmit)="guardar()" action="index.html" method="post">
+  <form (ngSubmit)="guardar()" #forma="ngForm">
     <div class="camposForm">
       <label for="nombre">Nombre *</label>
-      <input class="lineaCampo" type="text" name="email" id="nombre">
+      <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="nombre">
       <label for="apellido">Apellidos *</label>
-      <input class="lineaCampo" type="text" name="apellido" id="apellido">
+      <input [(ngModel)]="usuario.Apellidos" class="lineaCampo" type="text" name="apellido" id="apellido">
       <label for="fechaNacimiento">Fecha Nacimiento</label>
-      <input class="lineaCampo" type="date" name="fechaNacimiento" id="fechaNacimiento">
+      <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date" name="fechaNacimiento" id="fechaNacimiento">
       <label for="direccion">Dirección *</label>
-      <input class="lineaCampo" type="text" name="direccion" id="direccion">
-      <label for="nif/nie">NIF/NIE *</label>
-      <input class="lineaCampo" type="text" name="nif/nie" id="nif/nie">
+      <input [(ngModel)]="usuario.ID_Lugar" class="lineaCampo" type="text" name="direccion" id="direccion">
       <label for="email">Email *</label>
-      <input class="lineaCampo" type="email" name="email" id="email">
+      <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email">
       <label for="profesion">Profesión *</label>
-      <select class="lineaCampo" name="profesion" id="profesion">
+      <select [(ngModel)]="usuario.Profesion" class="lineaCampo" name="profesion" id="profesion">
         <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">{{profesiones[k].Nombre}}</option>
       </select>
       <label for="asociacion">Asociación *</label>
-      <select class="lineaCampo" name="asociacion" id="asociacion">
+      <select [(ngModel)]="usuario.Asociacion" class="lineaCampo" name="asociacion" id="asociacion">
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">{{asociaciones[k].Nombre}}</option>
       </select>
     </div>
     <div>
       <input type="checkbox" name="acepto" value="acepto" id="check"><label for="check" class="textoPeq">Acepto la política de privacidad</label>
       <p class="textoPeq">* Obligatorio</p>
-      <button [routerLink]="['/login']" type="button" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
+      <button type="button" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
     </div>
   </form>
   <footer class="footerDivGris">

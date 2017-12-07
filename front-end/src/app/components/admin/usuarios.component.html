@@ -1,0 +1,47 @@
+<h1>Usuarios</h1>
+<hr>
+
+<br>
+
+<div >
+
+  <div >
+    <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Profesion</th>
+          <th class="text-right" scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let k of user | keys; let i = index;">
+          <!-- <td>{{i+1}}</td> -->
+          <td>{{user[k].ID_Usuario}}</td>
+          <td>{{user[k].Nombre}}</td>
+          <td>{{user[k].Apellidos}}</td>
+          <td>{{user[k].Profesion}}</td>
+          <td class="text-right w230">
+            <button type="button" class="btn btn-outline-success">Editar</button>
+            <button type="button" class="btn btn-outline-danger">Borrar</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div  *ngIf="(user | keys).length === 0 && !loading"
+          class="alert alert-info" role="alert">
+      <strong>No hay</strong> registros que mostrar
+    </div>
+
+    <div  *ngIf="loading"
+          class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>por favor espere
+    </div>
+
+  </div>
+
+</div>
