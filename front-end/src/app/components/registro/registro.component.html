@@ -4,7 +4,7 @@
   </header>
   <div class="lineaDiv"></div>
   <form (ngSubmit)="guardar()" #forma="ngForm">
-    <div class="camposForm">
+    <div *ngIf="usuarios" class="camposForm">
       <label for="nombre">Nombre *</label>
       <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="nombre">
       <label for="apellido">Apellidos *</label>
@@ -24,14 +24,25 @@
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">{{asociaciones[k].Nombre}}</option>
       </select>
     </div>
+    <div *ngIf="!usuarios" class="camposForm">
+      <label for="nombre">Nombre Asociación *</label>
+      <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="nombre">
+      <label for="direccion">Dirección *</label>
+      <input [(ngModel)]="usuario.ID_Lugar" class="lineaCampo" type="text" name="direccion" id="direccion">
+      <label for="email">Email *</label>
+      <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email">
+    </div>
+    <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios" class="btn-inline textoBlanco">Soy una Asociación</button>
+    <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios" class="btn-inline textoBlanco">Soy un Usuario</button>
     <div>
       <input type="checkbox" name="acepto" value="acepto" id="check"><label for="check" class="textoPeq">Acepto la política de privacidad</label>
       <p class="textoPeq">* Obligatorio</p>
       <button type="button" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
     </div>
   </form>
+
   <footer class="footerDivGris">
     <p>¿Ya estás registrado?</p>
-    <a [routerLink]="['/login']"><p><b>Haz login</b></p></a>
+    <a [routerLink]="['/login']"><p><b>Inicia Sesión</b></p></a>
   </footer>
 </div>

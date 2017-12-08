@@ -15,6 +15,28 @@ a{
   color: #333333;
   text-decoration: none;
 }
+
+form{
+  display: inline-block;
+}
+
+table{
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  width: 90%;
+  margin-left: 5%;
+  background-color: #FFFFFF;
+}
+
+thead{
+  background-color: black;
+  color: #FFFFFF;
+}
+
+th, td, button{
+  padding: 15px;
+}
+
 .divBlanco{
   margin-left: 30%;
   background: #FFFFFF;
@@ -24,7 +46,7 @@ a{
 
 .camposForm{
   display: inline-grid;
-  width: 60%;
+  width: 100%;
   text-align: left;
 }
 .textoPeq{
@@ -67,19 +89,9 @@ a{
   color: #FFFFFF;
 }
 
-table{
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-  width: 90%;
-  margin-left: 5%;
-  background-color: #FFFFFF;
-}
-
-thead{
-  background-color: black;
-  color: #FFFFFF;
-}
-
-th, td, button{
-  padding: 15px;
+.btn-inline{
+  display: inline;
+  background: #880042;
+  font-size: 16px;
+  margin-bottom: 3%;
 }

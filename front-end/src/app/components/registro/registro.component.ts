@@ -28,6 +28,8 @@ export class RegistroComponent implements OnInit {
   profesiones:any[] = [];
   asociaciones:any[] = [];
 
+  usuarios:boolean = true;
+
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
     private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
 

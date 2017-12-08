@@ -1,4 +1,4 @@
-<h1>Usuarios</h1>
+<h1>Asociaciones</h1>
 <hr>
 
 <br>
@@ -10,23 +10,19 @@
       <thead class="thead">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Profesión</th>
-          <th scope="col">Asociación</th>
+          <th scope="col">Nombre Asociación</th>
+          <th scope="col">Email</th>
           <th class="text-right" scope="col">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let k of user | keys; let i = index;">
+        <tr *ngFor="let k of asociacion | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
-          <td>{{user[k].ID_Usuario}}</td>
-          <td>{{user[k].Nombre}}</td>
-          <td>{{user[k].Apellidos}}</td>
-          <td>{{user[k].Profesion}}</td>
-          <td>{{user[k].Asociacion}}</td>
+          <td>{{asociacion[k].ID_Asocioacion}}</td>
+          <td>{{asociacion[k].Nombre}}</td>
+          <td>{{asociacion[k].Email}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success">Editar</button>
+            <button type="button" class="btn btn-outline-success">Aceptar</button>
             <button type="button" class="btn btn-outline-danger">Borrar</button>
 
           </td>
@@ -34,7 +30,7 @@
       </tbody>
     </table>
 
-    <div  *ngIf="(user | keys).length === 0 && !loading"
+    <div  *ngIf="(asociacion | keys).length === 0 && !loading"
           class="alert alert-info" role="alert">
       <strong>No hay</strong> registros que mostrar
     </div>

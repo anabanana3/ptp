@@ -8,6 +8,7 @@ import {APP_ROUTING} from "./app.routes";
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { UsuariosComponent } from './components/admin/usuarios.component';
+import { AsociacionesComponent } from './components/admin/asociaciones.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -21,7 +22,8 @@ import {UserService} from "./services/user.service";
     AppComponent,
     RegistroComponent,
     KeysPipe,
-    UsuariosComponent
+    UsuariosComponent,
+    AsociacionesComponent
   ],
   imports: [
     BrowserModule,
