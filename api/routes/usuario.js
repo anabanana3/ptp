@@ -6,6 +6,11 @@ var UsuarioController = require('../controllers/usuarioController');
 /* GET users listing. */
 router.get('/',UsuarioController.getAllUsers);
 router.get('/:id?', UsuarioController.getUserById);
+router.get('/asociacion/:id?', UsuarioController.getUsersByAsociacion);
+router.get('/profesion/:id?', UsuarioController.getUsersByProfesion);
+router.get('/sexo/:id?', UsuarioController.getUsersBySexo);
+//TODO
+//router.get('/edad/:n?/:opt?', UsuarioController.getUsersByEdad);
 //router.get('/nombre=:?', UsuarioController.getAllUsers);
 
 /* POST users */

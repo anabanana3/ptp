@@ -6,8 +6,9 @@ var EditaController = require('../controllers/editaController');
 
 /*GET*/
 //Listado de los expedientes que puede editar un usuario
-router.get('/:id?',EditaController.getAllEditables);
-
+router.get('/user/:id?',EditaController.getAllEditables);
+//Listado de todos los usuario que pueden editar un expediente
+router.get('/expediente/:id?', EditaController.getAllUsersEdita);
 /*POST*/
 //Dar permisos de edicion a un usuario para un expediente
 router.post('/',EditaController.addEditable);

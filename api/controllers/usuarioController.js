@@ -31,6 +31,70 @@ UsuarioController.getUserById = function (req, res, callback) {
 	
 }
 
+UsuarioController.getUsersByAsociacion = function(req, res, callback){
+	var a = req.params.id;
+	UsuarioModel.getUsersByAsociacion(a, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+
+UsuarioController.getUsersByProfesion = function(req, res, callback){
+	var p = req.params.id;
+	UsuarioModel.getUsersByProfesion(p, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+
+UsuarioController.getUsersBySexo = function(req, res, callback){
+	var sexo = req.params.id;
+	UsuarioModel.getUsersBySexo(sexo, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+/*******
+	PENDIENTE DE VER COMO SE HACE => EN LA BD SOLO TENGO FECHA
+UsuarioController.getUsersByEdad = function(req, res, callback){
+	var e = req.params.n;
+	var opt = req.params.opt;
+	if(opt =='+'){
+		UsuarioModel.getUsersByEdadMax(e, function(err, rows){
+			if(err){
+				res.json(err);
+			}else{
+				res.json(rows);
+			}
+		});
+	}else{
+		if(opt == '-'){
+			UsuarioModel.getUsersByEdadMin(e, function(err, rows){
+				if(err){
+					res.json(err);
+				}else{
+					res.json(rows);
+				}
+			});
+		}else{
+			var aux ={
+				descripcion: "Error al introducir la operación"
+			}
+			res.json(aux);
+		}
+	}
+}
+
+********/
 UsuarioController.addUser = function(req, res, callback){
 	UsuarioModel.addUser(req.body, function(err, rows){
 		var result;

@@ -5,11 +5,11 @@ var bodyParser = require('body-parser');
 var ExpedienteModel = function() {}
 
 ExpedienteModel.getAll = function(callback){
-	db.query('SELECT * FROM EXPEDIENTES', callback);
+	db.query('SELECT ID_Expediente, DATE(Fecha) as Fecha, Descripcion, ID_Persona, ID_Lugar, ID_Usuario FROM EXPEDIENTES', callback);
 };
 
 ExpedienteModel.getById = function(id, callback){
-	db.query('SELECT * FROM EXPEDIENTES WHERE ID_Expediente = ?', id, callback);
+	db.query('SELECT ID_Expediente, DATE(Fecha) as Fecha, Descripcion, ID_Persona, ID_Lugar, ID_Usuario FROM EXPEDIENTES WHERE ID_Expediente = ?', id, callback);
 };
 
 // TODO => HAY QUE PONER LA FECHA DE CREACION AUTOMATICA

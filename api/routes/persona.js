@@ -9,6 +9,7 @@ router.get('/', PersonaController.getAllPersonas);
 router.get('/:id?', PersonaController.getPersonaById);
 router.get('/sexo/:id?', PersonaController.getPersonaBySexo);
 router.get('/etnia/:id?', PersonaController.getPersonasByEtnias);
+router.get('/actividad/:id?', PersonaController.getPersonasByAct);
 //Esta hay que probarla
 router.get('/edad/:id?/:n?', PersonaController.getPersonas);
 

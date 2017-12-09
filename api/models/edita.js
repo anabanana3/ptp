@@ -9,6 +9,10 @@ EditaModel.getAllEditables = function(id, callback){
 	db.query('SELECT * FROM EDITA WHERE ID_Usuario=?', id, callback);
 };
 
+EditaModel.getAllUsersEdita = function(id, callback){
+	db.query('SELECT * FROM EDITA WHERE ID_Expediente =?', id, callback);
+};
+
 EditaModel.addEditable = function(aux, callback){
 	db.query('INSERT INTO EDITA VALUES (?,?)',[aux.ID_Usuario, aux.ID_Expediente], callback);
 };

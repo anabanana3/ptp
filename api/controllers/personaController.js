@@ -79,6 +79,17 @@ PersonaController.getPersonasByEtnias = function(req, res, callback){
 	});
 }
 
+PersonaController.getPersonasByAct = function(req, res, callback){
+	var id = req.params.id;
+	PersonaModel.getPersonasByAct(id, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+
 PersonaController.addPersona = function(req, res, callback){
 	PersonaModel.addPersona(req.body, function(err, rows){
 		if(err){

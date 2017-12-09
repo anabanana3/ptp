@@ -29,6 +29,10 @@ PersonaModel.getPersonasByEtnias= function(e, callback){
 	db.query('SELECT ID_Persona, p.Nombre, Edad, s.Sexo, e.Etnia, ID_Lugar, a.Nombre as Actividad  FROM PERSONA as p, ETNIAS e, ACTIVIDAD_LABORAL as a, SEXO as s WHERE p.ID_Sexo = s.ID_Sexo AND p.ID_Etnias = e.ID_Etnias AND p.ID_Actividad = a.ID_Actividad AND ETINAS_ID_Etnias=?', e, callback);
 };
 
+PersonaModel.getPersonasByAct = function(a, callback){
+	db.query('SELECT ID_Persona, p.Nombre, Edad, s.Sexo, e.Etnia, ID_Lugar, a.Nombre as Actividad  FROM PERSONA as p, ETNIAS e, ACTIVIDAD_LABORAL as a, SEXO as s WHERE p.ID_Sexo = s.ID_Sexo AND p.ID_Etnias = e.ID_Etnias AND p.ID_Actividad = a.ID_Actividad AND p.ID_Actividad =?', a, callback);
+}
+
 PersonaModel.addPersona = function(p, callback){
 	db.query('INSERT INTO PERSONA VALUES(?,?,?,?,?,?,?)',[p.ID_Persona, p.Nombre, p.Edad,p.ID_Sexo,p.ETNIAS_ID_Etnias, p.ID_Lugar,p.ID_Actividad],callback);
 };

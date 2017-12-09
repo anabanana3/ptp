@@ -13,6 +13,17 @@ EditaController.getAllEditables = function(req, res, callback){
 	});
 }
 
+EditaController.getAllUsersEdita = function(req, res, callback){
+	var e = req.params.id;
+	EditaModel.getAllUsersEdita(id, function(err, rows){
+		if(err){
+			res.json(err);
+		}else{
+			res.json(rows);
+		}
+	});
+}
+
 EditaController.addEditable = function(req, res ,callback){
 	EditaModel.addEditable(req.body, function(err, rows){
 		if(err){

@@ -31,9 +31,13 @@ var familiar = require('./routes/familiar');
 var expediente = require('./routes/expedientes');
 var edita = require('./routes/edita');
 var camposb1 = require('./routes/camposb1');
+var camposb3 = require('./routes/camposb3');
+var camposb4 = require('./routes/camposb4');
+var camposb5 = require('./routes/camposb5');
 var privados = require('./routes/privados');
 var pendientesV = require('./routes/pendientesV');
 var publicos = require('./routes/publicos');
+var comentarios = require('./routes/comentarios');
 
 var http = require('https');
 var fs = require('fs');
@@ -79,9 +83,13 @@ app.use('/api/familiar', familiar);
 app.use('/api/expedientes', expediente);
 app.use('/api/edita', edita);
 app.use('/api/camposb1', camposb1);
+app.use('/api/camposb3', camposb3);
+app.use('/api/camposb4', camposb4);
+app.use('/api/camposb5', camposb5);
 app.use('/api/privados', privados);
 app.use('/api/pendientesV', pendientesV);
 app.use('/api/publicos', publicos);
+app.use('/api/comentarios', comentarios);
 
 app.set('trust proxy', true);
 //app.use('/Tasks',Tasks);
