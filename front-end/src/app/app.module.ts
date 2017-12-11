@@ -9,13 +9,16 @@ import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
+import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
 //Services
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
-import {UserService} from "./services/user.service";
+import {SolicitanteService} from "./services/solicitante.service";
+import { HomeComponent } from './components/user/home/home.component';
+//import {RegistradoService} from "./services/registrado.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import {UserService} from "./services/user.service";
     RegistroComponent,
     KeysPipe,
     UsuariosComponent,
-    AsociacionesComponent
+    AsociacionesComponent,
+    RegistroLoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import {UserService} from "./services/user.service";
   providers: [
     ProfesionesService,
     AsociacionesService,
-    UserService
+    SolicitanteService,
+    //RegistradoService
   ],
   bootstrap: [AppComponent]
 })

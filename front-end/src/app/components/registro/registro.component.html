@@ -4,10 +4,11 @@
   </header>
   <div class="lineaDiv"></div>
 
-  <form (ngSubmit)="guardar()" #forma="ngForm">
-    <div class="g-signin2" (ngSubmit)="signInGoogle()" data-onsuccess="onSignIn" data-theme="dark"></div>
+  <form (ngSubmit)="registrar(usuarios)" #forma="ngForm">
 
     <div *ngIf="usuarios" class="camposForm">
+      <div class="g-signin2" (ngSubmit)="signInGoogle()" data-onsuccess="onSignIn" data-theme="dark"></div>
+
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="nombre">
       <label for="apellido">Apellidos *</label>
@@ -39,12 +40,18 @@
 
     <div *ngIf="!usuarios" class="camposForm">
       <label for="nombre">Nombre Asociación *</label>
-      <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="nombre">
-      <label for="direccion">Dirección *</label>
-      <input id="pac-input" class="lineaCampo google" type="text" placeholder="Search Box">
+      <input class="lineaCampo" type="text" name="nombre" id="nombre">
+      <label for="pac-input">Dirección *</label>
+      <input class="lineaCampo google" type="text" placeholder="Search Box" id="pac-input">
       <div id="map"></div>
       <label for="email">Email *</label>
-      <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email">
+      <input class="lineaCampo" type="email" name="email" id="email">
+    <!--  <label for="cif">CIF *</label>
+        <input [(ngModel)]="usuario.CIF" class="lineaCampo" type="text" name="cif" id="cif"> -->
+      <label for="contra">Contraseña *</label>
+        <input class="lineaCampo" type="password" name="contra" id="contra">
+      <label for="contraRepeat">Repita la Contraseña *</label>
+        <input class="lineaCampo" type="password" name="contraRepeat" id="contraRepeat">
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios" class="btn-inline textoBlanco">Soy una Asociación</button>

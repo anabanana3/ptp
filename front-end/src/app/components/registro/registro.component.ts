@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from "../../interfaces/user.interface";
+import { Solicitante } from "../../interfaces/solicitante.interface";
 
 import { ProfesionesService } from "../../services/profesiones.service";
 import { AsociacionesService } from "../../services/asociaciones.service";
-import { UserService } from "../../services/user.service";
+import { SolicitanteService } from "../../services/solicitante.service";
+import { Asociacion } from "../../interfaces/asociacion.interface";
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +15,7 @@ import { UserService } from "../../services/user.service";
 })
 export class RegistroComponent implements OnInit {
 
-  usuario:User={
+  usuario:Solicitante={
     Nombre:'',
     Apellidos: '',
     F_Nacimiento: '',
@@ -22,18 +23,27 @@ export class RegistroComponent implements OnInit {
     ID_Asociacion: 0,
     ID_Profesion: 0,
     ID_Lugar: '',
+    Direccion: '',
     Sexo: '',
     DNI: ''
   }
 
+  asociacion:Asociacion ={
+    Nombre: '',
+    Direccion: '',
+    Email: '',
+    Password: '',
+    CIF: '',
+    Validada: 0
+  }
+
   id:string;
   profesiones:any[] = [];
-  asociaciones:any[] = [];
 
   usuarios:boolean = true;
 
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
-    private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
+    private router:Router, private _userService:SolicitanteService, private activatedRoute:ActivatedRoute) {
 
     this._profesionesService.getProfesiones().subscribe(data=>{
       console.log(data);
@@ -42,7 +52,7 @@ export class RegistroComponent implements OnInit {
 
     this._asociacionesService.getAsociaciones().subscribe(data=>{
       console.log(data);
-      this.asociaciones = data;
+      this.asociacion = data;
     })
 
     this.activatedRoute.params.subscribe(parametros=>{
@@ -62,7 +72,7 @@ export class RegistroComponent implements OnInit {
     if(this.id=="nuevo"){
       //insertando
       this._userService.nuevoUsuario(this.usuario).subscribe(data=>{
-        this.router.navigate(['/heroes'])
+        this.router.navigate(['/'])
       }, error=>console.log(error));
     }
     else{
@@ -74,5 +84,15 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  registrar(bool){
+    if(!bool){
+      this._asociacionesService.nuevaAsociacion(this.asociacion)
+          .subscribe(data=>{
+
+          })
+    }
+
   }
 }

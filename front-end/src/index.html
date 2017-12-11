@@ -6,7 +6,41 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="548840458368-lh9akvqubmhl0rghlihkmclpfp6h7ft5.apps.googleusercontent.com">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link type="text/css" rel="stylesheet" href="assets/fontello/css/fontello.css" />
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+      //OAUTH
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
+
+  <script>
+      //maps
+      function initAutocomplete() {
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOv9CV7BZ7pVgpvIz30nBex8FH8o_WH84&libraries=places&callback=initAutocomplete"
+         async defer></script>
 
 </head>
 <body>

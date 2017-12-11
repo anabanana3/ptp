@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../services/user.service";
+import { SolicitanteService } from "../../services/solicitante.service";
 
 
 @Component({
@@ -12,7 +12,7 @@ export class UsuariosComponent implements OnInit {
   user:any[]=[];
   loading:boolean = true;
 
-  constructor(private _userService:UserService) {
+  constructor(private _userService:SolicitanteService) {
     this._userService.getUsuarios().subscribe(data=>{
       console.log(data);
 

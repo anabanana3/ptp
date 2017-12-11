@@ -14,6 +14,7 @@
           <th scope="col">Apellidos</th>
           <th scope="col">Profesión</th>
           <th scope="col">Asociación</th>
+          <th scope="col">NIE/NIF</th>
           <th class="text-right" scope="col">Opciones</th>
         </tr>
       </thead>
@@ -25,9 +26,11 @@
           <td>{{user[k].Apellidos}}</td>
           <td>{{user[k].Profesion}}</td>
           <td>{{user[k].Asociacion}}</td>
+          <td>{{user[k].DNI}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success">Editar</button>
-            <button type="button" class="btn btn-outline-danger">Borrar</button>
+            <button type="button" class="btn btn-outline-success icon-ok span"></button>
+            <button type="button" class="btn btn-outline-danger icon-cancel span"></button>
+            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
 
           </td>
         </tr>

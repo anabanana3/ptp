@@ -12,6 +12,7 @@
           <th scope="col">#</th>
           <th scope="col">Nombre Asociación</th>
           <th scope="col">Email</th>
+          <th scope="col">CIF</th>
           <th class="text-right" scope="col">Opciones</th>
         </tr>
       </thead>
@@ -21,9 +22,11 @@
           <td>{{asociacion[k].ID_Asocioacion}}</td>
           <td>{{asociacion[k].Nombre}}</td>
           <td>{{asociacion[k].Email}}</td>
+          <td>{{asociacion[k].CIF}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success">Aceptar</button>
-            <button type="button" class="btn btn-outline-danger">Borrar</button>
+            <button type="button" class="btn btn-outline-success icon-ok span"></button>
+            <button type="button" class="btn btn-outline-danger icon-cancel span"></button>
+            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
 
           </td>
         </tr>

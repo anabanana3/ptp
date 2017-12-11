@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 html{
   font-family: HiraKakuPro-W3;
-  font-size: 14px;
+  font-size: 16px;
   color: #333333;
   background: #F2F2F2;
   text-align: center;
@@ -43,6 +43,10 @@ th, td, button{
   padding: 15px;
 }
 
+input{
+  font-size: 16px;
+
+}
 .divBlanco{
   margin-left: 30%;
   background: #FFFFFF;
@@ -52,9 +56,10 @@ th, td, button{
 
 .camposForm{
   display: inline-grid;
-  width: 90%;
+  width: 70%;
   text-align: left;
 }
+
 .textoPeq{
   font-size: 12px;
 }
@@ -79,7 +84,7 @@ th, td, button{
   border: 1px solid #DBDBDB;
   margin-left: 5%;
   margin-bottom: 25px;
-  margin-top: 25px;
+  margin-top: 50px;
   width: 90%;
 }
 
@@ -103,7 +108,7 @@ th, td, button{
 }
 
 .google{
-  margin-top: 5px;
+  margin-top: 25px;
   border: 1px solid transparent;
   border-radius: 2px 0 0 2px;
   box-sizing: border-box;
@@ -118,4 +123,14 @@ th, td, button{
 .radioButtons{
   display: block;
   margin-bottom: 25px;
+}
+
+.g-signin2{
+  display: inline;
+}
+
+.span{
+  background: none;
+  border: 1px solid black;
+  border-radius: 15px;
 }

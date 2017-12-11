@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { User } from '../interfaces/user.interface';
+import { Solicitante } from '../interfaces/solicitante.interface';
 import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcione el .map
 
 @Injectable()
-export class UserService {
+export class SolicitanteService {
 
-  usuarioURL:string = "https://www.aisha.ovh/api/usuario";
+  usuarioURL:string = "https://www.aisha.ovh/api/solicitantes";
 
   constructor(private http:Http) {
 
   }
 
-  nuevoUsuario(usuario:User){
+  nuevoUsuario(usuario:Solicitante){
     let body = JSON.stringify(usuario);
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ export class UserService {
           })
   }
 
-  actualizarUsuario(usu:User, id$:string){
+  actualizarUsuario(usu:Solicitante, id$:string){
     let body = JSON.stringify(usu);
     let headers = new Headers({
       'Content-Type': 'application/json'
