@@ -16,6 +16,7 @@ import { KeysPipe } from './pipes/keys.pipe';
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {UserService} from "./services/user.service";
     RegistroComponent,
     KeysPipe,
     UsuariosComponent,
-    AsociacionesComponent
+    AsociacionesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
