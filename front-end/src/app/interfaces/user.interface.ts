@@ -6,5 +6,7 @@ export interface User{
   ID_Asociacion?: number;
   ID_Profesion?: number;
   ID_Lugar: string;
+  Sexo: string;
+  DNI: string;
   ID_Usuario$?:string //? dato opcional
 }

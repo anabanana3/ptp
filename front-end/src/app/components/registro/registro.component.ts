@@ -21,7 +21,9 @@ export class RegistroComponent implements OnInit {
     Email: '',
     ID_Asociacion: 0,
     ID_Profesion: 0,
-    ID_Lugar: ''
+    ID_Lugar: '',
+    Sexo: '',
+    DNI: ''
   }
 
   id:string;
@@ -73,5 +75,4 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

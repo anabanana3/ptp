@@ -7,6 +7,12 @@ html{
   text-align: center;
 }
 
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 p{
   margin: 0;
 }
@@ -46,7 +52,7 @@ th, td, button{
 
 .camposForm{
   display: inline-grid;
-  width: 100%;
+  width: 90%;
   text-align: left;
 }
 .textoPeq{
@@ -94,4 +100,22 @@ th, td, button{
   background: #880042;
   font-size: 16px;
   margin-bottom: 3%;
+}
+
+.google{
+  margin-top: 5px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  /*width: 370px;*/
+  width: 100%;
+}
+
+.radioButtons{
+  display: block;
+  margin-bottom: 25px;
 }
