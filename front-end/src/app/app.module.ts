@@ -16,13 +16,9 @@ import { KeysPipe } from './pipes/keys.pipe';
 //Services
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
-<<<<<<< HEAD
 import {SolicitanteService} from "./services/solicitante.service";
 import { HomeComponent } from './components/user/home/home.component';
-//import {RegistradoService} from "./services/registrado.service";
-=======
 import { LoginComponent } from './components/login/login.component';
->>>>>>> e8bef96638aee5b44f1fd92fe4c61f0240ea6634
 
 @NgModule({
   declarations: [
@@ -31,12 +27,9 @@ import { LoginComponent } from './components/login/login.component';
     KeysPipe,
     UsuariosComponent,
     AsociacionesComponent,
-<<<<<<< HEAD
     RegistroLoginComponent,
-    HomeComponent
-=======
+    HomeComponent,
     LoginComponent
->>>>>>> e8bef96638aee5b44f1fd92fe4c61f0240ea6634
   ],
   imports: [
     BrowserModule,
