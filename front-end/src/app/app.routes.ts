@@ -4,6 +4,7 @@ import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeComponent } from './components/user/home/home.component';
+import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 
 const app_routes: Routes = [
   { path: 'usuarios',
@@ -30,7 +31,12 @@ const app_routes: Routes = [
     component: HomeComponent,
     data: { title: 'Home' }
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'usuarios' }
+  {
+    path: 'homeAsociacion',
+    component: HomeAsociaciones,
+    data: { title: 'Home' }
+  },
+  { path: '**', pathMatch: 'full', redirectTo: 'registro' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

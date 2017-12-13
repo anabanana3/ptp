@@ -4,7 +4,7 @@
   </header>
   <div class="lineaDiv"></div>
 
-  <form (ngSubmit)="registrar(usuarios)" #forma="ngForm">
+  <form (ngSubmit)="guardar(usuarios)">
 
     <div *ngIf="usuarios" class="camposForm">
       <div class="g-signin2" (ngSubmit)="signInGoogle()" data-onsuccess="onSignIn" data-theme="dark"></div>
@@ -24,34 +24,32 @@
       <label for="dni">NIE/NIF *</label>
         <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni">
       <label for="direccion">Dirección *</label>
-        <input id="pac-input" class="lineaCampo google" type="text" placeholder="Search Box">
-      <div id="map"></div>
+        <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion">
       <label for="email">Email *</label>
         <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email">
       <label for="profesion">Profesión *</label>
-      <select [(ngModel)]="usuario.Profesion" class="lineaCampo" name="profesion" id="profesion">
+      <select [(ngModel)]="usuario.ID_Profesion" class="lineaCampo" name="profesion" id="profesion">
         <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">{{profesiones[k].Nombre}}</option>
       </select>
       <label for="asociacion">Asociación *</label>
-      <select [(ngModel)]="usuario.Asociacion" class="lineaCampo" name="asociacion" id="asociacion">
-        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">{{asociaciones[k].Nombre}}</option>
+      <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion">
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asocioacion}}">{{asociaciones[k].Nombre}}</option>
       </select>
     </div>
 
     <div *ngIf="!usuarios" class="camposForm">
       <label for="nombre">Nombre Asociación *</label>
-      <input class="lineaCampo" type="text" name="nombre" id="nombre">
-      <label for="pac-input">Dirección *</label>
-      <input class="lineaCampo google" type="text" placeholder="Search Box" id="pac-input">
-      <div id="map"></div>
+      <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre">
+      <label for="direccion">Direccion *</label>
+      <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion">
       <label for="email">Email *</label>
-      <input class="lineaCampo" type="email" name="email" id="email">
-    <!--  <label for="cif">CIF *</label>
-        <input [(ngModel)]="usuario.CIF" class="lineaCampo" type="text" name="cif" id="cif"> -->
+      <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email">
+      <label for="cif">CIF *</label>
+        <input [(ngModel)]="usuario.CIF" class="lineaCampo" type="text" name="cif" id="cif">
       <label for="contra">Contraseña *</label>
-        <input class="lineaCampo" type="password" name="contra" id="contra">
+        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
       <label for="contraRepeat">Repita la Contraseña *</label>
-        <input class="lineaCampo" type="password" name="contraRepeat" id="contraRepeat">
+        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contraRepeat" id="contraRepeat">
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios" class="btn-inline textoBlanco">Soy una Asociación</button>
@@ -60,7 +58,7 @@
     <div>
       <input type="checkbox" name="acepto" value="acepto" id="check"><label for="check" class="textoPeq">Acepto la política de privacidad</label>
       <p class="textoPeq">* Obligatorio</p>
-      <button type="button" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
+      <button type="submit" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
     </div>
 
   </form>

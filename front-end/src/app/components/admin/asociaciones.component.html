@@ -24,9 +24,9 @@
           <td>{{asociacion[k].Email}}</td>
           <td>{{asociacion[k].CIF}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success icon-ok span"></button>
-            <button type="button" class="btn btn-outline-danger icon-cancel span"></button>
-            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
+            <button type="button" class="btn btn-outline-success span"><span class="icon-ok"></span></button>
+            <button type="button" class="btn btn-outline-danger span" (click)="borrar(asociacion[k].ID_Asocioacion)"><span class="icon-cancel"></span></button>
+            <button type="button" class="btn btn-outline-danger span"><span class="icon-mail"></span></button>
 
           </td>
         </tr>

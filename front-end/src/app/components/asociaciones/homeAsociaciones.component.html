@@ -1,0 +1,52 @@
+<h1>Asociacion {{asociacion}}</h1>
+<hr>
+
+<br>
+
+<div >
+
+  <div >
+    <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Profesión</th>
+          <th scope="col">Asociación</th>
+          <th scope="col">NIE/NIF</th>
+          <th class="text-right" scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let k of solicitantes | keys; let i = index;">
+          <!-- <td>{{i+1}}</td> -->
+          <td>{{solicitantes[k].ID_Usuario}}</td>
+          <td>{{solicitantes[k].Nombre}}</td>
+          <td>{{solicitantes[k].Apellidos}}</td>
+          <td>{{solicitantes[k].Profesion}}</td>
+          <td>{{solicitantes[k].Asociacion}}</td>
+          <td>{{solicitantes[k].DNI}}</td>
+          <td class="text-right w230">
+            <button type="button" class="btn btn-outline-success icon-ok span"></button>
+            <button type="button" class="btn btn-outline-danger icon-cancel span" (click)="borrar(solicitantes[k].ID_Usuario)"></button>
+            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div  *ngIf="(solicitantes | keys).length === 0 && !loading"
+          class="alert alert-info" role="alert">
+      <strong>No hay</strong> registros que mostrar
+    </div>
+
+    <div  *ngIf="loading"
+          class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>por favor espere
+    </div>
+
+  </div>
+
+</div>

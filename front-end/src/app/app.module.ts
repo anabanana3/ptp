@@ -10,6 +10,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
+import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -29,7 +30,8 @@ import { LoginComponent } from './components/login/login.component';
     AsociacionesComponent,
     RegistroLoginComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    HomeAsociaciones
   ],
   imports: [
     BrowserModule,

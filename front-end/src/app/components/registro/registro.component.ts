@@ -29,16 +29,16 @@ export class RegistroComponent implements OnInit {
   }
 
   asociacion:Asociacion ={
-    Nombre: '',
+    Nombre:'',
     Direccion: '',
     Email: '',
     Password: '',
-    CIF: '',
-    Validada: 0
+    CIF: ''
   }
 
   id:string;
   profesiones:any[] = [];
+  asociaciones:any[] = [];
 
   usuarios:boolean = true;
 
@@ -52,47 +52,24 @@ export class RegistroComponent implements OnInit {
 
     this._asociacionesService.getAsociaciones().subscribe(data=>{
       console.log(data);
-      this.asociacion = data;
-    })
-
-    this.activatedRoute.params.subscribe(parametros=>{
-      this.id=parametros['id'];
-
-      /*if(this.id!=="nuevo"){
-        this._userService.getUsuario(this.id).subscribe(usu=>{
-          this.usuario = usu[0];
-        })
-      }*/
+      this.asociaciones = data;
     })
   }
 
-  guardar(){
-    console.log(this.usuario);
-
-    if(this.id=="nuevo"){
-      //insertando
-      this._userService.nuevoUsuario(this.usuario).subscribe(data=>{
-        this.router.navigate(['/'])
+  guardar(bool){
+    if(!bool){
+      this._asociacionesService.nuevaAsociacion(this.asociacion).subscribe(data=>{
+        console.log(data);
       }, error=>console.log(error));
     }
     else{
-      //actualizando
-      this._userService.actualizarUsuario(this.usuario, this.id).subscribe(data=>{
+      this.usuario.Direccion = this.usuario.ID_Lugar;
+      this._userService.nuevoUsuario(this.usuario).subscribe(data=>{
         console.log(data);
       }, error=>console.log(error));
     }
   }
 
   ngOnInit() {
-  }
-
-  registrar(bool){
-    if(!bool){
-      this._asociacionesService.nuevaAsociacion(this.asociacion)
-          .subscribe(data=>{
-
-          })
-    }
-
   }
 }

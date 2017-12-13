@@ -1,12 +1,12 @@
 Font license info
 
 
-## Font Awesome
+## Web Symbols
 
-   Copyright (C) 2016 by Dave Gandy
+   Copyright (c) 2011 by Just Be Nice studio. All rights reserved.
 
-   Author:    Dave Gandy
-   License:   SIL ()
-   Homepage:  http://fortawesome.github.com/Font-Awesome/
+   Author:    Just Be Nice studio
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://www.justbenicestudio.com/
 
 

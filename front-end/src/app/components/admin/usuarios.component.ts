@@ -26,18 +26,4 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
   }
 
-  borraUsuario(id$:string){
-    this._userService.borraUsuario(id$).subscribe(res=>{
-      console.log(res);
-      if(res){
-        //si todo es correcto res=null
-        console.log(res);
-      }
-      else{
-        //todo correcto -> hemos borrado
-        delete this.user[id$];
-      }
-    })
-  }
-
 }

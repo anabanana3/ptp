@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class AsociacionesService {
 
-  url:string = "https://www.aisha.ovh/api/asociacion";
+  url:string = "https://www.aisha.ovh/api/asociacion/";
   constructor(private http:Http) {
 
   }
@@ -14,9 +14,11 @@ export class AsociacionesService {
     return this.http.get(this.url).map(res=>res.json());
   }
 
-  deleteAsociacion(){
-    let url = "https://www.aisha.ovh/api/asociacion";
-    return this.http.get(this.url).map(res=>res.json());
+  deleteAsociacion(id){
+    let urlD = `${this.url}/${id}`;
+    return this.http.delete(urlD).map(res=>{
+      res.json();
+    });
   }
 
   nuevaAsociacion(asociacion:Asociacion){
@@ -26,7 +28,7 @@ export class AsociacionesService {
       'Content-Type':'application/json'
     });
 
-    return this.http.post(this.url, body, {headers:headers})
+    return this.http.post(this.url, body, {headers})
         .map(res=>{
           console.log(res.json());
           return res.json();

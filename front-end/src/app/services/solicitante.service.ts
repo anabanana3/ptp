@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class SolicitanteService {
 
-  usuarioURL:string = "https://www.aisha.ovh/api/solicitantes";
+  solicitantesURL:string = "https://www.aisha.ovh/api/solicitantes/";
+  usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
 
   constructor(private http:Http) {
 
@@ -14,11 +15,13 @@ export class SolicitanteService {
 
   nuevoUsuario(usuario:Solicitante){
     let body = JSON.stringify(usuario);
+
+    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(this.usuarioURL, body, {headers}).map(res=>{
+    return this.http.post(this.usuariosURL, body, {headers}).map(res=>{
             console.log(res.json());
             return res.json();
           })
@@ -30,7 +33,7 @@ export class SolicitanteService {
       'Content-Type': 'application/json'
     });
 
-    let url = `${this.usuarioURL}/${id$}`;
+    let url = `${this.solicitantesURL}/${id$}`;
 
     return this.http.put(url, body, {headers}).map(res=>{
             console.log(res.json());
@@ -39,7 +42,7 @@ export class SolicitanteService {
   }
 
   getUsuario(id$:string){
-    let url = `${this.usuarioURL}/${id$}`;
+    let url = `${this.solicitantesURL}/${id$}`;
 
     return this.http.get(url).map(res=>
       res.json()
@@ -47,13 +50,19 @@ export class SolicitanteService {
   }
 
   getUsuarios(){
-    return this.http.get(this.usuarioURL).map(res=>res.json());
+    return this.http.get(this.usuariosURL).map(res=>res.json());
   }
 
-  borraUsuario(id$:string){
-    let url = `${this.usuarioURL}/${id$}`;
-    return this.http.delete(url).map(res=>{
+  deleteUsuario(id){
+    let urlD = `${this.solicitantesURL}cancelar/${id}`;
+
+    return this.http.delete(urlD).map(res=>{
       console.log(res.json());
       res.json()});
+  }
+
+  getUsuarioAsociacion(id$:number){
+    let url = `${this.solicitantesURL}/asociacion/${id$}`;
+    return this.http.get(url).map(res=>res.json());
   }
 }
