@@ -17,9 +17,12 @@ import { KeysPipe } from './pipes/keys.pipe';
 //Services
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
-import {SolicitanteService} from "./services/solicitante.service";
+import {UserService} from "./services/user.service";
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
+import { ProfileUserComponent } from './components/user/profile/profileUser.component';
+import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { LoginComponent } from './components/login/login.component';
     RegistroLoginComponent,
     HomeComponent,
     LoginComponent,
-    HomeAsociaciones
+    HomeAsociaciones,
+    ProfileAsociacionComponent,
+    ProfileUserComponent,
+    LateralOptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +48,7 @@ import { LoginComponent } from './components/login/login.component';
   providers: [
     ProfesionesService,
     AsociacionesService,
-    SolicitanteService,
-    //RegistradoService
+    UserService
   ],
   bootstrap: [AppComponent]
 })

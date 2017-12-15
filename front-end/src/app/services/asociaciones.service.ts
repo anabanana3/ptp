@@ -5,11 +5,10 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 
 @Injectable()
 export class AsociacionesService {
-
   url:string = "https://www.aisha.ovh/api/asociacion/";
-  constructor(private http:Http) {
 
-  }
+  constructor(private http:Http) { }
+  
   getAsociaciones(){
     return this.http.get(this.url).map(res=>res.json());
   }
@@ -21,7 +20,7 @@ export class AsociacionesService {
     });
   }
 
-  nuevaAsociacion(asociacion:Asociacion){
+  newAsociacion(asociacion:Asociacion){
     let body = JSON.stringify(asociacion);
 
     let headers = new Headers({

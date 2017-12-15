@@ -1,11 +1,23 @@
 <h1>Usuarios</h1>
-<hr>
-
-<br>
+<div class="">
+  <button type="button" name="button" class="btn-inline textoBlanco"
+          style="margin-bottom: 2%;" (click)="view(0)">
+          Solicitantes
+  </button>
+  <button type="button" name="button" class="btn-inline textoBlanco"
+          style="margin-bottom: 2%;" (click)="view(1)">
+          Registrados
+  </button>
+  <button type="button" name="button" class="btn-inline textoBlanco"
+          style="margin-bottom: 2%;" (click)="view(2)">
+          Cancelados
+  </button>
+</div>
+<hr><br>
 
 <div >
-
   <div >
+
     <table class="table">
       <thead class="thead">
         <tr>
@@ -18,6 +30,7 @@
           <th class="text-right" scope="col">Opciones</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let k of user | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
@@ -29,9 +42,10 @@
           <td>{{user[k].DNI}}</td>
           <td class="text-right w230">
             <button type="button" class="btn btn-outline-success icon-ok span"></button>
-            <button type="button" class="btn btn-outline-danger icon-cancel span"></button>
+            <button type="button" class="btn btn-outline-danger icon-cancel span"
+                    (click)="cancelUser(user[k].ID_Usuario)">
+            </button>
             <button type="button" class="btn btn-outline-danger icon-mail span"></button>
-
           </td>
         </tr>
       </tbody>

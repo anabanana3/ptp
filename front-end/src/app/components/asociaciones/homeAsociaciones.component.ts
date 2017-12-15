@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { SolicitanteService } from "../../services/solicitante.service";
-import { Solicitante } from "../../interfaces/solicitante.interface";
+import { UserService } from "../../services/user.service";
+import { User } from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-homeAsociaciones',
   templateUrl: './homeAsociaciones.component.html'
 })
 export class HomeAsociaciones{
-
-  solicitantes:Solicitante ={
+  user:User ={
     Nombre:'',
     Apellidos: '',
     F_Nacimiento: '',
@@ -25,31 +24,18 @@ export class HomeAsociaciones{
   loading:boolean = false;
   asociacion:string = '';
 
+  constructor(private _userService:UserService) {
+    this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
+      this.user = data;
 
-
-  constructor(private _solicitanteService:SolicitanteService) {
-
-    this._solicitanteService.getUsuarioAsociacion(this.id).subscribe(data =>{
-      console.log(data);
-
-      this.solicitantes = data;
-
-      this.asociacion = this.solicitantes[0].Asociacion;
+      this.asociacion = this.user[0].Asociacion;
     })
   }
 
-  ngOnInit() {
-  }
-
-  borrar(id){
-    this._solicitanteService.deleteUsuario(id).subscribe(res => {
-      if(res){
-        console.log(res);
-      }
-      else{
-        console.log('borraaaar');
-        delete this.solicitantes[id];
-      }
+  cancelUser(id){
+    this._userService.deleteUsuario(id).subscribe(res => {
+      if(res){ console.log(res);}
+      else{ delete this.user[id];}
     })
   }
 }

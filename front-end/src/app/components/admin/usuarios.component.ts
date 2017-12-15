@@ -1,29 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { SolicitanteService } from "../../services/solicitante.service";
-
+import { Component } from '@angular/core';
+import { UserService } from "../../services/user.service";
+import { User } from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  templateUrl: './usuarios.component.html'
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent {
 
-  user:any[]=[];
+  user:User ={
+    Nombre:'',
+    Apellidos: '',
+    F_Nacimiento: '',
+    Email: '',
+    ID_Asociacion: 0,
+    ID_Profesion: 0,
+    ID_Lugar: '',
+    Direccion: '',
+    Sexo: '',
+    DNI: ''
+  };
+
   loading:boolean = true;
 
-  constructor(private _userService:SolicitanteService) {
-    this._userService.getUsuarios().subscribe(data=>{
-      console.log(data);
+  tabla:number = 0;
+  /* tabla
+    0: Solicitantes
+    1: Registrados
+    2: Cancelados
+  */
 
-      console.log(this.user);
+  constructor(private _userService:UserService){
+    this._userService.getUsuarios().subscribe(data=>{
       this.loading = false;
       this.user = data;
-
     })
   }
 
-  ngOnInit() {
+  cancelUser(id){
+    this._userService.deleteUsuario(id).subscribe(res => {
+      if(res){ console.log(res);}
+      else{ delete this.user[id];}
+    })
   }
 
+  view(number){
+    if(number == 0){
+      
+    }
+
+    if(number == 1){
+
+    }
+  }
 }

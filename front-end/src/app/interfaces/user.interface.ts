@@ -1,4 +1,4 @@
-export interface Solicitante{
+export interface User{
   Nombre:string;
   Apellidos: string;
   F_Nacimiento: string;
