@@ -6,6 +6,7 @@ import { RegistroLoginComponent } from './components/registro/registroLogin.comp
 import { HomeComponent } from './components/user/home/home.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
+import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 
 const app_routes: Routes = [
   { path: 'usuarios',
@@ -41,6 +42,11 @@ const app_routes: Routes = [
     path: 'options',
     component: LateralOptionsComponent,
     data: { title: 'options' }
+  },
+  {
+    path: 'admin/profile',
+    component: ProfileAsociacionComponent,
+    data: { title: 'profile' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'registro' }
 ];
