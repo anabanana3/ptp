@@ -31,10 +31,11 @@ export class UsuariosComponent {
   */
 
   constructor(private _userService:UserService){
-    this._userService.getUsuarios().subscribe(data=>{
+    this._userService.getSolicitantes().subscribe(data=>{
       this.loading = false;
       this.user = data;
     })
+    return;
   }
 
   cancelUser(id){
@@ -46,11 +47,27 @@ export class UsuariosComponent {
 
   view(number){
     if(number == 0){
-      
+      this._userService.getSolicitantes().subscribe(data=>{
+        this.loading = false;
+        this.user = data;
+      })
+      return;
     }
 
     if(number == 1){
+      this._userService.getRegistrados().subscribe(data=>{
+        this.loading = false;
+        this.user = data;
+      })
+      return;
+    }
 
+    if(number == 2){
+      this._userService.getCancelados().subscribe(data=>{
+        this.loading = false;
+        this.user = data;
+      })
+      return;
     }
   }
 }
