@@ -5,6 +5,7 @@ import { AsociacionesComponent } from './components/admin/asociaciones.component
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
+import {LoginComponent} from './components/login/login.component';
 
 const app_routes: Routes = [
   { path: 'usuarios',
@@ -15,6 +16,11 @@ const app_routes: Routes = [
     path: 'registro',
     component: RegistroComponent,
     data: { title: 'Registro' }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
   {
     path: 'asociaciones',
