@@ -5,7 +5,7 @@ import { AsociacionesComponent } from './components/admin/asociaciones.component
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
-import {LoginComponent} from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 
 const app_routes: Routes = [
