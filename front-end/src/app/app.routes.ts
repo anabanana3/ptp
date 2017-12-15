@@ -8,6 +8,7 @@ import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.com
 <<<<<<< HEAD
 import {LoginComponent} from './components/login/login.component';
 =======
+import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 >>>>>>> 3bccd87fb0586c446c14f548fa5bcd7141d14ddd
 
 const app_routes: Routes = [
@@ -44,6 +45,11 @@ const app_routes: Routes = [
     path: 'homeAsociacion',
     component: HomeAsociaciones,
     data: { title: 'Home' }
+  },
+  {
+    path: 'options',
+    component: LateralOptionsComponent,
+    data: { title: 'options' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'registro' }
 ];
