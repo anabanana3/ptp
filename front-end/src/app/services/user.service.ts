@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class UserService {
   solicitantesURL:string = "https://www.aisha.ovh/api/solicitantes/";
+  canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
+  registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
 
   constructor(private http:Http) { }
@@ -61,5 +63,17 @@ export class UserService {
   getUsuarioAsociacion(id$:number){
     let url = `${this.solicitantesURL}/asociacion/${id$}`;
     return this.http.get(url).map(res=>res.json());
+  }
+
+  getSolicitantes(){
+    return this.http.get(this.solicitantesURL).map(res=>res.json());
+  }
+
+  getRegistrados(){
+    return this.http.get(this.registradosURL).map(res=>res.json());
+  }
+
+  getCancelados(){
+    return this.http.get(this.canceladosURL).map(res=>res.json());
   }
 }

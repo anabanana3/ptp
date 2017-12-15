@@ -62,24 +62,25 @@
       <label for="cif">CIF *</label>
         <input [(ngModel)]="usuario.CIF" class="lineaCampo" type="text" name="cif" id="cif">
       <label for="contra">Contraseña *</label>
-        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
-      <label for="contraRepeat">Repita la Contraseña *</label>
-        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contraRepeat" id="contraRepeat">
+        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
+        <div class="progress">
+          <div id="value" style="background-color:black;"></div>
+        </div>
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="btn-inline textoBlanco">Soy una Asociación
+            class="submitNegro textoBlanco">Soy una Asociación
     </button>
 
     <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="btn-inline textoBlanco">Soy un Usuario
+            class="submitNegro textoBlanco">Soy un Usuario
     </button>
 
     <div>
       <input type="checkbox" name="acepto" value="acepto" id="check">
         <label for="check" class="textoPeq">Acepto la política de privacidad</label>
       <p class="textoPeq">* Obligatorio</p>
-      <button type="submit" name="button" class="submitNegro textoBlanco">REGISTRAR</button>
+      <button type="submit" name="button" class="btn-inline textoBlanco">REGISTRAR</button>
     </div>
 
   </form>
