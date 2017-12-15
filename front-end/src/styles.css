@@ -13,18 +13,14 @@ body{
   padding: 0;
 }
 
-p{
-  margin: 0;
-}
+p{margin: 0;}
 
 a{
   color: #333333;
   text-decoration: none;
 }
 
-form{
-  display: inline-block;
-}
+form{display: inline-block;}
 
 table{
   border-collapse: collapse;
@@ -39,18 +35,13 @@ thead{
   color: #FFFFFF;
 }
 
-th, td, button{
-  padding: 15px;
-}
+th, td, button{padding: 15px;}
 
-input{
-  font-size: 16px;
+input{font-size: 16px;}
 
-}
+span{font-size: small;}
 
-span{
-  font-size: small;
-}
+ul{list-style: none;}
 
 .divBlanco{
   margin-left: 30%;
@@ -65,9 +56,7 @@ span{
   text-align: left;
 }
 
-.textoPeq{
-  font-size: 12px;
-}
+.textoPeq{font-size: 12px;}
 
 .checkbox{
   border: 1px solid #333333;
@@ -94,22 +83,20 @@ span{
 }
 
 .submitNegro{
-  margin-top: 3%;
   margin-bottom: 3%;
   background: #333333;
   padding: 10px;
   font-size: 18px;
 }
 
-.textoBlanco{
-  color: #FFFFFF;
-}
+.textoBlanco{color: #FFFFFF;}
 
 .btn-inline{
   display: inline;
   background: #880042;
   font-size: 16px;
   margin-bottom: 3%;
+  margin-top: 3%;
 }
 
 .google{
@@ -130,9 +117,7 @@ span{
   margin-bottom: 25px;
 }
 
-.g-signin2{
-  display: inline;
-}
+.g-signin2{display: inline;}
 
 .span{
   background: none;
@@ -145,4 +130,33 @@ span{
   background: #BDB2B7;
   border: 1px solid transparent;
   border-radius: 50%;
+}
+
+.divAdmin{
+  background: #D8D8D8;
+  border: 1px solid #979797;
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
+  padding-bottom: 6%;
+}
+.menuAdmin{
+  float:left;
+  background: none;
+  border: none;
+  padding: 2%;
+}
+.divAdmin ul{float: left; margin-top: 20%;}
+.divAdmin li{padding: 20%;}
+.divAdmin a{font-size: 130%;}
+.divAdmin a:hover{color: #880042; text-decoration: underline;}
+
+.logoPeque{width: 4%; float: left;}
+
+.pointer{cursor: pointer;}
+
+.progress{
+  height: 0.5rem;
+  width: 100%;
+  background: #e9ecef;
+  margin-bottom: 1rem;
+  display: flex;
 }

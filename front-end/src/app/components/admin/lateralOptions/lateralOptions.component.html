@@ -1,3 +1,24 @@
-<p>
-  lateral-options works!
-</p>
+<div class="divAdmin">
+  <button class="icon-menu menuAdmin pointer" (click)="expanded = !expanded"></button>
+  <img src="/../../../assets/img/AISHA.png" alt="Logo AISHA" class="logoPeque"
+       style="margin: 0.5%;">
+</div>
+
+<div *ngIf="expanded" class="divAdmin"
+     style="width: 30%;float: left; border-top:none; position: absolute;">
+<!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
+  <ul>
+    <li>
+      <a class="pointer" href="/usuarios">Usuarios</a>
+    </li>
+    <li>
+      <a class="pointer" href="/asociaciones">Asociaciones</a>
+    </li>
+    <li>
+      <a class="pointer">Recursos</a>
+    </li>
+    <li>
+      <a class="pointer">Notificaciones</a>
+    </li>
+  </ul>
+</div>

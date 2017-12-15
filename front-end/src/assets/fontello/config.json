@@ -23,6 +23,12 @@
       "css": "mail",
       "code": 59394,
       "src": "websymbols"
+    },
+    {
+      "uid": "559647a6f430b3aeadbecd67194451dd",
+      "css": "menu",
+      "code": 61641,
+      "src": "fontawesome"
     }
   ]
 }

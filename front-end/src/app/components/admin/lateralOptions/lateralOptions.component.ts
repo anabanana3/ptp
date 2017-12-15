@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
 })
 export class LateralOptionsComponent{
 
+  expanded:boolean = false;
+
   constructor() { }
 
 }
