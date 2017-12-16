@@ -4,7 +4,16 @@
   </header>
   <div class="lineaDiv"></div>
 
+
   <p>aqui va el login</p>
+
+  <label for="email">email</label>
+    <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="email">
+    <br>
+
+  <label for="contra">Contraseña</label>
+    <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
+<br>
 
   <footer class="footerDivGris">
     <p>¿Aún no eres miembro?</p>
