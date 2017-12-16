@@ -62,10 +62,8 @@
       <label for="cif">CIF *</label>
         <input [(ngModel)]="usuario.CIF" class="lineaCampo" type="text" name="cif" id="cif">
       <label for="contra">Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
-        <div class="progress">
-          <div id="value" style="background-color:black;"></div>
-        </div>
+        <!-- (keyup)="" -->
+        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"

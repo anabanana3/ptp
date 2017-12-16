@@ -37,7 +37,7 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
     HomeAsociaciones,
     ProfileAsociacionComponent,
     ProfileUserComponent,
-    LateralOptionsComponent
+    LateralOptionsComponent,
   ],
   imports: [
     BrowserModule,

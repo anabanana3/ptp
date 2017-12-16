@@ -94,9 +94,9 @@ ul{list-style: none;}
 .btn-inline{
   display: inline;
   background: #880042;
-  font-size: 16px;
   margin-bottom: 3%;
   margin-top: 3%;
+  font-size: 18px;
 }
 
 .google{
@@ -162,7 +162,33 @@ ul{list-style: none;}
 }
 
 .editarPerfil{
+  float: left;
+  margin-left: 10%;
+  margin-top: 5%;
   background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 80%;
+}
+
+.headerPermisos{
+  background: #9C0C54;
+  border: 2px solid #9C0C54;
+  border-radius: 4px;
+}
+
+.permisos{
+  background-color: none;
+  border: 2px solid #9C0C54;
+  border-radius: 4px;
+}
+
+.fotoPerfil{
+  width: 20%;
+  margin-top: 2%;
+  border: 3px solid #9C0C54;
+  border-radius: 50%;
+}
+
+.fotoPerfil:hover{
+  background: rgba(191,191,191,0.50);
 }

@@ -9,5 +9,6 @@ export interface User{
   Direccion: string;
   DNI: string;
   Sexo: string;
+  Foto?: string;
   ID_Usuario$?:string //? dato opcional
 }
