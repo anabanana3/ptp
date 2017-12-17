@@ -84,14 +84,19 @@ export class RegistroComponent {
     if(!bool){
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
         console.log(data);
-        alert('Gracias por Registrarte!');
+        if(data.warningCount == 0){
+          alert('Gracias por Registrarte!');
+        }
       }, error=>console.log(error));
     }
     else{
       this.usuario.Direccion = this.usuario.ID_Lugar;
+
       this._userService.newUsuario(this.usuario).subscribe(data=>{
         console.log(data);
-        alert('Gracias por Registrarte!');
+        if(data.warningCount == 0){
+          alert('Gracias por Registrarte!');
+        }
       }, error=>console.log(error));
     }
   }

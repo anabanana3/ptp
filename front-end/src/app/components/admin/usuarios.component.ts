@@ -33,6 +33,8 @@ export class UsuariosComponent {
   constructor(private _userService:UserService){
     this._userService.getSolicitantes().subscribe(data=>{
       this.loading = false;
+      console.log('Solicitantes');
+      console.log(data);
       this.user = data;
     })
     return;
@@ -49,6 +51,9 @@ export class UsuariosComponent {
     if(number == 0){
       this._userService.getSolicitantes().subscribe(data=>{
         this.loading = false;
+        console.log('Solicitantes');
+        this.tabla = 0
+        console.log(data);
         this.user = data;
       })
       return;
@@ -57,6 +62,9 @@ export class UsuariosComponent {
     if(number == 1){
       this._userService.getRegistrados().subscribe(data=>{
         this.loading = false;
+        this.tabla = 1
+        console.log('Registrados');
+        console.log(data);
         this.user = data;
       })
       return;
@@ -65,6 +73,9 @@ export class UsuariosComponent {
     if(number == 2){
       this._userService.getCancelados().subscribe(data=>{
         this.loading = false;
+        this.tabla = 2
+        console.log('Cancelados');
+        console.log(data);
         this.user = data;
       })
       return;

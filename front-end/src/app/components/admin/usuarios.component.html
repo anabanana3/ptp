@@ -41,8 +41,7 @@
           <td>{{user[k].Profesion}}</td>
           <td>{{user[k].Asociacion}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success icon-ok span"></button>
-            <button type="button" class="btn btn-outline-danger icon-cancel span"
+            <button *ngIf="tabla != 2" type="button" class="btn btn-outline-danger icon-cancel span"
                     (click)="cancelUser(user[k].ID_Usuario)">
             </button>
             <button type="button" class="btn btn-outline-danger icon-mail span"></button>

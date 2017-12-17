@@ -23,13 +23,15 @@ export class AsociacionesComponent {
     this._asociacionesServices.getAsociaciones().subscribe(data=>{
 
       this.loading = false;
+      console.log(data);
       this.asociacion = data;
     })
   }
 
   delete(id){
     this._asociacionesServices.deleteAsociacion(id).subscribe(res=>{
-      if(res){ console.log(res);}
+
+      if(res){console.log(res); }
       else{ delete this.asociacion[id];}
     })
   }

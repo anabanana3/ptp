@@ -16,6 +16,7 @@ export class AsociacionesService {
   deleteAsociacion(id){
     let urlD = `${this.url}/${id}`;
     return this.http.delete(urlD).map(res=>{
+      console.log(res.json());
       res.json();
     });
   }
@@ -33,11 +34,9 @@ export class AsociacionesService {
           return res.json();
         })
   }
-  
+
   getAsociacion(id$:number){
     let urlA = `${this.url}${id$}`;
-
-    console.log(urlA);
 
     return this.http.get(urlA).map(res=>res.json());
   }

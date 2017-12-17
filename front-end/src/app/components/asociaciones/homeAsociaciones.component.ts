@@ -27,8 +27,9 @@ export class HomeAsociaciones{
   constructor(private _userService:UserService) {
     this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
       this.user = data;
-
       this.asociacion = this.user[0].Asociacion;
+      console.log('Asociacion:' + this.asociacion);
+      console.log(this.user);
     })
   }
 
