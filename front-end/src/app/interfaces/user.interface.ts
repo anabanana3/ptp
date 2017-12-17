@@ -3,8 +3,8 @@ export interface User{
   Apellidos: string;
   F_Nacimiento: string;
   Email: string;
-  ID_Asociacion: number;
-  ID_Profesion: number;
+  Asociacion: string;
+  Profesion: string;
   ID_Lugar: string;
   Direccion: string;
   DNI: string;

@@ -1,53 +1,44 @@
 
-<div class="editarPerfil">
+<div class="editarPerfil" style="width: 60%; margin-left: 20%;">
 
-  <img src="{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
+  <img src="{{asociacion.Foto}}" alt="imagen asociacion">
   <hr>
 
-  <div class="" style="width: 50%; float: left;">
-    <form class="" style="display: inline-grid; width: 80%;">
+  <form class="" action="index.html" method="post" style="display: inline-grid; margin-top:5%; width:70%;">
+    <div class="" style="margin-right:10%;">
+      <label for="nombre">Nombre Asociación:</label>
+      <input type="text" name="nombre" value="{{asociacion.Nombre}}" id="email" disabled="false" class="lineaCampo">
+    </div>
+    <div class="" style="margin-right:10%;">
+      <label for="email">Email:</label>
+      <input type="email" name="email" value="{{asociacion.Email}}" id="email" class="lineaCampo">
+    </div>
+    <div class="" style="margin-right:10%;">
+      <label for="direc">Dirección:</label>
+      <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" class="lineaCampo">
+    </div>
+    <div class="" style="margin-right:10%;">
+      <label for="cif">CIF:</label>
+      <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled="false">
+    </div>
 
-      <!-- [(ngModel)]="" -->
-      <label for="nombre">Nombre asociación</label>
-        <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
-               value="user[0].Nombre" name="nombre" id="nombre" disabled="false">
-      <label for="apellido">Email</label>
-        <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
-               value="user[0].Email" name="email" id="email">
-        <button (click)="change = !change" type="button" name="button"
-                class="submitNegro textoBlanco" style="margin-bottom:5%;">
-                Cambiar Contraseña
-        </button>
-      <div *ngIf="change" class="" style="display: inline-grid;">
-        <label for="apellido">Anterior Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
-        <label for="apellido">Nueva Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
-        <label for="apellido">Repita la Nueva Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
+    <button type="button" name="button" class="submitNegro textoBlanco"
+            style="margin-bottom:5%; width:50%; margin-left:25%;" (click)="change = !change">
+      Cambiar Contrseña
+    </button>
+    <div class="" *ngIf="change" style="display: inline-grid;">
+      <div class="" style="margin-right:10%;">
+        <label for="pass">Antigua Contraseña:</label>
+        <input type="password" name="password" value="" id="pass" class="lineaCampo">
       </div>
-
-      <button type="button" name="button" class="btn-inline textoBlanco">GUARDAR</button>
-    </form>
-  </div>
-
-  <div class="headerPermisos" style="width: 40%; float: right; margin-right:5%;">
-    <p class="textoBlanco">Permisos</p>
-  </div>
-  <div class="permisos" style="width: 40%; float: right; margin-right:5%; display: inline-grid;">
-    <div class="" style="margin-top: 5%;">
-      <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="api">Ver API</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
+      <div class="" style="margin-right:10%;">
+        <label for="newpass">Nueva Contraseña:</label>
+        <input type="password" name="newpassword" value="" id="newpass" class="lineaCampo">
+      </div>
     </div>
 
-    <button type="button" name="button" class="submitNegro textoBlanco" style="margin:5%;">Solicitar</button>
-  </div>
+    <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
+      Cambiar
+    </button>
+  </form>
 </div>

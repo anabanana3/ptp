@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AsociacionesService} from "../../../services/asociaciones.service";
+import {Asociacion} from "../../../interfaces/asociacion.interface";
 
 @Component({
   selector: 'app-profileAsociacion',
@@ -6,7 +8,21 @@ import { Component } from '@angular/core';
 })
 export class ProfileAsociacionComponent {
 
-  constructor() {
+  id:number = 4;
 
+  asociacion:Asociacion ={
+    Nombre: '',
+    Direccion: '',
+    Email: '',
+    Password: '',
+    CIF: '',
+    Foto: ''
+  }
+
+  constructor(private _asociacionesService:AsociacionesService) {
+    this._asociacionesService.getAsociacion(this.id).subscribe(data =>{
+      this.asociacion = data[0];
+      console.log(data);
+    })
   }
 }

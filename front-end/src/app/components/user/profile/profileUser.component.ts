@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from "../../../services/user.service";
+import {AsociacionesService} from "../../../services/asociaciones.service";
+import {ProfesionesService} from "../../../services/profesiones.service";
 import { User } from "../../../interfaces/user.interface";
 
 @Component({
@@ -17,8 +19,8 @@ export class ProfileUserComponent {
     Apellidos: '',
     F_Nacimiento: '',
     Email: '',
-    ID_Asociacion: 0,
-    ID_Profesion: 0,
+    Asociacion: '',
+    Profesion: '',
     ID_Lugar: '',
     Direccion: '',
     Sexo: '',
@@ -26,10 +28,14 @@ export class ProfileUserComponent {
     Foto: ''
   };
 
-  constructor(private _userService:UserService) {
+  asociacion:string = '';
+  profesion:string = '';
+
+  constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
+              private _profesionesService:ProfesionesService) {
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
-      console.log(this.user.Foto);
+      console.log(this.user);
     })
   }
 

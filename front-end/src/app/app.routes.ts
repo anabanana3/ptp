@@ -8,9 +8,10 @@ import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.com
 import { LoginComponent } from './components/login/login.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
+import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 
 const app_routes: Routes = [
-  { path: 'usuarios',
+  { path: 'admin/usuarios',
     component: UsuariosComponent ,
     data: { title: 'Usuarios' }
   },
@@ -25,7 +26,7 @@ const app_routes: Routes = [
     data: { title: 'Login' }
   },
   {
-    path: 'asociaciones',
+    path: 'admin/asociaciones',
     component: AsociacionesComponent,
     data: { title: 'Asociaciones' }
   },
@@ -40,13 +41,18 @@ const app_routes: Routes = [
     data: { title: 'Home' }
   },
   {
-    path: 'homeAsociacion',
+    path: 'asociacion',
     component: HomeAsociaciones,
     data: { title: 'Home' }
   },
   {
     path: 'user/profile',
     component: ProfileUserComponent,
+    data: { title: 'profile' }
+  },
+  {
+    path: 'asociacion/profile',
+    component: ProfileAsociacionComponent,
     data: { title: 'profile' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'registro' }

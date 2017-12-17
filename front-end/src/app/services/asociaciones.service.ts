@@ -8,7 +8,7 @@ export class AsociacionesService {
   url:string = "https://www.aisha.ovh/api/asociacion/";
 
   constructor(private http:Http) { }
-  
+
   getAsociaciones(){
     return this.http.get(this.url).map(res=>res.json());
   }
@@ -32,5 +32,13 @@ export class AsociacionesService {
           console.log(res.json());
           return res.json();
         })
+  }
+  
+  getAsociacion(id$:number){
+    let urlA = `${this.url}${id$}`;
+
+    console.log(urlA);
+
+    return this.http.get(urlA).map(res=>res.json());
   }
 }
