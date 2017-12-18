@@ -40,4 +40,8 @@ export class AsociacionesService {
 
     return this.http.get(urlA).map(res=>res.json());
   }
+
+  loginAsociacion(){
+
+  }
 }

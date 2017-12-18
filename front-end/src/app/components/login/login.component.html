@@ -4,16 +4,24 @@
   </header>
   <div class="lineaDiv"></div>
 
+  <form (ngSubmit)="login()">
 
-  <p>aqui va el login</p>
+    <div class="camposForm">
 
-  <label for="email">email</label>
-    <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text" name="email" id="email">
-    <br>
+      <label for="email">Email</label>
+        <input [(ngModel)]="email" class="lineaCampo" type="email" name="email" id="email">
+      <label for="contra">Contraseña</label>
+        <input [(ngModel)]="password" class="lineaCampo" type="password" name="contra" id="contra">
 
-  <label for="contra">Contraseña</label>
-    <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
-<br>
+    </div>
+
+    <div>
+      <input type="checkbox" name="asociacion" value="asociacion" id="check">
+        <label for="check" class="textoPeq">Soy una asociación</label>
+      <button type="submit" name="button" class="btn-inline textoBlanco">ENTRAR</button>
+    </div>
+
+  </form>
 
   <footer class="footerDivGris">
     <p>¿Aún no eres miembro?</p>

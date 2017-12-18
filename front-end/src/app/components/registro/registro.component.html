@@ -6,6 +6,8 @@
 
   <form (ngSubmit)="new(usuarios)">
 
+
+<!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
       <div class="g-signin2" (ngSubmit)="signInGoogle()"
            data-onsuccess="onSignIn" data-theme="dark">
@@ -44,6 +46,7 @@
         </option>
       </select>
 
+<!-- Registro asociacion -->
       <label for="asociacion">Asociación *</label>
       <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion">
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asocioacion}}">
