@@ -17,18 +17,31 @@ export class LoginComponent {
     Password: ''
   }
 
-  check:boolean = false;
+  check_asoc:boolean = false;
+  mensaje:string = '';
 
   constructor(private activatedRoute:ActivatedRoute, private router:Router,
-    private _asociacionesService:AsociacionesService) { }
+    private _asociacionesService:AsociacionesService, private _userService:UserService) { }
 
   login(){
-    console.log(this.json.Email);
-    console.log(this.json.Password);
+    //valida el mail
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if(!emailRegex.test(this.json.Email)){
+      this.mensaje = 'Email no válido';
+      document.getElementById('alert').className = 'alert alert-danger';
+      return;
+    }
+     //console.log(this.json.Email);
+    // console.log(this.json.Password);
 
-    if(this.check){
+    if(this.check_asoc){
       //check == true -> asociacion
       this._asociacionesService.loginAsociacion(this.json)
+        .subscribe(data =>{
+          console.log(data);
+        })
+    }else{
+      this._userService.loginUser(this.json)
         .subscribe(data =>{
           console.log(data);
         })

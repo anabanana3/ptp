@@ -6,12 +6,18 @@
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
 
+<<<<<<< HEAD
   <form (ngSubmit)="new(forma, usuarios)" #forma="ngForm">
+=======
+
+  <form (ngSubmit)="new(usuarios)" action="/registro" method="get">
+>>>>>>> 78cdaab3112e75d03218b6cf4b77402c017c0871
 <!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
-      <div class="g-signin2" (ngSubmit)="signInGoogle()"
+      <!-- <div class="g-signin2" (ngSubmit)="signInGoogle()"
            data-onsuccess="onSignIn" data-theme="dark">
-      </div>
+      </div> -->
+      <p class="textoPeq textoRojo">* Campos obligatorios</p> <br>
 
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text"
@@ -70,7 +76,6 @@
       <div class="progress">
         <div id="value" style="background-color:black;"></div>
       </div>
-
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
@@ -84,7 +89,6 @@
     <div>
     <!--  <input type="checkbox" name="acepto" value="acepto" id="check">
         <label for="check" class="textoPeq">Acepto la política de privacidad</label> -->
-      <p class="textoPeq">* Obligatorio</p>
       <button type="submit" name="button" class="btn-inline textoBlanco">REGISTRAR</button>
     </div>
 
