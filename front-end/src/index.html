@@ -6,13 +6,14 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="548840458368-lh9akvqubmhl0rghlihkmclpfp6h7ft5.apps.googleusercontent.com">
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link type="text/css" rel="stylesheet" href="assets/fontello/css/fontello.css" />
 
-<!--
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="548840458368-lh9akvqubmhl0rghlihkmclpfp6h7ft5.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js"></script>
+
   <script>
       //OAUTH
       function onSignIn(googleUser) {
@@ -31,7 +32,7 @@
       };
     </script>
 
-  <script>
+  <!--<script>
       //maps
       function initAutocomplete() {
         // Create the search box and link it to the UI element.
@@ -45,6 +46,8 @@
 -->
 </head>
 <body>
+  <a type="button" name="button" class="submitNegro textoBlanco" href="/login">Login</a>
+  <a type="button" name="button" class="submitNegro textoBlanco" href="/registro">Registro</a>
   <app-root></app-root>
 </body>
 </html>
