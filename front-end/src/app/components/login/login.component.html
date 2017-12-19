@@ -9,15 +9,15 @@
     <div class="camposForm">
 
       <label for="email">Email</label>
-        <input [(ngModel)]="email" class="lineaCampo" type="email" name="email" id="email">
+        <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email">
       <label for="contra">Contraseña</label>
-        <input [(ngModel)]="password" class="lineaCampo" type="password" name="contra" id="contra">
+        <input [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra">
 
     </div>
 
     <div>
-      <input type="checkbox" name="asociacion" value="asociacion" id="check">
-        <label for="check" class="textoPeq">Soy una asociación</label>
+      <input [(ngModel)]="check" type="checkbox" name="asociacion" value="asociacion" id="check">
+        <label for="check" class="textoPeq">Soy una asociación</label> <br>
       <button type="submit" name="button" class="btn-inline textoBlanco">ENTRAR</button>
     </div>
 

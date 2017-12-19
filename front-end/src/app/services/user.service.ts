@@ -10,8 +10,7 @@ export class UserService {
   canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
   registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
-  //preguntar a carlos la url  hacer un get con la url mandando el nombre y contraseña
-  //tengo que poner mi url de login
+  loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
 
   constructor(private http:Http) { }
 
