@@ -36,8 +36,7 @@ export class AsociacionesService {
         })
   }
 
-  loginAsociacion(json){
-    //{"Email":"blablabla", "Password":"contraseña"}
+  loginAsociacion(json){ //json con email y contrasena
     let body = JSON.stringify(json);
 
     let headers = new Headers({
