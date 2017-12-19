@@ -66,6 +66,8 @@ export class RegistroComponent {
 
   usuarios:boolean = true;
 
+  mensaje:string = '';
+
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
     private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
 
@@ -81,23 +83,46 @@ export class RegistroComponent {
   }
 
   new(bool){
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
     if(!bool){
+      if(!emailRegex.test(this.asociacion.Email)){
+        this.mensaje = 'Email mal introducido';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }
+
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          alert('Gracias por Registrarte!');
+          this.mensaje = 'Gracias por registrarte!';
+          document.getElementById('alert').className = 'alert alert-success';
         }
-      }, error=>console.log(error));
+      }, error=>{
+        this.mensaje = 'Campos Incompletos';
+        document.getElementById('alert').className = 'alert alert-danger';
+        console.log(error);
+      });
     }
     else{
-      this.usuario.Direccion = this.usuario.ID_Lugar;
+      if(!emailRegex.test(this.usuario.Email)){
+        this.mensaje = 'Email mal introducido';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }
 
+      this.usuario.Direccion = this.usuario.ID_Lugar;
       this._userService.newUsuario(this.usuario).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          alert('Gracias por Registrarte!');
+          this.mensaje = 'Gracias por registrarte!';
+          document.getElementById('alert').className = 'alert alert-success';
         }
-      }, error=>console.log(error));
+      }, error=>{
+        this.mensaje = 'Campos Incompletos';
+        document.getElementById('alert').className = 'alert alert-danger';
+        console.log(error);
+      });
     }
   }
 

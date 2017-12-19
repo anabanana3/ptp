@@ -3,10 +3,8 @@
     <img style="margin-top:20px;" src="../assets/img/AISHA.png" alt="">
   </header>
   <div class="lineaDiv"></div>
-
-  <form (ngSubmit)="new(usuarios)">
-
-
+  <div id="alert">{{mensaje}}</div>
+  <form (ngSubmit)="new(usuarios)" action="/registro" method="get">
 <!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
       <div class="g-signin2" (ngSubmit)="signInGoogle()"
@@ -15,13 +13,13 @@
 
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text"
-                name="nombre" id="nombre">
+                name="nombre" id="nombre" required>
       <label for="apellido">Apellidos *</label>
         <input [(ngModel)]="usuario.Apellidos" class="lineaCampo" type="text"
-                name="apellido" id="apellido">
+                name="apellido" id="apellido" required>
       <label for="fechaNacimiento">Fecha Nacimiento</label>
         <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date"
-                name="fechaNacimiento" id="fechaNacimiento">
+                name="fechaNacimiento" id="fechaNacimiento" required>
       <label for="sexo">Sexo</label>
 
       <div class="radioButtons">
@@ -34,13 +32,13 @@
       </div>
 
       <label for="dni">NIE/NIF *</label>
-        <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni">
+        <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni" required>
       <label for="direccion">Dirección *</label>
-        <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion">
+        <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion" required>
       <label for="email">Email *</label>
-        <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email">
+        <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="profesion">Profesión *</label>
-      <select [(ngModel)]="usuario.ID_Profesion" class="lineaCampo" name="profesion" id="profesion">
+      <select [(ngModel)]="usuario.ID_Profesion" class="lineaCampo" name="profesion" id="profesion" required>
         <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
           {{profesiones[k].Nombre}}
         </option>
@@ -48,7 +46,7 @@
 
 <!-- Registro asociacion -->
       <label for="asociacion">Asociación *</label>
-      <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion">
+      <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asocioacion}}">
           {{asociaciones[k].Nombre}}
         </option>
@@ -82,8 +80,8 @@
     </button>
 
     <div>
-      <input type="checkbox" name="acepto" value="acepto" id="check">
-        <label for="check" class="textoPeq">Acepto la política de privacidad</label>
+    <!--  <input type="checkbox" name="acepto" value="acepto" id="check">
+        <label for="check" class="textoPeq">Acepto la política de privacidad</label> -->
       <p class="textoPeq">* Obligatorio</p>
       <button type="submit" name="button" class="btn-inline textoBlanco">REGISTRAR</button>
     </div>
