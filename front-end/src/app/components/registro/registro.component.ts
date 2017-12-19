@@ -82,11 +82,20 @@ export class RegistroComponent {
     })
   }
 
-  new(bool){
+  new(forma:NgForm, bool){
+
+    if(forma.valid === false){
+      location.href = '/registro#arriba'
+      this.mensaje = 'Campos Incompletos';
+      document.getElementById('alert').className = 'alert alert-danger';
+      return;
+    }
+
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
     if(!bool){
       if(!emailRegex.test(this.asociacion.Email)){
+        location.href = '#alert'
         this.mensaje = 'Email mal introducido';
         document.getElementById('alert').className = 'alert alert-danger';
         return;
@@ -124,6 +133,8 @@ export class RegistroComponent {
         console.log(error);
       });
     }
+
+    location.href="/registro";
   }
 
   validate(pass){

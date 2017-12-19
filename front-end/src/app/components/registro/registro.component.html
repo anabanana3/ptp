@@ -2,9 +2,11 @@
   <header>
     <img style="margin-top:20px;" src="../assets/img/AISHA.png" alt="">
   </header>
+  <a name="arriba"></a>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
-  <form (ngSubmit)="new(usuarios)" action="/registro" method="get">
+
+  <form (ngSubmit)="new(forma, usuarios)" #forma="ngForm">
 <!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
       <div class="g-signin2" (ngSubmit)="signInGoogle()"
@@ -13,10 +15,10 @@
 
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text"
-                name="nombre" id="nombre" required>
+                name="nombre" id="nombre" minlength="3" maxlength="15" required>
       <label for="apellido">Apellidos *</label>
         <input [(ngModel)]="usuario.Apellidos" class="lineaCampo" type="text"
-                name="apellido" id="apellido" required>
+                name="apellido" id="apellido" minlength="3" maxlength="20" required>
       <label for="fechaNacimiento">Fecha Nacimiento</label>
         <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date"
                 name="fechaNacimiento" id="fechaNacimiento" required>
