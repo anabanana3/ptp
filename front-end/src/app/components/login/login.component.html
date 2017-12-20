@@ -5,12 +5,12 @@
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
 
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="login(forma)" #forma="ngForm">
     <div class="camposForm">
       <label for="email">Email</label>
-        <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email">
+        <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="contra">Contraseña</label>
-        <input [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra">
+        <input [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
     </div>
     <div>
       <input [(ngModel)]="check_asoc" type="checkbox" name="asociacion" value="asociacion" id="check">

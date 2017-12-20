@@ -19,11 +19,18 @@ export class LoginComponent {
 
   check_asoc:boolean = false;
   mensaje:string = '';
+  token:string = "";
 
   constructor(private activatedRoute:ActivatedRoute, private router:Router,
     private _asociacionesService:AsociacionesService, private _userService:UserService) { }
 
-  login(){
+  login(forma:NgForm){
+
+    if(forma.valid === false){
+      this.mensaje = 'Campos Incompletos';
+      document.getElementById('alert').className = 'alert alert-danger';
+      return;
+    }
     //valida el mail
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     if(!emailRegex.test(this.json.Email)){
@@ -31,8 +38,8 @@ export class LoginComponent {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }
-     //console.log(this.json.Email);
-    // console.log(this.json.Password);
+    console.log(this.json.Email);
+    console.log(this.json.Password);
 
     if(this.check_asoc){
       //check == true -> asociacion
@@ -40,10 +47,12 @@ export class LoginComponent {
         .subscribe(data =>{
           console.log(data);
         })
+
     }else{
       this._userService.loginUser(this.json)
         .subscribe(data =>{
           console.log(data);
+          this.token = data.token; //token guardado
         })
     }
   }
