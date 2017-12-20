@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 const app_routes: Routes = [
   { path: 'admin/usuarios',
@@ -55,7 +56,12 @@ const app_routes: Routes = [
     component: ProfileAsociacionComponent,
     data: { title: 'profile' }
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'registro' }
+  {
+    path: 'principal',
+    component: PrincipalComponent,
+    data: { title: 'Principal' }
+  }/*,
+  { path: '**', pathMatch: 'full', redirectTo: 'principal' }*/
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

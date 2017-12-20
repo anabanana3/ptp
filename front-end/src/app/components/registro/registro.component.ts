@@ -14,6 +14,7 @@ import { Asociacion } from "../../interfaces/asociacion.interface";
   templateUrl: './registro.component.html'
 })
 export class RegistroComponent {
+  gapi : any;
 
   usuario:User={
     Nombre:'',

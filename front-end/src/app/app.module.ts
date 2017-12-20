@@ -23,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
     ProfileAsociacionComponent,
     ProfileUserComponent,
     LateralOptionsComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
