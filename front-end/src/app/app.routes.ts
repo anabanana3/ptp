@@ -60,8 +60,8 @@ const app_routes: Routes = [
     path: 'principal',
     component: PrincipalComponent,
     data: { title: 'Principal' }
-  }/*,
-  { path: '**', pathMatch: 'full', redirectTo: 'principal' }*/
+  },
+  { path: '**', pathMatch: 'full', redirectTo: 'principal' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

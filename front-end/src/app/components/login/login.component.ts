@@ -46,13 +46,31 @@ export class LoginComponent {
       this._asociacionesService.loginAsociacion(this.json)
         .subscribe(data =>{
           console.log(data);
+          if (data.Resultado == "ERROR") {
+            this.mensaje = 'Email o contraseña incorrectos';
+            document.getElementById('alert').className = 'alert alert-danger';
+            return;
+          }
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('userID', data.data[0].ID_Usuario);
+          console.log(sessionStorage);
+          location.href = '/rhome';
         })
 
     }else{
       this._userService.loginUser(this.json)
         .subscribe(data =>{
           console.log(data);
-          this.token = data.token; //token guardado
+          if (data.Resultado == "ERROR") {
+            this.mensaje = 'Email o contraseña incorrectos';
+            document.getElementById('alert').className = 'alert alert-danger';
+            return;
+          }
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('userID', data.data[0].ID_Usuario);
+          console.log(sessionStorage);
+          location.href = '/rhome';
+
         })
     }
   }

@@ -43,10 +43,9 @@ export class AsociacionesService {
       'Content-Type':'application/json'
     });
 
-  //  console.log(body);
     return this.http.post(this.loginURL, body, {headers})
         .map(res=>{
-          console.log(res.json());
+          //console.log(res.json());
           return res.json();
         })
   }
