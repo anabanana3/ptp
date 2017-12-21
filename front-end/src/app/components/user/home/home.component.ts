@@ -1,25 +1,26 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit {
 
-  sesion:string = "";
+  sesionid:string = "";
 
-  constructor() { }
+  constructor(private activatedRoute:ActivatedRoute, private router:Router) { }
 
-
-  login(forma:NgForm){
-
+  ngOnInit() {
     if(sessionStorage.getItem("iD")){
-      console.log("holis esxisto");
-      this.sesion = sessionStorage.getItem("iD");
+      this.sesionid = sessionStorage.getItem("iD");
     }
-
-
   }
+
+  logout(){
+    sessionStorage.clear();
+    location.href = '/login';
+  }
+
 }

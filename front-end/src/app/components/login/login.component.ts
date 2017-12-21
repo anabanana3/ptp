@@ -19,12 +19,12 @@ export class LoginComponent {
 
   check_asoc:boolean = false;
   mensaje:string = '';
-//  token:string = "";
 
   constructor(private activatedRoute:ActivatedRoute, private router:Router,
     private _asociacionesService:AsociacionesService, private _userService:UserService) { }
 
   login(forma:NgForm){
+
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
@@ -37,11 +37,11 @@ export class LoginComponent {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }
-    console.log(this.json.Email);
-    console.log(this.json.Password);
+    //console.log(this.json.Email);
+    //console.log(this.json.Password);
 
     if(this.check_asoc){
-      //check == true -> asociacion
+      ////// ****** asociacion ****** //////
       this._asociacionesService.loginAsociacion(this.json)
         .subscribe(data =>{
           console.log(data);
@@ -50,14 +50,15 @@ export class LoginComponent {
             document.getElementById('alert').className = 'alert alert-danger';
             return;
           }
+          //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data[0].ID_Asocioacion);
           console.log(sessionStorage);
-        //  sessionStorage.removeItem('AsociacionID');
-          //location.href = '/home';
+          location.href = '/homeAsociaciones';
         })
         location.href = '/asociacion';
     }else{
+      ////// ****** usuario ****** //////
       this._userService.loginUser(this.json)
         .subscribe(data =>{
           console.log(data);
@@ -66,10 +67,11 @@ export class LoginComponent {
             document.getElementById('alert').className = 'alert alert-danger';
             return;
           }
+          //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data[0].ID_Usuario);
           console.log(sessionStorage);
-          //location.href = '/home';
+          location.href = '/home';
         })
 
     }
