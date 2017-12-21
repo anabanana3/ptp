@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 html{
-  font-family: HiraKakuPro-W3;
+  font-family: HiraKakuPro-W3, Verdana;
   font-size: 16px;
   color: #333333;
   background: #F2F2F2;
@@ -18,6 +18,11 @@ p{margin: 0;}
 a{
   color: #333333;
   text-decoration: none;
+}
+
+h1{
+  font-size:20px;
+  font-weight: lighter;
 }
 
 form{display: inline-block;}
@@ -80,6 +85,90 @@ ul{list-style: none;}
   margin-bottom: 25px;
   margin-top: 50px;
   width: 90%;
+}
+
+.lineaNoticia{
+  border: 1px solid #880042;
+  margin-left: 5%;
+
+  width: 20%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.Eslogan{
+  padding: 0px 450px;
+  margin: 0;
+  margin-top: 5%;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+.lineaEslogan{
+  border: 1px solid #880042;
+  margin-left: 5%;
+  margin-bottom: 25px;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.btn-login-principal{
+  background: #880042;
+  margin-top: 4%;
+  margin-right: 2%;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  float:right;
+}
+
+.btn-registro-principal{
+  background: none;
+  margin-top: 4%;
+  margin-right: 2%;
+  padding: 6px 20px;
+  font-size: 12px;
+  color: #880042;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+  float: right;
+}
+
+.btn-suscribirse-principal{
+  background: none;
+  margin-top: 6%;
+  margin-right: 2%;
+  padding: 6px 20px;
+  font-size: 12px;
+  color: #880042;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+}
+
+.btn-verMas-principal{
+  background: #880042;
+  margin-top: 1.5%;
+  margin-right: 2%;
+  margin-bottom:10%;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+.language{
+  font-size: 12px;
+  color: #880042;
+  float:right;
+  margin-top: 4.6%;
+  margin-right: 9%;
 }
 
 .submitNegro{
@@ -152,6 +241,13 @@ ul{list-style: none;}
 
 .logoPeque{width: 4%; float: left;}
 
+.logoPrincipal{
+    width: 200px;
+    float: left;
+    margin-top: 3%;
+    margin-left: 9%;
+}
+
 .pointer{cursor: pointer;}
 
 .progress{
@@ -175,6 +271,12 @@ ul{list-style: none;}
   background: #9C0C54;
   border: 2px solid #9C0C54;
   border-radius: 4px;
+}
+
+.headerPrincipal{
+  display: block;
+  width: 100%;
+  padding-bottom: 12%;
 }
 
 .permisos{
@@ -202,3 +304,93 @@ ul{list-style: none;}
 
 .alert-danger{background-color: #f8d7da;}
 .alert-success{background-color: #d4edda;}
+
+.noticias{
+  width: 100%;
+}
+
+.noticia{
+  display: inline-block;
+  width:300px;
+  margin:0px 1%;
+  height: 30px;
+}
+
+.noticiasText{
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.noticiaTitle{
+  margin-top: 15px;
+}
+
+.suscripcion{
+  margin-top:30px;
+  background-color: #FFFFFF;
+  padding:0px 450px;
+  padding-top:30px;
+  padding-bottom:40px;
+}
+
+.recursos{
+  border:dashed;
+}
+
+.recurso{
+  display: inline-block;
+  width:300px;
+  margin:0px 1%;
+  height: 30px;
+}
+
+.recursosDiv{
+  margin-top:0px;
+  height:258px;
+  background-image:url("assets/img/Recursos.png");
+}
+
+.recurso{
+  display: inline-block;
+  width:300px;
+  margin:0px 1%;
+  height: 30px;
+}
+
+.divRecurso{
+  background-color: #F1F4F2;
+  width:290px;
+  height:120px;
+  margin:0;
+  margin-bottom:100px;
+}
+
+.recursosText{
+  text-align: left;
+  margin-top:0px;
+  padding-top:35px;
+  margin-left:17.3%;
+  margin-bottom:35px;
+}
+
+.recursoIcon{
+  float:left;
+  margin:25px 0px;
+  margin-left:30px;
+  margin-right:0px;
+}
+
+.estadisticaIcon{
+  float:left;
+  margin:37px 30px;
+  margin-right:0px;
+}
+
+.textoRecursos{
+  line-height: 16px;
+  width:50%;
+  margin-top:22px;
+  margin-right:25px;
+  text-align: left;
+  float:right;
+}
