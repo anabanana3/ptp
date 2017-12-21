@@ -186,8 +186,6 @@ ul{list-style: none;}
 .fotoPerfil{
   width: 20%;
   margin-top: 2%;
-  border: 3px solid #9C0C54;
-  border-radius: 50%;
 }
 
 .fotoPerfil:hover{background: rgba(191,191,191,0.50);}

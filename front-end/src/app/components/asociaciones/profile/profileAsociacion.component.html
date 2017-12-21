@@ -1,7 +1,7 @@
 
 <div class="editarPerfil" style="width: 60%; margin-left: 20%;">
 
-  <img src="{{asociacion.Foto}}" alt="imagen asociacion">
+  <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
   <hr>
 
   <form class="" action="index.html" method="post" style="display: inline-grid; margin-top:5%; width:70%;">
@@ -24,7 +24,7 @@
 
     <button type="button" name="button" class="submitNegro textoBlanco"
             style="margin-bottom:5%; width:50%; margin-left:25%;" (click)="change = !change">
-      Cambiar Contrseña
+      Cambiar Contraseña
     </button>
     <div class="" *ngIf="change" style="display: inline-grid;">
       <div class="" style="margin-right:10%;">
