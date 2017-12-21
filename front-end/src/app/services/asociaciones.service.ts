@@ -45,14 +45,12 @@ export class AsociacionesService {
 
     return this.http.post(this.loginURL, body, {headers})
         .map(res=>{
-          //console.log(res.json());
           return res.json();
         })
   }
 
   getAsociacion(id$:number){
     let urlA = `${this.url}${id$}`;
-
     return this.http.get(urlA).map(res=>res.json());
   }
 

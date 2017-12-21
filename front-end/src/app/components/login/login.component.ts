@@ -19,13 +19,12 @@ export class LoginComponent {
 
   check_asoc:boolean = false;
   mensaje:string = '';
-  token:string = "";
+//  token:string = "";
 
   constructor(private activatedRoute:ActivatedRoute, private router:Router,
     private _asociacionesService:AsociacionesService, private _userService:UserService) { }
 
   login(forma:NgForm){
-
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
@@ -52,9 +51,10 @@ export class LoginComponent {
             return;
           }
           sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('userID', data.data[0].ID_Usuario);
+          sessionStorage.setItem('iD', data.data[0].ID_Asocioacion);
           console.log(sessionStorage);
-          location.href = '/rhome';
+        //  sessionStorage.removeItem('AsociacionID');
+          //location.href = '/home';
         })
 
     }else{
@@ -67,11 +67,11 @@ export class LoginComponent {
             return;
           }
           sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('userID', data.data[0].ID_Usuario);
+          sessionStorage.setItem('iD', data.data[0].ID_Usuario);
           console.log(sessionStorage);
-          location.href = '/rhome';
-
+          //location.href = '/home';
         })
+
     }
   }
 }

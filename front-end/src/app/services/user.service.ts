@@ -74,6 +74,7 @@ export class UserService {
           return res.json();
         })
   }
+  
   getUsuarioAsociacion(id$:number){
     let url = `${this.solicitantesURL}/asociacion/${id$}`;
     return this.http.get(url).map(res=>res.json());
