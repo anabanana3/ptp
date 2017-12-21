@@ -9,6 +9,7 @@ import {Asociacion} from "../../../interfaces/asociacion.interface";
 export class ProfileAsociacionComponent {
 
   id:number = 4;
+  change:boolean = false;
 
   asociacion:Asociacion ={
     Nombre: '',

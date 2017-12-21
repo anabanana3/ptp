@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from "../../interfaces/user.interface";
@@ -14,7 +14,6 @@ import { Asociacion } from "../../interfaces/asociacion.interface";
   templateUrl: './registro.component.html'
 })
 export class RegistroComponent {
-  gapi : any;
 
   usuario:User={
     Nombre:'',
@@ -84,7 +83,6 @@ export class RegistroComponent {
   }
 
   new(forma:NgForm, bool){
-
     if(forma.valid === false){
       location.href = '/registro#arriba'
       this.mensaje = 'Campos Incompletos';
