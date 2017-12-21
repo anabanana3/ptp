@@ -1,3 +1,11 @@
-<h1>
-  Hola [[Nombreeeee]]
-</h1>
+<h1>Home</h1>
+
+<a [routerLink]="['/login']"><p><b>Inicio sesión</b></p></a>
+
+<a [routerLink]="['/home']"><p><b>Logout</b></p></a>
+
+<button (click)="verHeroe(i);"
+        type="button" class="btn btn-outline-primary btn-block"> Ver más
+      </button>
+
+<p>Hola, {{sesion}}</p>

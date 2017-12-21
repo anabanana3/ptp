@@ -69,14 +69,12 @@ export class UserService {
       'Content-Type':'application/json'
     });
 
-    console.log(body);
-
     return this.http.post(this.loginURL, body, {headers})
         .map(res=>{
-          console.log(res.json());
           return res.json();
         })
   }
+  
   getUsuarioAsociacion(id$:number){
     let url = `${this.solicitantesURL}/asociacion/${id$}`;
     return this.http.get(url).map(res=>res.json());
