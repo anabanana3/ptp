@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
+import { AsociacionesService } from "../../services/asociaciones.service";
 import { User } from "../../interfaces/user.interface";
 
 @Component({
@@ -24,7 +25,8 @@ export class HomeAsociaciones{
   loading:boolean = false;
   asociacion:string = '';
 
-  constructor(private _userService:UserService) {
+  constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
+    console.log(sessionStorage);
     this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
       this.user = data;
       this.asociacion = this.user[0].Asociacion;

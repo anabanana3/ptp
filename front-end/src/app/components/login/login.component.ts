@@ -56,7 +56,7 @@ export class LoginComponent {
         //  sessionStorage.removeItem('AsociacionID');
           //location.href = '/home';
         })
-
+        location.href = '/asociacion';
     }else{
       this._userService.loginUser(this.json)
         .subscribe(data =>{
