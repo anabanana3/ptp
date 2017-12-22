@@ -19,7 +19,7 @@
       <tbody>
         <tr *ngFor="let k of asociacion | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
-          <td>{{asociacion[k].ID_Asocioacion}}</td>
+          <td>{{asociacion[k].ID_Asociacion}}</td>
           <td>{{asociacion[k].Nombre}}</td>
           <td>{{asociacion[k].Email}}</td>
           <td>{{asociacion[k].CIF}}</td>
@@ -28,7 +28,7 @@
               <span class="icon-ok"></span>
             </button>
             <button type="button" class="btn btn-outline-danger span"
-                    (click)="delete(asociacion[k].ID_Asocioacion)">
+                    (click)="delete(asociacion[k].ID_Asociacion)">
               <span class="icon-cancel"></span>
             </button>
             <button type="button" class="btn btn-outline-danger span">

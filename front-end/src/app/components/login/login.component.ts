@@ -52,7 +52,7 @@ export class LoginComponent {
           }
           //// sesion ////
           sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('iD', data.data[0].ID_Asocioacion);
+          sessionStorage.setItem('iD', data.data[0].ID_Asociacion);
           console.log(sessionStorage.getItem('iD'));
           location.href = '/asociacion';
         })

@@ -51,7 +51,7 @@
 <!-- Registro asociacion -->
       <label for="asociacion">Asociación *</label>
       <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
-        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asocioacion}}">
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
           {{asociaciones[k].Nombre}}
         </option>
       </select>
