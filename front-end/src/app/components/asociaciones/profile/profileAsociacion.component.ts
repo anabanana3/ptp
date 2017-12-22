@@ -8,7 +8,7 @@ import {Asociacion} from "../../../interfaces/asociacion.interface";
 })
 export class ProfileAsociacionComponent {
 
-  id:number = 4;
+  id:number = 0;
   change:boolean = false;
 
   asociacion:Asociacion ={
@@ -21,6 +21,8 @@ export class ProfileAsociacionComponent {
   }
 
   constructor(private _asociacionesService:AsociacionesService) {
+    this.id = parseInt(sessionStorage.getItem('iD'));
+    
     this._asociacionesService.getAsociacion(this.id).subscribe(data =>{
       this.asociacion = data[0];
       console.log(data);

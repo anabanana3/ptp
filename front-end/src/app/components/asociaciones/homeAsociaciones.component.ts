@@ -21,16 +21,21 @@ export class HomeAsociaciones{
     DNI: ''
   };
 
-  id:number = 5;
+  id:number = 0;
   loading:boolean = false;
   asociacion:string = '';
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
-    console.log(sessionStorage);
+    console.log(sessionStorage.getItem('iD'));
+    this.id = parseInt(sessionStorage.getItem('iD'));
+
+    this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
+      this.asociacion = data[0].Nombre;
+      console.log(data[0].Nombre);
+    })
+
     this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
       this.user = data;
-      this.asociacion = this.user[0].Asociacion;
-      console.log('Asociacion:' + this.asociacion);
       console.log(this.user);
     })
   }
@@ -40,5 +45,10 @@ export class HomeAsociaciones{
       if(res){ console.log(res);}
       else{ delete this.user[id];}
     })
+  }
+  cerrarSesion(){
+    sessionStorage.removeItem('iD');
+    sessionStorage.removeItem('token');
+    location.href = '/principal'
   }
 }

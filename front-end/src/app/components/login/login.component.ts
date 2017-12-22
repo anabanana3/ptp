@@ -53,10 +53,9 @@ export class LoginComponent {
           //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data[0].ID_Asocioacion);
-          console.log(sessionStorage);
-          location.href = '/homeAsociaciones';
+          console.log(sessionStorage.getItem('iD'));
+          location.href = '/asociacion';
         })
-        location.href = '/asociacion';
     }else{
       ////// ****** usuario ****** //////
       this._userService.loginUser(this.json)
