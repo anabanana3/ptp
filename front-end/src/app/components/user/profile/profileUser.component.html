@@ -3,8 +3,29 @@
 
   <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
   <hr>
+<!-- Permisos -->
+  <div class="permisos" style="width: 35%; float:left; margin-left:5%; display: inline-grid; margin-top: 5%;">
+    <div class="headerPermisos">
+      <p class="textoBlanco">Permisos</p>
+    </div>
+    <div class="" style="margin-top: 5%;">
+      <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
+        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
+    </div>
+    <div class="">
+      <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
+        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
+    </div>
+    <div class="">
+      <label style="float:left; width:80%;" for="api">Ver API</label>
+        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
+    </div>
 
-  <div class="" style="width: 50%; float: left;">
+    <button type="button" name="button" class="submitGris textoBlanco" style="margin:5%;">Solicitar</button>
+  </div>
+
+<!-- Formulario datos -->
+  <div class="" style="width: 50%; float: left;margin-left: 5%;">
     <form class="" style="display: inline-grid; width: 80%;">
 
       <!-- [(ngModel)]="" -->
@@ -34,11 +55,11 @@
               value="user[0].Direccion" name="direccion" id="direccion">
 
       <button (click)="change = !change" type="button" name="button"
-              class="submitNegro textoBlanco" style="margin-bottom:5%;">
+              class="submitGris textoBlanco" style="margin-bottom:5%;">
               Cambiar Contraseña
       </button>
 
-      <div *ngIf="change" class="" style="display: inline-grid;">
+      <div *ngIf="change" style="display: inline-grid;">
         <label for="apellido">Anterior Contraseña</label>
           <input class="lineaCampo" type="text" name="apellido" id="apellido">
         <label for="apellido">Nueva Contraseña</label>
@@ -46,28 +67,12 @@
         <label for="apellido">Repita la Nueva Contraseña</label>
           <input class="lineaCampo" type="text" name="apellido" id="apellido">
       </div>
-
-      <button type="button" name="button" class="btn-inline textoBlanco">GUARDAR</button>
-    </form>
+      <div>
+        <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>
+        <button type="button" name="button" style="width: 55%;" class="btn-inline textoBlanco">GUARDAR</button>
+      </div>
+  </form>
   </div>
 
-  <div class="headerPermisos" style="width: 40%; float: right; margin-right:5%;">
-    <p class="textoBlanco">Permisos</p>
-  </div>
-  <div class="permisos" style="width: 40%; float: right; margin-right:5%; display: inline-grid;">
-    <div class="" style="margin-top: 5%;">
-      <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="api">Ver API</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
-    </div>
 
-    <button type="button" name="button" class="submitNegro textoBlanco" style="margin:5%;">Solicitar</button>
-  </div>
 </div>

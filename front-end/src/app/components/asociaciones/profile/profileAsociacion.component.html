@@ -1,10 +1,11 @@
-<button [routerLink]="['/asociacion']"type="button" name="button" class="submitNegro textoBlanco">
+<button [routerLink]="['/asociacion']"type="button" name="button" class="submitGris textoBlanco">
   Volver
 </button>
 <div class="editarPerfil" style="width: 60%; margin-left: 20%;">
 
   <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
   <hr>
+  
 
   <form class="" action="index.html" method="post" style="display: inline-grid; margin-top:5%; width:70%;">
     <div class="" style="margin-right:10%;">
@@ -24,7 +25,7 @@
       <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled="false">
     </div>
 
-    <button type="button" name="button" class="submitNegro textoBlanco"
+    <button type="button" name="button" class="submitGris textoBlanco"
             style="margin-bottom:5%; width:50%; margin-left:25%;" (click)="change = !change">
       Cambiar Contraseña
     </button>

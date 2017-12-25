@@ -10,8 +10,7 @@ import { User } from "../../../interfaces/user.interface";
 })
 export class ProfileUserComponent {
 
-  id:number = 21;
-
+  id:number = -1;
   change:boolean = false;
 
   user:User ={
@@ -33,6 +32,10 @@ export class ProfileUserComponent {
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
               private _profesionesService:ProfesionesService) {
+
+    console.log(sessionStorage.getItem('iD'));
+    this.id = parseInt(sessionStorage.getItem('iD'));
+
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
       console.log(this.user);

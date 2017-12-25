@@ -1,7 +1,10 @@
-<h1>Home</h1>
-<p>Hola, usuario: {{sesionid}}</p>
-
-<a [routerLink]="['/login']"><p><b>ir a Inicio sesión</b></p></a>
 
 
-<button (click)="logout();" type="button" name="button" class="btn-inline textoBlanco">Logout</button>
+<h1>Hola, {{user[0].Nombre}}!</h1>
+
+<button [routerLink]="['/user/profile']" type="button" name="button"
+        class="submitGris textoBlanco">
+        Perfil
+</button>
+
+<button (click)="logout();" type="button" name="button" class="submitGris textoBlanco">Cerrar Sesión</button>
