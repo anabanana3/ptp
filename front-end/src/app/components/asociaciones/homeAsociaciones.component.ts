@@ -46,6 +46,13 @@ export class HomeAsociaciones{
       else{ delete this.user[id];}
     })
   }
+
+  activateUser(id, email){
+    this._userService.activateUsuario(id, email).subscribe(res=>{
+      console.log(res);
+    })
+  }
+
   cerrarSesion(){
     sessionStorage.removeItem('iD');
     sessionStorage.removeItem('token');

@@ -35,7 +35,9 @@
           <td>{{user[k].Asociacion}}</td>
           <td>{{user[k].DNI}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success icon-ok span"></button>
+            <button type="button" class="btn btn-outline-success icon-ok span"
+                    (click)="activateUser(user[k].ID_Usuario, user[k].Email)">
+            </button>
             <button type="button" class="btn btn-outline-danger icon-cancel span"
                     (click)="cancelUser(user[k].ID_Usuario)">
             </button>

@@ -68,9 +68,15 @@ export class LoginComponent {
           }
           //// sesion ////
           sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('iD', data.data[0].ID_Usuario);
+          sessionStorage.setItem('iD', data.data);
           console.log(sessionStorage);
-          location.href = '/home';
+
+          if(sessionStorage.getItem('iD') == '44'){
+            location.href = '/admin/home';
+          }else{
+            location.href = '/home';
+          }
+
         })
 
     }

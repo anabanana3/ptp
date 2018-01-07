@@ -35,4 +35,10 @@ export class AsociacionesComponent {
       else{ delete this.asociacion[id];}
     })
   }
+
+  activate(id, email){
+    this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
+      console.log(res);
+    })
+  }
 }

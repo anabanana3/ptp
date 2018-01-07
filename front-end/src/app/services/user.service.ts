@@ -11,6 +11,8 @@ export class UserService {
   registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
   loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
+  activarURL:string = "https://www.aisha.ovh/api/mail/send/usuario";
+
 
   constructor(private http:Http) { }
 
@@ -74,7 +76,7 @@ export class UserService {
           return res.json();
         })
   }
-  
+
   getUsuarioAsociacion(id$:number){
     let url = `${this.solicitantesURL}/asociacion/${id$}`;
     return this.http.get(url).map(res=>res.json());
@@ -90,5 +92,23 @@ export class UserService {
 
   getCancelados(){
     return this.http.get(this.canceladosURL).map(res=>res.json());
+  }
+
+  activateUsuario(id, email){
+    //body: token de la asociacion(Cabecera) y JSON: email e ID
+    let token = sessionStorage.getItem('token');
+    let body = JSON.stringify({ID_Usuario: id, Email: email, });
+
+    console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': 'Bearer '+ token
+    });
+
+    return this.http.post(this.activarURL, body, {headers})
+        .map(res=>{
+          console.log(res.json());
+          return res.json();
+        })
   }
 }

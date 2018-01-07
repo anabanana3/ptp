@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 export class AsociacionesService {
   url:string = "https://www.aisha.ovh/api/asociacion/";
   loginURL:string = "https://www.aisha.ovh/api/asociacion/login";
+  activarURL:string = "https://www.aisha.ovh/api/mail/send/asociacion";
 
   constructor(private http:Http) { }
 
@@ -54,5 +55,22 @@ export class AsociacionesService {
     return this.http.get(urlA).map(res=>res.json());
   }
 
+  activateAsociacion(id, email){
+    //body: token de la asociacion(Cabecera) y JSON: email e ID
+    let token = sessionStorage.getItem('token');
+    let body = JSON.stringify({ID_Asociacion: id, Email: email, });
+
+    console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.post(this.activarURL, body, {headers})
+        .map(res=>{
+          console.log(res.json());
+          return res.json();
+        })
+  }
 
 }

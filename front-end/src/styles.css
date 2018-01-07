@@ -240,7 +240,7 @@ ul{list-style: none;}
   background: #D8D8D8;
   border: 1px solid #979797;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
-  padding-bottom: 6%;
+  padding-bottom: 1%;
 }
 .menuAdmin{
   float:left;
@@ -252,6 +252,11 @@ ul{list-style: none;}
 .divAdmin li{padding: 20%;}
 .divAdmin a{font-size: 130%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
+
+.logoutAdmin{
+  margin: 0;
+  margin-top: 1%;
+}
 
 .logoPeque{width: 4%; float: left;}
 

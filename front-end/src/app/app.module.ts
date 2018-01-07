@@ -24,6 +24,7 @@ import { ProfileAsociacionComponent } from './components/asociaciones/profile/pr
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PrincipalComponent } from './components/principal/principal.component';
     ProfileAsociacionComponent,
     ProfileUserComponent,
     LateralOptionsComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,

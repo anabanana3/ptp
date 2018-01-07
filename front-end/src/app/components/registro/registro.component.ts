@@ -133,7 +133,7 @@ export class RegistroComponent {
       });
     }
 
-    location.href="/registro";
+    //location.href="/registro";
   }
 
   validate(pass){

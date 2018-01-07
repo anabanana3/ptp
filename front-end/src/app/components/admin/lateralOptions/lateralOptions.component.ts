@@ -10,4 +10,8 @@ export class LateralOptionsComponent{
 
   constructor() { }
 
+  logout(){
+    sessionStorage.clear();
+    location.href = '/login';
+  }
 }

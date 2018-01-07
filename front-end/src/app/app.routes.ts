@@ -10,11 +10,22 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 
 const app_routes: Routes = [
+  {
+    path: 'admin/home',
+    component: HomeAdminComponent,
+    data: { title: 'Home' }
+  },
   { path: 'admin/usuarios',
     component: UsuariosComponent ,
     data: { title: 'Usuarios' }
+  },
+  {
+    path: 'admin/asociaciones',
+    component: AsociacionesComponent,
+    data: { title: 'Asociaciones' }
   },
   {
     path: 'registro',
@@ -25,11 +36,6 @@ const app_routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: { title: 'Login' }
-  },
-  {
-    path: 'admin/asociaciones',
-    component: AsociacionesComponent,
-    data: { title: 'Asociaciones' }
   },
   {
     path: 'registroLogin',

@@ -24,7 +24,8 @@
           <td>{{asociacion[k].Email}}</td>
           <td>{{asociacion[k].CIF}}</td>
           <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success span">
+            <button type="button" class="btn btn-outline-success span"
+                    (click)="activate(asociacion[k].ID_Asociacion, asociacion[k].Email)">
               <span class="icon-ok"></span>
             </button>
             <button type="button" class="btn btn-outline-danger span"

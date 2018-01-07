@@ -2,6 +2,10 @@
   <button class="icon-menu menuAdmin pointer" (click)="expanded = !expanded"></button>
   <img src="/../../../assets/img/AISHA.png" alt="Logo AISHA" class="logoPeque"
        style="margin: 0.5%;">
+  <button (click)="logout();" type="button" name="button"
+    class="submitGris textoBlanco logoutAdmin">
+    Cerrar Sesión
+  </button>
 </div>
 
 <div *ngIf="expanded" class="divAdmin"
