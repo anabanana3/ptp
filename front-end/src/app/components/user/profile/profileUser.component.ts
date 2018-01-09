@@ -38,6 +38,11 @@ export class ProfileUserComponent {
 
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
+      this.user.Nombre = this.user.Nombre.split("'")[1];
+      this.user.Email = this.user.Email.split("'")[1];
+      this.user.Direccion = this.user.Direccion.split("'")[1];
+      this.user.Apellidos = this.user.Apellidos.split("'")[1];
+      this.user.DNI = this.user.DNI.split("'")[1];
       console.log(this.user);
     })
   }

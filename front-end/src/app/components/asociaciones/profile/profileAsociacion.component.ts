@@ -22,9 +22,13 @@ export class ProfileAsociacionComponent {
 
   constructor(private _asociacionesService:AsociacionesService) {
     this.id = parseInt(sessionStorage.getItem('iD'));
-    
+
     this._asociacionesService.getAsociacion(this.id).subscribe(data =>{
       this.asociacion = data[0];
+      this.asociacion.Nombre = this.asociacion.Nombre.split("'")[1];
+      this.asociacion.Email = this.asociacion.Email.split("'")[1];
+      this.asociacion.Direccion = this.asociacion.Direccion.split("'")[1];
+      this.asociacion.CIF = this.asociacion.CIF.split("'")[1];
       console.log(data);
     })
   }

@@ -411,3 +411,11 @@ ul{list-style: none;}
   text-align: left;
   float:right;
 }
+
+.rect-success{
+  background-color: #BAE4BE;
+}
+
+.rect-danger{
+  background-color: #F5BFBF;
+}

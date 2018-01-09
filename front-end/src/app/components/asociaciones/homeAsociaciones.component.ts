@@ -21,6 +21,7 @@ export class HomeAsociaciones{
     DNI: ''
   };
 
+  tabla:number = 0;
   id:number = 0;
   loading:boolean = false;
   asociacion:string = '';
@@ -34,7 +35,7 @@ export class HomeAsociaciones{
       console.log(data[0].Nombre);
     })
 
-    this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
+    this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data =>{
       this.user = data;
       console.log(this.user);
     })
@@ -57,5 +58,25 @@ export class HomeAsociaciones{
     sessionStorage.removeItem('iD');
     sessionStorage.removeItem('token');
     location.href = '/principal'
+  }
+
+  view(number){
+    if(number == 0){
+      this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data=>{
+        this.loading = false;
+        this.tabla = 0
+        this.user = data;
+      })
+      return;
+    }
+
+    if(number == 1){
+      this._userService.getUsuarioRegistradosAsociacion(this.id).subscribe(data=>{
+        this.loading = false;
+        this.tabla = 1
+        this.user = data;
+      })
+      return;
+    }
   }
 }

@@ -43,7 +43,10 @@ export class UsuariosComponent {
   cancelUser(id){
     this._userService.deleteUsuario(id).subscribe(res => {
       if(res){ console.log(res);}
-      else{ delete this.user[id];}
+      else{
+        location.reload();
+        delete this.user[id];
+      }
     })
   }
 

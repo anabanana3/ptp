@@ -11,8 +11,7 @@ export class UserService {
   registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
   loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
-  activarURL:string = "https://www.aisha.ovh/api/mail/send/usuario";
-
+  activarURL:string = "https://www.aisha.ovh/api/mail/send";
 
   constructor(private http:Http) { }
 
@@ -53,19 +52,35 @@ export class UserService {
   }
 
   getUsuarios(){
-    return this.http.get(this.usuariosURL).map(res=>res.json());
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(this.usuariosURL, {headers}).map(res=>res.json());
   }
 
   deleteUsuario(id){
     let urlD = `${this.solicitantesURL}cancelar/${id}`;
 
-    return this.http.delete(urlD).map(res=>{
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.delete(urlD, {headers}).map(res=>{
       console.log(res.json());
       res.json()});
   }
 
   loginUser(json){
     let body = JSON.stringify(json);
+
+    console.log(json);
 
     let headers = new Headers({
       'Content-Type':'application/json'
@@ -77,38 +92,82 @@ export class UserService {
         })
   }
 
-  getUsuarioAsociacion(id$:number){
+  getUsuarioSolicitantesAsociacion(id$:number){
     let url = `${this.solicitantesURL}/asociacion/${id$}`;
-    return this.http.get(url).map(res=>res.json());
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  getUsuarioRegistradosAsociacion(id$:number){
+    let url = `${this.registradosURL}asociacion/${id$}`;
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
   getSolicitantes(){
-    return this.http.get(this.solicitantesURL).map(res=>res.json());
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(this.solicitantesURL, {headers}).map(res=>res.json());
   }
 
   getRegistrados(){
-    return this.http.get(this.registradosURL).map(res=>res.json());
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(this.registradosURL, {headers}).map(res=>res.json());
   }
 
   getCancelados(){
-    return this.http.get(this.canceladosURL).map(res=>res.json());
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(this.canceladosURL, {headers}).map(res=>res.json());
   }
 
   activateUsuario(id, email){
     //body: token de la asociacion(Cabecera) y JSON: email e ID
     let token = sessionStorage.getItem('token');
+    email = email.split("'")[1];
+    console.log('id: '+id+' email: '+email);
     let body = JSON.stringify({ID_Usuario: id, Email: email, });
 
     console.log(token);
     let headers = new Headers({
       'Content-Type':'application/json',
-      'Authorization': 'Bearer '+ token
+      'Authorization': token
     });
 
+    console.log(body);
     return this.http.post(this.activarURL, body, {headers})
         .map(res=>{
           console.log(res.json());
           return res.json();
         })
   }
+
 }

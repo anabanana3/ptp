@@ -76,7 +76,7 @@ export class RegistroComponent {
       this.profesiones = data;
     })
 
-    this._asociacionesService.getAsociaciones().subscribe(data=>{
+    this._asociacionesService.getAsociacionesValidadas().subscribe(data=>{
       console.log(data);
       this.asociaciones = data;
     })
