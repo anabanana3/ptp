@@ -41,9 +41,9 @@ export class AsociacionesComponent {
 
   activate(id, email){
     this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
-      if(res){console.log(res); }
+      if(res){ location.reload(); console.log(res); }
       else{
-        location.reload();
+        console.log(res);
       }
     })
   }

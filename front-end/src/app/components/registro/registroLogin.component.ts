@@ -21,8 +21,11 @@ export class RegistroLoginComponent {
   constructor(private _userService:UserService){
     let id = location.href.split('?')[1];
 
-    this.json.ID_Usuario = id;
+    let m = id.substring(0, id.length - 1);
+
+    this.json.ID_Usuario = m;
     console.log(id);
+    console.log(m);
   }
 
   validate(forma:NgForm){
@@ -34,14 +37,14 @@ export class RegistroLoginComponent {
 
     this._userService.registrarSolicitante(this.json).subscribe(data=>{
       console.log(data);
-      if(data){
-        this.mensaje = 'Gracias por registrarte!';
-        // location.href = '/login'
-        document.getElementById('alert').className = 'alert alert-success';
-        return;
-      }
-      this.mensaje = 'Campos Incorrectos';
-      document.getElementById('alert').className = 'alert alert-danger';
-    });
+    //   if(data){
+    //     this.mensaje = 'Gracias por registrarte!';
+    //     // location.href = '/login'
+    //     document.getElementById('alert').className = 'alert alert-success';
+    //     return;
+    //   }
+    //   this.mensaje = 'Campos Incorrectos';
+    //   document.getElementById('alert').className = 'alert alert-danger';
+     });
   }
 }

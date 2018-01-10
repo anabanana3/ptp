@@ -8,7 +8,7 @@ export class UserService {
 
   solicitantesURL:string = "https://www.aisha.ovh/api/solicitantes/";
   canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
-  registradosURL:string = "https://www.aisha.ovh/api/registrados/";
+  registradosURL:string = "https://www.aisha.ovh/api/registrados";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
   loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
   activarURL:string = "https://www.aisha.ovh/api/mail/send";
@@ -45,8 +45,14 @@ export class UserService {
 
   getUsuario(id$:number){
     let url = `${this.usuariosURL}${id$}`;
+    let token = sessionStorage.getItem('token');
 
-    return this.http.get(url).map(res=>
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>
       res.json()
     );
   }
