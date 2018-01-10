@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import Crypt from 'crypt';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-registroLogin',
@@ -10,21 +10,38 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class RegistroLoginComponent {
 
-  constructor(){
-    let cryp:Crypt;
+  json ={
+    ID_Usuario: '',
+    Email: '',
+    Password: ''
+  }
 
-    let pass = "CacaDeLaVaca";
+  mensaje:string = '';
 
-    let url = location.href.split('?')[1];
-    console.log(url);
-    console.log(cryp);
-    let aux = cryp.decrypt([url], [pass]);
+  constructor(private _userService:UserService){
+    let id = location.href.split('?')[1];
 
-    let id = aux.split('#')[1];
-
+    this.json.ID_Usuario = id;
     console.log(id);
+  }
 
+  validate(forma:NgForm){
+    if(forma.valid === false){
+      this.mensaje = 'Campos Incompletos';
+      document.getElementById('alert').className = 'alert alert-danger';
+      return false;
+    }
 
-
+    this._userService.registrarSolicitante(this.json).subscribe(data=>{
+      console.log(data);
+      if(data){
+        this.mensaje = 'Gracias por registrarte!';
+        // location.href = '/login'
+        document.getElementById('alert').className = 'alert alert-success';
+        return;
+      }
+      this.mensaje = 'Campos Incorrectos';
+      document.getElementById('alert').className = 'alert alert-danger';
+    });
   }
 }

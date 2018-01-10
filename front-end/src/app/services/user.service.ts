@@ -170,4 +170,18 @@ export class UserService {
         })
   }
 
+  registrarSolicitante(json){
+    console.log(json);
+    let body = JSON.stringify(json);
+
+    console.log(body);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(this.registradosURL, body, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
 }
