@@ -31,8 +31,7 @@ export class HomeAsociaciones{
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
-      this.asociacion = data[0].Nombre;
-      console.log(data[0].Nombre);
+      this.asociacion = data[0].Nombre.split("'")[1];
     })
 
     this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data =>{

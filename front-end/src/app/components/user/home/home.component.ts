@@ -34,8 +34,7 @@ export class HomeComponent {
 
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
-      console.log("Aqui data user");
-      console.log(this.user);
+      this.user.Nombre = this.user.Nombre.split("'")[1];
     })
   }
 

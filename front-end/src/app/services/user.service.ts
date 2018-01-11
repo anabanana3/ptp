@@ -8,7 +8,7 @@ export class UserService {
 
   solicitantesURL:string = "https://www.aisha.ovh/api/solicitantes/";
   canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
-  registradosURL:string = "https://www.aisha.ovh/api/registrados";
+  registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
   loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
   activarURL:string = "https://www.aisha.ovh/api/mail/send";

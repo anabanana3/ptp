@@ -124,6 +124,7 @@ export class RegistroComponent {
         console.log(data);
         if(data.warningCount == 0){
           this.mensaje = 'Gracias por registrarte!';
+          location.href = '/registro#arriba';
           document.getElementById('alert').className = 'alert alert-success';
         }
       }, error=>{
@@ -132,8 +133,6 @@ export class RegistroComponent {
         console.log(error);
       });
     }
-
-    //location.href="/registro";
   }
 
   validate(pass){

@@ -33,9 +33,9 @@ export class UsuariosComponent {
   constructor(private _userService:UserService){
     this._userService.getSolicitantes().subscribe(data=>{
       this.loading = false;
-      console.log('Solicitantes');
-      console.log(data);
       this.user = data;
+
+      console.log(data);
     })
     return;
   }

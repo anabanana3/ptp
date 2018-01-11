@@ -25,7 +25,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Email</th>
+          <th *ngIf="tabla != 2" scope="col">Email</th>
           <th scope="col">Profesión</th>
           <th scope="col">Asociación</th>
           <th class="text-right" scope="col">Opciones</th>
@@ -36,10 +36,10 @@
         <tr *ngFor="let k of user | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
           <td>{{user[k].ID_Usuario}}</td>
-          <td>{{user[k].Email}}</td>
-          <td>{{user[k].Apellidos}}</td>
+          <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
+          <td *ngIf="user[k].Email != undefined && tabla != 2">{{user[k].Email.split("'")[1]}}</td>
           <td>{{user[k].Profesion}}</td>
-          <td>{{user[k].Asociacion}}</td>
+          <td *ngIf="user[k].Asociacion != undefined">{{user[k].Asociacion.split("'")[1]}}</td>
           <td class="text-right w230">
             <button *ngIf="tabla != 2" type="button" class="btn btn-outline-danger icon-cancel span"
                     (click)="cancelUser(user[k].ID_Usuario)">

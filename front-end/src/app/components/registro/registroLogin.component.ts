@@ -37,14 +37,6 @@ export class RegistroLoginComponent {
 
     this._userService.registrarSolicitante(this.json).subscribe(data=>{
       console.log(data);
-    //   if(data){
-    //     this.mensaje = 'Gracias por registrarte!';
-    //     // location.href = '/login'
-    //     document.getElementById('alert').className = 'alert alert-success';
-    //     return;
-    //   }
-    //   this.mensaje = 'Campos Incorrectos';
-    //   document.getElementById('alert').className = 'alert alert-danger';
-     });
+    });
   }
 }

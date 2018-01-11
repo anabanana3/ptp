@@ -38,11 +38,11 @@
         <tr *ngFor="let k of user | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
           <td>{{user[k].ID_Usuario}}</td>
-          <td>{{user[k].Nombre}}</td>
-          <td>{{user[k].Apellidos}}</td>
+          <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
+          <td *ngIf="user[k].Apellidos != undefined">{{user[k].Apellidos.split("'")[1]}}</td>
           <td>{{user[k].Profesion}}</td>
-          <td>{{user[k].Asociacion}}</td>
-          <td>{{user[k].DNI}}</td>
+          <td *ngIf="user[k].Asociacion != undefined">{{user[k].Asociacion.split("'")[1]}}</td>
+          <td *ngIf="user[k].DNI != undefined">{{user[k].DNI.split("'")[1]}}</td>
           <td class="text-right w230">
             <button type="button" class="btn btn-outline-success icon-ok span"
                     (click)="activateUser(user[k].ID_Usuario, user[k].Email)">
