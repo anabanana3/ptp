@@ -25,6 +25,7 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { HomeAdminComponent } from './components/admin/home/homeAdmin.component'
     ProfileUserComponent,
     LateralOptionsComponent,
     PrincipalComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,

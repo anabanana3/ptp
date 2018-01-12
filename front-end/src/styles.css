@@ -16,7 +16,7 @@ body{
 p{margin: 0;}
 
 a{
-  color: #333333;
+  /*color: #333333;*/
   text-decoration: none;
 }
 
@@ -102,7 +102,6 @@ ul{list-style: none;}
 .lineaNoticia{
   border: 1px solid #880042;
   margin-left: 5%;
-
   width: 20%;
   margin: 0 auto;
   margin-top: 5px;
@@ -110,8 +109,8 @@ ul{list-style: none;}
 }
 
 .Eslogan{
-  padding: 0px 450px;
-  margin: 0;
+  margin: 0 auto;
+  width:40%;
   margin-top: 5%;
   margin-bottom: 0px;
   font-size: 20px;
@@ -143,53 +142,46 @@ ul{list-style: none;}
   border-radius: 5px;
 }
 
-.btn-login-principal{
+.btn-border{
   background: #880042;
-  margin-top: 4%;
   margin-right: 2%;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.login{
+  margin-top: 4%;
   padding: 8px 10px;
   font-size: 12px;
-  color: white;
-  border-radius: 10px;
-  border: none;
   float:right;
 }
 
-.btn-registro-principal{
-  background: none;
-  margin-top: 4%;
-  margin-right: 2%;
-  padding: 6px 20px;
-  font-size: 12px;
-  color: #880042;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-  float: right;
-}
-
-.btn-suscribirse-principal{
-  background: none;
-  margin-top: 6%;
-  margin-right: 2%;
-  padding: 6px 20px;
-  font-size: 12px;
-  color: #880042;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-}
-
-.btn-verMas-principal{
-  background: #880042;
+.verMas{
   margin-top: 1.5%;
-  margin-right: 2%;
   margin-bottom:10%;
   padding: 14px 20px;
   font-size: 14px;
-  color: white;
+}
+
+.btn-fill{
+  background: none;
+  margin-right: 2%;
+  padding: 6px 20px;
+  font-size: 12px;
+  color: #880042;
   border-radius: 10px;
-  border: none;
+  border-color: #880042;
+  border-width: 2px;
+}
+
+.registro{
+  float: right;
+  margin-top: 4%;
+}
+
+.suscribirse{
+  margin-top: 6%;
 }
 
 .language{
@@ -342,10 +334,15 @@ ul{list-style: none;}
   margin-top: 15px;
 }
 
-.suscripcion{
-  margin-top:30px;
+.suscripcionbg{
+  width:100%;
   background-color: #FFFFFF;
-  padding:0px 450px;
+}
+
+.suscripcion{
+  margin: 0 auto;
+  width:40%;
+  margin-top:30px;
   padding-top:30px;
   padding-bottom:40px;
 }
@@ -362,16 +359,10 @@ ul{list-style: none;}
 }
 
 .recursosDiv{
+  padding:0 15%;
   margin-top:0px;
   height:258px;
   background-image:url("assets/img/Recursos.png");
-}
-
-.recurso{
-  display: inline-block;
-  width:300px;
-  margin:0px 1%;
-  height: 30px;
 }
 
 .divRecurso{
@@ -383,10 +374,11 @@ ul{list-style: none;}
 }
 
 .recursosText{
+  border:dashed;
   text-align: left;
   margin-top:0px;
   padding-top:35px;
-  margin-left:17.3%;
+  margin-left:12px;
   margin-bottom:35px;
 }
 
@@ -410,4 +402,27 @@ ul{list-style: none;}
   margin-right:25px;
   text-align: left;
   float:right;
+}
+
+.pFooter{
+  color:white;
+}
+
+.footerDiv{
+  background:#333333;
+  width:100%;
+  margin-top:4%;
+}
+
+.infoFooter{
+  display: inline-block;
+  color:white;
+  width: 100%;
+  padding-bottom:1%;
+}
+
+.divpFooter{
+  align-self: center;
+  display: inline-block;
+  width:32%;
 }
