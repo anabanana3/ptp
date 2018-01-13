@@ -33,9 +33,8 @@ export class HomeComponent {
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._userService.getUsuario(this.id).subscribe(data =>{
-      this.user = data;
-      console.log("Aqui data user");
-      console.log(this.user);
+      this.user = data[0];
+      this.user.Nombre = this.user.Nombre.split("'")[1];
     })
   }
 

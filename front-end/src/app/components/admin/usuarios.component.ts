@@ -33,9 +33,9 @@ export class UsuariosComponent {
   constructor(private _userService:UserService){
     this._userService.getSolicitantes().subscribe(data=>{
       this.loading = false;
-      console.log('Solicitantes');
-      console.log(data);
       this.user = data;
+
+      console.log(data);
     })
     return;
   }
@@ -43,7 +43,10 @@ export class UsuariosComponent {
   cancelUser(id){
     this._userService.deleteUsuario(id).subscribe(res => {
       if(res){ console.log(res);}
-      else{ delete this.user[id];}
+      else{
+        location.reload();
+        delete this.user[id];
+      }
     })
   }
 

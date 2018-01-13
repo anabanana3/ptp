@@ -38,7 +38,7 @@ const app_routes: Routes = [
     data: { title: 'Login' }
   },
   {
-    path: 'registroLogin',
+    path: 'registro2',
     component: RegistroLoginComponent,
     data: { title: 'Registro' }
   },

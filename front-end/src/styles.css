@@ -426,3 +426,11 @@ ul{list-style: none;}
   display: inline-block;
   width:32%;
 }
+
+.rect-success{
+  background-color: #BAE4BE;
+}
+
+.rect-danger{
+  background-color: #F5BFBF;
+}

@@ -2,6 +2,8 @@
 
 <h1>Asociaciones</h1>
 <hr><br>
+<a name="arriba"></a>
+<div id="alert">{{mensaje}}</div>
 <div >
   <div >
 
@@ -11,7 +13,7 @@
           <th scope="col">#</th>
           <th scope="col">Nombre Asociación</th>
           <th scope="col">Email</th>
-          <th scope="col">CIF</th>
+          <th scope="col">Estado</th>
           <th class="text-right" scope="col">Opciones</th>
         </tr>
       </thead>
@@ -20,9 +22,11 @@
         <tr *ngFor="let k of asociacion | keys; let i = index;">
           <!-- <td>{{i+1}}</td> -->
           <td>{{asociacion[k].ID_Asociacion}}</td>
-          <td>{{asociacion[k].Nombre}}</td>
-          <td>{{asociacion[k].Email}}</td>
-          <td>{{asociacion[k].CIF}}</td>
+          <td *ngIf="asociacion[k].Nombre != undefined">{{asociacion[k].Nombre.split("'")[1]}}</td>
+          <td *ngIf="asociacion[k].Email != undefined">{{asociacion[k].Email.split("'")[1]}}</td>
+          <td class="rect-success" *ngIf="asociacion[k].Validada === 1">Validada</td>
+          <td class="rect-danger" *ngIf="asociacion[k].Validada === 0">No Validada</td>
+          <td *ngIf="asociacion[k].Validada === null">Cancelada</td>
           <td class="text-right w230">
             <button type="button" class="btn btn-outline-success span"
                     (click)="activate(asociacion[k].ID_Asociacion, asociacion[k].Email)">
