@@ -30,7 +30,14 @@ export class UsuariosComponent {
     2: Cancelados
   */
 
+  mensaje:string = '';
+  error:boolean = true;
   constructor(private _userService:UserService){
+    if(sessionStorage.getItem('iD') !== '44'){
+      return;
+    }
+    this.error = false;
+
     this._userService.getSolicitantes().subscribe(data=>{
       this.loading = false;
       this.user = data;
@@ -42,10 +49,21 @@ export class UsuariosComponent {
 
   cancelUser(id){
     this._userService.deleteUsuario(id).subscribe(res => {
-      if(res){ console.log(res);}
-      else{
-        location.reload();
+      if(res.warningCount == 0){
+        this.mensaje = 'Usuario Cancelado!';
+        location.href = '/admin/usuarios#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
+        this.loading = true;
+        this._userService.getSolicitantes().subscribe(data=>{
+          this.loading = false;
+          this.user = data;
+        })
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        location.href = '/admin/usuarios#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
       }
     })
   }

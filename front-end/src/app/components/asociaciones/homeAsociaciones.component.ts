@@ -25,9 +25,14 @@ export class HomeAsociaciones{
   id:number = 0;
   loading:boolean = false;
   asociacion:string = '';
+  mensaje:string = '';
+  error:boolean = true;
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
-    console.log(sessionStorage.getItem('iD'));
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
@@ -42,8 +47,22 @@ export class HomeAsociaciones{
 
   cancelUser(id){
     this._userService.deleteUsuario(id).subscribe(res => {
-      if(res){ console.log(res);}
-      else{ delete this.user[id];}
+      if(res.warningCount == 0){
+        this.mensaje = 'Usuario Cancelado!';
+        location.href = '/admin/usuarios#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+        delete this.user[id];
+        this.loading = true;
+        this._userService.getSolicitantes().subscribe(data=>{
+          this.loading = false;
+          this.user = data;
+        })
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        location.href = '/admin/usuarios#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
     })
   }
 

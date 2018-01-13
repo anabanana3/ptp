@@ -29,10 +29,14 @@ export class ProfileUserComponent {
 
   asociacion:string = '';
   profesion:string = '';
+  error:boolean = true;
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
               private _profesionesService:ProfesionesService) {
-
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     console.log(sessionStorage.getItem('iD'));
     this.id = parseInt(sessionStorage.getItem('iD'));
 

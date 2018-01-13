@@ -19,8 +19,14 @@ export class ProfileAsociacionComponent {
     CIF: '',
     Foto: ''
   }
+  error:boolean = true;
 
   constructor(private _asociacionesService:AsociacionesService) {
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
+
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data =>{

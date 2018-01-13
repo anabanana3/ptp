@@ -36,7 +36,7 @@ export class AsociacionesService {
 
     return this.http.delete(urlD, {headers}).map(res=>{
       console.log(res.json());
-      res.json();
+      return res.json();
     });
   }
 

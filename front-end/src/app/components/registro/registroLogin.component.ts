@@ -24,8 +24,6 @@ export class RegistroLoginComponent {
     let m = id.substring(0, id.length - 1);
 
     this.json.ID_Usuario = m;
-    console.log(id);
-    console.log(m);
   }
 
   validate(forma:NgForm){
@@ -37,6 +35,14 @@ export class RegistroLoginComponent {
 
     this._userService.registrarSolicitante(this.json).subscribe(data=>{
       console.log(data);
+      if(data.Resultado === 'OK'){
+        this.mensaje = 'Enhorabuena, Ya puedes Iniciar Sesión!';
+        document.getElementById('alert').className = 'alert alert-success';
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
     });
   }
 }

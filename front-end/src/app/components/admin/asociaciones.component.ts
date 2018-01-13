@@ -19,7 +19,15 @@ export class AsociacionesComponent {
     CIF: ''
   }
 
+  mensaje:string = '';
+  error:boolean = true;
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
+
+    if(sessionStorage.getItem('iD') !== '44'){
+      return;
+    }
+    this.error = false;
+
     this._asociacionesServices.getAsociaciones().subscribe(data=>{
 
       this.loading = false;
@@ -31,20 +39,38 @@ export class AsociacionesComponent {
   delete(id){
     this._asociacionesServices.deleteAsociacion(id).subscribe(res=>{
 
-      if(res){console.log(res); }
-      else{
-        location.reload();
+      if(res.Resultado === 'OK'){
+        this.mensaje = 'Asociación Cancelada!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
         delete this.asociacion[id];
+        this.loading = true;
+        this._asociacionesServices.getAsociaciones().subscribe(data=>{
+
+          this.loading = false;
+          console.log(data);
+          this.asociacion = data;
+        })
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
       }
     })
   }
 
   activate(id, email){
     this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
-      if(res){ location.reload(); console.log(res); }
-      else{
-        console.log(res);
-      }
+      // console.log(res);
+      //
+      // this.loading = true;
+      // this._asociacionesServices.getAsociaciones().subscribe(data=>{
+      //
+      //   this.loading = false;
+      //   console.log(data);
+      //   this.asociacion = data;
+      // })
     })
   }
 }

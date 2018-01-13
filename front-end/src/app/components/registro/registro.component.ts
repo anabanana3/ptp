@@ -103,7 +103,7 @@ export class RegistroComponent {
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte!';
+          this.mensaje = 'Gracias por registrarte! Recibiras un email cuando seas aceptado';
           document.getElementById('alert').className = 'alert alert-success';
         }
       }, error=>{
@@ -123,7 +123,7 @@ export class RegistroComponent {
       this._userService.newUsuario(this.usuario).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte!';
+          this.mensaje = 'Gracias por registrarte! Recibiras un email cuando seas aceptado por tu asociación';
           location.href = '/registro#arriba';
           document.getElementById('alert').className = 'alert alert-success';
         }
