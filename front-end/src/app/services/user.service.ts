@@ -29,13 +29,27 @@ export class UserService {
           })
   }
 
-  updateUsuario(usu:User, id$:string){
+  updateUsuario(usu, id){
     let body = JSON.stringify(usu);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
 
-    let url = `${this.solicitantesURL}/${id$}`;
+    let url = `${this.usuariosURL}${id}`;
+
+    return this.http.put(url, body, {headers}).map(res=>{
+            console.log(res.json());
+            return res.json();
+          })
+  }
+
+  updateRegistrado(usu, id){
+    let body = JSON.stringify(usu);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    let url = `${this.registradosURL}${id}`;
 
     return this.http.put(url, body, {headers}).map(res=>{
             console.log(res.json());

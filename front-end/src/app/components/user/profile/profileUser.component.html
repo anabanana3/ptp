@@ -6,6 +6,8 @@
 
     <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
     <hr>
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
   <!-- Permisos -->
     <div class="permisos" style="width: 35%; float:left; margin-left:5%; display: inline-grid; margin-top: 5%;">
       <div class="headerPermisos">
@@ -28,21 +30,21 @@
     </div>
 
     <div style="width: 50%; float: left;margin-left: 5%;">
-      <form (ngSubmit)="updateUser()" style="display: inline-grid; width: 80%;">
+      <form (ngSubmit)="updateUser(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
 
         <!-- [(ngModel)]="" -->
         <label for="nombre">Nombre</label>
           <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
-                 value="user[0].Nombre" name="nombre" id="nombre" disabled="false">
+                 value="user[0].Nombre" name="nombre" id="nombre" required>
         <label for="apellido">Apellidos</label>
           <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
-                 value="user[0].Apellidos" name="apellido" id="apellido" disabled="false">
+                 value="user[0].Apellidos" name="apellido" id="apellido" required>
         <label for="apellido">Email</label>
           <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
-                 value="user[0].Email" name="email" id="email">
+                 value="user[0].Email" name="email" id="email" disabled="false">
          <label for="nacimiento">Fecha de Nacimiento</label>
            <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="text"
-                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false">
+                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false" required>
         <label for="sexo">Sexo</label>
         <div class="radioButtons">
           <input [(ngModel)]="user.Sexo" type="radio" name="mujer" value="Mujer" id="mujer">
@@ -54,10 +56,10 @@
         </div>
         <label for="dni">DNI</label>
           <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
-                 value="user[0].DNI" name="dni" id="dni" disabled="false">
+                 value="user[0].DNI" name="dni" id="dni" required>
        <label for="asociacion">Asociacion</label>
           <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
-                value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false">
+                value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
         <label for="profesion">Profesion</label>
         <select [(ngModel)]="user.Profesion" class="lineaCampo" name="profesion" id="profesion">
           <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].Nombre}}">
@@ -66,7 +68,7 @@
         </select>
        <label for="direccion">Dirección</label>
          <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text"
-                value="user[0].Direccion" name="direccion" id="direccion">
+                value="user[0].Direccion" name="direccion" id="direccion" required>
 
         <button (click)="change = !change" type="button" name="button"
                 class="submitGris textoBlanco" style="margin-bottom:5%;">
@@ -74,10 +76,14 @@
         </button>
 
         <div *ngIf="change" style="display: inline-grid;">
-          <label for="newpass">Nueva Contraseña</label>
-            <input [(ngModel)]="pass.newpass" class="lineaCampo" type="text" name="newpass" id="newpass">
-          <label for="repeatpass">Repita la Nueva Contraseña</label>
-            <input [(ngModel)]="pass.repeatpass" class="lineaCampo" type="text" name="repeatpass" id="repeatpass">
+          <label for="contra">Contraseña *</label>
+            <input (keyup)="validate(user.Password)" [(ngModel)]="user.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+          <label for="repeatcontra">Repita la Contraseña *</label>
+            <input (keyup)="validate(user.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+
+          <div class="progress">
+            <div id="value" style="background-color:black;"></div>
+          </div>
         </div>
         <div>
           <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>

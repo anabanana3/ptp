@@ -8,14 +8,14 @@
   <form (ngSubmit)="newUser(forma)" #forma="ngForm" class="camposForm">
     <label for="email">Email *</label>
       <input [(ngModel)]="json.Email" class="lineaCampo" type="text" name="email" id="email" required>
-      <label for="contra">Contraseña *</label>
-        <input (keyup)="validate(json.Password)" [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
-      <label for="repeatcontra">Repita la Contraseña *</label>
-        <input (keyup)="validate(json.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+    <label for="contra">Contraseña *</label>
+      <input (keyup)="validate(json.Password)" [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+    <label for="repeatcontra">Repita la Contraseña *</label>
+      <input (keyup)="validate(json.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
 
-      <div class="progress">
-        <div id="value" style="background-color:black;"></div>
-      </div>
+    <div class="progress">
+      <div id="value" style="background-color:black;"></div>
+    </div>
     <div style="text-align:center; margin-bottom:5px;">
       <button type="submit" name="button" class="submitGris textoBlanco">REGISTRAR</button>
     </div>
