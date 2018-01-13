@@ -37,7 +37,13 @@ export class AsociacionesComponent {
   }
 
   delete(id){
-    this._asociacionesServices.deleteAsociacion(id).subscribe(res=>{
+    let asociacion ={
+      Email: this.asociacion.Email,
+      Asociacion: this.asociacion.Nombre
+    }
+    this._asociacionesServices.deleteAsociacion(id, asociacion).subscribe(res=>{
+
+      console.log(res);
 
       if(res.Resultado === 'OK'){
         this.mensaje = 'Asociación Cancelada!';
@@ -62,15 +68,19 @@ export class AsociacionesComponent {
 
   activate(id, email){
     this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
-      // console.log(res);
-      //
-      // this.loading = true;
-      // this._asociacionesServices.getAsociaciones().subscribe(data=>{
-      //
-      //   this.loading = false;
-      //   console.log(data);
-      //   this.asociacion = data;
-      // })
+      console.log(res);
+      if(res.Resultado === 'OK'){
+        this.loading = true;
+        this.mensaje = 'Asociacion validada Correctamente!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+
+        this._asociacionesServices.getAsociaciones().subscribe(data=>{
+
+          this.loading = false;
+          this.asociacion = data;
+        })
+      }
     })
   }
 }

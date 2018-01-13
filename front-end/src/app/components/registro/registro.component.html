@@ -56,15 +56,17 @@
 
     <div *ngIf="!usuarios" class="camposForm">
       <label for="nombre">Nombre Asociación *</label>
-        <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre">
+        <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre" required>
       <label for="direccion">Direccion *</label>
-        <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion">
+        <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required>
       <label for="email">Email *</label>
-        <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email">
+        <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="cif">CIF *</label>
-        <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif">
+        <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
       <label for="contra">Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra">
+        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+      <label for="repeatcontra">Repita la Contraseña *</label>
+        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
 
       <div class="progress">
         <div id="value" style="background-color:black;"></div>

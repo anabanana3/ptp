@@ -49,7 +49,7 @@ export class HomeAsociaciones{
     this._userService.deleteUsuario(id).subscribe(res => {
       if(res.warningCount == 0){
         this.mensaje = 'Usuario Cancelado!';
-        location.href = '/admin/usuarios#arriba';
+        location.href = '/asociacion#arriba';
         document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
         this.loading = true;
@@ -60,7 +60,7 @@ export class HomeAsociaciones{
       }
       else{
         this.mensaje = 'Ha ocurrido un error!';
-        location.href = '/admin/usuarios#arriba';
+        location.href = '/asociacion#arriba';
         document.getElementById('alert').className = 'alert alert-danger';
       }
     })
@@ -69,6 +69,32 @@ export class HomeAsociaciones{
   activateUser(id, email){
     this._userService.activateUsuario(id, email).subscribe(res=>{
       console.log(res);
+      if(res.Resultado === 'OK'){
+        this.loading = true;
+        this.mensaje = 'Usuario validado Correctamente!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+
+        if(this.tabla === 0){
+          this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data =>{
+            this.user = data;
+            this.loading = false;
+          })
+          return;
+        }
+        if(this.tabla === 1){
+          this._userService.getUsuarioRegistradosAsociacion(this.id).subscribe(data=>{
+            this.loading = false;
+            this.user = data;
+          })
+          return;
+        }
+      }
+      else{
+        this.mensaje = 'HA ocurrido un error!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
     })
   }
 
