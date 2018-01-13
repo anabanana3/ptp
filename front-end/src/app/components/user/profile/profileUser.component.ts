@@ -27,9 +27,15 @@ export class ProfileUserComponent {
     Foto: ''
   };
 
+  pass={
+    newpass: '',
+    repeatpass: ''
+  }
+
   asociacion:string = '';
   profesion:string = '';
   error:boolean = true;
+  profesiones:any[] = [];
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
               private _profesionesService:ProfesionesService) {
@@ -37,7 +43,11 @@ export class ProfileUserComponent {
       return;
     }
     this.error = false;
-    console.log(sessionStorage.getItem('iD'));
+
+    this._profesionesService.getProfesiones().subscribe(data=>{
+      console.log(data);
+      this.profesiones = data;
+    })
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._userService.getUsuario(this.id).subscribe(data =>{
@@ -45,10 +55,19 @@ export class ProfileUserComponent {
       this.user.Nombre = this.user.Nombre.split("'")[1];
       this.user.Email = this.user.Email.split("'")[1];
       this.user.Direccion = this.user.Direccion.split("'")[1];
+      this.user.Asociacion = this.user.Asociacion.split("'")[1];
       this.user.Apellidos = this.user.Apellidos.split("'")[1];
       this.user.DNI = this.user.DNI.split("'")[1];
       console.log(this.user);
     })
   }
 
+  updateUser(){
+    if(this.pass.newpass === ''){
+      console.log(this.user);
+      return;
+    }
+    console.log(this.user);
+    console.log(this.pass);
+  }
 }
