@@ -38,7 +38,7 @@ export class UsuariosComponent {
     }
     this.error = false;
 
-    this._userService.getSolicitantes().subscribe(data=>{
+    this._userService.getSolicitantes(1, 3).subscribe(data=>{
       this.loading = false;
       this.user = data;
 
@@ -55,7 +55,7 @@ export class UsuariosComponent {
         document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
         this.loading = true;
-        this._userService.getSolicitantes().subscribe(data=>{
+        this._userService.getSolicitantes(1, 3).subscribe(data=>{
           this.loading = false;
           this.user = data;
         })
@@ -70,7 +70,7 @@ export class UsuariosComponent {
 
   view(number){
     if(number == 0){
-      this._userService.getSolicitantes().subscribe(data=>{
+      this._userService.getSolicitantes(1, 3).subscribe(data=>{
         this.loading = false;
         console.log('Solicitantes');
         this.tabla = 0
@@ -81,7 +81,7 @@ export class UsuariosComponent {
     }
 
     if(number == 1){
-      this._userService.getRegistrados().subscribe(data=>{
+      this._userService.getRegistrados(1, 3).subscribe(data=>{
         this.loading = false;
         this.tabla = 1
         console.log('Registrados');
@@ -92,7 +92,7 @@ export class UsuariosComponent {
     }
 
     if(number == 2){
-      this._userService.getCancelados().subscribe(data=>{
+      this._userService.getCancelados(1, 3).subscribe(data=>{
         this.loading = false;
         this.tabla = 2
         console.log('Cancelados');

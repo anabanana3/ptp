@@ -39,7 +39,7 @@ export class HomeAsociaciones{
       this.asociacion = data[0].Nombre.split("'")[1];
     })
 
-    this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data =>{
+    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data =>{
       this.user = data;
       console.log(this.user);
     })
@@ -53,7 +53,7 @@ export class HomeAsociaciones{
         document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
         this.loading = true;
-        this._userService.getSolicitantes().subscribe(data=>{
+        this._userService.getSolicitantes(1, 3).subscribe(data=>{
           this.loading = false;
           this.user = data;
         })
@@ -76,14 +76,14 @@ export class HomeAsociaciones{
         document.getElementById('alert').className = 'alert alert-success';
 
         if(this.tabla === 0){
-          this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data =>{
+          this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data =>{
             this.user = data;
             this.loading = false;
           })
           return;
         }
         if(this.tabla === 1){
-          this._userService.getUsuarioRegistradosAsociacion(this.id).subscribe(data=>{
+          this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
             this.loading = false;
             this.user = data;
           })
@@ -106,7 +106,7 @@ export class HomeAsociaciones{
 
   view(number){
     if(number == 0){
-      this._userService.getUsuarioSolicitantesAsociacion(this.id).subscribe(data=>{
+      this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data=>{
         this.loading = false;
         this.tabla = 0
         this.user = data;
@@ -115,7 +115,7 @@ export class HomeAsociaciones{
     }
 
     if(number == 1){
-      this._userService.getUsuarioRegistradosAsociacion(this.id).subscribe(data=>{
+      this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
         this.loading = false;
         this.tabla = 1
         this.user = data;
