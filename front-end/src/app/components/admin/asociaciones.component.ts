@@ -28,7 +28,7 @@ export class AsociacionesComponent {
     }
     this.error = false;
 
-    this._asociacionesServices.getAsociaciones().subscribe(data=>{
+    this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
 
       this.loading = false;
       console.log(data);
@@ -51,7 +51,7 @@ export class AsociacionesComponent {
         document.getElementById('alert').className = 'alert alert-success';
         delete this.asociacion[id];
         this.loading = true;
-        this._asociacionesServices.getAsociaciones().subscribe(data=>{
+        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
 
           this.loading = false;
           console.log(data);
@@ -75,7 +75,7 @@ export class AsociacionesComponent {
         location.href = '/admin/asociaciones#arriba';
         document.getElementById('alert').className = 'alert alert-success';
 
-        this._asociacionesServices.getAsociaciones().subscribe(data=>{
+        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
 
           this.loading = false;
           this.asociacion = data;

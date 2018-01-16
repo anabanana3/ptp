@@ -39,7 +39,8 @@ export class HomeAsociaciones{
       this.asociacion = data[0].Nombre.split("'")[1];
     })
 
-    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data =>{
+    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data => {
+      console.log(data);
       this.user = data;
       console.log(this.user);
     })
@@ -107,6 +108,7 @@ export class HomeAsociaciones{
   view(number){
     if(number == 0){
       this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data=>{
+        console.log(data);
         this.loading = false;
         this.tabla = 0
         this.user = data;
@@ -116,6 +118,7 @@ export class HomeAsociaciones{
 
     if(number == 1){
       this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
+        console.log(data);
         this.loading = false;
         this.tabla = 1
         this.user = data;

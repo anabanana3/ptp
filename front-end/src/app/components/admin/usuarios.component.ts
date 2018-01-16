@@ -40,7 +40,7 @@ export class UsuariosComponent {
 
     this._userService.getSolicitantes(1, 3).subscribe(data=>{
       this.loading = false;
-      this.user = data;
+      this.user = data.Data;
 
       console.log(data);
     })
@@ -57,7 +57,7 @@ export class UsuariosComponent {
         this.loading = true;
         this._userService.getSolicitantes(1, 3).subscribe(data=>{
           this.loading = false;
-          this.user = data;
+          this.user = data.Data;
         })
       }
       else{
@@ -75,7 +75,7 @@ export class UsuariosComponent {
         console.log('Solicitantes');
         this.tabla = 0
         console.log(data);
-        this.user = data;
+        this.user = data.Data;
       })
       return;
     }
@@ -85,8 +85,8 @@ export class UsuariosComponent {
         this.loading = false;
         this.tabla = 1
         console.log('Registrados');
-        console.log(data);
-        this.user = data;
+        console.log(data.Data);
+        this.user = data.Data;
       })
       return;
     }
@@ -97,7 +97,7 @@ export class UsuariosComponent {
         this.tabla = 2
         console.log('Cancelados');
         console.log(data);
-        this.user = data;
+        this.user = data.Data;
       })
       return;
     }

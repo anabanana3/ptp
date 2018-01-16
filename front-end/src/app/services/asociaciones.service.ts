@@ -13,10 +13,9 @@ export class AsociacionesService {
 
   constructor(private http:Http) { }
 
-///api/asociacion/validadas/1
-
-  getAsociaciones(){
-    return this.http.get(this.url).map(res=>res.json());
+  getAsociaciones(numPag, tamPag){
+    let url = `${this.url}pag=${numPag}&n=${tamPag}`;
+    return this.http.get(url).map(res=>res.json());
   }
 
   getAsociacionesValidadas(){

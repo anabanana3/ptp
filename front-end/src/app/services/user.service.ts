@@ -112,8 +112,8 @@ export class UserService {
         })
   }
 
-  getUsuarioSolicitantesAsociacion(id$:number, numPag, tamPag){
-    let url = `${this.solicitantesURL}/asociacion/${id$}/pag=${numPag}&n=${tamPag}`;
+  getUsuarioSolicitantesAsociacion(id, numPag, tamPag){
+    let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
