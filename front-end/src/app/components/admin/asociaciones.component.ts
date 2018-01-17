@@ -19,8 +19,16 @@ export class AsociacionesComponent {
     CIF: ''
   }
 
+  mensaje:string = '';
+  error:boolean = true;
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
-    this._asociacionesServices.getAsociaciones().subscribe(data=>{
+
+    if(sessionStorage.getItem('iD') !== '44'){
+      return;
+    }
+    this.error = false;
+
+    this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
 
       this.loading = false;
       console.log(data);
@@ -29,21 +37,49 @@ export class AsociacionesComponent {
   }
 
   delete(id){
-    this._asociacionesServices.deleteAsociacion(id).subscribe(res=>{
+    let asociacion ={
+      Email: this.asociacion.Email,
+      Asociacion: this.asociacion.Nombre
+    }
+    this._asociacionesServices.deleteAsociacion(id, asociacion).subscribe(res=>{
 
-      if(res){console.log(res); }
-      else{
-        location.reload();
+      console.log(res);
+
+      if(res.Resultado === 'OK'){
+        this.mensaje = 'Asociación Cancelada!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
         delete this.asociacion[id];
+        this.loading = true;
+        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
+
+          this.loading = false;
+          console.log(data);
+          this.asociacion = data;
+        })
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
       }
     })
   }
 
   activate(id, email){
     this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
-      if(res){console.log(res); }
-      else{
-        location.reload();
+      console.log(res);
+      if(res.Resultado === 'OK'){
+        this.loading = true;
+        this.mensaje = 'Asociacion validada Correctamente!';
+        location.href = '/admin/asociaciones#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+
+        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
+
+          this.loading = false;
+          this.asociacion = data;
+        })
       }
     })
   }

@@ -1,71 +1,78 @@
-<h1>Asociacion {{asociacion}}</h1>
-<button [routerLink]="['/asociacion/profile']" type="button" name="button"
-        class="submitGris textoBlanco">
-        Perfil
-</button>
-<button (click)="cerrarSesion()" type="button" name="button"
-        class="submitGris textoBlanco">
-        Cerrar Sesión
-</button>
-<div class="">
-  <button type="button" name="button" class="btn-inline textoBlanco"
-          style="margin-bottom: 2%;" (click)="view(0)">
-          Solicitantes
-  </button>
-  <button type="button" name="button" class="btn-inline textoBlanco"
-          style="margin-bottom: 2%;" (click)="view(1)">
-          Registrados
-  </button>
+<div *ngIf="error">
+  <app-error></app-error>
 </div>
-<hr><br>
+<div *ngIf="!error">
+  <h1>Asociacion {{asociacion}}</h1>
+  <button [routerLink]="['/asociacion/profile']" type="button" name="button"
+          class="submitGris textoBlanco">
+          Perfil
+  </button>
+  <button (click)="cerrarSesion()" type="button" name="button"
+          class="submitGris textoBlanco">
+          Cerrar Sesión
+  </button>
+  <div class="">
+    <button type="button" name="button" class="btn-inline textoBlanco"
+            style="margin-bottom: 2%;" (click)="view(0)">
+            Solicitantes
+    </button>
+    <button type="button" name="button" class="btn-inline textoBlanco"
+            style="margin-bottom: 2%;" (click)="view(1)">
+            Registrados
+    </button>
+  </div>
+  <hr><br>
 
-<div >
   <div >
-    <table class="table">
-      <thead class="thead">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Profesión</th>
-          <th scope="col">Asociación</th>
-          <th scope="col">NIE/NIF</th>
-          <th class="text-right" scope="col">Opciones</th>
-        </tr>
-      </thead>
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+    <div >
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col" *ngIf="tabla != 1">Apellidos</th>
+            <th scope="col">Profesión</th>
+            <th scope="col">Email</th>
+            <th scope="col">NIE/NIF</th>
+            <th class="text-right" scope="col">Opciones</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr *ngFor="let k of user | keys; let i = index;">
-          <!-- <td>{{i+1}}</td> -->
-          <td>{{user[k].ID_Usuario}}</td>
-          <td>{{user[k].Nombre}}</td>
-          <td>{{user[k].Apellidos}}</td>
-          <td>{{user[k].Profesion}}</td>
-          <td>{{user[k].Asociacion}}</td>
-          <td>{{user[k].DNI}}</td>
-          <td class="text-right w230">
-            <button type="button" class="btn btn-outline-success icon-ok span"
-                    (click)="activateUser(user[k].ID_Usuario, user[k].Email)">
-            </button>
-            <button type="button" class="btn btn-outline-danger icon-cancel span"
-                    (click)="cancelUser(user[k].ID_Usuario)">
-            </button>
-            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
+        <tbody>
+          <tr *ngFor="let k of user | keys; let i = index;">
+            <!-- <td>{{i+1}}</td> -->
+            <td>{{user[k].ID_Usuario}}</td>
+            <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
+            <td *ngIf="user[k].Apellidos != undefined && tabla != 1">{{user[k].Apellidos.split("'")[1]}}</td>
+            <td>{{user[k].Profesion}}</td>
+            <td *ngIf="user[k].Email != undefined">{{user[k].Email.split("'")[1]}}</td>
+            <td *ngIf="user[k].DNI != undefined">{{user[k].DNI.split("'")[1]}}</td>
+            <td class="text-right w230">
+              <button type="button" class="btn btn-outline-success icon-ok span"
+                      (click)="activateUser(user[k].ID_Usuario, user[k].Email)"
+                      title="Aceptar Usuarios">
+              </button>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="cancelUser(user[k].ID_Usuario)"
+                      title="Cancelar Usuarios">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div *ngIf="(user | keys).length === 0 && !loading"
+           class="alert alert-info" role="alert">
+        <strong>No hay</strong> registros que mostrar
+      </div>
 
-    <div *ngIf="(user | keys).length === 0 && !loading"
-         class="alert alert-info" role="alert">
-      <strong>No hay</strong> registros que mostrar
+      <div *ngIf="loading"
+           class="alert alert-info" role="alert">
+        <strong>Cargando...</strong>por favor espere
+      </div>
+
     </div>
-
-    <div *ngIf="loading"
-         class="alert alert-info" role="alert">
-      <strong>Cargando...</strong>por favor espere
-    </div>
-
   </div>
 </div>

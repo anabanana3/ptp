@@ -8,8 +8,11 @@ import { Router } from '@angular/router';
 })
 export class HomeAdminComponent {
 
-
-  constructor(private router:Router) {
-
+  error:boolean = true;
+  constructor(){
+    if(sessionStorage.getItem('iD') !== '44'){
+      return;
+    }
+    this.error = false;
   }
 }

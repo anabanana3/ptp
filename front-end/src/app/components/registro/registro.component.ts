@@ -67,6 +67,8 @@ export class RegistroComponent {
   usuarios:boolean = true;
 
   mensaje:string = '';
+  repeatpass:string = '';
+  scorepass:string = '';
 
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
     private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
@@ -93,9 +95,24 @@ export class RegistroComponent {
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
     if(!bool){
+
       if(!emailRegex.test(this.asociacion.Email)){
-        location.href = '#alert'
+        location.href = '/registro#arriba';
         this.mensaje = 'Email mal introducido';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }
+
+      if(this.asociacion.Password !== this.repeatpass){
+        location.href = '/registro#arriba';
+        this.mensaje = 'Las contraseñas introducidas no son iguales';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }
+
+      if(parseInt(this.scorepass) < 2){
+        location.href = '/registro#arriba';
+        this.mensaje = 'La contraseña es demasiado débil';
         document.getElementById('alert').className = 'alert alert-danger';
         return;
       }
@@ -103,7 +120,7 @@ export class RegistroComponent {
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte!';
+          this.mensaje = 'Gracias por registrarte! Recibira un email cuando sea aceptado';
           document.getElementById('alert').className = 'alert alert-success';
         }
       }, error=>{
@@ -123,7 +140,8 @@ export class RegistroComponent {
       this._userService.newUsuario(this.usuario).subscribe(data=>{
         console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte!';
+          this.mensaje = 'Gracias por registrarte! Recibira un email cuando sea aceptado por su asociación';
+          location.href = '/registro#arriba';
           document.getElementById('alert').className = 'alert alert-success';
         }
       }, error=>{
@@ -132,13 +150,13 @@ export class RegistroComponent {
         console.log(error);
       });
     }
-
-    //location.href="/registro";
   }
 
   validate(pass){
     var score = JSON.stringify(zxcvbn(pass).score);
     document.getElementById("value").style.width = this.fuerza[score].width;
     document.getElementById("value").style.backgroundColor = this.fuerza[score].color;
+
+    this.scorepass = score;
   }
 }
