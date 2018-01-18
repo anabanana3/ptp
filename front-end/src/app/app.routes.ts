@@ -11,6 +11,7 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+import { VermasComponent } from './components/vermas/vermas.component';
 
 const app_routes: Routes = [
   {
@@ -66,6 +67,11 @@ const app_routes: Routes = [
     path: 'principal',
     component: PrincipalComponent,
     data: { title: 'Principal' }
+  },
+  {
+    path: 'vermas',
+    component: VermasComponent,
+    data: { title: 'vermas' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'principal' }
 ];

@@ -1,18 +1,18 @@
 <h1>Asociacion {{asociacion}}</h1>
 <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-        class="submitGris textoBlanco">
+        class="submitGris bgColorBlack textWhite">
         Perfil
 </button>
 <button (click)="cerrarSesion()" type="button" name="button"
-        class="submitGris textoBlanco">
+        class="submitGris bgColorBlack textWhite">
         Cerrar Sesión
 </button>
 <div class="">
-  <button type="button" name="button" class="btn-inline textoBlanco"
+  <button type="button" name="button" class="btn-inline bgColorPink textWhite"
           style="margin-bottom: 2%;" (click)="view(0)">
           Solicitantes
   </button>
-  <button type="button" name="button" class="btn-inline textoBlanco"
+  <button type="button" name="button" class="btn-inline bgColorPink textWhite"
           style="margin-bottom: 2%;" (click)="view(1)">
           Registrados
   </button>

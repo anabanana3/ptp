@@ -26,6 +26,9 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { VermasComponent } from './components/vermas/vermas.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { FooterComponent } from './footer/footer.component';
     PrincipalComponent,
     HomeAdminComponent,
     FooterComponent,
+    HeaderComponent,
+    VermasComponent
 
   ],
   imports: [

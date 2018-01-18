@@ -1,16 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {padding:0; margin:0; height:100%;}
+
 html{
   font-family: HiraKakuPro-W3, Verdana;
   font-size: 16px;
   color: #333333;
   background: #F2F2F2;
   text-align: center;
-}
-
-body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 p{margin: 0;}
@@ -60,9 +61,39 @@ span{font-size: small;}
 
 ul{list-style: none;}
 
+br{
+  display: block;
+  content: " ";
+  margin-top:8px;
+}
+/****** COLORS TEXT ******/
+
+.textBlack{ color:#333333;}
+.textPink{ color:#880042;}
+.textWhite{ color:#FFFFFF;}
+.textDarkenWhite{ color:#ededed;}
+.textGrey{ color: #DDDDDD;}
+.textRed{color: #E82C0C;}
+
+/****** COLORS BG ******/
+
+.bgColorBlack{ background-color:#333333;}
+.bgColorPink{ background-color:#880042;}
+.bgColorWhite{ background-color:#FFFFFF;}
+.bgColorDarkenWhite{ background-color:#ededed;}
+.bgColorGrey{ background-color: #DDDDDD;}
+.bgColorBlue{ background: #0C8A9C;}
+
+/****** TEXT SIZE ******/
+
+.text12{font-size: 12px;}
+.text16{ font-size: 16px;}
+.text18{ font-size: 18px;}
+.text20{ font-size: 20px;}
+
+
 .divBlanco{
   margin-left: 30%;
-  background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 40%;
 }
@@ -73,15 +104,12 @@ ul{list-style: none;}
   text-align: left;
 }
 
-.textoPeq{font-size: 12px;}
-
 .checkbox{
   border: 1px solid #333333;
   border-radius: 2px;
 }
 
-.footerDivGris{
-  background: #DDDDDD;
+.footerDiv{
   padding: 2%;
 }
 
@@ -124,9 +152,9 @@ ul{list-style: none;}
   margin: 0 auto;
   margin-top: 20px;
 }
+
 .btn-inline{
   display: inline;
-  background: #880042;
   margin-bottom: 3%;
   margin-top: 3%;
   font-size: 18px;
@@ -135,7 +163,6 @@ ul{list-style: none;}
 
 .submitGris{
   display: inline;
-  background: #333333;
   margin-bottom: 3%;
   margin-top: 3%;
   font-size: 18px;
@@ -143,7 +170,6 @@ ul{list-style: none;}
 }
 
 .btn-border{
-  background: #880042;
   margin-right: 2%;
   color: white;
   border: none;
@@ -153,7 +179,7 @@ ul{list-style: none;}
 .login{
   margin-top: 4%;
   padding: 8px 10px;
-  font-size: 12px;
+  font-size: 12px; /*TODO por poner text12 en vez de font size aqui*/
   float:right;
 }
 
@@ -168,8 +194,6 @@ ul{list-style: none;}
   background: none;
   margin-right: 2%;
   padding: 6px 20px;
-  font-size: 12px;
-  color: #880042;
   border-radius: 10px;
   border-color: #880042;
   border-width: 2px;
@@ -185,15 +209,10 @@ ul{list-style: none;}
 }
 
 .language{
-  font-size: 12px;
-  color: #880042;
   float:right;
   margin-top: 4.6%;
   margin-right: 9%;
 }
-
-.textoBlanco{color: #FFFFFF;}
-.textoRojo{color: #E82C0C;}
 
 .google{
   margin-top: 25px;
@@ -204,8 +223,7 @@ ul{list-style: none;}
   height: 32px;
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  /*width: 370px;*/
-  width: 100%;
+  width: 100%; /*width: 370px;*/
 }
 
 .radioButtons{
@@ -273,7 +291,6 @@ ul{list-style: none;}
   float: left;
   margin-left: 20%;
   margin-top: 3%;
-  background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 60%;
 }
@@ -336,7 +353,6 @@ ul{list-style: none;}
 
 .suscripcionbg{
   width:100%;
-  background-color: #FFFFFF;
 }
 
 .suscripcion{
@@ -347,10 +363,6 @@ ul{list-style: none;}
   padding-bottom:40px;
 }
 
-.recursos{
-  border:dashed;
-}
-
 .recurso{
   display: inline-block;
   width:300px;
@@ -359,6 +371,7 @@ ul{list-style: none;}
 }
 
 .recursosDiv{
+  background-size: cover;
   padding:0 15%;
   margin-top:0px;
   height:258px;
@@ -374,7 +387,6 @@ ul{list-style: none;}
 }
 
 .recursosText{
-  border:dashed;
   text-align: left;
   margin-top:0px;
   padding-top:35px;
@@ -404,19 +416,21 @@ ul{list-style: none;}
   float:right;
 }
 
-.pFooter{
-  color:white;
-}
-
 .footerDiv{
-  background:#333333;
+  clear:both;
+  width:100%;
+  margin:auto;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width:100%;
   margin-top:4%;
 }
 
 .infoFooter{
   display: inline-block;
-  color:white;
   width: 100%;
   padding-bottom:1%;
 }
@@ -433,4 +447,179 @@ ul{list-style: none;}
 
 .rect-danger{
   background-color: #F5BFBF;
+}
+
+.itemContainer{
+  max-width: 83%;
+  width: 83%;
+  padding-left: 60px;
+  margin:0 auto;
+  margin-top:100px;
+}
+
+.itemBg{
+  display: inline-block;
+  width: 300px;
+  margin:2%;
+  height: 300px;
+  float:left;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+}
+
+.itemColor{
+  width:300px;
+  height:172px;
+}
+
+.itemText{
+  padding-top:20px;
+  font-size:20px;
+  color:white;
+}
+
+/*** USUARIO HOME  *****/
+
+.itemOver{
+  position: absolute;
+  z-index: -1;
+}
+
+.itemDescription{
+  width:87%;
+  margin:0 auto;
+  height: 77px;
+  margin-top:10px;
+}
+
+.btn-entrar{
+  padding: 8px 10px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+/** HEADER **/
+
+.header{
+  height: 90px;
+}
+
+.notification{
+  position: relative;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  float:right;
+  margin-top:12px;
+  margin-right:80px;
+}
+
+.infoDivPerfil{
+  margin-top:12px;
+  text-align: left;
+  z-index: 2;
+  float: right;
+  width: 148px;
+  margin-right: 6px;
+}
+
+.divPerfil{
+  margin-top:-256px;
+  z-index: 2;
+  float: right;
+  width: 150px;
+  margin-right: 15px;
+}
+
+.options{
+  position:relative;
+  z-index: 2;
+  font-size:14px;
+}
+
+.grey{
+  color: #8B8B8B;
+}
+
+.DivOption{
+  margin: 12px 0px;
+}
+
+.numberOption{
+  float:right;
+  margin-top:-30.5px;
+  margin-right:27px;
+}
+
+.infoDivPerfil,
+#perfilTrigger{
+  display: none;
+}
+
+#perfilTrigger:checked + .infoDivPerfil{
+  display: block;
+}
+
+.vermasCentro{
+  width:80%;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  margin:0 auto;
+  margin-top:120px;
+  margin-bottom:40px;
+  padding-bottom:15px;
+}
+
+.vermasPeq{
+  width: 80%;
+  margin:0 auto;
+
+}
+
+.vermasLado{
+  display: inline-block;
+  margin:0 5px;
+  width:47%;
+  padding-bottom:20px;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+}
+
+.vermasCentroText{
+  margin:0 auto;
+  width:80%;
+  margin-top: 15px;
+}
+
+.caracteristicasLeft{
+  text-align: left;
+  margin-top:10px;
+
+  width: 64%;
+  margin-left: 40px;
+}
+
+.caractItem{
+
+}
+/**** RESPONSIVE ****/
+
+@media (max-width: 1384px) {
+  .recursosText{
+    margin-left:15%;
+  }
+
+  .divRecurso{
+    float:left;
+    margin-bottom:10px;
+  }
+
+  .recurso{
+    display: block;
+    width:300px;
+    margin:0 auto;
+    height: 30px;
+  }
+
+  .recursosDiv{
+    height:500px;
+  }
 }
