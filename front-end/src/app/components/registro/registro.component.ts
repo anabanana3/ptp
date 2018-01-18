@@ -84,6 +84,7 @@ export class RegistroComponent {
     })
   }
 
+
   new(forma:NgForm, bool){
     if(forma.valid === false){
       location.href = '/registro#arriba'
@@ -159,4 +160,5 @@ export class RegistroComponent {
 
     this.scorepass = score;
   }
+
 }
