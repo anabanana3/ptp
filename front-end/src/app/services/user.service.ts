@@ -29,13 +29,27 @@ export class UserService {
           })
   }
 
-  updateUsuario(usu:User, id$:string){
+  updateUsuario(usu, id){
     let body = JSON.stringify(usu);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
 
-    let url = `${this.solicitantesURL}/${id$}`;
+    let url = `${this.usuariosURL}${id}`;
+
+    return this.http.put(url, body, {headers}).map(res=>{
+            console.log(res.json());
+            return res.json();
+          })
+  }
+
+  updateRegistrado(usu, id){
+    let body = JSON.stringify(usu);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    let url = `${this.registradosURL}${id}`;
 
     return this.http.put(url, body, {headers}).map(res=>{
             console.log(res.json());
@@ -57,7 +71,8 @@ export class UserService {
     );
   }
 
-  getUsuarios(){
+  getUsuarios(numPag, tamPag){
+    let url = `${this.usuariosURL}pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -65,7 +80,7 @@ export class UserService {
       'Authorization': token
     });
 
-    return this.http.get(this.usuariosURL, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
   deleteUsuario(id){
@@ -79,8 +94,7 @@ export class UserService {
     });
 
     return this.http.delete(urlD, {headers}).map(res=>{
-      console.log(res.json());
-      res.json()});
+      return res.json()});
   }
 
   loginUser(json){
@@ -98,8 +112,8 @@ export class UserService {
         })
   }
 
-  getUsuarioSolicitantesAsociacion(id$:number){
-    let url = `${this.solicitantesURL}/asociacion/${id$}`;
+  getUsuarioSolicitantesAsociacion(id, numPag, tamPag){
+    let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -110,8 +124,8 @@ export class UserService {
     return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  getUsuarioRegistradosAsociacion(id$:number){
-    let url = `${this.registradosURL}asociacion/${id$}`;
+  getUsuarioRegistradosAsociacion(id$:number, numPag, tamPag){
+    let url = `${this.registradosURL}asociacion/${id$}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -122,7 +136,8 @@ export class UserService {
     return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  getSolicitantes(){
+  getSolicitantes(numPag, tamPag){
+    let url = `${this.solicitantesURL}pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -130,10 +145,11 @@ export class UserService {
       'Authorization': token
     });
 
-    return this.http.get(this.solicitantesURL, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  getRegistrados(){
+  getRegistrados(numPag, tamPag){
+    let url = `${this.registradosURL}pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -141,10 +157,11 @@ export class UserService {
       'Authorization': token
     });
 
-    return this.http.get(this.registradosURL, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  getCancelados(){
+  getCancelados(numPag, tamPag){
+    let url = `${this.canceladosURL}pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
     let headers = new Headers({
@@ -152,7 +169,7 @@ export class UserService {
       'Authorization': token
     });
 
-    return this.http.get(this.canceladosURL, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
   activateUsuario(id, email){

@@ -9,21 +9,22 @@ export class AsociacionesService {
   loginURL:string = "https://www.aisha.ovh/api/asociacion/login";
   activarURL:string = "https://www.aisha.ovh/api/mail/send/asociacion";
   validadasURL:string = "https://www.aisha.ovh/api/asociacion/validadas/1";
+  cancelarURL:string ="https://www.aisha.ovh/api/asociacion/cancelar/";
 
   constructor(private http:Http) { }
 
-///api/asociacion/validadas/1
-
-  getAsociaciones(){
-    return this.http.get(this.url).map(res=>res.json());
+  getAsociaciones(numPag, tamPag){
+    let url = `${this.url}pag=${numPag}&n=${tamPag}`;
+    return this.http.get(url).map(res=>res.json());
   }
 
   getAsociacionesValidadas(){
     return this.http.get(this.validadasURL).map(res=>res.json());
   }
 
-  deleteAsociacion(id){
-    let urlD = `${this.url}${id}`;
+  deleteAsociacion(id, asociacion){
+    let body = JSON.stringify(asociacion);
+    let urlC = `${this.cancelarURL}${id}`;
     console.log(id);
 
     let token = sessionStorage.getItem('token');
@@ -34,9 +35,9 @@ export class AsociacionesService {
       'Authorization': token
     });
 
-    return this.http.delete(urlD, {headers}).map(res=>{
+    return this.http.put(urlC, body, {headers}).map(res=>{
       console.log(res.json());
-      res.json();
+      return res.json();
     });
   }
 

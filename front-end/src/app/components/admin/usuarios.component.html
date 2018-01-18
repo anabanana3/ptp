@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <app-lateralOptions></app-lateralOptions>
 
 <h1>Usuarios</h1>
@@ -14,52 +15,77 @@
           style="margin-bottom: 2%;" (click)="view(2)">
           Cancelados
   </button>
+=======
+<div *ngIf="error">
+  <app-error></app-error>
+>>>>>>> front
 </div>
-<hr><br>
+<div *ngIf="!error">
+  <app-lateralOptions></app-lateralOptions>
 
-<div >
+  <h1>Usuarios</h1>
+  <div class="">
+    <button type="button" name="button" class="btn-inline textoBlanco"
+            style="margin-bottom: 2%;" (click)="view(0)">
+            Solicitantes
+    </button>
+    <button type="button" name="button" class="btn-inline textoBlanco"
+            style="margin-bottom: 2%;" (click)="view(1)">
+            Registrados
+    </button>
+    <button type="button" name="button" class="btn-inline textoBlanco"
+            style="margin-bottom: 2%;" (click)="view(2)">
+            Cancelados
+    </button>
+  </div>
+  <hr><br>
+
   <div >
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+    <div >
 
-    <table class="table">
-      <thead class="thead">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th *ngIf="tabla != 2" scope="col">Email</th>
-          <th scope="col">Profesión</th>
-          <th scope="col">Asociación</th>
-          <th class="text-right" scope="col">Opciones</th>
-        </tr>
-      </thead>
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Profesión</th>
+            <th scope="col">Asociación</th>
+            <th *ngIf="tabla != 2" class="text-right" scope="col">Opciones</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr *ngFor="let k of user | keys; let i = index;">
-          <!-- <td>{{i+1}}</td> -->
-          <td>{{user[k].ID_Usuario}}</td>
-          <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
-          <td *ngIf="user[k].Email != undefined && tabla != 2">{{user[k].Email.split("'")[1]}}</td>
-          <td>{{user[k].Profesion}}</td>
-          <td *ngIf="user[k].Asociacion != undefined">{{user[k].Asociacion.split("'")[1]}}</td>
-          <td class="text-right w230">
-            <button *ngIf="tabla != 2" type="button" class="btn btn-outline-danger icon-cancel span"
-                    (click)="cancelUser(user[k].ID_Usuario)">
-            </button>
-            <button type="button" class="btn btn-outline-danger icon-mail span"></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr *ngFor="let k of user | keys; let i = index;">
+            <!-- <td>{{i+1}}</td> -->
+            <td>{{user[k].ID_Usuario}}</td>
+            <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
+            <td *ngIf="user[k].Email != undefined">{{user[k].Email.split("'")[1]}}</td>
+            <td>{{user[k].Profesion}}</td>
+            <td *ngIf="user[k].Asociacion != undefined">{{user[k].Asociacion.split("'")[1]}}</td>
+            <td *ngIf="tabla != 2" class="text-right w230">
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="cancelUser(user[k].ID_Usuario)"
+                      title="Cancelar Usuario">
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div  *ngIf="(user | keys).length === 0 && !loading"
-          class="alert alert-info" role="alert">
-      <strong>No hay</strong> registros que mostrar
-    </div>
+      <div  *ngIf="(user | keys).length === 0 && !loading"
+            class="alert alert-info" role="alert">
+        <strong>No hay</strong> registros que mostrar
+      </div>
 
-    <div  *ngIf="loading"
-          class="alert alert-info" role="alert">
-      <strong>Cargando...</strong>por favor espere
+      <div  *ngIf="loading"
+            class="alert alert-info" role="alert">
+        <strong>Cargando...</strong>por favor espere
+      </div>
+
     </div>
 
   </div>
-
 </div>

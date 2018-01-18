@@ -25,10 +25,14 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+<<<<<<< HEAD
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { VermasComponent } from './components/vermas/vermas.component';
 
+=======
+import { ErrorComponent } from './components/error/error.component';
+>>>>>>> front
 
 @NgModule({
   declarations: [
@@ -46,10 +50,14 @@ import { VermasComponent } from './components/vermas/vermas.component';
     LateralOptionsComponent,
     PrincipalComponent,
     HomeAdminComponent,
+<<<<<<< HEAD
     FooterComponent,
     HeaderComponent,
     VermasComponent
 
+=======
+    ErrorComponent
+>>>>>>> front
   ],
   imports: [
     BrowserModule,

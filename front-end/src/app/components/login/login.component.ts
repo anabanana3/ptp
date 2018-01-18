@@ -60,7 +60,6 @@ export class LoginComponent {
       ////// ****** usuario ****** //////
       this._userService.loginUser(this.json)
         .subscribe(data =>{
-          console.log(data);
           if (data.Resultado == "ERROR") {
             this.mensaje = 'Email o contraseña incorrectos';
             document.getElementById('alert').className = 'alert alert-danger';
@@ -69,7 +68,6 @@ export class LoginComponent {
           //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data);
-          console.log(sessionStorage);
 
           if(sessionStorage.getItem('iD') == '44'){
             location.href = '/admin/home';
