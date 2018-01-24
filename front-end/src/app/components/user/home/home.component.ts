@@ -25,17 +25,19 @@ export class HomeComponent {
     DNI: '',
     Foto: ''
   };
-
+  error:boolean = true;
   // user:string = "";
 
   constructor(private _userService:UserService) {
-    console.log(sessionStorage.getItem('iD'));
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._userService.getUsuario(this.id).subscribe(data =>{
-      this.user = data;
-      console.log("Aqui data user");
-      console.log(this.user);
+      this.user = data[0];
+      this.user.Nombre = this.user.Nombre.split("'")[1];
     })
   }
 

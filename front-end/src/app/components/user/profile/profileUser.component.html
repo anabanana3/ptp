@@ -1,78 +1,97 @@
+<!--<div *ngIf="error">
+  <app-error></app-error>
+</div>-->
+<div *ngIf="!error">
+  <div class="editarPerfil">
 
-<div class="editarPerfil">
-
-  <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
-  <hr>
-<!-- Permisos -->
-  <div class="permisos" style="width: 35%; float:left; margin-left:5%; display: inline-grid; margin-top: 5%;">
-    <div class="headerPermisos">
-      <p class="textoBlanco">Permisos</p>
-    </div>
-    <div class="" style="margin-top: 5%;">
-      <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
-    </div>
-    <div class="">
-      <label style="float:left; width:80%;" for="api">Ver API</label>
-        <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
-    </div>
-
-    <button type="button" name="button" class="submitGris textoBlanco" style="margin:5%;">Solicitar</button>
-  </div>
-
-<!-- Formulario datos -->
-  <div class="" style="width: 50%; float: left;margin-left: 5%;">
-    <form class="" style="display: inline-grid; width: 80%;">
-
-      <!-- [(ngModel)]="" -->
-      <label for="nombre">Nombre</label>
-        <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
-               value="user[0].Nombre" name="nombre" id="nombre" disabled="false">
-      <label for="apellido">Apellidos</label>
-        <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
-               value="user[0].Apellidos" name="apellido" id="apellido" disabled="false">
-      <label for="apellido">Email</label>
-        <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
-               value="user[0].Email" name="email" id="email">
-       <label for="nacimiento">Fecha de Nacimiento</label>
-         <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="text"
-                value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false">
-      <label for="dni">DNI</label>
-        <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
-               value="user[0].DNI" name="dni" id="dni" disabled="false">
-     <label for="asociacion">Asociacion</label>
-        <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
-              value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false">
-      <label for="profesion">Profesión</label>
-        <input [(ngModel)]="user.Profesion" class="lineaCampo" type="text"
-             value="user[0].Profesion" name="profesion" id="profesion" disabled="false">
-     <label for="direccion">Dirección</label>
-       <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text"
-              value="user[0].Direccion" name="direccion" id="direccion">
-
-      <button (click)="change = !change" type="button" name="button"
-              class="submitGris textoBlanco" style="margin-bottom:5%;">
-              Cambiar Contraseña
-      </button>
-
-      <div *ngIf="change" style="display: inline-grid;">
-        <label for="apellido">Anterior Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
-        <label for="apellido">Nueva Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
-        <label for="apellido">Repita la Nueva Contraseña</label>
-          <input class="lineaCampo" type="text" name="apellido" id="apellido">
+    <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
+    <hr>
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+  <!-- Permisos -->
+    <div class="permisos" style="width: 35%; float:left; margin-left:5%; display: inline-grid; margin-top: 5%;">
+      <div class="headerPermisos">
+        <p class="textoBlanco">Permisos</p>
       </div>
-      <div>
-        <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>
-        <button type="button" name="button" style="width: 55%;" class="btn-inline textoBlanco">GUARDAR</button>
+      <div class="" style="margin-top: 5%;">
+        <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
+          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
       </div>
-  </form>
+      <div class="">
+        <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
+          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
+      </div>
+      <div class="">
+        <label style="float:left; width:80%;" for="api">Ver API</label>
+          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
+      </div>
+
+      <button type="button" name="button" class="submitGris textoBlanco" style="margin:5%;">Solicitar</button>
+    </div>
+
+    <div style="width: 50%; float: left;margin-left: 5%;">
+      <form (ngSubmit)="updateUser(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
+
+        <!-- [(ngModel)]="" -->
+        <label for="nombre">Nombre</label>
+          <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
+                 value="user[0].Nombre" name="nombre" id="nombre" required>
+        <label for="apellido">Apellidos</label>
+          <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
+                 value="user[0].Apellidos" name="apellido" id="apellido" required>
+        <label for="apellido">Email</label>
+          <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
+                 value="user[0].Email" name="email" id="email" disabled="false">
+         <label for="nacimiento">Fecha de Nacimiento</label>
+           <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="text"
+                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false" required>
+        <label for="sexo">Sexo</label>
+        <div class="radioButtons">
+          <input [(ngModel)]="user.Sexo" type="radio" name="mujer" value="Mujer" id="mujer">
+            <label for="mujer">Mujer</label>
+          <input [(ngModel)]="user.Sexo" type="radio" name="hombre" value="Hombre" id="hombre">
+            <label for="hombre">Hombre</label>
+          <input [(ngModel)]="user.Sexo" type="radio" name="otro" value="Otro" id="otro">
+            <label for="otro">Prefiero no especificar</label>
+        </div>
+        <label for="dni">DNI</label>
+          <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
+                 value="user[0].DNI" name="dni" id="dni" required>
+       <label for="asociacion">Asociacion</label>
+          <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
+                value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
+        <label for="profesion">Profesion</label>
+        <select [(ngModel)]="user.Profesion" class="lineaCampo" name="profesion" id="profesion">
+          <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].Nombre}}">
+            {{profesiones[k].Nombre}}
+          </option>
+        </select>
+       <label for="direccion">Dirección</label>
+         <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text"
+                value="user[0].Direccion" name="direccion" id="direccion" required>
+
+        <button (click)="change = !change" type="button" name="button"
+                class="submitGris textoBlanco" style="margin-bottom:5%;">
+                Cambiar Contraseña
+        </button>
+
+        <div *ngIf="change" style="display: inline-grid;">
+          <label for="contra">Contraseña *</label>
+            <input (keyup)="validate(user.Password)" [(ngModel)]="user.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+          <label for="repeatcontra">Repita la Contraseña *</label>
+            <input (keyup)="validate(user.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+
+          <div class="progress">
+            <div id="value" style="background-color:black;"></div>
+          </div>
+        </div>
+        <div>
+          <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>
+          <button type="submit" name="button" style="width: 55%;" class="btn-inline textoBlanco">GUARDAR</button>
+        </div>
+    </form>
+    </div>
+
+
   </div>
-
-
 </div>

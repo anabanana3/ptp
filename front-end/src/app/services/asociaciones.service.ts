@@ -8,18 +8,36 @@ export class AsociacionesService {
   url:string = "https://www.aisha.ovh/api/asociacion/";
   loginURL:string = "https://www.aisha.ovh/api/asociacion/login";
   activarURL:string = "https://www.aisha.ovh/api/mail/send/asociacion";
+  validadasURL:string = "https://www.aisha.ovh/api/asociacion/validadas/1";
+  cancelarURL:string ="https://www.aisha.ovh/api/asociacion/cancelar/";
 
   constructor(private http:Http) { }
 
-  getAsociaciones(){
-    return this.http.get(this.url).map(res=>res.json());
+  getAsociaciones(numPag, tamPag){
+    let url = `${this.url}pag=${numPag}&n=${tamPag}`;
+    return this.http.get(url).map(res=>res.json());
   }
 
-  deleteAsociacion(id){
-    let urlD = `${this.url}/${id}`;
-    return this.http.delete(urlD).map(res=>{
+  getAsociacionesValidadas(){
+    return this.http.get(this.validadasURL).map(res=>res.json());
+  }
+
+  deleteAsociacion(id, asociacion){
+    let body = JSON.stringify(asociacion);
+    let urlC = `${this.cancelarURL}${id}`;
+    console.log(id);
+
+    let token = sessionStorage.getItem('token');
+
+    console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.put(urlC, body, {headers}).map(res=>{
       console.log(res.json());
-      res.json();
+      return res.json();
     });
   }
 
@@ -58,6 +76,8 @@ export class AsociacionesService {
   activateAsociacion(id, email){
     //body: token de la asociacion(Cabecera) y JSON: email e ID
     let token = sessionStorage.getItem('token');
+    email = email.split("'")[1];
+    console.log(email);
     let body = JSON.stringify({ID_Asociacion: id, Email: email, });
 
     console.log(token);
@@ -65,10 +85,10 @@ export class AsociacionesService {
       'Content-Type':'application/json',
       'Authorization': token
     });
-
+    console.log(body);
     return this.http.post(this.activarURL, body, {headers})
         .map(res=>{
-          console.log(res.json());
+          //console.log(res.json());
           return res.json();
         })
   }

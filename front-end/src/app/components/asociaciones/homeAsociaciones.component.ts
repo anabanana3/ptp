@@ -21,20 +21,26 @@ export class HomeAsociaciones{
     DNI: ''
   };
 
+  tabla:number = 0;
   id:number = 0;
   loading:boolean = false;
   asociacion:string = '';
+  mensaje:string = '';
+  error:boolean = true;
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
-    console.log(sessionStorage.getItem('iD'));
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
-      this.asociacion = data[0].Nombre;
-      console.log(data[0].Nombre);
+      this.asociacion = data[0].Nombre.split("'")[1];
     })
 
-    this._userService.getUsuarioAsociacion(this.id).subscribe(data =>{
+    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data => {
+      console.log(data);
       this.user = data;
       console.log(this.user);
     })
@@ -42,14 +48,54 @@ export class HomeAsociaciones{
 
   cancelUser(id){
     this._userService.deleteUsuario(id).subscribe(res => {
-      if(res){ console.log(res);}
-      else{ delete this.user[id];}
+      if(res.warningCount == 0){
+        this.mensaje = 'Usuario Cancelado!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+        delete this.user[id];
+        this.loading = true;
+        this._userService.getSolicitantes(1, 3).subscribe(data=>{
+          this.loading = false;
+          this.user = data;
+        })
+      }
+      else{
+        this.mensaje = 'Ha ocurrido un error!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
     })
   }
 
   activateUser(id, email){
     this._userService.activateUsuario(id, email).subscribe(res=>{
       console.log(res);
+      if(res.Resultado === 'OK'){
+        this.loading = true;
+        this.mensaje = 'Usuario validado Correctamente!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-success';
+
+        if(this.tabla === 0){
+          this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data =>{
+            this.user = data;
+            this.loading = false;
+          })
+          return;
+        }
+        if(this.tabla === 1){
+          this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
+            this.loading = false;
+            this.user = data;
+          })
+          return;
+        }
+      }
+      else{
+        this.mensaje = 'HA ocurrido un error!';
+        location.href = '/asociacion#arriba';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
     })
   }
 
@@ -57,5 +103,27 @@ export class HomeAsociaciones{
     sessionStorage.removeItem('iD');
     sessionStorage.removeItem('token');
     location.href = '/principal'
+  }
+
+  view(number){
+    if(number == 0){
+      this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data=>{
+        console.log(data);
+        this.loading = false;
+        this.tabla = 0
+        this.user = data;
+      })
+      return;
+    }
+
+    if(number == 1){
+      this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
+        console.log(data);
+        this.loading = false;
+        this.tabla = 1
+        this.user = data;
+      })
+      return;
+    }
   }
 }
