@@ -29,8 +29,14 @@ import { HomeAdminComponent } from './components/admin/home/homeAdmin.component'
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { VermasComponent } from './components/vermas/vermas.component';
+<<<<<<< HEAD
 import { CarouselSliderComponent } from './carousel-slider/carousel-slider.component';
 
+=======
+import { ExpedienteComponent } from './components/expedientes/expediente.component';
+
+import { ErrorComponent } from './components/error/error.component';
+>>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 
 @NgModule({
   declarations: [
@@ -50,7 +56,13 @@ import { CarouselSliderComponent } from './carousel-slider/carousel-slider.compo
     HomeAdminComponent,
     FooterComponent,
     HeaderComponent,
+<<<<<<< HEAD
     VermasComponent
+=======
+    VermasComponent,
+    ExpedienteComponent,
+    ErrorComponent
+>>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
   ],
   imports: [
     BrowserModule,

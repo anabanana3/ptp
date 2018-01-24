@@ -1,12 +1,74 @@
+<app-header></app-header>
 
+<<<<<<< HEAD
 <!--
 <h1>Hola, {{user[0].Nombre}}!</h1>
+=======
+<div class="itemOver">
+<div class="itemContainer">
 
-<button [routerLink]="['/user/profile']" type="button" name="button"
-        class="submitGris textoBlanco">
-        Perfil
-</button>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorPink">
+      <p class="itemText">Mis expedientes</p>
+      <img style=" margin: 0 auto; margin-top:17px; width:65px" src="../assets/img/Expediente.png" alt="iconExpediente">
+    </div>
+    <p class="itemDescription">Permite recopilar y agrupar todos los datos pertenecientes a sus expedientes y consultas</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorBlue">
+      <p class="itemText">Biblioteca de expedientes</p>
+      <img style="margin: 0 auto; margin-top:30px; width:120px" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
+    </div>
+    <p class="itemDescription">Consulta todos los expedientes públicos</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorPink">
+      <p class="itemText">Banco de datos</p>
+      <img style="margin: 0 auto; margin-top:40px; width:90px" src="../assets/img/ApiDatos.png" alt="iconApiDatos">
+    </div>
+    <p class="itemDescription">Permite acceder a todo tipo de recursos desde documentos informativos, imágenes o vídeos</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorBlue">
+      <p class="itemText">Biblioteca de recursos</p>
+      <img style=" margin: 0 auto; margin-top:20px; width:65px" src="../assets/img/PDFIcon.png" alt="iconPDF">
+    </div>
+    <p class="itemDescription">Utiliza los datos que te ofrece nuestra API a tu gusto</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorPink">
+      <p class="itemText">Aula virtual</p>
+      <img style="margin: 0 auto; margin-top:20px; width:90px" src="../assets/img/Cubes.png" alt="icon3D">
+    </div>
+    <p class="itemDescription">Aprende y diseña con nuestra herramienta en 3D</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorBlue">
+      <p class="itemText">Chat</p>
+      <img style="margin: 0 auto; margin-top:30px; width:90px" src="../assets/img/Chat.png" alt="iconChat">
+    </div>
+    <p class="itemDescription">Contacta con todos aquellos profesionales que están dados de alta con nosotros</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+  <div class="itemBg bgColorWhite">
+    <div class="itemColor bgColorPink" >
+      <p class="itemText">Foro</p>
+      <img style="margin: 0 auto; margin-top:20px; width:110px" src="../assets/img/Foro.png" alt="iconForo">
+    </div>
+    <p class="itemDescription">Publica tus comentarios o comenta las publicaciones de los demás</p>
+    <button type="submit" name="button" class="btn-entrar text12 bgColorBlack" [routerLink]="['/login']">ENTRAR</button>
+  </div>
+</div>
+>>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 
+</div>
+
+<<<<<<< HEAD
 <button (click)="logout();" type="button" name="button" class="submitGris textoBlanco">Cerrar Sesión</button>
 -->
 
@@ -92,6 +154,13 @@
 <div *ngIf="error">
   <app-error></app-error>
 </div>-->
+=======
+
+<app-footer></app-footer>
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+>>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 <div *ngIf="!error">
   <h1>Hola, {{user.Nombre}}</h1>
 
