@@ -1,11 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {padding:0; margin:0; height:100%;}
-
 html{
   font-family: HiraKakuPro-W3, Verdana;
   font-size: 16px;
@@ -14,10 +7,16 @@ html{
   text-align: center;
 }
 
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 p{margin: 0;}
 
 a{
-  /*color: #333333;*/
+  color: #333333;
   text-decoration: none;
 }
 
@@ -61,39 +60,9 @@ span{font-size: small;}
 
 ul{list-style: none;}
 
-br{
-  display: block;
-  content: " ";
-  margin-top:8px;
-}
-/****** COLORS TEXT ******/
-
-.textBlack{ color:#333333;}
-.textPink{ color:#880042;}
-.textWhite{ color:#FFFFFF;}
-.textDarkenWhite{ color:#ededed;}
-.textGrey{ color: #DDDDDD;}
-.textRed{color: #E82C0C;}
-
-/****** COLORS BG ******/
-
-.bgColorBlack{ background-color:#333333;}
-.bgColorPink{ background-color:#880042;}
-.bgColorWhite{ background-color:#FFFFFF;}
-.bgColorDarkenWhite{ background-color:#ededed;}
-.bgColorGrey{ background-color: #DDDDDD;}
-.bgColorBlue{ background: #0C8A9C;}
-
-/****** TEXT SIZE ******/
-
-.text12{font-size: 12px;}
-.text16{ font-size: 16px;}
-.text18{ font-size: 18px;}
-.text20{ font-size: 20px;}
-
-
 .divBlanco{
   margin-left: 30%;
+  background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 40%;
 }
@@ -104,12 +73,15 @@ br{
   text-align: left;
 }
 
+.textoPeq{font-size: 12px;}
+
 .checkbox{
   border: 1px solid #333333;
   border-radius: 2px;
 }
 
-.footerDiv{
+.footerDivGris{
+  background: #DDDDDD;
   padding: 2%;
 }
 
@@ -130,6 +102,7 @@ br{
 .lineaNoticia{
   border: 1px solid #880042;
   margin-left: 5%;
+
   width: 20%;
   margin: 0 auto;
   margin-top: 5px;
@@ -137,8 +110,8 @@ br{
 }
 
 .Eslogan{
-  margin: 0 auto;
-  width:40%;
+  padding: 0px 450px;
+  margin: 0;
   margin-top: 5%;
   margin-bottom: 0px;
   font-size: 20px;
@@ -152,9 +125,9 @@ br{
   margin: 0 auto;
   margin-top: 20px;
 }
-
 .btn-inline{
   display: inline;
+  background: #880042;
   margin-bottom: 3%;
   margin-top: 3%;
   font-size: 18px;
@@ -163,12 +136,18 @@ br{
 
 .submitGris{
   display: inline;
+  background: #333333;
   margin-bottom: 3%;
   margin-top: 3%;
   font-size: 18px;
   border-radius: 5px;
 }
 
+<<<<<<< HEAD
+.btn-login-principal{
+  background: #880042;
+  margin-top: 4%;
+=======
 <<<<<<< HEAD
 .login{
   margin-top: 4%;
@@ -194,41 +173,34 @@ br{
   border-width: 2px;
 =======
 .btn-border{
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
   margin-right: 2%;
-  color: white;
-  border: none;
-  border-radius: 10px;
-}
-
-.login{
-  margin-top: 4%;
   padding: 8px 10px;
-  font-size: 12px; /*TODO por poner text12 en vez de font size aqui*/
+  font-size: 12px;
+  color: white;
+  border-radius: 10px;
+  border: none;
   float:right;
 >>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 }
 
-.verMas{
-  margin-top: 1.5%;
-  margin-bottom:10%;
-  padding: 14px 20px;
-  font-size: 14px;
-}
-
-.btn-fill{
+.btn-registro-principal{
   background: none;
+  margin-top: 4%;
   margin-right: 2%;
   padding: 6px 20px;
+  font-size: 12px;
+  color: #880042;
   border-radius: 10px;
   border-color: #880042;
   border-width: 2px;
-}
-
-.registro{
   float: right;
-  margin-top: 4%;
 }
 
+<<<<<<< HEAD
+.btn-suscribirse-principal{
+  background: none;
+=======
 <<<<<<< HEAD
 .registro:hover{
   background-color: #880042;
@@ -236,7 +208,27 @@ br{
 }
 
 .suscribirse{
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
   margin-top: 6%;
+  margin-right: 2%;
+  padding: 6px 20px;
+  font-size: 12px;
+  color: #880042;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+}
+
+.btn-verMas-principal{
+  background: #880042;
+  margin-top: 1.5%;
+  margin-right: 2%;
+  margin-bottom:10%;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: white;
+  border-radius: 10px;
+  border: none;
 }
 
 .suscribirse:hover{
@@ -249,10 +241,15 @@ br{
 }
 
 .language{
+  font-size: 12px;
+  color: #880042;
   float:right;
   margin-top: 4.6%;
   margin-right: 9%;
 }
+
+.textoBlanco{color: #FFFFFF;}
+.textoRojo{color: #E82C0C;}
 
 .google{
   margin-top: 25px;
@@ -263,7 +260,8 @@ br{
   height: 32px;
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  width: 100%; /*width: 370px;*/
+  /*width: 370px;*/
+  width: 100%;
 }
 
 .radioButtons{
@@ -331,6 +329,7 @@ br{
   float: left;
   margin-left: 20%;
   margin-top: 3%;
+  background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 60%;
 }
@@ -392,6 +391,8 @@ br{
 }
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 .masNoticias{
   width: 120px;
   float:right;
@@ -405,12 +406,17 @@ br{
   width:100%;
 }
 
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 .suscripcion{
-  margin: 0 auto;
-  width:40%;
   margin-top:30px;
+  background-color: #FFFFFF;
+  padding:0px 450px;
   padding-top:30px;
   padding-bottom:40px;
+}
+
+.recursos{
+  border:dashed;
 }
 
 .recurso{
@@ -421,11 +427,16 @@ br{
 }
 
 .recursosDiv{
-  background-size: cover;
-  padding:0 15%;
   margin-top:0px;
   height:258px;
   background-image:url("assets/img/Recursos.png");
+}
+
+.recurso{
+  display: inline-block;
+  width:300px;
+  margin:0px 1%;
+  height: 30px;
 }
 
 .divRecurso{
@@ -440,7 +451,7 @@ br{
   text-align: left;
   margin-top:0px;
   padding-top:35px;
-  margin-left:12px;
+  margin-left:17.3%;
   margin-bottom:35px;
 }
 
@@ -466,6 +477,8 @@ br{
   float:right;
 }
 
+<<<<<<< HEAD
+=======
 .footerDiv{
   clear:both;
   width:100%;
@@ -494,6 +507,7 @@ br{
   width:32%;
 }
 
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 .rect-success{
   background-color: #BAE4BE;
 }
@@ -501,6 +515,8 @@ br{
 .rect-danger{
   background-color: #F5BFBF;
 }
+<<<<<<< HEAD
+=======
 
 .itemContainer{
   max-width: 83%;
@@ -721,3 +737,4 @@ br{
     height:500px;
   }
 }
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3

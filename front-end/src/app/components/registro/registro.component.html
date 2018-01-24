@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <div class="divBlanco bgColorWhite">
 
   <header>
@@ -7,9 +9,9 @@
 <<<<<<< HEAD
 <div class="divBlanco bgColorWhite">
 =======
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 
 <div class="divBlanco">
->>>>>>> front
   <header>
     <img style="margin-top:20px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="Logo">
 >>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
@@ -47,7 +49,7 @@
 
     <!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
-      <p class="text12 textRed">* Campos obligatorios</p> <br>
+      <p class="textoPeq textoRojo">* Campos obligatorios</p> <br>
 
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text"
@@ -111,22 +113,22 @@
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy una Asociación
+            class="submitGris textoBlanco">Soy una Asociación
     </button>
 
     <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy un Usuario
+            class="submitGris textoBlanco">Soy un Usuario
     </button>
 
     <div>
     <!--  <input type="checkbox" name="acepto" value="acepto" id="check">
-        <label for="check" class="text12">Acepto la política de privacidad</label> -->
-      <button type="submit" name="button" class="btn-inline bgColorPink textWhite">REGISTRAR</button>
+        <label for="check" class="textoPeq">Acepto la política de privacidad</label> -->
+      <button type="submit" name="button" class="btn-inline textoBlanco">REGISTRAR</button>
     </div>
 
   </form>
 
-  <footer class="footerDiv bgColorBlack">
+  <footer class="footerDivGris">
     <p>¿Ya estás registrado?</p>
     <a [routerLink]="['/login']"><p><b>Inicia Sesión</b></p></a>
   </footer>

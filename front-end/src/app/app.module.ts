@@ -26,6 +26,8 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+<<<<<<< HEAD
+=======
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { VermasComponent } from './components/vermas/vermas.component';
@@ -35,6 +37,7 @@ import { CarouselSliderComponent } from './carousel-slider/carousel-slider.compo
 =======
 import { ExpedienteComponent } from './components/expedientes/expediente.component';
 
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 import { ErrorComponent } from './components/error/error.component';
 >>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 
@@ -54,6 +57,8 @@ import { ErrorComponent } from './components/error/error.component';
     LateralOptionsComponent,
     PrincipalComponent,
     HomeAdminComponent,
+<<<<<<< HEAD
+=======
     FooterComponent,
     HeaderComponent,
 <<<<<<< HEAD
@@ -61,6 +66,7 @@ import { ErrorComponent } from './components/error/error.component';
 =======
     VermasComponent,
     ExpedienteComponent,
+>>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
     ErrorComponent
 >>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
   ],
