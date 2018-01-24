@@ -143,37 +143,9 @@ ul{list-style: none;}
   border-radius: 5px;
 }
 
-<<<<<<< HEAD
 .btn-login-principal{
   background: #880042;
   margin-top: 4%;
-=======
-<<<<<<< HEAD
-.login{
-  margin-top: 4%;
-  padding: 6px 10px;
-  font-size: 12px; /*TODO por poner text12 en vez de font size aqui*/
-  float:right;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-}
-
-.btn-border{
-  margin-right: 2%;
-  color: white;
-  border-radius: 10px;
-}
-
-.btn-border:hover{
-  background: none;
-  color:#880042;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-=======
-.btn-border{
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
   margin-right: 2%;
   padding: 8px 10px;
   font-size: 12px;
@@ -181,7 +153,6 @@ ul{list-style: none;}
   border-radius: 10px;
   border: none;
   float:right;
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 }
 
 .btn-registro-principal{
@@ -197,18 +168,8 @@ ul{list-style: none;}
   float: right;
 }
 
-<<<<<<< HEAD
 .btn-suscribirse-principal{
   background: none;
-=======
-<<<<<<< HEAD
-.registro:hover{
-  background-color: #880042;
-  color:white;
-}
-
-.suscribirse{
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
   margin-top: 6%;
   margin-right: 2%;
   padding: 6px 20px;
@@ -229,15 +190,6 @@ ul{list-style: none;}
   color: white;
   border-radius: 10px;
   border: none;
-}
-
-.suscribirse:hover{
-  color:white;
-  background-color: #880042;
-=======
-.suscribirse{
-  margin-top: 6%;
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
 }
 
 .language{
@@ -390,23 +342,6 @@ ul{list-style: none;}
   margin-top: 15px;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-.masNoticias{
-  width: 120px;
-  float:right;
-  margin-top: -64px;
-  margin-right: -650px;
-}
-
-=======
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
-.suscripcionbg{
-  width:100%;
-}
-
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 .suscripcion{
   margin-top:30px;
   background-color: #FFFFFF;
@@ -477,37 +412,6 @@ ul{list-style: none;}
   float:right;
 }
 
-<<<<<<< HEAD
-=======
-.footerDiv{
-  clear:both;
-  width:100%;
-  margin:auto;
-  overflow: hidden;
-<<<<<<< HEAD
-=======
-  position: fixed;
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width:100%;
-  margin-top:4%;
-}
-
-.infoFooter{
-  display: inline-block;
-  width: 100%;
-  padding-bottom:1%;
-}
-
-.divpFooter{
-  align-self: center;
-  display: inline-block;
-  width:32%;
-}
-
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 .rect-success{
   background-color: #BAE4BE;
 }
@@ -515,226 +419,3 @@ ul{list-style: none;}
 .rect-danger{
   background-color: #F5BFBF;
 }
-<<<<<<< HEAD
-=======
-
-.itemContainer{
-  max-width: 83%;
-  width: 83%;
-  padding-left: 60px;
-  margin:0 auto;
-  margin-top:100px;
-}
-
-.itemBg{
-  display: inline-block;
-  width: 300px;
-  margin:2%;
-  height: 300px;
-  float:left;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-}
-
-.itemColor{
-  width:300px;
-  height:172px;
-}
-
-.itemText{
-  padding-top:20px;
-  font-size:20px;
-  color:white;
-}
-
-/*** USUARIO HOME  *****/
-
-.itemOver{
-  position: absolute;
-  z-index: -1;
-}
-
-.itemDescription{
-  width:87%;
-  margin:0 auto;
-  height: 77px;
-  margin-top:10px;
-}
-
-.btn-entrar{
-  padding: 8px 10px;
-  color: white;
-  border-radius: 10px;
-  border: none;
-}
-
-/** HEADER **/
-
-.header{
-  height: 90px;
-}
-
-.notification{
-  position: relative;
-  border-radius: 100%;
-  width: 25px;
-  height: 25px;
-  float:right;
-  margin-top:12px;
-  margin-right:80px;
-}
-
-.infoDivPerfil{
-  margin-top:12px;
-  text-align: left;
-  z-index: 2;
-  float: right;
-  width: 148px;
-  margin-right: 6px;
-}
-
-.divPerfil{
-  margin-top:-256px;
-  z-index: 2;
-  float: right;
-  width: 150px;
-  margin-right: 15px;
-}
-
-.options{
-  position:relative;
-  z-index: 2;
-  font-size:14px;
-}
-
-.grey{
-  color: #8B8B8B;
-}
-
-.DivOption{
-  margin: 12px 0px;
-}
-
-.numberOption{
-  float:right;
-  margin-top:-30.5px;
-  margin-right:27px;
-}
-
-.infoDivPerfil,
-#perfilTrigger{
-  display: none;
-}
-
-#perfilTrigger:checked + .infoDivPerfil{
-  display: block;
-}
-
-.vermasCentro{
-  width:80%;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-  margin:0 auto;
-  margin-top:120px;
-  margin-bottom:40px;
-  padding-bottom:15px;
-}
-
-.vermasPeq{
-  width: 80%;
-  margin:0 auto;
-
-}
-
-.vermasLado{
-  display: inline-block;
-  margin:0 5px;
-<<<<<<< HEAD
-  float:left;
-  width:47%;
-  padding-bottom:20px;
-  margin-bottom: 40px;
-=======
-  width:47%;
-  padding-bottom:20px;
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-}
-
-.vermasCentroText{
-  margin:0 auto;
-  width:80%;
-  margin-top: 15px;
-}
-
-.caracteristicasLeft{
-  text-align: left;
-  margin-top:10px;
-<<<<<<< HEAD
-  float:left;
-=======
-
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
-  width: 64%;
-  margin-left: 40px;
-}
-
-<<<<<<< HEAD
-.tickCrossIcon{
-  margin-top:-30px;
-  width: 25px;
-  float: right;
-  margin-bottom: 10px;
-}
-
-
-/**** RESPONSIVE ****/
-
-@media (max-width: 1384px) {
-  h1{
-    font-size:16px;
-  }
-  p{
-    font-size:14px;
-  }
-
-  .vermasCentroText{
-    font-size:16px;
-  }
-
-  .tickCrossIcon{
-    width: 20px;
-  }
-
-  .caracteristicasLeft{
-    margin-left:20px;
-    width:78%;
-  }
-
-=======
-.caractItem{
-
-}
-/**** RESPONSIVE ****/
-
-@media (max-width: 1384px) {
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
-  .recursosText{
-    margin-left:15%;
-  }
-
-  .divRecurso{
-    float:left;
-    margin-bottom:10px;
-  }
-
-  .recurso{
-    display: block;
-    width:300px;
-    margin:0 auto;
-    height: 30px;
-  }
-
-  .recursosDiv{
-    height:500px;
-  }
-}
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3

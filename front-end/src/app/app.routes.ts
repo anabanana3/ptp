@@ -11,14 +11,6 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
-<<<<<<< HEAD
-=======
-import { VermasComponent } from './components/vermas/vermas.component';
-<<<<<<< HEAD
-=======
-import {ExpedienteComponent} from './components/expedientes/expediente.component';
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
 
 const app_routes: Routes = [
   {
@@ -75,22 +67,6 @@ const app_routes: Routes = [
     component: PrincipalComponent,
     data: { title: 'Principal' }
   },
-<<<<<<< HEAD
-=======
-  {
-    path: 'vermas',
-    component: VermasComponent,
-    data: { title: 'vermas' }
-  },
-<<<<<<< HEAD
-=======
-  {
-    path: 'expediente',
-    component: ExpedienteComponent,
-    data: { title: 'Expediente' }
-  },
->>>>>>> b2fb56308c4bbe0d9a094a7b3caf0090776a17d2
->>>>>>> 2b2ab32d610a3b78fffcf699fbee1a532b7af2b3
   { path: '**', pathMatch: 'full', redirectTo: 'principal' }
 ];
 
