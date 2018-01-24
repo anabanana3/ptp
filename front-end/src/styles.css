@@ -419,3 +419,26 @@ ul{list-style: none;}
 .rect-danger{
   background-color: #F5BFBF;
 }
+
+.tabsExpediente{
+  padding: 3%;
+  padding-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabItem{
+  margin-right: 2%;
+  padding: 1%;
+  border: solid 1px;
+  border-bottom: none;
+  background: none;
+}
+
+.divBloque{
+  margin: 3%;
+  margin-top: 0;
+  display: block;
+  border: solid 1px;
+  padding: 1%;
+}
