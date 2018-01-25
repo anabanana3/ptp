@@ -1,0 +1,22 @@
+<div class="divBlanco">
+  <header>
+    <img style="margin-top:20px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="">
+  </header>
+  <div class="lineaDiv"></div>
+  <form (ngSubmit)="" #forma="ngForm">
+    <div class="camposForm">
+      <label for="email">Email*</label>
+        <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email" required>
+      <label for="asunto">Asunto*</label>
+        <input [(ngModel)]="json.Asunto" class="lineaCampo" type="asunto" name="asunto" id="asunto" required>
+      <label for="mensaje">Mensaje*</label>
+        <textarea [(ngModel)]='json.Mensaje' type="mensaje" name="mensaje" id="mensaje" required rows="10" cols="120">
+        </textarea>
+
+    </div>
+    <div>
+      <button type="submit" name="button" class="btn-inline textoBlanco">ENVIAR</button>
+    </div>
+  </form>
+
+</div>
