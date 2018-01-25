@@ -1,18 +1,39 @@
+<head>
+  <meta name="google-site-verification" content="5pRS4NeJZ5jqHdGMujz-qznAd6DZduHbsiu8qVjff5E" />
+  <meta charset="utf-8">
+  <meta name="author" content="Fibbe. Carlos García, Andrea Macia, Clara Saquero,
+  Anabel Díez, Claudia Casanova">
+  <title>Aisha. Red Social contra la mutilación genital femenina</title>
+  <meta name="description" content="Aisha es la Red Social para profesionales
+  de la salud y la educación que tratan a mujeres y niñas en peligro de sufrir
+  una ablación de clítoris.">
+  <meta name="keywords" content="Aisha, mutilación genital femenina, red social
+  contra la mutilación genital femenina, ablación de clítoris, Aparato genital
+  femenino 3D, prácticas tradicionales perjudiciales, violencia contra las mujeres,
+  mgf en niñas, clítoris">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.aisha.ovh/principal/"/>
+</head>
 
 <div class="headerPrincipal">
   <header>
-    <h1><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></h1>
+    <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
   </header>
 
-  <p class="language">ES | EN</p>
-  <button type="button" name="button" class="btn-registro-principal" [routerLink]="['/registro']">REGISTRO</button>
-  <button type="button" name="button" class="btn-login-principal" [routerLink]="['/login']">INICIA SESIÓN</button>
+
+  <p class="language text12 textPink">ES | EN</p>
+  <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
+  <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+
 </div>
 
-
+<!--
 <div class="carrousel">
-  <img  class="imgCarrousel" src="../assets/img/Carrousel.png" alt="Mapa mutilaciones">
+  <img class="imgCarrousel" src="../assets/img/Carrousel.png" alt="Mapa mutilaciones">
 </div>
+-->
+
+
 
 <div class="Eslogan">
   <p>La red de profesionales a nivel mundial que cambiará la vida
@@ -20,14 +41,16 @@
   <div class="lineaEslogan"></div>
 </div>
 
-<button type="submit" name="button" class="btn-verMas-principal">VER MÁS</button>
+
+<button type="submit" name="button" class="btn-border bgColorPink verMas" [routerLink]="['/vermas']">VER MÁS</button>
 
 <div class="noticias">
 
-
   <div class="noticia">
     <h2 class="noticiasText">NOTICIAS</h2>
+    <a href="noticias.component.html"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
     <img src="../assets/img/noticia1.png" alt="noticia 1">
+
     <p class="noticiaTitle">NOTICIA 1</p>
     <div class="lineaNoticia"></div>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -47,10 +70,12 @@
 
 </div>
 
-<div class="suscripcion">
-  <h2>SI QUIERES QUE TE MANTENGAMOS INFORMADO SUSCRÍBETE A NUESTRO <b>CANAL</b></h2>
-  <button type="submit" name="button" class="btn-suscribirse-principal">SUSCRIBIRSE</button>
-</div>
+
+<div class="suscripcionbg bgColorWhite">
+  <div class="suscripcion">
+    <h1>SI QUIERES QUE TE MANTENGAMOS INFORMADO SUSCRÍBETE A NUESTRO <b>CANAL</b></h1>
+    <button type="submit" name="button" class="btn-fill text12 textPink suscribirse">SUSCRIBIRSE</button>
+  </div>
 
 
 <div class=recursosDiv>
@@ -58,6 +83,7 @@
   <div class="recurso">
 
     <div class="divRecurso">
+
       <img style="width:50px" class="recursoIcon" src="../assets/img/pdf.png" alt="">
       <div class="textoRecursos">
         <p>Informes en formato <b>PDF</b></p>
@@ -87,3 +113,5 @@
 
   </div>
 </div>
+
+<app-footer></app-footer>
