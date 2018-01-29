@@ -1,0 +1,68 @@
+<form (ngSubmit)="guardarDatos()">
+  <h2> Conocimiento e información sobre la MGF</h2>
+<label>El inplicado tiene conocimientos sobre la MGF</label>
+<select>
+  <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
+</select>
+<br>
+<label>La MGF se realiza en la comunidad de origen</label>
+<select>
+  <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
+</select>
+<br>
+<label>Cual es el posicionamiento del padre frentre a la MGF</label>
+<select>
+  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+</select>
+<br>
+<label>Cual es el posicionamiento de la madre frentre a la MGF</label>
+<select>
+  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+</select>
+<br>
+<label>Cual es el posicionamiento de la familia en el pais de origen</label>
+<select>
+  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+</select>
+<br>
+<label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
+<textarea placeholder="Otros aspectos destacables"></textarea>
+<br>
+<label>Cual es el significado de la MGF para el inplicado en el expediente</label>
+<textarea placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
+<br>
+<label>Formato de intervención</label>
+<textarea placeholder="Descripcion del formato de intervención empleado"></textarea>
+<br>
+<label>Consejos para otros profesionales</label>
+<textarea placeholder="Consejos para otros profesionales"></textarea>
+<br>
+
+<div>
+<h2>Antecedentes e historia de partos
+  <span *ngIf="hayParto==false" (click)="hayParto =!hayParto">Mostrar</span>
+  <span *ngIf="hayParto==true" (click)="hayParto =!hayParto">Ocultar</span>
+</h2>
+<div *ngIf="hayParto==true">
+  <label>Introduzca el numero de partos de los que desea guardar informacion</label>
+  <input [(ngModel)]="numPartos" name=numPartos type="number" min="1" #Npartos>
+  <button type="button" (click)="prueba(Npartos.value)">Prueba</button>
+  <!-- Toda la informacion de un parto-->
+
+  <div id="prueba">
+    <!-- Ver como hacer para incrustar contenido aqui -->
+  </div>
+
+
+</div>
+<div>
+
+
+</div>
+
+</div>
+
+<div>
+  <button type="submit">Guardar</button>
+</div>
+</form>

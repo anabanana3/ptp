@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="guardarDatos()">
+<div>
+  <h2>Valoración sobre posibles viajes</h2>
+  <label for="viajes">Realiza viajes al pais de origen en vacaciones</label>
+  <select id=viajes formControlName="Viajes">
+    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+  </select>
+  <br>
+
+  <label for="viajeP">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente</label>
+  <select id="viajeP" formControlName="ViajesPlanifiacados">
+    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+  </select>
+  <br>
+  <label for="formato">Descripción del formato de intervención</label>
+  <textarea formControlName="Intervencion" placeholder="Descripcion" id="formato"></textarea>
+  <br>
+  <label for="consejo">Consejo para otros profesionales</label>
+  <textarea formControlName="Consejos" id="consejo" placeholder="consejos"></textarea>
+  <br>
+</div>
+
+<h2>Indicadores de sospecha de MGF en el ambito escolar
+    <span *ngIf="mostrar == false" (click)="mostrar = !mostrar">Mostrar</span>
+    <span *ngIf="mostrar == true" (click)="mostrar = !mostrar">Ocultar</span>
+</h2>
+<div *ngIf="mostrar == true">
+  <p> A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>
+<div formGroupName="indicadores">
+  <div *ngFor="let in of indicadores; let i = index;">
+    <label for="indicador{{i}}">{{in.Nombre}}</label>
+    <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+  </div>
+</div>
+</div>
+  <div>
+  <button type="submit">Guardar</button>
+</div>
+</form>

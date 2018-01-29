@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+<!-- <<<<<<< Updated upstream -->
 <div *ngIf="error">
   <app-error></app-error>
 </div>
@@ -16,6 +16,13 @@
       <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
       <div >
+        <div>
+        <form>
+          <label  for="tamPag">Tamaño página</label>
+          <input type="number" min="1" id=tamPag #tamPagV>
+          <button (click)="cambiarTamPag(tamPagV.value)" class="btn-inline">Cambiar tamaño</button>
+        </form>
+      </div>
         <table class="table">
           <thead class="thead">
             <tr>
@@ -51,6 +58,27 @@
             </tr>
           </tbody>
         </table>
+        <!-- PAGINACION -->
+      <ul class="pagination" *ngIf="paginas.length >1">
+      <!--Boton de pagina anterior-->
+        <li>
+          <a (click)="pasarPagina(pagBack)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let pag of paginas; let i=index">
+          <a (click)="pasarPagina(i+1)">
+            <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+            <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+          </a>
+        </li>
+        <!--Boton de pagina siguiente-->
+        <li>
+          <a (click)="pasarPagina(pagNext);">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
 
         <div  *ngIf="(asociacion | keys).length === 0 && !loading"
               class="alert alert-info" role="alert">
@@ -67,7 +95,7 @@
     </div>
   </div>
 </div>
-=======
+<!-- =======
 <div *ngIf="error">
   <app-error></app-error>
 </div>
@@ -94,7 +122,7 @@
 
         <tbody>
           <tr *ngFor="let k of asociacion | keys; let i = index;">
-            <!-- <td>{{i+1}}</td> -->
+             <td>{{i+1}}</td>
             <td>{{asociacion[k].ID_Asociacion}}</td>
             <td *ngIf="asociacion[k].Nombre != undefined">{{asociacion[k].Nombre.split("'")[1]}}</td>
             <td *ngIf="asociacion[k].Email != undefined">{{asociacion[k].Email.split("'")[1]}}</td>
@@ -131,4 +159,4 @@
 
   </div>
 </div>
->>>>>>> Stashed changes
+>>>>>>> Stashed changes -->

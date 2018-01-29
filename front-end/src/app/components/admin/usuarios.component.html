@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+<!-- <<<<<<< Updated upstream -->
 <div *ngIf="error">
   <app-error></app-error>
 </div>
@@ -29,7 +29,13 @@
       <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
       <div >
-
+        <div>
+        <form>
+          <label  for="tamPag">Tamaño página</label>
+          <input type="number" min="1" id=tamPag #tamPagV>
+          <button (click)="cambiarTamPag(tamPagV.value)" class="btn-inline">Cambiar tamaño</button>
+        </form>
+      </div>
         <table class="table">
           <thead class="thead">
             <tr>
@@ -43,22 +49,44 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let k of user | keys; let i = index;">
+            <tr *ngFor="let k of usuarios | keys; let i = index;">
               <!-- <td>{{i+1}}</td> -->
-              <td>{{user[k].ID_Usuario}}</td>
-              <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
-              <td *ngIf="user[k].Email != undefined">{{user[k].Email.split("'")[1]}}</td>
-              <td>{{user[k].Profesion}}</td>
-              <td *ngIf="user[k].Asociacion != undefined">{{user[k].Asociacion.split("'")[1]}}</td>
+              <td>{{usuarios[k].ID_Usuario}}</td>
+              <td *ngIf="usuarios[k].Nombre != undefined">{{usuarios[k].Nombre.split("'")[1]}}</td>
+              <td *ngIf="usuarios[k].Email != undefined">{{usuarios[k].Email.split("'")[1]}}</td>
+              <td>{{usuarios[k].Profesion}}</td>
+              <td *ngIf="usuarios[k].Asociacion != undefined">{{usuarios[k].Asociacion.split("'")[1]}}</td>
               <td *ngIf="tabla != 2" class="text-right w230">
                 <button type="button" class="btn btn-outline-danger icon-cancel span"
-                        (click)="cancelUser(user[k].ID_Usuario)"
+                        (click)="cancelUser(usuarios[k].ID_Usuario)"
                         title="Cancelar Usuario">
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
+
+        <!-- PAGINACION -->
+     <ul class="pagination" *ngIf="paginas.length >1">
+     <!--Boton de pagina anterior-->
+       <li>
+         <a (click)="pasarPagina(pagBack)">
+           <span aria-hidden="true">&laquo;</span>
+         </a>
+       </li>
+       <li *ngFor="let pag of paginas; let i=index">
+         <a (click)="pasarPagina(i+1)">
+           <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+           <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+         </a>
+       </li>
+       <!--Boton de pagina siguiente-->
+       <li>
+         <a (click)="pasarPagina(pagNext);">
+           <span aria-hidden="true">&raquo;</span>
+         </a>
+       </li>
+     </ul>
 
         <div  *ngIf="(user | keys).length === 0 && !loading"
               class="alert alert-info" role="alert">
@@ -75,7 +103,7 @@
     </div>
   </div>
 </div>
-=======
+<!-- =======
 <div *ngIf="error">
   <app-error></app-error>
 </div>
@@ -118,7 +146,7 @@
 
         <tbody>
           <tr *ngFor="let k of user | keys; let i = index;">
-            <!-- <td>{{i+1}}</td> -->
+            <td>{{i+1}}</td>
             <td>{{user[k].ID_Usuario}}</td>
             <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
             <td *ngIf="user[k].Email != undefined">{{user[k].Email.split("'")[1]}}</td>
@@ -148,4 +176,4 @@
 
   </div>
 </div>
->>>>>>> Stashed changes
+>>>>>>> Stashed changes -->

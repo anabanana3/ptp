@@ -21,6 +21,13 @@ export class AsociacionesComponent {
 
   mensaje:string = '';
   error:boolean = true;
+
+  //Para la paginacion
+  paginas = new Array(3);
+  pagNext;
+  pagBack;
+  tamPag:number=3;
+  pagActual;
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
 
     if(sessionStorage.getItem('iD') !== '44'){
@@ -28,7 +35,7 @@ export class AsociacionesComponent {
     }
     this.error = false;
 
-    this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
+    this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
 
       this.loading = false;
       console.log(data);
@@ -51,7 +58,7 @@ export class AsociacionesComponent {
         document.getElementById('alert').className = 'alert alert-success';
         delete this.asociacion[id];
         this.loading = true;
-        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
+        this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
 
           this.loading = false;
           console.log(data);
@@ -75,7 +82,7 @@ export class AsociacionesComponent {
         location.href = '/admin/asociaciones#arriba';
         document.getElementById('alert').className = 'alert alert-success';
 
-        this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
+        this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
 
           this.loading = false;
           this.asociacion = data.Data;
@@ -83,4 +90,54 @@ export class AsociacionesComponent {
       }
     })
   }
+
+  //Funcion para generar las variables de la paginacion
+paginacion( paginaActual , pagTotales){
+  //Total de paginas
+  this.paginas = [];
+  for(let i=0; i<pagTotales; i++){
+    this.paginas.push(i);
+  }
+  //Pagina anterior
+  if(paginaActual >= 2){
+    this.pagBack = (paginaActual-1);
+  }else{
+    this.pagBack = paginaActual;
+  }
+  //Pagina Siguiente
+  if(paginaActual < pagTotales){
+    this.pagNext = (paginaActual+1);
+  }else{
+    this.pagNext = paginaActual;
+  }
+  console.log("Total de paginas", this.paginas.length);
+  console.log('PAgina Actual', paginaActual);
+  console.log("Pagina Siguiente", this.pagNext);
+  console.log("Pagina anterior", this.pagBack);
+}
+
+pasarPagina(pag){
+  console.log(pag);
+//  console.log('Muestro el numero ese de andrea', this.tabla);
+  //console.log('Muestro el tamaño de pagina que desea el usuario', tam);
+  //this.view(this.tabla, pag, tam);
+  this._asociacionesServices.getAsociaciones(pag, this.tamPag).subscribe(data =>{
+    this.loading = false;
+    console.log(data);
+    this.asociacion = data.Data;
+    this.paginacion(data.Pagina, data.Paginas_Totales);
+    this.pagActual = data.Pagina;
+  });
+}
+cambiarTamPag(tam){
+  console.log(tam);
+  this.tamPag=tam;
+  this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data =>{
+    this.loading = false;
+    console.log(data);
+    this.asociacion = data.Data;
+    this.paginacion(data.Pagina, data.Paginas_Totales);
+  });
+  //this.view(this.tabla, 1, this.tamPag);;
+}
 }
