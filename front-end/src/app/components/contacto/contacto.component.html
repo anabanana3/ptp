@@ -3,7 +3,8 @@
     <img style="margin-top:20px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="">
   </header>
   <div class="lineaDiv"></div>
-  <form (ngSubmit)="" #forma="ngForm">
+  <div id="alert">{{mensaje}}</div>
+  <form (ngSubmit)="contactar(forma)" #forma="ngForm">
     <div class="camposForm">
       <label for="email">Email*</label>
         <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email" required>
