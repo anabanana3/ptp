@@ -32,7 +32,7 @@ export class AsociacionesComponent {
 
       this.loading = false;
       console.log(data);
-      this.asociacion = data;
+      this.asociacion = data.Data;
     })
   }
 
@@ -55,7 +55,7 @@ export class AsociacionesComponent {
 
           this.loading = false;
           console.log(data);
-          this.asociacion = data;
+          this.asociacion = data.Data;
         })
       }
       else{
@@ -78,7 +78,7 @@ export class AsociacionesComponent {
         this._asociacionesServices.getAsociaciones(1, 3).subscribe(data=>{
 
           this.loading = false;
-          this.asociacion = data;
+          this.asociacion = data.Data;
         })
       }
     })

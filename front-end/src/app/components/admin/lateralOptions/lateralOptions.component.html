@@ -1,15 +1,14 @@
-<div class="divAdmin">
-  <button class="icon-menu menuAdmin pointer" (click)="expanded = !expanded"></button>
-  <img src="/../../../assets/img/AISHA.png" alt="Logo AISHA" class="logoPeque"
-       style="margin: 0.5%;">
+<div class="header bgColorBlack">
+  <a href="www.aisha.ovh/principal"><img style="width:150px; float:left;margin-left:75px;margin-top:23px" src="../assets/img/AishaLogoAllado.png" alt=""></a>
   <button (click)="logout();" type="button" name="button"
-    class="submitGris textoBlanco logoutAdmin">
+    class="submitGris textoBlanco logoutAdmin"
+    style="float:right; margin-right:1%" >
     Cerrar Sesión
   </button>
 </div>
 
-<div *ngIf="expanded" class="divAdmin"
-     style="width: 30%;float: left; border-top:none; position: absolute;">
+<div class="divAdmin"
+     style="width: 30%;float: left; border-top:none; position: absolute; height: 100%;">
 <!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
   <ul>
     <li>

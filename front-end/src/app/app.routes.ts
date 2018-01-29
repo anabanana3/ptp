@@ -11,6 +11,8 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+import { ExpedienteComponent} from './components/expediente/expediente.component';
+import { ContactoComponent} from './components/contacto/contacto.component';
 
 const app_routes: Routes = [
   {
@@ -66,6 +68,16 @@ const app_routes: Routes = [
     path: 'principal',
     component: PrincipalComponent,
     data: { title: 'Principal' }
+  },
+  {
+    path: 'expediente',
+    component: ExpedienteComponent,
+    data: { title: 'Expediente' }
+  },
+  {
+    path: 'contacto',
+    component: ContactoComponent,
+    data: { title: 'Contacto' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'principal' }
 ];

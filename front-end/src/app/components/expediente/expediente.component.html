@@ -1,0 +1,48 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <!-- <app-header></app-header> -->
+
+  <div>
+
+    <div class="tabsExpediente">
+      <button class="tabItem" (click)="bloque = 1">
+        Bloque 1
+      </button>
+      <button class="tabItem" (click)="bloque = 2">
+        Bloque 2
+      </button>
+      <button class="tabItem" (click)="bloque = 3">
+        Bloque 3
+      </button>
+      <button class="tabItem" (click)="bloque = 4">
+        Bloque 4
+      </button>
+      <button class="tabItem" (click)="bloque = 5">
+        Bloque 5
+      </button>
+    </div>
+
+    <div class="divBloque">
+      <div *ngIf="bloque === 1">
+        <p>Formulario Bloque 1</p>
+      </div>
+      <div *ngIf="bloque === 2">
+        <p>Formulario Bloque 2</p>
+      </div>
+      <div *ngIf="bloque === 3">
+        <p>Formulario Bloque 3</p>
+      </div>
+      <div *ngIf="bloque === 4">
+        <p>Formulario Bloque 4</p>
+      </div>
+      <div *ngIf="bloque === 5">
+        <p>Formulario Bloque 5</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+</div>

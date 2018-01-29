@@ -26,6 +26,8 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ExpedienteComponent } from './components/expediente/expediente.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './vermas/vermas.component';
 
@@ -45,9 +47,7 @@ import { VermasComponent } from './vermas/vermas.component';
     LateralOptionsComponent,
     PrincipalComponent,
     HomeAdminComponent,
-    ErrorComponent,
-    FooterComponent,
-    VermasComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
