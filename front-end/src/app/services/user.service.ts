@@ -12,6 +12,7 @@ export class UserService {
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
   loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
   activarURL:string = "https://www.aisha.ovh/api/mail/send";
+  mensajeURL:string = "https://www.aisha.ovh/api/mail/send/contacto";
 
   constructor(private http:Http) { }
 
@@ -206,5 +207,19 @@ export class UserService {
       console.log(res.json());
       return res.json();
     })
+  }
+
+  sendEmail(json){
+    let body = JSON.stringify(json);
+
+    console.log(body);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(this.mensajeURL, body, {headers}).map(res=>{
+            console.log(res.json());
+            return res.json();
+          })
   }
 }
