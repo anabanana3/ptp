@@ -1,7 +1,9 @@
 
-<div class="divBlanco">
+<div class="divBlanco bgColorWhite">
+
+
   <header>
-    <img style="margin-top:20px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="">
+    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="">
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
@@ -15,12 +17,12 @@
     </div>
     <div>
       <input [(ngModel)]="check_asoc" type="checkbox" name="asociacion" value="asociacion" id="check">
-        <label for="check" class="textoPeq">Soy una asociación</label> <br>
-      <button type="submit" name="button" class="btn-inline textoBlanco">ENTRAR</button>
+        <label for="check" class="text12">Soy una asociación</label> <br>
+      <button type="submit" name="button" class="btn-inline bgColorPink textWhite">ENTRAR</button>
     </div>
   </form>
 
-  <footer class="footerDivGris">
+  <footer class="footerDiv bgColorGrey">
     <p>¿Aún no eres miembro?</p>
     <a [routerLink]="['/registro']"><p><b>Regístrate</b></p></a>
   </footer>

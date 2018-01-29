@@ -28,6 +28,8 @@ import { HomeAdminComponent } from './components/admin/home/homeAdmin.component'
 import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { FooterComponent } from './footer/footer.component';
+import { VermasComponent } from './vermas/vermas.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     LateralOptionsComponent,
     PrincipalComponent,
     HomeAdminComponent,
-    ErrorComponent,
-    ExpedienteComponent,
-    ContactoComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
