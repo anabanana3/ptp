@@ -45,6 +45,8 @@ import { VermasComponent } from './vermas/vermas.component';
     ProfileAsociacionComponent,
     ProfileUserComponent,
     LateralOptionsComponent,
+    ExpedienteComponent,
+    ContactoComponent,
     PrincipalComponent,
     HomeAdminComponent,
     ErrorComponent
