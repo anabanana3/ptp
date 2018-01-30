@@ -648,6 +648,29 @@ br{
   margin-bottom: 10px;
 }
 
+/********** Expedientes ***********/
+.tabsExpediente{
+  padding: 3%;
+  padding-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabItem{
+  margin-right: 2%;
+  padding: 1%;
+  border: solid 1px;
+  border-bottom: none;
+  background: none;
+}
+
+.divBloque{
+  margin: 3%;
+  margin-top: 0;
+  display: block;
+  border: solid 1px;
+  padding: 1%;
+}
 
 /**** RESPONSIVE ****/
 
@@ -691,27 +714,4 @@ br{
   .recursosDiv{
     height:500px;
   }
-=======
-.tabsExpediente{
-  padding: 3%;
-  padding-bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tabItem{
-  margin-right: 2%;
-  padding: 1%;
-  border: solid 1px;
-  border-bottom: none;
-  background: none;
-}
-
-.divBloque{
-  margin: 3%;
-  margin-top: 0;
-  display: block;
-  border: solid 1px;
-  padding: 1%;
->>>>>>> bfa4bfe427b6a9f8218a38a2ca2b24c2acff80df
 }

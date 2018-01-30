@@ -47,7 +47,11 @@ import { VermasComponent } from './vermas/vermas.component';
     LateralOptionsComponent,
     PrincipalComponent,
     HomeAdminComponent,
-    ErrorComponent
+    ErrorComponent,
+    ExpedienteComponent,
+    ContactoComponent,
+    FooterComponent,
+    VermasComponent
   ],
   imports: [
     BrowserModule,
