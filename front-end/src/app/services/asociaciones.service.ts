@@ -69,8 +69,9 @@ export class AsociacionesService {
         })
   }
 
-  getAsociacion(id$:number){
-    let urlA = `${this.url}${id$}`;
+  getAsociacion(id){
+    let urlA = `${this.url}${id}`;
+    console.log(urlA);
     return this.http.get(urlA).map(res=>res.json());
   }
 

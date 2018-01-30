@@ -35,10 +35,10 @@ export class HomeAsociaciones{
     this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
 
-    // this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
-    //   console.log(data);
-    //   this.asociacion = data[0].Nombre.split("'")[1];
-    // })
+    this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
+      console.log(data);
+      this.asociacion = data[0].Nombre.split("'")[1];
+    })
 
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data => {
       console.log(data);
