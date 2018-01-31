@@ -59,7 +59,8 @@ import { HeaderComponent } from './header/header.component';
     Bloque2Component,
     Bloque5Component,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    VermasComponent
   ],
   imports: [
     BrowserModule,

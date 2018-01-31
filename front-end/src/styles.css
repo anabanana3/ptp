@@ -652,6 +652,30 @@ br{
   margin-bottom: 10px;
 }
 
+/********** Expedientes ***********/
+.tabsExpediente{
+  padding: 3%;
+  padding-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabItem{
+  margin-right: 2%;
+  padding: 1%;
+  border: solid 1px;
+  border-bottom: none;
+  background: none;
+}
+
+.divBloque{
+  margin: 3%;
+  margin-top: 0;
+  display: block;
+  border: solid 1px;
+  padding: 1%;
+}
+
 .partos{
   display: flex;
   flex-wrap: wrap;
@@ -661,7 +685,6 @@ br{
   border: solid #234;
   flex-direction: column;
 }
-
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {
@@ -704,27 +727,4 @@ br{
   .recursosDiv{
     height:500px;
   }
-}
-
-.tabsExpediente{
-  padding: 3%;
-  padding-bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tabItem{
-  margin-right: 2%;
-  padding: 1%;
-  border: solid 1px;
-  border-bottom: none;
-  background: none;
-}
-
-.divBloque{
-  margin: 3%;
-  margin-top: 0;
-  display: block;
-  border: solid 1px;
-  padding: 1%;
 }

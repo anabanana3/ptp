@@ -36,6 +36,7 @@ export class HomeAsociaciones{
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
+      console.log(data);
       this.asociacion = data[0].Nombre.split("'")[1];
     })
 
