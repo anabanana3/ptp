@@ -57,6 +57,10 @@ input, textarea{
   color: #7F7F7F;
 }
 
+textarea {
+  resize: none;
+}
+
 span{font-size: small;}
 
 ul{list-style: none;}
@@ -490,7 +494,7 @@ br{
   background-color: #F5BFBF;
 }
 
-<<<<<<< HEAD
+
 .itemContainer{
   max-width: 83%;
   width: 83%;
