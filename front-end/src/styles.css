@@ -676,6 +676,15 @@ br{
   padding: 1%;
 }
 
+.partos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.partoContainer{
+  border: solid #234;
+  flex-direction: column;
+}
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {
