@@ -9,7 +9,9 @@ urlActividades:string = 'https://www.aisha.ovh/api/actividad';
 urlExpediente:string = 'https://www.aisha.ovh/api/expedientes';
 urlPersona:string = 'https://www.aisha.ovh/api/persona';
 urlBloque:string = 'https://www.aisha.ovh/api/camposb1';
+urlBloque2:string = 'https://www.aisha.ovh/api/camposb2';
 urlBloque5:string = 'https://aisha.ovh/api/camposb5';
+urlPartos:string = 'https://aisha.ovh/api/parto'
 urlFamiliar:string = 'https://aisha.ovh/api/familiar';
 urlIndicadores:string = 'https://aisha.ovh/api/indicadores';
 urlFormulas:string ='https://aisha.ovh/api/formulao';
@@ -96,6 +98,25 @@ urlCompNacido:string ='https://aisha.ovh/api/compNacido';
       return res.json();
     })
 
+  }
+
+  addBloque2(bloque){
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.post(this.urlBloque2, bloque, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+
+  addParto(parto){
+    return this.http.post(this.urlPartos, parto).map(res=>{
+      console.log(res.json());
+      return res.json();
+    })
   }
 
   addbloque5(bloque){

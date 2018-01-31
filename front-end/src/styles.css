@@ -652,6 +652,15 @@ br{
   margin-bottom: 10px;
 }
 
+.partos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.partoContainer{
+  border: solid #234;
+  flex-direction: column;
+}
 
 /**** RESPONSIVE ****/
 
