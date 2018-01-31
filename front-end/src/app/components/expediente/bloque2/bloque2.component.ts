@@ -25,7 +25,7 @@ export class Bloque2Component implements OnInit {
   html:string;
   form:FormGroup;
 
-
+//Prueba de git
 
 //Campos del bloque2
 bloque2={
