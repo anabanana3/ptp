@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
+import { MaterializeModule } from 'angular2-materialize';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -29,12 +31,15 @@ import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
+//import { HeaderComponent } from './header/header.component';
 import { VermasComponent } from './vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
+import { CarouselSliderComponent } from './carousel-slider/carousel-slider.component';
+
 
 @NgModule({
   declarations: [
@@ -60,10 +65,14 @@ import { HeaderComponent } from './header/header.component';
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
-    VermasComponent
+    HeaderComponent,
+    VermasComponent,
+    CarouselSliderComponent
+
   ],
   imports: [
     BrowserModule,
+    MaterializeModule,
     FormsModule,
     HttpModule,
     APP_ROUTING,
