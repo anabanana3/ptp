@@ -27,15 +27,14 @@ h1, h2, h3{
 }
 
 form{
-  display: inline-block;
   padding: 20px;
 }
 
 table{
   border-collapse: collapse;
-  margin-bottom: 1rem;
   width: 90%;
-  margin-left: 5%;
+  margin: auto;
+  margin-bottom: 1rem;
   background-color: #FFFFFF;
 }
 
@@ -45,6 +44,10 @@ thead{
 }
 
 th, td, button{padding: 15px;}
+
+button:hover{
+  cursor: pointer;
+}
 
 label{
   text-align: left;
@@ -97,6 +100,7 @@ br{
 
 
 .divBlanco{
+  display: inline-block;
   margin: auto;
   margin-top: 1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
@@ -168,12 +172,25 @@ br{
 
 .submitGris{
   display: inline;
-  margin-bottom: 3%;
-  margin-top: 3%;
   font-size: 18px;
   border-radius: 5px;
 }
 
+.btn-return{
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  float: left;
+  margin-left: 2%;
+  margin-top: 1%;
+  transform: rotate(+45deg);
+}
+
+.btn-return:hover{
+  transform: rotate(-45deg);
+}
 
 .login{
   margin-top: 4%;
@@ -328,10 +345,6 @@ br{
 }
 
 .editarPerfil{
-  float: left;
-  margin-left: 20%;
-  margin-top: 3%;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 60%;
 }
 
@@ -743,5 +756,9 @@ br{
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
   .divBlanco{
     width: 100%;
+  }
+
+  .btn-return{
+    float: none;
   }
 }
