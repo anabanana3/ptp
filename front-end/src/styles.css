@@ -97,7 +97,8 @@ br{
 
 
 .divBlanco{
-  margin-left: 30%;
+  margin: auto;
+  margin-top: 1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 40%;
 }
@@ -685,9 +686,11 @@ br{
   border: solid #234;
   flex-direction: column;
 }
+
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {
+  /* laptop */
   h1{
     font-size:16px;
   }
@@ -726,5 +729,19 @@ br{
 
   .recursosDiv{
     height:500px;
+  }
+}
+
+@media (max-width:1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .divBlanco{
+    width: 70%;
+  }
+}
+
+@media (max-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  .divBlanco{
+    width: 100%;
   }
 }
