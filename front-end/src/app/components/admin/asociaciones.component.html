@@ -15,6 +15,13 @@
       <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
       <div >
+        <div>
+        <form>
+          <label  for="tamPag">Tamaño página</label>
+          <input type="number" min="1" id=tamPag #tamPagV>
+          <button (click)="cambiarTamPag(tamPagV.value)" class="btn-inline">Cambiar tamaño</button>
+        </form>
+      </div>
         <table class="table">
           <thead class="thead">
             <tr>
@@ -50,6 +57,27 @@
             </tr>
           </tbody>
         </table>
+        <!-- PAGINACION -->
+      <ul class="pagination" *ngIf="paginas.length >1">
+      <!--Boton de pagina anterior-->
+        <li>
+          <a (click)="pasarPagina(pagBack)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let pag of paginas; let i=index">
+          <a (click)="pasarPagina(i+1)">
+            <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+            <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+          </a>
+        </li>
+        <!--Boton de pagina siguiente-->
+        <li>
+          <a (click)="pasarPagina(pagNext);">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
 
         <div  *ngIf="(asociacion | keys).length === 0 && !loading"
               class="alert alert-info" role="alert">

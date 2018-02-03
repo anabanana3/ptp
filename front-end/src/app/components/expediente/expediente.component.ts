@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 export class ExpedienteComponent{
 
   error:boolean = true;
-  
+  bloque:number=1;
+
   constructor() {
     if(sessionStorage.length === 0){
       return;

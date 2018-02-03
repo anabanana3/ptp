@@ -57,6 +57,10 @@ input, textarea{
   color: #7F7F7F;
 }
 
+textarea {
+  resize: none;
+}
+
 span{font-size: small;}
 
 ul{list-style: none;}
@@ -490,7 +494,7 @@ br{
   background-color: #F5BFBF;
 }
 
-<<<<<<< HEAD
+
 .itemContainer{
   max-width: 83%;
   width: 83%;
@@ -672,6 +676,15 @@ br{
   padding: 1%;
 }
 
+.partos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.partoContainer{
+  border: solid #234;
+  flex-direction: column;
+}
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
 
@@ -30,6 +30,11 @@ import { ExpedienteComponent } from './components/expediente/expediente.componen
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './vermas/vermas.component';
+import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
+import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
+import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
+import { ExpedientesService } from './services/expedientes.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +50,15 @@ import { VermasComponent } from './vermas/vermas.component';
     ProfileAsociacionComponent,
     ProfileUserComponent,
     LateralOptionsComponent,
+    ExpedienteComponent,
+    ContactoComponent,
     PrincipalComponent,
     HomeAdminComponent,
     ErrorComponent,
-    ExpedienteComponent,
-    ContactoComponent,
+    Bloque1Component,
+    Bloque2Component,
+    Bloque5Component,
+    HeaderComponent,
     FooterComponent,
     VermasComponent
   ],
@@ -57,12 +66,14 @@ import { VermasComponent } from './vermas/vermas.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    APP_ROUTING
+    APP_ROUTING,
+    ReactiveFormsModule
   ],
   providers: [
     ProfesionesService,
     AsociacionesService,
-    UserService
+    UserService,
+    ExpedientesService
   ],
   bootstrap: [AppComponent]
 })

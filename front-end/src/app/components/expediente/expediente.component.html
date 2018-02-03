@@ -2,7 +2,7 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <!-- <app-header></app-header> -->
+  <app-header></app-header>
 
   <div>
 
@@ -26,10 +26,10 @@
 
     <div class="divBloque">
       <div *ngIf="bloque === 1">
-        <p>Formulario Bloque 1</p>
+        <app-bloque1></app-bloque1>
       </div>
       <div *ngIf="bloque === 2">
-        <p>Formulario Bloque 2</p>
+        <app-bloque2></app-bloque2>
       </div>
       <div *ngIf="bloque === 3">
         <p>Formulario Bloque 3</p>
@@ -38,11 +38,11 @@
         <p>Formulario Bloque 4</p>
       </div>
       <div *ngIf="bloque === 5">
-        <p>Formulario Bloque 5</p>
+        <app-bloque5></app-bloque5>
       </div>
     </div>
 
   </div>
 
-  <!-- <app-footer></app-footer> -->
+  <app-footer></app-footer>
 </div>
