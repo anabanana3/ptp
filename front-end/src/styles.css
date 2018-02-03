@@ -342,8 +342,7 @@ br{
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
-  margin: 0;
-  margin-top: 1%;
+  margin: 1%;
 }
 
 .logoPeque{width: 4%; float: left;}
@@ -716,9 +715,26 @@ br{
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .partoContainer{
   border: solid #234;
   flex-direction: column;
+}
+
+/***** PAGINATION *****/
+.pagination{
+  display: inline-flex;
+  padding: 0;
+}
+
+.pagination li{
+  padding: 0.3em;
+  border-bottom: solid #ddd;
+}
+
+.pagination li:hover{
+  cursor: pointer;
+  border-bottom: solid #880042;
 }
 
 /**** RESPONSIVE ****/
