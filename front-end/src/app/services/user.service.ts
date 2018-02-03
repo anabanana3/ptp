@@ -117,6 +117,7 @@ export class UserService {
     let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
+    console.log(url);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
