@@ -308,7 +308,28 @@ br{
   border: 1px solid #979797;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
   padding-bottom: 1%;
+  position: absolute;
+  width: 30%;
+  height: 100%;
 }
+
+.divAdmin-menuExpanded{
+  display: none;
+}
+
+.divAdmin-content{
+  width: 70%;
+  float: right;
+}
+
+.icon-menu{
+  display: none;
+  float: left;
+  font-size: 20px;
+  margin: 0.7em;
+  color: white;
+}
+
 .menuAdmin{
   float:left;
   background: none;
@@ -750,6 +771,35 @@ br{
   .divBlanco{
     width: 70%;
   }
+
+  .divAdmin{
+    display: none;
+  }
+
+  .divAdmin-menuExpanded{
+    display: block;
+    background: #D8D8D8;
+    border: 1px solid #979797;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
+    padding-bottom: 1%;
+    position: absolute;
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .divAdmin-menuExpanded li{
+    text-align: left;
+    padding: 2%;
+    margin-left: 0.3em;
+  }
+
+  .divAdmin-content{
+    width: 100%;
+  }
+
+  .icon-menu{
+    display: inline-block;
+  }
 }
 
 @media (max-width: 481px) {
@@ -760,5 +810,9 @@ br{
 
   .btn-return{
     float: none;
+  }
+
+  .divAdmin-menuExpanded{
+    width: 100%;
   }
 }

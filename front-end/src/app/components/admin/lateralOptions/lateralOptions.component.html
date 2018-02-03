@@ -1,5 +1,6 @@
 <div class="header bgColorBlack">
-  <a href="www.aisha.ovh/principal"><img style="width:50px; float:left;margin-left:75px;margin-top:23px" src="../assets/img/AISHA.png" alt=""></a>
+  <button class="icon-menu" (click)="expanded = !expanded"></button>
+  <a href="www.aisha.ovh/principal"><img style="width:50px; float:left; margin-left:1em;margin-top:23px" src="../assets/img/AISHA.png" alt=""></a>
   <button (click)="logout();" type="button" name="button"
     class="submitGris textoBlanco logoutAdmin"
     style="float:right; margin-right:1%" >
@@ -7,8 +8,7 @@
   </button>
 </div>
 
-<div class="divAdmin"
-     style="width: 30%;float: left; border-top:none; position: absolute; height: 100%;">
+<div class="divAdmin-menuExpanded" *ngIf="expanded">
 <!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
   <ul>
     <li>
@@ -25,3 +25,55 @@
     </li>
   </ul>
 </div>
+
+<div class="divAdmin">
+<!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
+  <ul>
+    <li>
+      <a class="pointer" href="/admin/usuarios">Usuarios</a>
+    </li>
+    <li>
+      <a class="pointer" href="/admin/asociaciones">Asociaciones</a>
+    </li>
+    <li>
+      <a class="pointer">Recursos</a>
+    </li>
+    <li>
+      <a class="pointer">Notificaciones</a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- <div class="divAdmin">
+  <button class="icon-menu menuAdmin pointer" (click)="expanded = !expanded"></button>
+  <img src="/../../../assets/img/AISHA.png" alt="Logo AISHA" class="logoPeque"
+       style="margin: 0.5%;">
+</div>
+
+<div *ngIf="expanded" class="divAdmin"
+     style="width: 30%;float: left; border-top:none; position: absolute;">
+  <ul>
+    <li>
+      <a class="pointer" href="/usuarios">Usuarios</a>
+    </li>
+    <li>
+      <a class="pointer" href="/asociaciones">Asociaciones</a>
+    </li>
+    <li>
+      <a class="pointer">Recursos</a>
+    </li>
+    <li>
+      <a class="pointer">Notificaciones</a>
+    </li>
+  </ul>
+</div>
+
+
+.menuAdmin{
+  float:left;
+  background: none;
+  border: none;
+  padding: 2%;
+}
+-->
