@@ -339,7 +339,6 @@ br{
 }
 .divAdmin ul{float: left; margin-top: 20%;}
 .divAdmin li{padding: 20%;}
-.divAdmin a{font-size: 130%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{

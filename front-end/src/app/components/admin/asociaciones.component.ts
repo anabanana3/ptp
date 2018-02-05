@@ -26,7 +26,7 @@ export class AsociacionesComponent {
   paginas = new Array(3);
   pagNext;
   pagBack;
-  tamPag:number=3;
+  tamPag:number=10;
   pagActual;
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
 
