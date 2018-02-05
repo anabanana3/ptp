@@ -28,6 +28,13 @@ export class HomeAsociaciones{
   mensaje:string = '';
   error:boolean = true;
 
+  //Variables para la paginacion
+  paginas= new Array(3);
+  pagNext;
+  pagBack;
+  pagActual;
+  tamPag:number = 3;
+
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
     if(sessionStorage.length === 0){
       return;
@@ -39,10 +46,12 @@ export class HomeAsociaciones{
       console.log(data);
       this.asociacion = data[0].Nombre.split("'")[1];
     })
-
-    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data => {
+    console.log('Metodo del constructor');
+    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {
       console.log(data);
       this.user = data.Data;
+      //Obtengo los valores para la paginacion
+      this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
       console.log(this.user);
     })
   }
@@ -106,25 +115,61 @@ export class HomeAsociaciones{
     location.href = '/'
   }
 
-  view(number){
+  view(number, pagina=1, tam=3){
+        console.log('Metodo view');
     if(number == 0){
-      this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data=>{
+      this._userService.getUsuarioSolicitantesAsociacion(this.id, pagina, tam).subscribe(data=>{
         console.log(data);
         this.loading = false;
         this.tabla = 0
-        this.user = data;
+        this.user = data.Data;
+        //Obtengo los valores para la paginacion
+        this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
       })
       return;
     }
 
     if(number == 1){
-      this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
+      console.log('datos', pagina, tam);
+      this._userService.getUsuarioRegistradosAsociacion(this.id, pagina, tam).subscribe(data=>{
         console.log(data);
         this.loading = false;
         this.tabla = 1
-        this.user = data;
+        this.user = data.Data;
+        //Obtengo los valores para la paginacion
+        this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
       })
       return;
     }
   }
+  //Funcion para generar las variables de la paginacion
+  paginacion( paginaActual , pagTotales){
+    //Total de paginas
+    this.paginas = [];
+    for(let i=0; i<pagTotales; i++){
+      this.paginas.push(i);
+    }
+    console.log(this.paginas.length);
+    //Pagina anterior
+    if(paginaActual >= 2){
+      this.pagBack = (paginaActual-1);
+    }else{
+      this.pagBack = paginaActual;
+    }
+    //Pagina Siguiente
+    if(paginaActual < pagTotales){
+      this.pagNext = (paginaActual+1);
+    }else{
+      this.pagNext = paginaActual;
+    }
+  }
+
+  pasarPagina(pag){
+    console.log(pag);
+    console.log('Muestro el numero ese de andrea', this.tabla);
+    this.view(this.tabla, pag, this.tamPag);
+    this.pagActual = pag;
+  }
+
+
 }
