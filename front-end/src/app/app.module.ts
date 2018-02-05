@@ -29,7 +29,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
-import { VermasComponent } from './vermas/vermas.component';
+import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
