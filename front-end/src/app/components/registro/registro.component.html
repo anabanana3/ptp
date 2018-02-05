@@ -81,17 +81,17 @@
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy una Asociación
+            style="display:block; margin: auto;" class="btn-fill textPink">Soy una Asociación
     </button>
 
     <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy un Usuario
+            style="display:block; margin: auto;" class="btn-fill textPink">Soy un Usuario
     </button>
 
     <div>
     <!--  <input type="checkbox" name="acepto" value="acepto" id="check">
         <label for="check" class="textoPeq">Acepto la política de privacidad</label> -->
-      <button type="submit" name="button" class="btn-inline bgColorPink textWhite">REGISTRAR</button>
+      <button type="submit" name="button" class="btn-border bgColorPink">REGISTRAR</button>
     </div>
 
   </form>

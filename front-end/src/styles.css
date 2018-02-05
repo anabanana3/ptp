@@ -27,15 +27,14 @@ h1, h2, h3{
 }
 
 form{
-  display: inline-block;
   padding: 20px;
 }
 
 table{
   border-collapse: collapse;
-  margin-bottom: 1rem;
   width: 90%;
-  margin-left: 5%;
+  margin: auto;
+  margin-bottom: 1rem;
   background-color: #FFFFFF;
 }
 
@@ -45,6 +44,10 @@ thead{
 }
 
 th, td, button{padding: 15px;}
+
+button:hover{
+  cursor: pointer;
+}
 
 label{
   text-align: left;
@@ -97,7 +100,9 @@ br{
 
 
 .divBlanco{
-  margin-left: 30%;
+  display: inline-block;
+  margin: auto;
+  margin-top: 1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 40%;
 }
@@ -167,10 +172,24 @@ br{
 
 .submitGris{
   display: inline;
-  margin-bottom: 3%;
-  margin-top: 3%;
   font-size: 18px;
   border-radius: 5px;
+}
+
+.btn-return{
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  float: left;
+  margin-left: 2%;
+  margin-top: 1%;
+  transform: rotate(+45deg);
+}
+
+.btn-return:hover{
+  transform: rotate(-45deg);
 }
 
 .login{
@@ -275,7 +294,28 @@ br{
   border: 1px solid #979797;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
   padding-bottom: 1%;
+  position: absolute;
+  width: 30%;
+  height: 100%;
 }
+
+.divAdmin-menuExpanded{
+  display: none;
+}
+
+.divAdmin-content{
+  width: 70%;
+  float: right;
+}
+
+.icon-menu{
+  display: none;
+  float: left;
+  font-size: 20px;
+  margin: 0.7em;
+  color: white;
+}
+
 .menuAdmin{
   float:left;
   background: none;
@@ -288,8 +328,7 @@ br{
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
-  margin: 0;
-  margin-top: 1%;
+  margin: 1%;
 }
 
 .logoPeque{width: 4%; float: left;}
@@ -312,10 +351,6 @@ br{
 }
 
 .editarPerfil{
-  float: left;
-  margin-left: 20%;
-  margin-top: 3%;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 60%;
 }
 
@@ -666,13 +701,32 @@ br{
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .partoContainer{
   border: solid #234;
   flex-direction: column;
 }
+
+/***** PAGINATION *****/
+.pagination{
+  display: inline-flex;
+  padding: 0;
+}
+
+.pagination li{
+  padding: 0.3em;
+  border-bottom: solid #ddd;
+}
+
+.pagination li:hover{
+  cursor: pointer;
+  border-bottom: solid #880042;
+}
+
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {
+  /* laptop */
   h1{
     font-size:16px;
   }
@@ -711,5 +765,56 @@ br{
 
   .recursosDiv{
     height:500px;
+  }
+}
+
+@media (max-width:1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .divBlanco{
+    width: 70%;
+  }
+
+  .divAdmin{
+    display: none;
+  }
+
+  .divAdmin-menuExpanded{
+    display: block;
+    background: #D8D8D8;
+    border: 1px solid #979797;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
+    padding-bottom: 1%;
+    position: absolute;
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .divAdmin-menuExpanded li{
+    text-align: left;
+    padding: 2%;
+    margin-left: 0.3em;
+  }
+
+  .divAdmin-content{
+    width: 100%;
+  }
+
+  .icon-menu{
+    display: inline-block;
+  }
+}
+
+@media (max-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  .divBlanco{
+    width: 100%;
+  }
+
+  .btn-return{
+    float: none;
+  }
+
+  .divAdmin-menuExpanded{
+    width: 100%;
   }
 }
