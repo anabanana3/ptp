@@ -7,5 +7,5 @@ export interface Asociacion{
   CIF: string;
   Validada?: number;
   Foto?:string;
-  ID_Asociacion$?:number //? dato opcional
+  ID_Asociacion?:number //? dato opcional
 }

@@ -91,65 +91,32 @@ export class ProfileUserComponent {
     })
   }
 
-  updateUser(forma:NgForm){
+  save(forma:NgForm){
+    console.log(forma);
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
-      location.href = '/user/profile#arriba';
-      return false;
-    }
-
-    if(this.pass.newpass === ''){
-      let usu ={
-        Nombre: this.user.Nombre,
-        Apellidos: this.user.Apellidos,
-        F_Nacimiento: this.user.F_Nacimiento,
-        Direccion: this.user.Direccion,
-        ID_Lugar: this.user.ID_Lugar,
-        Foto: this.user.Foto,
-        Sexo: this.user.Sexo,
-        ID_Profesion: this.user.Profesion
-      }
-
-      console.log(this.user);
-      // this._userService.updateUsuario(usu, this.id).subscribe(data => {
-      //
-      // })
       return;
     }
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-    let usu ={
-      Nombre: this.user.Nombre,
-      Apellidos: this.user.Apellidos,
-      F_Nacimiento: this.user.F_Nacimiento,
-      Direccion: this.user.Direccion,
-      ID_Lugar: this.user.ID_Lugar,
-      Foto: this.user.Foto,
-      Sexo: this.user.Sexo,
-      ID_Profesion: this.user.Profesion,
-      Password: this.pass.newpass
-    }
-
-    if(this.pass.newpass !== this.pass.repeatpass){
-      this.mensaje = 'Las contraseñas introducidas no son iguales';
+    if(!emailRegex.test(this.user.Email)){
+      this.mensaje = 'Email mal introducido';
       document.getElementById('alert').className = 'alert alert-danger';
-      location.href = '/user/profile#arriba';
       return;
     }
-
-    if(parseInt(this.scorepass) < 2){
-      this.mensaje = 'La contraseña es demasiado débil';
-      document.getElementById('alert').className = 'alert alert-danger';
-      location.href = '/user/profile#arriba';
-      return;
-    }
-
-    // this._userService.updateRegistrado(usu, this.id).subscribe(data => {
-    //
-    // })
 
     console.log(this.user);
-    console.log(this.pass);
+
+    // this._userService.updateUsuario().subscribe(data => {
+    //   console.log(data);
+    //   this.mensaje = 'Cambios registrados correctamente';
+    //   document.getElementById('alert').className = 'alert alert-success';
+    // })
+
+    this.mensaje = 'ALGO MAL';
+    document.getElementById('alert').className = 'alert alert-danger';
+
   }
 
   validate(pass){

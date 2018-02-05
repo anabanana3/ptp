@@ -13,6 +13,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 import { ExpedienteComponent} from './components/expediente/expediente.component';
 import { ContactoComponent} from './components/contacto/contacto.component';
+import { VermasComponent} from './components/vermas/vermas.component';
 
 const app_routes: Routes = [
   {
@@ -78,6 +79,11 @@ const app_routes: Routes = [
     path: 'contacto',
     component: ContactoComponent,
     data: { title: 'Contacto' }
+  },
+  {
+    path: 'vermas',
+    component: VermasComponent,
+    data: { title: 'vermas' }
   },
   { path: '**', pathMatch: 'full', redirectTo: 'principal' }
 ];

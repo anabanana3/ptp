@@ -1,37 +1,38 @@
-<<<<<<< Updated upstream
 <div *ngIf="error">
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <button [routerLink]="['/asociacion']"type="button" name="button" class="submitGris textoBlanco">
-    Volver
+  <button [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return">
   </button>
-  <div class="editarPerfil" style="width: 60%; margin-left: 20%;">
+  <div class="editarPerfil divBlanco bgColorWhite">
 
     <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
     <hr>
 
+    <div id="alert">{{mensaje}}</div>
 
-    <form class="" action="index.html" method="post" style="display: inline-grid; margin-top:5%; width:70%;">
-      <div class="" style="margin-right:10%;">
+    <form (ngSubmit)="save(forma)" #forma="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
+      <div style="margin-right:10%;">
         <label for="nombre">Nombre Asociación:</label>
-        <input type="text" name="nombre" value="{{(asociacion.Nombre)}}" id="email" disabled="false" class="lineaCampo">
+        <input type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaCampo" disabled>
       </div>
       <div class="" style="margin-right:10%;">
         <label for="email">Email:</label>
-        <input type="email" name="email" value="{{asociacion.Email}}" id="email" class="lineaCampo">
+        <input type="email" name="email" value="{{asociacion.Email}}" id="email"
+              [(ngModel)]="asociacion.Email" class="lineaCampo" required>
       </div>
       <div class="" style="margin-right:10%;">
         <label for="direc">Dirección:</label>
-        <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" class="lineaCampo">
+        <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc"
+                [(ngModel)]="asociacion.Direccion" class="lineaCampo" required>
       </div>
       <div class="" style="margin-right:10%;">
         <label for="cif">CIF:</label>
-        <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled="false">
+        <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled>
       </div>
 
       <button type="button" name="button" class="submitGris textoBlanco"
-              style="margin-bottom:5%; width:50%; margin-left:25%;" (click)="change = !change">
+              style="width: 50%; min-width: 200px; margin: auto" (click)="change = !change">
         Cambiar Contraseña
       </button>
       <div class="" *ngIf="change" style="display: inline-grid;">
@@ -46,62 +47,8 @@
       </div>
 
       <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
-        Cambiar
+        Guardar cambios
       </button>
     </form>
   </div>
 </div>
-=======
-<div *ngIf="error">
-  <app-error></app-error>
-</div>
-<div *ngIf="!error">
-  <button [routerLink]="['/asociacion']"type="button" name="button" class="submitGris textoBlanco">
-    Volver
-  </button>
-  <div class="editarPerfil" style="width: 60%; margin-left: 20%;">
-
-    <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
-    <hr>
-
-
-    <form class="" action="index.html" method="post" style="display: inline-grid; margin-top:5%; width:70%;">
-      <div class="" style="margin-right:10%;">
-        <label for="nombre">Nombre Asociación:</label>
-        <input type="text" name="nombre" value="{{(asociacion.Nombre)}}" id="email" disabled="false" class="lineaCampo">
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="{{asociacion.Email}}" id="email" class="lineaCampo">
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="direc">Dirección:</label>
-        <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" class="lineaCampo">
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="cif">CIF:</label>
-        <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled="false">
-      </div>
-
-      <button type="button" name="button" class="submitGris textoBlanco"
-              style="margin-bottom:5%; width:50%; margin-left:25%;" (click)="change = !change">
-        Cambiar Contraseña
-      </button>
-      <div class="" *ngIf="change" style="display: inline-grid;">
-        <div class="" style="margin-right:10%;">
-          <label for="pass">Antigua Contraseña:</label>
-          <input type="password" name="password" value="" id="pass" class="lineaCampo">
-        </div>
-        <div class="" style="margin-right:10%;">
-          <label for="newpass">Nueva Contraseña:</label>
-          <input type="password" name="newpassword" value="" id="newpass" class="lineaCampo">
-        </div>
-      </div>
-
-      <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
-        Cambiar
-      </button>
-    </form>
-  </div>
-</div>
->>>>>>> Stashed changes

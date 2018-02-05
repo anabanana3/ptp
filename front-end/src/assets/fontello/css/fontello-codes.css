@@ -2,4 +2,6 @@
 .icon-ok:before { content: '\e800'; } /* '' */
 .icon-cancel:before { content: '\e801'; } /* '' */
 .icon-mail:before { content: '\e802'; } /* '' */
+.icon-logout:before { content: '\e803'; } /* '' */
+.icon-return:before { content: '\e804'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */

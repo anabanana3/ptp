@@ -42,7 +42,7 @@ export class HomeAsociaciones{
 
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data => {
       console.log(data);
-      this.user = data;
+      this.user = data.Data;
       console.log(this.user);
     })
   }
