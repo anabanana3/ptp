@@ -19,7 +19,6 @@ export class UserService {
   newUsuario(usuario:User){
     let body = JSON.stringify(usuario);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -101,8 +100,6 @@ export class UserService {
   loginUser(json){
     let body = JSON.stringify(json);
 
-    console.log(json);
-
     let headers = new Headers({
       'Content-Type':'application/json'
     });
@@ -117,7 +114,6 @@ export class UserService {
     let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
 
-    console.log(url);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
@@ -181,13 +177,11 @@ export class UserService {
     console.log('id: '+id+' email: '+email);
     let body = JSON.stringify({ID_Usuario: id, Email: email, });
 
-    console.log(token);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
     });
 
-    console.log(body);
     return this.http.post(this.activarURL, body, {headers})
         .map(res=>{
           console.log(res.json());
@@ -196,10 +190,8 @@ export class UserService {
   }
 
   registrarSolicitante(json){
-    console.log(json);
     let body = JSON.stringify(json);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -213,7 +205,6 @@ export class UserService {
   sendEmail(json){
     let body = JSON.stringify(json);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });

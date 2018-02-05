@@ -66,7 +66,7 @@ const app_routes: Routes = [
     data: { title: 'profile' }
   },
   {
-    path: 'principal',
+    path: '',
     component: PrincipalComponent,
     data: { title: 'Principal' }
   },
@@ -85,7 +85,7 @@ const app_routes: Routes = [
     component: VermasComponent,
     data: { title: 'vermas' }
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'principal' }
+  { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

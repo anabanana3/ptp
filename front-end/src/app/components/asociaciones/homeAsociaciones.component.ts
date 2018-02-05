@@ -103,7 +103,7 @@ export class HomeAsociaciones{
   cerrarSesion(){
     sessionStorage.removeItem('iD');
     sessionStorage.removeItem('token');
-    location.href = '/principal'
+    location.href = '/'
   }
 
   view(number){
