@@ -216,6 +216,19 @@ br{
   border-width: 2px;
 }
 
+.btn-border{
+  margin-right: 2%;
+  color: white;
+  border-radius: 10px;
+}
+
+.login{
+  margin-top: 4%;
+  padding: 6px 10px;
+  font-size: 12px; /*TODO por poner text12 en vez de font size aqui*/
+  float:right;
+}
+
 .verMas{
   margin-top: 1.5%;
   margin-bottom:10%;
@@ -248,7 +261,8 @@ br{
 
 .suscribirse:hover{
   color:white;
-  background-color: #880042; 
+  background-color: #880042;
+
 }
 
 .language{
