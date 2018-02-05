@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from "../../../services/expedientes.service";
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { Persona } from '../../../interfaces/persona';
-import { Expedinete } from '../../../interfaces/expediente'
+import { Expedinete } from '../../../interfaces/expediente';
+import { ExpedienteComponent } from '../expediente.component';
+
 
 @Component({
   selector: 'app-bloque1',
@@ -76,8 +78,8 @@ export class Bloque1Component implements OnInit {
 
   }
 
-  //TODO => recuperar todos los datos del formulario para hacer las peticiones que tocan
-  constructor(private _expedienteService:ExpedientesService) {
+  //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
+  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 
@@ -86,11 +88,11 @@ export class Bloque1Component implements OnInit {
       'descripcion': new FormControl('Hola', Validators.required),
       'lugarD': new FormControl('', Validators.required),
       'menor': new FormGroup({
-              'nombre': new FormControl(),
-              'edad': new FormControl(),
-              'sexo': new FormControl(),
-              'etnia': new FormControl(),
-              'lugarN': new FormControl(),
+              'nombre': new FormControl('', Validators.required),
+              'edad': new FormControl('', Validators.required),
+              'sexo': new FormControl('', Validators.required),
+              'etnia': new FormControl('', Validators.required),
+              'lugarN': new FormControl('', Validators.required),
               'actividad': new FormControl(null)
       }),
       'madre': new FormGroup({
@@ -111,17 +113,17 @@ export class Bloque1Component implements OnInit {
       }),
       'bloque': new FormGroup({
               'ID_Expediente': new FormControl(),
-              'Citacion': new FormControl(),
-              'Deriv_Riesgo': new FormControl(),
-              'Deriv_Sospecha': new FormControl(),
+              'Citacion': new FormControl('', Validators.required),
+              'Deriv_Riesgo': new FormControl('', Validators.required),
+              'Deriv_Sospecha': new FormControl('', Validators.required),
               'Otros': new FormControl(),
-              'Acomp_P': new FormControl(),
-              'Acomp_M': new FormControl(),
-              'Acomp_H': new FormControl(),
+              'Acomp_P': new FormControl('', Validators.required),
+              'Acomp_M': new FormControl('', Validators.required),
+              'Acomp_H': new FormControl('', Validators.required),
               'Acomp_O': new FormControl(),
-              'Dif_Idi_M': new FormControl(),
-              'Traduccion': new FormControl(),
-              'Mediacion': new FormControl(),
+              'Dif_Idi_M': new FormControl('', Validators.required),
+              'Traduccion': new FormControl('', Validators.required),
+              'Mediacion': new FormControl('', Validators.required),
               'Curso': new FormControl(),
               'Centro_Salud': new FormControl()
       })
@@ -132,6 +134,7 @@ export class Bloque1Component implements OnInit {
    }
 
   ngOnInit() {
+
   }
 //TODO => Solo falta meter a los familiares de la persona en el caso de que intropduzcan datos
 guardarDatos(){
@@ -163,6 +166,10 @@ guardarDatos(){
         sessionStorage.IDExp = data.insertId;
        this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
          console.log(data)
+         //Por último => todo correcto cambiamos de bloque
+         this.expedienteComponent.bloque = 2;
+         console.log('Cambio de bloque');
+
       });
         console.log(data);
       });
@@ -177,7 +184,12 @@ guardarDatos(){
 
 //Funcion de prueba para no estar creando expedientes tontamnte
 guardarDatos2(){
-  console.log(this.form);
+  console.log(this.form.value);
+  //Por último => todo correcto cambiamos de bloque
+  console.log('Cambio de bloque');
+
+  this.expedienteComponent.bloque = 2;
+
 }
 
 addFamiliar(persona, familiar, tipo){

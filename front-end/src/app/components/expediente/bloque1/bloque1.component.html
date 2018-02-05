@@ -1,6 +1,6 @@
 <!--TODO Revisar como hacer para simplificar la parte del JacaScript -->
 
-<form [formGroup]="form" (ngSubmit)="guardarDatos()">
+<form [formGroup]="form" (ngSubmit)="guardarDatos2()">
 <div class="grupoForm">
     <h2 class="cherry ">Información básica sobre el expediente</h2>
   <div>
@@ -59,7 +59,7 @@
   <div *ngIf="HayMadre==true">
 
   <label for="nombreMa">Nombre de la madre</label>
-  <input [(ngModel)]="madre.Nombre" type="text" id="nombreMa" placeholder="nombre de la madre" formControlName="nombre">
+  <input [(ngModel)]="madre.Nombre" type="text" id="nombreMa" placeholder="nombre de la madre" formControlName="nombre" required>
 
   <label for="edadMa">Edad</label>
   <input [(ngModel)]="madre.Edad" type="number" id="edadMa" formControlName="edad">
@@ -202,7 +202,7 @@
 </div>
 </div>
 <hr>
-<button type="submit">Guardar</button>
+<button [disabled]="!this.form.valid" type="submit">Guardar</button>
 
 </form>
 <p>

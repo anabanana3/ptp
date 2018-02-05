@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService} from '../../../services/expedientes.service';
 import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import {ExpedienteComponent} from '../expediente.component';
 // import { Parto } from '../../../interfaces/parto';
 
 @Component({
@@ -19,6 +20,9 @@ export class Bloque2Component implements OnInit {
   tiposMutilacion = new Array();
   compNacido = new Array();
   compMadre = new Array();
+  //Array para almacenar las opciones selecionadas
+  compMadreSel = new Array();
+  compNacidoSel = new Array();
   partos = new Array(0);
   //totalPartos = new Array(this.numPartos);
   hayParto:boolean = false;
@@ -30,7 +34,7 @@ export class Bloque2Component implements OnInit {
 //Campos del bloque2
 bloque2={
   ID_Bloque:'',
-  ID_Expediente:sessionStorage.idExp,
+  ID_Expediente:sessionStorage.IDExp,
   Conoce_MGF:0,
   MGF_realizada_com_origen:0,
   Pos_madre:0,
@@ -61,8 +65,7 @@ datosPartos = new Array();
   // };
   // datosParto:Parto[];
 
-
-  constructor(private _expedienteService:ExpedientesService) {
+  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
 
     this._expedienteService.getFormulasObstreticas().subscribe(data=>{
       console.log('Muestro la data',data);
@@ -97,6 +100,31 @@ datosPartos = new Array();
           this.datosPartos[i].Id_Bloque= bloque;
           this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
             console.log(data);
+            let idParto = data.ID_Parto;
+            console.log('Muestro el id del parto que acabo de crear');
+            console.log(idParto);
+            //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
+            //Miro si ha selecionado alguna complicacion
+            if(this.datosPartos[i].CompMadre.length>0){
+              this.getCompMadreSel(i);
+              // TODO: Implementar las funciones del ExpedientesService
+              console.log('Muestro el id del parto que voy a mandar');
+              console.log(idParto);
+              this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
+                console.log('Info sobre las complicaciones de la madre');
+                console.log(data);
+              });
+            }
+            //Miro si se ha selecionado alguna complicacion
+            if(this.datosPartos[i].compNacido.length>0){
+              this.getCompNacidoSel(i);
+              this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
+                console.log('Info sobre las complicaciones del nacido');
+                console.log(data);
+                //Cambio el bloque
+                this.expedienteComponent.bloque = 3;
+              })
+            }
           })
         }
       }
@@ -105,6 +133,36 @@ datosPartos = new Array();
 
 
 
+  }
+//Metodo para hacer pruebas con las complicaciones
+  guardarDatos2(){
+    console.log(this.datosPartos[0].CompMadre);
+
+    for(let i=0; i<this.datosPartos[0].CompMadre.length; i++){
+      if(this.datosPartos[0].CompMadre[i] == true){
+        this.compMadreSel.push(i+1);
+      }
+    }
+    console.log('Mustro el array auxiliar para guardar los selecionados');
+    console.log(this.compMadreSel);
+  }
+
+//Funcion para obtener las complicaciones de la madre que ha selecionado el usuario
+  getCompMadreSel(n){
+    for(let i=0; i<this.datosPartos[n].CompMadre.length; i++){
+      if(this.datosPartos[n].CompMadre[i] == true){
+        this.compMadreSel.push(i+1);
+      }
+    }
+  }
+
+  //Funcion para obtener las complicaciones del recien nacido que seleciona el usuario
+  getCompNacidoSel(n){
+    for(let i=0; i<this.datosPartos[n].compNacido.length; i++){
+      if(this.datosPartos[n].compNacido[i] == true){
+        this.compNacidoSel.push(i+1);
+      }
+    }
   }
   prueba(n){
     console.log('Funcion de prueba de ocntenido');
@@ -118,18 +176,10 @@ datosPartos = new Array();
     for(let i=0; i<n; i++){
       this.datosPartos.push(new Parto());
     }
-    console.log(this.datosPartos);
-    console.log(this.datosPartos[1].Edad_Madre);
-    console.log(this.datosPartos[1].CompMadre);
-    // //Inicializo el array de partos
-    // for(let i=0; i<n; i++){
-    //   this.datosParto[i]=this.parto;
-    // }
-    // console.log(this.datosParto);
 }
 }
 class Parto{
-   ID_Expediente:number=sessionStorage.idExp;
+   ID_Expediente:number=sessionStorage.IDExp;
    Id_Bloque:number;
    Edad_Madre:number;
    Fecha:Date=null;

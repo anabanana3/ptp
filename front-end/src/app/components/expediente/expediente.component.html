@@ -5,9 +5,9 @@
   <app-header></app-header>
 
   <div>
-
+<!-- TODO: No pudes voler para atras -->
     <div class="tabsExpediente">
-      <button class="tabItem" (click)="bloque = 1">
+      <button class="tabItem" (click)="bloque=1">
         Bloque 1
       </button>
       <button class="tabItem" (click)="bloque = 2">
@@ -34,15 +34,19 @@
       <div *ngIf="bloque === 3">
         <p>Formulario Bloque 3</p>
       </div>
-      <div *ngIf="bloque === 4">
+      <div *ngIf="bloque === 4 ">
         <p>Formulario Bloque 4</p>
       </div>
       <div *ngIf="bloque === 5">
         <app-bloque5></app-bloque5>
       </div>
     </div>
+<!-- Div para poner el boton de terminar -->
+<button (click)="terminar();" [routerLink]="['/home']" >Terminar </button>
+
+    <div>
+    </div>
 
   </div>
-
   <app-footer></app-footer>
 </div>

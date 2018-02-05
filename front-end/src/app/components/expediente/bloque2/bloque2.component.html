@@ -1,4 +1,5 @@
-<form (ngSubmit)="guardarDatos(form)"#form="ngForm">
+<!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos -->
+<form (ngSubmit)="guardarDatos()"#form="ngForm">
   <h2> Conocimiento e información sobre la MGF</h2>
 <label>El inplicado tiene conocimientos sobre la MGF</label>
 <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">

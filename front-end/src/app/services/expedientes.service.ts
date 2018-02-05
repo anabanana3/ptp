@@ -16,9 +16,14 @@ urlFamiliar:string = 'https://aisha.ovh/api/familiar';
 urlIndicadores:string = 'https://aisha.ovh/api/indicadores';
 urlFormulas:string ='https://aisha.ovh/api/formulao';
 urlTiposMGF:string ='https://aisha.ovh/api/mutilacion';
+//Para obtener los datos
 urlCompMadre:string ='https://aisha.ovh/api/compMadre';
 urlCompNacido:string ='https://aisha.ovh/api/compNacido';
+
+
   constructor(private http:Http) { }
+
+
 
   getEtnias(){
     return this.http.get(this.urlEtnias).map(res=>{
@@ -113,11 +118,41 @@ urlCompNacido:string ='https://aisha.ovh/api/compNacido';
   }
 
   addParto(parto){
-    return this.http.post(this.urlPartos, parto).map(res=>{
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.post(this.urlPartos, parto, {headers}).map(res=>{
       console.log(res.json());
       return res.json();
     })
   }
+
+// TODO: Implementar estas dos funciones
+
+//Funcion para añadir todas las complicacione que ha selecionado el usuario
+  addCompMadreParto(idP, sel){
+    let url = this.urlPartos+'/complicacionesMadre/'+idP;
+    let token =  sessionStorage.token;
+    //console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.post(url, sel, {headers}).map(res=> res.json());
+  }
+//Funcion para añadir todas las complicaciones que ha selecionado el usuario
+addCompNacidoParto(idP, sel){
+  let url = this.urlPartos+'/complicacionesNacido/'+idP;
+  let token =  sessionStorage.token;
+  //console.log(token);
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  return this.http.post(url, sel, {headers}).map(res => res.json());
+}
 
   addbloque5(bloque){
     console.log('Muestro lo que recibo en el servicio');
