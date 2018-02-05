@@ -80,6 +80,7 @@ br{
 .textWhite{ color:#FFFFFF;}
 .textDarkenWhite{ color:#ededed;}
 .textGrey{ color: #DDDDDD;}
+.textGreyDarken{ color: #ABABAB;}
 .textRed{color: #E82C0C;}
 
 /****** COLORS BG ******/
@@ -309,7 +310,7 @@ br{
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
   padding-bottom: 1%;
   position: absolute;
-  width: 30%;
+  width: 250px;
   height: 100%;
 }
 
@@ -318,7 +319,7 @@ br{
 }
 
 .divAdmin-content{
-  width: 70%;
+  width: 80%;
   float: right;
 }
 
@@ -604,7 +605,7 @@ br{
 }
 
 .divPerfil{
-  margin-top:-256px;
+  margin-top:-215px;
   z-index: 2;
   float: right;
   width: 150px;
@@ -623,6 +624,14 @@ br{
 
 .DivOption{
   margin: 12px 0px;
+}
+
+.DivOptionLogout{
+  margin:0;
+  padding: 0;
+  background-color: none;
+  border:none;
+  font-size:14px;
 }
 
 .numberOption{

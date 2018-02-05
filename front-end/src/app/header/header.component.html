@@ -1,5 +1,5 @@
 <div class="header bgColorBlack">
-  <a href="www.aisha.ovh/principal"><img style="width:50px; float:left;margin-left:75px;margin-top:23px" src="../assets/img/AISHA.png" alt=""></a>
+  <a href="www.aisha.ovh/home"><img style="float:left;margin-left:75px;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
   <div class="notification bgColorPink">
     <p style="color:#ededed">3</p>
   </div>
@@ -15,14 +15,15 @@
   <div class="options">
     <p class="DivOption text16"><b>Lara González</b></p> <!--Aqui va el nombre del usuario que inicia sesion-->
     <p class="DivOption">Comentarios<p>
-    <p class="numberOption text12 grey">20<p>
+    <p class="numberOption text12 textGreyDarken">20<p>
     <p class="DivOption">Mensajes</p>
-    <p class="numberOption text12 grey">15<p>
+    <p class="numberOption text12 textGreyDarken">15<p>
     <p class="DivOption">Permisos</p>
-    <p class="numberOption text12 grey">0<p>
-    <p class="DivOption grey">Idioma</p>
-    <p class="DivOption grey">Editar Perfil</p>
-    <p class="DivOption grey">Cerrar Sesión</p>
+    <p class="numberOption text12 textGreyDarken">0<p>
+    <p class="DivOption textGreyDarken">Idioma</p>
+    <p [routerLink]="['/user/profile']" class="DivOption textGreyDarken pointer">Editar Perfil</p>
+    <!--<p class="DivOption textGreyDarken pointer">Cerrar Sesión</p>-->
+    <button (click)="logout();" type="button" name="button" class="DivOptionLogout textGreyDarken pointer">Cerrar Sesión</button>
   </div>
   <img class="divPerfil" src="../../assets/img/DivPerfil.png" alt="">
 </div>
