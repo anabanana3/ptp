@@ -47,6 +47,7 @@ th, td, button{padding: 15px;}
 
 button:hover{
   cursor: pointer;
+  color: #880042;
 }
 
 label{
