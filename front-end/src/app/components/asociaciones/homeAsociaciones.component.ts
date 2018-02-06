@@ -43,16 +43,12 @@ export class HomeAsociaciones{
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
-      console.log(data);
       this.asociacion = data[0].Nombre.split("'")[1];
     })
-    console.log('Metodo del constructor');
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {
-      console.log(data);
       this.user = data.Data;
       //Obtengo los valores para la paginacion
       this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
-      console.log(this.user);
     })
   }
 
@@ -79,7 +75,6 @@ export class HomeAsociaciones{
 
   activateUser(id, email){
     this._userService.activateUsuario(id, email).subscribe(res=>{
-      console.log(res);
       if(res.Resultado === 'OK'){
         this.loading = true;
         this.mensaje = 'Usuario validado Correctamente!';
@@ -116,7 +111,6 @@ export class HomeAsociaciones{
   }
 
   view(number, pagina=1, tam=3){
-        console.log('Metodo view');
     if(number == 0){
       this._userService.getUsuarioSolicitantesAsociacion(this.id, pagina, tam).subscribe(data=>{
         console.log(data);
@@ -130,9 +124,7 @@ export class HomeAsociaciones{
     }
 
     if(number == 1){
-      console.log('datos', pagina, tam);
       this._userService.getUsuarioRegistradosAsociacion(this.id, pagina, tam).subscribe(data=>{
-        console.log(data);
         this.loading = false;
         this.tabla = 1
         this.user = data.Data;
@@ -149,7 +141,6 @@ export class HomeAsociaciones{
     for(let i=0; i<pagTotales; i++){
       this.paginas.push(i);
     }
-    console.log(this.paginas.length);
     //Pagina anterior
     if(paginaActual >= 2){
       this.pagBack = (paginaActual-1);
@@ -165,8 +156,6 @@ export class HomeAsociaciones{
   }
 
   pasarPagina(pag){
-    console.log(pag);
-    console.log('Muestro el numero ese de andrea', this.tabla);
     this.view(this.tabla, pag, this.tamPag);
     this.pagActual = pag;
   }
