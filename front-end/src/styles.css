@@ -339,7 +339,6 @@ br{
 }
 .divAdmin ul{float: left; margin-top: 20%;}
 .divAdmin li{padding: 20%;}
-.divAdmin a{font-size: 130%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
@@ -746,6 +745,16 @@ br{
   border-bottom: solid #880042;
 }
 
+.divError{
+  display: inline-flex;
+  margin: 1%;
+  margin-top: 10%;
+}
+
+.divError div{
+  width: 48%;
+}
+
 /**** RESPONSIVE ****/
 
 @media (max-width: 1384px) {
@@ -839,5 +848,16 @@ br{
 
   .divAdmin-menuExpanded{
     width: 100%;
+  }
+
+  .divError{
+    display: block;
+  }
+
+  .divError div{
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 2%;
   }
 }

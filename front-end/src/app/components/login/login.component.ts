@@ -37,14 +37,11 @@ export class LoginComponent {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }
-    //console.log(this.json.Email);
-    //console.log(this.json.Password);
 
     if(this.check_asoc){
       ////// ****** asociacion ****** //////
       this._asociacionesService.loginAsociacion(this.json)
         .subscribe(data =>{
-          console.log(data);
           if (data.Resultado == "ERROR") {
             this.mensaje = 'Email o contraseña incorrectos';
             document.getElementById('alert').className = 'alert alert-danger';
@@ -53,7 +50,6 @@ export class LoginComponent {
           //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data[0].ID_Asociacion);
-          console.log(sessionStorage.getItem('iD'));
           location.href = '/asociacion';
         })
     }else{
