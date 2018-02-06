@@ -40,6 +40,7 @@ export class AsociacionesComponent {
       this.loading = false;
       console.log(data);
       this.asociacion = data.Data;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
     })
   }
 
@@ -59,10 +60,10 @@ export class AsociacionesComponent {
         delete this.asociacion[id];
         this.loading = true;
         this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
-
           this.loading = false;
           console.log(data);
           this.asociacion = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
         })
       }
       else{
@@ -83,9 +84,9 @@ export class AsociacionesComponent {
         document.getElementById('alert').className = 'alert alert-success';
 
         this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
-
           this.loading = false;
           this.asociacion = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
         })
       }
     })
