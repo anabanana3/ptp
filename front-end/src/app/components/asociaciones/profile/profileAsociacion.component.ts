@@ -37,12 +37,12 @@ export class ProfileAsociacionComponent {
       this.asociacion.Email = this.asociacion.Email.split("'")[1];
       this.asociacion.Direccion = this.asociacion.Direccion.split("'")[1];
       this.asociacion.CIF = this.asociacion.CIF.split("'")[1];
-      console.log(this.asociacion);
+      this.asociacion.Password = null;
+      console.log(this.asociacion.Password);
     })
   }
 
   save(forma:NgForm){
-    console.log(forma);
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
@@ -62,10 +62,10 @@ export class ProfileAsociacionComponent {
       console.log(data);
       this.mensaje = 'Cambios registrados correctamente';
       document.getElementById('alert').className = 'alert alert-success';
+    }, error => {
+      this.mensaje = 'ALGO MAL';
+      document.getElementById('alert').className = 'alert alert-danger';
     })
-
-    this.mensaje = 'ALGO MAL';
-    document.getElementById('alert').className = 'alert alert-danger';
 
   }
 }
