@@ -342,6 +342,8 @@ br{
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
+  background: none;
+  border: none;
   margin: 1%;
 }
 
@@ -753,6 +755,11 @@ br{
 
 .divError div{
   width: 48%;
+}
+
+.icon-logout{
+  font-size: 140%;
+  color: white;
 }
 
 /**** RESPONSIVE ****/

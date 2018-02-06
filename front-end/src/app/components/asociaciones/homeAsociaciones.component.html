@@ -2,15 +2,19 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
+  <div class="header bgColorBlack">
+    <a href="www.aisha.ovh/"><img style="width:50px; float:left; margin-left:1em;margin-top:23px" src="../assets/img/AISHA.png" alt=""></a>
+    <button (click)="logout();" type="button" name="button"
+      class="submitGris logoutAdmin icon-logout"
+      style="float:right;">
+    </button>
+    <button [routerLink]="['/asociacion/profile']" type="button" name="button"
+            class="submitGris" style="float: right; margin: 1%;">
+            Perfil
+    </button>
+  </div>
   <h1>Asociacion {{asociacion}}</h1>
-  <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-          class="submitGris textoBlanco">
-          Perfil
-  </button>
-  <button (click)="cerrarSesion()" type="button" name="button"
-          class="submitGris textoBlanco icon-logout">
-  </button>
-  <div class="">
+  <div>
     <button type="button" name="button" class="btn-inline textoBlanco"
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
