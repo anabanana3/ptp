@@ -194,6 +194,44 @@ br{
   transform: rotate(-45deg);
 }
 
+/** CAROUSEL **/
+
+.carouselDiv{
+  margin: 0 auto;
+  width:90%;
+}
+
+.LeftDiv{
+  width:10%;
+  float:left;
+  margin-top:180px;
+}
+
+.RightDiv{
+  width:10%;
+  float:right;
+  margin-top:180px;
+}
+
+.CarouselImage{/*
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;*/
+  margin: 0 auto;
+  max-width: 800px;
+  width:80%;
+  display: inline-block;
+}
+
+.mySlides{
+  display: none;
+  margin: 0 auto;
+}
+
+
+/** CAROUSEL **/
+
 .login{
   margin-top: 4%;
   padding: 6px 10px;
@@ -269,7 +307,7 @@ br{
 
 .language{
   float:right;
-  margin-top: 4.6%;
+  margin-top: 20px;
   margin-right: 9%;
 }
 
@@ -357,6 +395,11 @@ br{
     margin-left: 9%;
 }
 
+.logoPrincipal2{
+  margin-top: 10px;
+  display: none;
+}
+
 .pointer{cursor: pointer;}
 
 .progress{
@@ -432,6 +475,18 @@ br{
   float:right;
   margin-top: -64px;
   margin-right: -650px;
+}
+
+.masNoticias:hover{
+  filter: invert(100%);
+}
+
+.botonesPrincipal{
+  float:right;
+  width:370px;
+  padding-top:30px;
+  display: flex;
+  justify-content: right;
 }
 
 .suscripcionbg{
@@ -764,6 +819,94 @@ br{
 }
 
 /**** RESPONSIVE ****/
+@media (max-width: 700px) { /*1384*/
+  h1{
+    font-size:16px;
+  }
+  p{
+    font-size:14px;
+  }
+
+  .vermasCentroText{
+    font-size:16px;
+  }
+
+  .tickCrossIcon{
+    width: 20px;
+  }
+
+  .caracteristicasLeft{
+    margin-left:20px;
+    width:78%;
+  }
+
+  .recursosText{
+    margin-left:15%;
+  }
+
+  .divRecurso{
+    float:left;
+    margin-bottom:10px;
+  }
+
+  .recurso{
+    display: block;
+    width:300px;
+    margin:0 auto;
+    height: 30px;
+  }
+
+  .recursosDiv{
+    height:500px;
+  }
+  .headerPrincipal{
+    margin-bottom:20px;
+  }
+
+  .logoPrincipalDiv{
+    width: 100%;
+    height: 100px;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logoPrincipal{
+    display: none;
+  }
+
+  .logoPrincipal2{
+    display: block;
+  }
+
+  .botonesPrincipal{
+    padding-top:0px;
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+  }
+
+  .registro{
+    flex-direction: row;
+    margin:0 10px;
+  }
+
+  .language{
+    flex-direction: row;
+    margin:0 10px;
+    margin-top:6px;
+  }
+
+  .login{
+    flex-direction: row;
+    margin:0 10px;
+  }
+
+  .LeftDiv, .RightDiv{
+    margin-top:50px;
+  }
+}
+
 
 @media (max-width: 1384px) {
   /* laptop */

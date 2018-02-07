@@ -12,26 +12,45 @@
   femenino 3D, prácticas tradicionales perjudiciales, violencia contra las mujeres,
   mgf en niñas, clítoris">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://www.aisha.ovh/"/>
+  <link rel="canonical" href="https://www.aisha.ovh/principal/"/>
 </head>
 
 <div class="headerPrincipal">
-  <header>
+  <div class="logoPrincipalDiv">
     <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
-  </header>
+    <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
+  </div>
 
+  <div class="botonesPrincipal">
+    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+    <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
+    <p class="language text12 textPink">ES | EN</p>
+  </div>
+</div>
 
-  <p class="language text12 textPink">ES | EN</p>
-  <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
-  <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+<!-- CAROUSEL -->
+<div class="carouselDiv">
+
+  <div class="LeftDiv" id="LeftArrow" (click)="plusDivs(-1)">
+    <img style="width:30px;" src="../assets/img/Left.png" alt="Left">
+  </div>
+
+  <div class="CarouselImage">
+    <img class="mySlides" style="display:block; width:100%;" src="../assets/img/mapBlue.png" alt="carousel1">
+    <img class="mySlides" style="width:100%;" src="../assets/img/mapPink.png" alt="carousel1">
+    <img class="mySlides" style="width:100%;" src="../assets/img/mapBlue.png" alt="carousel1">
+    <img class="mySlides" style="width:100%;" src="../assets/img/mapPink.png" alt="carousel1">
+  </div>
+
+  <div class="RightDiv" id="RightArrow" (click)="plusDivs(1)">
+    <img style="width:30px;" src="../assets/img/Right.png" alt="right">
+  </div>
 
 </div>
 
-<!--
-<div class="carrousel">
-  <img class="imgCarrousel" src="../assets/img/Carrousel.png" alt="Mapa mutilaciones">
-</div>
--->
+<!-- -->
+
+
 
 <div class="Eslogan">
   <p>La red de profesionales a nivel mundial que cambiará la vida
