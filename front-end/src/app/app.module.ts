@@ -18,6 +18,7 @@ import { KeysPipe } from './pipes/keys.pipe';
 import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
+import {NoticiasService} from "./services/noticias.service";
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
@@ -73,7 +74,8 @@ import { HeaderComponent } from './header/header.component';
     ProfesionesService,
     AsociacionesService,
     UserService,
-    ExpedientesService
+    ExpedientesService,
+    NoticiasService
   ],
   bootstrap: [AppComponent]
 })

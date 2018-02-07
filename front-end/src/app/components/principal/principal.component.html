@@ -63,26 +63,29 @@
 
 <div class="noticias">
 
+
+
   <div class="noticia">
     <h2 class="noticiasText">NOTICIAS</h2>
     <a href="noticias.component.html"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
+
     <img src="../assets/img/noticia1.png" alt="noticia 1">
 
-    <p class="noticiaTitle">NOTICIA 1</p>
+    <p class="noticiaTitle">{{aux[0].title.rendered}}</p>
     <div class="lineaNoticia"></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    
   </div>
   <div class="noticia">
       <img src="../assets/img/noticia2.png" alt="noticia2">
-      <p class="noticiaTitle">NOTICIA 2</p>
+      <p class="noticiaTitle">{{aux[1].title.rendered}}</p>
       <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
   </div>
   <div class="noticia">
       <img src="../assets/img/noticia3.png" alt="noticia3">
-      <p class="noticiaTitle">NOTICIA 3</p>
+      <p class="noticiaTitle">{{aux[2].title.rendered}}</p>
       <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
   </div>
 
 </div>

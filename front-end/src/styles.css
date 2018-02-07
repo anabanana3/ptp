@@ -468,6 +468,10 @@ br{
 
 .noticiaTitle{
   margin-top: 15px;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .masNoticias{
