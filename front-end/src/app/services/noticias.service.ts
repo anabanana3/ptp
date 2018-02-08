@@ -12,7 +12,8 @@ export class NoticiasService {
     return this.http.get(url).map(res=>res.json());
   }
 
-  getPhoto(url){
+  getPhotos(){
+    let url = "https://www.aisha.ovh/fibbe/wp-json/wp/v2/media";
     return this.http.get(url).map(res=>res.json());
   }
 
