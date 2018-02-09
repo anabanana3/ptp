@@ -14,6 +14,7 @@ import { HomeAdminComponent } from './components/admin/home/homeAdmin.component'
 import { ExpedienteComponent} from './components/expediente/expediente.component';
 import { ContactoComponent} from './components/contacto/contacto.component';
 import { VermasComponent} from './components/vermas/vermas.component';
+import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
 
 const app_routes: Routes = [
   {
@@ -84,6 +85,11 @@ const app_routes: Routes = [
     path: 'vermas',
     component: VermasComponent,
     data: { title: 'vermas' }
+  },
+  {
+    path: 'misexpedientes',
+    component:MisExpedientesComponent,
+    data:{title: 'MisExpedientes'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

@@ -36,6 +36,7 @@ import { Bloque2Component } from './components/expediente/bloque2/bloque2.compon
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
+import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { HeaderComponent } from './header/header.component';
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
-    VermasComponent
+    VermasComponent,
+    MisExpedientesComponent
   ],
   imports: [
     BrowserModule,
