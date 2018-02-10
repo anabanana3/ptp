@@ -18,7 +18,17 @@ export class PrincipalComponent implements OnInit {
   id:number = 0;
   arrayIds = new Array();
 
+  logueado:boolean = false;
+  admin:boolean = false;
   constructor(private _noticiasService:NoticiasService) {
+    if(sessionStorage.length !== 0){
+      this.logueado = true;
+
+      console.log(sessionStorage.getItem('iD'));
+      if(sessionStorage.getItem('iD') == '44'){
+        this.admin = true;
+      }
+    }
 
     this._noticiasService.getNoticias().subscribe(data=>{
       console.log(data);

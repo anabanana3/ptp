@@ -304,14 +304,14 @@ canvas{
   border-width: 2px;
 }
 
+.btn-fill:hover{
+  background-color: #880042;
+  color:white;
+}
+
 .registro{
   float: right;
   margin-top: 4%;
-}
-
-.registro:hover{
-  background-color: #880042;
-  color:white;
 }
 
 .suscribirse{
@@ -382,6 +382,8 @@ canvas{
 }
 
 .icon-menu{
+  background: none;
+  border: none;
   display: none;
   float: left;
   font-size: 20px;

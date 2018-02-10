@@ -21,10 +21,18 @@
     <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
   </div>
 
-  <div class="botonesPrincipal">
-    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
-    <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
-    <p class="language text12 textPink">ES | EN</p>
+  <div *ngIf="!logueado">
+    <div class="botonesPrincipal">
+      <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+      <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
+      <p class="language text12 textPink">ES | EN</p>
+    </div>
+  </div>
+  <div *ngIf="logueado && !admin">
+    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/home']">MENU</button>
+  </div>
+  <div *ngIf="admin">
+    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/admin/home']">ADMIN</button>
   </div>
 </div>
 
