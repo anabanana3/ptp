@@ -17,6 +17,7 @@ import { VermasComponent} from './components/vermas/vermas.component';
 import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
+import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 
 const app_routes: Routes = [
   {
@@ -102,6 +103,11 @@ const app_routes: Routes = [
     path: 'recursos',
     component: RecursosComponent,
     data:{title: 'Recursos'}
+  },
+  {
+    path: 'aulavirtual',
+    component: MotorGraficoComponent,
+    data:{title: 'Motor Grafico'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

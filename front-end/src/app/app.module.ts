@@ -31,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
 import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
+import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -67,7 +68,8 @@ import {NoticiasService} from "./services/noticias.service";
     VermasComponent,
     MisExpedientesComponent,
     RecursoComponent,
-    RecursosComponent
+    RecursosComponent,
+    MotorGraficoComponent
   ],
   imports: [
     BrowserModule,

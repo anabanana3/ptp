@@ -1,0 +1,20 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <app-header></app-header>
+
+  <h3>Aula virtual</h3>
+  <button
+    class="btn-fill text12 textPink"
+    type="button"
+    name="button"
+    style="display:block; margin:auto;">
+    Descargar modelo 3D
+  </button>
+  <div class="divBlanco bgColorWhite">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <app-footer></app-footer>
+</div>
