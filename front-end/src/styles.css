@@ -63,6 +63,11 @@ input, textarea{
 
 textarea {
   resize: none;
+  margin-bottom: 25px;
+}
+
+textarea:hover{
+  border-bottom: 2px solid;
 }
 
 span{font-size: small;}
@@ -106,12 +111,12 @@ br{
   margin: auto;
   margin-top: 1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-  width: 40%;
+  width: 50%;
 }
 
 .camposForm{
   display: inline-grid;
-  width: 70%;
+  width: 60%;
   text-align: left;
 }
 
@@ -125,9 +130,15 @@ br{
 }
 
 .lineaCampo{
+  background: none;
   border: none;
   border-bottom: 1px solid #333333;
   margin-bottom: 25px;
+  width: 100%;
+}
+
+.lineaCampo:hover{
+  border-bottom: 2px solid;
 }
 
 .lineaDiv{
@@ -958,8 +969,12 @@ br{
 
 @media (max-width:1025px) {
   /* big landscape tablets, laptops, and desktops */
-  .divBlanco{
+  .camposForm{
     width: 70%;
+  }
+
+  .divBlanco{
+    width: 80%;
   }
 
   .divAdmin{
@@ -996,6 +1011,10 @@ br{
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
   .divBlanco{
     width: 100%;
+  }
+
+  .camposForm{
+    width: 90%;
   }
 
   .btn-return{
