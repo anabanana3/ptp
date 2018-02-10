@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import {Recurso} from '../../interfaces/recurso.interface';
+
+import {Recurso} from '../../../interfaces/recurso.interface';
+
 
 @Component({
   selector: 'app-recurso',
-  templateUrl: './recurso.component.html'
+  templateUrl: './añadir-recurso.component.html'
 })
 export class RecursoComponent {
 

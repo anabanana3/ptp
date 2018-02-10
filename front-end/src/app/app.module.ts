@@ -11,14 +11,6 @@ import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
-
-import { KeysPipe } from './pipes/keys.pipe';
-
-//Services
-import {ProfesionesService} from "./services/profesiones.service";
-import {AsociacionesService} from "./services/asociaciones.service";
-import {UserService} from "./services/user.service";
-import {NoticiasService} from "./services/noticias.service";
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
@@ -37,7 +29,16 @@ import { Bloque5Component } from './components/expediente/bloque5/bloque5.compon
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
 import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
-import { RecursoComponent } from './components/recurso/recurso.component';
+import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
+
+import { KeysPipe } from './pipes/keys.pipe';
+
+//Services
+import {ProfesionesService} from "./services/profesiones.service";
+import {AsociacionesService} from "./services/asociaciones.service";
+import {UserService} from "./services/user.service";
+import {NoticiasService} from "./services/noticias.service";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { RecursoComponent } from './components/recurso/recurso.component';
     FooterComponent,
     VermasComponent,
     MisExpedientesComponent,
-    RecursoComponent
+    RecursoComponent,
+    RecursosComponent
   ],
   imports: [
     BrowserModule,

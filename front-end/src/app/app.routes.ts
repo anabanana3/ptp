@@ -15,7 +15,8 @@ import { ExpedienteComponent} from './components/expediente/expediente.component
 import { ContactoComponent} from './components/contacto/contacto.component';
 import { VermasComponent} from './components/vermas/vermas.component';
 import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
-import { RecursoComponent } from './components/recurso/recurso.component';
+import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
 
 const app_routes: Routes = [
   {
@@ -96,6 +97,11 @@ const app_routes: Routes = [
     path: 'recurso',
     component: RecursoComponent,
     data:{title: 'Recurso'}
+  },
+  {
+    path: 'recursos',
+    component: RecursosComponent,
+    data:{title: 'Recursos'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
