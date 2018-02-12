@@ -363,6 +363,7 @@ canvas{
 }
 
 .divAdmin{
+  text-align: left;
   background: #D8D8D8;
   border: 1px solid #979797;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
@@ -397,8 +398,8 @@ canvas{
   border: none;
   padding: 2%;
 }
-.divAdmin ul{float: left; margin-top: 20%;}
-.divAdmin li{padding: 20%;}
+.divAdmin ul{float: left; width: 100%; padding: 10%}
+.divAdmin li{padding: 10%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
