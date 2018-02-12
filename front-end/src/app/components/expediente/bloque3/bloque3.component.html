@@ -1,0 +1,51 @@
+<form (ngSubmit)="guardarDatos(forma)" #forma="ngForm">
+  <div>
+    <h2>Experiencias con la MGF</h2>
+    <!--mensaje error-->
+    <div id="alert">{{mensaje}}</div>
+    <label for="exp_propias">Experiencias propias</label>
+    <textarea [(ngModel)]='json.Exp_propias' type="exp_propias" name="exp_propias" id="exp_propias" placeholder="Escriba su texto aquí..." required>
+    </textarea>
+    <br>
+    <label for="exp_terceros">Experiencias de terceros</label>
+    <textarea [(ngModel)]='json.Exp_terceros' type="exp_terceros" name="exp_terceros" id="exp_terceros" required>
+    </textarea>
+    <br>
+    <label for="mant_MGF">Mantenimiento de la MGF</label> <!-- si/no y luego un textarea porque -->
+      <select [(ngModel)]='json.Mant_MGF' name="mant_MGF" id="mant_MGF" >
+        <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
+      </select>
+      <span matTooltip="Tooltip!" class="pointer">I have a tooltip</span>
+      <div *ngIf="json.Mant_MGF==1">
+        <label for="mant_MGF_texto">¿Por qué?</label>
+        <textarea [(ngModel)]='json.Mant_MGF_texto' type="mant_MGF_texto" name="mant_MGF_texto" id="mant_MGF_texto" required>
+        </textarea>
+      </div>
+    <h3>Concimiento sobre consecuencias de la MGF</h3>
+      <label for="conoc_consecM">Sobre la salud de las mujeres</label>
+      <select [(ngModel)]='json.Conoc_consecM' id="conoc_consecM" name="conoc_consecM">
+        <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
+      </select>
+      <label for="otros_consecM">¿Por qué?</label>
+      <textarea [(ngModel)]='json.Otros_consecM' type="otros_consecM" name="otros_consecM" id="otros_consecM" required>
+      </textarea>
+      <br>
+      <label for="conoc_consecM">Sobre la salud de los hombres</label>
+      <select [(ngModel)]='json.Conoc_consecH' id="conoc_consecM" name="conoc_consecM">
+        <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
+      </select>
+      <label for="otros_consecH">¿Por qué?</label>
+      <textarea [(ngModel)]='json.Otros_consecH' type="otros_consecH" name="otros_consecH" id="otros_consecH" required>
+      </textarea>
+
+      <h3>Intervención</h3>
+      <label for="exp_propias">Formato de la intervención</label>
+      <textarea [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" placeholder="Escriba su texto aquí..." required>
+      </textarea>
+      <label for="exp_propias">Consejos para otros profesionales</label>
+      <textarea [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" placeholder="Escriba su texto aquí..." required>
+      </textarea>
+      <br>
+    <button type="submit">Guardar</button>
+  </div>
+</form>

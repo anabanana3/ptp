@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
 import { AppComponent } from './app.component';
@@ -32,6 +34,7 @@ import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
+import { Bloque3Component } from './components/expediente/bloque3/bloque3.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
@@ -57,6 +60,7 @@ import { HeaderComponent } from './header/header.component';
     ErrorComponent,
     Bloque1Component,
     Bloque2Component,
+    Bloque3Component,
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
@@ -67,7 +71,9 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     HttpModule,
     APP_ROUTING,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [
     ProfesionesService,
