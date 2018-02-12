@@ -64,6 +64,11 @@ input, textarea{
 
 textarea {
   resize: none;
+  margin-bottom: 25px;
+}
+
+textarea:hover{
+  border-bottom: 2px solid;
 }
 
 span{font-size: small;}
@@ -74,6 +79,14 @@ br{
   display: block;
   content: " ";
   margin-top:8px;
+}
+
+canvas{
+  margin:5%;
+  width: 90%;
+  height: 500px;
+  border: 3px solid #880042;
+  background: grey;
 }
 /****** COLORS TEXT ******/
 
@@ -107,12 +120,12 @@ br{
   margin: auto;
   margin-top: 1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-  width: 40%;
+  width: 50%;
 }
 
 .camposForm{
   display: inline-grid;
-  width: 70%;
+  width: 60%;
   text-align: left;
 }
 
@@ -126,9 +139,15 @@ br{
 }
 
 .lineaCampo{
+  background: none;
   border: none;
   border-bottom: 1px solid #333333;
   margin-bottom: 25px;
+  width: 100%;
+}
+
+.lineaCampo:hover{
+  border-bottom: 2px solid;
 }
 
 .lineaDiv{
@@ -286,14 +305,14 @@ br{
   border-width: 2px;
 }
 
+.btn-fill:hover{
+  background-color: #880042;
+  color:white;
+}
+
 .registro{
   float: right;
   margin-top: 4%;
-}
-
-.registro:hover{
-  background-color: #880042;
-  color:white;
 }
 
 .suscribirse{
@@ -345,6 +364,7 @@ br{
 }
 
 .divAdmin{
+  text-align: left;
   background: #D8D8D8;
   border: 1px solid #979797;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
@@ -364,6 +384,8 @@ br{
 }
 
 .icon-menu{
+  background: none;
+  border: none;
   display: none;
   float: left;
   font-size: 20px;
@@ -377,8 +399,8 @@ br{
   border: none;
   padding: 2%;
 }
-.divAdmin ul{float: left; margin-top: 20%;}
-.divAdmin li{padding: 20%;}
+.divAdmin ul{float: left; width: 100%; padding: 10%}
+.divAdmin li{padding: 10%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
@@ -462,6 +484,7 @@ br{
   height: 30px;
 }
 
+
 .noticiasText{
   padding-bottom: 20px;
   text-align: left;
@@ -469,6 +492,10 @@ br{
 
 .noticiaTitle{
   margin-top: 15px;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .masNoticias{
@@ -954,8 +981,12 @@ br{
 
 @media (max-width:1025px) {
   /* big landscape tablets, laptops, and desktops */
-  .divBlanco{
+  .camposForm{
     width: 70%;
+  }
+
+  .divBlanco{
+    width: 80%;
   }
 
   .divAdmin{
@@ -992,6 +1023,10 @@ br{
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
   .divBlanco{
     width: 100%;
+  }
+
+  .camposForm{
+    width: 90%;
   }
 
   .btn-return{

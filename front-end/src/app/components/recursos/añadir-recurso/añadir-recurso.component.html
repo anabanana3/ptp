@@ -1,0 +1,52 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <app-header></app-header>
+
+  <h3>Añadir Recurso</h3>
+
+  <div class="divBlanco bgColorWhite">
+    <div id="alert">{{mensaje}}</div>
+
+    <form (ngSubmit)="newRecurso(forma)" #forma="ngForm">
+      <div class="camposForm">
+        <label for="titulo">Título: </label>
+        <input [(ngModel)]="recurso.Titulo" class="lineaCampo" type="text" name="titulo" id="titulo" required>
+        <label for="archivo">Archivo: </label>
+        <input
+          (change)="loadFile($event)"
+          class="lineaCampo"
+          type="file"
+          name="archivo"
+          id="file"
+          accept=".jpg, .jpeg, .png, .pdf">
+        <label for="descripcion">Descripción: </label>
+        <textarea
+          type="text"
+          name="descripcion"
+          id="descripcion"
+          [(ngModel)]="recurso.Descripcion"
+          required>
+        </textarea>
+        <label for="publicar">Publicar:</label>
+        <div class="radioButtons">
+          <label for="si">Sí</label>
+          <input [(ngModel)]="recurso.Publico" type="radio" name="si" value="1" id="si">
+          <label for="no">No</label>
+          <input [(ngModel)]="recurso.Publico" type="radio" name="no" value="2" id="no">
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        name="newRecurso"
+        class="btn-border bgColorPink"
+        style="margin:auto; display:block;">
+        Añadir Recurso
+      </button>
+    </form>
+  </div>
+
+  <app-footer></app-footer>
+</div>

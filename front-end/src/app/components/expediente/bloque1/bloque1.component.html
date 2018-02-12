@@ -23,7 +23,7 @@
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <h2>Datos sobre el/la menor</h2>
 
-  <label for="nombreM">Nombre de la menor:</label>
+  <label for="nombreM">Nombre completo de la menor:</label>
   <input [(ngModel)]="menor.Nombre" type="text" id="nombreM" placeholder="nombre de la menor" formControlName="nombre">
 
   <label for="edadM">Edad:</label>
@@ -101,7 +101,7 @@
   </h2>
   <div *ngIf="HayPadre==true">
     <label for="nombrePa">Nombre del padre</label>
-    <input [(ngModel)]="padre.Nombre" type="text" id="nombrePa" placeholder="nombre del padre" formControlName="nombre">
+    <input [(ngModel)]="padre.Nombre" required type="text" id="nombrePa" placeholder="nombre del padre" formControlName="nombre">
 
     <label for="edadPa">Edad</label>
     <input type="number" id="edadPa" formControlName="edad">

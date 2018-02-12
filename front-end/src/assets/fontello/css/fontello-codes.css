@@ -4,4 +4,10 @@
 .icon-mail:before { content: '\e802'; } /* '' */
 .icon-logout:before { content: '\e803'; } /* '' */
 .icon-return:before { content: '\e804'; } /* '' */
+.icon-user:before { content: '\e805'; } /* '' */
+.icon-users:before { content: '\e806'; } /* '' */
+.icon-home:before { content: '\e807'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-doc-text-inv:before { content: '\f15c'; } /* '' */
+.icon-box:before { content: '\f187'; } /* '' */
+.icon-envelope-open:before { content: '\f2b6'; } /* '' */

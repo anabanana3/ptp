@@ -13,13 +13,6 @@ import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
-
-import { KeysPipe } from './pipes/keys.pipe';
-
-//Services
-import {ProfesionesService} from "./services/profesiones.service";
-import {AsociacionesService} from "./services/asociaciones.service";
-import {UserService} from "./services/user.service";
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
@@ -38,6 +31,18 @@ import { Bloque3Component } from './components/expediente/bloque3/bloque3.compon
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
+import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
+import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
+import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
+
+import { KeysPipe } from './pipes/keys.pipe';
+
+//Services
+import {ProfesionesService} from "./services/profesiones.service";
+import {AsociacionesService} from "./services/asociaciones.service";
+import {UserService} from "./services/user.service";
+import {NoticiasService} from "./services/noticias.service";
 
 @NgModule({
   declarations: [
@@ -64,7 +69,11 @@ import { HeaderComponent } from './header/header.component';
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
-    VermasComponent
+    VermasComponent,
+    MisExpedientesComponent,
+    RecursoComponent,
+    RecursosComponent,
+    MotorGraficoComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +88,8 @@ import { HeaderComponent } from './header/header.component';
     ProfesionesService,
     AsociacionesService,
     UserService,
-    ExpedientesService
+    ExpedientesService,
+    NoticiasService
   ],
   bootstrap: [AppComponent]
 })

@@ -48,7 +48,7 @@
   <label>Introduzca el numero de partos de los que desea guardar informacion</label>
 <!-- [(ngModel)]="numPartos" -->
   <input  name=Num_Partos type="number" min="1" #Npartos>
-  <button type="button" (click)="prueba(Npartos.value)">Prueba</button>
+  <button type="button" (click)="prueba(Npartos.value)">Mostrar</button>
 <div class="partos">
   <div class="partoContainer" *ngFor="let p of partos; let i= index">
     <p> parto numero {{i+1}}</p>
@@ -107,3 +107,8 @@
   <button type="submit">Guardar</button>
 </div>
 </form>
+<p>
+  {{this.form.valid}}
+
+  {{this.form.status}}
+</p>

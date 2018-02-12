@@ -165,16 +165,18 @@ datosPartos = new Array();
     }
   }
   prueba(n){
-    console.log('Funcion de prueba de ocntenido');
-    console.log(this.numPartos);
-    this.bloque2.Num_Partos = n;
-    this.partos = new Array(n);
-    for(let i=0; i<n-1; i++){
-      this.partos.push(i);
-    }
-    //Prueba de inicializar el array de partos
-    for(let i=0; i<n; i++){
-      this.datosPartos.push(new Parto());
+    if(n>0){
+      console.log('Funcion de prueba de ocntenido');
+      console.log(this.numPartos);
+      this.bloque2.Num_Partos = n;
+      this.partos = new Array(n);
+      for(let i=0; i<n-1; i++){
+        this.partos.push(i);
+      }
+      //Prueba de inicializar el array de partos
+      for(let i=0; i<n; i++){
+        this.datosPartos.push(new Parto());
+      }
     }
 }
 }

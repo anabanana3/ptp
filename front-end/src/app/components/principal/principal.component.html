@@ -21,10 +21,18 @@
     <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
   </div>
 
-  <div class="botonesPrincipal">
-    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
-    <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
-    <p class="language text12 textPink">ES | EN</p>
+  <div *ngIf="!logueado">
+    <div class="botonesPrincipal">
+      <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+      <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
+      <p class="language text12 textPink">ES | EN</p>
+    </div>
+  </div>
+  <div *ngIf="logueado && !admin">
+    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/home']">MENU</button>
+  </div>
+  <div *ngIf="admin">
+    <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/admin/home']">ADMIN</button>
   </div>
 </div>
 
@@ -63,26 +71,28 @@
 
 <div class="noticias">
 
+
+
   <div class="noticia">
     <h2 class="noticiasText">NOTICIAS</h2>
-    <a href="noticias.component.html"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
-    <img src="../assets/img/noticia1.png" alt="noticia 1">
+    <a href="https://www.aisha.ovh/fibbe/"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
+    <a href="{{aux[0].link}}"><img style="width:300px;" src="{{arrayIds[0]}}" alt="noticia1"></a>
 
-    <p class="noticiaTitle">NOTICIA 1</p>
+    <a href="{{aux[0].link}}"><p class="noticiaTitle">{{aux[0].title.rendered}}</p></a>
     <div class="lineaNoticia"></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
   </div>
   <div class="noticia">
-      <img src="../assets/img/noticia2.png" alt="noticia2">
-      <p class="noticiaTitle">NOTICIA 2</p>
+      <a href="{{aux[1].link}}"><img  style="width:300px;" src="{{arrayIds[1]}}" alt="noticia2"></a>
+      <a href="{{aux[1].link}}"><p class="noticiaTitle">{{aux[1].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
   </div>
   <div class="noticia">
-      <img src="../assets/img/noticia3.png" alt="noticia3">
-      <p class="noticiaTitle">NOTICIA 3</p>
+      <a href="{{aux[2].link}}"><img  style="width:300px;" src="{{arrayIds[2]}}" alt="noticia3"></a>
+      <a href="{{aux[2].link}}"><p class="noticiaTitle">{{aux[2].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
   </div>
 
 </div>
