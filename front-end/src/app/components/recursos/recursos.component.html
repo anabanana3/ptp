@@ -1,0 +1,17 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <app-header></app-header>
+
+  <h3>Biblioteca de Recursos</h3>
+  <button
+    [routerLink]="['/recurso']"
+    class="btn-fill text12 textPink"
+    type="button"
+    name="button">
+    Añadir recurso
+  </button>
+
+  <app-footer></app-footer>
+</div>

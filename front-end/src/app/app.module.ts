@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
 import { AppComponent } from './app.component';
@@ -11,14 +13,6 @@ import { UsuariosComponent } from './components/admin/usuarios.component';
 import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
-
-import { KeysPipe } from './pipes/keys.pipe';
-
-//Services
-import {ProfesionesService} from "./services/profesiones.service";
-import {AsociacionesService} from "./services/asociaciones.service";
-import {UserService} from "./services/user.service";
-import {NoticiasService} from "./services/noticias.service";
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
@@ -33,11 +27,22 @@ import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
+import { Bloque3Component } from './components/expediente/bloque3/bloque3.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
 import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedientes.component';
-import { RecursoComponent } from './components/recurso/recurso.component';
+import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
+import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
+
+import { KeysPipe } from './pipes/keys.pipe';
+
+//Services
+import {ProfesionesService} from "./services/profesiones.service";
+import {AsociacionesService} from "./services/asociaciones.service";
+import {UserService} from "./services/user.service";
+import {NoticiasService} from "./services/noticias.service";
 
 @NgModule({
   declarations: [
@@ -60,19 +65,24 @@ import { RecursoComponent } from './components/recurso/recurso.component';
     ErrorComponent,
     Bloque1Component,
     Bloque2Component,
+    Bloque3Component,
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
     VermasComponent,
     MisExpedientesComponent,
-    RecursoComponent
+    RecursoComponent,
+    RecursosComponent,
+    MotorGraficoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     APP_ROUTING,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [
     ProfesionesService,
