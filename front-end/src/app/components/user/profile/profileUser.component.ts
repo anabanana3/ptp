@@ -29,6 +29,8 @@ export class ProfileUserComponent {
     Foto: '',
   };
 
+  fP:File;
+
   pass={
     newpass: '',
     repeatpass: ''
@@ -87,6 +89,8 @@ export class ProfileUserComponent {
       this.user.Asociacion = this.user.Asociacion.split("'")[1];
       this.user.Apellidos = this.user.Apellidos.split("'")[1];
       this.user.DNI = this.user.DNI.split("'")[1];
+      this.user.F_Nacimiento = data[0].F_Nacimiento.split('T')[0];
+
       console.log(this.user);
     })
   }
@@ -123,6 +127,36 @@ export class ProfileUserComponent {
     console.log(form);
   }
 
+  save3(forma:NgForm){
+    // TODO: Campos que se pueden modificar
+      /*
+        => Nombre
+        => Apellidos
+        => Sexo
+        => Profesion
+        => Direccion
+        => Foto
+        => Password
+
+      */
+      console.log(forma.value);
+      console.log(this.fP);
+      let datos = new FormData();
+      if(this.fP !=null){
+        let tipo = this.fP.type;
+        let aux = tipo.split('/')[0];
+        let size = this.fP.size;
+        if(aux === 'image' && size <= 5242880){
+          //Archivo valido
+          datos.append('fotoP', this.fP, this.fP.name);
+        }else{
+          this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
+      }
+
+  }
+
   validate(pass){
     var score = JSON.stringify(zxcvbn(pass).score);
     document.getElementById("value").style.width = this.fuerza[score].width;
@@ -130,4 +164,11 @@ export class ProfileUserComponent {
 
     this.scorepass = score;
   }
+
+  //Metodo para recuperar el fichero
+    onFileChange(event){
+      let files = event.target.files[0];
+      this.fP = files;
+    }
+
 }

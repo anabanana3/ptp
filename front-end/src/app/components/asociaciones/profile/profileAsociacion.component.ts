@@ -110,6 +110,8 @@ mensaje:string = '';
     })
   }
 
+
+
 //Metodo para recuperar el fichero
   onFileChange(event){
     let files = event.target.files[0];
