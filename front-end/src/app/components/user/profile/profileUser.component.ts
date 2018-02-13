@@ -119,6 +119,10 @@ export class ProfileUserComponent {
 
   }
 
+  save2(form:NgForm){
+    console.log(form);
+  }
+
   validate(pass){
     var score = JSON.stringify(zxcvbn(pass).score);
     document.getElementById("value").style.width = this.fuerza[score].width;

@@ -10,11 +10,10 @@
     <hr>
 
     <div id="alert">{{mensaje}}</div>
-
-    <form (ngSubmit)="save(forma)" #forma="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
+    <form (ngSubmit)="save(form)" #form="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
       <div style="margin-right:10%;">
         <label for="nombre">Nombre Asociación:</label>
-        <input type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaCampo" disabled>
+        <input [(ngModel)]="asociacion.Nombre" type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaCampo" disabled>
       </div>
       <div class="" style="margin-right:10%;">
         <label for="email">Email:</label>
@@ -45,10 +44,13 @@
           <input type="password" [(ngModel)]="asociacion.Password" name="newpassword" value="" id="newpass" class="lineaCampo">
         </div>
       </div>
-
-      <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
-        Guardar cambios
-      </button>
+      <div>
+        <label for="fotoP">Foto de perfil</label>
+        <input name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
+        <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
+              Guardar cambios
+        </button>
+      </div>
     </form>
   </div>
 </div>

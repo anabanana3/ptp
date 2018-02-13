@@ -19,6 +19,8 @@ urlTiposMGF:string ='https://aisha.ovh/api/mutilacion';
 //Para obtener los datos
 urlCompMadre:string ='https://aisha.ovh/api/compMadre';
 urlCompNacido:string ='https://aisha.ovh/api/compNacido';
+//Expedientes de un usuario
+urlExp:string = 'https://aisha.ovh/api/privados';
 
 
   constructor(private http:Http) { }
@@ -203,6 +205,22 @@ getCompMadre(){
 }
 getCompNacido(){
   return this.http.get(this.urlCompNacido).map(res=> res.json());
+}
+
+getExpedientesUser(p, tamPag){
+  let usuario = sessionStorage.iD;
+  let url = this.urlExp+'/'+usuario+'/pag='+p+'&n='+tamPag;
+
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+
+  return this.http.get(url, {headers}).map(res=>{
+    return res.json();
+  })
+
 }
 
 }
