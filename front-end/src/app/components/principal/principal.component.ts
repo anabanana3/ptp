@@ -87,12 +87,28 @@ export class PrincipalComponent implements OnInit {
       console.log("mediaa post id:" + this.arrayIds[0]);
       console.log("mediaa post id2:" + this.arrayIds[1]);
       console.log("mediaa post id3:" + this.arrayIds[2]);
+
+      var caca =   document.getElementById("paraImg");
+      var caca2 =   document.getElementById("paraImg2");
+      var caca3 =   document.getElementById("paraImg3");
+
+      /*document.getElementById("paraImg").style.backgroundImage=url("this.arrayIds[0]");*/
+      /*caca.style.background='url('this.arrayIds[0]')';*/
+      /*caca.style.background='url("this.arrayIds[0]")';*/
+      /*caca.style.background='url("../../assets/img/Carrousel.png")';*/
+
+
+      caca.style.backgroundImage = 'url("'+this.arrayIds[0]+'")';
+      caca2.style.backgroundImage = 'url("'+this.arrayIds[1]+'")';
+      caca3.style.backgroundImage = 'url("'+this.arrayIds[2]+'")';
+
     });
 
   }
 
   ngOnInit() {
   }
+
 
 
 
