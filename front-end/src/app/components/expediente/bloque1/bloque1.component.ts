@@ -35,7 +35,7 @@ export class Bloque1Component implements OnInit {
   menor:Persona = {
     Nombre:'',
     Edad:0,
-    ID_Sexo:null,
+    ID_Sexo:1,
     ID_Etnia:null,
     ID_Lugar:'',
 
@@ -52,7 +52,7 @@ export class Bloque1Component implements OnInit {
   padre:Persona = {
     Nombre:'',
     Edad:0,
-    ID_Sexo:1,
+    ID_Sexo:2,
     ID_Etnia:null,
     ID_Lugar:'',
     ID_Actividad:null
@@ -90,7 +90,7 @@ export class Bloque1Component implements OnInit {
       'menor': new FormGroup({
               'nombre': new FormControl('', Validators.required),
               'edad': new FormControl('', Validators.required),
-              'sexo': new FormControl('', Validators.required),
+              'sexo': new FormControl(),
               'etnia': new FormControl('', Validators.required),
               'lugarN': new FormControl('', Validators.required),
               'actividad': new FormControl(null)
@@ -185,6 +185,12 @@ guardarDatos(){
 //Funcion de prueba para no estar creando expedientes tontamnte
 guardarDatos2(){
   console.log(this.form.value);
+  console.log('Muestro la menor');
+  console.log(this.menor);
+  console.log('Muestro a la madre');
+  console.log(this.madre);
+  console.log('Muestro al padre');
+  console.log(this.padre);
   //Por último => todo correcto cambiamos de bloque
   console.log('Cambio de bloque');
 
