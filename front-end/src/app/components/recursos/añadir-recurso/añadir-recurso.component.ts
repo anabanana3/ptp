@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-
+import { MaterialService } from "../../../services/material.service";
 import {Recurso} from '../../../interfaces/recurso.interface';
 
 
@@ -23,7 +22,7 @@ export class RecursoComponent {
   error:boolean = true;
   mensaje:string = '';
 
-  constructor() {
+  constructor(private _materialService:MaterialService) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -58,10 +57,11 @@ export class RecursoComponent {
     }
 
     let fileSize = this.file.size;
-    console.log(fileSize);
-
-    this.mensaje = 'Campos Completos';
-    document.getElementById('alert').className = 'alert alert-success';
-    return;
+    
+    this._materialService.newMaterial(this.recurso).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 }
