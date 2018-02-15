@@ -13,5 +13,21 @@
     Añadir recurso
   </button>
 
+  <div class="recursos-container">
+    <div *ngFor="let r of recursos" class="recurso-item">
+      <div class="recurso-img">
+        <img class="imgExp" src="/assets/img/pdf.png" alt="Logo recurso" style="width: 50%;">
+      </div>
+      <!-- <div class="recurso-descripcion">
+        <p>{{r.Descripcion.split("'")[1]}}</p>
+      </div> -->
+      <div>
+        <p>{{r.Titulo.split("'")[1]}}</p>
+        <p class="textGreyDarken text12">{{r.Nombre}}</p>
+        <button class="btn-border bgColorPink">Descargar</button>
+      </div>
+    </div>
+  </div>
+
   <app-footer></app-footer>
 </div>

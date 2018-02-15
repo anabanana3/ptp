@@ -21,7 +21,6 @@ export class ProfileAsociacionComponent {
     Password: '',
     CIF: '',
     Foto: '',
-    UploadFoto:null
   }
 //Variable que almacena la foto de perfil
 fP:File;
