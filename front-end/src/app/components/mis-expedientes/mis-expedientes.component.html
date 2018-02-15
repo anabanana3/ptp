@@ -4,25 +4,31 @@
 <div *ngIf="!error">
   <app-header></app-header>
 
-<div>
-  <a [routerLink]="['/expediente']">Nuevo Expediente</a>
+<div *ngIf="expedientes.length > 0">
+  <a [routerLink]="['/expediente']"><img src="/assets/img/IconMas.png" alt="icono mas">Nuevo Expediente</a>
 </div>
 
-<div>
-  <button>FECHA</button><button>RELEVANCIA</button><button>Z-A</button>
+<div class="options">
+  <button class="btn-border bgColorPink">FECHA</button><button class="btn-border bgColorPink">RELEVANCIA</button><button class="btn-border bgColorPink">Z-A</button>
   <label for="desc">Descendiente</label>
   <input type="checkbox" id=desc>
 </div>
 
-<div class="expediente-container">
-  <div *ngFor="let e of expedientes" class=expediente>
+<div *ngIf="expedientes.length>0" class="expediente-container">
+  <div  *ngFor="let e of expedientes" class=expediente>
     <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
     <div class="expediente-body">
       <p>{{e.Descripcion.split("'")[1]}}</p>
       <p>{{e.Fecha.split('T')[0]}}</p>
-      <button> Ver más</button>
+      <button class="btn-border bgColorPink"> Ver más</button>
     </div>
   </div>
+</div>
+
+<div *ngIf="expedientes.length ==0" class="expedientes-container">
+  <p> Todavia no tienes almacenado ningún expediente
+    <a [routerLink]="['/expediente']"><img src="/assets/img/IconMas.png" alt="icono mas">Nuevo Expediente</a>
+  </p>
 </div>
 
 <ul class="pagination" *ngIf="paginas.length >1">

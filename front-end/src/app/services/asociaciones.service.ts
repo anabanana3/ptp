@@ -101,7 +101,7 @@ upload(form, idA){
     'Authorization': token
   })
   let url ='https://aisha.ovh/api/asociacion/upload/'+idA;
-  return this.http.post(url, form, {headers}).map(res=>{
+  return this.http.post(url, form).map(res=>{
     return res.json();
   })
 }
