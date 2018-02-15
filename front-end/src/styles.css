@@ -861,10 +861,23 @@ canvas{
 }
 .expediente{
   flex-direction: row;
-  margin-bottom: 2%;
+  overflow: hidden;
+  display: block;
+  width: auto;
+  /*margin-bottom: 2%;*/
+  margin: 1%;
+  padding: 1%;
+  position: relative;
+
 
 }
 
+.expediente-body{
+  position: absolute;
+  width:100%;
+  left: 0;
+  bottom: 0;
+}
 .expediente>div>p{
   padding: 5px;
 

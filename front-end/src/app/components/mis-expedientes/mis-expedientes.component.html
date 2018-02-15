@@ -5,7 +5,7 @@
   <app-header></app-header>
 
 <div *ngIf="expedientes.length > 0">
-  <a [routerLink]="['/expediente']"><img src="/assets/img/IconMas.png" alt="icono mas">Nuevo Expediente</a>
+  <a [routerLink]="['/expediente']"><span class="icon-plus" style="padding : 3px"></span>Nuevo Expediente</a>
 </div>
 
 <div class="options">
@@ -25,9 +25,11 @@
   </div>
 </div>
 
-<div *ngIf="expedientes.length ==0" class="expedientes-container">
-  <p> Todavia no tienes almacenado ningún expediente
-    <a [routerLink]="['/expediente']"><img src="/assets/img/IconMas.png" alt="icono mas">Nuevo Expediente</a>
+
+
+<div *ngIf="expedientes.length ==0" class="expediente-container">
+  <p> Todavia no tienes almacenado ningún expediente {{paginas.length}}
+    <a [routerLink]="['/expediente']"><span class="icon-plus" style="padding : 3px"></span>Nuevo Expediente</a>
   </p>
 </div>
 

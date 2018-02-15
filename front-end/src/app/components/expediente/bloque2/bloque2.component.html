@@ -41,8 +41,8 @@
 
 <div>
 <h2>Antecedentes e historia de partos
-  <span *ngIf="hayParto==false" (click)="hayParto =!hayParto">Mostrar</span>
-  <span *ngIf="hayParto==true" (click)="hayParto =!hayParto">Ocultar</span>
+  <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="icon-plus" style="padding : 3px"></span>
+  <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="icon-minus" style="padding : 3px"></span>
 </h2>
 <div *ngIf="hayParto==true">
   <label>Introduzca el numero de partos de los que desea guardar informacion</label>

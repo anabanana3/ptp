@@ -13,7 +13,7 @@ export class MisExpedientesComponent implements OnInit {
 
   expedientes = new Array();
   //Para la paginacion
-  paginas = new Array(3);
+  paginas = new Array();
   pagNext:number;
   pagBack:number;
   pagActual:number;
