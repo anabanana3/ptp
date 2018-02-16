@@ -11,9 +11,9 @@ import { ExpedientesService } from '../../services/expedientes.service';
 
 export class MisExpedientesComponent implements OnInit {
 
-  expedientes;
+  expedientes = new Array();
   //Para la paginacion
-  paginas = new Array(3);
+  paginas = new Array();
   pagNext:number;
   pagBack:number;
   pagActual:number;
