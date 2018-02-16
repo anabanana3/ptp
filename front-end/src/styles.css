@@ -879,20 +879,36 @@ canvas{
   padding: 1%;
 }
 
-.recurso-img{
+.recurso-info{
+  position: relative;
+}
+
+.recurso-info img{
   opacity: 1;
   top: 0;
   width: 100%;
 }
 
-.recurso-img:hover{
+.recurso-info:hover img{
   opacity: 0.2;
 }
 
-.recurso-descripcion{
-  top: 0;
-  opacity: 0;
-  width: 100%;
+.recurso-info:hover p{
+  opacity: 1;
+}
+
+.recurso-info p{
+  position: absolute;
+	top: 0;
+	left: 0;
+	transition: opacity 1s;
+	opacity: 0;
+	padding: .2em;
+	width: 100%;
+	background: #333333;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recurso-descripcion:hover{
