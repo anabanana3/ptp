@@ -14,12 +14,19 @@
     </button>
   </div>
   <h1>Asociacion {{asociacion}}</h1>
+  <button
+    type="submit"
+    name="button"
+    class="btn-fill textoBlanco text12"
+    [routerLink]="['/recursos']"
+    style="margin:1%;">
+    Biblioteca de Recursos</button>
   <div>
-    <button type="button" name="button" class="btn-inline textoBlanco"
+    <button type="button" name="button" class="btn-entrar text12 bgColorBlack "
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
     </button>
-    <button type="button" name="button" class="btn-inline textoBlanco"
+    <button type="button" name="button" class="btn-entrar text12 bgColorBlack"
             style="margin-bottom: 2%;" (click)="view(1)">
             Registrados
     </button>
