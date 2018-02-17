@@ -1,9 +1,8 @@
 export interface Recurso{
-  Titulo?:string;
+  Titulo:string;
   ID_Material?:number;
   Descripcion?:string;
-  Patch:string;
+  Archivo?:File;
   Publico?:number;
   ID_Formato:number;
-  ID_Usuario:number;
 }
