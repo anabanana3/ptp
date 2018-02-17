@@ -152,9 +152,8 @@ canvas{
 
 .lineaDiv{
   border: 1px solid #DBDBDB;
-  margin-left: 5%;
-  margin-bottom: 25px;
-  margin-top: 50px;
+  margin: auto;
+  margin-bottom: 2%;
   width: 90%;
 }
 
@@ -891,6 +890,19 @@ canvas{
 }
 
 /**** Recursos ****/
+.recursos-container-filter{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.recursos-container-filter p:hover, .recursos-container-filter p:focus{
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .recursos-container{
   display: flex;
   justify-content: space-around;
@@ -903,20 +915,36 @@ canvas{
   padding: 1%;
 }
 
-.recurso-img{
+.recurso-info{
+  position: relative;
+}
+
+.recurso-info img{
   opacity: 1;
   top: 0;
   width: 100%;
 }
 
-.recurso-img:hover{
+.recurso-info:hover img{
   opacity: 0.2;
 }
 
-.recurso-descripcion{
-  top: 0;
-  opacity: 0;
-  width: 100%;
+.recurso-info:hover p{
+  opacity: 1;
+}
+
+.recurso-info p{
+  position: absolute;
+	top: 0;
+	left: 0;
+	transition: opacity 1s;
+	opacity: 0;
+	padding: .2em;
+	width: 100%;
+	background: #333333;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recurso-descripcion:hover{
