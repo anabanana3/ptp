@@ -860,6 +860,7 @@ canvas{
   overflow: hidden;
 }
 .expediente{
+  position: relative;
   flex-direction: row;
   overflow: hidden;
   display: block;
@@ -867,21 +868,28 @@ canvas{
   /*margin-bottom: 2%;*/
   margin: 1%;
   padding: 1%;
-  position: relative;
+}
+.expediente:hover>img{
+  opacity: .5;
+}
 
-
+.expedienteDesc{
+  position: absolute;
+  letf:0;
+  top:0;
+  width: 100%;
+  color:red;
+  opacity: 0;
+  transition: opacity .5s;
 }
 
 .expediente-body{
-  position: absolute;
-  width:100%;
-  left: 0;
-  bottom: 0;
-}
-.expediente>div>p{
-  padding: 5px;
+  /*Este tamaño es el ancho de la imagen del logo*/
+  width: 200px;
+  margin: auto;
 
 }
+
 /**** Recursos ****/
 .recursos-container{
   display: flex;

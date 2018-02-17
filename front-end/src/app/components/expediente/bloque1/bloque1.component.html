@@ -4,6 +4,8 @@
 <div class="grupoForm">
     <h2 class="cherry ">Información básica sobre el expediente</h2>
   <div>
+    <label for="titulo">Titulo</label>
+    <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
     <label for=fechaC>Fecha de detección del caso:</label>
     <input [(ngModel)]="expediente.Fecha" type="date"  name="fechaC" formControlName="fechaC" id="fechaC" >
 

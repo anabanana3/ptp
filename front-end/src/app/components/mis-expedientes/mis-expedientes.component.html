@@ -17,8 +17,11 @@
 <div *ngIf="expedientes.length>0" class="expediente-container">
   <div  *ngFor="let e of expedientes" class=expediente>
     <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
-    <div class="expediente-body">
+    <div class="expedienteDesc">
       <p>{{e.Descripcion.split("'")[1]}}</p>
+    </div>
+    <div class="expediente-body">
+      <p>{{e.Titulo}}</p>
       <p>{{e.Fecha.split('T')[0]}}</p>
       <button class="btn-border bgColorPink"> Ver más</button>
     </div>

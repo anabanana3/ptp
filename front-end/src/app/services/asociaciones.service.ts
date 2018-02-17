@@ -97,10 +97,7 @@ export class AsociacionesService {
 //Metodo para modificar los datos de una Asociacion
 upload(form, idA){
   let token = sessionStorage.token;
-  let headers = new Headers({
-    'Authorization': token
-  })
-  let url ='https://aisha.ovh/api/asociacion/upload/'+idA;
+  let url ='https://aisha.ovh/api/asociacion/upload/'+token;
   return this.http.post(url, form).map(res=>{
     return res.json();
   })

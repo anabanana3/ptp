@@ -23,6 +23,7 @@ export class Bloque1Component implements OnInit {
   form:FormGroup;
 
   expediente:Expedinete ={
+    Titulo:'',
     ID_Expediente:null,
     Fecha:null,
     Descripcion:'',
@@ -84,6 +85,7 @@ export class Bloque1Component implements OnInit {
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 
    this.form = new FormGroup({
+      'titulo': new FormControl('', Validators.required),
       'fechaC': new FormControl('', Validators.required),
       'descripcion': new FormControl('Hola', Validators.required),
       'lugarD': new FormControl('', Validators.required),
@@ -174,14 +176,8 @@ guardarDatos(){
         console.log(data);
       });
   });
-/*  console.log(this.form.value);
-  //Primero creo el expedienteBasico => necesito antes crear la persona implicada(hacerlo despues)
-  console.log(this.expediente);
-  console.log(this.menor);*/
-
 
 }
-
 //Funcion de prueba para no estar creando expedientes tontamnte
 guardarDatos2(){
   console.log(this.form.value);
@@ -193,6 +189,9 @@ guardarDatos2(){
   console.log(this.padre);
   //Por último => todo correcto cambiamos de bloque
   console.log('Cambio de bloque');
+
+  console.log('Muestro el expediente'),
+  console.log(this.expediente);
 
   this.expedienteComponent.bloque = 2;
 
