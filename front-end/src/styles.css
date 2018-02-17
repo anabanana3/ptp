@@ -882,6 +882,19 @@ canvas{
 
 }
 /**** Recursos ****/
+.recursos-container-filter{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.recursos-container-filter p:hover, .recursos-container-filter p:focus{
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .recursos-container{
   display: flex;
   justify-content: space-around;

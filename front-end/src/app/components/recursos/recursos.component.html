@@ -3,15 +3,39 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-
-  <h3>Biblioteca de Recursos</h3>
+  <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
+  </button>
   <button
+    style="margin:2%;"
     [routerLink]="['/recurso']"
     class="btn-fill text12 textPink"
     type="button"
     name="button">
     Añadir recurso
   </button>
+  <div class="recursos-container-filter">
+    <div style="padding: 20px; display:inline-flex">
+      <p id="propios" (click)="mostrar(1)">Subidos por mí</p>
+      <p style="margin:0px 5px 0px 5px;">|</p>
+      <p id="publicos" (click)="mostrar(2)">Públicos</p>
+    </div>
+
+    <form (ngSubmit)="buscar()" #forma="ngForm">
+      <input
+        id="fieldSearch"
+        class="lineaCampo"
+        type="text"
+        name="fieldSearch"
+        placeholder="Buscar recurso..."
+        [(ngModel)]="fieldSearch"
+        style="width:80%;"/>
+        <button
+          style="background:none; border:none; padding:0; font-size:15px;"
+          type="submit"
+          class="icon-search">
+        </button>
+      </form>
+  </div>
 
   <div class="recursos-container">
     <div *ngFor="let r of recursos" class="recurso-item">

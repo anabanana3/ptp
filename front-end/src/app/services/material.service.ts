@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class MaterialService {
   nuevoMaterial:string = "https://aisha.ovh/api/material/";
-  materiales:string = "https://aisha.ovh/api/material/";
+  materialesPropios:string = "https://aisha.ovh/api/material/usuario/";
   materialesPublicos:string = "https://aisha.ovh/api/material/publicos";
   formatos:string = "https://aisha.ovh/api/formato/";
 
@@ -34,19 +34,23 @@ export class MaterialService {
     return this.http.get(this.formatos, {headers}).map(res=>res.json());
   }
 
-  getMateriales(){
+  getMaterialesPropios(){
     let token = sessionStorage.getItem('token');
+    let id = sessionStorage.getItem('iD');
+    let url = this.materialesPropios + id;
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
     });
 
-    return this.http.get(this.materiales, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 
   getMaterialesPublicos(){
+    let token = sessionStorage.getItem('token');
     let headers = new Headers({
       'Content-Type':'application/json',
+      'Authorization': token
     });
 
     return this.http.get(this.materialesPublicos, {headers}).map(res=>res.json());
