@@ -28,6 +28,7 @@ import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
 import { Bloque3Component } from './components/expediente/bloque3/bloque3.component';
+import { Bloque4Component } from './components/expediente/bloque4/bloque4.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
@@ -66,6 +67,7 @@ import {NoticiasService} from "./services/noticias.service";
     Bloque1Component,
     Bloque2Component,
     Bloque3Component,
+    Bloque4Component,
     Bloque5Component,
     HeaderComponent,
     FooterComponent,

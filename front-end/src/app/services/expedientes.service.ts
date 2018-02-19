@@ -10,6 +10,8 @@ urlExpediente:string = 'https://www.aisha.ovh/api/expedientes';
 urlPersona:string = 'https://www.aisha.ovh/api/persona';
 urlBloque:string = 'https://www.aisha.ovh/api/camposb1';
 urlBloque2:string = 'https://www.aisha.ovh/api/camposb2';
+urlBloque3:string = 'https://www.aisha.ovh/api/camposb3';
+urlBloque4:string = 'https://www.aisha.ovh/api/camposb4';
 urlBloque5:string = 'https://aisha.ovh/api/camposb5';
 urlPartos:string = 'https://aisha.ovh/api/parto'
 urlFamiliar:string = 'https://aisha.ovh/api/familiar';
@@ -19,6 +21,7 @@ urlTiposMGF:string ='https://aisha.ovh/api/mutilacion';
 //Para obtener los datos
 urlCompMadre:string ='https://aisha.ovh/api/compMadre';
 urlCompNacido:string ='https://aisha.ovh/api/compNacido';
+urlConsecSalud:string ='https://aisha.ovh/api/consecSalud';
 
 
   constructor(private http:Http) { }
@@ -171,7 +174,33 @@ addCompNacidoParto(idP, sel){
       return res.json();
     });
   }
-
+  addBloque3(bloque){
+    let body = JSON.stringify(bloque);
+    console.log('Muestro lo que recibo en el servicio');
+    console.log(bloque);
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.post(this.urlBloque3, body, {headers}).map(res=>{
+            console.log(res.json());
+            return res.json();
+    });
+  }
+  addBloque4(bloque){
+    let body = JSON.stringify(bloque);
+    console.log('Muestro lo que recibo en el servicio');
+    console.log(bloque);
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.post(this.urlBloque4, body, {headers}).map(res=>{
+            return res.json();
+    })
+  }
   addIndicadores(exp, bloque, sel){
     let token =  sessionStorage.token;
     let headers = new Headers({
@@ -184,7 +213,7 @@ addCompNacidoParto(idP, sel){
     })
   }
 
-  getIdicadores(){
+  getIndicadores(){
     return this.http.get(this.urlIndicadores).map(res=>{
       return res.json();
     })
@@ -203,6 +232,22 @@ getCompMadre(){
 }
 getCompNacido(){
   return this.http.get(this.urlCompNacido).map(res=> res.json());
+}
+getConsecuenciasSalud(){
+  return this.http.get(this.urlConsecSalud).map(res=>{
+    return res.json();
+  })
+}
+addConsecuenciasSalud(exp, bloque, sel){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
+  return this.http.post(url, sel,{headers}).map(res=>{
+    return res.json();
+  })
 }
 
 }

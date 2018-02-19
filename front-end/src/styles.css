@@ -845,6 +845,22 @@ canvas{
   font-size: 140%;
   color: white;
 }
+/***** TOOLTIP *****/
+.info{
+  color: white;
+  border-radius: 100%;
+  padding: 0.2%;
+  font-size: 12px;
+  background: #880042;
+}
+
+.info:hover{
+  background: #0C8A9C;
+}
+.mat-tooltip {
+  background: #0C8A9C;
+  font-size: 14px;
+}
 
 /**** RESPONSIVE ****/
 @media (max-width: 700px) { /*1384*/
