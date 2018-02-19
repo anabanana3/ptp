@@ -79,6 +79,7 @@
       "src": "fontawesome"
     },
     {
+<<<<<<< HEAD
       "uid": "ce3cf091d6ebd004dd0b52d24074e6e3",
       "css": "help",
       "code": 61736,
@@ -88,6 +89,23 @@
       "uid": "3d4ea8a78dc34efe891f3a0f3d961274",
       "css": "info",
       "code": 61737,
+=======
+      "uid": "44e04715aecbca7f266a17d5a7863c68",
+      "css": "plus",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "861ab06e455e2de3232ebef67d60d708",
+      "css": "minus",
+      "code": 59401,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59402,
+>>>>>>> ef3c15d5f9bfa1a29ac46afdfebe23efd844d545
       "src": "fontawesome"
     }
   ]

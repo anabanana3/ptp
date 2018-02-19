@@ -44,6 +44,7 @@ import {ProfesionesService} from "./services/profesiones.service";
 import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
+import {MaterialService} from "./services/material.service";
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import {NoticiasService} from "./services/noticias.service";
     AsociacionesService,
     UserService,
     ExpedientesService,
-    NoticiasService
+    NoticiasService,
+    MaterialService
   ],
   bootstrap: [AppComponent]
 })

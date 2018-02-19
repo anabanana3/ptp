@@ -56,23 +56,6 @@ export class AsociacionesService {
         })
   }
 
-  updateAsociacion(asociacion:Asociacion){
-    let body = JSON.stringify(asociacion);
-    let token = sessionStorage.getItem('token');
-
-    let url = this.url + asociacion.ID_Asociacion;
-    let headers = new Headers({
-      'Content-Type':'application/json',
-      'Authorization': token
-    });
-
-    return this.http.put(url, body, {headers})
-        .map(res=>{
-          console.log(res.json());
-          return res.json();
-        })
-  }
-
   loginAsociacion(json){ //json con email y contrasena
     let body = JSON.stringify(json);
 
@@ -111,5 +94,16 @@ export class AsociacionesService {
           return res.json();
         })
   }
+//Metodo para modificar los datos de una Asociacion
+upload(form, idA){
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Authorization': token
+  })
+  let url ='https://aisha.ovh/api/asociacion/upload/'+idA;
+  return this.http.post(url, form).map(res=>{
+    return res.json();
+  })
+}
 
 }

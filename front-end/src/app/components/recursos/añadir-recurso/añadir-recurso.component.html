@@ -3,7 +3,8 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-
+  <button [routerLink]="['/recursos']"type="button" name="button" class="btn-return textoBlanco icon-return">
+  </button>
   <h3>Añadir Recurso</h3>
 
   <div class="divBlanco bgColorWhite">
@@ -13,12 +14,12 @@
       <div class="camposForm">
         <label for="titulo">Título: </label>
         <input [(ngModel)]="recurso.Titulo" class="lineaCampo" type="text" name="titulo" id="titulo" required>
-        <label for="archivo">Archivo: </label>
+        <label for="Archivo">Archivo: </label>
         <input
           (change)="loadFile($event)"
           class="lineaCampo"
           type="file"
-          name="archivo"
+          name="Archivo"
           id="file"
           accept=".jpg, .jpeg, .png, .pdf">
         <label for="descripcion">Descripción: </label>
@@ -34,7 +35,7 @@
           <label for="si">Sí</label>
           <input [(ngModel)]="recurso.Publico" type="radio" name="si" value="1" id="si">
           <label for="no">No</label>
-          <input [(ngModel)]="recurso.Publico" type="radio" name="no" value="2" id="no">
+          <input [(ngModel)]="recurso.Publico" type="radio" name="no" value="0" id="no">
         </div>
       </div>
 

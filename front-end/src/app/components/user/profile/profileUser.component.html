@@ -32,7 +32,8 @@
     </div>
 
     <div style="width: 50%; float: left;margin-left: 5%;">
-      <form (ngSubmit)="save(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
+      <!-- TODO: La función buena es save -->
+      <form (ngSubmit)="save3(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
 
         <!-- [(ngModel)]="" -->
         <label for="nombre">Nombre</label>
@@ -45,7 +46,7 @@
           <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
                  value="user[0].Email" name="email" id="email" disabled="false">
          <label for="nacimiento">Fecha de Nacimiento</label>
-           <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="text"
+           <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="date"
                   value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false" required>
         <label for="sexo">Sexo</label>
         <div class="radioButtons">
@@ -71,6 +72,9 @@
        <label for="direccion">Dirección</label>
          <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text"
                 value="user[0].Direccion" name="direccion" id="direccion" required>
+
+        <label for="fotoP">Foto de perfil</label>
+        <input class="lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
 
         <button (click)="change = !change" type="button" name="button"
                 class="submitGris textoBlanco" style="margin-bottom:5%;">

@@ -1,6 +1,6 @@
 <!--TODO Revisar como hacer para simplificar la parte del JacaScript -->
 
-<form [formGroup]="form" (ngSubmit)="guardarDatos2()">
+<form [formGroup]="form" (ngSubmit)="guardarDatos()">
 <div class="grupoForm">
     <h2 class="cherry ">Información básica sobre el expediente</h2>
   <div>
@@ -21,71 +21,48 @@
 <div class="grupoForm" formGroupName = "menor">
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-  <h2>Datos sobre el/la menor</h2>
+  <h2>Datos sobre la menor</h2>
 
   <label for="nombreM">Nombre completo de la menor:</label>
   <input [(ngModel)]="menor.Nombre" type="text" id="nombreM" placeholder="nombre de la menor" formControlName="nombre">
 
   <label for="edadM">Edad:</label>
   <input [(ngModel)]="menor.Edad" type="number" id="edadM" formControlName="edad">
-
-<!--REVISAR PORQUE SE SELECCIONAN LAS DOS OPCIONES-->
-  <div>
-    <label>Sexo:</label>
-    <label for="mujer">Mujer</label>
-    <input [(ngModel)]="menor.ID_Sexo" type="radio" name="sexo" value={{1}} id="mujer" formControlName="sexo" >
-    <label for="hombre">Hombre</label>
-    <input [(ngModel)]="menor.ID_Sexo" type="radio" name="sexo" value={{2}} id="hombre" formControlName="sexo" >
-    </div>
-
-    <label for="etniaM">Etina de origen:</label>
-    <select [(ngModel)]="menor.ID_Etnia" id="etniaM" formControlName="etnia">
-      <option>Selecciona una etnia de procedencia</option>
-      <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
-    </select>
-    <label  for="lugarN">Lugar de nacimiento:</label>
-    <input [(ngModel)]="menor.ID_Lugar" type="text" id="lugarN" name="lugarN" placeholder="Lugar de nacimiento" formControlName="lugarN">
-
+  <label for="etniaM">Etina de origen:</label>
+  <select [(ngModel)]="menor.ID_Etnia" id="etniaM" formControlName="etnia">
+    <option>Selecciona una etnia de procedencia</option>
+    <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+  </select>
+  <label  for="lugarN">Lugar de nacimiento:</label>
+  <input [(ngModel)]="menor.ID_Lugar" type="text" id="lugarN" name="lugarN" placeholder="Lugar de nacimiento" formControlName="lugarN">
 </div>
 <hr>
 <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
 
-
 <div class="grupoForm" formGroupName="madre">
   <h2>Datos sobre la madre
-    <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre">Icono mostrar</span>
-    <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre">Icono ocultar</span>
+    <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="icon-plus" style="padding : 3px"></span>
+    <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="icon-minus" style="padding : 3px"></span>
   </h2>
-  <div *ngIf="HayMadre==true">
+<div *ngIf="HayMadre==true">
 
   <label for="nombreMa">Nombre de la madre</label>
-  <input [(ngModel)]="madre.Nombre" type="text" id="nombreMa" placeholder="nombre de la madre" formControlName="nombre" required>
+  <input [(ngModel)]="madre.Nombre" required type="text" id="nombreMa" placeholder="nombre de la madre" formControlName="nombre" >
 
   <label for="edadMa">Edad</label>
   <input [(ngModel)]="madre.Edad" type="number" id="edadMa" formControlName="edad">
-
-<!--REVISAR PORQUE SE SELECCIONAN LAS DOS OPCIONES -->
-  <div>
-    <label>Sexo:</label>
-    <label for="mujer2">Mujer</label>
-    <input [(ngModel)]="madre.ID_Sexo" type="radio" name="sexo2" value="1" id="mujer2" formControlName="sexo2">
-    <label for="hombre2">Hombre</label>
-    <input [(ngModel)]="madre.ID_Sexo" type="radio" name="sexo2" value="2" id="hombre2" formControlName="sexo2">
-    </div>
-
-    <label for="etniaMa">Etina de origen</label>
-    <select [(ngModel)]="madre.ID_Etnia" id="etniaMa" formControlName="etnia">
-      <option>Selecciona una etnia de procedencia</option>
-      <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
-    </select>
-    <label for="lugarNM">Lugar de nacimiento</label>
-    <input [(ngModel)]="madre.ID_Lugar" type="text" id="lugarNM" name="lugarNM" placeholder="Lugar de nacimiento" formControlName="lugarN">
-
-    <label for="actividadM">Actividad laboral de la madre</label>
-    <select [(ngModel)]="madre.ID_Actividad" id="actividadM" formControlName="actividad">
-      <option value="">Desconoce la actividad</option>
-      <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadM">{{a.Nombre}}</option>
-    </select>
+  <label for="etniaMa">Etina de origen</label>
+  <select [(ngModel)]="madre.ID_Etnia" id="etniaMa" formControlName="etnia">
+    <option>Selecciona una etnia de procedencia</option>
+    <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+  </select>
+  <label for="lugarNM">Lugar de nacimiento</label>
+  <input [(ngModel)]="madre.ID_Lugar" type="text" id="lugarNM" name="lugarNM" placeholder="Lugar de nacimiento" formControlName="lugarN">
+  <label for="actividadM">Actividad laboral de la madre</label>
+  <select [(ngModel)]="madre.ID_Actividad" id="actividadM" formControlName="actividad">
+    <option value="">Desconoce la actividad</option>
+    <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadM">{{a.Nombre}}</option>
+  </select>
 </div>
 </div>
 
@@ -96,8 +73,8 @@
 
 <div class="grupoForm"  formGroupName="padre">
   <h2>Datos sobre el padre
-    <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre">Icono mostrar</span>
-    <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre">Icono ocultar</span>
+    <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
+    <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
   </h2>
   <div *ngIf="HayPadre==true">
     <label for="nombrePa">Nombre del padre</label>
@@ -107,13 +84,13 @@
     <input type="number" id="edadPa" formControlName="edad">
 
   <!--REVISAR PORQUE SE SELECCIONAN LAS DOS OPCIONES -->
-    <div>
+    <!-- <div>
       <label>Sexo:</label>
       <label for="mujer3">Mujer</label>
       <input [(ngModel)]="padre.ID_Sexo" type="radio" name="sexo3" value="1" id="mujer3" formControlName="sexo3">
       <label for="hombre3">Hombre</label>
       <input [(ngModel)]="padre.ID_Sexo" type="radio" name="sexo3" value="2" id="hombre3" formControlName="sexo3">
-    </div>
+    </div> -->
 
       <label for="etniaPa">Etina de origen</label>
       <select [(ngModel)]="padre.ID_Etnia" id="etniaPa" formControlName="etnia">
