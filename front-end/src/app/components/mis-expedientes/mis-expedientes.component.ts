@@ -7,7 +7,7 @@ import { ExpedientesService } from '../../services/expedientes.service';
   styleUrls: ['./mis-expedientes.component.css']
 })
 
-
+// TODO: Recoger todos los expedientes de un usuario no solo los provados y luego hacer un boton para obtener publicos/privados
 
 export class MisExpedientesComponent implements OnInit {
 
@@ -18,26 +18,66 @@ export class MisExpedientesComponent implements OnInit {
   pagBack:number;
   pagActual:number;
   tamPag:number=10;
+  error:boolean=true;
+
+//Variables para filtar los expedientes
+  n:number = 3;
+  filtro:number=1;
 
 
   constructor(private _expedientesService:ExpedientesService) {
+    if(sessionStorage.length == 0){
+      return;
+    }else{
+      this.error = false;
+    }
       //Recupero los expedientes del usuario que ha iniciado sesion
-      this._expedientesService.getExpedientesUser(1, this.tamPag).subscribe(data =>{
-        // console.log(data);
+      this._expedientesService.getExpedientesPrivUser(1, this.tamPag).subscribe(data =>{
+         console.log(data);
         this.expedientes = data.Data;
         this.paginacion(data.Pagina, data.Paginas_Totales);
+        //console.log(this.expedientes);
+        document.getElementById("fecha").style.fontWeight = "bold";
+        document.getElementById("priv").style.fontWeight = "bold";
         console.log(this.expedientes);
-      })
+      });
    }
 
   ngOnInit() {
   }
 
+cambio(n){
+  this.n = n;
+  this.getExpedientesUser(1, 10);
+}
 
   getExpedientesUser(pag,tam){
-    this._expedientesService.getExpedientesUser(pag, this.tamPag).subscribe(data=>{
-      this.expedientes = data.Data;
-    })
+    switch(this.n){
+      case 1:
+        console.log("Expedientes Privados");
+        //TODO: Faltan estos metodos
+        document.getElementById("priv").style.fontWeight = "bold";
+        document.getElementById("publ").style.fontWeight = "normal";
+        document.getElementById("todos").style.fontWeight = "normal";
+        this._expedientesService.getExpedientesPrivUser(pag, this.tamPag).subscribe(data=>{
+          this.expedientes = data.Data;
+        });
+      break;
+      case 2:
+        console.log("Expedientes Publicos");
+        this.expedientes = new Array(0);
+        //TODO: Faltan estos metodos
+        document.getElementById("priv").style.fontWeight = "normal";
+        document.getElementById("publ").style.fontWeight = "bold";
+        document.getElementById("todos").style.fontWeight = "normal";
+      break;
+      case 3:
+        document.getElementById("priv").style.fontWeight = "normal";
+        document.getElementById("publ").style.fontWeight = "normal";
+        document.getElementById("todos").style.fontWeight = "bold";
+      break;
+    }
+
   }
   //Funcion para generar las variables de la paginacion
   paginacion( paginaActual , pagTotales){

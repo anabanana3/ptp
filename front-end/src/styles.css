@@ -846,8 +846,27 @@ canvas{
 }
 
 /*Mis Expedientes*/
-.options{
+.optionsExp{
+  display: block;
   margin-top: 2%;
+  margin:auto;
+  width: 80%;
+  overflow: hidden;
+}
+.optionsExp p{
+  cursor:pointer;
+}
+.optionsExp p:hover{
+  font-weight: bold; 
+}
+
+.optionsLeft{
+  float: left;
+  display: inline-flex;
+}
+.optionsRigth{
+  display: inline-flex;
+  float: right;
 }
 .expediente-container{
   display: flex;
@@ -855,11 +874,11 @@ canvas{
   justify-content: center;
   width: 80%;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 2%;
   overflow: hidden;
 }
 .expediente{
-  position: relative;
+  /*position: relative;*/
   flex-direction: row;
   overflow: hidden;
   display: block;
@@ -868,19 +887,44 @@ canvas{
   margin: 1%;
   padding: 1%;
 }
-.expediente:hover>img{
-  opacity: .5;
-}
-
 .expedienteDesc{
-  position: absolute;
+  position: relative;
   letf:0;
   top:0;
   width: 100%;
-  color:red;
-  opacity: 0;
+
+}
+.expedienteDesc img{
+  opacity: 1;
   transition: opacity .5s;
 }
+.expedienteDesc p{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity .5s;
+
+}
+.expediente:hover img{
+  opacity: .5;
+}
+
+
+.expedienteDesc:hover p{
+  opacity: 1;
+  background: #333333;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expedienteDesc:hover img{
+  opacity: .5;
+}
+
+
 
 .expediente-body{
   /*Este tamaño es el ancho de la imagen del logo*/

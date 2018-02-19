@@ -3,40 +3,57 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
+  <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
+  </button>
 
-<div *ngIf="expedientes.length > 0">
-  <a [routerLink]="['/expediente']"><span class="icon-plus" style="padding : 3px"></span>Nuevo Expediente</a>
+<div *ngIf="expedientes.length > 0" style="margin:2%">
+  <button class="btn-fill text12 textPink" [routerLink]="['/expediente']">Nuevo Expediente</button>
 </div>
 
-<div class="options">
-  <button class="btn-border bgColorPink">FECHA</button><button class="btn-border bgColorPink">RELEVANCIA</button><button class="btn-border bgColorPink">Z-A</button>
-  <label for="desc">Descendiente</label>
-  <input type="checkbox" id=desc>
+<div class="optionsExp">
+  <div class="optionsLeft">
+    <p id="fecha">Fecha | </p>
+    <p id="relevancia"> Relevancia | </p>
+    <p id="alfa"> Z-A</p>
+  </div>
+  <div class="optionsRigth">
+    <label style="margin:0" for="desc">Descendiente</label>
+    <input type="checkbox" id=desc>
+  </div>
 </div>
+<div class="optionsExp">
+  <div class="optionsRigth" >
+    <p (click)="cambio(1)" id="priv"> Subidos por mi </p>
+    <p>  | </p>
+    <p (click)="cambio(2)" id=publ> Publicos</p>
+    <p (click)="cambio(3)" id="todos"> | Todos </p>
+  </div>
+  </div>
+
 
 <div *ngIf="expedientes.length>0" class="expediente-container">
   <div  *ngFor="let e of expedientes" class=expediente>
-    <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
     <div class="expedienteDesc">
+      <img class="imgExp" src="/assets/img/folder.png" alt="Logo expediente">
       <p>{{e.Descripcion.split("'")[1]}}</p>
     </div>
     <div class="expediente-body">
       <p>{{e.Titulo}}</p>
       <p>{{e.Fecha.split('T')[0]}}</p>
-      <button class="btn-border bgColorPink"> Ver más</button>
+      <button class="btn-border bgColorPink" style="margin-top:5%"> Ver más</button>
     </div>
   </div>
 </div>
 
 
-
+<!-- TODO: hacer mas condiciones por si no hay expedientes publicos -->
 <div *ngIf="expedientes.length ==0" class="expediente-container">
   <p> Todavia no tienes almacenado ningún expediente {{paginas.length}}
-    <a [routerLink]="['/expediente']"><span class="icon-plus" style="padding : 3px"></span>Nuevo Expediente</a>
+    <button class="btn-fill text12 textPink" [routerLink]="['/expediente']">Nuevo Expediente</button>
   </p>
 </div>
 
-<ul class="pagination" *ngIf="paginas.length >1">
+<ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
 <!--Boton de pagina anterior-->
   <li>
     <a (click)="pasarPagina(pagBack)">
@@ -59,13 +76,3 @@
 
 </div>
 <app-footer></app-footer>
-
-
-<!-- <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> -->
