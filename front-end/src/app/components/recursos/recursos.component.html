@@ -48,10 +48,10 @@
   <div class="recursos-container">
     <div *ngFor="let r of recursos" class="recurso-item">
       <div class="recurso-info">
-        <img *ngIf="r.Formato === 1" class="imgExp" src="/assets/img/PDFIcon.png" alt="Logo pdf" style="width: 50%;">
-        <img *ngIf="r.Formato === 2 && r.Formato === 3" class="imgExp" src="/assets/img/PPTIcon.png" alt="Logo ppt" style="width: 50%;">
-        <img *ngIf="r.Formato === 4" class="imgExp" src="/assets/img/VideoIcon.png" alt="Logo video" style="width: 50%;">
-        <img *ngIf="r.Formato === 5" class="imgExp" src="/assets/img/ImgIcon2.png" alt="Logo imagen" style="width: 50%;">
+        <img *ngIf="r.ID_Formato === 1" class="imgExp" src="/assets/img/pdf.png" alt="Logo pdf" style="width: 50%;">
+        <img *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3" class="imgExp" src="/assets/img/ImgIcon2.png" alt="Logo ppt" style="width: 50%;">
+        <img *ngIf="r.ID_Formato === 4" class="imgExp" src="/assets/img/VideoIcon.png" alt="Logo video" style="width: 50%;">
+        <img *ngIf="r.ID_Formato === 5" class="imgExp" src="/assets/img/PPTIcon.png" alt="Logo imagen" style="width: 50%;">
         <p>{{r.Descripcion.split("'")[1]}}</p>
       </div>
       <div>
