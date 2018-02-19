@@ -17,7 +17,7 @@ export class Bloque5Component implements OnInit {
   //Variable que va a almacenar los indicadores que selecciona el usuario
   selecionados = new Array();
   constructor(private _expedienteService:ExpedientesService) {
-    this._expedienteService.getIdicadores().subscribe(data=>{
+    this._expedienteService.getIndicadores().subscribe(data=>{
       this.indicadores = data
       console.log(this.indicadores);
     })
