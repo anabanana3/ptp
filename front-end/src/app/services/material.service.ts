@@ -6,8 +6,9 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class MaterialService {
   nuevoMaterial:string = "https://aisha.ovh/api/material/";
+  materiales:string = "https://aisha.ovh/api/material/";
   materialesPropios:string = "https://aisha.ovh/api/material/usuario/";
-  materialesPublicos:string = "https://aisha.ovh/api/material/publicos";
+  materialesPublicos:string = "https://aisha.ovh/api/material/publicos/";
   formatos:string = "https://aisha.ovh/api/formato/";
 
   constructor(private http:Http) { }
@@ -34,10 +35,10 @@ export class MaterialService {
     return this.http.get(this.formatos, {headers}).map(res=>res.json());
   }
 
-  getMaterialesPropios(){
+  getMaterialesPropios(pag, tam){
     let token = sessionStorage.getItem('token');
     let id = sessionStorage.getItem('iD');
-    let url = this.materialesPropios + id;
+    let url = this.materialesPropios + id + '/pag=' + pag + '&n=' + tam;
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
@@ -46,13 +47,27 @@ export class MaterialService {
     return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  getMaterialesPublicos(){
+  getMaterialesPublicos(pag, tam){
     let token = sessionStorage.getItem('token');
+    let url = this.materialesPublicos + 'pag=' + pag + '&n=' + tam;
+    console.log(url);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
     });
 
-    return this.http.get(this.materialesPublicos, {headers}).map(res=>res.json());
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  getMateriales(pag, tam){
+    let token = sessionStorage.getItem('token');
+    let url = this.materiales + 'pag=' + pag + '&n=' + tam;
+    console.log(url);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 }

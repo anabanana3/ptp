@@ -35,6 +35,7 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
+import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -74,7 +75,8 @@ import {MaterialService} from "./services/material.service";
     MisExpedientesComponent,
     RecursoComponent,
     RecursosComponent,
-    MotorGraficoComponent
+    MotorGraficoComponent,
+    RecursosAdminComponent
   ],
   imports: [
     BrowserModule,
