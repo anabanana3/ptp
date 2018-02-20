@@ -7,12 +7,20 @@ import {Recurso} from '../../interfaces/recurso.interface';
   templateUrl: './recursos.component.html'
 })
 export class RecursosComponent {
+  loading = false;
 
   error:boolean = true;
   recursosOld = [];
   recursos = [];
   fieldSearch = '';
   view = 1;
+  formatos = [];
+  //Para la paginacion
+  paginas = new Array(3);
+  pagNext;
+  pagBack;
+  tamPag:number=10;
+  pagActual;
 
   constructor(private _materialService:MaterialService) {
     if(sessionStorage.length === 0){
@@ -20,14 +28,26 @@ export class RecursosComponent {
     }
     this.error = false;
 
-    _materialService.getMaterialesPropios().subscribe(data => {
+    _materialService.getMaterialesPropios(1, this.tamPag).subscribe(data => {
       this.recursosOld = data;
       this.recursos = data;
+      this.loading = true;
       document.getElementById("propios").style.fontWeight = "bold";
       console.log(data);
     }, error => {
       console.log(error);
     })
+
+    _materialService.getFormatos().subscribe(data => {
+      this.formatos = data;
+      console.log(this.formatos);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  filterFormato(id){
+    console.log(id);
   }
 
   mostrar(view){
@@ -37,7 +57,7 @@ export class RecursosComponent {
 
     this.view = view;
     if(view === 1){
-      this._materialService.getMaterialesPropios().subscribe(data => {
+      this._materialService.getMaterialesPropios(1, this.tamPag).subscribe(data => {
         this.recursosOld = data;
         this.recursos = data;
         document.getElementById("publicos").style.fontWeight = "normal";
@@ -49,7 +69,8 @@ export class RecursosComponent {
     }
 
     if(view === 2){
-      this._materialService.getMaterialesPublicos().subscribe(data => {
+      this._materialService.getMaterialesPublicos(1, this.tamPag).subscribe(data => {
+        console.log(data);
         this.recursosOld = data;
         this.recursos = data;
         document.getElementById("propios").style.fontWeight = "normal";
@@ -73,7 +94,7 @@ export class RecursosComponent {
       for(let i=0; i<this.recursosOld.length; i++){
         if(this.recursosOld[i].Titulo.toLowerCase().includes(this.fieldSearch.toLowerCase())){
           recursosFound.push(this.recursosOld[i]);
-        }else if(this.recursosOld[i].Nombre.toLowerCase().includes(this.fieldSearch.toLowerCase())){
+        }else if(this.recursosOld[i].Nombre !== undefined && this.recursosOld[i].Nombre.toLowerCase().includes(this.fieldSearch.toLowerCase())){
           recursosFound.push(this.recursosOld[i]);
         }else if(this.recursosOld[i].Descripcion.toLowerCase().includes(this.fieldSearch.toLowerCase())){
           recursosFound.push(this.recursosOld[i]);
@@ -82,5 +103,40 @@ export class RecursosComponent {
     }
 
     this.recursos = recursosFound;
+  }
+
+  paginacion( paginaActual , pagTotales){
+    //Total de paginas
+    this.paginas = [];
+    for(let i=0; i<pagTotales; i++){
+      this.paginas.push(i);
+    }
+    //Pagina anterior
+    if(paginaActual >= 2){
+      this.pagBack = (paginaActual-1);
+    }else{
+      this.pagBack = paginaActual;
+    }
+    //Pagina Siguiente
+    if(paginaActual < pagTotales){
+      this.pagNext = (paginaActual+1);
+    }else{
+      this.pagNext = paginaActual;
+    }
+    console.log("Total de paginas", this.paginas.length);
+    console.log('PAgina Actual', paginaActual);
+    console.log("Pagina Siguiente", this.pagNext);
+    console.log("Pagina anterior", this.pagBack);
+  }
+
+  pasarPagina(pag){
+    console.log(pag);
+    this._materialService.getMateriales(pag, this.tamPag).subscribe(data =>{
+      this.loading = false;
+      console.log(data);
+      this.recursos = data.Data;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
+      this.pagActual = data.Pagina;
+    });
   }
 }

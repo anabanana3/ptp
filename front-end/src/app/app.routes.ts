@@ -18,6 +18,7 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
+import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
 
 const app_routes: Routes = [
   {
@@ -33,6 +34,11 @@ const app_routes: Routes = [
     path: 'admin/asociaciones',
     component: AsociacionesComponent,
     data: { title: 'Asociaciones' }
+  },
+  {
+    path: 'admin/recursos',
+    component: RecursosAdminComponent,
+    data: { title: 'Recursos' }
   },
   {
     path: 'registro',
