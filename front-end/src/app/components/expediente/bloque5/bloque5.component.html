@@ -21,8 +21,8 @@
 </div>
 
 <h2>Indicadores de sospecha de MGF en el ambito escolar
-    <span *ngIf="mostrar == false" (click)="mostrar = !mostrar">Mostrar</span>
-    <span *ngIf="mostrar == true" (click)="mostrar = !mostrar">Ocultar</span>
+    <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="icon-plus" style="padding : 3px"></span>
+    <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="icon-minus" style="padding : 3px"></span>
 </h2>
 <div *ngIf="mostrar == true">
   <p> A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>

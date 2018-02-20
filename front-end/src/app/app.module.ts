@@ -28,6 +28,7 @@ import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
 import { Bloque2Component } from './components/expediente/bloque2/bloque2.component';
 import { Bloque3Component } from './components/expediente/bloque3/bloque3.component';
+import { Bloque4Component } from './components/expediente/bloque4/bloque4.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
 import { ExpedientesService } from './services/expedientes.service';
 import { HeaderComponent } from './header/header.component';
@@ -35,6 +36,7 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
+import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -67,6 +69,7 @@ import {MaterialService} from "./services/material.service";
     Bloque1Component,
     Bloque2Component,
     Bloque3Component,
+    Bloque4Component,
     Bloque5Component,
     HeaderComponent,
     FooterComponent,
@@ -74,7 +77,8 @@ import {MaterialService} from "./services/material.service";
     MisExpedientesComponent,
     RecursoComponent,
     RecursosComponent,
-    MotorGraficoComponent
+    MotorGraficoComponent,
+    RecursosAdminComponent
   ],
   imports: [
     BrowserModule,
