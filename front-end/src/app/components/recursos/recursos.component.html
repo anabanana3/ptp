@@ -46,7 +46,7 @@
   </div>
 
   <div *ngIf="recursos.Resultado !== 'ERROR'" class="recursos-container">
-    <div *ngFor="let r of recursos"  class="recurso-item">
+    <div *ngFor="let r of recursos;"  class="recurso-item">
       <div class="recurso-info">
         <img *ngIf="r.ID_Formato === 1" class="imgExp" src="/assets/img/pdf.png" alt="Logo pdf" style="width: 50%;">
         <img *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3" class="imgExp" src="/assets/img/ImgIcon2.png" alt="Logo ppt" style="width: 50%;">

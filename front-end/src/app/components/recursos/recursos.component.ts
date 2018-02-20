@@ -33,8 +33,8 @@ export class RecursosComponent {
     this.error = false;
 
     _materialService.getMaterialesPropios(1, this.tamPag).subscribe(data => {
-      this.recursosPropiosOld = data;
-      this.recursosPropios = data;
+      this.recursosPropiosOld = data.Data;
+      this.recursosPropios = data.Data;
       this.loading = true;
       document.getElementById("propios").style.fontWeight = "bold";
       this.recursos = this.recursosPropios;
