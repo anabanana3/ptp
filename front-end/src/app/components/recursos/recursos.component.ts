@@ -10,7 +10,11 @@ export class RecursosComponent {
   loading = false;
 
   error:boolean = true;
-  recursosOld = [];
+
+  recursosPublicosOld = [];
+  recursosPublicos = [];
+  recursosPropiosOld = [];
+  recursosPropios = [];
   recursos = [];
   fieldSearch = '';
   view = 1;
@@ -29,11 +33,21 @@ export class RecursosComponent {
     this.error = false;
 
     _materialService.getMaterialesPropios(1, this.tamPag).subscribe(data => {
-      this.recursosOld = data;
-      this.recursos = data;
+      this.recursosPropiosOld = data;
+      this.recursosPropios = data;
       this.loading = true;
       document.getElementById("propios").style.fontWeight = "bold";
+      this.recursos = this.recursosPropios;
+      console.log(this.recursos);
       console.log(data);
+    }, error => {
+      console.log(error);
+    })
+
+    _materialService.getMaterialesPublicos(1, this.tamPag).subscribe(data => {
+      console.log(data);
+      this.recursosPublicosOld = data;
+      this.recursosPublicos = data;
     }, error => {
       console.log(error);
     })
@@ -57,47 +71,41 @@ export class RecursosComponent {
 
     this.view = view;
     if(view === 1){
-      this._materialService.getMaterialesPropios(1, this.tamPag).subscribe(data => {
-        this.recursosOld = data;
-        this.recursos = data;
-        document.getElementById("publicos").style.fontWeight = "normal";
-        document.getElementById("propios").style.fontWeight = "bold";
-      }, error => {
-        console.log(error);
-      })
-      return;
+      this.recursos = this.recursosPropios;
+      document.getElementById("publicos").style.fontWeight = "normal";
+      document.getElementById("propios").style.fontWeight = "bold";
     }
 
     if(view === 2){
-      this._materialService.getMaterialesPublicos(1, this.tamPag).subscribe(data => {
-        console.log(data);
-        this.recursosOld = data;
-        this.recursos = data;
-        document.getElementById("propios").style.fontWeight = "normal";
-        document.getElementById("publicos").style.fontWeight = "bold";
-      }, error => {
-        console.log(error);
-      })
-
+      this.recursos = this.recursosPublicos;
+      document.getElementById("propios").style.fontWeight = "normal";
+      document.getElementById("publicos").style.fontWeight = "bold";
     }
   }
 
   buscar(){
     let recursosFound = [];
+    let recursosOld = [];
+    if(this.view === 1){
+      recursosOld = this.recursosPropiosOld;
+    }
+    else if(this.view === 2){
+      recursosOld = this.recursosPublicosOld;
+    }
 
     if(this.fieldSearch === ''){
-      this.recursos = this.recursosOld;
+      this.recursos = recursosOld;
       return;
     }
 
-    if(this.fieldSearch && this.recursosOld){
-      for(let i=0; i<this.recursosOld.length; i++){
-        if(this.recursosOld[i].Titulo.toLowerCase().includes(this.fieldSearch.toLowerCase())){
-          recursosFound.push(this.recursosOld[i]);
-        }else if(this.recursosOld[i].Nombre !== undefined && this.recursosOld[i].Nombre.toLowerCase().includes(this.fieldSearch.toLowerCase())){
-          recursosFound.push(this.recursosOld[i]);
-        }else if(this.recursosOld[i].Descripcion.toLowerCase().includes(this.fieldSearch.toLowerCase())){
-          recursosFound.push(this.recursosOld[i]);
+    if(this.fieldSearch && recursosOld){
+      for(let i=0; i<recursosOld.length; i++){
+        if(recursosOld[i].Titulo.toLowerCase().includes(this.fieldSearch.toLowerCase())){
+          recursosFound.push(recursosOld[i]);
+        }else if(recursosOld[i].Nombre !== undefined && recursosOld[i].Nombre.toLowerCase().includes(this.fieldSearch.toLowerCase())){
+          recursosFound.push(recursosOld[i]);
+        }else if(recursosOld[i].Descripcion.toLowerCase().includes(this.fieldSearch.toLowerCase())){
+          recursosFound.push(recursosOld[i]);
         }
       }
     }
