@@ -244,7 +244,6 @@ getConsecuenciasSalud(){
 addConsecuenciasSalud(exp, bloque, sel){
   let token =  sessionStorage.token;
   let headers = new Headers({
-    'Content-Type':'application/json',
     'Authorization':token
   });
   let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
