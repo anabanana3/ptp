@@ -39,6 +39,7 @@ export class MaterialService {
     let token = sessionStorage.getItem('token');
     let id = sessionStorage.getItem('iD');
     let url = this.materialesPropios + id + '/pag=' + pag + '&n=' + tam;
+    console.log(url);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
