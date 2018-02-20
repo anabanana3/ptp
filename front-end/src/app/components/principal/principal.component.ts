@@ -32,65 +32,65 @@ export class PrincipalComponent implements OnInit {
     }
 
     this._noticiasService.getNoticias().subscribe(data=>{
-    //  console.log(data);
+      console.log(data);
       this.noticias = data; //Creo que no sirve pa na
-    //  console.log(data[0]);
+      console.log(data[0]);
 
       for(let i=0;i<3;i++){
         this.aux.push(data[i]);
 
-    //  console.log("aux["+0+"] = " + this.aux[0]);
+      console.log("aux["+0+"] = " + this.aux[0]);
 
       }
-    //  console.log("numnoticias" + this.aux);
+     console.log("numnoticias" + this.aux);
     });
 
     this._noticiasService.getPhotos().subscribe(dataPhoto=>{
     //  console.log("dataPhoto: " +dataPhoto);
       this.photos = dataPhoto;
-    /*  console.log("aux value[0]: " + this.aux[0].id);
+     console.log("aux value[0]: " + this.aux[0].id);
       console.log("aux value[1]: " + this.aux[1].id);
       console.log("aux value[2]: " + this.aux[2].id);
 
-      console.log("dataPhoto.length: " + dataPhoto.length);*/
+      console.log("dataPhoto.length: " + dataPhoto.length);
       for(let i=0;i<3;i++){
         if(i==0){
           this.aux2.push(dataPhoto[i]);
         }else{
           let k=i-1;
-        /*  console.log("i " + i +  "k " + k);
-          console.log("this.aux2[i].post = " + this.aux2[i-1].post);*/
+          console.log("i " + i +  "k " + k);
+          console.log("this.aux2[i].post = " + this.aux2[i-1].post);
 
           if(this.aux2[i-1].post == this.aux2[k].post){
-          //  console.log("YA HAY UN POST CON ESE ID");
+            console.log("YA HAY UN POST CON ESE ID");
             this.aux2.push(dataPhoto[i+1]);
           }
         }
-    //    console.log("Se queda aux2 post: " + this.aux2[i].post);
+       console.log("Se queda aux2 post: " + this.aux2[i].post);
       }
 
-    //  console.log("long de aux2:" + this.aux2.length);
+      console.log("long de aux2:" + this.aux2.length);
       for(let j=0; j < 3; j++){
-    /*    console.log("j: " + j);
+        console.log("j: " + j);
         console.log("aux value["+j+"]:" + this.aux[j].id);
-        console.log("aux2 value["+j+"]:" + this.aux2[j].post);*/
+        console.log("aux2 value["+j+"]:" + this.aux2[j].post);
         if(this.aux[j].id == this.aux2[j].post){
 
           this.arrayIds.push(this.aux2[j].guid.rendered);
-    //      console.log("yes papi es igual");
+          console.log("yes papi es igual");
         }else{
-/*
+
           console.log("no es igual");
-          console.log("j antes era: " + j);*/
+          console.log("j antes era: " + j);
           j=j+1;
-        //  console.log("j ahora es: " + j );
+          console.log("j ahora es: " + j );
         }
       }
 
-  /*    console.log("mediaa" + this.aux2);
+     console.log("mediaa" + this.aux2);
       console.log("mediaa post id:" + this.arrayIds[0]);
       console.log("mediaa post id2:" + this.arrayIds[1]);
-      console.log("mediaa post id3:" + this.arrayIds[2]);*/
+      console.log("mediaa post id3:" + this.arrayIds[2]);
 
       var caca =   document.getElementById("paraImg");
       var caca2 =   document.getElementById("paraImg2");
