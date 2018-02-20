@@ -45,9 +45,9 @@
 
   <div class="CarouselImage">
     <img class="mySlides" style="display:block; width:100%;" src="../assets/img/mapBlue.png" alt="carousel1">
-    <img class="mySlides" style="width:100%;" src="../assets/img/mapPink.png" alt="carousel1">
-    <img class="mySlides" style="width:100%;" src="../assets/img/mapBlue.png" alt="carousel1">
-    <img class="mySlides" style="width:100%;" src="../assets/img/mapPink.png" alt="carousel1">
+    <img class="mySlides" style="width:100%;" src="../assets/img/Edad.jpg" alt="Edad">
+    <img class="mySlides" style="width:100%;" src="../assets/img/LugarDet.jpg" alt="LugarDet">
+    <img class="mySlides" style="width:100%;" src="../assets/img/QuesitosEtinas.jpg" alt="QuesitosEtnias">
   </div>
 
   <div class="RightDiv" id="RightArrow" (click)="plusDivs(1)">
@@ -76,20 +76,23 @@
   <div class="noticia">
     <h2 class="noticiasText">NOTICIAS</h2>
     <a href="https://www.aisha.ovh/fibbe/"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
-    <a href="{{aux[0].link}}"><img style="width:300px;" src="{{arrayIds[0]}}" alt="noticia1"></a>
+    <!--<a href="{{aux[0].link}}"><img style="width:300px;" src="{{arrayIds[0]}}" alt="noticia1"></a>-->
+    <a href="{{aux[0].link}}"><div id="paraImg" style="width:300px;height:200px;"></div></a>
 
     <a href="{{aux[0].link}}"><p class="noticiaTitle">{{aux[0].title.rendered}}</p></a>
     <div class="lineaNoticia"></div>
 
   </div>
   <div class="noticia">
-      <a href="{{aux[1].link}}"><img  style="width:300px;" src="{{arrayIds[1]}}" alt="noticia2"></a>
+      <!--<a href="{{aux[1].link}}"><img  style="width:300px;" src="{{arrayIds[1]}}" alt="noticia2"></a>-->
+      <a href="{{aux[1].link}}"><div id="paraImg2" style="width:300px;height:200px;"></div></a>
       <a href="{{aux[1].link}}"><p class="noticiaTitle">{{aux[1].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
 
   </div>
   <div class="noticia">
-      <a href="{{aux[2].link}}"><img  style="width:300px;" src="{{arrayIds[2]}}" alt="noticia3"></a>
+      <!--<a href="{{aux[2].link}}"><img  style="width:300px;" src="{{arrayIds[2]}}" alt="noticia3"></a>-->
+      <a href="{{aux[2].link}}"><div id="paraImg3" style="width:300px;height:200px;"></div></a>
       <a href="{{aux[2].link}}"><p class="noticiaTitle">{{aux[2].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
 

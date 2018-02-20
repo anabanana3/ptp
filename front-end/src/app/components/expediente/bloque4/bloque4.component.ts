@@ -16,7 +16,7 @@ export class Bloque4Component implements OnInit {
   //aqui almaceno las consecuencias seleccionadas
   consecuencias = new Array();
   json = {
-    ID_Bolque: '',
+    //ID_Bloque: '',
     ID_Expediente: 12,//sessionStorage.IDExp,
     Detec_MGF: 0,
     ID_Mutilacion: 0,
@@ -25,7 +25,7 @@ export class Bloque4Component implements OnInit {
     Elasticidad: '',
     Otros: '',
     Formato_int: '',
-    Consejo: ''
+    Consejos: ''
   }
 
   mensaje:string = '';
