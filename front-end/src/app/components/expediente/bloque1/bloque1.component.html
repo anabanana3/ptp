@@ -1,10 +1,13 @@
-<!--TODO Revisar como hacer para simplificar la parte del JacaScript -->
+<!--TODO Revisar como hacer para simplificar la parte del JacaScript
+
+-->
 
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
 <div class="grupoForm">
     <h2 class="cherry ">Información básica sobre el expediente</h2>
   <div>
-    <label for="titulo">Titulo</label>
+    <label for="titulo">Título</label>
+    <span matTooltip="Título que le permita identificar rápidamente este expediente." class="pointer icon-info info"></span>
     <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
     <label for=fechaC>Fecha de detección del caso:</label>
     <input [(ngModel)]="expediente.Fecha" type="date"  name="fechaC" formControlName="fechaC" id="fechaC" >
@@ -136,7 +139,8 @@
   </select>
 
   <label for="otrosM">Otros motivos</label>
-  <input type="text" id="otrosM" name="otros" placeholder="introduzca aqui otros motivos" formControlName="Otros">
+  <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
+  <input type="text" id="otrosM" name="otros" formControlName="Otros">
 </div>
 <hr>
 <div>
