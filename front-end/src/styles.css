@@ -5,7 +5,7 @@
 }
 
 html,
-body {padding:0; margin:0; height:100%;}
+body {padding:0; margin:0; }
 
 html{
   font-family: HiraKakuPro-W3, Verdana;
@@ -1213,3 +1213,5 @@ canvas{
     margin-bottom: 2%;
   }
 }
+
+body {padding:0; margin:0; height:100%;}
