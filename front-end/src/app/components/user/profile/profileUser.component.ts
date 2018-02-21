@@ -80,10 +80,13 @@ export class ProfileUserComponent {
       this.profesiones = data;
     })
     this.id = parseInt(sessionStorage.getItem('iD'));
+    this.getUsuario(this.id);
 
+  }
+
+  getUsuario(id){
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
-
       this.user.Nombre = this.user.Nombre.split("'")[1];
       this.user.Email = this.user.Email.split("'")[1];
       this.user.Direccion = this.user.Direccion.split("'")[1];
@@ -94,6 +97,7 @@ export class ProfileUserComponent {
       this.user.Sexo = data[0].ID_Sexo.toString();
 
       console.log(this.user);
+      console.log(this.user.Foto);
     })
   }
 
@@ -161,8 +165,12 @@ export class ProfileUserComponent {
     }
     //Ya tengo todos los datos recuperados los envio al servidor
     //De momento la foto ya se sube al servidor
+    console.log('Actualozo los datos del usuario');
     this._userService.updateUsuario(datos).subscribe(data =>{
+      console.log('Actualizo el ususario');
       console.log(data);
+      this.getUsuario(this.id);
+      console.log(this.user);
     })
 
   }
