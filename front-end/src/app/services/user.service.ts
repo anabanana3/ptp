@@ -29,7 +29,13 @@ export class UserService {
           })
   }
 
-  updateUsuario(usu, id){
+  // TODO: Falta implementarlo en la API
+updateUsuario(usuario){
+  let token = sessionStorage.token;
+  let url = this.usuariosURL + 'upload/'+token;
+  return this.http.post(url, usuario).map(res=>res.json())
+}
+  updateUsuario2(usu, id){
     let body = JSON.stringify(usu);
     let headers = new Headers({
       'Content-Type': 'application/json'

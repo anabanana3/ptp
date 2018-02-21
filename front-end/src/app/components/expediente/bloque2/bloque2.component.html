@@ -1,7 +1,12 @@
-<!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos -->
+<!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos
+ -->
 <form (ngSubmit)="guardarDatos2()"#form="ngForm">
   <h2> Conocimiento e información sobre la MGF</h2>
+
 <label>El inplicado tiene conocimientos sobre la MGF</label>
+<span matTooltip="Posible pregunta Tengo entendido que
+en su país se realiza la ablación o el corte de los genitales de las
+mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
 <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
   <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
 </select>
@@ -12,6 +17,8 @@
 </select>
 <br>
 <label>Cual es el posicionamiento del padre frentre a la MGF</label>
+<span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
+esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
 <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
 </select>
@@ -33,9 +40,11 @@
 <textarea [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 <br>
 <label>Formato de intervención</label>
-<textarea [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Descripcion del formato de intervención empleado"></textarea>
+<span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+<textarea [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion"></textarea>
 <br>
 <label>Consejos para otros profesionales</label>
+<span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
 <textarea [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
 <br>
 
@@ -86,6 +95,7 @@
   <br>
 
   <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
+  <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div *ngFor="let c of compMadre; let k = index">
     <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label>
     <!-- [(ngModel)]="datosPartos[i].compMadre" -->
@@ -93,6 +103,7 @@
   </div>
   <br><br>
   <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
+  <span matTooltip="Seleccione todas las complicaciones que sufrioel recien nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div *ngFor="let c of compNacido let j= index">
     <label for="{{i}}compNacido{{j}}">{{c.Nombre}}</label>
     <input id="{{i}}compNacido{{j}}" [(ngModel)]="datosPartos[i].compNacido[j]" name="{{i}}compNacido{{j}}" type="checkbox">

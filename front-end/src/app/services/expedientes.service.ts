@@ -7,6 +7,7 @@ export class ExpedientesService {
 urlEtnias:string = "https://www.aisha.ovh/api/etnia";
 urlActividades:string = 'https://www.aisha.ovh/api/actividad';
 urlExpediente:string = 'https://www.aisha.ovh/api/expedientes';
+urlExpedientePriv:string = 'https://www.aisha.ovh/api/privados'
 urlPersona:string = 'https://www.aisha.ovh/api/persona';
 urlBloque:string = 'https://www.aisha.ovh/api/camposb1';
 urlBloque2:string = 'https://www.aisha.ovh/api/camposb2';
@@ -252,9 +253,9 @@ addConsecuenciasSalud(exp, bloque, sel){
   })
 }
 
-getExpedientesUser(p, tamPag){
+getExpedientesPrivUser(p, tamPag){
   let usuario = sessionStorage.iD;
-  let url = this.urlExp+'/'+usuario+'/pag='+p+'&n='+tamPag;
+  let url = this.urlExpedientePriv+'/'+usuario+'/pag='+p+'&n='+tamPag;
 
   let token =  sessionStorage.token;
   let headers = new Headers({

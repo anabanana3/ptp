@@ -33,7 +33,7 @@
 
     <div style="width: 50%; float: left;margin-left: 5%;">
       <!-- TODO: La función buena es save -->
-      <form (ngSubmit)="save3(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
+      <form (ngSubmit)="save2(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;">
 
         <!-- [(ngModel)]="" -->
         <label for="nombre">Nombre</label>
@@ -47,14 +47,14 @@
                  value="user[0].Email" name="email" id="email" disabled="false">
          <label for="nacimiento">Fecha de Nacimiento</label>
            <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="date"
-                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" disabled="false" required>
+                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
         <label for="sexo">Sexo</label>
         <div class="radioButtons">
-          <input [(ngModel)]="user.Sexo" type="radio" name="mujer" value="Mujer" id="mujer">
+          <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="1" id="mujer">
             <label for="mujer">Mujer</label>
-          <input [(ngModel)]="user.Sexo" type="radio" name="hombre" value="Hombre" id="hombre">
+          <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="2" id="hombre">
             <label for="hombre">Hombre</label>
-          <input [(ngModel)]="user.Sexo" type="radio" name="otro" value="Otro" id="otro">
+          <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
             <label for="otro">Prefiero no especificar</label>
         </div>
         <label for="dni">DNI</label>
@@ -64,8 +64,8 @@
           <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
                 value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
         <label for="profesion">Profesion</label>
-        <select [(ngModel)]="user.Profesion" class="lineaCampo" name="profesion" id="profesion">
-          <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].Nombre}}">
+        <select [(ngModel)]="user.ID_Profesion" class="lineaCampo" name="Profesion" id="profesion">
+          <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
             {{profesiones[k].Nombre}}
           </option>
         </select>
@@ -83,21 +83,23 @@
 
         <div *ngIf="change" style="display: inline-grid;">
           <label for="contra">Contraseña *</label>
-            <input (keyup)="validate(user.Password)" [(ngModel)]="user.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+          <!-- (keyup)="validate(pass.newpass)" -->
+          <input  [(ngModel)]="pass.newpass" class="lineaCampo" type="password" name="contra" id="contra" required>
           <label for="repeatcontra">Repita la Contraseña *</label>
-            <input (keyup)="validate(user.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
-
+            <input  [(ngModel)]="pass.repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+<!-- (keyup)="validate(pas.repeatpass)" -->
           <div class="progress">
             <div id="value" style="background-color:black;"></div>
           </div>
         </div>
         <div>
           <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>
-          <button type="submit" name="button" style="width: 55%;" class="btn-inline textoBlanco">GUARDAR</button>
+          <button type="submit" name="button" style="width: 55%;" class="btn-inline textoBlanco" [disabled]="!this.forma.valid">GUARDAR</button>
         </div>
     </form>
-    </div>
 
+    </div>
+    {{forma.valid}}
 
   </div>
 </div>
