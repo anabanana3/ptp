@@ -1,4 +1,5 @@
 export interface Expedinete{
+  Titulo:String;
   ID_Expediente:number;
   Fecha:Date;
   Descripcion:string;

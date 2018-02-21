@@ -80,7 +80,11 @@ export class ProfileUserComponent {
       this.profesiones = data;
     })
     this.id = parseInt(sessionStorage.getItem('iD'));
+    this.getUsuario(this.id);
 
+  }
+
+  getUsuario(id){
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
       this.user.Nombre = this.user.Nombre.split("'")[1];
@@ -90,8 +94,10 @@ export class ProfileUserComponent {
       this.user.Apellidos = this.user.Apellidos.split("'")[1];
       this.user.DNI = this.user.DNI.split("'")[1];
       this.user.F_Nacimiento = data[0].F_Nacimiento.split('T')[0];
+      this.user.Sexo = data[0].ID_Sexo.toString();
 
       console.log(this.user);
+      console.log(this.user.Foto);
     })
   }
 
@@ -124,7 +130,49 @@ export class ProfileUserComponent {
   }
 
   save2(form:NgForm){
-    console.log(form);
+    console.log('Recojo todos los datos');
+    console.log(form.value);
+
+    let datos = new FormData();
+    datos.append('Nombre', form.value.nombre);
+    datos.append('Apellidos', form.value.apellido);
+    datos.append('Fecha', form.value.nacimiento);
+    datos.append('ID_Sexo', form.value.Sexo);
+    datos.append('ID_Profesion',form.value.Profesion);
+    datos.append('Direccion', form.value.direccion);
+    //Valido las contraseñas
+    if(form.value.contra != null && form.value.repeatcontra){
+      if(form.value.contra == form.value.repeatcontra){
+        datos.append('Password',form.value.contra);
+      }else{
+        this.mensaje = 'Las contraseñas deben de ser iguales';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
+    }
+    //datos.append('Password',)
+    //Valido la foto de perfil
+    if(this.fP != null){
+      let tipo = this.fP.type;
+      let aux = tipo.split('/');
+      let size = this.fP.size;
+      if(aux[0] ==='image' && size <= 5242880){
+        //Fichero Valido
+        datos.append('fotoP', this.fP, this.fP.name);
+      }else{
+        this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
+        document.getElementById('alert').className = 'alert alert-danger';
+      }
+    }
+    //Ya tengo todos los datos recuperados los envio al servidor
+    //De momento la foto ya se sube al servidor
+    console.log('Actualozo los datos del usuario');
+    this._userService.updateUsuario(datos).subscribe(data =>{
+      console.log('Actualizo el ususario');
+      console.log(data);
+      this.getUsuario(this.id);
+      console.log(this.user);
+    })
+
   }
 
   save3(forma:NgForm){
@@ -132,6 +180,7 @@ export class ProfileUserComponent {
       /*
         => Nombre
         => Apellidos
+        => Fecha
         => Sexo
         => Profesion
         => Direccion
@@ -157,18 +206,19 @@ export class ProfileUserComponent {
 
   }
 
-  validate(pass){
-    var score = JSON.stringify(zxcvbn(pass).score);
-    document.getElementById("value").style.width = this.fuerza[score].width;
-    document.getElementById("value").style.backgroundColor = this.fuerza[score].color;
-
-    this.scorepass = score;
-  }
+  // validate(pass){
+  //   var score = JSON.stringify(zxcvbn(pass).score);
+  //   document.getElementById("value").style.width = this.fuerza[score].width;
+  //   document.getElementById("value").style.backgroundColor = this.fuerza[score].color;
+  //
+  //   this.scorepass = score;
+  // }
 
   //Metodo para recuperar el fichero
     onFileChange(event){
       let files = event.target.files[0];
       this.fP = files;
+      console.log(this.fP);
     }
 
 }

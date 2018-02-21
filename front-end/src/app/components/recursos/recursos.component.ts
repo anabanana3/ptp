@@ -20,7 +20,7 @@ export class RecursosComponent {
   view = 1;
   formatos = [];
   //Para la paginacion
-  paginas = new Array(3);
+  paginas = new Array();
   pagNext;
   pagBack;
   tamPag:number=10;
@@ -42,7 +42,7 @@ export class RecursosComponent {
       console.log(data);
     }, error => {
       console.log(error);
-    })
+    });
 
     _materialService.getMaterialesPublicos(1, this.tamPag).subscribe(data => {
       console.log(data);
@@ -54,10 +54,12 @@ export class RecursosComponent {
 
     _materialService.getFormatos().subscribe(data => {
       this.formatos = data;
+      console.log('Hola');
       console.log(this.formatos);
     }, error => {
       console.log(error);
     });
+
   }
 
   filterFormato(id){
