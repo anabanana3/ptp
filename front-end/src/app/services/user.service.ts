@@ -31,7 +31,6 @@ export class UserService {
 
   // TODO: Falta implementarlo en la API
 updateUsuario(usuario){
-  console.log('Llego al servicio');
   let token = sessionStorage.token;
   let url = this.usuariosURL + 'upload/'+token;
   return this.http.post(url, usuario).map(res=>res.json())
