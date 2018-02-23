@@ -87,7 +87,7 @@ export class PrincipalComponent implements OnInit {
         }
       }
 
-     console.log("mediaa" + this.aux2);
+     console.log("mediaaa" + this.aux2);
       console.log("mediaa post id:" + this.arrayIds[0]);
       console.log("mediaa post id2:" + this.arrayIds[1]);
       console.log("mediaa post id3:" + this.arrayIds[2]);
