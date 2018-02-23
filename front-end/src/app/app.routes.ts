@@ -19,6 +19,7 @@ import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
+import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 
 const app_routes: Routes = [
   {
@@ -114,6 +115,11 @@ const app_routes: Routes = [
     path: 'aulavirtual',
     component: MotorGraficoComponent,
     data:{title: 'Motor Grafico'}
+  },
+  {
+    path: 'verexpediente',
+    component: VerExpedienteComponent,
+    data:{title: 'Ver Expediente'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

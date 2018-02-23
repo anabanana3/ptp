@@ -40,7 +40,7 @@
     <div class="expediente-body">
       <p>{{e.Titulo}}</p>
       <p>{{e.Fecha.split('T')[0]}}</p>
-      <button class="btn-border bgColorPink" style="margin-top:5%"> Ver más</button>
+      <button class="btn-border bgColorPink" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button>
     </div>
   </div>
 </div>

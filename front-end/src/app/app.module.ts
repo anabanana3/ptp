@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTabsModule} from '@angular/material/tabs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
@@ -46,6 +47,7 @@ import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
+import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import {MaterialService} from "./services/material.service";
     RecursoComponent,
     RecursosComponent,
     MotorGraficoComponent,
-    RecursosAdminComponent
+    RecursosAdminComponent,
+    VerExpedienteComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import {MaterialService} from "./services/material.service";
     APP_ROUTING,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ],
   providers: [
     ProfesionesService,

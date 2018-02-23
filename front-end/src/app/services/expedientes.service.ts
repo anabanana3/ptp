@@ -269,4 +269,33 @@ getExpedientesPrivUser(p, tamPag){
 
 }
 
+getExpedienteById(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlExpId = this.urlExpediente+'/id='+id;
+  console.log('hola');
+
+  return this.http.get(urlExpId, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
+
+getBloque1(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlb1 = this.urlBloque+'/id='+id;
+
+  return this.http.get(urlb1, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
+
 }

@@ -1,0 +1,32 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <app-header></app-header>
+  <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
+  </button>
+  <div  *ngFor="let e of expediente" class=expediente>
+    <h2>{{e.Titulo}}</h2>
+    <p>Fecha publicación: {{e.Fecha.split('T')[0]}}</p>
+    <h3>Descripción: {{e.Descripcion.split("'")[1]}}</h3>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Bloque 1">
+      <div *ngFor="let k of bloque1" class="bloque1">
+        <p>Citación:
+          <b *ngIf="k.Citacion == 1">Sí</b>
+          <b *ngIf="k.Citacion == 0">No</b>
+        </p>
+        <p>Derivación de riesgo:
+          <b *ngIf="k.Deriv_Riesgo == 1">Sí</b>
+          <b *ngIf="k.Deriv_Riesgo == 0">No</b>
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab label="Bloque 2">Content 2</mat-tab>
+    <mat-tab label="Bloque 3">Content 3</mat-tab>
+    <mat-tab label="Bloque 4">Content 4</mat-tab>
+  </mat-tab-group>
+</div>
+<app-footer></app-footer>
