@@ -5,7 +5,7 @@
 }
 
 html,
-body {padding:0; margin:0; }
+body {padding:0; margin:0; height:100%;}
 
 html{
   font-family: HiraKakuPro-W3, Verdana;
@@ -14,22 +14,16 @@ html{
   background: #F2F2F2;
   text-align: center;
 }
-
 p{margin: 0;}
 
-a{
-  /*color: #333333;*/
-  text-decoration: none;
-}
+a{/*color: #333333;*/text-decoration: none;}
 
 h1, h2, h3{
   font-size:20px;
   font-weight: lighter;
 }
 
-form{
-  padding: 20px;
-}
+form{padding: 20px;}
 
 table{
   border-collapse: collapse;
@@ -43,14 +37,12 @@ thead{
   background-color: black;
   color: #FFFFFF;
 }
-
 th, td, button{padding: 15px;}
 
 button:hover{
   cursor: pointer;
   color: #880042;
 }
-
 label{
   text-align: left;
   padding-left: 5px;
@@ -61,16 +53,13 @@ input, textarea{
   font-size: 16px;
   color: #7F7F7F;
 }
-
 textarea {
   resize: none;
   margin-bottom: 25px;
 }
-
 textarea:hover{
   border-bottom: 2px solid;
 }
-
 span{font-size: small;}
 
 ul{list-style: none;}
@@ -80,7 +69,6 @@ br{
   content: " ";
   margin-top:8px;
 }
-
 canvas{
   margin:5%;
   width: 90%;
@@ -89,7 +77,6 @@ canvas{
   background: grey;
 }
 /****** COLORS TEXT ******/
-
 .textBlack{ color:#333333;}
 .textPink{ color:#880042;}
 .textWhite{ color:#FFFFFF;}
@@ -99,7 +86,6 @@ canvas{
 .textRed{color: #E82C0C;}
 
 /****** COLORS BG ******/
-
 .bgColorBlack{ background-color:#333333;}
 .bgColorPink{ background-color:#880042;}
 .bgColorWhite{ background-color:#FFFFFF;}
@@ -108,13 +94,118 @@ canvas{
 .bgColorBlue{ background: #0C8A9C;}
 
 /****** TEXT SIZE ******/
-
 .text12{font-size: 12px;}
 .text16{ font-size: 16px;}
 .text18{ font-size: 18px;}
 .text20{ font-size: 20px;}
 
+/****** BUTTONS STYLE ******/
+.btn-inline{
+  display: inline;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.submitGris{
+  display: inline;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.btn-border{
+  margin-right: 2%;
+  color: white;
+  border-radius: 10px;
+}
+.btn-border:hover{
+  background: none;
+  color:#880042;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+}
+.btn-return{
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  float: left;
+  margin-left: 2%;
+  margin-top: 1%;
+  transform: rotate(+45deg);
+}
+.btn-return:hover{
+  transform: rotate(-45deg);
+}
+.btn-pestana_exp{
+  float: left;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.btn-pestana_exp:hover{
+  border: 2px solid #880042;
+}
+.btn-pestana_exp:focus{
+  background-color:#880042;
+  color:white;
+}
+.btn-fill{
+  background: none;
+  margin-right: 2%;
+  padding: 6px 20px;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+}
+.btn-fill:hover{
+  background-color: #880042;
+  color:white;
+}
+/****** LINEAS STYLE ******/
+.lineaCampo{
+  background: none;
+  border: none;
+  border-bottom: 1px solid #333333;
+  margin-bottom: 25px;
+  width: 100%;
+}
+.lineaCampo:hover{
+  border-bottom: 2px solid;
+}
+.lineaDiv{
+  border: 1px solid #DBDBDB;
+  margin: auto;
+  margin-bottom: 2%;
+  width: 90%;
+}
+.lineaNoticia{
+  border: 1px solid #880042;
+  margin-left: 5%;
+  width: 20%;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+.lineaEslogan{
+  border: 1px solid #880042;
+  margin-left: 5%;
+  margin-bottom: 25px;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
 
+.Eslogan{
+  margin: 0 auto;
+  width:40%;
+  margin-top: 5%;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+/****** DIVS STYLE ******/
 .divBlanco{
   display: inline-block;
   margin: auto;
@@ -136,81 +227,6 @@ canvas{
 
 .footerDiv{
   padding: 2%;
-}
-
-.lineaCampo{
-  background: none;
-  border: none;
-  border-bottom: 1px solid #333333;
-  margin-bottom: 25px;
-  width: 100%;
-}
-
-.lineaCampo:hover{
-  border-bottom: 2px solid;
-}
-
-.lineaDiv{
-  border: 1px solid #DBDBDB;
-  margin: auto;
-  margin-bottom: 2%;
-  width: 90%;
-}
-
-.lineaNoticia{
-  border: 1px solid #880042;
-  margin-left: 5%;
-  width: 20%;
-  margin: 0 auto;
-  margin-top: 5px;
-  margin-bottom: 25px;
-}
-
-.Eslogan{
-  margin: 0 auto;
-  width:40%;
-  margin-top: 5%;
-  margin-bottom: 0px;
-  font-size: 20px;
-}
-
-.lineaEslogan{
-  border: 1px solid #880042;
-  margin-left: 5%;
-  margin-bottom: 25px;
-  width: 40%;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-
-.btn-inline{
-  display: inline;
-  margin-bottom: 3%;
-  margin-top: 3%;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.submitGris{
-  display: inline;
-  font-size: 18px;
-  border-radius: 5px;
-}
-
-.btn-return{
-  display: inline-block;
-  background: white;
-  border-radius: 50%;
-  border: none;
-  font-size: 20px;
-  float: left;
-  margin-left: 2%;
-  margin-top: 1%;
-  transform: rotate(+45deg);
-}
-
-.btn-return:hover{
-  transform: rotate(-45deg);
 }
 
 /** CAROUSEL **/
@@ -261,52 +277,12 @@ canvas{
   border-width: 2px;
 }
 
-.btn-border{
-  margin-right: 2%;
-  color: white;
-  border-radius: 10px;
-}
-
-.btn-border:hover{
-  background: none;
-  color:#880042;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-}
-
-.btn-border{
-  margin-right: 2%;
-  color: white;
-  border-radius: 10px;
-}
-
-.login{
-  margin-top: 4%;
-  padding: 6px 10px;
-  font-size: 12px; /*TODO por poner text12 en vez de font size aqui*/
-  float:right;
-}
 
 .verMas{
   margin-top: 1.5%;
   margin-bottom:10%;
   padding: 14px 20px;
   font-size: 14px;
-}
-
-.btn-fill{
-  background: none;
-  margin-right: 2%;
-  padding: 6px 20px;
-  border-radius: 10px;
-  border-color: #880042;
-  border-width: 2px;
-}
-
-.btn-fill:hover{
-  background-color: #880042;
-  color:white;
 }
 
 .registro{
@@ -862,27 +838,8 @@ canvas{
 }
 
 /*Mis Expedientes*/
-.optionsExp{
-  display: block;
+.options{
   margin-top: 2%;
-  margin:auto;
-  width: 80%;
-  overflow: hidden;
-}
-.optionsExp p{
-  cursor:pointer;
-}
-.optionsExp p:hover{
-  font-weight: bold; 
-}
-
-.optionsLeft{
-  float: left;
-  display: inline-flex;
-}
-.optionsRigth{
-  display: inline-flex;
-  float: right;
 }
 .expediente-container{
   display: flex;
@@ -890,11 +847,10 @@ canvas{
   justify-content: center;
   width: 80%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 5%;
   overflow: hidden;
 }
 .expediente{
-  /*position: relative;*/
   flex-direction: row;
   overflow: hidden;
   display: block;
@@ -902,53 +858,21 @@ canvas{
   /*margin-bottom: 2%;*/
   margin: 1%;
   padding: 1%;
-}
-.expedienteDesc{
   position: relative;
-  letf:0;
-  top:0;
-  width: 100%;
+
 
 }
-.expedienteDesc img{
-  opacity: 1;
-  transition: opacity .5s;
-}
-.expedienteDesc p{
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity .5s;
-
-}
-.expediente:hover img{
-  opacity: .5;
-}
-
-
-.expedienteDesc:hover p{
-  opacity: 1;
-  background: #333333;
-  color: white;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.expedienteDesc:hover img{
-  opacity: .5;
-}
-
-
 
 .expediente-body{
-  /*Este tamaño es el ancho de la imagen del logo*/
-  width: 200px;
-  margin: auto;
+  position: absolute;
+  width:100%;
+  left: 0;
+  bottom: 0;
+}
+.expediente>div>p{
+  padding: 5px;
 
 }
-
 /**** Recursos ****/
 .recursos-container-filter{
   display: flex;
@@ -1213,5 +1137,3 @@ canvas{
     margin-bottom: 2%;
   }
 }
-
-body {padding:0; margin:0; height:100%;}
