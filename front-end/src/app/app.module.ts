@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
@@ -37,7 +41,7 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
-import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
+import { RecursosAdminComponent } from './components/admin/recursos.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -91,7 +95,10 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     ProfesionesService,

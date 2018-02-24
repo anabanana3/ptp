@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import {MaterialService} from '../../../services/material.service'
+import {MaterialService} from '../../services/material.service'
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @Component({
   selector: 'app-recursos',
@@ -15,9 +18,12 @@ export class RecursosAdminComponent{
   pagBack;
   tamPag:number=10;
   pagActual;
+  displayedColumns = ['titulo', 'descripcion'];
+
   constructor(private _materialService:MaterialService) {
 
     _materialService.getMateriales(1, this.tamPag).subscribe(data => {
+      console.log(data);
       this.recursos = data;
       console.log(data);
       this.loading = false;
