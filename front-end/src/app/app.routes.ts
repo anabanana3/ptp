@@ -86,12 +86,12 @@ const app_routes: Routes = [
     data:{title: 'MisExpedientes'}
   },
   {
-    path: 'material',
+    path: 'recurso',
     component: RecursoComponent,
     data:{title: 'Recurso'}
   },
   {
-    path: 'materiales',
+    path: 'recursos',
     component: RecursosComponent,
     data:{title: 'Recursos'}
   },

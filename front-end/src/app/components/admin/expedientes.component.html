@@ -1,5 +1,5 @@
 <div class="divAdmin-content">
-  <h1>Recursos</h1>
+  <h1>Expedientes</h1>
   <hr><br>
 
   <div>
@@ -7,14 +7,14 @@
     <div id="alert">{{mensaje}}</div>
     <div>
       <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="recursos">
+        <mat-table #table [dataSource]="expediente">
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Recurso}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Expediente}} </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="titulo">
-            <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Titulo}} </mat-cell>
+          <ng-container matColumnDef="autor">
+            <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Autor}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="estado">
             <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>

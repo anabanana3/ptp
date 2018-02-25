@@ -25,6 +25,7 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+import { ExpedientesAdminComponent } from './components/admin/expedientes.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
@@ -85,7 +86,8 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     RecursosComponent,
     MotorGraficoComponent,
     RecursosAdminComponent,
-    VerExpedienteComponent
+    VerExpedienteComponent,
+    ExpedientesAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,7 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     MatTabsModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     ProfesionesService,

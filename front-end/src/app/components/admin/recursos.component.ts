@@ -5,7 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @Component({
-  selector: 'app-recursos',
+  selector: 'app-recursos-admin',
   templateUrl: './recursos.component.html'
 })
 export class RecursosAdminComponent{
@@ -18,7 +18,7 @@ export class RecursosAdminComponent{
   pagBack;
   tamPag:number=10;
   pagActual;
-  displayedColumns = ['titulo', 'descripcion'];
+  displayedColumns = ['id', 'titulo', 'estado', 'opciones'];
 
   constructor(private _materialService:MaterialService) {
 

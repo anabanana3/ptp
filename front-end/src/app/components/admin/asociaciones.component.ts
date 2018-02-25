@@ -14,7 +14,6 @@ export class AsociacionesComponent {
   asociacion = []
 
   mensaje:string = '';
-  error:boolean = true;
 
   //Para la paginacion
   paginas = new Array(3);
@@ -24,12 +23,6 @@ export class AsociacionesComponent {
   pagActual;
   displayedColumns = ['id', 'nombre', 'email', 'estado', 'opciones'];
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
-
-    if(sessionStorage.getItem('iD') !== '44'){
-      return;
-    }
-    this.error = false;
-
     this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
       this.loading = false;
       this.asociacion = data.Data;
