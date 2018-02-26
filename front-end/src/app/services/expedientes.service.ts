@@ -268,5 +268,29 @@ getExpedientesPrivUser(p, tamPag){
   })
 
 }
+buscarExp(f){
+  console.log('Llego al servicio y muestro la url que me llega');
+  console.log(f);
+  let headers = new Headers({
+    'Content-Type':'application/json'
+  });
+  return this.http.get(f, {headers}).map(res=>{
+    return res;
+  })
+
+}
+buscar2Exp(url){
+  console.log('Funcion de prueba de busqueda');
+  console.log(url);
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  return this.http.get(url, {headers}).map(res =>{
+    console.log(res.json());
+    return res.json();
+  });
+}
 
 }

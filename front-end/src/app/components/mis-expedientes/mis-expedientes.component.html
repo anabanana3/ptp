@@ -13,24 +13,53 @@
 <div class="optionsExp">
   <div class="optionsLeft">
     <p id="fecha">Fecha | </p>
-    <p id="relevancia"> Relevancia | </p>
+    <p id="alfa"> A-Z |</p>
     <p id="alfa"> Z-A</p>
   </div>
-  <div class="optionsRigth">
-    <label style="margin:0" for="desc">Descendiente</label>
-    <input type="checkbox" id=desc>
-  </div>
-</div>
-<div class="optionsExp">
   <div class="optionsRigth" >
-    <p (click)="cambio(1)" id="priv"> Subidos por mi </p>
-    <p>  | </p>
-    <p (click)="cambio(2)" id=publ> Publicos</p>
-    <p (click)="cambio(3)" id="todos"> | Todos </p>
-  </div>
+      <p (click)="cambio(1)" id="priv"> Privados </p>
+      <p>  | </p>
+      <p (click)="cambio(2)" id=publ> Publicos</p>
+      <p (click)="cambio(3)" id="todos"> | Todos </p>
+    </div>
+</div>
+
+<!-- TODO Formulario con todos los criterios de busqueda -->
+  <div class="searchBar">
+    <form (ngSubmit)="buscar(1,10)">
+      <label for="titulo">Titulo</label>
+      <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
+
+      <label for="f1">Desde</label>
+      <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+      <label for="f2">Hasta</label>
+      <input [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+
+      <label for="lugar"> Lugar de detección </label>
+      <input [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+
+      <label for="etnia">Etnia de origen</label>
+      <select [(ngModel)]="Filtros.Etnia" name="Etnia">
+        <option value="0">Seleccione la etnia</option>
+        <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+      </select>
+
+      <label for="tipoMGF">Tipo de MGF</label>
+      <select [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+        <option value="0">Seleccione el tipo de MGF</option>
+        <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+      </select>
+
+      <button class="btn-fill text12 textPink" type="submit" name="button">Buscar</button>
+
+    </form>
+
   </div>
 
 
+
+<!-- Mensaje de que no hay resultados de busqueda -->
+<div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
 <div *ngIf="expedientes.length>0" class="expediente-container">
   <div  *ngFor="let e of expedientes" class=expediente>
     <div class="expedienteDesc">
@@ -39,7 +68,8 @@
     </div>
     <div class="expediente-body">
       <p>{{e.Titulo}}</p>
-      <p>{{e.Fecha.split('T')[0]}}</p>
+      <!-- split('T')[0] -->
+      <p>{{e.Fecha}}</p>
       <button class="btn-border bgColorPink" style="margin-top:5%"> Ver más</button>
     </div>
   </div>
@@ -47,7 +77,7 @@
 
 
 <!-- TODO: hacer mas condiciones por si no hay expedientes publicos -->
-<div *ngIf="expedientes.length ==0" class="expediente-container">
+<div *ngIf="expedientes.length ==0 && busqueda==false" class="expediente-container">
   <p> Todavia no tienes almacenado ningún expediente {{paginas.length}}
     <button class="btn-fill text12 textPink" [routerLink]="['/expediente']">Nuevo Expediente</button>
   </p>

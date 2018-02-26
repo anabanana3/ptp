@@ -19,6 +19,7 @@ import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
+import { BibExpedientesComponent} from './components/bib-expedientes/bib-expedientes.component';
 
 const app_routes: Routes = [
   {
@@ -98,6 +99,11 @@ const app_routes: Routes = [
   {
     path: 'misexpedientes',
     component: MisExpedientesComponent,
+    data:{title: 'MisExpedientes'}
+  },
+  {
+    path: 'bibexpedientes',
+    component: BibExpedientesComponent,
     data:{title: 'MisExpedientes'}
   },
   {

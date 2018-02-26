@@ -46,6 +46,7 @@ import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
+import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import {MaterialService} from "./services/material.service";
     RecursoComponent,
     RecursosComponent,
     MotorGraficoComponent,
-    RecursosAdminComponent
+    RecursosAdminComponent,
+    BibExpedientesComponent
   ],
   imports: [
     BrowserModule,
