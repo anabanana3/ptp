@@ -18,9 +18,14 @@ export class ExpedientesAdminComponent {
   tamPag:number=10;
   pagActual;
 
-  displayedColumns = ['id', 'autor', 'estado', 'opciones'];
-  constructor(){
+  displayedColumns = ['id', 'titulo', 'autor', 'fecha', 'estado'];
 
+  constructor(private _asociacionesServices:ExpedientesService){
+    this._asociacionesServices.getExpedientes(1, this.tamPag).subscribe(data => {
+      console.log(data);
+      this.expediente = data.Data;
+      this.loading = false;
+    })
   }
 
   //Funcion para generar las variables de la paginacion

@@ -97,6 +97,11 @@ const app_routes: Routes = [
     data:{title: 'Recurso'}
   },
   {
+    path: 'recurso/:id',
+    component: RecursoComponent,
+    data:{title: 'Recurso'}
+  },
+  {
     path: 'recursos',
     component: RecursosComponent,
     data:{title: 'Recursos'}

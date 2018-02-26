@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MaterialService } from "../../../services/material.service";
 import {Recurso} from '../../../interfaces/recurso.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recurso',
@@ -22,7 +23,8 @@ export class RecursoComponent {
   mensaje:string = '';
   formatos:object = {};
 
-  constructor(private _materialService:MaterialService) {
+  constructor(private _materialService:MaterialService,
+              private activatedRoute: ActivatedRoute) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -34,6 +36,17 @@ export class RecursoComponent {
     }, error => {
       console.log(error);
     });
+
+    let id:number;
+    activatedRoute.params.subscribe(params =>{
+      id = params['id'];
+    })
+
+    if(id !== undefined){
+      _materialService.getMaterial(id).subscribe(data => {
+        console.log(data);
+      })
+    }
   }
 
   loadFile(file){

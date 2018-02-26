@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MaterialService } from "../../services/material.service";
 import {Recurso} from '../../interfaces/recurso.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recursos',
@@ -26,7 +27,8 @@ export class RecursosComponent {
   tamPag:number=10;
   pagActual;
 
-  constructor(private _materialService:MaterialService) {
+  constructor(private _materialService:MaterialService,
+              private router:Router) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -38,8 +40,6 @@ export class RecursosComponent {
       this.loading = true;
       document.getElementById("propios").style.fontWeight = "bold";
       this.recursos = this.recursosPropios;
-      console.log(this.recursos);
-      console.log(data);
     }, error => {
       console.log(error);
     });
@@ -54,8 +54,6 @@ export class RecursosComponent {
 
     _materialService.getFormatos().subscribe(data => {
       this.formatos = data;
-      console.log('Hola');
-      console.log(this.formatos);
     }, error => {
       console.log(error);
     });
@@ -148,5 +146,9 @@ export class RecursosComponent {
       this.paginacion(data.Pagina, data.Paginas_Totales);
       this.pagActual = data.Pagina;
     });
+  }
+
+  editar(id){
+    this.router.navigate(['/recurso', id]);
   }
 }
