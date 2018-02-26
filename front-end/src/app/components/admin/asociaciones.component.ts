@@ -14,7 +14,7 @@ export class AsociacionesComponent {
   asociacion = []
 
   mensaje:string = '';
-
+  fieldSearch:string = '';
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -127,5 +127,9 @@ export class AsociacionesComponent {
       this.paginacion(data.Pagina, data.Paginas_Totales);
     });
     //this.view(this.tabla, 1, this.tamPag);;
+  }
+
+  filter(){
+    console.log(this.fieldSearch);
   }
 }

@@ -24,7 +24,7 @@ export class RecursosAdminComponent{
 
     _materialService.getMateriales(1, this.tamPag).subscribe(data => {
       console.log(data);
-      this.recursos = data;
+      this.recursos = data.Data;
       console.log(data);
       this.loading = false;
     }, error => {

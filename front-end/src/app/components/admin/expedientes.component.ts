@@ -10,7 +10,7 @@ export class ExpedientesAdminComponent {
   loading:boolean=true;
   mensaje:string = '';
   expediente = [];
-
+  view:number = 1;
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -57,8 +57,14 @@ export class ExpedientesAdminComponent {
     console.log(pag);
 
   }
+
   cambiarTamPag(tam){
     console.log(tam);
     this.tamPag=tam;
+  }
+
+  changeView(view){
+    console.log(view);
+    this.view = view;
   }
 }
