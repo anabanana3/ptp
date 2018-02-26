@@ -13,7 +13,7 @@ export class Bloque3Component implements OnInit {
   opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'N0'},{id:1, opcion:'SI'}];
   //datos que voy a enviar a la bd
   json = {
-    ID_Expediente: 12,//sessionStorage.IDExp,
+    ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
     Exp_propias:'',
     Exp_terceros:'',
     Mant_MGF: 0,
