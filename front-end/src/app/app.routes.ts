@@ -10,7 +10,6 @@ import { LateralOptionsComponent } from './components/admin/lateralOptions/later
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
 import { ExpedienteComponent} from './components/expediente/expediente.component';
 import { ContactoComponent} from './components/contacto/contacto.component';
 import { VermasComponent} from './components/vermas/vermas.component';
@@ -20,26 +19,13 @@ import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
 import { BibExpedientesComponent} from './components/bib-expedientes/bib-expedientes.component';
+import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 
 const app_routes: Routes = [
   {
-    path: 'admin/home',
-    component: HomeAdminComponent,
-    data: { title: 'Home' }
-  },
-  { path: 'admin/usuarios',
-    component: UsuariosComponent ,
-    data: { title: 'Usuarios' }
-  },
-  {
-    path: 'admin/asociaciones',
-    component: AsociacionesComponent,
-    data: { title: 'Asociaciones' }
-  },
-  {
-    path: 'admin/recursos',
-    component: RecursosAdminComponent,
-    data: { title: 'Recursos' }
+    path: 'admin',
+    component: LateralOptionsComponent,
+    data: { title: 'Admin' }
   },
   {
     path: 'registro',
@@ -120,6 +106,11 @@ const app_routes: Routes = [
     path: 'aulavirtual',
     component: MotorGraficoComponent,
     data:{title: 'Motor Grafico'}
+  },
+  {
+    path: 'verexpediente',
+    component: VerExpedienteComponent,
+    data:{title: 'Ver Expediente'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

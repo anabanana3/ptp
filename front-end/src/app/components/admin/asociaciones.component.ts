@@ -11,16 +11,9 @@ import { Router } from '@angular/router';
 export class AsociacionesComponent {
   loading:boolean=true;
 
-  asociacion:Asociacion ={
-    Nombre:'',
-    Direccion: '',
-    Email: '',
-    Password: '',
-    CIF: ''
-  }
+  asociacion = []
 
   mensaje:string = '';
-  error:boolean = true;
 
   //Para la paginacion
   paginas = new Array(3);
@@ -28,26 +21,18 @@ export class AsociacionesComponent {
   pagBack;
   tamPag:number=10;
   pagActual;
+  displayedColumns = ['id', 'nombre', 'email', 'estado', 'opciones'];
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
-
-    if(sessionStorage.getItem('iD') !== '44'){
-      return;
-    }
-    this.error = false;
-
     this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
-
       this.loading = false;
-      console.log(data);
       this.asociacion = data.Data;
-      this.paginacion(data.Pagina, data.Paginas_Totales);
     })
   }
 
   delete(id){
     let asociacion ={
-      Email: this.asociacion.Email,
-      Asociacion: this.asociacion.Nombre
+      // Email: this.asociacion.Email,
+      // Asociacion: this.asociacion.Nombre
     }
     this._asociacionesServices.deleteAsociacion(id, asociacion).subscribe(res=>{
 

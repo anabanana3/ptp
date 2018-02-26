@@ -1,5 +1,5 @@
 <div class="divAdmin-content">
-  <h1>Asociaciones</h1>
+  <h1>Recursos</h1>
   <hr><br>
 
   <div>
@@ -7,43 +7,26 @@
     <div id="alert">{{mensaje}}</div>
     <div>
       <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="asociacion">
+        <mat-table #table [dataSource]="recursos">
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Asociacion}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Recurso}} </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="nombre">
-            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Email.split("'")[1]}} </mat-cell>
+          <ng-container matColumnDef="titulo">
+            <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Titulo}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="estado">
             <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <span class="rect-success" *ngIf="element.Validada === 1">Validada</span>
-              <span class="rect-danger" *ngIf="element.Validada === 0">No Validada</span>
-              <span *ngIf="element.Validada === null">Cancelada</span>
+              <span class="rect-success" *ngIf="element.Publico === 1">Publicado</span>
+              <span class="rect-danger" *ngIf="element.Publico === 0">No Publicado</span>
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button type="button" class="btn btn-outline-success span"
-                      (click)="activate(element.ID_Asociacion, element.Email)"
-                      title="Aceptar Asociación">
-                <span class="icon-ok"></span>
-              </button>
-              <button type="button" class="btn btn-outline-danger span"
-                      (click)="delete(element.ID_Asociacion)"
-                      title="Cancelar Asociación">
-                <span class="icon-cancel"></span>
-              </button>
-            </mat-cell>
+            <mat-cell *matCellDef="let element"></mat-cell>
           </ng-container>
-
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
