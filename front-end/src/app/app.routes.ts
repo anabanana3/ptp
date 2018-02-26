@@ -17,7 +17,6 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
-import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
 import { BibExpedientesComponent} from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 

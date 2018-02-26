@@ -87,7 +87,7 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     RecursosComponent,
     MotorGraficoComponent,
     RecursosAdminComponent,
-    BibExpedientesComponent
+    BibExpedientesComponent,
     RecursosAdminComponent,
     VerExpedienteComponent,
     ExpedientesAdminComponent
