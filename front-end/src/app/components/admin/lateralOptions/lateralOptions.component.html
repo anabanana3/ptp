@@ -1,55 +1,75 @@
-<div class="header bgColorBlack">
-  <button class="icon-menu" (click)="expanded = !expanded"></button>
-  <a href="www.aisha.ovh/"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
-  <button (click)="logout();" type="button" name="button"
-    class="submitGris logoutAdmin icon-logout"
-    style="float:right;">
-  </button>
+<div *ngIf="error">
+  <app-error></app-error>
 </div>
+<div *ngIf="!error">
+  <div class="header bgColorBlack">
+    <button class="icon-menu" (click)="expanded = !expanded"></button>
+    <a href="www.aisha.ovh/"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
+    <button (click)="logout();" type="button" name="button"
+      class="submitGris logoutAdmin icon-logout"
+      style="float:right;">
+    </button>
+  </div>
 
-<div class="divAdmin-menuExpanded" *ngIf="expanded">
-<!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
-  <ul>
-    <li>
-      <a class="pointer icon-home" href="/admin/home">Home</a>
-    </li>
-    <li>
-      <a class="pointer icon-user" href="/admin/usuarios">Usuarios</a>
-    </li>
-    <li>
-      <a class="pointer icon-users" href="/admin/asociaciones">Asociaciones</a>
-    </li>
-    <li>
-      <a class="pointer icon-box" href="/admin/recursos">Recursos</a>
-    </li>
-    <li>
-      <a class="pointer icon-doc-text-inv">Expedientes</a>
-    </li>
-    <li>
-      <a class="pointer icon-envelope-open">Notificaciones</a>
-    </li>
-  </ul>
-</div>
+  <div class="divAdmin-menuExpanded" *ngIf="expanded">
+    <ul>
+      <li>
+        <a class="pointer icon-home" (click)="changeOption(1)">Home</a>
+      </li>
+      <li>
+        <a class="pointer icon-user" (click)="changeOption(2)">Usuarios</a>
+      </li>
+      <li>
+        <a class="pointer icon-users" (click)="changeOption(3)">Asociaciones</a>
+      </li>
+      <li>
+        <a class="pointer icon-box" (click)="changeOption(4)">Recursos</a>
+      </li>
+      <li>
+        <a class="pointer icon-doc-text-inv" (click)="changeOption(5)">Expedientes</a>
+      </li>
+      <li>
+        <a class="pointer icon-envelope-open">Notificaciones</a>
+      </li>
+    </ul>
+  </div>
 
-<div class="divAdmin">
-  <ul>
-    <li>
-      <a class="pointer icon-home" href="/admin/home">Home</a>
-    </li>
-    <li>
-      <a class="pointer icon-user" href="/admin/usuarios">Usuarios</a>
-    </li>
-    <li>
-      <a class="pointer icon-users" href="/admin/asociaciones">Asociaciones</a>
-    </li>
-    <li>
-      <a class="pointer icon-box">Recursos</a>
-    </li>
-    <li>
-      <a class="pointer icon-doc-text-inv">Expedientes</a>
-    </li>
-    <li>
-      <a class="pointer icon-envelope-open">Notificaciones</a>
-    </li>
-  </ul>
+  <div class="divAdmin">
+    <ul>
+      <li>
+        <a class="pointer icon-home" (click)="changeOption(1)">Home</a>
+      </li>
+      <li>
+        <a class="pointer icon-user" (click)="changeOption(2)">Usuarios</a>
+      </li>
+      <li>
+        <a class="pointer icon-users" (click)="changeOption(3)">Asociaciones</a>
+      </li>
+      <li>
+        <a class="pointer icon-box" (click)="changeOption(4)">Recursos</a>
+      </li>
+      <li>
+        <a class="pointer icon-doc-text-inv" (click)="changeOption(5)">Expedientes</a>
+      </li>
+      <li>
+        <a class="pointer icon-envelope-open">Notificaciones</a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="option == 1">
+
+  </div>
+  <div *ngIf="option == 2">
+    <app-usuarios></app-usuarios>
+  </div>
+  <div *ngIf="option == 3">
+    <app-asociaciones></app-asociaciones>
+  </div>
+  <div *ngIf="option == 4">
+    <app-recursos-admin></app-recursos-admin>
+  </div>
+  <div *ngIf="option == 5">
+    <app-expedientes></app-expedientes>
+  </div>
 </div>

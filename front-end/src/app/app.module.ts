@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import {APP_ROUTING} from "./app.routes";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
@@ -21,6 +25,7 @@ import { ProfileUserComponent } from './components/user/profile/profileUser.comp
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
+import { ExpedientesAdminComponent } from './components/admin/expedientes.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
@@ -37,7 +42,7 @@ import { MisExpedientesComponent } from './components/mis-expedientes/mis-expedi
 import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-recurso.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
-import { RecursosAdminComponent } from './components/admin/recursos/recursos.component';
+import { RecursosAdminComponent } from './components/admin/recursos.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -47,6 +52,7 @@ import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
+import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 
 @NgModule({
@@ -81,7 +87,10 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     RecursosComponent,
     MotorGraficoComponent,
     RecursosAdminComponent,
-    VerExpedienteComponent
+    BibExpedientesComponent,
+    RecursosAdminComponent,
+    VerExpedienteComponent,
+    ExpedientesAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +100,10 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     ProfesionesService,

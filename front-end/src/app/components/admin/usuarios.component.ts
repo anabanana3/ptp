@@ -42,6 +42,8 @@ export class UsuariosComponent {
     2: Cancelados
   */
 
+  displayedColumns = ['id', 'nombre', 'email', 'profesion', 'asociacion', 'opciones'];
+
   mensaje:string = '';
   error:boolean = true;
   constructor(private _userService:UserService, private activatedRoute:ActivatedRoute){
