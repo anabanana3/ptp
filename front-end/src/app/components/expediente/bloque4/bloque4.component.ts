@@ -17,7 +17,7 @@ export class Bloque4Component implements OnInit {
   consecuencias = new Array();
   json = {
     //ID_Bloque: '',
-    ID_Expediente: 12,//sessionStorage.IDExp,
+    ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
     Detec_MGF: 0,
     ID_Mutilacion: 0,
     Cicatriz_genital: 0,
