@@ -358,4 +358,16 @@ getBloque1(id){
   })
 }
 
+  getExpedientes(pag, tam){
+    let token = sessionStorage.getItem('token');
+    let url = this.urlExpediente + '/pag=' + pag + '&n=' + tam;
+    console.log(url);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
 }

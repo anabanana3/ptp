@@ -31,19 +31,6 @@ form{
   padding: 20px;
 }
 
-table{
-  border-collapse: collapse;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 1rem;
-  background-color: #FFFFFF;
-}
-
-thead{
-  background-color: black;
-  color: #FFFFFF;
-}
-
 th, td, button{padding: 15px;}
 
 button:hover{
@@ -873,7 +860,7 @@ canvas{
   cursor:pointer;
 }
 .optionsExp p:hover{
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .optionsLeft{

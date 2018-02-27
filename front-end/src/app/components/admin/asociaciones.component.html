@@ -6,6 +6,11 @@
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div>
+      <form method="post" (ngSubmit)="filter()">
+        <label for="Nombre">Nombre</label>
+        <input [(ngModel)]="fieldSearch" type="text" name="Nombre" id="nombre">
+        <button type="submit" name="button" class="icon-search"></button>
+      </form>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="asociacion">
           <ng-container matColumnDef="id">

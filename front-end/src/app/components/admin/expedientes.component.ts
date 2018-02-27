@@ -10,7 +10,7 @@ export class ExpedientesAdminComponent {
   loading:boolean=true;
   mensaje:string = '';
   expediente = [];
-
+  view:number = 1;
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -18,9 +18,14 @@ export class ExpedientesAdminComponent {
   tamPag:number=10;
   pagActual;
 
-  displayedColumns = ['id', 'autor', 'estado', 'opciones'];
-  constructor(){
+  displayedColumns = ['id', 'titulo', 'autor', 'fecha', 'estado'];
 
+  constructor(private _asociacionesServices:ExpedientesService){
+    this._asociacionesServices.getExpedientes(1, this.tamPag).subscribe(data => {
+      console.log(data);
+      this.expediente = data.Data;
+      this.loading = false;
+    })
   }
 
   //Funcion para generar las variables de la paginacion
@@ -52,8 +57,14 @@ export class ExpedientesAdminComponent {
     console.log(pag);
 
   }
+
   cambiarTamPag(tam){
     console.log(tam);
     this.tamPag=tam;
+  }
+
+  changeView(view){
+    console.log(view);
+    this.view = view;
   }
 }
