@@ -10,6 +10,11 @@
     <form (ngSubmit)="buscar(1,10)">
       <label for="autor">Autor</label>
       <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+      <label for="profesion">Profesion del autor</label>
+      <select [(ngModel)]="Filtros.Profesion" name="Profesion">
+        <option value="0">Selecione una profesión</option>
+        <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+      </select>
       <label for="titulo">Titulo</label>
       <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
 

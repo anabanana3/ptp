@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
+import { ProfesionesService } from '../../services/profesiones.service';
 
 @Component({
   selector: 'app-bib-expedientes',
@@ -23,11 +24,13 @@ export class BibExpedientesComponent implements OnInit {
 
 //Variables para filtar los expedientes
 etnias = new Array();
+profesiones = new Array();
   n:number = 1;
   tiposMGF = new Array();
   filtro:number=1;
   Filtros ={
     Autor:'',
+    Profesion:0,
     Titulo:'',
     Fecha1:'',
     Fecha2:'',
@@ -37,7 +40,7 @@ etnias = new Array();
     Orden:this.filtro
   }
 
-  constructor(private _expedientesService:ExpedientesService) {
+  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
       if(sessionStorage.length == 0){
         return;
       }else{
@@ -45,9 +48,14 @@ etnias = new Array();
         //Recupero las etnias para añadirlas al menu de busqueda
         this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
         this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
+        this._profService.getProfesiones().subscribe(data=>this.profesiones = data);
+
       }
    }
 
+ buscar2(pag, tam=this.tamPag){
+   console.log(this.Filtros);
+ }
    buscar(pag, tam=this.tamPag){
      console.log(this.Filtros);
      this.url='https://www.aisha.ovh/api/publicos/search/';
@@ -56,6 +64,11 @@ etnias = new Array();
        this.url += 'autor='+this.Filtros.Autor;
      }else{
        this.url += 'autor='+null;
+     }
+     if(this.Filtros.Profesion != 0){
+       this.url += '&profesion='+this.Filtros.Profesion;
+     }else{
+       this.url += '&profesion='+null ;
      }
      if(this.Filtros.Titulo != ''){
        //No son nulos => los pongo tal cual
