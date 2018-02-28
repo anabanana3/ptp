@@ -1,0 +1,25 @@
+/****** COLORS TEXT ******/
+
+.textBlack{ color:#333333;}
+.textPink{ color:#880042;}
+.textWhite{ color:#FFFFFF;}
+.textDarkenWhite{ color:#ededed;}
+.textGrey{ color: #DDDDDD;}
+.textGreyDarken{ color: #ABABAB;}
+.textRed{color: #E82C0C;}
+
+/****** COLORS BG ******/
+
+.bgColorBlack{ background-color:#333333;}
+.bgColorPink{ background-color:#880042;}
+.bgColorWhite{ background-color:#FFFFFF;}
+.bgColorDarkenWhite{ background-color:#ededed;}
+.bgColorGrey{ background-color: #DDDDDD;}
+.bgColorBlue{ background: #0C8A9C;}
+
+/****** TEXT SIZE ******/
+
+.text12{font-size: 12px;}
+.text16{ font-size: 16px;}
+.text18{ font-size: 18px;}
+.text20{ font-size: 20px;}

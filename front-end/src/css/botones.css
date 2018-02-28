@@ -1,0 +1,128 @@
+button:hover{
+  cursor: pointer;
+}
+
+.btn-relleno{
+  padding: 6px 10px;
+  margin-right: 2%;
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: #880042;
+  border-color: #880042;
+}
+
+.btn-relleno:hover{
+  background: none;
+  color:#880042;
+  border-radius: 10px;
+  border-color: #880042;
+  border-width: 2px;
+}
+
+.btn-border{
+  padding: 6px 10px;
+  font-size: 12px;
+  background: none;
+  margin-right: 2%;
+  padding: 6px 20px;
+  border-radius: 10px;
+  border-color: #880042;
+  color: #880042;
+  border-width: 2px;
+}
+
+.btn-border:hover{
+  border-color: #880042;
+  background-color: #880042;
+  color:white;
+}
+
+.btn-relleno-negro{
+  padding: 6px 10px;
+  margin-right: 2%;
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.btn-relleno-negro:hover{
+  background: none;
+  color:#333333;
+  border-radius: 10px;
+  border-color: #333333;
+  border-width: 2px;
+}
+
+.login{
+  margin-top: 4%;
+  float:right;
+}
+
+.suscribirse{
+  margin-top: 6%;
+}
+
+.verMas{
+  margin-top: 1.5%;
+  margin-bottom:10%;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  display: inline-block;
+}
+
+.inputfile + label:hover{
+  padding: 4px 8px;
+  border: solid;
+  background: none;
+  color:#333333;
+  border-radius: 10px;
+  border-color: #333333;
+  border-width: 2px;
+}
+
+.btn-return{
+  display: inline-block;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  float: left;
+  margin-left: 2%;
+  margin-top: 1%;
+  transform: rotate(+45deg);
+}
+
+.btn-return:hover{
+  transform: rotate(-45deg);
+}
+
+/**   BOTONES    **/
+
+/**   FONTELLO    **/
+
+.icon-cancel,
+.icon-ok,
+.icon-search{
+  color:#333333;
+}
+
+.icon-cancel:hover,
+.icon-ok:hover,
+.icon-search:hover{
+  color:#880042;
+}
+
+/**   FONTELLO    **/

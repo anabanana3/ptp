@@ -30,8 +30,7 @@
         <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled>
       </div>
 
-      <button type="button" name="button" class="submitGris textoBlanco"
-              style="width: 50%; min-width: 200px; margin: auto" (click)="change = !change">
+      <button type="button" name="button" class="btn-border" style="width:160px; margin: 0 auto;" (click)="change = !change">
         Cambiar Contraseña
       </button>
       <div class="" *ngIf="change" style="display: inline-grid;">
@@ -46,8 +45,10 @@
       </div>
       <div>
         <label for="fotoP">Foto de perfil</label>
-        <input class="lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
-        <button style="margin-bottom:5%; width:50%; margin-left:25%;" type="submit" name="button" class="btn-inline textoBlanco">
+        <input class="inputfile" name="fotoP" id="fotoP" type="file" (change)="onFileChange($event)" #fileInput>
+        <label class="btn-relleno-negro" for="fotoP">Elige un archivo</label>
+      <br>
+        <button type="submit" name="button" class="btn-relleno">
               Guardar cambios
         </button>
       </div>

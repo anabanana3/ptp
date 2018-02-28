@@ -9,7 +9,7 @@
       style="float:right;">
     </button>
     <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-            class="submitGris" style="float: right; margin: 1%;">
+            class="submitGris" style="float: right; margin: 1%;" class="btn-relleno">
             Perfil
     </button>
   </div>
@@ -17,16 +17,16 @@
   <button
     type="submit"
     name="button"
-    class="btn-fill textoBlanco text12"
+    class="btn-relleno"
     [routerLink]="['/recursos']"
     style="margin:1%;">
     Biblioteca de Recursos</button>
   <div>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack "
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
     </button>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack"
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(1)">
             Registrados
     </button>
