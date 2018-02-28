@@ -97,8 +97,8 @@
       <div>
         <p>{{r.Titulo.split("'")[1]}}</p>
         <p class="textGreyDarken text12" >{{r.Nombre}}</p>
-        <button *ngIf="view === 0" class="btn-border bgColorPink icon-edit" (click)="editar(r.ID_Material)">Editar</button>
-        <button *ngIf="view === 0" class="btn-border bgColorPink icon-edit" (click)="borrar(r.ID_Material, r.Path)">Borrar</button>
+        <button *ngIf="view === 0" class="btn icon-edit span" (click)="editar(r.ID_Material)"></button>
+        <button *ngIf="view === 0" class="btn span icon-cancel" (click)="borrar(r.ID_Material, r.Path)"></button>
       </div>
     </div>
   </div>
