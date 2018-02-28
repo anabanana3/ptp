@@ -7,7 +7,8 @@ export class ExpedientesService {
 urlEtnias:string = "https://www.aisha.ovh/api/etnia";
 urlActividades:string = 'https://www.aisha.ovh/api/actividad';
 urlExpediente:string = 'https://www.aisha.ovh/api/expedientes';
-urlExpedientePriv:string = 'https://www.aisha.ovh/api/privados'
+urlExpedientePriv:string = 'https://www.aisha.ovh/api/privados';
+urlExpedientePub:string = 'https://www.aisha.ovh/api/publicos';
 urlPersona:string = 'https://www.aisha.ovh/api/persona';
 urlBloque:string = 'https://www.aisha.ovh/api/camposb1';
 urlBloque2:string = 'https://www.aisha.ovh/api/camposb2';
@@ -245,6 +246,7 @@ getConsecuenciasSalud(){
 addConsecuenciasSalud(exp, bloque, sel){
   let token =  sessionStorage.token;
   let headers = new Headers({
+    'Content-Type':'application/json',
     'Authorization':token
   });
   let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
@@ -253,6 +255,23 @@ addConsecuenciasSalud(exp, bloque, sel){
   })
 }
 
+//Metodo que devuelve TODOS los expedientes de un usuario
+getExpedientesUser(p, tamPag){
+  let usuario = sessionStorage.iD;
+  // TODO: implementar en la API
+  let url=this.urlExpediente+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type': 'application/json',
+    'Authorization':token
+  });
+  return this.http.get(url, {headers}).map(res=>{
+    return res.json();
+  });
+}
+
+
+//Metodo que te deevuelve los expedientes privados de un usuario
 getExpedientesPrivUser(p, tamPag){
   let usuario = sessionStorage.iD;
   let url = this.urlExpedientePriv+'/'+usuario+'/pag='+p+'&n='+tamPag;
@@ -268,6 +287,24 @@ getExpedientesPrivUser(p, tamPag){
   })
 
 }
+
+//Metodo que devuelve los expedientes publicos de un usuario
+
+//AQUI
+getExpedientesPubUser(p, tamPag){
+  let usuario = sessionStorage.iD;
+  let url=this.urlExpedientePub+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type': 'application/json',
+    'Authorization':token
+  });
+  return this.http.get(url, {headers}).map(res=>{
+    return res.json();
+  });
+}
+
+
 buscarExp(f){
   console.log('Llego al servicio y muestro la url que me llega');
   console.log(f);
