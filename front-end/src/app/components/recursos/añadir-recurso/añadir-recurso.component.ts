@@ -17,6 +17,7 @@ export class RecursoComponent {
     ID_Formato: 1,
     Archivo: null
   }
+  idEditar;
 
   file;
   error:boolean = true;
@@ -43,8 +44,14 @@ export class RecursoComponent {
     })
 
     if(id !== undefined){
+      this.idEditar = id;
       _materialService.getMaterial(id).subscribe(data => {
         console.log(data);
+        this.recurso.Titulo = data[0].Titulo.split("'");
+        this.recurso.Descripcion = data[0].Descripcion.split("'");
+        this.recurso.Publico = data[0].Publico;
+        this.recurso.Archivo = data[0].Path;
+        this.recurso.ID_Formato = data[0].ID_Formato;
       })
     }
   }
@@ -66,8 +73,15 @@ export class RecursoComponent {
   newRecurso(forma:NgForm){
     let datos = new FormData();
 
+    if(this.idEditar){
+      console.log(this.recurso);
+      this._materialService.updateMaterial(this.idEditar, this.recurso).subscribe(data => {
+        console.log(data);
+      })
+      return;
+    }
+
     let file = document.getElementById('file');
-    console.log(this.recurso);
 
     if(forma.valid === false || this.recurso.Publico === -1){
       this.mensaje = 'Campos Incompletos';

@@ -20,11 +20,12 @@ export class ExpedientesAdminComponent {
 
   displayedColumns = ['id', 'titulo', 'autor', 'fecha', 'estado'];
 
-  constructor(private _asociacionesServices:ExpedientesService){
-    this._asociacionesServices.getExpedientes(1, this.tamPag).subscribe(data => {
+  constructor(private _expedientesServices:ExpedientesService){
+    _expedientesServices.getExpedientes(1, this.tamPag).subscribe(data => {
       console.log(data);
       this.expediente = data.Data;
       this.loading = false;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
     })
   }
 
@@ -55,7 +56,12 @@ export class ExpedientesAdminComponent {
 
   pasarPagina(pag){
     console.log(pag);
-
+    this._expedientesServices.getExpedientes(pag, this.tamPag).subscribe(data => {
+      console.log(data);
+      this.expediente = data.Data;
+      this.loading = false;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
+    })
   }
 
   cambiarTamPag(tam){

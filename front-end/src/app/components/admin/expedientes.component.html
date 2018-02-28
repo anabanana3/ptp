@@ -1,15 +1,6 @@
 <div class="divAdmin-content">
   <h1>Expedientes</h1>
-  <div>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack"
-            style="margin-bottom: 2%;" (click)="changeView(0)">
-            Privados
-    </button>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack"
-            style="margin-bottom: 2%;" (click)="changeView(1)">
-            Públicos
-    </button>
-  </div>
+  <hr><br>
   <div>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
@@ -35,8 +26,8 @@
           <ng-container matColumnDef="estado">
             <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <span class="rect-success" *ngIf="element.Publico === 1">Publicado</span>
-              <span class="rect-danger" *ngIf="element.Publico === 0">No Publicado</span>
+              <span class="rect-success" *ngIf="element.Estado == 1">Publicado</span>
+              <span class="rect-danger" *ngIf="element.Estado == 0">No Publicado</span>
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

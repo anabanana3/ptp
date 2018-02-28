@@ -232,132 +232,133 @@ addCompNacidoParto(idP, sel){
   getTipoMutilacion(){
     return this.http.get(this.urlTiposMGF).map(res=> res.json());
   }
-getCompMadre(){
-  return this.http.get(this.urlCompMadre).map(res=> res.json());
-}
-getCompNacido(){
-  return this.http.get(this.urlCompNacido).map(res=> res.json());
-}
-getConsecuenciasSalud(){
-  return this.http.get(this.urlConsecSalud).map(res=>{
-    return res.json();
-  })
-}
-addConsecuenciasSalud(exp, bloque, sel){
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
-  return this.http.post(url, sel,{headers}).map(res=>{
-    return res.json();
-  })
-}
+  
+  getCompMadre(){
+    return this.http.get(this.urlCompMadre).map(res=> res.json());
+  }
+  getCompNacido(){
+    return this.http.get(this.urlCompNacido).map(res=> res.json());
+  }
+  getConsecuenciasSalud(){
+    return this.http.get(this.urlConsecSalud).map(res=>{
+      return res.json();
+    })
+  }
+  addConsecuenciasSalud(exp, bloque, sel){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
+    return this.http.post(url, sel,{headers}).map(res=>{
+      return res.json();
+    })
+  }
 
-//Metodo que devuelve TODOS los expedientes de un usuario
-getExpedientesUser(p, tamPag){
-  let usuario = sessionStorage.iD;
-  // TODO: implementar en la API
-  let url=this.urlExpediente+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
-  let token = sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type': 'application/json',
-    'Authorization':token
-  });
-  return this.http.get(url, {headers}).map(res=>{
-    return res.json();
-  });
-}
-
-
-//Metodo que te deevuelve los expedientes privados de un usuario
-getExpedientesPrivUser(p, tamPag){
-  let usuario = sessionStorage.iD;
-  let url = this.urlExpedientePriv+'/'+usuario+'/pag='+p+'&n='+tamPag;
-
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-
-  return this.http.get(url, {headers}).map(res=>{
-    return res.json();
-  })
-
-}
-
-//Metodo que devuelve los expedientes publicos de un usuario
-
-//AQUI
-getExpedientesPubUser(p, tamPag){
-  let usuario = sessionStorage.iD;
-  let url=this.urlExpedientePub+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
-  let token = sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type': 'application/json',
-    'Authorization':token
-  });
-  return this.http.get(url, {headers}).map(res=>{
-    return res.json();
-  });
-}
+  //Metodo que devuelve TODOS los expedientes de un usuario
+  getExpedientesUser(p, tamPag){
+    let usuario = sessionStorage.iD;
+    // TODO: implementar en la API
+    let url=this.urlExpediente+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.get(url, {headers}).map(res=>{
+      return res.json();
+    });
+  }
 
 
-buscarExp(f){
-  console.log('Llego al servicio y muestro la url que me llega');
-  console.log(f);
-  let headers = new Headers({
-    'Content-Type':'application/json'
-  });
-  return this.http.get(f, {headers}).map(res=>{
-    return res;
-  })
+  //Metodo que te deevuelve los expedientes privados de un usuario
+  getExpedientesPrivUser(p, tamPag){
+    let usuario = sessionStorage.iD;
+    let url = this.urlExpedientePriv+'/'+usuario+'/pag='+p+'&n='+tamPag;
 
-}
-buscar2Exp(url){
-  console.log('Funcion de prueba de busqueda');
-  console.log(url);
-  let token = sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  return this.http.get(url, {headers}).map(res =>{
-    console.log(res.json());
-    return res.json();
-  });
-}
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
 
-getExpedienteById(id){
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let urlExpId = this.urlExpediente+'/id='+id;
-  console.log('hola');
+    return this.http.get(url, {headers}).map(res=>{
+      return res.json();
+    })
 
-  return this.http.get(urlExpId, {headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
+  }
 
-getBloque1(id){
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let urlb1 = this.urlBloque+'/id='+id;
+  //Metodo que devuelve los expedientes publicos de un usuario
 
-  return this.http.get(urlb1, {headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
+  //AQUI
+  getExpedientesPubUser(p, tamPag){
+    let usuario = sessionStorage.iD;
+    let url=this.urlExpedientePub+'/usuario/'+usuario+'/pag='+p+'&n='+tamPag;
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.get(url, {headers}).map(res=>{
+      return res.json();
+    });
+  }
+
+
+  buscarExp(f){
+    console.log('Llego al servicio y muestro la url que me llega');
+    console.log(f);
+    let headers = new Headers({
+      'Content-Type':'application/json'
+    });
+    return this.http.get(f, {headers}).map(res=>{
+      return res;
+    })
+
+  }
+  buscar2Exp(url){
+    console.log('Funcion de prueba de busqueda');
+    console.log(url);
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    return this.http.get(url, {headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    });
+  }
+
+  getExpedienteById(id){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let urlExpId = this.urlExpediente+'/id='+id;
+    console.log('hola');
+
+    return this.http.get(urlExpId, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+
+  getBloque1(id){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let urlb1 = this.urlBloque+'/id='+id;
+
+    return this.http.get(urlb1, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
 
   getExpedientes(pag, tam){
     let token = sessionStorage.getItem('token');
