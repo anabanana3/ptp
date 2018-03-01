@@ -109,6 +109,10 @@ button:hover{
   transform: rotate(-45deg);
 }
 
+.radioButtons{
+  display: block;
+  margin-bottom: 25px;
+}
 /**   BOTONES    **/
 
 /**   FONTELLO    **/

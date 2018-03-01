@@ -4,18 +4,23 @@
 
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
 <div class="grupoForm">
-    <h2 class="cherry ">Información básica sobre el expediente</h2>
-  <div>
-    <label for="titulo">Título</label>
-    <span matTooltip="Título que le permita identificar rápidamente este expediente." class="pointer icon-info info"></span>
-    <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
-    <label for=fechaC>Fecha de detección del caso:</label>
-    <input [(ngModel)]="expediente.Fecha" type="date"  name="fechaC" formControlName="fechaC" id="fechaC" >
-
-    <label for="lugarD">Lugar de detección:</label>
-    <input [(ngModel)]="expediente.ID_Lugar" type="text" placeholder="Lugar"  name="lugarD" formControlName="lugarD" id="lugarD" >
+    <h2 class="cherry ">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
+  <div class="divLabels">
+    <div>
+      <label for="titulo">Título</label>
+      <span matTooltip="Título que le permita identificar rápidamente este expediente." class="pointer icon-info info"></span>
+      <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
+    </div>
+    <div>
+      <label for=fechaC>Fecha de detección del caso:</label>
+      <input [(ngModel)]="expediente.Fecha" type="date"  name="fechaC" formControlName="fechaC" id="fechaC" >
+    </div>
+    <div>
+      <label for="lugarD">Lugar de detección:</label>
+      <input [(ngModel)]="expediente.ID_Lugar" type="text" placeholder="Lugar"  name="lugarD" formControlName="lugarD" id="lugarD" >
+    </div>
   </div>
-  <div>
+    <div>
     <label for="descripcion">Breve descripción:</label>
     <input [(ngModel)]="expediente.Descripcion" type="text"  placeholder="Descripcion"  name="descripcion" id="descripcion" formControlName="descripcion">
   </div>

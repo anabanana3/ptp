@@ -3,42 +3,50 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button>
+
   <div>
 <!-- TODO: No pudes voler para atras -->
     <div class="tabsExpediente">
-      <button class="tabItem" (click)="bloque=1">
+      <button  style="margin-left:3%;" id="bl1" class="tabItem" (click)="bloque=1">
         Bloque 1
       </button>
-      <button class="tabItem" (click)="bloque = 2">
+      <button id="bl2" class="tabItem" (click)="bloque = 2">
         Bloque 2
       </button>
-      <button class="tabItem" (click)="bloque = 3">
+      <button id="bl3" class="tabItem" (click)="bloque = 3">
         Bloque 3
       </button>
-      <button class="tabItem" (click)="bloque = 4">
+      <button id="bl4" class="tabItem" (click)="bloque = 4">
         Bloque 4
       </button>
-      <button class="tabItem" (click)="bloque = 5">
+      <button id="bl5" class="tabItem" (click)="bloque = 5">
         Bloque 5
       </button>
     </div>
 
+<!--
+    <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
+    </button>-->
+
     <div class="divBloque">
       <div *ngIf="bloque === 1">
+        {{ cambiarColorBl1() }}
         <app-bloque1></app-bloque1>
       </div>
       <div *ngIf="bloque === 2">
+        {{ cambiarColorBl2() }}
         <app-bloque2></app-bloque2>
       </div>
       <div *ngIf="bloque === 3">
+        {{ cambiarColorBl3() }}
         <app-bloque3></app-bloque3>
       </div>
       <div *ngIf="bloque === 4 ">
+        {{ cambiarColorBl4() }}
         <app-bloque4></app-bloque4>
       </div>
       <div *ngIf="bloque === 5">
+        {{ cambiarColorBl5() }}
         <app-bloque5></app-bloque5>
       </div>
     </div>

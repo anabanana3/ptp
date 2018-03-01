@@ -1,0 +1,233 @@
+
+/**** RESPONSIVE ****/
+@media (max-width: 700px) { /*1384*/
+  h1{
+    font-size:16px;
+  }
+  p{
+    font-size:14px;
+  }
+
+  .vermasCentroText{
+    font-size:16px;
+  }
+
+  .tickCrossIcon{
+    width: 20px;
+  }
+
+  .caracteristicasLeft{
+    margin-left:20px;
+    width:78%;
+  }
+
+  .recursosText{
+    margin-left:15%;
+  }
+
+  .divRecurso{
+    float:left;
+    margin-bottom:10px;
+  }
+
+  .recurso{
+    display: block;
+    width:300px;
+    margin:0 auto;
+    height: 30px;
+  }
+
+  .recursosDiv{
+    height:500px;
+  }
+  .headerPrincipal{
+    margin-bottom:20px;
+  }
+
+  .logoPrincipalDiv{
+    width: 100%;
+    height: 100px;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logoPrincipal{
+    display: none;
+  }
+
+  .logoPrincipal2{
+    display: block;
+  }
+
+  .botonesPrincipal{
+    padding-top:0px;
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+  }
+
+  .registro{
+    flex-direction: row;
+    margin:0 10px;
+  }
+
+  .language{
+    flex-direction: row;
+    margin:0 10px;
+    margin-top:6px;
+  }
+
+  .login{
+    flex-direction: row;
+    margin:0 10px;
+  }
+
+  .LeftDiv, .RightDiv{
+    margin-top:50px;
+  }
+}
+
+
+@media (max-width: 1384px) {
+  /* laptop */
+  h1{
+    font-size:16px;
+  }
+  p{
+    font-size:14px;
+  }
+
+  .vermasCentroText{
+    font-size:16px;
+  }
+
+  .tickCrossIcon{
+    width: 20px;
+  }
+
+  .caracteristicasLeft{
+    margin-left:20px;
+    width:78%;
+  }
+
+  .recursosText{
+    margin-left:15%;
+  }
+
+  .divRecurso{
+    float:left;
+    margin-bottom:10px;
+  }
+
+  .recurso{
+    display: block;
+    width:300px;
+    margin:0 auto;
+    height: 30px;
+  }
+
+  .recursosDiv{
+    height:500px;
+  }
+
+}
+
+@media (max-width:1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .camposForm{
+    width: 70%;
+  }
+
+  .divBlanco{
+    width: 80%;
+  }
+
+  .divAdmin{
+    display: none;
+  }
+
+  .divAdmin-menuExpanded{
+    display: block;
+    background: #D8D8D8;
+    border: 1px solid #979797;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
+    padding-bottom: 1%;
+    position: absolute;
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .divAdmin-menuExpanded li{
+    text-align: left;
+    padding: 2%;
+    margin-left: 0.3em;
+  }
+
+  .divAdmin-content{
+    width: 100%;
+  }
+
+  .icon-menu{
+    display: inline-block;
+  }
+
+  .noticiasConIcon{
+    width: 620px;
+  }
+}
+
+@media (max-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  html{
+    max-width: 320px;
+  }
+
+  .botonesPrincipal{
+    width:321px;
+    margin-bottom:30px;
+  }
+
+  .recursosDiv{
+    padding: 0px;
+  }
+
+  .recursosText{
+    margin-left:8px;
+  }
+
+  .divBlanco{
+    width: 100%;
+  }
+
+  .camposForm{
+    width: 90%;
+  }
+
+  .btn-return{
+    float: none;
+  }
+
+  .divAdmin-menuExpanded{
+    width: 100%;
+  }
+
+  .divError{
+    display: block;
+  }
+
+  .divError div{
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 2%;
+  }
+
+  .noticiasConIcon{
+    width: 300px;
+  }
+
+  .masNoticias{
+    width: 100px;
+  }
+}

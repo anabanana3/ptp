@@ -21,7 +21,12 @@
       "styles": [
         "styles.css",
         "css/coloresYtexto.css",
-        "css/botones.css"
+        "css/botones.css",
+        "css/inputs.css",
+        "css/header.css",
+        "css/footer.css",
+        "css/tooltip.css",
+        "css/responsive.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

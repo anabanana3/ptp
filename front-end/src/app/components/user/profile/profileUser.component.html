@@ -17,18 +17,18 @@
       </div>
       <div class="" style="margin-top: 5%;">
         <label style="float:left; width:80%;" for="subir">Subir expedientes</label>
-          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="subir">
+          <input class="inputProfileUser" type="checkbox" name="" value="" id="subir">
       </div>
       <div class="">
         <label style="float:left; width:80%;" for="comentar">Comentar expedientes</label>
-          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="comentar">
+          <input class="inputProfileUser" type="checkbox" name="" value="" id="comentar">
       </div>
       <div class="">
         <label style="float:left; width:80%;" for="api">Ver API</label>
-          <input style="float:right; margin-right:10%;" type="checkbox" name="" value="" id="api">
+          <input class="inputProfileUser" type="checkbox" name="" value="" id="api">
       </div>
 
-      <button type="button" name="button" class="submitGris textoBlanco" style="margin:5%;">Solicitar</button>
+      <button type="button" name="button" class="btn-border" style="margin:5%;">Solicitar</button>
     </div>
 
     <div style="width: 50%; float: left;margin-left: 5%;">
@@ -77,7 +77,7 @@
         <input class="lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
 
         <button (click)="change = !change" type="button" name="button"
-                class="submitGris textoBlanco" style="margin-bottom:5%;">
+                class="btn-border" style="margin-bottom:5%;">
                 Cambiar Contraseña
         </button>
 
@@ -93,8 +93,8 @@
           </div>
         </div>
         <div>
-          <button [routerLink]="['/home']" type="button" name="button" style="width: 42%;" class="submitGris textoBlanco">Atrás</button>
-          <button type="submit" name="button" style="width: 55%;" class="btn-inline textoBlanco" [disabled]="!this.forma.valid">GUARDAR</button>
+          <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Atrás</button>
+          <button type="submit" name="button" class="btn-relleno" [disabled]="!this.forma.valid">GUARDAR</button>
         </div>
     </form>
 

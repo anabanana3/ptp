@@ -24,4 +24,44 @@ terminar(){
 
 }
 
+cambiarColorBl1(){
+  document.getElementById("bl1").style.background="white";
+  document.getElementById("bl2").style.background="#DBDBDB";
+  document.getElementById("bl3").style.background="#DBDBDB";
+  document.getElementById("bl4").style.background="#DBDBDB";
+  document.getElementById("bl5").style.background="#DBDBDB";
+}
+
+cambiarColorBl2(){
+  document.getElementById("bl1").style.background="#DBDBDB";
+  document.getElementById("bl2").style.background="white";
+  document.getElementById("bl3").style.background="#DBDBDB";
+  document.getElementById("bl4").style.background="#DBDBDB";
+  document.getElementById("bl5").style.background="#DBDBDB";
+}
+
+cambiarColorBl3(){
+  document.getElementById("bl1").style.background="#DBDBDB";
+  document.getElementById("bl2").style.background="#DBDBDB";
+  document.getElementById("bl3").style.background="white";
+  document.getElementById("bl4").style.background="#DBDBDB";
+  document.getElementById("bl5").style.background="#DBDBDB";
+}
+
+cambiarColorBl4(){
+  document.getElementById("bl1").style.background="#DBDBDB";
+  document.getElementById("bl2").style.background="#DBDBDB";
+  document.getElementById("bl3").style.background="#DBDBDB";
+  document.getElementById("bl4").style.background="white";
+  document.getElementById("bl5").style.background="#DBDBDB";
+}
+
+cambiarColorBl5(){
+  document.getElementById("bl1").style.background="#DBDBDB";
+  document.getElementById("bl2").style.background="#DBDBDB";
+  document.getElementById("bl3").style.background="#DBDBDB";
+  document.getElementById("bl4").style.background="#DBDBDB";
+  document.getElementById("bl5").style.background="white";
+}
+
 }

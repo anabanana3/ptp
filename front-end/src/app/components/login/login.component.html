@@ -3,7 +3,7 @@
 
 
   <header>
-    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/']" alt="">
+    <a href="principal.component.html"><img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" alt=""></a>
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
@@ -18,11 +18,11 @@
     <div>
       <input [(ngModel)]="check_asoc" type="checkbox" name="asociacion" value="asociacion" id="check">
         <label for="check" class="text12">Soy una asociación</label> <br>
-      <button type="submit" name="button" class="btn-border bgColorPink">ENTRAR</button>
+      <button type="submit" name="button" class="btn-border">ENTRAR</button>
     </div>
   </form>
 
-  <footer class="footerDiv bgColorGrey">
+  <footer class="footerDivLogin bgColorGrey">
     <p>¿Aún no eres miembro?</p>
     <a [routerLink]="['/registro']"><p><b>Regístrate</b></p></a>
   </footer>

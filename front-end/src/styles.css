@@ -18,7 +18,8 @@ html{
 p{margin: 0;}
 
 a{
-  /*color: #333333;*/
+  color: #333333;
+  font-size: 14px;
   text-decoration: none;
 }
 
@@ -32,24 +33,6 @@ form{
 }
 
 th, td{padding: 15px;}
-
-label{
-  text-align: left;
-  padding-left: 5px;
-  margin-top: 3px;
-}
-
-input, textarea{
-  font-size: 16px;
-  color: #7F7F7F;
-}
-
-textarea {
-  resize: none;
-  margin-bottom: 25px;
-}
-
-textarea:hover{ border-bottom: 2px solid;}
 
 span{font-size: small;}
 
@@ -73,6 +56,7 @@ canvas{
   display: inline-block;
   margin: auto;
   margin-top: 1%;
+  margin-bottom:1%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   width: 50%;
 }
@@ -86,22 +70,6 @@ canvas{
 .checkbox{
   border: 1px solid #333333;
   border-radius: 2px;
-}
-
-.footerDiv{
-  padding: 2%;
-}
-
-.lineaCampo{
-  background: none;
-  border: none;
-  border-bottom: 1px solid #333333;
-  margin-bottom: 25px;
-  width: 100%;
-}
-
-.lineaCampo:hover{
-  border-bottom: 2px solid;
 }
 
 .lineaDiv{
@@ -192,11 +160,6 @@ canvas{
   width: 100%; /*width: 370px;*/
 }
 
-.radioButtons{
-  display: block;
-  margin-bottom: 25px;
-}
-
 .g-signin2{display: inline;}
 
 .span{
@@ -215,9 +178,7 @@ canvas{
   height: 100%;
 }
 
-.divAdmin-menuExpanded{
-  display: none;
-}
+.divAdmin-menuExpanded{ display: none;}
 
 .divAdmin-content{
   width: 80%;
@@ -240,6 +201,7 @@ canvas{
   border: none;
   padding: 2%;
 }
+
 .divAdmin ul{float: left; width: 100%; padding: 10%}
 .divAdmin li{padding: 10%;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
@@ -326,8 +288,17 @@ canvas{
 }
 
 .noticiasText{
+  width:50%;
   padding-bottom: 20px;
   text-align: left;
+  float:left;
+}
+
+.noticiasConIcon{
+  width: 970px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .noticiaTitle{
@@ -339,10 +310,8 @@ canvas{
 }
 
 .masNoticias{
+  margin-top:20px;
   width: 120px;
-  float:right;
-  margin-top: -64px;
-  margin-right: -650px;
 }
 
 .masNoticias:hover{
@@ -418,30 +387,6 @@ canvas{
   float:right;
 }
 
-.footerDiv{
-  clear:both;
-  width:100%;
-  margin:auto;
-  overflow: hidden;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width:100%;
-  margin-top:4%;
-}
-
-.infoFooter{
-  display: inline-block;
-  width: 100%;
-  padding-bottom:1%;
-}
-
-.divpFooter{
-  align-self: center;
-  display: inline-block;
-  width:32%;
-}
-
 .rect-success{
   background-color: #BAE4BE;
 }
@@ -492,76 +437,6 @@ canvas{
   margin-top:10px;
 }
 
-/** HEADER **/
-
-.header{
-  height: 90px;
-}
-
-.notification{
-  position: relative;
-  border-radius: 100%;
-  width: 25px;
-  height: 25px;
-  float:right;
-  margin-top:12px;
-  margin-right:80px;
-}
-
-.infoDivPerfil{
-  margin-top:12px;
-  text-align: left;
-  z-index: 2;
-  float: right;
-  width: 148px;
-  margin-right: 6px;
-}
-
-.divPerfil{
-  margin-top:-215px;
-  z-index: 2;
-  float: right;
-  width: 150px;
-  margin-right: 15px;
-}
-
-.options{
-  position:relative;
-  z-index: 2;
-  font-size:14px;
-}
-
-.grey{
-  color: #8B8B8B;
-}
-
-.DivOption{
-  margin: 12px 0px;
-}
-
-.DivOptionLogout{
-  margin:0;
-  padding: 0;
-  background-color: none;
-  border:none;
-  font-size:14px;
-}
-
-.numberOption{
-  float:right;
-  margin-top:-30.5px;
-  margin-right:27px;
-}
-
-.infoDivPerfil,
-#perfilTrigger{
-  display: none;
-}
-
-#perfilTrigger:checked + .infoDivPerfil{
-  display: block;
-}
-
 .vermasCentro{
   width:80%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
@@ -609,26 +484,32 @@ canvas{
 
 /********** Expedientes ***********/
 .tabsExpediente{
-  padding: 3%;
+  margin-top:20px;
+  padding: 5px 0px;
   padding-bottom: 0;
   display: flex;
   flex-wrap: wrap;
 }
 
 .tabItem{
-  margin-right: 2%;
-  padding: 1%;
-  border: solid 1px;
+  margin-right: 1%;
+  font-size: 14px;
+  padding: 10px 8px;
   border-bottom: none;
-  background: none;
+  background: #DBDBDB;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .divBloque{
   margin: 3%;
   margin-top: 0;
   display: block;
-  border: solid 1px;
-  padding: 1%;
+  /* Combined Shape: */
+  background: #FFFFFF;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  border-radius: 8px;
+  padding: 3%;
 }
 
 .partos{
@@ -672,22 +553,6 @@ canvas{
   font-size: 140%;
   color: white;
 }
-/***** TOOLTIP *****/
-.info{
-  color: white;
-  border-radius: 100%;
-  padding: 0.2%;
-  font-size: 12px;
-  background: #880042;
-}
-
-.info:hover{
-  background: #0C8A9C;
-}
-.mat-tooltip {
-  background: #0C8A9C;
-  font-size: 14px;
-}
 
 /*Mis Expedientes*/
 .optionsExp{
@@ -697,9 +562,11 @@ canvas{
   width: 80%;
   overflow: hidden;
 }
+
 .optionsExp p{
   cursor:pointer;
 }
+
 .optionsExp p:hover{
   font-weight: bold;
 }
@@ -837,207 +704,4 @@ canvas{
 .recurso-descripcion:hover{
   opacity: 1;
   display: inline;
-}
-
-/**** RESPONSIVE ****/
-@media (max-width: 700px) { /*1384*/
-  h1{
-    font-size:16px;
-  }
-  p{
-    font-size:14px;
-  }
-
-  .vermasCentroText{
-    font-size:16px;
-  }
-
-  .tickCrossIcon{
-    width: 20px;
-  }
-
-  .caracteristicasLeft{
-    margin-left:20px;
-    width:78%;
-  }
-
-  .recursosText{
-    margin-left:15%;
-  }
-
-  .divRecurso{
-    float:left;
-    margin-bottom:10px;
-  }
-
-  .recurso{
-    display: block;
-    width:300px;
-    margin:0 auto;
-    height: 30px;
-  }
-
-  .recursosDiv{
-    height:500px;
-  }
-  .headerPrincipal{
-    margin-bottom:20px;
-  }
-
-  .logoPrincipalDiv{
-    width: 100%;
-    height: 100px;
-    margin:0 auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .logoPrincipal{
-    display: none;
-  }
-
-  .logoPrincipal2{
-    display: block;
-  }
-
-  .botonesPrincipal{
-    padding-top:0px;
-    display: flex;
-    justify-content: center;
-    margin-top:20px;
-  }
-
-  .registro{
-    flex-direction: row;
-    margin:0 10px;
-  }
-
-  .language{
-    flex-direction: row;
-    margin:0 10px;
-    margin-top:6px;
-  }
-
-  .login{
-    flex-direction: row;
-    margin:0 10px;
-  }
-
-  .LeftDiv, .RightDiv{
-    margin-top:50px;
-  }
-}
-
-
-@media (max-width: 1384px) {
-  /* laptop */
-  h1{
-    font-size:16px;
-  }
-  p{
-    font-size:14px;
-  }
-
-  .vermasCentroText{
-    font-size:16px;
-  }
-
-  .tickCrossIcon{
-    width: 20px;
-  }
-
-  .caracteristicasLeft{
-    margin-left:20px;
-    width:78%;
-  }
-
-  .recursosText{
-    margin-left:15%;
-  }
-
-  .divRecurso{
-    float:left;
-    margin-bottom:10px;
-  }
-
-  .recurso{
-    display: block;
-    width:300px;
-    margin:0 auto;
-    height: 30px;
-  }
-
-  .recursosDiv{
-    height:500px;
-  }
-}
-
-@media (max-width:1025px) {
-  /* big landscape tablets, laptops, and desktops */
-  .camposForm{
-    width: 70%;
-  }
-
-  .divBlanco{
-    width: 80%;
-  }
-
-  .divAdmin{
-    display: none;
-  }
-
-  .divAdmin-menuExpanded{
-    display: block;
-    background: #D8D8D8;
-    border: 1px solid #979797;
-    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
-    padding-bottom: 1%;
-    position: absolute;
-    width: 30%;
-    min-width: 200px;
-  }
-
-  .divAdmin-menuExpanded li{
-    text-align: left;
-    padding: 2%;
-    margin-left: 0.3em;
-  }
-
-  .divAdmin-content{
-    width: 100%;
-  }
-
-  .icon-menu{
-    display: inline-block;
-  }
-}
-
-@media (max-width: 481px) {
-  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-  .divBlanco{
-    width: 100%;
-  }
-
-  .camposForm{
-    width: 90%;
-  }
-
-  .btn-return{
-    float: none;
-  }
-
-  .divAdmin-menuExpanded{
-    width: 100%;
-  }
-
-  .divError{
-    display: block;
-  }
-
-  .divError div{
-    display: inline-block;
-    margin: auto;
-    width: 100%;
-    margin-bottom: 2%;
-  }
 }

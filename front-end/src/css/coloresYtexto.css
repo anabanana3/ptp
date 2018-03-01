@@ -7,6 +7,7 @@
 .textGrey{ color: #DDDDDD;}
 .textGreyDarken{ color: #ABABAB;}
 .textRed{color: #E82C0C;}
+.grey{color: #8B8B8B;}
 
 /****** COLORS BG ******/
 
@@ -16,6 +17,7 @@
 .bgColorDarkenWhite{ background-color:#ededed;}
 .bgColorGrey{ background-color: #DDDDDD;}
 .bgColorBlue{ background: #0C8A9C;}
+
 
 /****** TEXT SIZE ******/
 
