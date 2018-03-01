@@ -22,12 +22,93 @@
           <b *ngIf="k.Deriv_Riesgo == 1">Sí</b>
           <b *ngIf="k.Deriv_Riesgo == 0">No</b>
         </p>
+        <p>Derivación por sospecha:
+          <b *ngIf="k.Deriv_Sospecha == 1">Sí</b>
+          <b *ngIf="k.Deriv_Sospecha == 0">No</b>
+        </p>
+        <p>Otros:
+          <b>{{k.Otros}}</b>
+        </p>
+        <p>Acompañado por la madre:
+          <b *ngIf="k.Acomp_M == 1">Sí</b>
+          <b *ngIf="k.Acomp_M == 0">No</b>
+        </p>
+        <p>Acompañado por el padre:
+          <b *ngIf="k.Acomp_P == 1">Sí</b>
+          <b *ngIf="k.Acomp_P == 0">No</b>
+        </p>
+        <p>Acompañado por hermano/a:
+          <b *ngIf="k.Acomp_H == 1">Sí</b>
+          <b *ngIf="k.Acomp_H == 0">No</b>
+        </p>
+        <p *ngIf="k.Acomp_O != 'NULL'">Acompañado por otros:
+          <b>{{k.Acomp_O}}</b>
+        </p>
+        <p>Dificultad con el idioma materno:
+          <b *ngIf="k.Dif_idi_M == 1">Sí</b>
+          <b *ngIf="k.Dif_idi_M == 0">No</b>
+        </p>
+        <p>Precisa traducción:
+          <b *ngIf="k.Traduccion == 1">Sí</b>
+          <b *ngIf="k.Traduccion == 0">No</b>
+        </p>
+        <p>Precisa mediación intercultural:
+          <b *ngIf="k.Mediacion == 1">Sí</b>
+          <b *ngIf="k.Mediacion == 0">No</b>
+        </p>
+        <p *ngIf="curso != 'NULL'">Curso de la menor:
+          <b>{{k.Curso}}</b>
+        </p>
+        <p *ngIf="centro_Salud != 'NULL'">Centro de salud de la menor:
+          <b>{{k.Centro_Salud}}</b>
+        </p>
+
       </div>
     </mat-tab>
-    <mat-tab label="Bloque 2">Content 2</mat-tab>
+    <mat-tab label="Bloque 2">
+      <div *ngIf="bloque2.length != 0">
+        <h3>Conocimiento e información sobre la MGF</h3>
+        <p>El implicado tiene conocimientos sobre la MGF:
+          <b *ngIf="bloque2[0].Conoce_MGF == 1">Sí</b>
+          <b *ngIf="bloque2[0].Conoce_MGF == 0">No</b>
+        </p>
+        <p>La MGF se realiza en la comunidad de origen:
+          <b *ngIf="bloque2[0].MGF_realizada_com_origen == 1">Sí</b>
+          <b *ngIf="bloque2[0].MGF_realizada_com_origen == 0">No</b>
+        </p>
+        <p *ngIf="bloque2[0].Pos_padre != NULL">Cual es el posicionamiento del padre frente a la MGF:
+          <b *ngIf="bloque2[0].Pos_padre == 1">A favor</b>
+          <b *ngIf="bloque2[0].Pos_padre == 0">En contra</b>
+        </p>
+        <p *ngIf="bloque2[0].Pos_madre != NULL">Cual es el posicionamiento de la madre frente a la MGF:
+          <b *ngIf="bloque2[0].Pos_madre == 1">A favor</b>
+          <b *ngIf="bloque2[0].Pos_madre == 0">En contra</b>
+        </p>
+        <p *ngIf="bloque2[0].Pos_familia != NULL">Cual es el posicionamiento de la familia en el pais de origen:
+          <b *ngIf="bloque2[0].Pos_familia == 1">A favor</b>
+          <b *ngIf="bloque2[0].Pos_familia == 0">En contra</b>
+        </p>
+        <p *ngIf="b2Otros != ''">Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:
+          <b>{{b2Otros}}</b>
+        </p>
+        <p *ngIf="bloque2[0].Sintomas_MGF != 'NULL'">Cual es el significado de la MGF para el implicado en el expediente:
+          <b>{{bloque2[0].Sintomas_MGF}}</b>
+        </p>
+        <p>Número de partos:
+          <b>{{bloque2[0].Num_Partos}}</b>
+          <button mat-raised-button *ngIf="bloque2[0].Num_Partos != 0" (click)="openDialog()" type="submit" name="button" class="btn-border bgColorPink">Ver Partos</button>
+        </p>
+
+      </div>
+      <div *ngIf="bloque2.length == 0">
+        <h3>No hay datos :(</h3>
+      </div>
+
+    </mat-tab>
     <mat-tab label="Bloque 3">Content 3</mat-tab>
     <mat-tab label="Bloque 4">Content 4</mat-tab>
     <mat-tab label="Bloque 5">Content 5</mat-tab>
+    <mat-tab label="Permisos">Permisos usuarios</mat-tab>
   </mat-tab-group>
 </div>
 <app-footer></app-footer>

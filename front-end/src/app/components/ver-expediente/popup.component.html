@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>DATOS PARTO</h1>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
+</div>
+<div *ngFor="let parto of data.partos; let i = index">
+  <div mat-dialog-content>
+    <h2>Parto nº {{i+1}}</h2>
+    <p *ngIf="parto.Fecha != NULL">Fecha:
+      <b>{{parto.Fecha}}</b>
+    </p>
+    <p *ngIf="parto.Edad_Madre != NULL">Edad de la madre:
+      <b>{{parto.Edad_Madre}}</b>
+    </p>
+    <p *ngIf="parto.Edad_Nacido != NULL">Edad del nacido/a:
+      <b>{{parto.Edad_Nacido}}</b>
+    </p>
+    <p *ngIf="parto.Tiempo_Expulsivo != NULL">Tiempo de expulsión:
+      <b>{{parto.Tiempo_Expulsivo}}</b>
+    </p>
+    <p *ngIf="parto.Tiempo_Dilatacion != NULL">Tiempo de dilatación:
+      <b>{{parto.Tiempo_Dilatacion}}</b>
+    </p>
+    <p *ngIf="parto.Duracion_Parto != NULL">Duración del parto:
+      <b>{{parto.Duracion_Parto}}</b>
+      min.
+    </p>
+    <p>Fórmula obstétrica realizada:
+      <b>SIN HACER</b>
+    </p>
+    <p>Tipo mutilación genital:
+      <b>SIN HACER</b>
+    </p>
+    <p *ngIf="parto.Test_APGAR != NULL">Test APGAR:
+      <b>{{parto.Test_APGAR}}</b>
+    </p>
+    <p *ngIf="data.auxM[i] != NULL">Complicaciones de la madre durante el parte:
+      <b *ngFor="let cm of data.auxM[i]">{{cm}} </b>
+    </p>
+    <p *ngIf="data.auxN[i] != NULL">Complicaciones del recién nacido durante el parte:
+      <b *ngFor="let cn of data.auxN[i]">{{cn}} </b>
+    </p>
+  </div>
+</div>

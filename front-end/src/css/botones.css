@@ -119,13 +119,15 @@ button:hover{
 
 .icon-cancel,
 .icon-ok,
-.icon-search{
+.icon-search,
+.icon-edit{
   color:#333333;
 }
 
 .icon-cancel:hover,
 .icon-ok:hover,
-.icon-search:hover{
+.icon-search:hover,
+.icon-edit:hover{
   color:#880042;
 }
 

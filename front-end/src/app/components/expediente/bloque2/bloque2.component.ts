@@ -98,6 +98,7 @@ datosPartos = new Array();
         //Creo los partos
         for(let i=0; i<this.datosPartos.length; i++){
           this.datosPartos[i].Id_Bloque= bloque;
+          console.log(this.datosPartos[i]);
           this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
             console.log(data);
             let idParto = data.ID_Parto;
