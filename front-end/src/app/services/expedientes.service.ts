@@ -26,6 +26,7 @@ urlCompNacido:string ='https://aisha.ovh/api/compNacido';
 urlConsecSalud:string ='https://aisha.ovh/api/consecSalud';
 //Expedientes de un usuario
 urlExp:string = 'https://aisha.ovh/api/privados';
+urlTieneComp:string = 'https://aisha.ovh/api/tieneCompM';
 
 
   constructor(private http:Http) { }
@@ -322,4 +323,83 @@ getBloque1(id){
   })
 }
 
+getBloque2(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlb2 = this.urlBloque2+'/'+id;
+
+  return this.http.get(urlb2, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
+
+getPartos(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlp = this.urlPartos+'/expediente/'+id;
+
+  return this.http.get(urlp, {headers}).map(res=>{
+    console.log("p"+res.json());
+    return res.json();
+  })
+}
+getComplicMadreById(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlp = this.urlCompMadre+'/'+id;
+
+  return this.http.get(urlp, {headers}).map(res=>{
+    console.log("p"+res.json());
+    return res.json();
+  })
+}
+getComplicNacidoById(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlp = this.urlCompNacido+'/'+id;
+
+  return this.http.get(urlp, {headers}).map(res=>{
+    console.log("p"+res.json());
+    return res.json();
+  })
+}
+getConsecM(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlc = this.urlTieneComp+'/madre/idM='+id;
+
+  return this.http.get(urlc, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
+getConsecN(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urln = this.urlTieneComp+'/nacido/idN='+id;
+
+  return this.http.get(urln, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
 }

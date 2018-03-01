@@ -1,9 +1,9 @@
 <!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos
  -->
-<form (ngSubmit)="guardarDatos2()"#form="ngForm">
+<form (ngSubmit)="guardarDatos()"#form="ngForm">
   <h2> Conocimiento e información sobre la MGF</h2>
 
-<label>El inplicado tiene conocimientos sobre la MGF</label>
+<label>El implicado tiene conocimientos sobre la MGF</label>
 <span matTooltip="Posible pregunta Tengo entendido que
 en su país se realiza la ablación o el corte de los genitales de las
 mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
@@ -16,14 +16,14 @@ mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
   <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
 </select>
 <br>
-<label>Cual es el posicionamiento del padre frentre a la MGF</label>
+<label>Cual es el posicionamiento del padre frente a la MGF</label>
 <span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
 esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
 <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
 </select>
 <br>
-<label>Cual es el posicionamiento de la madre frentre a la MGF</label>
+<label>Cual es el posicionamiento de la madre frente a la MGF</label>
 <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
 </select>
@@ -36,7 +36,7 @@ esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer
 <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
 <textarea [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
 <br>
-<label>Cual es el significado de la MGF para el inplicado en el expediente</label>
+<label>Cual es el significado de la MGF para el implicado en el expediente</label>
 <textarea [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 <br>
 <label>Formato de intervención</label>

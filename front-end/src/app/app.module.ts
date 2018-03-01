@@ -8,7 +8,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Components
@@ -53,7 +53,7 @@ import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
-import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
+import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +90,8 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     BibExpedientesComponent,
     RecursosAdminComponent,
     VerExpedienteComponent,
-    ExpedientesAdminComponent
+    ExpedientesAdminComponent,
+    Popup
   ],
   imports: [
     BrowserModule,
@@ -104,6 +105,10 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    Popup
   ],
   providers: [
     ProfesionesService,
