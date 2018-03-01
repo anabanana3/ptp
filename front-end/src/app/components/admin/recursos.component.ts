@@ -12,6 +12,9 @@ export class RecursosAdminComponent{
   loading:boolean=true;
 
   recursos = [];
+  selectFormato;
+  fieldSearch;
+  formatos = [];
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -24,12 +27,19 @@ export class RecursosAdminComponent{
 
     _materialService.getMateriales(1, this.tamPag).subscribe(data => {
       console.log(data);
-      this.recursos = data;
+      this.recursos = data.Data;
       console.log(data);
       this.loading = false;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
     }, error => {
       console.log(error);
     })
+
+    _materialService.getFormatos().subscribe(data => {
+      this.formatos = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
   paginacion( paginaActual , pagTotales){
@@ -50,10 +60,6 @@ export class RecursosAdminComponent{
     }else{
       this.pagNext = paginaActual;
     }
-    console.log("Total de paginas", this.paginas.length);
-    console.log('PAgina Actual', paginaActual);
-    console.log("Pagina Siguiente", this.pagNext);
-    console.log("Pagina anterior", this.pagBack);
   }
 
   pasarPagina(pag){
@@ -70,4 +76,34 @@ export class RecursosAdminComponent{
     });
   }
 
+  buscar(){
+    console.log(this.selectFormato);
+    console.log(this.fieldSearch);
+    let nombre = null;
+    let formato = null;
+
+    if(this.selectFormato){
+      formato = this.selectFormato;
+    }
+
+    if(this.fieldSearch){
+      nombre = this.fieldSearch;
+    }
+
+    this._materialService.searchMaterial(nombre, formato, null, 1, this.tamPag).subscribe(data => {
+      console.log(data);
+      this.recursos = data.Data;
+      this.recursos = data.Data;
+    })
+  }
+
+  borrarMaterial(id, path){
+    console.log(id);
+    console.log(path);
+    this._materialService.deleteMaterial(id, path).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    })
+  }
 }

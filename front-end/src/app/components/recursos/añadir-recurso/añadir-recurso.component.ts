@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MaterialService } from "../../../services/material.service";
 import {Recurso} from '../../../interfaces/recurso.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recurso',
@@ -16,13 +17,15 @@ export class RecursoComponent {
     ID_Formato: 1,
     Archivo: null
   }
+  idEditar;
 
   file;
   error:boolean = true;
   mensaje:string = '';
   formatos:object = {};
 
-  constructor(private _materialService:MaterialService) {
+  constructor(private _materialService:MaterialService,
+              private activatedRoute: ActivatedRoute) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -34,6 +37,23 @@ export class RecursoComponent {
     }, error => {
       console.log(error);
     });
+
+    let id:number;
+    activatedRoute.params.subscribe(params =>{
+      id = params['id'];
+    })
+
+    if(id !== undefined){
+      this.idEditar = id;
+      _materialService.getMaterial(id).subscribe(data => {
+        console.log(data);
+        this.recurso.Titulo = data[0].Titulo.split("'");
+        this.recurso.Descripcion = data[0].Descripcion.split("'");
+        this.recurso.Publico = data[0].Publico;
+        this.recurso.Archivo = data[0].Path;
+        this.recurso.ID_Formato = data[0].ID_Formato;
+      })
+    }
   }
 
   loadFile(file){
@@ -53,8 +73,15 @@ export class RecursoComponent {
   newRecurso(forma:NgForm){
     let datos = new FormData();
 
+    if(this.idEditar){
+      console.log(this.recurso);
+      this._materialService.updateMaterial(this.idEditar, this.recurso).subscribe(data => {
+        console.log(data);
+      })
+      return;
+    }
+
     let file = document.getElementById('file');
-    console.log(this.recurso);
 
     if(forma.valid === false || this.recurso.Publico === -1){
       this.mensaje = 'Campos Incompletos';

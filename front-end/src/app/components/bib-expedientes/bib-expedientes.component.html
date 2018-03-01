@@ -10,6 +10,11 @@
     <form (ngSubmit)="buscar(1,10)">
       <label for="autor">Autor</label>
       <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+      <label for="profesion">Profesion del autor</label>
+      <select [(ngModel)]="Filtros.Profesion" name="Profesion">
+        <option value="0">Selecione una profesión</option>
+        <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+      </select>
       <label for="titulo">Titulo</label>
       <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
 
@@ -33,7 +38,7 @@
         <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
       </select>
 
-      <button class="btn-fill text12 textPink" type="submit" name="button">Buscar</button>
+      <button class="btn-relleno" type="submit" name="button">Buscar</button>
 
     </form>
   </div>
@@ -49,7 +54,7 @@
         <p>{{e.Titulo}}</p>
         <!-- split('T')[0] -->
         <p>{{e.Fecha}}</p>
-        <button class="btn-border bgColorPink" style="margin-top:5%"> Ver más</button>
+        <button class="btn-border" style="margin-top:5%"> Ver más</button>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
       style="float:right;">
     </button>
     <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-            class="submitGris" style="float: right; margin: 1%;">
+            class="submitGris" style="float: right; margin: 1%;" class="btn-relleno">
             Perfil
     </button>
   </div>
@@ -17,16 +17,16 @@
   <button
     type="submit"
     name="button"
-    class="btn-fill textoBlanco text12"
+    class="btn-relleno"
     [routerLink]="['/recursos']"
     style="margin:1%;">
     Biblioteca de Recursos</button>
   <div>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack "
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
     </button>
-    <button type="button" name="button" class="btn-entrar text12 bgColorBlack"
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(1)">
             Registrados
     </button>
@@ -37,7 +37,43 @@
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div >
-      <table class="table">
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="user">
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Asociacion}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Email.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dni">
+            <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.DNI.split("'")[1]}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="opciones">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button type="button" class="btn btn-outline-success icon-ok span"
+                      (click)="activateUser(element.ID_Usuario, element.Email)"
+                      title="Aceptar Usuarios">
+              </button>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="cancelUser(element.ID_Usuario)"
+                      title="Cancelar Usuarios">
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+      <!-- <table class="table">
         <thead class="thead">
           <tr>
             <th scope="col">#</th>
@@ -52,7 +88,6 @@
 
         <tbody>
           <tr *ngFor="let k of user | keys; let i = index;">
-            <!-- <td>{{i+1}}</td> -->
             <td>{{user[k].ID_Usuario}}</td>
             <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
             <td *ngIf="user[k].Apellidos != undefined && tabla != 1">{{user[k].Apellidos.split("'")[1]}}</td>
@@ -71,7 +106,7 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
       <!-- PAGINACION -->
    <ul class="pagination" *ngIf="paginas.length >1">

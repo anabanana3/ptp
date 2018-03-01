@@ -48,6 +48,7 @@ export class Bloque4Component implements OnInit {
     }
   }
 
+
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
     console.log(this.consecuencias);
@@ -59,7 +60,7 @@ export class Bloque4Component implements OnInit {
     if(this.consecuencia.length > 0){
       console.log("entro"+ this.consecuenciasSalud.length);
       for(var i=1; i< this.consecuenciasSalud.length+1; i++){
-        if(this.consecuencia[i+53] == true){
+        if(this.consecuencia[i] == true){
           console.log("entro"+ this.consecuencias[i]);
           this.consecuencias.push(i);
           console.log(this.consecuencias);
@@ -75,10 +76,11 @@ export class Bloque4Component implements OnInit {
         if(data.warningCount == 0){
           this.mensaje = 'Guardado correctamente!';
           document.getElementById('alert').className = 'alert alert-success';
+          //Despues de guardar, borrar el Array
+          this.consecuencias = [];
         }
     });
-    //Despues de guardar, borrar el Array
-    this.consecuencias = [];
+    
   }
   ngOnInit() {
   }

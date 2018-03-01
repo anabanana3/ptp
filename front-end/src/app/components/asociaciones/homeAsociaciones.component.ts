@@ -8,18 +8,7 @@ import { User } from "../../interfaces/user.interface";
   templateUrl: './homeAsociaciones.component.html'
 })
 export class HomeAsociaciones{
-  user:User ={
-    Nombre:'',
-    Apellidos: '',
-    F_Nacimiento: '',
-    Email: '',
-    Asociacion: '',
-    Profesion: '',
-    ID_Lugar: '',
-    Direccion: '',
-    Sexo: '',
-    DNI: ''
-  };
+  user = [];
 
   tabla:number = 0;
   id:number = 0;
@@ -34,6 +23,7 @@ export class HomeAsociaciones{
   pagBack;
   pagActual;
   tamPag:number = 3;
+  displayedColumns = ['id', 'nombre', 'email', 'dni', 'opciones'];
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
     if(sessionStorage.length === 0){
@@ -43,6 +33,7 @@ export class HomeAsociaciones{
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
+      console.log(data);
       this.asociacion = data[0].Nombre.split("'")[1];
     })
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {

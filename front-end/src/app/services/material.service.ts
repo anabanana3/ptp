@@ -5,18 +5,19 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 
 @Injectable()
 export class MaterialService {
-  nuevoMaterial:string = "https://aisha.ovh/api/material/";
-  materiales:string = "https://aisha.ovh/api/material/";
+  material:string = "https://aisha.ovh/api/material/";
   materialesPropios:string = "https://aisha.ovh/api/material/usuario/";
   materialesPublicos:string = "https://aisha.ovh/api/material/publicos/";
   formatos:string = "https://aisha.ovh/api/formato/";
+  search:string = "https://www.aisha.ovh/api/material/search/";
+  publicar:string = "https://www.aisha.ovh/api/material/publicar/";
 
   constructor(private http:Http) { }
 
   newMaterial(material:FormData){
     let body = material;
     let token = sessionStorage.getItem('token');
-    let url = this.nuevoMaterial + token;
+    let url = this.material + token;
 
     return this.http.post(url, body).map(res=>{
             console.log(res.json());
@@ -40,6 +41,7 @@ export class MaterialService {
     let id = sessionStorage.getItem('iD');
     let url = this.materialesPropios + id + '/pag=' + pag + '&n=' + tam;
     console.log(url);
+
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
@@ -52,6 +54,7 @@ export class MaterialService {
     let token = sessionStorage.getItem('token');
     let url = this.materialesPublicos + 'pag=' + pag + '&n=' + tam;
     console.log(url);
+
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
@@ -62,7 +65,21 @@ export class MaterialService {
 
   getMateriales(pag, tam){
     let token = sessionStorage.getItem('token');
-    let url = this.materiales + 'pag=' + pag + '&n=' + tam;
+    let url = this.material + 'pag=' + pag + '&n=' + tam;
+    console.log(url);
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  getMaterial(id){
+    let token = sessionStorage.getItem('token');
+    let idUser = sessionStorage.getItem('iD');
+    let url = this.material + 'id/' + id;
     console.log(url);
     let headers = new Headers({
       'Content-Type':'application/json',
@@ -70,5 +87,72 @@ export class MaterialService {
     });
 
     return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  searchMaterial(nombre, formato, e, pag, n){
+    let url = this.search+ 'nombre=' + nombre + '&formato=' + formato + '&e=' + e + '/pag=' + pag + '&n=' + n;
+    let token = sessionStorage.getItem('token');
+    console.log(url);
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  deleteMaterial(id, path){
+    //body path
+    let body = JSON.stringify({"Path": path});
+    let url = `${this.material}delete/${id}`;
+    console.log(id);
+    console.log(path);
+    console.log(url);
+
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.post(url, body, {headers}).map(res=> res.json());
+  }
+
+  updateMaterial(id, material){
+    //id y body
+    //titulo descripcion y publico
+
+    let body = JSON.stringify(material);
+    let url = `${this.material}${id}`;
+    console.log(id);
+    console.log(body);
+    console.log(url);
+
+    let token = sessionStorage.getItem('token');
+
+    console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.put(url, body, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    });
+  }
+
+  publicarMaterial(id){
+    let token = sessionStorage.getItem('token');
+
+    console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.post(this.publicar, {headers}).map(res=> res.json());
   }
 }

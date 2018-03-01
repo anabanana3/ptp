@@ -28,16 +28,16 @@ export class MisExpedientesComponent implements OnInit {
 //Variables para filtar los expedientes
 etnias = new Array();
   n:number = 1;
+  //Variable para mostrar expedientes publicos, privados o ambos => 1:privados, 2:publicos, 3:ambos
+  tipoExp:number=1;
   tiposMGF = new Array();
-  filtro:number=1;
-  Filtros ={
+    Filtros ={
     Titulo:'',
     Fecha1:'',
     Fecha2:'',
     Lugar:'',
     Etnia:0,
     TipoMGF:0,
-    Orden:this.filtro
   }
 
 
@@ -50,12 +50,12 @@ etnias = new Array();
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
       //Recupero los expedientes del usuario que ha iniciado sesion
+      this.getExpedientesUser(1,1,this.tamPag);
       this._expedientesService.getExpedientesPrivUser(1, this.tamPag).subscribe(data =>{
         console.log(data);
         this.expedientes = data.Data;
         this.paginacion(data.Pagina, data.Paginas_Totales);
         //console.log(this.expedientes);
-        document.getElementById("fecha").style.fontWeight = "bold";
         document.getElementById("priv").style.fontWeight = "bold";
         console.log(this.expedientes);
       });
@@ -71,33 +71,65 @@ cambio(n){
   switch(this.n){
     case 1:
       console.log("Expedientes Privados");
+      this.tipoExp = 1;
       //TODO: Faltan estos metodos
       document.getElementById("priv").style.fontWeight = "bold";
       document.getElementById("publ").style.fontWeight = "normal";
       document.getElementById("todos").style.fontWeight = "normal";
+      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
     case 2:
       console.log("Expedientes Publicos");
+      this.tipoExp = 2;
       //TODO: Faltan estos metodos
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "bold";
       document.getElementById("todos").style.fontWeight = "normal";
+      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
     case 3:
+      this.tipoExp = 3;
       console.log('Todos los expedientes');
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "normal";
       document.getElementById("todos").style.fontWeight = "bold";
+      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
   }
 }
 
 
-getExpedientesUser(pag, tam){
-  this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
-    this.expedientes = data.Data;
-    this.paginacion(data.Pagina, data.Paginas_Totales);
-    });
+getExpedientesUser(tipo,pag, tam){
+  switch (tipo){
+    case 1:
+    this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
+      this.expedientes = data.Data;
+      console.log('Resultado de la funcion aux privados');
+      console.log(data);
+      this.paginacion(data.Pagina, data.Paginas_Totales);
+      });
+    break;
+    case 2:
+      //Los publicos
+      this._expedientesService.getExpedientesPubUser(pag,tam).subscribe(data=>{
+        this.expedientes = data.Data;
+        console.log('Resultado de la funcion aux publicos');
+        console.log(data);
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      })
+    break;
+    case 3:
+      //Todos
+      this._expedientesService.getExpedientesUser(pag, tam).subscribe(data=>{
+        this.expedientes = data.Data;
+        console.log('Resultado de la funcion aux ambos');
+        console.log(data);
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      })
+
+    break;
+  }
+
 }
 
 
@@ -168,6 +200,10 @@ getExpedientesUser(pag, tam){
        }
      });
   }
+  buscar2(pag, tamPag=this.tamPag){
+    console.log(this.Filtros);
+    console.log(this.tipoExp);
+  }
   //Funcion para generar las variables de la paginacion
   paginacion( paginaActual , pagTotales){
     //Total de paginas
@@ -193,7 +229,7 @@ getExpedientesUser(pag, tam){
 
     if(this.busqueda == false){
       console.log('No se ha buscado nada');
-      this.getExpedientesUser(pag, this.tamPag);
+      this.getExpedientesUser(this.tipoExp,pag, this.tamPag);
       this.pagActual = pag;
     }else{
       console.log('Hay busqueda. Como paso la pagina de la busqueda');

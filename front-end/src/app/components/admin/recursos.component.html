@@ -1,6 +1,45 @@
 <div class="divAdmin-content">
   <h1>Recursos</h1>
   <hr><br>
+  <div class="recursos-container-filter">
+    <div class="">
+      <select
+        class="lineaCampo"
+        name="formatos"
+        id="formatos"
+        [(ngModel)]="selectFormato"
+        (change)="buscar($event)"
+      >
+        <option
+          value="null"
+          selected>
+          Ningun formato seleccionado
+        </option>
+        <option
+          *ngFor="let k of formatos | keys;"
+          value="{{formatos[k].ID_Formato}}"
+        >
+          {{formatos[k].Nombre}}
+        </option>
+      </select>
+    </div>
+
+    <form (ngSubmit)="buscar()" #forma="ngForm">
+      <input
+        id="fieldSearch"
+        class="lineaCampo"
+        type="text"
+        name="fieldSearch"
+        placeholder="Buscar recurso..."
+        [(ngModel)]="fieldSearch"
+        style="width:80%;"/>
+        <button
+          style="background:none; border:none; padding:0; font-size:15px;"
+          type="submit"
+          class="pointer icon-search">
+        </button>
+    </form>
+  </div>
 
   <div>
     <a name="arriba"></a>
@@ -10,7 +49,7 @@
         <mat-table #table [dataSource]="recursos">
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Recurso}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Material}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="titulo">
             <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
@@ -25,7 +64,12 @@
           </ng-container>
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
-            <mat-cell *matCellDef="let element"></mat-cell>
+            <mat-cell *matCellDef="let element">
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="borrarMaterial(element.ID_Usuario, element.Path)"
+                      title="Cancelar Usuario">
+              </button>
+            </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -54,7 +98,7 @@
       </li>
     </ul>
 
-      <div  *ngIf="(asociacion | keys).length === 0 && !loading"
+      <div  *ngIf="(recursos | keys).length === 0 && !loading"
             class="alert alert-info" role="alert">
         <strong>No hay</strong> registros que mostrar
       </div>

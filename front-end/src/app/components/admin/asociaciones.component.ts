@@ -14,7 +14,7 @@ export class AsociacionesComponent {
   asociacion = []
 
   mensaje:string = '';
-
+  fieldSearch:string = '';
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -22,10 +22,13 @@ export class AsociacionesComponent {
   tamPag:number=10;
   pagActual;
   displayedColumns = ['id', 'nombre', 'email', 'estado', 'opciones'];
+
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
     this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
       this.loading = false;
       this.asociacion = data.Data;
+      console.log(this.asociacion);
+      this.paginacion(data.Pagina, data.Paginas_Totales);
     })
   }
 
@@ -96,10 +99,6 @@ export class AsociacionesComponent {
     }else{
       this.pagNext = paginaActual;
     }
-    console.log("Total de paginas", this.paginas.length);
-    console.log('PAgina Actual', paginaActual);
-    console.log("Pagina Siguiente", this.pagNext);
-    console.log("Pagina anterior", this.pagBack);
   }
 
   pasarPagina(pag){
@@ -111,7 +110,7 @@ export class AsociacionesComponent {
       this.loading = false;
       console.log(data);
       this.asociacion = data.Data;
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      this.paginacion(pag, data.Paginas_Totales);
       this.pagActual = data.Pagina;
     });
   }
@@ -125,5 +124,9 @@ export class AsociacionesComponent {
       this.paginacion(data.Pagina, data.Paginas_Totales);
     });
     //this.view(this.tabla, 1, this.tamPag);;
+  }
+
+  filter(){
+    console.log(this.fieldSearch);
   }
 }

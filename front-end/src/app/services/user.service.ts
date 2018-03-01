@@ -119,6 +119,7 @@ updateUsuario(usuario){
   getUsuarioSolicitantesAsociacion(id, numPag, tamPag){
     let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
+    console.log(url);
 
     let headers = new Headers({
       'Content-Type':'application/json',
@@ -131,6 +132,7 @@ updateUsuario(usuario){
   getUsuarioRegistradosAsociacion(id$:number, numPag, tamPag){
     let url = `${this.registradosURL}asociacion/${id$}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
+    console.log(url);
 
     let headers = new Headers({
       'Content-Type':'application/json',
