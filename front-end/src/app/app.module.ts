@@ -52,6 +52,7 @@ import {AsociacionesService} from "./services/asociaciones.service";
 import {UserService} from "./services/user.service";
 import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
+import {ComentarioService} from "./services/comentario.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
 
@@ -116,7 +117,8 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
     UserService,
     ExpedientesService,
     NoticiasService,
-    MaterialService
+    MaterialService,
+    ComentarioService
   ],
   bootstrap: [AppComponent]
 })

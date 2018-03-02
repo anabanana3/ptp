@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
+import { ComentarioService } from '../../services/comentario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -23,9 +24,16 @@ export class VerExpedienteComponent implements OnInit {
   nombreCN = new Array();
   auxM = new Array();
   auxN = new Array();
+  comentario:string = '';
 
-
-  constructor(private _expedientesService:ExpedientesService, private router:ActivatedRoute, public dialog: MatDialog) { }
+  constructor(
+    private _expedientesService:ExpedientesService, private router:ActivatedRoute,
+    public dialog: MatDialog, private _comentarioService:ComentarioService) {
+      _comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'])
+      .subscribe(data => {
+        console.log(data);
+      })
+  }
 
   ngOnInit() {
     //obtenemos el id del exp que queremos ver
@@ -90,6 +98,20 @@ export class VerExpedienteComponent implements OnInit {
       console.log('The dialog was closed');
       //this.animal = result;
     });
+  }
+
+  comentar(){
+    let comentario = {
+      ID_Expediente: this.expID,
+      ID_Usuario: sessionStorage.iD,
+      Comentario: this.comentario
+    }
+
+    console.log(comentario);
+    this._comentarioService.newComentario(comentario)
+    .subscribe(data => {
+      console.log(data);
+    }, error => console.log(error))
   }
 
 }
