@@ -21,9 +21,9 @@ export class ComentarioService {
     })
   }
 
-  getComentariosByExpediente(idExpediente){
-    let url = this.comentarioExpediente + '/' + idExpediente;
-
+  getComentariosByExpediente(idExpediente, pag, tamPag){
+    let url = this.comentarioExpediente + '/' + idExpediente + '/pag=' + pag + '&n=' + tamPag;
+console.log('1');
     let token = sessionStorage.token;
     let headers = new Headers({
       'Content-Type': 'application/json',

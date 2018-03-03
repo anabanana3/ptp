@@ -25,11 +25,12 @@ export class VerExpedienteComponent implements OnInit {
   auxM = new Array();
   auxN = new Array();
   comentario:string = '';
+  tamPag = 10;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
     public dialog: MatDialog, private _comentarioService:ComentarioService) {
-      _comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'])
+      _comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
       .subscribe(data => {
         console.log(data);
       })
