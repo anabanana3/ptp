@@ -24,8 +24,11 @@ export class VerExpedienteComponent implements OnInit {
   nombreCN = new Array();
   auxM = new Array();
   auxN = new Array();
+
+  //comentarios
   comentario:string = '';
   tamPag = 10;
+  mensaje:string = '';
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
@@ -112,6 +115,8 @@ export class VerExpedienteComponent implements OnInit {
     this._comentarioService.newComentario(comentario)
     .subscribe(data => {
       console.log(data);
+      this.mensaje = 'Gracias por su nuevo Comentario';
+      document.getElementById('alert').className = 'alert alert-success';
     }, error => console.log(error))
   }
 

@@ -111,6 +111,7 @@
     <mat-tab label="Comentarios">
       <label for="comentario">Nuevo Comentario</label>
       <div class="lineaDiv"></div>
+      <div id="alert">{{mensaje}}</div>
       <textarea
         [(ngModel)]='comentario' type="text" id="comentario"
         placeholder="Escriba su comentario aquí..." rows="10" cols="100">

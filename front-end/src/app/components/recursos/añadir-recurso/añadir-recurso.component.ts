@@ -77,6 +77,8 @@ export class RecursoComponent {
       console.log(this.recurso);
       this._materialService.updateMaterial(this.idEditar, this.recurso).subscribe(data => {
         console.log(data);
+        this.mensaje = 'Su recurso ha sido editado';
+        document.getElementById('alert').className = 'alert alert-success';
       })
       return;
     }
@@ -114,6 +116,9 @@ export class RecursoComponent {
         this.mensaje = 'El documento debe de ser menor a 5MB';
         document.getElementById('alert').className = 'alert alert-danger';
       }
+    }else{
+      this.mensaje = 'No ha introducido ningún fichero';
+      document.getElementById('alert').className = 'alert alert-danger';
     }
 
     datos.append('Archivo', this.file, this.file.name);

@@ -28,6 +28,7 @@ export class RecursosComponent {
   pagBack;
   tamPag:number=10;
   pagActual;
+  mensaje:string = '';
 
   constructor(private _materialService:MaterialService,
               private router:Router) {
@@ -155,6 +156,8 @@ export class RecursosComponent {
     console.log(path);
     this._materialService.deleteMaterial(id, path).subscribe(data => {
       console.log(data);
+      this.mensaje = 'Recurso eliminado correctamente';
+      document.getElementById('alert').className = 'alert alert-success';
     }, error => {
       console.log(error);
     })
