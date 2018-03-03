@@ -120,14 +120,17 @@ button:hover{
 .icon-cancel,
 .icon-ok,
 .icon-search,
-.icon-edit{
+.icon-edit,
+.icon-trash-empty{
+  font-size: 20px;
   color:#333333;
 }
 
 .icon-cancel:hover,
 .icon-ok:hover,
 .icon-search:hover,
-.icon-edit:hover{
+.icon-edit:hover,
+.icon-trash-empty:hover{
   color:#880042;
 }
 

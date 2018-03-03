@@ -91,14 +91,14 @@
             alt="Logo imagen"
             style="width: 50%;"
             >
-          <p>{{r.Descripcion.split("'")[1]}}</p>
+          <p class="texto-ellipsis">{{r.Descripcion.split("'")[1]}}</p>
         </div>
       </a>
       <div>
-        <p>{{r.Titulo.split("'")[1]}}</p>
+        <p class="texto-ellipsis">{{r.Titulo.split("'")[1]}}</p>
         <p class="textGreyDarken text12" >{{r.Nombre}}</p>
         <button *ngIf="view === 0" class="btn icon-edit span" (click)="editar(r.ID_Material)"></button>
-        <button *ngIf="view === 0" class="btn span icon-cancel" (click)="borrar(r.ID_Material, r.Path)"></button>
+        <button *ngIf="view === 0" class="btn span icon-trash-empty" (click)="borrar(r.ID_Material, r.Path)"></button>
       </div>
     </div>
   </div>

@@ -695,8 +695,14 @@ canvas{
 	opacity: 0;
 	padding: .2em;
 	width: 100%;
+  height: 100%;
 	background: #333333;
   color: white;
+}
+
+.texto-ellipsis{
+  width: 150px;
+  margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
 }
