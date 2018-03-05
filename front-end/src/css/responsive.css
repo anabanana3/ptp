@@ -230,4 +230,8 @@
   .masNoticias{
     width: 100px;
   }
+
+  .comentario{
+    width: 100%;
+  }
 }

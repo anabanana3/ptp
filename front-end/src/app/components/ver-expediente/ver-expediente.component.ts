@@ -26,9 +26,11 @@ export class VerExpedienteComponent implements OnInit {
   auxN = new Array();
 
   //comentarios
+  comentarios = [];
   comentario:string = '';
   tamPag = 10;
   mensaje:string = '';
+  sessionStorageID;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
@@ -36,7 +38,9 @@ export class VerExpedienteComponent implements OnInit {
       _comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
       .subscribe(data => {
         console.log(data);
+        this.comentarios = data.Data;
       })
+      this.sessionStorageID = sessionStorage.iD;
   }
 
   ngOnInit() {
@@ -116,6 +120,15 @@ export class VerExpedienteComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
       this.mensaje = 'Gracias por su nuevo Comentario';
+      document.getElementById('alert').className = 'alert alert-success';
+    }, error => console.log(error))
+  }
+
+  borrarComentario(id){
+    this._comentarioService.deleteComentario(this.expID, id)
+    .subscribe(data => {
+      console.log(data);
+      this.mensaje = 'Comentario borrado';
       document.getElementById('alert').className = 'alert alert-success';
     }, error => console.log(error))
   }

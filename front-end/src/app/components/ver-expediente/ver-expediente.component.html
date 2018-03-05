@@ -109,15 +109,28 @@
     <mat-tab label="Bloque 4">Content 4</mat-tab>
     <mat-tab label="Bloque 5">Content 5</mat-tab>
     <mat-tab label="Comentarios">
-      <label for="comentario">Nuevo Comentario</label>
-      <div class="lineaDiv"></div>
+      <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
-      <textarea
-        [(ngModel)]='comentario' type="text" id="comentario"
-        placeholder="Escriba su comentario aquí..." rows="10" cols="100">
-      </textarea>
-      <div>
-        <button type="submit" name="button" class="btn-border" (click)="comentar()">Comentar</button>
+      <div class="comentario comentarioNuevo">
+        <h3>Nuevo Comentario:</h3>
+        <textarea
+          [(ngModel)]='comentario' type="text" id="comentario"
+          placeholder="Escriba su comentario aquí...">
+        </textarea>
+        <div>
+          <button type="submit" name="button" class="btn-border" (click)="comentar()">Comentar</button>
+        </div>
+      </div>
+
+      <div *ngFor="let comentario of comentarios">
+        <div class="comentario">
+          <div class="comentarioTitulo">
+            <h3>{{comentario.Nombre}} - {{comentario.Fecha.split("T")[0]}}</h3>
+            <button *ngIf="comentario.ID_Usuario == sessionStorageID"type="submit" name="button" class="btn span icon-trash-empty"
+              (click)="borrarComentario(comentario.ID_Comentario)"></button>
+          </div>
+          <p>{{comentario.Comentario.split("'")[1]}}</p>
+        </div>
       </div>
     </mat-tab>
     <mat-tab label="Permisos">Permisos usuarios</mat-tab>
