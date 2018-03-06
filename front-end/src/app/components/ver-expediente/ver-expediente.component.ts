@@ -29,18 +29,27 @@ export class VerExpedienteComponent implements OnInit {
   comentarios = [];
   comentario:string = '';
   tamPag = 10;
+  paginas = new Array(3);
+  pagNext;
+  pagBack;
+  pagActual;
   mensaje:string = '';
   sessionStorageID;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
     public dialog: MatDialog, private _comentarioService:ComentarioService) {
-      _comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
-      .subscribe(data => {
-        console.log(data);
-        this.comentarios = data.Data;
-      })
-      this.sessionStorageID = sessionStorage.iD;
+      this.getComentarios();
+  }
+
+  getComentarios(){
+    this._comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
+    .subscribe(data => {
+      console.log(data);
+      this.comentarios = data.Data;
+      this.paginacion(this.pagActual, data.Paginas_Totales);
+    })
+    this.sessionStorageID = sessionStorage.iD;
   }
 
   ngOnInit() {
@@ -121,6 +130,7 @@ export class VerExpedienteComponent implements OnInit {
       console.log(data);
       this.mensaje = 'Gracias por su nuevo Comentario';
       document.getElementById('alert').className = 'alert alert-success';
+      this.getComentarios();
     }, error => console.log(error))
   }
 
@@ -130,9 +140,38 @@ export class VerExpedienteComponent implements OnInit {
       console.log(data);
       this.mensaje = 'Comentario borrado';
       document.getElementById('alert').className = 'alert alert-success';
+      this.getComentarios();
     }, error => console.log(error))
   }
 
+  paginacion( paginaActual , pagTotales){
+    //Total de paginas
+    this.paginas = [];
+    for(let i=0; i<pagTotales; i++){
+      this.paginas.push(i);
+    }
+    //Pagina anterior
+    if(paginaActual >= 2){
+      this.pagBack = (paginaActual-1);
+    }else{
+      this.pagBack = paginaActual;
+    }
+    //Pagina Siguiente
+    if(paginaActual < pagTotales){
+      this.pagNext = (paginaActual+1);
+    }else{
+      this.pagNext = paginaActual;
+    }
+  }
+
+  pasarPagina(pag){
+    this.getComentarios();
+  }
+
+  cambiarTamPag(tam){
+    this.tamPag=tam;
+    this.getComentarios();
+  }
 }
 
 @Component({
