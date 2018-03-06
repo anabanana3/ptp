@@ -13,6 +13,7 @@
 
   <mat-tab-group>
     <mat-tab label="Bloque 1">
+      <h3>Información básica sobre el expediente</h3>
       <div *ngFor="let k of bloque1" class="bloque1">
         <p>Citación:
           <b *ngIf="k.Citacion == 1">Sí</b>
@@ -26,7 +27,7 @@
           <b *ngIf="k.Deriv_Sospecha == 1">Sí</b>
           <b *ngIf="k.Deriv_Sospecha == 0">No</b>
         </p>
-        <p>Otros:
+        <p *ngIf="k.Otros != 'NULL'">Otros:
           <b>{{k.Otros}}</b>
         </p>
         <p>Acompañado por la madre:
@@ -45,8 +46,8 @@
           <b>{{k.Acomp_O}}</b>
         </p>
         <p>Dificultad con el idioma materno:
-          <b *ngIf="k.Dif_idi_M == 1">Sí</b>
-          <b *ngIf="k.Dif_idi_M == 0">No</b>
+          <b *ngIf="k.Dif_Idi_M == 1">Sí</b>
+          <b *ngIf="k.Dif_Idi_M == 0">No</b>
         </p>
         <p>Precisa traducción:
           <b *ngIf="k.Traduccion == 1">Sí</b>
