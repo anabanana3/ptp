@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ExpedientesService} from '../../../services/expedientes.service';
 import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import {ExpedienteComponent} from '../expediente.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 // import { Parto } from '../../../interfaces/parto';
 
 @Component({
@@ -65,7 +66,8 @@ datosPartos = new Array();
   // };
   // datosParto:Parto[];
 
-  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
+  constructor(private _expedienteService:ExpedientesService,
+    private expedienteComponent:ExpedienteComponent, public dialog: MatDialog) {
 
     this._expedienteService.getFormulasObstreticas().subscribe(data=>{
       console.log('Muestro la data',data);
@@ -180,7 +182,42 @@ datosPartos = new Array();
       }
     }
 }
+
+openDialog(nPartos): void {
+  console.log(nPartos);
+  this.prueba(nPartos);
+  console.log(this.datosPartos);
+  let dialogRef = this.dialog.open(Popup, {
+    width: '550px',
+    //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+    data:{Npartos: nPartos, prueba: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(this.datosPartos);
+    //this.animal = result;
+  });
 }
+}
+@Component({
+  selector: 'popup',
+  templateUrl: 'popup.component.html',
+
+})
+export class Popup {
+
+  constructor(
+    public dialogRef: MatDialogRef<Popup>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+
+  }
+
+}
+
 class Parto{
    ID_Expediente:number=sessionStorage.IDExp;
    Id_Bloque:number;

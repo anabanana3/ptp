@@ -1,125 +1,126 @@
 <!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos
  -->
-<form (ngSubmit)="guardarDatos()"#form="ngForm">
-  <h2> Conocimiento e información sobre la MGF</h2>
+ <form (ngSubmit)="guardarDatos()"#form="ngForm">
+   <h2> Conocimiento e información sobre la MGF</h2>
 
-<label>El implicado tiene conocimientos sobre la MGF</label>
-<span matTooltip="Posible pregunta Tengo entendido que
-en su país se realiza la ablación o el corte de los genitales de las
-mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
-<select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
-  <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-</select>
-<br>
-<label>La MGF se realiza en la comunidad de origen</label>
-<select [(ngModel)]="bloque2.MGF_realizada_com_origen" name="MGF_realizada_com_origen">
-  <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-</select>
-<br>
-<label>Cual es el posicionamiento del padre frente a la MGF</label>
-<span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
-esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
-<select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
-  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-</select>
-<br>
-<label>Cual es el posicionamiento de la madre frente a la MGF</label>
-<select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
-  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-</select>
-<br>
-<label>Cual es el posicionamiento de la familia en el pais de origen</label>
-<select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
-  <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-</select>
-<br>
-<label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
-<textarea [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
-<br>
-<label>Cual es el significado de la MGF para el implicado en el expediente</label>
-<textarea [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
-<br>
-<label>Formato de intervención</label>
-<span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
-<textarea [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion"></textarea>
-<br>
-<label>Consejos para otros profesionales</label>
-<span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
-<textarea [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
-<br>
+ <label>El implicado tiene conocimientos sobre la MGF</label>
+ <span matTooltip="Posible pregunta Tengo entendido que
+ en su país se realiza la ablación o el corte de los genitales de las
+ mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
+ <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
+   <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
+ </select>
+ <br>
+ <label>La MGF se realiza en la comunidad de origen</label>
+ <select [(ngModel)]="bloque2.MGF_realizada_com_origen" name="MGF_realizada_com_origen">
+   <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
+ </select>
+ <br>
+ <label>Cual es el posicionamiento del padre frente a la MGF</label>
+ <span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
+ esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
+ <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
+   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+ </select>
+ <br>
+ <label>Cual es el posicionamiento de la madre frente a la MGF</label>
+ <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
+   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+ </select>
+ <br>
+ <label>Cual es el posicionamiento de la familia en el pais de origen</label>
+ <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
+   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+ </select>
+ <br>
+ <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
+ <textarea [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
+ <br>
+ <label>Cual es el significado de la MGF para el implicado en el expediente</label>
+ <textarea [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
+ <br>
+ <label>Formato de intervención</label>
+ <span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+ <textarea [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion"></textarea>
+ <br>
+ <label>Consejos para otros profesionales</label>
+ <span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
+ <textarea [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
+ <br>
 
-<div>
-<h2>Antecedentes e historia de partos
-  <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="icon-plus" style="padding : 3px"></span>
-  <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="icon-minus" style="padding : 3px"></span>
-</h2>
-<div *ngIf="hayParto==true">
-  <label>Introduzca el numero de partos de los que desea guardar informacion</label>
-<!-- [(ngModel)]="numPartos" -->
-  <input  name=Num_Partos type="number" min="1" #Npartos>
-  <button type="button" (click)="prueba(Npartos.value)">Mostrar</button>
-<div class="partos">
-  <div class="partoContainer" *ngFor="let p of partos; let i= index">
-    <p> parto numero {{i+1}}</p>
-    <label>Edad de la madre en el momento del parto </label>
-    <input [(ngModel)]="datosPartos[i].Edad_Madre"  name="Edad_Madre" type="number">
-    <br>
-    <label>Fecha del parto</label>
-    <input type="date">
-    <br>
-    <!--Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
-    <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
-    <input [(ngModel)]="datosPartos[i].Edad_Nacido" name="Edad_Nacido" type="number">
-    <br>
-    <label> Tiempo expulsivo</label>
-    <input [(ngModel)]="datosPartos[i].Tiempo_Expulsivo" name="Tiempo_Expulsivo" type="number">
-    <br>
-    <label> Tiempo de dialtación</label>
-    <input [(ngModel)]="datosPartos[i].Tiempo_Dilatacion" name="Tiempo_Dilatacion" type="number">
-    <br>
-    <label> Duración del parto</label>
-    <input [(ngModel)]="datosPartos[i].Duracion_Parto" name="Duracion_Parto" type="number">
-    <br>
-    <label>Formula obstretica realizada</label>
-    <select [(ngModel)]="datosPartos[i].ID_Formula" name="ID_Formula">
-      <option *ngFor="let f of formulas" [value]="f.ID_Formula">{{f.Nombre}}</option>
-    </select>
-  <br>
-  <label>Test APGAR</label>
-  <input [(ngModel)]="datosPartos[i].Test_APGAR" name="Test_APGAR" type="number">
-  <br>
-  <label>Tipo de mutilación que padece la madre en el momento del parto</label>
-  <select [(ngModel)]="datosPartos[i].ID_Mutilacion" name="ID_Mutilacion">
-      <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
-  </select>
-  <br>
+ <div>
+ <h2>Antecedentes e historia de partos
+   <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="icon-plus" style="padding : 3px"></span>
+   <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="icon-minus" style="padding : 3px"></span>
+ </h2>
+ <div *ngIf="hayParto==true">
+   <label>Introduzca el numero de partos de los que desea guardar informacion</label>
+ <!-- [(ngModel)]="numPartos" -->
+   <input  name=Num_Partos type="number" min="1" #Npartos>
+   <button type="button" (click)="prueba(Npartos.value)">Mostrar</button>
+   <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
+ <div class="partos">
+   <div class="partoContainer" *ngFor="let p of partos; let i= index">
+     <p> parto numero {{i+1}}</p>
+     <label>Edad de la madre en el momento del parto </label>
+     <input [(ngModel)]="datosPartos[i].Edad_Madre"  name="Edad_Madre" type="number">
+     <br>
+     <label>Fecha del parto</label>
+     <input type="date">
+     <br>
+     <!--Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
+     <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
+     <input [(ngModel)]="datosPartos[i].Edad_Nacido" name="Edad_Nacido" type="number">
+     <br>
+     <label> Tiempo expulsivo</label>
+     <input [(ngModel)]="datosPartos[i].Tiempo_Expulsivo" name="Tiempo_Expulsivo" type="number">
+     <br>
+     <label> Tiempo de dialtación</label>
+     <input [(ngModel)]="datosPartos[i].Tiempo_Dilatacion" name="Tiempo_Dilatacion" type="number">
+     <br>
+     <label> Duración del parto</label>
+     <input [(ngModel)]="datosPartos[i].Duracion_Parto" name="Duracion_Parto" type="number">
+     <br>
+     <label>Formula obstretica realizada</label>
+     <select [(ngModel)]="datosPartos[i].ID_Formula" name="ID_Formula">
+       <option *ngFor="let f of formulas" [value]="f.ID_Formula">{{f.Nombre}}</option>
+     </select>
+   <br>
+   <label>Test APGAR</label>
+   <input [(ngModel)]="datosPartos[i].Test_APGAR" name="Test_APGAR" type="number">
+   <br>
+   <label>Tipo de mutilación que padece la madre en el momento del parto</label>
+   <select [(ngModel)]="datosPartos[i].ID_Mutilacion" name="ID_Mutilacion">
+       <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+   </select>
+   <br>
 
-  <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
-  <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
-  <div *ngFor="let c of compMadre; let k = index">
-    <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label>
-    <!-- [(ngModel)]="datosPartos[i].compMadre" -->
-    <input id="{{i}}compMadre{{k}}" [(ngModel)]="datosPartos[i].CompMadre[k]" name="{{i}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
-  </div>
-  <br><br>
-  <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
-  <span matTooltip="Seleccione todas las complicaciones que sufrioel recien nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
-  <div *ngFor="let c of compNacido let j= index">
-    <label for="{{i}}compNacido{{j}}">{{c.Nombre}}</label>
-    <input id="{{i}}compNacido{{j}}" [(ngModel)]="datosPartos[i].compNacido[j]" name="{{i}}compNacido{{j}}" type="checkbox">
-  </div>
-</div>
+   <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
+   <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
+   <div *ngFor="let c of compMadre; let k = index">
+     <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label>
+     <!-- [(ngModel)]="datosPartos[i].compMadre" -->
+     <input id="{{i}}compMadre{{k}}" [(ngModel)]="datosPartos[i].CompMadre[k]" name="{{i}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
+   </div>
+   <br><br>
+   <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
+   <span matTooltip="Seleccione todas las complicaciones que sufrioel recien nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
+   <div *ngFor="let c of compNacido let j= index">
+     <label for="{{i}}compNacido{{j}}">{{c.Nombre}}</label>
+     <input id="{{i}}compNacido{{j}}" [(ngModel)]="datosPartos[i].compNacido[j]" name="{{i}}compNacido{{j}}" type="checkbox">
+   </div>
+ </div>
 
-</div>
-</div>
-</div>
+ </div>
+ </div>
+ </div>
 
-<div>
-  <button class="btn-relleno" type="submit">Guardar</button>
-</div>
-</form>
-<p>
-  {{this.form.valid}}
+ <div>
+   <button class="btn-relleno" type="submit">Guardar</button>
+ </div>
+ </form>
+ <p>
+   {{this.form.valid}}
 
-  {{this.form.status}}
-</p>
+   {{this.form.status}}
+ </p>
