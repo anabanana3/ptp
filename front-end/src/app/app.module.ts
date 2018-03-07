@@ -32,7 +32,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
-import { Bloque2Component, Popup } from './components/expediente/bloque2/bloque2.component';
+import { Bloque2Component, Popup2 } from './components/expediente/bloque2/bloque2.component';
 import { Bloque3Component } from './components/expediente/bloque3/bloque3.component';
 import { Bloque4Component } from './components/expediente/bloque4/bloque4.component';
 import { Bloque5Component } from './components/expediente/bloque5/bloque5.component';
@@ -93,6 +93,7 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
     VerExpedienteComponent,
     ExpedientesAdminComponent,
     Popup,
+    Popup2
 
 
 
@@ -113,6 +114,7 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
   ],
   entryComponents: [
     Popup,
+    Popup2
 
 
 

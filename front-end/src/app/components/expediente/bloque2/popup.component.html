@@ -4,39 +4,44 @@
 </div>
 <div mat-dialog-content>
 
-  <!--  data:{Npartos: nPartos, prueba: 20, partos: this.datosPartos, CompNacido: this.compNacido, CompMadre: this.compMadre, i:0} -->
-<p>{{data.prueba}}</p>
-<button (click)= "data.prueba = data.prueba+1">Sig Parto</button>
+  <!--  data:{Npartos: nPartos, pagina: 20, partos: this.datosPartos, CompNacido: this.compNacido, CompMadre: this.compMadre, i:0} -->
+
+<p>
+<button *ngIf="data.pagina > 0" (click)= "data.pagina = data.pagina-1">Parto anterior</button>
+Parto {{data.pagina+1}} de {{data.Npartos}}
+<button *ngIf="data.pagina+1 < data.Npartos" (click)= "data.pagina = data.pagina+1">Sig Parto</button>
+
+</p>
 
   <label>Edad de la madre en el momento del parto </label>
-  <input [(ngModel)]="data.datosPartos[data.prueba].Edad_Madre"  name="Edad_Madre" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Edad_Madre"  name="Edad_Madre" type="number">
   <br>
   <label>Fecha del parto</label>
-  <input type="date">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Fecha" type="date">
   <br>
   <!-- Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
   <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
-  <input [(ngModel)]="data.datosPartos[0].Edad_Nacido" name="Edad_Nacido" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Edad_Nacido" name="Edad_Nacido" type="number">
   <br>
   <label> Tiempo expulsivo</label>
-  <input [(ngModel)]="data.datosPartos[0].Tiempo_Expulsivo" name="Tiempo_Expulsivo" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Tiempo_Expulsivo" name="Tiempo_Expulsivo" type="number">
   <br>
   <label> Tiempo de dialtación</label>
-  <input [(ngModel)]="data.datosPartos[0].Tiempo_Dilatacion" name="Tiempo_Dilatacion" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Tiempo_Dilatacion" name="Tiempo_Dilatacion" type="number">
   <br>
   <label> Duración del parto</label>
-  <input [(ngModel)]="data.datosPartos[0].Duracion_Parto" name="Duracion_Parto" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Duracion_Parto" name="Duracion_Parto" type="number">
   <br>
   <label>Formula obstretica realizada</label>
-  <select [(ngModel)]="data.datosPartos[0].ID_Formula" name="ID_Formula">
+  <select [(ngModel)]="data.datosPartos[data.pagina].ID_Formula" name="ID_Formula">
     <option *ngFor="let f of data.formulas" [value]="f.ID_Formula">{{f.Nombre}}</option>
   </select>
   <br>
   <label>Test APGAR</label>
-  <input [(ngModel)]="data.datosPartos[0].Test_APGAR" name="Test_APGAR" type="number">
+  <input [(ngModel)]="data.datosPartos[data.pagina].Test_APGAR" name="Test_APGAR" type="number">
   <br>
   <label>Tipo de mutilación que padece la madre en el momento del parto</label>
-  <select [(ngModel)]="data.datosPartos[0].ID_Mutilacion" name="ID_Mutilacion">
+  <select [(ngModel)]="data.datosPartos[data.pagina].ID_Mutilacion" name="ID_Mutilacion">
       <option *ngFor="let t of data.tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
   </select>
   <br>
@@ -44,14 +49,14 @@
   <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
   <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div *ngFor="let c of data.compMadre; let k = index">
-    <label for="{{0}}compMadre{{k}}">{{c.Nombre}}</label>
+    <label for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
     <!-- [(ngModel)]="datosPartos[i].compMadre" -->
-    <input id="{{0}}compMadre{{k}}" [(ngModel)]="data.datosPartos[0].CompMadre[k]" name="{{0}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
+    <input id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
   </div>
   <br><br>
   <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
   <span matTooltip="Seleccione todas las complicaciones que sufrioel recien nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div *ngFor="let c of data.compNacido let j= index">
-    <label for="{{0}}compNacido{{j}}">{{c.Nombre}}</label>
-    <input id="{{0}}compNacido{{j}}" [(ngModel)]="data.datosPartos[0].compNacido[j]" name="{{0}}compNacido{{j}}" type="checkbox">
+    <label for="{{data.pagina}}compNacido{{j}}">{{c.Nombre}}</label>
+    <input id="{{data.pagina}}compNacido{{j}}" [(ngModel)]="data.datosPartos[data.pagina].compNacido[j]" name="{{data.pagina}}compNacido{{j}}" type="checkbox">
   </div>

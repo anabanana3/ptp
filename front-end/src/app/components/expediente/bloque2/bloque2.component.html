@@ -55,11 +55,9 @@
  </h2>
  <div *ngIf="hayParto==true">
    <label>Introduzca el numero de partos de los que desea guardar informacion</label>
- <!-- [(ngModel)]="numPartos" -->
    <input  name=Num_Partos type="number" min="1" #Npartos>
-   <button type="button" (click)="prueba(Npartos.value)">Mostrar</button>
    <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
- <div class="partos">
+ <!-- <div class="partos">
    <div class="partoContainer" *ngFor="let p of partos; let i= index">
      <p> parto numero {{i+1}}</p>
      <label>Edad de la madre en el momento del parto </label>
@@ -67,9 +65,9 @@
      <br>
      <label>Fecha del parto</label>
      <input type="date">
-     <br>
+     <br> -->
      <!--Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
-     <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
+     <!-- <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
      <input [(ngModel)]="datosPartos[i].Edad_Nacido" name="Edad_Nacido" type="number">
      <br>
      <label> Tiempo expulsivo</label>
@@ -98,9 +96,9 @@
    <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
    <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
    <div *ngFor="let c of compMadre; let k = index">
-     <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label>
+     <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label> -->
      <!-- [(ngModel)]="datosPartos[i].compMadre" -->
-     <input id="{{i}}compMadre{{k}}" [(ngModel)]="datosPartos[i].CompMadre[k]" name="{{i}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
+     <!-- <input id="{{i}}compMadre{{k}}" [(ngModel)]="datosPartos[i].CompMadre[k]" name="{{i}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
    </div>
    <br><br>
    <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
@@ -111,7 +109,9 @@
    </div>
  </div>
 
- </div>
+ </div> -->
+
+
  </div>
  </div>
 

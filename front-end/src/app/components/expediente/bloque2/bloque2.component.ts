@@ -187,10 +187,10 @@ openDialog(nPartos): void {
   console.log(nPartos);
   this.prueba(nPartos);
   console.log(this.datosPartos);
-  let dialogRef = this.dialog.open(Popup, {
-    width: '550px',
+  let dialogRef = this.dialog.open(Popup2, {
+    width: '650px',
     //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
-    data:{Npartos: nPartos, prueba: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
+    data:{Npartos: nPartos, pagina: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
   });
 
   dialogRef.afterClosed().subscribe(result => {
@@ -205,10 +205,10 @@ openDialog(nPartos): void {
   templateUrl: 'popup.component.html',
 
 })
-export class Popup {
+export class Popup2 {
 
   constructor(
-    public dialogRef: MatDialogRef<Popup>,
+    public dialogRef: MatDialogRef<Popup2>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
