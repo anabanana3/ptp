@@ -55,6 +55,7 @@ import {MaterialService} from "./services/material.service";
 import {ComentarioService} from "./services/comentario.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
     RecursosAdminComponent,
     VerExpedienteComponent,
     ExpedientesAdminComponent,
-    Popup
+    Popup,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
