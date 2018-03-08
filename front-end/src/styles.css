@@ -743,3 +743,27 @@ canvas{
   opacity: 1;
   display: inline;
 }
+
+.comentario{
+  width: 60%;
+  margin: auto;
+  text-align: left;
+  padding: 2%;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  background-color: white;
+  margin-top: 2%;
+}
+
+.comentarioTitulo{
+  display: flex;
+  justify-content: space-between;
+}
+
+.comentarioNuevo div{
+  text-align: center;
+}
+
+.comentarioNuevo textarea{
+  width: 100%;
+  height: 70px;
+}

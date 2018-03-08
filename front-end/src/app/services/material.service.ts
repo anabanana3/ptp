@@ -89,7 +89,20 @@ export class MaterialService {
     return this.http.get(url, {headers}).map(res=>res.json());
   }
 
-  searchMaterial(nombre, formato, e, pag, n){
+  searchMaterialPropios(nombre, formato, e, pag, n){
+    let url = this.search+ 'user/nombre=' + nombre + '&formato=' + formato + '&e=' + e + '/pag=' + pag + '&n=' + n;
+    let token = sessionStorage.getItem('token');
+    console.log(url);
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+
+  searchMaterialPublicos(nombre, formato, e, pag, n){
     let url = this.search+ 'nombre=' + nombre + '&formato=' + formato + '&e=' + e + '/pag=' + pag + '&n=' + n;
     let token = sessionStorage.getItem('token');
     console.log(url);

@@ -23,7 +23,7 @@ export class ComentarioService {
 
   getComentariosByExpediente(idExpediente, pag, tamPag){
     let url = this.comentarioExpediente + '/' + idExpediente + '/pag=' + pag + '&n=' + tamPag;
-console.log('1');
+
     let token = sessionStorage.token;
     let headers = new Headers({
       'Content-Type': 'application/json',
@@ -31,6 +31,35 @@ console.log('1');
     });
 
     return this.http.get(url, {headers}).map(res=>{
+      return res.json();
+    });
+  }
+
+  updateComentario(idExpediente, idComentario, comentario){
+    let url = this.comentario + '/' + idComentario + '/' + idExpediente;
+
+    let body = JSON.stringify(comentario);
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':  token
+    });
+
+    return this.http.put(url, body, {headers}).map(res=>{
+      return res.json();
+    })
+  }
+
+  deleteComentario(idExpediente, idComentario){
+    let url = this.comentario + '/' + idComentario + '/' + idExpediente;
+
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':  token
+    });
+
+    return this.http.delete(url, {headers}).map(res=>{
       return res.json();
     });
   }

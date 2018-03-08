@@ -111,7 +111,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     MatDialogModule,
   ],
   entryComponents: [
-    Popup
+    Popup,
+    Popup2
   ],
   providers: [
     ProfesionesService,
