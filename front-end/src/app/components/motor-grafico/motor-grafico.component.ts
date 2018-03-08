@@ -12,6 +12,7 @@ export class MotorGraficoComponent {
       return;
     }
     this.error = false;
+
   }
 
 }
