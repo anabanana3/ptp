@@ -63,13 +63,8 @@ export class RecursosAdminComponent{
   }
 
   pasarPagina(pag){
-    console.log(pag);
-    //console.log('Muestro el numero ese de andrea', this.tabla);
-    //console.log('Muestro el tamaño de pagina que desea el usuario', tam);
-    //this.view(this.tabla, pag, tam);
     this._materialService.getMateriales(pag, this.tamPag).subscribe(data =>{
       this.loading = false;
-      console.log(data);
       this.recursos = data.Data;
       this.paginacion(data.Pagina, data.Paginas_Totales);
       this.pagActual = data.Pagina;
@@ -77,8 +72,6 @@ export class RecursosAdminComponent{
   }
 
   buscar(){
-    console.log(this.selectFormato);
-    console.log(this.fieldSearch);
     let nombre = null;
     let formato = null;
 
@@ -90,10 +83,9 @@ export class RecursosAdminComponent{
       nombre = this.fieldSearch;
     }
 
-    this._materialService.searchMaterial(nombre, formato, null, 1, this.tamPag).subscribe(data => {
-      console.log(data);
+    this._materialService.searchMaterialPublicos(nombre, formato, null, 1, this.tamPag).subscribe(data => {
       this.recursos = data.Data;
-      this.recursos = data.Data;
+      this.paginacion(data.Pagina, data.Paginas_Totales);
     })
   }
 

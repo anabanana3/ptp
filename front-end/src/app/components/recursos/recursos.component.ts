@@ -22,7 +22,7 @@ export class RecursosComponent {
   paginas = new Array(3);
   pagNext;
   pagBack;
-  tamPag:number=5;
+  tamPag:number=10;
   pagActual;
   mensaje:string = '';
 
@@ -57,7 +57,6 @@ export class RecursosComponent {
   getMaterialesPublicos(pag){
     this._materialService.getMaterialesPublicos(pag, this.tamPag).subscribe(data => {
       this.loading = true;
-      console.log(data);
       this.recursos = data.Data;
       document.getElementById("propios").style.fontWeight = "normal";
       document.getElementById("publicos").style.fontWeight = "bold";
@@ -68,8 +67,6 @@ export class RecursosComponent {
   }
 
   buscar(){
-    console.log(this.selectFormato);
-    console.log(this.fieldSearch);
     let nombre = null;
     let formato = null;
 
@@ -81,14 +78,22 @@ export class RecursosComponent {
       nombre = this.fieldSearch;
     }
 
-    this._materialService.searchMaterial(nombre, formato, null, 1, this.tamPag).subscribe(data => {
-      this.recursos = data.Data;
-      this.paginacion(data.Pagina, data.Paginas_Totales);
-    })
+    if(this.view === 0){
+      this._materialService.searchMaterialPropios(nombre, formato, null, 1, this.tamPag).subscribe(data => {
+        this.recursos = data.Data;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      })
+    }
+
+    if(this.view === 1){
+      this._materialService.searchMaterialPublicos(nombre, formato, 1, null, this.tamPag).subscribe(data => {
+        this.recursos = data.Data;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      })
+    }
   }
 
   mostrar(view){
-    console.log(view);
     if(view === this.view){
       return;
     }
@@ -139,7 +144,6 @@ export class RecursosComponent {
 
   borrar(id, path){
     this._materialService.deleteMaterial(id, path).subscribe(data => {
-      console.log(data);
       this.mensaje = 'Recurso eliminado correctamente';
       document.getElementById('alert').className = 'alert alert-success';
     }, error => {
