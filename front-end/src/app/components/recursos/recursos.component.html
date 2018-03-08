@@ -59,7 +59,7 @@
       </form>
   </div>
   <div id="alert">{{mensaje}}</div>
-  <div *ngIf="recursos.Resultado !== 'ERROR'" class="recursos-container">
+  <div *ngIf="recursos" class="recursos-container">
     <div *ngFor="let r of recursos;"  class="recurso-item">
       <a href="{{r.Path}}" target="_blank">
         <div class="recurso-info">
