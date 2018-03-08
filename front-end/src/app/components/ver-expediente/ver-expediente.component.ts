@@ -93,7 +93,7 @@ export class VerExpedienteComponent implements OnInit {
           //console.log('complicN: '+dataN);
           for(let j = 0; j<dataN.length; j++){
             //this.complicN.push(dataN[j].ID_Complicacion);
-            this._expedientesService.getComplicMadreById(dataN[j].ID_Complicacion).subscribe(dataN=>{
+            this._expedientesService.getComplicNacidoById(dataN[j].ID_Complicacion).subscribe(dataN=>{
               this.nombreCN.push(dataN[0].Nombre);
               //console.log(dataN[0].Nombre);
             })

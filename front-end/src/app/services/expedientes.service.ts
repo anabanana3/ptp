@@ -233,7 +233,7 @@ addCompNacidoParto(idP, sel){
   getTipoMutilacion(){
     return this.http.get(this.urlTiposMGF).map(res=> res.json());
   }
-  
+
   getCompMadre(){
     return this.http.get(this.urlCompMadre).map(res=> res.json());
   }
@@ -422,7 +422,7 @@ getComplicNacidoById(id){
   let urlp = this.urlCompNacido+'/'+id;
 
   return this.http.get(urlp, {headers}).map(res=>{
-    console.log("p"+res.json());
+    console.log(res.json());
     return res.json();
   })
 }

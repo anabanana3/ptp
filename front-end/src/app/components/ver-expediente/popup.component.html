@@ -1,7 +1,8 @@
-<h1 mat-dialog-title>DATOS PARTO</h1>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
 </div>
+<h1 mat-dialog-title>DATOS PARTO</h1>
+
 <div *ngFor="let parto of data.partos; let i = index">
   <div mat-dialog-content>
     <h2>Parto nº {{i+1}}</h2>
