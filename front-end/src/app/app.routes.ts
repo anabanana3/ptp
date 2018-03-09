@@ -19,6 +19,7 @@ import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { BibExpedientesComponent} from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const app_routes: Routes = [
   {
@@ -105,6 +106,11 @@ const app_routes: Routes = [
     path: 'recursos',
     component: RecursosComponent,
     data:{title: 'Recursos'}
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
+    data:{title: 'Chat'}
   },
   {
     path: 'aulavirtual',

@@ -1,0 +1,21 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+
+  <app-header></app-header>
+  <p>Página para el chat</p>
+  <div *ngIf="mensajes.length >0">
+    <div *ngFor="let m of mensajes">
+      <strong>{{m.usu}}</strong>
+      <span>{{m.text}}</span>
+  </div>
+</div>
+
+
+  <form (ngSubmit)="enviarMensaje()">
+      <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aqui">
+      <button type="submit">Enviar</button>
+  </form>
+  <app-footer></app-footer>
+</div>
