@@ -13,12 +13,20 @@ export class ChatComponent implements OnInit, OnDestroy {
   connection;
   mensaje;
   socket;
+  UsersConnected;
 
   constructor(private _chatService: ChatService ) {
-      _chatService.connectSocketServer(22).subscribe(data=>{
+      _chatService.connectSocketServer().subscribe(data=>{
       this.mensajes = data;
       console.log(this.mensajes);
-    })
+
+      _chatService.getUsuariosConectados(sessionStorage.iD).subscribe(data=>{
+        console.log(data);
+        this.UsersConnected=data;
+      })
+
+    });
+
     console.log('Hola');
   }
 
