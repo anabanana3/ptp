@@ -22,22 +22,28 @@ export class ChatComponent implements OnInit, OnDestroy {
     console.log('Hola');
   }
 
-  enviarMensaje(){
+enviarMensaje(){
     console.log('Metodo para enviar mensaje');
     console.log(this.mensaje);
     this._chatService.sendMessage(this.mensaje);
 
   }
 
-
+  salir(){
+    console.log('Salgo de chat');
+    //this.connection.unsubscribe();
+    this._chatService.logout();
+    //Cambiar la ruta
+  }
 
   ngOnInit() {
 
-  }
+    }
 
   ngOnDestroy() {
     console.log('Salgo de chat');
-  //this.connection.unsubscribe();
-}
+    //this.connection.unsubscribe();
+    this._chatService.logout();
+  }
 
 }

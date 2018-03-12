@@ -16,9 +16,9 @@ export class ChatService {
   initConnection(){
     this.socket = io.connect();
   }
-  connectSocketServer(userId){
-      //const socket = io.connect( { query: `userId=${userId}` });
+  connectSocketServer(userId2){
       let token = sessionStorage.token;
+      let userId = sessionStorage.iD;
       console.log('intentadno conectar con el socjet del servidor');
       this.socket = io.connect('https://aisha.ovh:8080');
       this.socket.emit('idUser',token);
@@ -58,5 +58,10 @@ export class ChatService {
       };*/
     })
     return observable;
+  }
+
+  logout(){
+    console.log('Logout del servicio')
+    this.socket.emit('logout', sessionStorage.iD);
   }
 }
