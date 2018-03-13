@@ -9,17 +9,21 @@ form{
    margin-bottom: 2%;
    padding: 0;
    text-align: left;
-
  }
+
+ hr{
+   margin: 15px 0;
+ }
+
  .cherry{
-   background: #880042;
-   color: white;
+   padding:10px 0px;
+   color: #880042;
    margin: 0;
    text-align: center;
  }
+
  h2{
-   background: #333333;
-   color:white;
+   color: #880042;
    margin-top: 0;
    margin-bottom: 2%;
 
@@ -27,15 +31,34 @@ form{
  h2>span{
    float:right;
  }
- .cherry{
-   background: #880042;
-   color: white;
-   margin: 0;
-   text-align: center;
- }
+
  .grupoForm{
    display: block;
    overflow: hidden;
    border-bottom: thin #234;
    padding-bottom: 2%;
+ }
+
+.divExp{
+  margin-bottom: 5px;
+}
+
+option{
+  width: 140px;
+}
+#selectOption{
+  color:gray;
+  font-style: italic;
+}
+
+ #edadM, #edadMa, #edadPa{
+   width: 40px;
+ }
+
+ #fechaC, #etniaM, #etniaMa, #etniaPa, #actividadM, #actividadP{
+   width: 140px;
+ }
+
+ #otrosA{
+   width: 235px;
  }

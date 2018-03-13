@@ -7,7 +7,7 @@
   <div>
 <!-- TODO: No pudes voler para atras -->
     <div class="tabsExpediente">
-      <button  style="margin-left:3%;" id="bl1" class="tabItem" (click)="bloque=1">
+      <button id="bl1" class="tabItem" (click)="bloque=1">
         Bloque 1
       </button>
       <button id="bl2" class="tabItem" (click)="bloque = 2">
@@ -28,7 +28,7 @@
     <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
     </button>-->
 
-    <div class="divBloque">
+    <div class="divBloque divBloqueExp">
       <div *ngIf="bloque === 1">
         {{ cambiarColorBl1() }}
         <app-bloque1></app-bloque1>
@@ -51,7 +51,7 @@
       </div>
     </div>
 <!-- Div para poner el boton de terminar -->
-<button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar </button>
+<button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
 
     <div>
     </div>

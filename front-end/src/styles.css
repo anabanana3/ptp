@@ -516,6 +516,8 @@ canvas{
 
 /********** Expedientes ***********/
 .tabsExpediente{
+  margin: 0 auto;
+  width: 70%;
   margin-top:20px;
   padding: 5px 0px;
   padding-bottom: 0;
@@ -543,6 +545,12 @@ canvas{
   border-radius: 8px;
   padding: 3%;
 }
+
+.divBloqueExp{
+  width: 70%;
+  margin: 0 auto;
+}
+
 
 .partos{
   display: flex;
