@@ -4,7 +4,7 @@
 
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
 <div class="grupoForm">
-    <h2 class="cherry ">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
+    <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
   <div class="divLabels">
     <div class="divExp">
       <label for="titulo">Título</label>
@@ -32,7 +32,7 @@
 <div class="grupoForm" formGroupName = "menor">
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-  <h2 class="text16">DATOS SOBRE LA MENOR</h2>
+  <h2 class="text16 textPink">DATOS SOBRE LA MENOR</h2>
 
   <div class="divExp">
     <label for="nombreM">Nombre completo de la menor:</label>
@@ -61,9 +61,9 @@
 <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
 
 <div class="grupoForm" formGroupName="madre">
-  <h2 class="text16">DATOS SOBRE LA MADRE
-    <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus" style="padding : 3px"></span>
-    <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus" style="padding : 3px"></span>
+  <h2 class="text16 textPink">DATOS SOBRE LA MADRE
+    <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
+    <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
   </h2>
 <div *ngIf="HayMadre==true">
   <div class="divExp">
@@ -106,7 +106,7 @@
 
 
 <div class="grupoForm"  formGroupName="padre">
-  <h2 class="text16">DATOS SOBRE EL PADRE
+  <h2 class="text16 textPink">DATOS SOBRE EL PADRE
     <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
     <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
   </h2>
@@ -159,7 +159,7 @@
 <div formGroupName="bloque">
 <h2 class="cherry">CONTEXTO DE LA CITA</h2>
 <div>
-  <h2 class="text16">TIPO DE CITA</h2>
+  <h2 class="text16 textPink">TIPO DE CITA</h2>
   <div class="divExp">
     <label for="citaAboMGF">Citación por abordaje de riesgo de MGF</label>
     <select id="citaAboMGF" formControlName="Citacion">
@@ -189,7 +189,7 @@
   </div>
 <hr>
 <div>
-  <h2 class="text16">PERSONAS DURANTE LA CITA</h2>
+  <h2 class="text16 textPink">PERSONAS DURANTE LA CITA</h2>
   <div class="divExp">
     <label for="acomP">Acompañado/a por el padre</label>
     <select id="acomP" formControlName="Acomp_P">
@@ -219,7 +219,7 @@
 </div>
 <hr>
 <div>
-  <h2 class="text16">DIFICULTAD CON EL IDIOMA</h2>
+  <h2 class="text16 textPink">DIFICULTAD CON EL IDIOMA</h2>
 
   <div class="divExp">
     <label for="dificultadM">Dificultad con el idioma materno</label>
@@ -244,7 +244,7 @@
 </div>
 </div>
 <hr>
-<button class="btn-relleno" [disabled]="!this.form.valid" type="submit">Guardar</button>
+<button style="text-align:center;" class="btn-relleno" [disabled]="!this.form.valid" type="submit">Guardar</button>
 
 </form>
 
