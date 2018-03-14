@@ -43,6 +43,7 @@ import { RecursoComponent } from './components/recursos/añadir-recurso/añadir-
 import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { RecursosAdminComponent } from './components/admin/recursos.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -55,6 +56,9 @@ import {MaterialService} from "./services/material.service";
 import {ComentarioService} from "./services/comentario.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
 import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
+import { ChatService } from './services/chat.service';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+
 
 @NgModule({
   declarations: [
@@ -93,10 +97,9 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
     VerExpedienteComponent,
     ExpedientesAdminComponent,
     Popup,
-    Popup2
-
-
-
+    Popup2,
+    ChatComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -115,10 +118,6 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
   entryComponents: [
     Popup,
     Popup2
-
-
-
-
   ],
   providers: [
     ProfesionesService,
@@ -127,7 +126,8 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
     ExpedientesService,
     NoticiasService,
     MaterialService,
-    ComentarioService
+    ComentarioService,
+    ChatService
   ],
   bootstrap: [AppComponent]
 })

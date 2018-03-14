@@ -1,0 +1,46 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+
+  <app-header></app-header>
+  <!-- <div class="divBlanco bgColorWhite">
+    <div *ngIf="contactos.length > 0">
+      <div *ngFor="let c of contactos">
+        <span>{{c.contacto}} </span>
+
+      </div>
+    </div>
+
+  </div> -->
+  <div class="divBlanco bgColorWhite">
+    <header>
+      <!-- Botot¡n de prueba  -->
+      <button (click)=salir() type="button" class="btn btn-primary" [routerLink]="['/home']">Salir</button>
+      <h2>Contacto con el que estás hablando</h2>
+    </header>
+    <div class="lineaDiv"></div>
+
+    <div *ngIf="mensajes.length >0">
+      <div *ngFor="let m of mensajes">
+        <strong>{{m.usu}}</strong>
+        <span>{{m.text}}</span>
+    </div>
+  </div>
+
+  <footer class ="bgColorPink">
+
+    <form (ngSubmit)="enviarMensaje()">
+        <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aqui" autocomplete="false">
+        <button type="submit">Enviar</button>
+    </form>
+
+  </footer>
+
+
+
+
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -64,6 +64,8 @@ export class Bloque5Component implements OnInit {
         this._expedienteService.addIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
           console.log(data);
           sessionStorage.removeItem('IDExp');
+          location.href = '/home';
+
         })
       }
     })
@@ -80,6 +82,7 @@ export class Bloque5Component implements OnInit {
       k = k+1;
     }
   }
+
 
 
   guardarDatos2(){

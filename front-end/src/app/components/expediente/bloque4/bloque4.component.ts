@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {ExpedientesService} from '../../../services/expedientes.service';
+import {ExpedienteComponent} from '../expediente.component';
+
 
 @Component({
   selector: 'app-bloque4',
@@ -30,7 +32,7 @@ export class Bloque4Component implements OnInit {
 
   mensaje:string = '';
 
-  constructor(private _expedienteService:ExpedientesService) {
+  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
     this._expedienteService.getTipoMutilacion().subscribe(data => this.tiposMutilacion = data);
     this._expedienteService.getConsecuenciasSalud().subscribe(data => this.consecuenciasSalud = data);
   }
@@ -78,9 +80,10 @@ export class Bloque4Component implements OnInit {
           document.getElementById('alert').className = 'alert alert-success';
           //Despues de guardar, borrar el Array
           this.consecuencias = [];
+          this.expedienteComponent.bloque = 5;
         }
     });
-    
+
   }
   ngOnInit() {
   }

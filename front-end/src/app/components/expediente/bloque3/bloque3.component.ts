@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {ExpedientesService} from '../../../services/expedientes.service';
+import {ExpedienteComponent} from '../expediente.component';
 //import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -27,7 +28,7 @@ export class Bloque3Component implements OnInit {
   }
   mensaje:string = '';
 
-  constructor(private _expedienteService:ExpedientesService) {}
+  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {}
 
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
@@ -38,6 +39,7 @@ export class Bloque3Component implements OnInit {
     }
     this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
       if(data.warningCount == 0){
+        this.expedienteComponent.bloque = 4;
         this.mensaje = 'Guardado correctamente!';
         document.getElementById('alert').className = 'alert alert-success';
       }
