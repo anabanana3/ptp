@@ -28,7 +28,8 @@ urlConsecSalud:string ='https://aisha.ovh/api/consecSalud';
 //Expedientes de un usuario
 urlExp:string = 'https://aisha.ovh/api/privados';
 urlTieneComp:string = 'https://aisha.ovh/api/tieneCompM';
-
+urlTieneConsecSalud:string = 'https://aisha.ovh/api/tieneConsecuencias';
+urlTieneIndicadores:string = 'https://aisha.ovh/api/tieneIndicadores';
 
   constructor(private http:Http) { }
 
@@ -396,7 +397,7 @@ getPartos(id){
   let urlp = this.urlPartos+'/expediente/'+id;
 
   return this.http.get(urlp, {headers}).map(res=>{
-    console.log("p"+res.json());
+    //console.log("p"+res.json());
     return res.json();
   })
 }
@@ -409,7 +410,7 @@ getComplicMadreById(id){
   let urlp = this.urlCompMadre+'/'+id;
 
   return this.http.get(urlp, {headers}).map(res=>{
-    console.log("p"+res.json());
+    //console.log("p"+res.json());
     return res.json();
   })
 }
@@ -435,7 +436,7 @@ getConsecM(id){
   let urlc = this.urlTieneComp+'/madre/idM='+id;
 
   return this.http.get(urlc, {headers}).map(res=>{
-    console.log(res.json());
+    //console.log(res.json());
     return res.json();
   })
 }
@@ -448,6 +449,96 @@ getConsecN(id){
   let urln = this.urlTieneComp+'/nacido/idN='+id;
 
   return this.http.get(urln, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+
+getBloque3(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlb3 = this.urlBloque3+'/'+id;
+
+  return this.http.get(urlb3, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+
+getBloque4(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlb4 = this.urlBloque4+'/'+id;
+
+  return this.http.get(urlb4, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+
+getBloque5(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let urlb5 = this.urlBloque5+'/'+id;
+
+  return this.http.get(urlb5, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+
+getTieneConsecSalud(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let url = this.urlTieneConsecSalud+'/'+id;
+  return this.http.get(url, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+getPersonaById(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let persona = this.urlPersona+'/'+id;
+  return this.http.get(persona, {headers}).map(res=>{
+    return res.json();
+  })
+}
+getFamiliarPersona(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let persona = this.urlFamiliar+'/'+id;
+  return this.http.get(persona, {headers}).map(res=>{
+    //console.log(res.json());
+    return res.json();
+  })
+}
+getIndicadoresById(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let ind = this.urlTieneIndicadores+'/'+id;
+  return this.http.get(ind, {headers}).map(res=>{
     console.log(res.json());
     return res.json();
   })

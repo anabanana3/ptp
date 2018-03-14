@@ -12,7 +12,7 @@
     <!-- cambiar -->
     <select [(ngModel)]='json.ID_Mutilacion' name="id_mutilacion" id="id_mutilacion" >
       <option value="0">Seleccionar</option>
-      <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+      <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
     </select>
     <br>
     <label for="cicatriz_genital">Cicatrices en la zona genital</label> <!-- si/no y luego un textarea porque -->
