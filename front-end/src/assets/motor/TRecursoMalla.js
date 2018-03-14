@@ -1,7 +1,6 @@
 class TRecursoMalla extends TRecurso{
   constructor(){
     super();
-
     this.vertices;
     this.normales;  //Float32Array
     this.texturas;
@@ -15,35 +14,33 @@ class TRecursoMalla extends TRecurso{
     this.nTriangulos;
   }
 
+  request(url) {
+    return new Promise(function (resolve, reject) {
+      let req = new XMLHttpRequest();
+      req.open('GET', url, true);
+      req.onload = function(e){
+        console.log(JSON.parse(e.target.response));
+        resolve(JSON.parse(e.target.response));
+      };
+      req.onerror = function (e) {
+        console.log(e);
+      };
+      req.send();
+    });
+  }
+
   cargarFichero(nombre){
-    /*Parsear el fichero
-    require "json"*/
-    console.log("Entramos en la carga de fichero de MALLA");
-
-    let req = new XMLHttpRequest();
-    req.open('GET', nombre, false);
-    req.send();
-
-    if(req.status == 200){
-      let json = JSON.parse(req.response);
-      console.log(json);
-
-      let vertices = json.data.attributes.position.array;
-      console.log(vertices);
-      this.vertices = vertices;
-
-      let normales = json.data.attributes.normal.array;
-      console.log(normales);
-      this.normales = normales;
-
-      let indices = json.data.index.array;
-      console.log(indices);
-      this.indices = indices;
-    }
+    let json;
+    let request = this.request('/assets/motor/' + nombre).then((e) => {
+      this.vertices = e.data.attributes.position.array;
+      this.normales = e.data.attributes.normal.array;
+      this.indices = e.data.index.array;
+      console.log(this);
+    })
   }
 
   initWebGL(canvas) {
-    var gl = null;
+    let gl = null;
 
     try {
       // Tratar de tomar el contexto estandar. Si falla, retornar al experimental.
@@ -66,27 +63,26 @@ class TRecursoMalla extends TRecurso{
     y al ser un recurso debe anteriormente haber llamado a cargarFichero y
     haber rellenado todas las variables que se estipulan en el
     constructor para cuando llegue a este metodo, pintarlo con WebGL*/
-
-    var canvas = document.getElementById('canvas');
-
+    let canvas = document.getElementById('canvas');
+    console.log(canvas);
     console.log('Estamos en TRecursoMalla y hacemos draw');
 
-    var gl = this.initWebGL(canvas);
+    let gl = this.initWebGL(canvas);
     /*======== Defining and storing the geometry ===========*/
 
-     var vertices = this.vertices;
+     let vertices = this.vertices;
 
-     var indices = this.indices;
+     let indices = this.indices;
 
 
      // Create an empty buffer object to store vertex buffer
-     var vertex_buffer = gl.createBuffer();
+     let vertex_buffer = gl.createBuffer();
      gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
      gl.bindBuffer(gl.ARRAY_BUFFER, null); //unbind -> desatar
 
      // Create an empty buffer object to store Index buffer
-     var Index_Buffer = gl.createBuffer();
+     let Index_Buffer = gl.createBuffer();
      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
@@ -94,7 +90,7 @@ class TRecursoMalla extends TRecurso{
      /*================ Shaders ====================*/
      // Vertex shader source code
 
-     var vertCode =
+     let vertCode =
         'attribute vec3 coordinates;' +
 
         'void main(void) {' +
@@ -102,23 +98,23 @@ class TRecursoMalla extends TRecurso{
         '}';
 
      // Create a vertex shader object
-     var vertShader = gl.createShader(gl.VERTEX_SHADER);
+     let vertShader = gl.createShader(gl.VERTEX_SHADER);
      gl.shaderSource(vertShader, vertCode); // adjuntar con vertCode
      gl.compileShader(vertShader);  // Compilar vertShader
 
-     var fragCode =
+     let fragCode =
         'void main(void) {' +
            ' gl_FragColor = vec4(0.3, 0.2, 0.7, 1.0);' +
         '}'; //fragment shader source code
 
      // Create fragment shader object
 
-     var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
+     let fragShader = gl.createShader(gl.FRAGMENT_SHADER);
      gl.shaderSource(fragShader, fragCode); // adjuntar con fragCode
      gl.compileShader(fragShader);  // Compilar fragShader
      console.log(fragShader);
      // Objeto de programa para almacenar el programa de sombreado combinado
-     var shaderProgram = gl.createProgram();
+     let shaderProgram = gl.createProgram();
      gl.attachShader(shaderProgram, vertShader);  // adjuntar con vertShader
      gl.attachShader(shaderProgram, fragShader);  // adjuntar con fragShader
 
@@ -137,7 +133,7 @@ class TRecursoMalla extends TRecurso{
      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);  // Bind index buffer object
 
      // Get the attribute location
-    var coord = gl.getAttribLocation(shaderProgram, "coordinates");
+    let coord = gl.getAttribLocation(shaderProgram, "coordinates");
     //  console.log(prueba.getShaderProgram());
     //  var aux = prueba.getShaderProgram();
     //  var coord = gl.getAttribLocation(aux, "coordinates");

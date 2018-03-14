@@ -108,6 +108,7 @@ class TFachadaMotor {
     nodo.setEntidad(entMalla);
     entMalla.malla = this.gestor.getRecurso(ficheroMalla, "malla");
     entMalla.material = this.gestor.getRecurso(ficheroMaterial, "material");
+    console.log(entMalla);
     return entMalla;
   }
   crearMallaCompleto(nombre, ficheroMalla, ficheroMaterial){

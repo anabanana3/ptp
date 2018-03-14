@@ -5,7 +5,7 @@ class TGestorRecursos{
   }
 
   getRecurso(nombre, tipo){
-    var recurso;
+    let recurso;
     for(let i=0; i<this.recursos.length; i++){
       if(this.recursos[i].nombre == nombre){
         recurso = this.recursos[i];

@@ -25,24 +25,7 @@
         <button class="btn-relleno-negro" type="button" name="button">Cartoon</button>
       </div>
     </div>
-    <canvas style="border: 2px; dotted blue;" id="canvas"></canvas>
+    <canvas id="canvas"></canvas>
   </div>
-  <script type="text/javascript">
-    let fachada = new TFachadaMotor();
-
-    let camara1 = fachada.crearCamaraCompleto("camara1");
-    let luz1 = fachada.crearLuzCompleto("luz1");
-
-    let vagina = fachada.crearMallaCompleto("Vagina", "cube-mr.json", "box.mtl");
-
-    fachada.draw();
-
-    console.log(">>>>>>> BORRANDO VOYYYY BORRANDO VENGO <<<<<<<<<");
-
-
-    let borrando = fachada.borrarLuzCompleto();
-
-    fachada.draw();
-  </script>
   <app-footer></app-footer>
 </div>

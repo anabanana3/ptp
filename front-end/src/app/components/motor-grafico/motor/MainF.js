@@ -1,8 +1,0 @@
-class MainF{
-
-  constructor(){
-
-    
-
-  }
-}
