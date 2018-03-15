@@ -19,7 +19,8 @@ class TRecursoMalla extends TRecurso{
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
       req.onload = function(e){
-        resolve(JSON.parse(e.target.response));
+        console.log(e.target);
+        resolve(e.target);
       };
       req.onerror = function (e) {
         console.log(e);
@@ -31,10 +32,16 @@ class TRecursoMalla extends TRecurso{
   cargarFichero(nombre){
     let json;
     let request = this.request('/assets/motor/' + nombre).then((e) => {
-      this.vertices = e.data.attributes.position.array;
-      this.normales = e.data.attributes.normal.array;
-      this.indices = e.data.index.array;
-      console.log(this);
+      // console.log(e);
+      // this.indices = e.model.meshes[0].vertElement.vertIndices;
+      // this.vertices = e.model.meshes[0].verts;
+      // console.log(this);
+      json = new OBJ.Mesh(e.responseText);
+      console.log(json);
+      console.log(json.vertices);
+      console.log(json.indices);
+      this.vertices = json.vertices;
+      this.indices = json.indices;
     })
   }
 
