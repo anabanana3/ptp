@@ -5,7 +5,7 @@ class TGestorRecursos{
   }
 
   getRecurso(nombre, tipo){
-    let recurso;
+    var recurso;
     for(let i=0; i<this.recursos.length; i++){
       if(this.recursos[i].nombre == nombre){
         recurso = this.recursos[i];
@@ -22,6 +22,7 @@ class TGestorRecursos{
       this.recursos.push(recurso);
 
     }else if(tipo == "textura"){
+      console.log("Enhorabuena, ha sido una TEXTURA");
       recurso = new TRecursoTextura();
       recurso.cargarFichero(nombre);
       this.recursos.push(recurso);

@@ -19,7 +19,6 @@ class TRecursoMalla extends TRecurso{
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
       req.onload = function(e){
-        console.log(JSON.parse(e.target.response));
         resolve(JSON.parse(e.target.response));
       };
       req.onerror = function (e) {
