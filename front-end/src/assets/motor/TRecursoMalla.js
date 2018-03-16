@@ -19,7 +19,7 @@ class TRecursoMalla extends TRecurso{
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
       req.onload = function(e){
-        console.log(e.target);
+        // resolve(JSON.parse(e.target.response));
         resolve(e.target);
       };
       req.onerror = function (e) {
@@ -32,10 +32,8 @@ class TRecursoMalla extends TRecurso{
   cargarFichero(nombre){
     let json;
     let request = this.request('/assets/motor/' + nombre).then((e) => {
-      // console.log(e);
       // this.indices = e.model.meshes[0].vertElement.vertIndices;
       // this.vertices = e.model.meshes[0].verts;
-      // console.log(this);
       json = new OBJ.Mesh(e.responseText);
       console.log(json);
       console.log(json.vertices);
@@ -79,7 +77,8 @@ class TRecursoMalla extends TRecurso{
      let vertices = this.vertices;
 
      let indices = this.indices;
-
+     console.log(vertices);
+     console.log(indices);
 
      // Create an empty buffer object to store vertex buffer
      let vertex_buffer = gl.createBuffer();

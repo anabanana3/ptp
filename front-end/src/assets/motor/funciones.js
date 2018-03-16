@@ -4,7 +4,7 @@ function iniciarMotor(){
   let camara1 = fachada.crearCamaraCompleto("camara1");
   let luz1 = fachada.crearLuzCompleto("luz1");
 
-  let vagina = fachada.crearMallaCompleto("Vagina", "box.obj", "box.mtl");
+  let vagina = fachada.crearMallaCompleto("Vagina", "Vagina.obj", "box.mtl");
 
   setTimeout(() => { fachada.draw()}, 1000);
 }
