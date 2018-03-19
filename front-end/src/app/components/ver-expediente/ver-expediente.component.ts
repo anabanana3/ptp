@@ -15,16 +15,29 @@ export class VerExpedienteComponent implements OnInit {
   expediente = new Array();
   bloque1 = new Array();
   bloque2 = new Array();
+  bloque3 = new Array();
+  bloque4 = new Array();
+  bloque5 = new Array();
   curso:string;
   centro_Salud:string;
   b2Otros:string;
   partos = new Array();
+  persona = new Array();
+  madre = new Array();
+  padre = new Array();
+  indicadores = new Array();
   //nombreCM:{}[];
   nombreCM = new Array();
   nombreCN = new Array();
   auxM = new Array();
   auxN = new Array();
-
+  formula = new Array();
+  consecSalud1 = new Array();
+  consecSalud2 = new Array();
+  consecSalud4 = new Array();
+  consecSalud5 = new Array();
+  consecSalud6 = new Array();
+  idPersona:number;
   //comentarios
   comentarios = [];
   comentario:string = '';
@@ -45,7 +58,6 @@ export class VerExpedienteComponent implements OnInit {
   getComentarios(){
     this._comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
     .subscribe(data => {
-      console.log(data);
       this.comentarios = data.Data;
       this.paginacion(this.pagActual, data.Paginas_Totales);
     })
@@ -55,60 +67,85 @@ export class VerExpedienteComponent implements OnInit {
   ngOnInit() {
     //obtenemos el id del exp que queremos ver
     this.expID = this.router.snapshot.params['id'];
-    console.log(this.expID);
     this._expedientesService.getExpedienteById(this.expID).subscribe(data=>{
       this.expediente = data;
-      console.log('datos: '+this.expediente);
+      this.idPersona = data[0].ID_Persona;
+      this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{
+        this.persona = data;
+      })
+      //familiares de la persona
+      this._expedientesService.getFamiliarPersona(this.idPersona).subscribe(data=>{
+        for(let i = 0; i< data.length; i++){
+          if(data[i].Tipo == 1){
+            this.madre.push(data[i]);
+          }else if(data[i].Tipo == 2){
+            this.padre.push(data[i]);
+          }
+        }
+      })
     })
+    //obtenemos datos b1
     this._expedientesService.getBloque1(this.expID).subscribe(data=>{
       this.bloque1 = data;
       this.curso = data[0].Curso.split("'")[1];
       //console.log("curso:"+ data[0].Curso.split("'")[1]);
       this.centro_Salud = data[0].Centro_Salud.split("'")[1];
-      console.log('b1: '+this.bloque1);
     })
+    //obtenemos datos b2
     this._expedientesService.getBloque2(this.expID).subscribe(data=>{
       this.bloque2 = data;
       this.b2Otros = data[0].Otros.split("'")[1];
-      console.log('b2: '+this.bloque2+"id exp"+this.expID);
     })
+    //obtenemos los partos del exp
     this._expedientesService.getPartos(this.expID).subscribe(data=>{
       this.partos = data;
       //this.b2Otros = data[0].Otros.split("'")[1];
-      console.log('partos: '+this.partos);
+      //console.log('partos: '+this.partos);
       for(let i =0; i< this.partos.length; i++){
-        console.log('partosID: '+this.partos[i].ID_Parto);
+        //obtenemos las consecuencias del opart
         this._expedientesService.getConsecM(this.partos[i].ID_Parto).subscribe(dataM=>{
-          //recorremos dataM
-          for(let j = 0; j<dataM.length; j++){
-            //this.complicM.push(dataM[j].COMPLICACIONES_MADRE_ID_Complicacion);
-            this._expedientesService.getComplicMadreById(dataM[j].COMPLICACIONES_MADRE_ID_Complicacion).subscribe(dataM=>{
-              this.nombreCM.push(dataM[0].Nombre);
-              //console.log(dataM[0].Nombre);
-            })
-          }
-          this.auxM.push(this.nombreCM);
+          this.auxM.push(dataM);
         })
+        // ESTA PUTA MIERDA ESTA MAL HECHA
         this._expedientesService.getConsecN(this.partos[i].ID_Parto).subscribe(dataN=>{
-          //console.log('complicN: '+dataN);
-          for(let j = 0; j<dataN.length; j++){
-            //this.complicN.push(dataN[j].ID_Complicacion);
-            this._expedientesService.getComplicNacidoById(dataN[j].ID_Complicacion).subscribe(dataN=>{
-              this.nombreCN.push(dataN[0].Nombre);
-              //console.log(dataN[0].Nombre);
-            })
-          }
-          this.auxN.push(this.nombreCN);
-          console.log(this.auxN);
+          this.auxN.push(dataN);
         })
       }
+    })
+    this._expedientesService.getBloque3(this.expID).subscribe(data=>{
+      this.bloque3 = data;
+      //console.log('b3: '+this.bloque3);
+    })
+    this._expedientesService.getBloque4(this.expID).subscribe(data=>{
+      this.bloque4 = data;
+    })
+    this._expedientesService.getBloque5(this.expID).subscribe(data=>{
+      this.bloque5 = data;
+    })
+    this._expedientesService.getTieneConsecSalud(this.expID).subscribe(data=>{
+      for(let i=0; i<data.length; i++){
+        if(data[i].Tipo == 1){
+          this.consecSalud1.push(data[i]);
+        }else if(data[i].Tipo == 2){
+          this.consecSalud2.push(data[i]);
+        }else if(data[i].Tipo == 4){
+          this.consecSalud4.push(data[i]);
+        }else if(data[i].Tipo == 5){
+          this.consecSalud5.push(data[i]);
+        }else if(data[i].Tipo == 6){
+          this.consecSalud6.push(data[i]);
+        }
+      }
+    })
+    this._expedientesService.getIndicadoresById(this.expID).subscribe(data=>{
+      this.indicadores=data;
     })
   }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(Popup, {
       width: '550px',
-      data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+      data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN, formula: this.formula }
     });
 
     dialogRef.afterClosed().subscribe(result => {

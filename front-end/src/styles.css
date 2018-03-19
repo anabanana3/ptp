@@ -28,10 +28,6 @@ h1, h2, h3{
   font-weight: lighter;
 }
 
-form{
-  padding: 20px;
-}
-
 th, td{padding: 15px;}
 
 span{font-size: small;}
@@ -193,6 +189,12 @@ canvas{
   font-size: 20px;
   margin: 0.7em;
   color: white;
+}
+
+.icon-plus,
+.icon-minus{
+  float:right;
+  padding:3px;
 }
 
 .menuAdmin{
@@ -516,6 +518,8 @@ canvas{
 
 /********** Expedientes ***********/
 .tabsExpediente{
+  margin: 0 auto;
+  width: 70%;
   margin-top:20px;
   padding: 5px 0px;
   padding-bottom: 0;
@@ -537,11 +541,71 @@ canvas{
   margin: 3%;
   margin-top: 0;
   display: block;
-  /* Combined Shape: */
+  text-align: left;
   background: #FFFFFF;
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
   border-radius: 8px;
   padding: 3%;
+}
+
+.divBloqueExp{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.divExp{
+  margin-bottom: 5px;
+}
+
+.grupoForm{
+  display: block;
+  overflow: hidden;
+  border-bottom: thin #234;
+  padding-bottom: 2%;
+}
+
+.textareaBl2{
+  width: 100%;
+  border-radius: 8px;
+  margin:10px 0;
+}
+
+.cherry{
+  padding:10px 0px;
+  color: #880042;
+  margin: 0;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2%;
+}
+
+option{
+  width: 140px;
+}
+#selectOption{
+  color:gray;
+  font-style: italic;
+}
+
+ #edadM, #edadMa, #edadPa, #numPartos, #edadMPopup, #edadNPopup, #tExpulsivo, #tDilatacion, #tParto, #formulaObs, #testAPGAR{
+   width: 40px;
+ }
+
+ #fechaC, #fechaMPopup, #etniaM, #etniaMa, #etniaPa, #actividadM, #actividadP{
+   width: 140px;
+ }
+
+ #otrosA{
+   width: 235px;
+ }
+
+.mat-dialog-content{
+  text-align: left;
+}
+
+.mat-dialog-actions{
+  float:right;
+  padding: 0;
 }
 
 .partos{
@@ -584,6 +648,14 @@ canvas{
 .icon-logout{
   font-size: 140%;
   color: white;
+}
+
+.icon-cancel{
+  margin-top: -80px;
+  padding: 0px;
+  background: none;
+  border: none;
+  height: 40px;
 }
 
 /*Mis Expedientes*/
@@ -675,6 +747,8 @@ canvas{
   width: 200px;/*Este tamaño es el ancho de la imagen del logo*/
   margin: auto;
 }
+
+
 
 /**** Recursos ****/
 .recursos-container-filter{

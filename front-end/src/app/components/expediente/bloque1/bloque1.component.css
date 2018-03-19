@@ -9,33 +9,8 @@ form{
    margin-bottom: 2%;
    padding: 0;
    text-align: left;
+ }
 
- }
- .cherry{
-   background: #880042;
-   color: white;
-   margin: 0;
-   text-align: center;
- }
- h2{
-   background: #333333;
-   color:white;
-   margin-top: 0;
-   margin-bottom: 2%;
-
- }
- h2>span{
-   float:right;
- }
- .cherry{
-   background: #880042;
-   color: white;
-   margin: 0;
-   text-align: center;
- }
- .grupoForm{
-   display: block;
-   overflow: hidden;
-   border-bottom: thin #234;
-   padding-bottom: 2%;
+ hr{
+   margin: 15px 0;
  }
