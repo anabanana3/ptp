@@ -9,11 +9,15 @@
     <header>
       <button (click)=salir() type="button" class="btn btn-relleno" [routerLink]="['/home']">Salir</button>
       <h2>Chats</h2>
+      <p>
+        <button type="button" (click)="buscarUsuarios(search.value)" style="background:none; border:none; padding:0; font-size:15px;" class="pointer icon-search"></button>
+        <input type="text" class="lineaCampo" style="width:80%;" #search>
+      </p>
     </header>
     <div class="lineaDiv"></div>
     <div *ngIf="conversaciones.length > 0">
       <div *ngFor="let c of conversaciones">
-        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2)">{{c.Nombre}}</span>
+        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket)">{{c.Nombre}}</span>
         <!-- c.Nombre.split("'")[1] -->
       </div>
     </div>
@@ -33,12 +37,13 @@
       </div>
 
       <footer class ="bgColorPink">
-        <form (ngSubmit)="enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.ID_Socket)" class="formChat">
+        <form class="formChat">
             <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
-            <button type="submit">Enviar</button>
+            <button type="button" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
         </form>
       </footer>
       </div>
+      {{conversacion.SocketID}}
       <app-footer></app-footer>
 
 </div>

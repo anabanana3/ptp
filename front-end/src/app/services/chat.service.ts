@@ -21,6 +21,16 @@ export class ChatService {
       this.socket.emit('idUser',token);   //emit -> manda un mensaje al servidor
       console.log(this.socket);
 
+      let observable = new Observable(observer =>{
+        this.socket.on('id', data =>{
+          observer.next(data);
+        })
+      })
+      return observable;
+
+    }
+
+    getConversations(){
       //---- Recuperar los chats activos ----//
       let observable = new Observable(observer => {
         this.socket.emit('conversaciones', sessionStorage.iD);
@@ -31,17 +41,20 @@ export class ChatService {
     return observable;
     }
 
-     sendMessage(p, id1, id2, miId, socket){
+     sendMessage(p, id1, id2, miId, socket, autorSocket){
        console.log('Mando un evento al servidor');
        var mensaje= {
          ID_Usuario1: id1,
          ID_Usuario2: id2,
-         Autor: sessionStorage.token,
+         Autor: miId,
+         SocketIDAutor:autorSocket,
          SocketID: socket,
          Texto: p
        };
-       this.socket.emit('add-message', mensaje);
-       return false;
+       this.socket.emit('SendMessage', mensaje);
+       //El autor recupera los mensajes
+       return this.getMessages(id1, id2);
+       //return false;
      }
 
     getMessages(id1, id2) {
@@ -58,6 +71,16 @@ export class ChatService {
           console.log(data);
         });
       })
+      return observable;
+    }
+
+    searchUsers(search){
+      let observable = new Observable(observer => {
+        this.socket.emit('Search', search);
+        this.socket.on('ResSearch', data => {
+          observer.next(data);
+        })
+      });
       return observable;
     }
 
