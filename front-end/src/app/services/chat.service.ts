@@ -11,75 +11,58 @@ export class ChatService {
 
   constructor() {}
 
-  connectSocketServer(){               //TODO indicar que un usuario ya está conectado
+  connectSocketServer(){
       let token = sessionStorage.token;
       let userId = sessionStorage.iD;
 
-  //    console.log(sessionStorage.connected);
+      console.log('intentando conectar con el socket del servidor');
+      this.socket = io.connect('https://aisha.ovh:8080');
 
-    //  if(sessionStorage.connected === undefined){
-        console.log('intentadno conectar con el socket del servidor');
-        this.socket = io.connect('https://aisha.ovh:8080');
-      //  sessionStorage.connected = 1;
-
-
-
-    //  }
       this.socket.emit('idUser',token);   //emit -> manda un mensaje al servidor
-      //this.socket = socket;
       console.log(this.socket);
-      //return socket.on('mensajes');
-      let observable = new Observable(observer =>{  //los mensajes siempre se manejan con observable
-        this.socket.on('mensajes', (data)=>{  //on -> está a la espera
+
+      //---- Recuperar los chats activos ----//
+      let observable = new Observable(observer => {
+        this.socket.emit('conversaciones', sessionStorage.iD);
+        this.socket.on('conversaciones', (data) => {
           observer.next(data);
         });
       })
-
-      // this.getUsuariosConectados(userId);
-      // console.log(this.getUsuariosConectados(userId));
     return observable;
     }
 
-
-
-     sendMessage(p){
+     sendMessage(p, id1, id2, miId, socket){
        console.log('Mando un evento al servidor');
        var mensaje= {
-         Usuario: sessionStorage.token,
+         ID_Usuario1: id1,
+         ID_Usuario2: id2,
+         Autor: sessionStorage.token,
+         SocketID: socket,
          Texto: p
        };
-       //this.socket.emit('add-message', p);
        this.socket.emit('add-message', mensaje);
        return false;
      }
 
-    getMessages() {
+    getMessages(id1, id2) {
+      var aux = {
+        ID_Usuario1: id1,
+        ID_Usuario2: id2,
+        Autor: sessionStorage.iD
+      }
+      console.log(this.socket);
       let observable = new Observable(observer => {
-        //this.socket = io(this.url);
-        this.socket.on('mensajes', (data) => {
+        this.socket.emit('GetMessages', aux);
+        this.socket.on('GetMessages', (data) => {
           observer.next(data);
+          console.log(data);
         });
-        /*return () => {
-          this.socket.disconnect();
-        };*/
       })
       return observable;
     }
 
-  getUsuariosConectados(userId) {
-    let observable = new Observable(observer => {
-      //this.socket = io(this.url);
-      this.socket.emit('UsersConnected',sessionStorage.iD);
-        this.socket.on('UsersConnected', (data)=>{
-        observer.next(data);
-        })
-    })
-     return observable;
-   }
-
   logout(){
     console.log('Logout del servicio')
     this.socket.emit('logout', sessionStorage.iD);
-    //sessionStorage.connected.removeItem();
   }
 }

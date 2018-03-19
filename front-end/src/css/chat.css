@@ -1,0 +1,27 @@
+
+.divChat{
+  float:left;
+  width: 35%;
+  height: 100%;
+}
+
+.divChat span{
+  cursor: pointer;
+}
+.formChat{
+  padding: 2%;
+}
+.formChat input{
+  width: 80%;
+  border-radius: 3px;
+  border-style: none;
+  padding: 10px;
+}
+
+.formChat button{
+  padding: 6px 10px;
+  margin-right: 2%;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: white;
+}

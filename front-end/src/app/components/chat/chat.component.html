@@ -2,45 +2,43 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-
   <app-header></app-header>
-  <!-- <div class="divBlanco bgColorWhite">
-    <div *ngIf="contactos.length > 0">
-      <div *ngFor="let c of contactos">
-        <span>{{c.contacto}} </span>
 
-      </div>
-    </div>
-
-  </div> -->
-  <div class="divBlanco bgColorWhite">
+  <!-- Chats -->
+  <div class="divChat divBlanco bgColorWhite">
     <header>
-      <!-- Botot¡n de prueba  -->
-      <button (click)=salir() type="button" class="btn btn-primary" [routerLink]="['/home']">Salir</button>
-      <h2>Contacto con el que estás hablando</h2>
+      <button (click)=salir() type="button" class="btn btn-relleno" [routerLink]="['/home']">Salir</button>
+      <h2>Chats</h2>
     </header>
     <div class="lineaDiv"></div>
-
-    <div *ngIf="mensajes.length >0">
-      <div *ngFor="let m of mensajes">
-        <strong>{{m.usu}}</strong>
-        <span>{{m.text}}</span>
+    <div *ngIf="conversaciones.length > 0">
+      <div *ngFor="let c of conversaciones">
+        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2)">{{c.Nombre}}</span>
+        <!-- c.Nombre.split("'")[1] -->
+      </div>
     </div>
   </div>
 
-  <footer class ="bgColorPink">
+  <!-- Conversacion -->
+    <div class="divBlanco bgColorWhite">
+      <header>
+        <h2></h2>
+      </header>
+      <div class="lineaDiv"></div>
+      <div *ngIf="mensajes.length > 0">
+        <div *ngFor="let m of mensajes">
+          <strong>{{m.Nombre.split("'")[1]}}:</strong>
+          <span>{{m.Texto}}</span>
+        </div>
+      </div>
 
-    <form (ngSubmit)="enviarMensaje()">
-        <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aqui" autocomplete="false">
-        <button type="submit">Enviar</button>
-    </form>
+      <footer class ="bgColorPink">
+        <form (ngSubmit)="enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.ID_Socket)" class="formChat">
+            <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
+            <button type="submit">Enviar</button>
+        </form>
+      </footer>
+      </div>
+      <app-footer></app-footer>
 
-  </footer>
-
-
-
-
-  </div>
-
-  <app-footer></app-footer>
 </div>

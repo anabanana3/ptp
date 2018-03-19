@@ -7,7 +7,6 @@
   left: 0;
   width:100%;
   margin-top:4%;
-
 }
 
 .footerDivLogin{
@@ -27,11 +26,11 @@
 }
 
 .socialNetworks > a > img{
-  width: 40px;
-  margin: 1%;
+  width: 30px;
+  margin: 6px;
   margin-top: 17px;
 }
 
 .socialNetworks > a > img:hover{
-  width: 42px;
+  width: 32px;
 }
