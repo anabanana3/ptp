@@ -1,39 +1,48 @@
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
-<div>
-  <h2>Valoración sobre posibles viajes</h2>
-  <label for="viajes">Realiza viajes al pais de origen en vacaciones</label>
-  <select id=viajes formControlName="Viajes">
-    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-  </select>
-  <br>
-
-  <label for="viajeP">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente</label>
-  <select id="viajeP" formControlName="ViajesPlanifiacados">
-    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-  </select>
-  <br>
-  <label for="formato">Descripción del formato de intervención</label>
-  <textarea formControlName="Intervencion" placeholder="Descripcion" id="formato"></textarea>
-  <br>
-  <label for="consejo">Consejo para otros profesionales</label>
-  <textarea formControlName="Consejos" id="consejo" placeholder="consejos"></textarea>
-  <br>
-</div>
-
-<h2>Indicadores de sospecha de MGF en el ambito escolar
-    <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="icon-plus" style="padding : 3px"></span>
-    <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="icon-minus" style="padding : 3px"></span>
-</h2>
-<div *ngIf="mostrar == true">
-  <p> A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>
-<div formGroupName="indicadores">
-  <div *ngFor="let in of indicadores; let i = index;">
-    <label for="indicador{{i}}">{{in.Nombre}}</label>
-    <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
-  </div>
-</div>
-</div>
   <div>
-  <button type="submit">Guardar</button>
-</div>
+    <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
+    <label for="viajes">Realiza viajes al país de origen en vacaciones</label>
+    <select id=viajes formControlName="Viajes">
+      <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+    </select>
+    <br>
+
+    <label for="viajeP">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente</label>
+    <select id="viajeP" formControlName="ViajesPlanifiacados">
+      <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+    </select>
+    <br>
+
+    <label for="formato">Descripción del formato de intervención</label>
+    <textarea class="textareaBl2" formControlName="Intervencion" placeholder="Descripción" id="formato"></textarea>
+    <br>
+
+    <label for="consejo">Consejo para otros profesionales</label>
+    <textarea class="textareaBl2" formControlName="Consejos" id="consejo" placeholder="Consejos"></textarea>
+    <br>
+  </div>
+
+  <hr>
+
+  <h2 class="text16 textPink">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR
+      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus"></span>
+      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus"></span>
+  </h2>
+
+  <div *ngIf="mostrar == true">
+    <p>A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>
+    <div formGroupName="indicadores">
+      <div *ngFor="let in of indicadores; let i = index;">
+        <label for="indicador{{i}}">{{in.Nombre}}</label>
+        <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="centrar">
+    <button class="btn-relleno" type="submit">Guardar</button>
+  </div>
+  
 </form>

@@ -59,8 +59,6 @@ export class Bloque1Component implements OnInit {
     ID_Actividad:null
   }
 
-
-
   bloque:any = {
     ID_Expediente:'',
     Citacion:0,
@@ -76,7 +74,6 @@ export class Bloque1Component implements OnInit {
     Mediacion:0,
     Curso:'1ESO',
     Centro_Salud:'Prueba'
-
   }
 
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html

@@ -50,6 +50,65 @@ export class Bloque4Component implements OnInit {
     }
   }
 
+  mostrarConsec_fisicas(){
+    document.getElementById("iconPlus").style.display="none";
+    document.getElementById("iconMinus").style.display="block";
+    document.getElementById("consFisInm").style.display="block";
+  }
+
+  ocultarConsec_fisicas(){
+    document.getElementById("iconMinus").style.display="none";
+    document.getElementById("iconPlus").style.display="block";
+    document.getElementById("consFisInm").style.display="none";
+  }
+
+  mostrarConsec_LP(){
+    document.getElementById("iconPlusLP").style.display="none";
+    document.getElementById("iconMinusLP").style.display="block";
+    document.getElementById("consFisLP").style.display="block";
+  }
+
+  ocultarConsec_LP(){
+    document.getElementById("iconMinusLP").style.display="none";
+    document.getElementById("iconPlusLP").style.display="block";
+    document.getElementById("consFisLP").style.display="none";
+  }
+
+  mostrarConsec_Obs(){
+    document.getElementById("iconPlusObs").style.display="none";
+    document.getElementById("iconMinusObs").style.display="block";
+    document.getElementById("consObs").style.display="block";
+  }
+
+  ocultarConsec_Obs(){
+    document.getElementById("iconMinusObs").style.display="none";
+    document.getElementById("iconPlusObs").style.display="block";
+    document.getElementById("consObs").style.display="none";
+  }
+
+  mostrarConsec_Psico(){
+    document.getElementById("iconPlusPsico").style.display="none";
+    document.getElementById("iconMinusPsico").style.display="block";
+    document.getElementById("consPsico").style.display="block";
+  }
+
+  ocultarConsec_Psico(){
+    document.getElementById("iconMinusPsico").style.display="none";
+    document.getElementById("iconPlusPsico").style.display="block";
+    document.getElementById("consPsico").style.display="none";
+  }
+
+  mostrarConsec_Sex(){
+    document.getElementById("iconPlusSex").style.display="none";
+    document.getElementById("iconMinusSex").style.display="block";
+    document.getElementById("consSex").style.display="block";
+  }
+
+  ocultarConsec_Sex(){
+    document.getElementById("iconMinusSex").style.display="none";
+    document.getElementById("iconPlusSex").style.display="block";
+    document.getElementById("consSex").style.display="none";
+  }
 
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json

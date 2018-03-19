@@ -206,6 +206,7 @@ openDialog(nPartos): void {
 
 })
 export class Popup2 {
+  hayAlgo:boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<Popup2>,
@@ -214,6 +215,34 @@ export class Popup2 {
   onNoClick(): void {
     this.dialogRef.close();
 
+  }
+
+  mostrarPartoMadre(){
+    console.log("mostrarPartoMadre");
+    document.getElementById("iconPlus").style.display="none";
+    document.getElementById("iconMinus").style.display="block";
+    document.getElementById("complMadreContainer").style.display="block";
+  }
+
+  ocultarPartoMadre(){
+    console.log("ocultarPartoMadre");
+    document.getElementById("iconMinus").style.display="none";
+    document.getElementById("iconPlus").style.display="block";
+    document.getElementById("complMadreContainer").style.display="none";
+  }
+
+  mostrarNinio(){
+    console.log("mostrarPartoMadre");
+    document.getElementById("iconPlusN").style.display="none";
+    document.getElementById("iconMinusN").style.display="block";
+    document.getElementById("complNinioContainer").style.display="block";
+  }
+
+  ocultarNinio(){
+    console.log("ocultarPartoMadre");
+    document.getElementById("iconMinusN").style.display="none";
+    document.getElementById("iconPlusN").style.display="block";
+    document.getElementById("complNinioContainer").style.display="none";
   }
 
 }
@@ -234,8 +263,13 @@ class Parto{
    CompMadre:number[];
    compNacido:number[];
 
+
    constructor(){
      this.CompMadre = new Array();
      this.compNacido = new Array();
    }
+
+
+
+
  }

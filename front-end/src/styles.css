@@ -460,8 +460,8 @@ canvas{
 /*** USUARIO HOME  *****/
 
 .itemOver{
-  position: absolute;
   z-index: -1;
+  position: absolute;
 }
 
 .itemDescription{
@@ -546,15 +546,36 @@ canvas{
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
   border-radius: 8px;
   padding: 3%;
+  padding-bottom: 15px;
 }
 
 .divBloqueExp{
   width: 70%;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .divExp{
   margin-bottom: 5px;
+}
+
+.divLabels{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.gineblock{
+  margin:5px 0px;
+}
+
+.centrar{
+  display: flex;
+  justify-content: center;
+}
+
+.pagPartos{
+  margin:15px 0px;
 }
 
 .grupoForm{
@@ -562,6 +583,12 @@ canvas{
   overflow: hidden;
   border-bottom: thin #234;
   padding-bottom: 2%;
+}
+
+.prueba{
+  font-size: 14px;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 .textareaBl2{

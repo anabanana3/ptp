@@ -234,4 +234,61 @@
   .comentario{
     width: 100%;
   }
+
+  /**** FOOTER ****/
+  .socialNetworks>a>img{
+    width: 30px;
+    margin-bottom: 10px;
+  }
+
+  .infoFooter{
+    font-size: 10px;
+  }
+
+  .infoFooter> .divpFooter> p{
+    font-size: 12px;
+  }
+
+  /*** EXPEDIENTES ****/
+  .tabsExpediente{
+    width: 90%;
+  }
+
+  .tabItem{
+    font-size: 11px;
+    margin-right: 4px;
+    padding: 5px 3px;
+  }
+
+  .divBloque{
+
+  }
+
+  .divBloqueExp{
+    width: 90%;
+  }
+
+  .cherry{
+    font-size:14px;
+  }
+
+  label,
+  .prueba{
+    font-size: 12px;
+  }
+
+  .text16{
+    font-size: 12px;
+  }
+
+  input,
+  input::-webkit-input-placeholder,
+  textarea {
+    font-size: 12px;
+  }
+
+  .mat-dialog-content{
+    padding: 0 10px;
+  }
+
 }

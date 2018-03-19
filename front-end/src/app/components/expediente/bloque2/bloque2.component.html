@@ -10,7 +10,7 @@
        mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
        <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
          <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-        </select>
+       </select>
       <br>
     </div>
 
@@ -32,16 +32,16 @@
      <br>
    </div>
 
- <label>Posicionamiento de la madre frente a la MGF</label>
- <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
-   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
- </select>
- <br>
- <label>Posicionamiento de la familia en el pais de origen</label>
- <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
-   <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
- </select>
- <br>
+   <label>Posicionamiento de la madre frente a la MGF</label>
+   <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
+     <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+   </select>
+   <br>
+   <label>Posicionamiento de la familia en el pais de origen</label>
+   <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
+     <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+   </select>
+   <br>
 
  <div class="divExp">
    <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
@@ -71,8 +71,10 @@
  <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
  <br>
 
+  <hr>
+
  <div class="grupoForm">
- <h2 class="text16 textPink">ANTECEDENTES E HISTORIA DE PARTOS
+ <h2 class="text16 textPink">HISTORIA DE PARTOS
    <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
    <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
  </h2>
@@ -140,7 +142,7 @@
  </div>
  </div>
 <hr>
- <div>
+ <div class="centrar">
    <button class="btn-relleno" type="submit">Guardar</button>
  </div>
  </form>
