@@ -3,11 +3,11 @@
 </div>
 <h1 mat-dialog-title>DATOS PARTO</h1>
 
-<div *ngFor="let parto of data.partos; let i = index">
-  <div mat-dialog-content>
+<div mat-dialog-content>
+  <div *ngFor="let parto of data.partos; let i = index">
     <h2>Parto nº {{i+1}}</h2>
     <p *ngIf="parto.Fecha != NULL">Fecha:
-      <b>{{parto.Fecha}}</b>
+      <b>{{parto.Fecha.split('T')[0]}}</b>
     </p>
     <p *ngIf="parto.Edad_Madre != NULL">Edad de la madre:
       <b>{{parto.Edad_Madre}}</b>
@@ -26,19 +26,22 @@
       min.
     </p>
     <p>Fórmula obstétrica realizada:
-      <b>SIN HACER</b>
+      <b>{{parto.Formula}}</b>
     </p>
     <p>Tipo mutilación genital:
-      <b>SIN HACER</b>
+      <b>{{parto.Mutilacion}}</b> <!--solo sale tipo, sin num por culpa de carlos :) -->
+    </p>
+    <p>Tipo de parto:
+      <b>{{parto.Tipo_Parto}}</b>
     </p>
     <p *ngIf="parto.Test_APGAR != NULL">Test APGAR:
       <b>{{parto.Test_APGAR}}</b>
     </p>
     <p *ngIf="data.auxM[i] != NULL">Complicaciones de la madre durante el parte:
-      <b *ngFor="let cm of data.auxM[i]">{{cm}} </b>
+      <b *ngFor="let cm of data.auxM[i]">{{cm.Nombre}} </b>
     </p>
     <p *ngIf="data.auxN[i] != NULL">Complicaciones del recién nacido durante el parte:
-      <b *ngFor="let cn of data.auxN[i]">{{cn}} </b>
+      <b *ngFor="let cn of data.auxN[i]">{{cn.Nombre}} </b>
     </p>
   </div>
 </div>
