@@ -5,7 +5,9 @@
   <app-header></app-header>
 
   <!-- Chats -->
-  <div class="divChat divBlanco bgColorWhite">
+  <div class="main-Chat">
+  <!-- <div class="divChat divBlanco bgColorWhite"> -->
+  <div class="bgColorWhite">
     <header>
       <button (click)=salir() type="button" class="btn btn-relleno" [routerLink]="['/home']">Salir</button>
       <h2>Chats</h2>
@@ -17,33 +19,36 @@
     <div class="lineaDiv"></div>
     <div *ngIf="conversaciones.length > 0">
       <div *ngFor="let c of conversaciones">
-        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket)">{{c.Nombre}}</span>
+        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre)">{{c.Nombre.split("'")[1]}}</span>
         <!-- c.Nombre.split("'")[1] -->
       </div>
     </div>
   </div>
 
   <!-- Conversacion -->
-    <div class="divBlanco bgColorWhite">
+    <!-- <div class="divBlanco bgColorWhite"> -->
+    <div class="chat-container bgColorWhite">
       <header>
-        <h2></h2>
+        <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
       <div class="lineaDiv"></div>
-      <div *ngIf="mensajes.length > 0">
+      <div  class="message-container">
+        <div *ngIf="mensajes.length > 0">
         <div *ngFor="let m of mensajes">
           <strong>{{m.Nombre.split("'")[1]}}:</strong>
           <span>{{m.Texto}}</span>
         </div>
       </div>
+      </div>
 
-      <footer class ="bgColorPink">
-        <form class="formChat">
+      <footer class ="formChat bgColorPink">
+        <form>
             <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
             <button type="button" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
         </form>
       </footer>
       </div>
-      {{conversacion.SocketID}}
-      <app-footer></app-footer>
+    </div>
+    <app-footer></app-footer>
 
 </div>

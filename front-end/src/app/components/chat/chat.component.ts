@@ -42,12 +42,14 @@ export class ChatComponent implements OnInit{
     this._chatService.sendMessage(this.mensaje, id1, id2, sessionStorage.iD, socket, this.socketID);
   }
 
-  getMessages(id1, id2,s){
+  getMessages(id1, id2,s, nombre){
     this.conversacion = {
+      Nombre: nombre,
       ID_Usuario1: id1,
       ID_Usuario2: id2,
       SocketID: s
     }
+    console.log(this.conversacion)
     this._chatService.getMessages(id1, id2).subscribe(data => {
       this.mensajes = data;
     });

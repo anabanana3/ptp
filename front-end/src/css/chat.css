@@ -1,5 +1,22 @@
 
-.divChat{
+.main-Chat{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction:row;
+  overflow: hidden;
+}
+
+.chat-container{
+  flex-grow: 2;
+  border-left: 1px solid #DBDBDB;
+
+}
+.message-container  {
+  height: 700px;
+  overflow-y: scroll;
+}
+/*.divChat{
   float:left;
   width: 35%;
   height: 100%;
@@ -10,12 +27,21 @@
 }
 .formChat{
   padding: 2%;
+}*/
+.formChat{
+  width: 100%;
+  margin: auto;
+  overflow: hiden;
+}
+.formChat form{
+  width: 80%;
+  margin: auto;
 }
 .formChat input{
   width: 80%;
   border-radius: 3px;
   border-style: none;
-  padding: 10px;
+  padding: 8px;
 }
 
 .formChat button{
