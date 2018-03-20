@@ -99,6 +99,7 @@ loadShaders(vertices, indices, normales){
   var Index_Buffer = gl.createBuffer();
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+  //gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Float32Array(indices), gl.STATIC_DRAW);
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 
 
@@ -170,7 +171,7 @@ loadShaders(vertices, indices, normales){
   //FRAGCOLOR
   var color = gl.getUniformLocation(programa, "color");
   var aux= [0.7,0.2,0.7,1.0];
-  // console.log(GFragColor);
+   console.log(GFragColor);
   gl.uniform4fv(color,aux);
 
   //LIGTHPOSITION
@@ -185,8 +186,8 @@ loadShaders(vertices, indices, normales){
 
   gl.viewport(0,0,canvas.width,canvas.height);
   //gl.drawElements(Mode, Count, Type, Offset)
-  gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-  // gl.drawElements(gl.LINE_LOOP, indices.length, gl.UNSIGNED_SHORT,0);
+  //gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+   gl.drawElements(gl.LINE_LOOP, indices.length, gl.UNSIGNED_SHORT,0);
   /*
   //Crear buffers para Vertices, indicies, normales
 
