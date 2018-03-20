@@ -27,7 +27,6 @@ export class ChatService {
         })
       })
       return observable;
-
     }
 
     getConversations(){
