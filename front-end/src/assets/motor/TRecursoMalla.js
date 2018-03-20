@@ -38,43 +38,16 @@ class TRecursoMalla extends TRecurso{
     })
   }
 
-  initWebGL(canvas) {
-    let gl = null;
-
-    try {
-      // Tratar de tomar el contexto estandar. Si falla, retornar al experimental.
-      gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    }
-    catch(e) {}
-
-    // Si no tenemos ningun contexto GL, date por vencido ahora
-    if (!gl) {
-      alert("Imposible inicializar WebGL. Tu navegador puede no soportarlo.");
-      gl = null;
-    }
-
-    return gl;
-  }
-
   draw(){
-    var canvas = document.getElementById('canvas');
+    // Cargo los shaders
+    var shaders = new TShader();
+    shaders.cargarFichero('fragShader.frag');
+    shaders.cargarFichero('vertShader.vert');
 
-      console.log('Estamos en TRecursoMalla y hacemos draw');
+    setTimeout(() => {
+      let self = this;
+      shaders.loadShaders(self.vertices, self.indices, self.normales);
+    }, 1000);
 
-      var gl = this.initWebGL(canvas);
-      /*======== Defining and storing the geometry ===========*/
-
-       var vertices = this.vertices;
-
-       var indices = this.indices;
-
-       var normales = this.normales;
-
-      // Cargo los shaders
-       var shaders = new TShader();
-       shaders.cargarFichero('fragShader.frag');
-       shaders.cargarFichero('vertShader.vert');
-
-       shaders.loadShaders(vertices, indices, normales);
   }
 }

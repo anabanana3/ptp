@@ -45,30 +45,36 @@ class TRecursoMaterial extends TRecurso{
       let valoresKs = partes[11].split(' ');
 
       this.iluminacion = iluminacion[1];
+      GBrillo = iluminacion[1];
       //le paso la d, aunque en algunos sitios dicen que es tr
       this.transparencia = d[1];
 
       //colorAmbiente ka
       let colorAmbiente = vec3.fromValues(valoresKa[1], valoresKa[2], valoresKa[3]);
       this.colorAmbiente = colorAmbiente;
+      GAmbiental = colorAmbiente;
       //console.log(this.colorAmbiente);
 
       //color difuso kd
       let colorDifuso = vec3.fromValues(valoresKd[1], valoresKd[2], valoresKd[3]);
 
       this.colorDifuso = colorDifuso;
+      GDifuso = colorDifuso;
       //console.log(this.colorDifuso);
 
       //color especular ks
       let colorEpecular = vec3.fromValues(valoresKs[1], valoresKs[2], valoresKs[3]);
       this.colorEpecular = colorEpecular;
+      GEspecular = colorEpecular;
       //console.log(this.colorEpecular);
 
       //el frag_color es la suma de a, d, s y otr cosa que no se que es jeje
       let color = vec3.fromValues(parseFloat(valoresKa[1])+parseFloat(valoresKd[1])+parseFloat(valoresKs[1]), parseFloat(valoresKa[2])+parseFloat(valoresKd[2])+parseFloat(valoresKs[2]), parseFloat(valoresKa[3])+parseFloat(valoresKd[3])+parseFloat(valoresKs[3]));
       this.vertexColor = color;
+      GIntensidadLuz = color;
       //le paso las 3 coordenadas de la suma de los colores y la transparencia
       this.frag_color = vec4.fromValues(color[0], color[1], color[2], this.transparencia);
+      GFragColor = vec4.fromValues(color[0], color[1], color[2], this.transparencia);
       console.log(this.frag_color);
     })
   }

@@ -122,16 +122,18 @@ class TFachadaMotor {
     //Guaro las matrices de forma global para obtenerlas en el shader
     GlobalMalla = malla;
     GMaterial = malla.material;
-    GModelMatrix=GlobalMalla.modelMatrix;
-    GViewMatrix= GlobalMalla.viewMatrix;
-    GProjectionMatrix = GlobalMalla.projectionMatrix
+    GModelMatrix= malla.modelMatrix;
+    GViewMatrix= malla.viewMatrix;
+    GProjectionMatrix = malla.projectionMatrix
+
     //Guardo los valores del material para mandarlos al shader
-    GDifuso = GMaterial.colorDifuso;
-    GAmbiental = GMaterial.colorAmbiente;
-    GEspecular = GMaterial.colorEpecular;
-    GFragColor = GMaterial.frag_color;
-    GBrillo = GMaterial.iluminacion;
-    GIntensidadLuz = GMaterial.vertexColor;
+    // GDifuso = malla.material.colorDifuso;
+    // GAmbiental = GMaterial.colorAmbiente;
+    // GEspecular = GMaterial.colorEpecular;
+    // GFragColor = GMaterial.frag_color;
+    // GBrillo = GMaterial.iluminacion;
+    // GIntensidadLuz = GMaterial.vertexColor;
+    
     /*console.log('Model Matrix');
     console.log(GModelMatrix);
     console.log('View Matrix');
