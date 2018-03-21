@@ -11,7 +11,7 @@ import {ExpedienteComponent} from '../expediente.component';
 })
 export class Bloque3Component implements OnInit {
 
-  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'N0'},{id:1, opcion:'SI'}];
+  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'No'},{id:1, opcion:'Si'}];
   //datos que voy a enviar a la bd
   json = {
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,

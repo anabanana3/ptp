@@ -291,4 +291,27 @@
     padding: 0 10px;
   }
 
+  /**** HEADER ****/
+  .header > a > img{
+    width: 100px;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+
+  .header{
+    height: 70px;
+  }
+
+  label > img {
+    width: 45px;
+    margin-right: -52px;
+    margin-top: 12px;
+  }
+
+  .notification{
+    width: 20px;
+    height: 20px;
+    margin-right: 50px;
+  }
+
 }
