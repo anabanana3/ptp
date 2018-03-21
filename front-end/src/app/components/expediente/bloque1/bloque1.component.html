@@ -193,17 +193,17 @@
         </div>
       <div class="divLabels">
         <div class="divExp">
+          <label for="otrosM">Otros motivos</label>
+          <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
+          <textarea class="textareaBl2" type="text" id="otrosM" name="otros" formControlName="Otros"></textarea>
+        </div>
+
+        <div class="divExp">
           <label for="deriSosMGF">Derivación por sospecha de MGF</label>
           <select id="deriSosMGF" formControlName="Deriv_Sospecha">
             <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
           </select>
-        </div>
-
-        <div class="divExp">
-          <label for="otrosM">Otros motivos</label>
-          <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
-          <input type="text" id="otrosM" name="otros" formControlName="Otros">
-        </div>
+        </div>        
         </div>
       </div>
     <hr>

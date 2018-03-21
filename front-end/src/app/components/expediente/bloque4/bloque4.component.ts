@@ -11,7 +11,7 @@ import {ExpedienteComponent} from '../expediente.component';
 })
 export class Bloque4Component implements OnInit {
 
-  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'N0'},{id:1, opcion:'SI'}];
+  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'No'},{id:1, opcion:'Si'}];
   tiposMutilacion = new Array();
   consecuenciasSalud = new Array();
   consecuencia = new Array();
