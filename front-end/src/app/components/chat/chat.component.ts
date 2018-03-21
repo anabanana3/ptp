@@ -28,7 +28,22 @@ export class ChatComponent implements OnInit{
     this.conversacion = {
       Nombre: "'Chat'"
     }
-}
+  }
+  setConversation(id2, nombre){
+    this._chatService.setConversation(id2).subscribe(data =>{
+      console.log(data);
+
+
+      this.conversacion = {
+        Nombre: nombre,
+        ID_Usuario1: data['ID_Usuario1'],
+        ID_Usuario2: data['ID_Usuario2'],
+        SocketID: ""
+      }
+      console.log("CONVERSACION NUEVA");
+      console.log(data);
+    })
+  }
 
   enviarMensaje(id1, id2, socket){
     console.log('Metodo para enviar mensaje');
@@ -79,5 +94,4 @@ export class ChatComponent implements OnInit{
       console.log(this.conversaciones);
     });
   }
-
 }

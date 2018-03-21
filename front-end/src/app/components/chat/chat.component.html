@@ -16,7 +16,7 @@
     </header>
     <div *ngIf="resultSearch.length > 0">
       <div *ngFor="let s of resultSearch">
-        <span class="text16">{{s.Nombre.split("'")[1]}}</span>
+        <span class="text16"(click) = "setConversation(s.ID_Usuario,s.Nombre)">{{s.Nombre.split("'")[1]}}</span>
       </div>
     </div>
     <div class="lineaDiv"></div>
