@@ -6,27 +6,30 @@
 
   <!-- Chats -->
   <div class="main-Chat">
-  <!-- <div class="divChat divBlanco bgColorWhite"> -->
   <div class="bgColorWhite">
     <header>
-      <button (click)=salir() type="button" class="btn btn-relleno" [routerLink]="['/home']">Salir</button>
-      <h2>Chats</h2>
+      <h2>Contactos</h2>
       <p>
-        <button type="button" (click)="buscarUsuarios(search.value)" style="background:none; border:none; padding:0; font-size:15px;" class="pointer icon-search"></button>
-        <input type="text" class="lineaCampo" style="width:80%;" #search>
+        <button type="button" (click)="buscarUsuarios(search.value)"class="pointer icon-search btn-buscador "></button>
+        <input type="text" class="lineaCampo" placeholder="Busca a un contacto" style="width:80%;" #search>
       </p>
     </header>
+    <div *ngIf="resultSearch.length > 0">
+      <div *ngFor="let s of resultSearch">
+        <span class="text16">{{s.Nombre.split("'")[1]}}</span>
+      </div>
+    </div>
     <div class="lineaDiv"></div>
     <div *ngIf="conversaciones.length > 0">
       <div *ngFor="let c of conversaciones">
-        <span (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre)">{{c.Nombre.split("'")[1]}}</span>
-        <!-- c.Nombre.split("'")[1] -->
+        <span class="text16" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre)">{{c.Nombre.split("'")[1]}}</span>
       </div>
     </div>
+    <footer> <button (click)=salir() type="button" class="btn btn-relleno btn-salirchat" [routerLink]="['/home']">Salir</button>
+    </footer>
   </div>
 
   <!-- Conversacion -->
-    <!-- <div class="divBlanco bgColorWhite"> -->
     <div class="chat-container bgColorWhite">
       <header>
         <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
@@ -36,7 +39,7 @@
         <div *ngIf="mensajes.length > 0">
         <div *ngFor="let m of mensajes">
           <strong>{{m.Nombre.split("'")[1]}}:</strong>
-          <span>{{m.Texto}}</span>
+          <span class="text16">{{m.Texto}}</span>
         </div>
       </div>
       </div>
