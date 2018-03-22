@@ -28,6 +28,20 @@ export class ChatService {
       })
       return observable;
     }
+    setConversation(id2){
+      var aux = {
+        ID_Usuario1: sessionStorage.iD,
+        ID_Usuario2: id2
+      }
+      let observable = new Observable(observer => {
+        this.socket.emit('SetConversation', aux);
+        this.socket.on('GetIDConver', (data) => {
+          console.log(data);
+          observer.next(data);
+        });
+      })
+    return observable;
+    }
 
     getConversations(){
       //---- Recuperar los chats activos ----//
