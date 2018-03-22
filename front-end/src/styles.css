@@ -556,13 +556,26 @@ canvas{
 }
 
 .divExp{
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  width:22%;
+}
+
+.divExpDeUno{
+  margin-bottom: 3px;
+  width: 45.7%;
 }
 
 .divLabels{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.divLabelsDeUno{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 48%;
 }
 
 .gineblock{
@@ -582,7 +595,6 @@ canvas{
   display: block;
   overflow: hidden;
   border-bottom: thin #234;
-  padding-bottom: 2%;
 }
 
 .prueba{
@@ -592,18 +604,17 @@ canvas{
 }
 
 .textareaBl2{
-  width: 100%;
+  width: 94%;
   border-radius: 8px;
-  margin:10px 0;
+  margin:8px 0;
 }
 
 .cherry{
-  padding:10px 0px;
+  padding:15px 0px;
   color: #880042;
   margin: 0;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 2%;
 }
 
 option{
@@ -620,10 +631,6 @@ option{
 
  #fechaC, #fechaMPopup, #etniaM, #etniaMa, #etniaPa, #actividadM, #actividadP{
    width: 140px;
- }
-
- #otrosA{
-   width: 235px;
  }
 
 .mat-dialog-content{
