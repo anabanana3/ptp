@@ -462,6 +462,8 @@ canvas{
 .itemOver{
   z-index: -1;
   position: absolute;
+  margin: 5%;
+
 }
 
 .itemDescription{
