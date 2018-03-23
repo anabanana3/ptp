@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit{
         console.log(this.socketID);
     });
     this.conversacion = {
-      Nombre: "'Chat'"
+      Nombre: "'Busca a un contacto y empieza a chatear!'",
     }
   }
   setConversation(id2, nombre){
@@ -40,8 +40,6 @@ export class ChatComponent implements OnInit{
         ID_Usuario2: data['ID_Usuario2'],
         SocketID: ""
       }
-      console.log("CONVERSACION NUEVA");
-      console.log(data);
     })
   }
 

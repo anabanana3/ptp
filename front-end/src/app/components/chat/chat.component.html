@@ -35,7 +35,8 @@
         <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
       <div class="lineaDiv"></div>
-      <div  class="message-container">
+      <div class="message-container bgColorGrey">
+        <img>
         <div *ngIf="mensajes.length > 0">
         <div *ngFor="let m of mensajes">
           <strong>{{m.Nombre.split("'")[1]}}:</strong>
