@@ -19,6 +19,14 @@
   overflow-y: scroll;
   align-items: flex-start;
 }
+/* .message-container{
+  background-image: url(../assets/img/CartelCherryRec.png);
+  background-repeat:no-repeat;
+  filter: opacity(0.5);
+  background-position: center;
+  background-size: auto;
+} */
+
 .btn-buscador{
   background: none;
   border: none;
