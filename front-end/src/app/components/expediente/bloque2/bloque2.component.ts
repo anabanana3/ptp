@@ -207,6 +207,7 @@ openDialog(nPartos): void {
 })
 export class Popup2 {
   hayAlgo:boolean = false;
+  variableka:number = 17;
 
   constructor(
     public dialogRef: MatDialogRef<Popup2>,
@@ -215,6 +216,13 @@ export class Popup2 {
   onNoClick(): void {
     this.dialogRef.close();
 
+  }
+
+  aumentarVar(){
+    console.log("entro en aumentarVar()");
+    console.log("variableka: "+ this.variableka);
+    this.variableka = this.variableka + 1;
+    console.log("ahora variableka: " + this.variableka);
   }
 
   mostrarPartoMadre(){
@@ -262,6 +270,7 @@ class Parto{
    ID_Mutilacion:number;
    CompMadre:number[];
    compNacido:number[];
+
 
 
    constructor(){
