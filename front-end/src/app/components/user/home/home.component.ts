@@ -26,7 +26,6 @@ export class HomeComponent {
     Foto: ''
   };
   error:boolean = true;
-  // user:string = "";
 
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
@@ -37,7 +36,6 @@ export class HomeComponent {
 
     this._userService.getUsuario(this.id).subscribe(data =>{
       this.user = data[0];
-      this.user.Nombre = this.user.Nombre.split("'")[1];
     })
   }
 

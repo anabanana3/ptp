@@ -456,14 +456,12 @@ canvas{
   height: 330px;
 }
 
-
 /*** USUARIO HOME  *****/
 
 .itemOver{
   z-index: -1;
   position: absolute;
-  margin: 5%;
-
+  margin: 3%;
 }
 
 .itemDescription{

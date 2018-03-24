@@ -6,6 +6,10 @@
   flex-direction:row;
   overflow: hidden;
   margin-top: 20px;
+  margin-bottom: 0;
+}
+.main-Chat .bgColorWhite{
+  width: 25%;
 }
 .btn-salirchat{
   margin-top: 90%;
@@ -19,6 +23,11 @@
   overflow-y: scroll;
   align-items: flex-start;
 }
+.conversacioness{
+  border-bottom: 1px solid #DBDBDB;
+  padding: 7px;
+  cursor: pointer;
+}
 /* .message-container{
   background-image: url(../assets/img/CartelCherryRec.png);
   background-repeat:no-repeat;
@@ -30,33 +39,19 @@
 .btn-buscador{
   background: none;
   border: none;
-  padding: 0;
   font-size: 15px;
 }
-.main-Chat .bgColorWhite{
-  width: 25%;
-}
+
 .message-container div{
-  padding: 5px;
-  margin: 2px;
+  margin: 5px;
   text-align: left;
+}
+.mensaje{
   border: 1px solid #DBDBDB;
   border-radius: 10px;
+  padding: 7px;
+  margin: 10px;
 }
-
-
-/*.divChat{
-  float:left;
-  width: 35%;
-  height: 100%;
-}
-
-.divChat span{
-  cursor: pointer;
-}
-.formChat{
-  padding: 2%;
-}*/
 .formChat{
   padding: 10px;
   width: 100%;

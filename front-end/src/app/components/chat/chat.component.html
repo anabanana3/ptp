@@ -10,19 +10,19 @@
     <header>
       <h2>Contactos</h2>
       <p>
-        <button type="button" (click)="buscarUsuarios(search.value)"class="pointer icon-search btn-buscador "></button>
-        <input type="text" class="lineaCampo" placeholder="Busca a un contacto" style="width:80%;" #search>
+        <button type="button" (click)="buscarUsuarios(search.value)" class="pointer icon-search btn-buscador "></button>
+        <input type="text" class="lineaCampo" (change)="escribiendo()" placeholder="Busca a un contacto" style="width:80%;" #search>
       </p>
     </header>
     <div *ngIf="resultSearch.length > 0">
-      <div *ngFor="let s of resultSearch">
-        <span class="text16"(click) = "setConversation(s.ID_Usuario,s.Nombre)">{{s.Nombre.split("'")[1]}}</span>
+      <div *ngFor="let s of resultSearch" (click) = "setConversation(s.ID_Usuario,s.Nombre)">
+        <span class="text16">{{s.Nombre.split("'")[1]}}</span>
       </div>
     </div>
     <div class="lineaDiv"></div>
     <div *ngIf="conversaciones.length > 0">
-      <div *ngFor="let c of conversaciones">
-        <span class="text16" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre)">{{c.Nombre.split("'")[1]}}</span>
+      <div *ngFor="let c of conversaciones" class="conversacioness" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre)">
+        <span class="text16">{{c.Nombre.split("'")[1]}}</span>
       </div>
     </div>
     <footer> <button (click)=salir() type="button" class="btn btn-relleno btn-salirchat" [routerLink]="['/home']">Salir</button>
@@ -35,10 +35,10 @@
         <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
       <div class="lineaDiv"></div>
-      <div class="message-container bgColorGrey">
+      <div class="message-container">
         <img>
         <div *ngIf="mensajes.length > 0">
-        <div *ngFor="let m of mensajes">
+        <div *ngFor="let m of mensajes" class="mensaje">
           <strong>{{m.Nombre.split("'")[1]}}:</strong>
           <span class="text16">{{m.Texto}}</span>
         </div>

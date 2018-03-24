@@ -14,6 +14,7 @@ export class ChatComponent implements OnInit{
   connection;
   mensaje;
   socketID;
+  usuarioRegistrado;
   //Variable para obtener resultados de busqueda
   resultSearch = new Object;
 
@@ -33,14 +34,17 @@ export class ChatComponent implements OnInit{
     this._chatService.setConversation(id2).subscribe(data =>{
       console.log(data);
 
-
       this.conversacion = {
         Nombre: nombre,
         ID_Usuario1: data['ID_Usuario1'],
         ID_Usuario2: data['ID_Usuario2'],
         SocketID: ""
       }
-    })
+    });
+  }
+
+  escribiendo(){
+    console.log("escribiendo");
   }
 
   enviarMensaje(id1, id2, socket){
