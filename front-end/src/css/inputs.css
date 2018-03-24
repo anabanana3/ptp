@@ -3,10 +3,6 @@ input, textarea{
   color: #7F7F7F;
 }
 
-input{
-  width:140px;
-}
-
 textarea {
   resize: none;
   margin-bottom: 25px;

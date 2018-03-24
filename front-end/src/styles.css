@@ -555,9 +555,30 @@ canvas{
   margin-bottom: 20px;
 }
 
+.divContainerPopUp{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.divExpPopUp{
+  width: 140px;
+  float: left;
+  margin-bottom: 5px;
+}
+
+.divExpPopUpCheck{
+  float: right;
+  margin: 0px;
+  padding: 0px;
+}
+
 .divExp{
   margin-bottom: 3px;
   width:22%;
+  border:dashed;
+  border-color:red;
 }
 
 .divExpDeUno{
@@ -569,6 +590,8 @@ canvas{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border:dotted;
+  border-color: green;
 }
 
 .divLabelsDeUno{
@@ -631,6 +654,10 @@ option{
 
  #fechaC, #fechaMPopup, #etniaM, #etniaMa, #etniaPa, #actividadM, #actividadP{
    width: 140px;
+ }
+
+ #formulaObsSelect{
+   width: 115px;
  }
 
 .mat-dialog-content{
