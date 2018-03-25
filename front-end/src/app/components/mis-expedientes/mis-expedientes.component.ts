@@ -112,10 +112,17 @@ getExpedientesUser(tipo,pag, tam){
     case 2:
       //Los publicos
       this._expedientesService.getExpedientesPubUser(pag,tam).subscribe(data=>{
-        this.expedientes = data.Data;
-        console.log('Resultado de la funcion aux publicos');
-        console.log(data);
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        if(data.Resultado == 'OK'){
+          this.expedientes = new Array();
+          console.log('Todavia no tienes alamcenado nada publico');
+          this.mensaje = 'No tienes expediente públicos';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }else{
+          this.expedientes = data.Data;
+          console.log('Resultado de la funcion aux publicos');
+          console.log(data);
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
       })
     break;
     case 3:
