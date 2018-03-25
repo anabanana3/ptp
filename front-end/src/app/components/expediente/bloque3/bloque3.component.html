@@ -38,6 +38,8 @@
     <label for="otros_consecM">¿Por qué?</label>
     <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecM' type="otros_consecM" name="otros_consecM" id="otros_consecM"></textarea>
 
+    <br>
+
     <label for="conoc_consecM">Sobre la salud de los hombres</label>
     <select [(ngModel)]='json.Conoc_consecH' id="conoc_consecM" name="conoc_consecM">
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>

@@ -564,8 +564,20 @@ canvas{
   justify-content: space-between;
 }
 
+.divContainerBl4{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+}
+
 .divExpPopUp{
   width: 140px;
+  float: left;
+  margin-bottom: 5px;
+}
+
+.divExpBl4{
+  width: 190px;
   float: left;
   margin-bottom: 5px;
 }
@@ -576,11 +588,16 @@ canvas{
   padding: 0px;
 }
 
+.divExpBl4Check{
+  float: right;
+  margin: 0px;
+  margin-right: 12px;
+  padding: 0px;
+}
+
 .divExp{
   margin-bottom: 3px;
   width:22%;
-  border:dashed;
-  border-color:red;
 }
 
 .divExpDeUno{
@@ -592,8 +609,6 @@ canvas{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  border:dotted;
-  border-color: green;
 }
 
 .divLabelsDeUno{
