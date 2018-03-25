@@ -64,6 +64,7 @@ export class LoginComponent {
           //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data);
+          sessionStorage.setItem('Nombre', data.n);
 
           if(sessionStorage.getItem('iD') == '44'){
             location.href = '/admin/home';
