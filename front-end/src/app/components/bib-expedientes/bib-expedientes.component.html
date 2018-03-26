@@ -45,16 +45,15 @@
 
   <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
   <div *ngIf="expedientes.length>0" class="expediente-container">
-    <div  *ngFor="let e of expedientes" class=expediente>
+    <div  *ngFor="let e of expedientes" class=expediente [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
       <div class="expedienteDesc">
         <img class="imgExp" src="/assets/img/folder.png" alt="Logo expediente">
         <p>{{e.Descripcion.split("'")[1]}}</p>
       </div>
       <div class="expediente-body">
         <p>{{e.Titulo}}</p>
-        <!-- split('T')[0] -->
-        <p>{{e.Fecha}}</p>
-        <button class="btn-border" style="margin-top:5%"> Ver más</button>
+        <p>{{e.Fecha.split('T')[0]}}</p>
+        <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Publico}]"> Ver más</button>
       </div>
     </div>
   </div>

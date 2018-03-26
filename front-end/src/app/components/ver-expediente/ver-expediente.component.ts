@@ -42,7 +42,7 @@ export class VerExpedienteComponent implements OnInit {
   comentarios = [];
   comentario:string = '';
   tamPag = 10;
-  paginas = new Array(3);
+  paginas = new Array();
   pagNext;
   pagBack;
   pagActual;
