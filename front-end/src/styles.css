@@ -663,7 +663,7 @@ canvas{
 
 /******************* CHECKBOX ***************/
 
-.checktrans[type="checkbox"]{
+/*.checktrans[type="checkbox"]{
   position: absolute;
   opacity: 0;
   z-index: -1;
@@ -689,10 +689,10 @@ canvas{
   border: 2px solid #8e44ad;
   border-radius: 4px;
   z-index: -1;
-}
+}*/
 
 /* Checked */
-.checktrans[type="checkbox"]:checked + .labeltrans{
+/*.checktrans[type="checkbox"]:checked + .labeltrans{
   padding-left: 10px;
   color: #fff;
 }
@@ -701,14 +701,14 @@ canvas{
   width: 100%;
   height: 100%;
   background: #8e44ad;
-}
+}*/
 /* Transition */
-.labeltrans,
+/*.labeltrans,
 .labeltrans::before {
   -webkit-transition: .25s all ease;
   -o-transition: .25s all ease;
   transition: .25s all ease;
-}
+}*/
 /************* CHECKBOX  ************/
 
 option{
