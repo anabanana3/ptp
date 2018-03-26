@@ -550,7 +550,7 @@ canvas{
 }
 
 .divBloqueExp{
-  width: 70%;
+  width: 74%;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -569,7 +569,7 @@ canvas{
 }
 
 .divExpPopUp{
-  width: 140px;
+  width: 240px;
   float: left;
   margin-bottom: 5px;
 }
@@ -584,6 +584,7 @@ canvas{
   float: right;
   margin: 0px;
   padding: 0px;
+  margin-left: 5px;
 }
 
 .divExpBl4Check{
@@ -654,6 +655,56 @@ canvas{
   text-align: center;
   margin-top: 0;
 }
+
+/******************* CHECKBOX ***************/
+
+.checktrans[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.labeltrans {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 10px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.labeltrans::before {
+  content: " ";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #8e44ad;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* Checked */
+.checktrans[type="checkbox"]:checked + .labeltrans{
+  padding-left: 10px;
+  color: #fff;
+}
+.checktrans[type="checkbox"]:checked + .labeltrans::before{
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #8e44ad;
+}
+/* Transition */
+.labeltrans,
+.labeltrans::before {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/************* CHECKBOX  ************/
 
 option{
   width: 140px;

@@ -94,31 +94,31 @@
 
   <!-- Lo divertido -->
   <h2 class="text16 textPink">COMPLICACIONES DE LA MADRE DURANTE EL PARTO
+    <span matTooltip="Seleccione todas las complicaciones que sufrió la madre durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
     <span id="iconPlus" (click)="mostrarPartoMadre();" class="pointer icon-plus"></span>
     <span id="iconMinus" style="display:none;" (click)="ocultarPartoMadre();" class="pointer icon-minus"></span>
   </h2>
 
-  <span matTooltip="Seleccione todas las complicaciones que sufrió la madre durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div style="display:none;" id="complMadreContainer">
 
     <div class="divContainerPopUp">
       <div *ngFor="let c of data.compMadre; let k = index">
         <div class="divExpPopUp">
-          <label for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
+          <input class="checktrans" id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
         </div>
         <div class="divExpPopUpCheck">
-          <input id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
+          <label class="checktrans" for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
         </div>
       </div>
     </div>
   </div>
 
   <h2 class="text16 textPink">COMPLICACIONES DEL NIÑO DURANTE EL PARTO
+    <span matTooltip="Seleccione todas las complicaciones que sufrió el recién nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
     <span id="iconPlusN" (click)="mostrarNinio();" class="pointer icon-plus"></span>
     <span id="iconMinusN" style="display:none;" (click)="ocultarNinio();" class="pointer icon-minus"></span>
   </h2>
 
-  <span matTooltip="Seleccione todas las complicaciones que sufrió el recién nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
   <div style="display:none;" id="complNinioContainer">
 
     <div class="divContainerPopUp">

@@ -188,7 +188,7 @@ openDialog(nPartos): void {
   this.prueba(nPartos);
   console.log(this.datosPartos);
   let dialogRef = this.dialog.open(Popup2, {
-    width: '650px',
+    width: '1000px',
     //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
     data:{Npartos: nPartos, pagina: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
   });

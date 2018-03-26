@@ -45,19 +45,20 @@
 
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_fisicas">FÍSICAS INMEDIATAS</label>
+        <span matTooltip="Desde el corte, hasta las 10 horas posteriores." class="pointer icon-info info"></span>
         <span id="iconPlus" (click)="mostrarConsec_fisicas();" class="pointer icon-plus"></span>
         <span id="iconMinus" style="display:none;" (click)="ocultarConsec_fisicas();" class="pointer icon-minus"></span>
       </h2>
-      <span matTooltip="Desde el corte, hasta las 10 horas posteriores." class="pointer icon-info info"></span>
+
       <div style="display:none;" id="consFisInm">
         <div class="divContainerBl4">
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==1">
               <div class="divExpBl4">
-                <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
               <div class="divExpBl4Check">
-                <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
               </div>
             </div>
           </div>
@@ -67,10 +68,11 @@
 
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_fisicas">FÍSICAS A LARGO PLAZO</label>
+        <span matTooltip="A partir de las 10 horas del corte." class="pointer icon-info info"></span>
         <span id="iconPlusLP" (click)="mostrarConsec_LP();" class="pointer icon-plus"></span>
         <span id="iconMinusLP" style="display:none;" (click)="ocultarConsec_LP();" class="pointer icon-minus"></span>
       </h2>
-      <span matTooltip="A partir de las 10 horas del corte." class="pointer icon-info info"></span>
+
       <div style="display:none;" id="consFisLP">
         <div class="divContainerBl4">
           <div *ngFor="let k of consecuenciasSalud | keys;">
