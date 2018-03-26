@@ -68,7 +68,8 @@ datosPartos = new Array();
 
   constructor(private _expedienteService:ExpedientesService,
     private expedienteComponent:ExpedienteComponent, public dialog: MatDialog) {
-
+      console.log(sessionStorage.IDExp)
+      console.log(this.bloque2.ID_Expediente);
     this._expedienteService.getFormulasObstreticas().subscribe(data=>{
       console.log('Muestro la data',data);
       this.formulas = data;
@@ -90,6 +91,7 @@ datosPartos = new Array();
     console.log('Se viene marronazo');
     console.log(this.bloque2);
     console.log(this.datosPartos);
+    this.bloque2.ID_Expediente = sessionStorage.IDExp;
     //Ya tengo todos los datos que hacen falta
     //Pasos => Crear Bloque => crear Parto => Asociar el Parto al bloque2 (de uno en uno)
     this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
@@ -125,7 +127,8 @@ datosPartos = new Array();
                 console.log('Info sobre las complicaciones del nacido');
                 console.log(data);
                 //Cambio el bloque
-                this.expedienteComponent.bloque = 3;
+                this.cambiarBloque();
+                // this.expedienteComponent.bloque = 3;
               })
             }
           })
@@ -181,6 +184,10 @@ datosPartos = new Array();
         this.datosPartos.push(new Parto());
       }
     }
+}
+cambiarBloque(){
+
+   this.expedienteComponent.selectedTab = 2;
 }
 
 openDialog(nPartos): void {
@@ -252,6 +259,8 @@ export class Popup2 {
     document.getElementById("iconPlusN").style.display="block";
     document.getElementById("complNinioContainer").style.display="none";
   }
+
+
 
 }
 

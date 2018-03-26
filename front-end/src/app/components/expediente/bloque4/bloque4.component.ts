@@ -135,15 +135,21 @@ export class Bloque4Component implements OnInit {
         console.log(data);
       });
         if(data.warningCount == 0){
+
           this.mensaje = 'Guardado correctamente!';
           document.getElementById('alert').className = 'alert alert-success';
           //Despues de guardar, borrar el Array
           this.consecuencias = [];
-          this.expedienteComponent.bloque = 5;
+          this.cambiarBloque();
+          //this.expedienteComponent.bloque = 5;
         }
     });
 
   }
+  cambiarBloque(){
+     this.expedienteComponent.selectedTab = 4;
+  }
+
   ngOnInit() {
   }
 

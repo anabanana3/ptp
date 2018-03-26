@@ -517,6 +517,11 @@ canvas{
 }
 
 /********** Expedientes ***********/
+#bloqueHeader{
+  width: 70%;
+  margin: auto;
+}
+
 .tabsExpediente{
   margin: 0 auto;
   width: 70%;
@@ -550,7 +555,7 @@ canvas{
 }
 
 .divBloqueExp{
-  width: 70%;
+  /*width: 70%;*/
   margin: 0 auto;
   margin-bottom: 20px;
 }

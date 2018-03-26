@@ -334,19 +334,19 @@
         </select>
       </div>
     </div>
+    <div class="divLabelsDeUno">
+      <div class="divExpDeUno">
+        <label for="mediacion">Precisa de mediación intercultural</label>
+      </div>
+
+      <div class="divExpDeUno">
+        <select id="mediacion" formControlName="Mediacion">
+          <option *ngFor="let op of opciones; let i = index"value="{{i}}">{{op}}</option>
+        </select>
+      </div>
+    </div>
 </div>
 
-    <div class="divLabelsDeUno">
-        <div class="divExpDeUno">
-      <label for="mediacion">Precisa de mediación intercultural</label>
-    </div>
-
-    <div class="divExpDeUno">
-      <select id="mediacion" formControlName="Mediacion">
-        <option *ngFor="let op of opciones; let i = index"value="{{i}}">{{op}}</option>
-      </select>
-    </div>
-  </div>
   <!-- <hr> -->
 
   <div class="centrar">
@@ -355,10 +355,9 @@
 
 </form>
 
-<!-- esto es lo que sale : false INVALID
-<p>
+<!-- esto es lo que sale : false INVALID-->
+<!-- <p>
   {{this.form.valid}}
 
   {{this.form.status}}
-</p>
--->
+</p> -->
