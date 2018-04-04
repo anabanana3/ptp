@@ -153,6 +153,9 @@ datosPartos = new Array();
     console.log(this.compMadreSel);
   }
 
+guardarDatos3(){
+  console.log(this.bloque2);
+}
 //Funcion para obtener las complicaciones de la madre que ha selecionado el usuario
   getCompMadreSel(n){
     for(let i=0; i<this.datosPartos[n].CompMadre.length; i++){
