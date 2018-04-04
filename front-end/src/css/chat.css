@@ -45,12 +45,31 @@
 .message-container div{
   margin: 5px;
   text-align: left;
+
+}
+.lineaChat{
+  width: 100%;
+  overflow: hidden;
 }
 .mensaje{
-  border: 1px solid #DBDBDB;
-  border-radius: 10px;
+  display: block;
   padding: 7px;
   margin: 10px;
+  min-width: 150px;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.rigth{
+  float: right;
+  background-color: rgba(136,0,66,0.6);
+  border-radius: 10px 0 10px 10px;
+}
+.left{
+  float: left;
+  border-radius: 10px 10px 10px 0;
+  background-color: #F2F2F2;
+
 }
 .formChat{
   padding: 10px;
