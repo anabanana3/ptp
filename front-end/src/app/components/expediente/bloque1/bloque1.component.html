@@ -1,7 +1,8 @@
-<!--TODO Revisar como hacer para simplificar la parte del JacaScript
--->
 
-<form [formGroup]="form" (ngSubmit)="guardarDatos()">
+<!-- TODO: Cambiar la funcion a guardarDatos() para que se almecene la informacion en la
+base de datos.
+El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
+<form [formGroup]="form" (ngSubmit)="guardarDatos2()">
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
 
@@ -225,10 +226,17 @@
             <label for="citaAboMGF">Citación por abordaje de riesgo de MGF</label>
           </div>
 
-          <div class="divExp">
+          <!-- <div class="divExp">
             <select id="citaAboMGF" formControlName="Citacion">
               <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
             </select>
+          </div> -->
+
+          <div class="divExp">
+            <label for="citaAborMGFSI">Si</label>
+            <input type="radio" name="Citacion" value="1" id="citaAborMGFSI" formControlName="Citacion">
+            <label for="citaAborMGFNO">No</label>
+            <input type="radio" name="Citacion" value="0" id="citaAborMGFNO" formControlName="Citacion">
           </div>
 
           <div class="divExp">
@@ -350,7 +358,9 @@
   <!-- <hr> -->
 
   <div class="centrar">
-    <button style="text-align:center;" class="btn-relleno" [disabled]="!this.form.valid" type="submit">Guardar</button>
+    <!-- TODO: Volver a poner esto para que no deje mandar si no esta lo required relleno -->
+    <!-- [disabled]="!this.form.valid" -->
+    <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button>
   </div>
 
 </form>

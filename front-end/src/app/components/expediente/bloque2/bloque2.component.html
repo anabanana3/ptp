@@ -1,6 +1,7 @@
-<!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos
- -->
- <form (ngSubmit)="guardarDatos()"#form="ngForm">
+<!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
+almacene en la base de datos
+el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
+ <form (ngSubmit)="guardarDatos3()"#form="ngForm">
   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
   <div class="divLabels">
       <div class="divExp">
@@ -10,11 +11,18 @@
          mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
        </div>
 
-       <div class="divExp">
+       <!-- <div class="divExp">
          <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
            <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
          </select>
         <br>
+      </div> -->
+
+      <div class="divExp">
+        <label for="Conoce_MGFSI">Si</label>
+        <input type="radio" [(ngModel)]="bloque2.ConoceMGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+        <label for="Conoce_MGFNO">No</label>
+        <input type="radio" [(ngModel)]="bloque2.ConoceMGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
       </div>
 
       <div class="divExp">
