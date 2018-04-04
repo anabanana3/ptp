@@ -555,18 +555,17 @@ canvas{
 }
 
 .divBloqueExp{
-<<<<<<< HEAD
-  width: 74%;
-  left: 11%;
-  /* margin-left: 100px; */
-  /* margin: 0 auto; */
-=======
-  /*width: 70%;*/
+  margin-left: 100px;
   margin: 0 auto;
->>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
-  margin-bottom: 20px;
-  position: absolute;
-  z-index: 1000;
+  width: 70%;
+}
+
+.divBloqueExp2{
+  /* width: 74%; */
+  /* left: 11%; */
+  /* margin-bottom: 20px; */
+  z-index: -9999;
+  position: relative;
 }
 
 .divContainerPopUp{
@@ -672,11 +671,11 @@ canvas{
 
 /******************* CHECKBOX ***************/
 .divPrueba{
-  width: 300px;
+  width: 280px;
   margin-right: 5px;
 }
 
-/*.checktrans[type="checkbox"]{
+.checktrans[type="checkbox"]{
   position: absolute;
   opacity: 0;
   z-index: -1;
@@ -703,39 +702,28 @@ canvas{
   border: 2px solid #880042;
   border-radius: 5px;
   z-index: -1;
-}*/
+}
 
 /* Checked */
-<<<<<<< HEAD
+
 .checktrans[type="checkbox"]:checked + .labeltrans{
-  padding-left: 9px;
-=======
-/*.checktrans[type="checkbox"]:checked + .labeltrans{
   padding-left: 10px;
->>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
   color: #fff;
 }
 .checktrans[type="checkbox"]:checked + .labeltrans::before{
   top: 0;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   background: #880042;
 }
-/* Transition */
 
-.labeltrans,
-=======
-  background: #8e44ad;
-}*/
 /* Transition */
-/*.labeltrans,
->>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
+.labeltrans,
 .labeltrans::before {
   -webkit-transition: .25s all ease;
   -o-transition: .25s all ease;
   transition: .25s all ease;
-}*/
+}
 /************* CHECKBOX  ************/
 
 option{
