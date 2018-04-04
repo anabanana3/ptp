@@ -39,11 +39,15 @@ export class Bloque3Component implements OnInit {
     }
     this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
       if(data.warningCount == 0){
-        this.expedienteComponent.bloque = 4;
-        this.mensaje = 'Guardado correctamente!';
-        document.getElementById('alert').className = 'alert alert-success';
+        //      this.expedienteComponent.bloque = 4;
+        this.cambiarBloque();
+        // this.mensaje = 'Guardado correctamente!';
+        // document.getElementById('alert').className = 'alert alert-success';
       }
      });
+  }
+  cambiarBloque(){
+     this.expedienteComponent.selectedTab = 3;
   }
   ngOnInit() {}
 }

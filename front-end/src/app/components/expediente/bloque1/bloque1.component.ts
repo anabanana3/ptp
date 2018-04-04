@@ -78,11 +78,12 @@ export class Bloque1Component implements OnInit {
 
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
+    console.log('Hola');
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 
    this.form = new FormGroup({
-      'titulo': new FormControl('', Validators.required),
+      // 'titulo': new FormControl('', Validators.required),
       'fechaC': new FormControl('', Validators.required),
       'descripcion': new FormControl('Hola', Validators.required),
       'lugarD': new FormControl('', Validators.required),
@@ -166,7 +167,8 @@ guardarDatos(){
        this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
          console.log(data)
          //Por último => todo correcto cambiamos de bloque
-         this.expedienteComponent.bloque = 2;
+         this.cambiarBloque();
+        //  this.expedienteComponent.bloque = 2;
          console.log('Cambio de bloque');
 
       });
@@ -186,7 +188,7 @@ guardarDatos2(){
   console.log(this.padre);
   //Por último => todo correcto cambiamos de bloque
   console.log('Cambio de bloque');
-
+  this.cambiarBloque();
   console.log('Muestro el expediente'),
   console.log(this.expediente);
 
@@ -204,6 +206,12 @@ addFamiliar(persona, familiar, tipo){
       console.log(data);
     })
   })
+}
+
+//Cambio el bloque del expediente
+cambiarBloque(){
+  console.log(this.expedienteComponent.bloque);
+   this.expedienteComponent.selectedTab = 1;
 }
 
 
