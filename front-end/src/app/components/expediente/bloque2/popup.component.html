@@ -108,7 +108,7 @@
           <!-- <input class="checktrans" id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox"> -->
         </div>
         <div class="divExpPopUpCheck">
-          <label for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
+          <input id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
           <!-- <label class="checktrans" for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label> -->
         </div>
       </div>
