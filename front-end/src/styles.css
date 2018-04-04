@@ -71,7 +71,7 @@ canvas{
 .lineaDiv{
   border: 1px solid #DBDBDB;
   margin: auto;
-  margin-bottom: 2%;
+  margin: 2% 0;
   width: 90%;
 }
 
@@ -555,9 +555,18 @@ canvas{
 }
 
 .divBloqueExp{
+<<<<<<< HEAD
+  width: 74%;
+  left: 11%;
+  /* margin-left: 100px; */
+  /* margin: 0 auto; */
+=======
   /*width: 70%;*/
   margin: 0 auto;
+>>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
   margin-bottom: 20px;
+  position: absolute;
+  z-index: 1000;
 }
 
 .divContainerPopUp{
@@ -581,7 +590,7 @@ canvas{
 
 .divExpBl4{
   width: 190px;
-  float: left;
+  float: right;
   margin-bottom: 5px;
 }
 
@@ -593,7 +602,7 @@ canvas{
 }
 
 .divExpBl4Check{
-  float: right;
+  float: left;
   margin: 0px;
   margin-right: 12px;
   padding: 0px;
@@ -662,6 +671,10 @@ canvas{
 }
 
 /******************* CHECKBOX ***************/
+.divPrueba{
+  width: 300px;
+  margin-right: 5px;
+}
 
 /*.checktrans[type="checkbox"]{
   position: absolute;
@@ -670,40 +683,54 @@ canvas{
 }
 .labeltrans {
   position: relative;
+  /* width: 300px; */
   display: inline-block;
-  margin-right: 10px;
   margin-bottom: 10px;
-  padding-left: 30px;
-  padding-right: 10px;
-  line-height: 36px;
+  padding-left: 27px;
+  padding-right: 6px;
+  line-height: 25px;
   cursor: pointer;
 }
 .labeltrans::before {
   content: " ";
   position: absolute;
-  top: 6px;
+  float: left;
+  top: 1px;
   left: 0;
   display: block;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #8e44ad;
-  border-radius: 4px;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #880042;
+  border-radius: 5px;
   z-index: -1;
 }*/
 
 /* Checked */
+<<<<<<< HEAD
+.checktrans[type="checkbox"]:checked + .labeltrans{
+  padding-left: 9px;
+=======
 /*.checktrans[type="checkbox"]:checked + .labeltrans{
   padding-left: 10px;
+>>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
   color: #fff;
 }
 .checktrans[type="checkbox"]:checked + .labeltrans::before{
   top: 0;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
+  background: #880042;
+}
+/* Transition */
+
+.labeltrans,
+=======
   background: #8e44ad;
 }*/
 /* Transition */
 /*.labeltrans,
+>>>>>>> 1a33a7b82bd47153075b669f1356e55c228230cf
 .labeltrans::before {
   -webkit-transition: .25s all ease;
   -o-transition: .25s all ease;
