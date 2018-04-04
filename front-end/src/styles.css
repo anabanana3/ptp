@@ -518,7 +518,7 @@ canvas{
 
 /********** Expedientes ***********/
 #bloqueHeader{
-  width: 70%;
+  /* width: 70%; */
   margin: auto;
 }
 
@@ -565,7 +565,28 @@ canvas{
   /* left: 11%; */
   /* margin-bottom: 20px; */
   z-index: -9999;
-  position: relative;
+  margin: 3%;
+  margin-top: 0;
+  display: block;
+  text-align: left;
+  border-radius: 8px;
+  padding: 3%;
+  padding-bottom: 15px;
+  /* position: relative; */
+}
+
+.mat-tab-label-container {
+  margin-left: 6%;
+}
+
+.mierdaseca{
+  background: #FFFFFF;
+  padding: 0px;
+  margin: 0 auto;
+  width: 67%;
+  margin-top: 30px;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  border-radius: 8px;
 }
 
 .divContainerPopUp{

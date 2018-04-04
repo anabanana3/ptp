@@ -19,21 +19,23 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
       </div> -->
 
       <div class="divExp">
-        <label for="Conoce_MGFSI">Si</label>
-        <input type="radio" [(ngModel)]="bloque2.ConoceMGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+        <label for="Conoce_MGFSI">Sí</label>
+        <input type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
         <label for="Conoce_MGFNO">No</label>
-        <input type="radio" [(ngModel)]="bloque2.ConoceMGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
+        <input type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
       </div>
 
       <div class="divExp">
        <label>La MGF se realiza en la comunidad de origen</label>
     </div>
-    <div class="divExp">
-       <select [(ngModel)]="bloque2.MGF_realizada_com_origen" name="MGF_realizada_com_origen">
-         <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-       </select>
-     </div>
+
+   <div class="divExp">
+     <label for="Realizada_MGFSI">Sí</label>
+     <input type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
+     <label for="Realizada_MGFNO">No</label>
+     <input type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
    </div>
+ </div>
 
   <div class="divLabels">
     <div class="divExp">
@@ -42,18 +44,30 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
        esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
     </div>
     <div class="divExp">
-      <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
+      <!-- <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
        <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-      </select>
+      </select> -->
+
+      <label for="Padre_MGFFavor">A favor</label>
+      <input type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
+      <label for="Padre_MGFContra">En contra</label>
+      <input type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
+
     </div>
 
     <div class="divExp">
      <label>Posicionamiento de la madre frente a la MGF</label>
    </div>
    <div class="divExp">
-     <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
+     <!-- <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
        <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-     </select>
+     </select> -->
+
+     <label for="Madre_MGFFavor">A favor</label>
+     <input type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
+     <label for="Madre_MGFContra">En contra</label>
+     <input type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
+
   </div>
 </div>
 
@@ -63,9 +77,15 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
   </div>
 
  <div class="divExpDeUno">
-   <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
+   <!-- <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
      <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-   </select>
+   </select> -->
+
+   <label for="Familia_MGFFavor">A favor</label>
+   <input type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
+   <label for="Familia_MGFContra">En contra</label>
+   <input type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
+
  </div>
 </div>
 
