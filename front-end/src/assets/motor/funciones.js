@@ -13,7 +13,7 @@ function iniciarMotor(){
   setTimeout(() => {
     GFachada.draw();
     shader.loadShaders();
-  }, 10);
+  }, 1000);
 
 }
 
@@ -33,7 +33,7 @@ function mostrarReal(){
   console.log('mostrarReal');
   let camara = GFachada.getCamaras()[0];
   console.log(camara);
-  let rotacion = GFachada.rotar(camara, 1.4, 1, 0, 0);
+  GFachada.rotar(camara, 0.785398, 0, 0, 1);
 }
 
 function mostrarCartoon(){

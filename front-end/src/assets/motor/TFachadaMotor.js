@@ -27,6 +27,7 @@ class TFachadaMotor {
 
   rotar(nodo, rad, axis1, axis2, axis3){
     let nodoRota = nodo.getPadre().getPadre();
+    console.log(nodoRota);
     nodoRota.entidad.rotar(rad, axis1, axis2, axis3);
   }
   trasladar(nodo,tx, ty, tz){
@@ -111,7 +112,7 @@ class TFachadaMotor {
     //GlobalMalla = malla;
     GMaterial = malla.material;
     GModelMatrix=trasla.entidad.modelMatrix;
-    
+
     return null;
   }
 
