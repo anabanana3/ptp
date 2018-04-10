@@ -1,4 +1,3 @@
-
 <!-- TODO: Cambiar la funcion a guardarDatos() para que se almecene la informacion en la
 base de datos.
 El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
@@ -12,7 +11,6 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       <!--  <span matTooltip="Título que le permita identificar rápidamente este expediente." class="pointer icon-info info"></span>
         <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
       </div>-->
-
       <div class="divExp">
         <label for=fechaC>Fecha de detección del caso:</label>
       </div>
@@ -20,7 +18,6 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       <div class="divExp">
         <input [(ngModel)]="expediente.Fecha" type="date"  name="fechaC" formControlName="fechaC" id="fechaC" >
       </div>
-
 
       <div class="divExp">
         <label for="lugarD">Lugar de detección:</label>
@@ -34,7 +31,6 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     <label for="descripcion">Breve descripción:</label>
     <textarea class="textareaBl2" [(ngModel)]="expediente.Descripcion" type="text"  placeholder="Escribe una breve descripción..."  name="descripcion" id="descripcion" formControlName="descripcion"></textarea>
   </div>
-
   <!--<hr>-->
   <h2 class="cherry ">DATOS SOCIODEMOGRÁFICOS</h2>
   <div class="grupoForm" formGroupName = "menor">
@@ -72,7 +68,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <label  for="lugarN">Lugar de nacimiento:</label>
+        <label for="lugarN">Lugar de nacimiento:</label>
       </div>
 
       <div class="divExp">
@@ -81,8 +77,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     </div>
   </div>
   <!-- <hr> -->
-
-<!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
+  <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <div class="grupoForm" formGroupName="madre">
     <h2 class="text16 textPink">DATOS SOBRE LA MADRE
       <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
@@ -92,7 +87,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
       <div class="divLabels">
         <div class="divExp">
-          <label for="nombreMa">Nombre de la madre</label>
+          <label for="nombreMa">Nombre de la madre:</label>
         </div>
 
         <div class="divExp">
@@ -100,7 +95,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExp">
-          <label for="actividadM">Actividad laboral</label>
+          <label for="actividadM">Actividad laboral:</label>
         </div>
 
         <div class="divExp">
@@ -113,7 +108,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
       <div class="divLabels">
         <div class="divExp">
-          <label for="lugarNM">Lugar de nacimiento</label>
+          <label for="lugarNM">Lugar de nacimiento:</label>
         </div>
 
         <div class="divExp">
@@ -121,7 +116,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExp">
-          <label for="etniaMa">Etina de origen</label>
+          <label for="etniaMa">Etina de origen:</label>
         </div>
 
         <div class="divExp">
@@ -134,7 +129,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
       <div class="divLabelsDeUno">
         <div class="divExpDeUno">
-          <label for="edadMa">Edad</label>
+          <label for="edadMa">Edad:</label>
         </div>
 
         <div class="divExpDeUno">
@@ -146,34 +141,33 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
   <!-- <hr> -->
 
-<!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
+  <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
     <h2 class="text16 textPink">DATOS SOBRE EL PADRE
       <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
       <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
     </h2>
     <div *ngIf="HayPadre==true">
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="nombrePa">Nombre del padre:</label>
+        </div>
 
-    <div class="divLabels">
-      <div class="divExp">
-        <label for="nombrePa">Nombre del padre</label>
-      </div>
+        <div class="divExp">
+          <input [(ngModel)]="padre.Nombre" required type="text" id="nombrePa" placeholder="Nombre" formControlName="nombre">
+        </div>
 
-      <div class="divExp">
-        <input [(ngModel)]="padre.Nombre" required type="text" id="nombrePa" placeholder="Nombre" formControlName="nombre">
-      </div>
+        <div class="divExp">
+          <label for="actividadP">Actividad laboral:</label>
+        </div>
 
-      <div class="divExp">
-        <label for="actividadP">Actividad laboral</label>
+        <div class="divExp">
+          <select [(ngModel)]="padre.ID_Actividad" id="actividadP" formControlName="actividadP" formControlName="actividad">
+            <option value="">Desconoce la actividad</option>
+            <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadP">{{a.Nombre}}</option>
+          </select>
+        </div>
       </div>
-
-      <div class="divExp">
-        <select [(ngModel)]="padre.ID_Actividad" id="actividadP" formControlName="actividadP" formControlName="actividad">
-          <option value="">Desconoce la actividad</option>
-          <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadP">{{a.Nombre}}</option>
-        </select>
-      </div>
-    </div>
     <!--REVISAR PORQUE SE SELECCIONAN LAS DOS OPCIONES -->
       <!-- <div>
         <label>Sexo:</label>
@@ -182,38 +176,38 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <label for="hombre3">Hombre</label>
         <input [(ngModel)]="padre.ID_Sexo" type="radio" name="sexo3" value="2" id="hombre3" formControlName="sexo3">
       </div> -->
-    <div class="divLabels">
-      <div class="divExp">
-        <label for="lugarNP">Lugar de nacimiento</label>
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="lugarNP">Lugar de nacimiento:</label>
+        </div>
+
+        <div class="divExp">
+          <input  [(ngModel)]="padre.ID_Lugar" type="text" id="lugarNP" name="lugarNP" placeholder="Lugar" formControlName="lugarN">
+        </div>
+
+        <div class="divExp">
+          <label for="etniaPa">Etina de origen:</label>
+        </div>
+
+        <div class="divExp">
+          <select [(ngModel)]="padre.ID_Etnia" id="etniaPa" formControlName="etnia">
+            <option>Selecciona una etnia de procedencia</option>
+            <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+          </select>
+        </div>
       </div>
 
-      <div class="divExp">
-        <input  [(ngModel)]="padre.ID_Lugar" type="text" id="lugarNP" name="lugarNP" placeholder="Lugar" formControlName="lugarN">
-      </div>
+      <div class="divLabelsDeUno">
+        <div class="divExpDeUno">
+          <label for="edadPa">Edad:</label>
+        </div>
 
-      <div class="divExp">
-        <label for="etniaPa">Etina de origen</label>
-      </div>
-
-      <div class="divExp">
-        <select [(ngModel)]="padre.ID_Etnia" id="etniaPa" formControlName="etnia">
-          <option>Selecciona una etnia de procedencia</option>
-          <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="divLabelsDeUno">
-      <div class="divExpDeUno">
-        <label for="edadPa">Edad</label>
-      </div>
-
-      <div class="divExpDeUno">
-        <input type="number" id="edadPa" formControlName="edad">
+        <div class="divExpDeUno">
+          <input type="number" id="edadPa" formControlName="edad">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!--CONTEXTO DE LA CITA -->
   <!-- <hr> -->
@@ -223,7 +217,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       <h2 class="text16 textPink">TIPO DE CITA</h2>
         <div class="divLabels">
           <div class="divExp">
-            <label>Citación por abordaje de riesgo de MGF</label>
+            <label>Citación por abordaje de riesgo de MGF:</label>
           </div>
 
           <!-- <div class="divExp">
@@ -233,52 +227,44 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
           </div> -->
 
           <div class="divExp">
-            <label for="citaAborMGFSI">Si</label>
-            <input type="radio" name="Citacion" value="1" id="citaAborMGFSI" formControlName="Citacion">
-            <label for="citaAborMGFNO">No</label>
-            <input type="radio" name="Citacion" value="0" id="citaAborMGFNO" formControlName="Citacion">
+            <div class="divPruebaRadio">
+              <input class="radiotrans" type="radio" name="Citacion" value="1" id="citaAborMGFSI" formControlName="Citacion">
+              <label class="labeltransr" for="citaAborMGFSI">Sí</label>
+              <input class="radiotrans" type="radio" name="Citacion" value="0" id="citaAborMGFNO" formControlName="Citacion">
+              <label class="labeltransr" for="citaAborMGFNO">No</label>
+
+            </div>
           </div>
 
           <div class="divExp">
-            <label>Derivación por detección de riesgo de MGF</label>
+            <label>Derivación por detección de riesgo de MGF:</label>
           </div>
 
           <div class="divExp">
-            <!-- <select id="deriDetMGF" formControlName="Deriv_Riesgo">
-              <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-            </select> -->
-
-            <label for="deriDetMGFSI">Si</label>
-            <input type="radio" name="Deriv_Riesgo" value="1" id="deriDetMGFSI" formControlName="Deriv_Riesgo">
-            <label for="deriDetMGFNO">No</label>
-            <input type="radio" name="Deriv_Riesgo" value="0" id="deriDetMGFNO" formControlName="Deriv_Riesgo">
-
+            <input class="radiotrans" type="radio" name="Deriv_Riesgo" value="1" id="deriDetMGFSI" formControlName="Deriv_Riesgo">
+            <label class="labeltransr" for="deriDetMGFSI">Sí</label>
+            <input class="radiotrans" type="radio" name="Deriv_Riesgo" value="0" id="deriDetMGFNO" formControlName="Deriv_Riesgo">
+            <label class="labeltransr" for="deriDetMGFNO">No</label>
           </div>
       </div>
 
       <div class="divLabelsDeUno">
           <div class="divExpDeUno">
-            <label>Derivación por sospecha de MGF</label>
+            <label>Derivación por sospecha de MGF:</label>
           </div>
 
           <div class="divExpDeUno">
-            <!-- <select id="deriSosMGF" formControlName="Deriv_Sospecha">
-              <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-            </select> -->
-
-            <label for="deriSosMGFSI">Si</label>
-            <input type="radio" name="Deriv_Sospecha" value="1" id="deriSosMGFSI" formControlName="Deriv_Sospecha">
-            <label for="deriSosMGFNO">No</label>
-            <input type="radio" name="Deriv_Sospecha" value="0" id="deriSosMGFNO" formControlName="Deriv_Sospecha">
-
+            <input class="radiotrans" type="radio" name="Deriv_Sospecha" value="1" id="deriSosMGFSI" formControlName="Deriv_Sospecha">
+            <label class="labeltransr" for="deriSosMGFSI">Sí</label>
+            <input class="radiotrans" type="radio" name="Deriv_Sospecha" value="0" id="deriSosMGFNO" formControlName="Deriv_Sospecha">
+            <label class="labeltransr" for="deriSosMGFNO">No</label>
           </div>
       </div>
       <div class="divLabels">
         <div class="divExp">
           <label for="otrosM">Otros motivos:</label>
+          <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
         </div>
-
-        <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
         <textarea class="textareaBl2" type="text" id="otrosM" name="otros" formControlName="Otros"></textarea>
 
         </div>
@@ -289,52 +275,47 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
       <div class="divLabels">
         <div class="divExp">
-          <label>Acompañado/a por el padre</label>
+          <label>Acompañado/a por el padre:</label>
         </div>
 
         <div class="divExp">
           <!-- <select id="acomP" formControlName="Acomp_P">
             <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
           </select> -->
-
-          <label for="acomPSI">Si</label>
-          <input type="radio" name="Acomp_P" value="1" id="acomPSI" formControlName="Acomp_P">
-          <label for="acomPNO">No</label>
-          <input type="radio" name="Acomp_P" value="0" id="acomPNO" formControlName="Acomp_P">
-
+          <input class="radiotrans" type="radio" name="Acomp_P" value="1" id="acomPSI" formControlName="Acomp_P">
+          <label class="labeltransr" for="acomPSI">Sí</label>
+          <input class="radiotrans" type="radio" name="Acomp_P" value="0" id="acomPNO" formControlName="Acomp_P">
+          <label class="labeltransr" for="acomPNO">No</label>
         </div>
 
         <div class="divExp">
-          <label for="acomM">Acompañado/a por la madre</label>
+          <label for="acomM">Acompañado/a por la madre:</label>
         </div>
 
         <div class="divExp">
           <!-- <select id="acomM" formControlName="Acomp_M">
             <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
           </select> -->
-
-          <label for="acomMSI">Si</label>
-          <input type="radio" name="Acomp_M" value="1" id="acomMSI" formControlName="Acomp_M">
-          <label for="acomMNO">No</label>
-          <input type="radio" name="Acomp_M" value="0" id="acomMNO" formControlName="Acomp_M">
+          <input class="radiotrans" type="radio" name="Acomp_M" value="1" id="acomMSI" formControlName="Acomp_M">
+          <label class="labeltransr" for="acomMSI">Sí</label>
+          <input class="radiotrans" type="radio" name="Acomp_M" value="0" id="acomMNO" formControlName="Acomp_M">
+          <label class="labeltransr" for="acomMNO">No</label>
         </div>
       </div>
 
       <div class="divLabelsDeUno">
         <div class="divExpDeUno">
-          <label for="acomH">Acompañado por hermanos/as</label>
+          <label for="acomH">Acompañado/a por hermanos/as:</label>
         </div>
 
         <div class="divExpDeUno">
           <!-- <select id ="acomH" formControlName="Acomp_H">
             <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
           </select> -->
-
-          <label for="acomHSI">Si</label>
-          <input type="radio" name="Acomp_H" value="1" id="acomHSI" formControlName="Acomp_H">
-          <label for="acomHNO">No</label>
-          <input type="radio" name="Acomp_H" value="0" id="acomHNO" formControlName="Acomp_H">
-
+          <input class="radiotrans" type="radio" name="Acomp_H" value="1" id="acomHSI" formControlName="Acomp_H">
+          <label class="labeltransr" for="acomHSI">Sí</label>
+          <input class="radiotrans" type="radio" name="Acomp_H" value="0" id="acomHNO" formControlName="Acomp_H">
+          <label class="labeltransr" for="acomHNO">No</label>
         </div>
       </div>
 
@@ -351,56 +332,49 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     <h2 class="text16 textPink">DIFICULTAD CON EL IDIOMA</h2>
     <div class="divLabels">
       <div class="divExp">
-        <label >Dificultad con el idioma materno</label>
+        <label >Dificultad con el idioma materno:</label>
       </div>
 
       <div class="divExp">
         <!-- <select id="dificultadM" formControlName="Dif_Idi_M">
           <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
         </select> -->
-
-        <label for="dificultadMSI">Si</label>
-        <input type="radio" name="Dif_Idi_M" value="1" id="dificultadMSI" formControlName="Dif_Idi_M">
-        <label for="dificultadMNO">No</label>
-        <input type="radio" name="Dif_Idi_M" value="0" id="dificultadMNO" formControlName="Dif_Idi_M">
-
+        <input class="radiotrans" type="radio" name="Dif_Idi_M" value="1" id="dificultadMSI" formControlName="Dif_Idi_M">
+        <label class="labeltransr" for="dificultadMSI">Sí</label>
+        <input class="radiotrans" type="radio" name="Dif_Idi_M" value="0" id="dificultadMNO" formControlName="Dif_Idi_M">
+        <label class="labeltransr" for="dificultadMNO">No</label>
       </div>
 
       <div class="divExp">
-        <label>Precisa traducción</label>
+        <label>Precisa traducción:</label>
       </div>
 
       <div class="divExp">
         <!-- <select id="traduccion" formControlName="Traduccion">
           <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
         </select> -->
-
-        <label for="traduccionSI">Si</label>
-        <input type="radio" name="Traduccion" value="1" id="traduccionSI" formControlName="Traduccion">
-        <label for="traduccionNO">No</label>
-        <input type="radio" name="Traduccion" value="0" id="traduccionNO" formControlName="Traduccion">
-
+        <input class="radiotrans" type="radio" name="Traduccion" value="1" id="traduccionSI" formControlName="Traduccion">
+        <label class="labeltransr" for="traduccionSI">Sí</label>
+        <input class="radiotrans" type="radio" name="Traduccion" value="0" id="traduccionNO" formControlName="Traduccion">
+        <label class="labeltransr" for="traduccionNO">No</label>
       </div>
     </div>
     <div class="divLabelsDeUno">
       <div class="divExpDeUno">
-        <label>Precisa de mediación intercultural</label>
+        <label>Precisa de mediación intercultural:</label>
       </div>
 
       <div class="divExpDeUno">
         <!-- <select id="mediacion" formControlName="Mediacion">
           <option *ngFor="let op of opciones; let i = index"value="{{i}}">{{op}}</option>
         </select> -->
-
-        <label for="mediacionSI">Si</label>
-        <input type="radio" name="Mediacion" value="1" id="mediacionSI" formControlName="Mediacion">
-        <label for="mediacionNO">No</label>
-        <input type="radio" name="Mediacion" value="0" id="mediacionNO" formControlName="Mediacion">
-
+        <input class="radiotrans" type="radio" name="Mediacion" value="1" id="mediacionSI" formControlName="Mediacion">
+        <label class="labeltransr" for="mediacionSI">Sí</label>
+        <input class="radiotrans"type="radio" name="Mediacion" value="0" id="mediacionNO" formControlName="Mediacion">
+        <label class="labeltransr" for="mediacionNO">No</label>
       </div>
     </div>
-</div>
-
+  </div>
   <!-- <hr> -->
 
   <div class="centrar">
@@ -408,9 +382,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     <!-- [disabled]="!this.form.valid" -->
     <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button>
   </div>
-
 </form>
-
 <!-- esto es lo que sale : false INVALID-->
 <!-- <p>
   {{this.form.valid}}

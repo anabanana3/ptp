@@ -4,7 +4,7 @@
 <div *ngIf="!error">
   <app-header></app-header>
 
-  <div class="mierdaseca">
+  <div class="divBlancoExpPcpal">
 <!-- TODO: No pudes voler para atras -->
     <!-- <div class="tabsExpediente">
       <button id="bl1" class="tabItem" (click)="bloque=1">
@@ -30,7 +30,6 @@
     <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
       <mat-tab label="Bloque 1">
         <div class="divBloqueExp2">
-        <p>Prueba</p>
           <!-- {{ cambiarColorBl1() }} -->
           <app-bloque1></app-bloque1>
       </div>
@@ -85,7 +84,7 @@
 
     </div>-->
   <!-- Div para poner el boton de terminar -->
-  <button class="btn-border terminarBoton" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
+  <button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
 
       <div>
     </div>

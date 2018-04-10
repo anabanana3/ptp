@@ -22,12 +22,10 @@
     <!-- <select [(ngModel)]='json.Mant_MGF' name="mant_MGF" id="mant_MGF" >
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
-
-    <label for="mant_MGFSI">Sí</label>
-    <input type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFSI" value="1" name="mant_MGFSI">
-    <label for="mant_MGFNO">No</label>
-    <input type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFNO" value="0" name="mant_MGFNO">
-
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFSI" value="1" name="mant_MGFSI">
+    <label class="labeltransr" for="mant_MGFSI">Sí</label>
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFNO" value="0" name="mant_MGFNO">
+    <label class="labeltransr" for="mant_MGFNO">No</label>
 
     <div *ngIf="json.Mant_MGF==1">
       <label for="mant_MGF_texto">¿Por qué?:</label>
@@ -36,34 +34,39 @@
 
     <h2 class="text16 textPink">CONOCIMIENTO SOBRE CONSECUENCIAS DE LA MGF  <span matTooltip="¿Conoce las consecuencias para la salud que lleva una ablación?" class="pointer icon-info info"></span></h2>
 
-    <label>Sobre la salud de las mujeres</label>
+    <label>Sobre la salud de las mujeres: </label>
 
     <!-- <select [(ngModel)]='json.Conoc_consecM' id="conoc_consecM" name="conoc_consecM">
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMSI" value="1" name="conoc_consecMSI">
+    <label class="labeltransr" for="conoc_consecMSI">Sí</label>
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMNO" value="0" name="conoc_consecMNO">
+    <label class="labeltransr" for="conoc_consecMNO">No</label>
 
-    <label for="conoc_consecMSI">Sí</label>
-    <input type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMSI" value="1" name="conoc_consecMSI">
-    <label for="conoc_consecMNO">No</label>
-    <input type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMNO" value="0" name="conoc_consecMNO">
-
-    <label for="otros_consecM">¿Por qué?:</label>
+    <label for="otros_consecM">¿Por qué?: </label>
     <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecM' type="otros_consecM" name="otros_consecM" id="otros_consecM"></textarea>
 
     <br>
 
-    <label for="conoc_consecM">Sobre la salud de los hombres</label>
-    <select [(ngModel)]='json.Conoc_consecH' id="conoc_consecM" name="conoc_consecM">
+    <label for="conoc_consecM">Sobre la salud de los hombres: </label>
+
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHSI" value="1" name="otros_consecHSI">
+    <label class="labeltransr" for="otros_consecHSI">Sí</label>
+    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHNO" value="0" name="otros_consecHNO">
+    <label class="labeltransr" for="otros_consecHNO">No</label>
+
+    <!-- <select [(ngModel)]='json.Conoc_consecH' id="conoc_consecM" name="conoc_consecM">
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
-    </select>
-    <label for="otros_consecH">¿Por qué?</label>
+    </select> -->
+    <label for="otros_consecH">¿Por qué?: </label>
     <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecH' type="otros_consecH" name="otros_consecH" id="otros_consecH"></textarea>
 
     <h2 class="text16 textPink">INTERVENCIÓN  <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span></h2>
-    <label for="exp_propias">Formato de la intervención</label>
+    <label for="exp_propias">Formato de la intervención: </label>
     <textarea  class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" placeholder="Formato de la intervención..." required></textarea>
 
-    <label for="exp_propias">Consejos para otros profesionales</label>
+    <label for="exp_propias">Consejos para otros profesionales: </label>
     <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" placeholder="Consejos para otros profesionales..." required></textarea>
 
     <div class="centrar">

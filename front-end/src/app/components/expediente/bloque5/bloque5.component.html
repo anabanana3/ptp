@@ -1,23 +1,42 @@
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
   <div>
     <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
-    <label for="viajes">Realiza viajes al país de origen en vacaciones</label>
-    <select id=viajes formControlName="Viajes">
-      <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-    </select>
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label>Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:</label>
+        <!-- <select id="viajeP" formControlName="ViajesPlanifiacados">
+          <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+        </select> -->
+      </div>
+      <div class="divExp">
+        <input class="radiotrans" type="radio" name="viajePSI" value="1" id="viajePSI" formControlName="ViajesPlanifiacados">
+        <label class="labeltransr" for="viajePSI">Sí</label>
+        <input class="radiotrans" type="radio" name="viajePNO" value="0" id="viajePNO" formControlName="ViajesPlanifiacados">
+        <label class="labeltransr" for="viajePNO">No</label>
+      </div>
+
+      <div class="divExp">
+        <label>Realiza viajes al país de origen en vacaciones:</label>
+        <!-- <select id=viajes formControlName="Viajes">
+          <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
+        </select> -->
+      </div>
+      <div class="divExp">
+        <input class="radiotrans" type="radio" name="viajesSI" value="1" id="viajesSI" formControlName="Viajes">
+        <label class="labeltransr" for="viajesSI">Sí</label>
+        <input class="radiotrans" type="radio" name="viajesNO" value="0" id="viajesNO" formControlName="Viajes">
+        <label class="labeltransr" for="viajesNO">No</label>
+      </div>
+    </div>
+
     <br>
 
-    <label for="viajeP">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente</label>
-    <select id="viajeP" formControlName="ViajesPlanifiacados">
-      <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-    </select>
-    <br>
-
-    <label for="formato">Descripción del formato de intervención</label>
+    <label for="formato">Descripción del formato de intervención:</label>
     <textarea class="textareaBl2" formControlName="Intervencion" placeholder="Descripción" id="formato"></textarea>
     <br>
 
-    <label for="consejo">Consejo para otros profesionales</label>
+    <label for="consejo">Consejo para otros profesionales:</label>
     <textarea class="textareaBl2" formControlName="Consejos" id="consejo" placeholder="Consejos"></textarea>
     <br>
   </div>
@@ -28,11 +47,10 @@
   </h2>
 
   <div *ngIf="mostrar == true">
-    <p>A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>
-
-
+    <p>A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente:</p>
+    <br>
       <div formGroupName="indicadores">
-        <div class="divContainerPopUp">
+        <!-- <div class="divContainerPopUp">
         <div *ngFor="let in of indicadores; let i = index;">
           <div class="divExpPopUp">
             <label for="indicador{{i}}">{{in.Nombre}}</label>
@@ -41,7 +59,17 @@
             <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
           </div>
         </div>
+      </div> -->
+
+      <div class="divContainerBl4">
+        <div *ngFor="let in of indicadores; let i = index;">
+            <div class="divPrueba">
+              <input class="checktrans" formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+              <label class="labeltrans" for="indicador{{i}}">{{in.Nombre}}</label>
+            </div>
+        </div>
       </div>
+
     </div>
 
   </div>
