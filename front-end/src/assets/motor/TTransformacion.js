@@ -46,13 +46,17 @@ class TTransformacion extends TEntidad{
 
 
   beginDraw(){
-    this.stack.push(this.modelMatrix);
+    stack.push(this.modelMatrix);
+    let aux = mat4.create();
+
+    if(stack[0]){
+      aux = stack[0];
+    }
     //mat4.multiply(out, a, b);
-    mat4.multiply(this.modelMatrix, this.modelMatrix, this.transfMatrix);
+    mat4.multiply(this.modelMatrix, aux, this.transfMatrix);
   }
 
   endDraw(){
-    console.log("Desapilamos matriz: " + this.stack[this.stack.length-1]);
-    this.modelMatrix = this.stack.pop();
+    stack.pop();
   }
 }

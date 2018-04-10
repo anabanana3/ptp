@@ -16,13 +16,13 @@
   <div class="divBlanco bgColorWhite">
     <div class="buttons-canvas">
       <div class="buttons-canvas-left">
-        <button class="btn-relleno-negro" type="button" name="button">Tipo 1</button>
-        <button class="btn-relleno-negro" type="button" name="button">Tipo 2</button>
-        <button class="btn-relleno-negro" type="button" name="button">Tipo 3</button>
+        <button class="btn-relleno-negro" type="button" name="button" (click)="tipo1()">Tipo 1</button>
+        <button class="btn-relleno-negro" type="button" name="button" (click)="tipo2()">Tipo 2</button>
+        <button class="btn-relleno-negro" type="button" name="button" (click)="tipo3()">Tipo 3</button>
       </div>
       <div class="buttons-canvas-right">
-        <button class="btn-relleno-negro" type="button" name="button">Real</button>
-        <button class="btn-relleno-negro" type="button" name="button">Cartoon</button>
+        <button class="btn-relleno-negro" type="button" name="button" (click)="real()">Real</button>
+        <button class="btn-relleno-negro" type="button" name="button" (click)="cartoon()">Cartoon</button>
       </div>
     </div>
     <canvas id="canvas"></canvas>
