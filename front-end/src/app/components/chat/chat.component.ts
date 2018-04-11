@@ -14,8 +14,12 @@ export class ChatComponent implements OnInit{
   connection;
   mensaje;
   socketID;
+  usuarioRegistrado;
+  Destinatario;
   //Variable para obtener resultados de busqueda
   resultSearch = new Object;
+  //Variable para maquetar los mensajes
+  ID_Usuario = sessionStorage.iD;
 
   constructor(private _chatService: ChatService ) {
     console.log(sessionStorage.iD);
@@ -26,32 +30,57 @@ export class ChatComponent implements OnInit{
         console.log(this.socketID);
     });
     this.conversacion = {
-      Nombre: "'Chat'"
+      Nombre: "'Busca a un contacto y empieza a chatear!'",
     }
-}
+  }
+  setConversation(id2, nombre){
+    console.log('Hola');
+    this._chatService.setConversation(id2).subscribe(data =>{
+      console.log('Muestro la data de setConversacion');
+      console.log(data);
+
+      this.conversacion = {
+        Nombre: nombre,
+        ID_Usuario1: data['ID_Usuario1'],
+        ID_Usuario2: data['ID_Usuario2'],
+        SocketID: ""
+      }
+      console.log(this.conversacion['ID_Usuario2']);
+
+      this.getMessages(this.conversacion['ID_Usuario1'], this.conversacion['ID_Usuario2'], this.conversacion['SocketID'], nombre, 8);
+    });
+  }
+
+  escribiendo(e, search){
+    console.log("escribiendo");
+    console.log(e);
+    console.log(search);
+    if(search ==''){
+      console.log('El input esta vacio');
+      this.resultSearch = new Array();
+      this.getConversations();
+    }else{
+      this.buscarUsuarios(search);
+      this.conversaciones = new Array();
+    }
+  }
 
   enviarMensaje(id1, id2, socket){
     console.log('Metodo para enviar mensaje');
-    console.log(this.mensaje);
-    console.log(socket);
-    //Antes de mandar mensaje tengo que compribar si ha
-    //ha cambiado algun valor de id socket de las conversaciones
-    this._chatService.getConversations().subscribe(data=>{
-      this.conversaciones = data;
-      console.log('Conversaciones:');
-      console.log(this.conversaciones);
-    })
-
-    this._chatService.sendMessage(this.mensaje, id1, id2, sessionStorage.iD, socket, this.socketID);
+    console.log('Llamo al service para actualizar la info');
+    this._chatService.sendMessage(this.mensaje,id1,id2,sessionStorage.iD, socket, this.socketID, this.Destinatario);
   }
 
-  getMessages(id1, id2, s, nombre){
+  getMessages(id1, id2, s, nombre,d){
+    console.log(id1);
     this.conversacion = {
       Nombre: nombre,
       ID_Usuario1: id1,
       ID_Usuario2: id2,
-      SocketID: s
+      SocketID: s,
+
     }
+    this.Destinatario = d;
     console.log(this.conversacion);
     this._chatService.getMessages(id1, id2).subscribe(data => {
       this.mensajes = data;
@@ -61,7 +90,7 @@ export class ChatComponent implements OnInit{
   buscarUsuarios(search){
     console.log('Metodo para buscar usuarios');
     console.log(search);
-    this._chatService.searchUsers(search).subscribe(data =>{
+    this._chatService.searchUsers(search, sessionStorage.iD).subscribe(data =>{
       this.resultSearch = data;
       console.log(data);
     });
@@ -72,7 +101,8 @@ export class ChatComponent implements OnInit{
     this._chatService.logout();
   }
 
-  ngOnInit() {
+  getConversations(){
+    console.log('Recupero las conversaciones');
     this._chatService.getConversations().subscribe(data =>{
       this.conversaciones = data;
       console.log('Conversaciones:');
@@ -80,4 +110,7 @@ export class ChatComponent implements OnInit{
     });
   }
 
+  ngOnInit() {
+    this.getConversations();
+  }
 }

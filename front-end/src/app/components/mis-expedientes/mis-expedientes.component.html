@@ -6,7 +6,7 @@
   <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
   </button>
 
-<div *ngIf="expedientes.length > 0" style="margin:2%">
+<div style="margin:2%">
   <button class="btn-fill text12 textPink" [routerLink]="['/expediente']">Nuevo Expediente</button>
 </div>
 
@@ -51,31 +51,22 @@
 
   </div>
 
-
-
+<!-- Mensaje de que no tienes nada almacenado -->
+<div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
 <!-- Mensaje de que no hay resultados de busqueda -->
 <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
 <div *ngIf="expedientes.length>0" class="expediente-container">
-  <div  *ngFor="let e of expedientes" class=expediente>
+  <div  *ngFor="let e of expedientes" class=expediente [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
     <div class="expedienteDesc">
       <img class="imgExp" src="/assets/img/folder.png" alt="Logo expediente">
       <p>{{e.Descripcion.split("'")[1]}}</p>
     </div>
     <div class="expediente-body">
       <p>{{e.Titulo}}</p>
-      <!-- split('T')[0] -->
-      <p>{{e.Fecha}}</p>
+      <p>{{e.Fecha.split('T')[0]}}</p>
       <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button>
     </div>
   </div>
-</div>
-
-
-<!-- TODO: hacer mas condiciones por si no hay expedientes publicos -->
-<div *ngIf="expedientes.length ==0 && busqueda==false" class="expediente-container">
-  <p> Todavia no tienes almacenado ningún expediente {{paginas.length}}
-    <button class="btn-relleno" [routerLink]="['/expediente']">Nuevo Expediente</button>
-  </p>
 </div>
 
 <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">

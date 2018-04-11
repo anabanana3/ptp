@@ -1,88 +1,135 @@
 <form (ngSubmit)="guardarDatos(forma)" #forma="ngForm">
-  <div>
+
     <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
     <!--mensaje error-->
     <div id="alert">{{mensaje}}</div>
-    <label for="detec_MGF">Detección de MGF</label>
-    <select [(ngModel)]='json.Detec_MGF' name="detec_MGF" id="detec_MGF" >
-      <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
-    </select>
-    <br>
-    <label for="id_mutilacion">Tipo de MGF</label>
-    <!-- cambiar -->
-    <select [(ngModel)]='json.ID_Mutilacion' name="id_mutilacion" id="id_mutilacion" >
-      <option value="0">Seleccionar</option>
-      <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
-    </select>
-    <br>
-    <label for="cicatriz_genital">Cicatrices en la zona genital</label> <!-- si/no y luego un textarea porque -->
-    <select [(ngModel)]='json.Cicatriz_genital' name="cicatriz_genital" id="cicatriz_genital" >
-      <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
-    </select>
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label for="detec_MGF">Detección de MGF:</label>
+      </div>
+
+      <div class="divExp">
+        <!-- <select [(ngModel)]='json.Detec_MGF' name="detec_MGF" id="detec_MGF" >
+          <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
+        </select> -->
+        <input class="radiotrans" type="radio" [(ngModel)]="json.Detec_MGF" id="detec_MGFSI" value="1" name="detec_MGFSI">
+        <label class="labeltransr" for="detec_MGFSI">Sí</label>
+        <input class="radiotrans" type="radio" [(ngModel)]="json.Detec_MGF" id="detec_MGFNO" value="0" name="detec_MGFNO">
+        <label class="labeltransr" for="detec_MGFNO">No</label>
+
+      </div>
+
+      <div class="divExp">
+        <label for="id_mutilacion">Tipo de MGF:</label>
+      </div>
+      <!-- cambiar -->
+      <div class="divExp">
+        <select [(ngModel)]='json.ID_Mutilacion' name="id_mutilacion" id="id_mutilacion" >
+          <option value="0">Seleccionar</option>
+          <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
+        </select>
+      </div>
+    </div>
+
+<div class="divLabelsDeUno">
+    <div class="divExpDeUno">
+      <label for="cicatriz_genital">Cicatrices en la zona genital:</label> <!-- si/no y luego un textarea porque -->
+
+      <!-- <select [(ngModel)]='json.Cicatriz_genital' name="cicatriz_genital" id="cicatriz_genital" >
+        <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
+      </select> -->
+    </div>
+    <div class="divExpDeUno">
+      <input class="radiotrans" type="radio" [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalSI" value="1" name="cicatriz_genitalSI">
+      <label class="labeltransr" for="cicatriz_genitalSI">Sí</label>
+      <input class="radiotrans" type="radio" [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalNO" value="0" name="cicatriz_genitalNO">
+      <label class="labeltransr" for="cicatriz_genitalNO">No</label>
+
+    </div>
+    </div>
     <div *ngIf="json.Cicatriz_genital==1">
-      <label for="descripcion">Descripción</label>
+      <label for="descripcion">Descripción:</label>
       <textarea class="textareaBl2" [(ngModel)]='json.Descripcion' type="descripcion" name="descripcion" id="descripcion">
       </textarea>
     </div>
-    <br>
-    <label for="elasticidad">Elasticidad</label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Elasticidad' type="elasticidad" name="elasticidad" id="elasticidad">
-    </textarea>
 
-    <hr>
+  <br>
+
+    <label for="elasticidad">Elasticidad:</label>
+    <textarea class="textareaBl2" [(ngModel)]='json.Elasticidad' type="elasticidad" name="elasticidad" id="elasticidad"></textarea>
+
     <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
 
-    <hr>
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_fisicas">FÍSICAS INMEDIATAS</label>
+        <span matTooltip="Desde el corte, hasta las 10 horas posteriores." class="pointer icon-info info"></span>
         <span id="iconPlus" (click)="mostrarConsec_fisicas();" class="pointer icon-plus"></span>
         <span id="iconMinus" style="display:none;" (click)="ocultarConsec_fisicas();" class="pointer icon-minus"></span>
       </h2>
-      <span matTooltip="Desde el corte, hasta las 10 horas posteriores." class="pointer icon-info info"></span>
+
       <div style="display:none;" id="consFisInm">
-        <div *ngFor="let k of consecuenciasSalud | keys;">
-          <div *ngIf="consecuenciasSalud[k].Tipo==1">
-            <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
-            <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+        <div class="divContainerBl4">
+          <div *ngFor="let k of consecuenciasSalud | keys;">
+            <div *ngIf="consecuenciasSalud[k].Tipo==1">
+              <!--<div class="divExpBl4">
+                <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+              <div class="divExpBl4Check">
+                <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+              </div>-->
+
+              <div class="divPrueba">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <hr>
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_fisicas">FÍSICAS A LARGO PLAZO</label>
+        <span matTooltip="A partir de las 10 horas del corte." class="pointer icon-info info"></span>
         <span id="iconPlusLP" (click)="mostrarConsec_LP();" class="pointer icon-plus"></span>
         <span id="iconMinusLP" style="display:none;" (click)="ocultarConsec_LP();" class="pointer icon-minus"></span>
       </h2>
-      <span matTooltip="A partir de las 10 horas del corte." class="pointer icon-info info"></span>
+
       <div style="display:none;" id="consFisLP">
-        <div *ngFor="let k of consecuenciasSalud | keys;">
-          <div *ngIf="consecuenciasSalud[k].Tipo==2">
-            <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
-            <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+        <div class="divContainerBl4">
+          <div *ngFor="let k of consecuenciasSalud | keys;">
+            <div *ngIf="consecuenciasSalud[k].Tipo==2">
+              <div class="divPrueba">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <hr>
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_gine">OBSTÉTRICO GINECOLÓGICAS</label>
         <span id="iconPlusObs" (click)="mostrarConsec_Obs();" class="pointer icon-plus"></span>
         <span id="iconMinusObs" style="display:none;" (click)="ocultarConsec_Obs();" class="pointer icon-minus"></span>
       </h2>
+
       <div style="display:none;" id="consObs">
-        <div *ngFor="let k of consecuenciasSalud | keys;">
-          <div *ngIf="consecuenciasSalud[k].Tipo==4">
-            <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
-            <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+        <div class="divContainerBl4">
+          <div *ngFor="let k of consecuenciasSalud | keys;">
+            <div *ngIf="consecuenciasSalud[k].Tipo==4">
+              <div class="divPrueba">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <hr>
 
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_psico">PSICOSOCIALES</label>
@@ -90,16 +137,18 @@
         <span id="iconMinusPsico" style="display:none;" (click)="ocultarConsec_Psico();" class="pointer icon-minus"></span>
       </h2>
       <div style="display:none;" id="consPsico">
-        <div *ngFor="let k of consecuenciasSalud | keys;">
-          <div *ngIf="consecuenciasSalud[k].Tipo==5">
-            <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
-            <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+        <div class="divContainerBl4">
+          <div *ngFor="let k of consecuenciasSalud | keys;">
+            <div *ngIf="consecuenciasSalud[k].Tipo==5">
+              <div class="divPrueba">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <hr>
 
     <div class="gineblock">
       <h2 class="text16 textPink"><label for="consec_sex">SOBRE LA SEXUALIDAD</label>
@@ -107,37 +156,37 @@
         <span id="iconMinusSex" style="display:none;" (click)="ocultarConsec_Sex();" class="pointer icon-minus"></span>
       </h2>
       <div style="display:none;" id="consSex">
-        <div *ngFor="let k of consecuenciasSalud | keys;">
-          <div *ngIf="consecuenciasSalud[k].Tipo==6">
-            <label for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
-            <input [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+        <div class="divContainerBl4">
+          <div *ngFor="let k of consecuenciasSalud | keys;">
+            <div *ngIf="consecuenciasSalud[k].Tipo==6">
+              <div class="divPrueba">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <label for="otros">Otros</label>
+    <label for="otros">Otros:</label>
+    <br>
     <textarea class="textareaBl2" [(ngModel)]='json.Otros' type="otros" name="otros" id="otros" placeholder="Texto libre">
     </textarea>
-
-    <hr>
 
     <h2 class="cherry">INTERVENCIÓN
       <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span>
     </h2>
 
-    <label for="exp_propias">Formato de la intervención</label>
+    <label for="exp_propias">Formato de la intervención:</label>
     <textarea class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" placeholder="Escriba su texto aquí...">
     </textarea>
-    <label for="exp_propias">Consejos para otros profesionales</label>
+    <label for="exp_propias">Consejos para otros profesionales:</label>
     <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" placeholder="Escriba su texto aquí...">
     </textarea>
-    <br>
-
-    <hr>
 
     <div class="centrar">
       <button class="btn-relleno" type="submit">Guardar</button>
     </div>
-  </div>
+
 </form>

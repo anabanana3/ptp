@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ExpedientesService } from "../../services/expedientes.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-expediente',
@@ -8,7 +9,8 @@ import { ExpedientesService } from "../../services/expedientes.service";
 export class ExpedienteComponent{
 
   error:boolean = true;
-  bloque:number=1;
+  bloque:number=0;
+  selectedTab = 0;
 
 
   constructor(private _expedienteService:ExpedientesService) {
@@ -22,6 +24,14 @@ export class ExpedienteComponent{
 terminar(){
   sessionStorage.removeItem('IDExp');
 
+}
+
+prueba(){
+  // ng-reflect-selected-index="0"
+  console.log(document.getElementById("bloqueHeader").querySelector('mat-tab-header'));
+  console.log(this.selectedTab);
+  this.selectedTab = this.selectedTab+1;;
+  //MatDialogRef
 }
 
 cambiarColorBl1(){
@@ -63,5 +73,7 @@ cambiarColorBl5(){
   document.getElementById("bl4").style.background="#DBDBDB";
   document.getElementById("bl5").style.background="white";
 }
+
+
 
 }

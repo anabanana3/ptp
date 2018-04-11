@@ -1,7 +1,10 @@
 /****** COLORS TEXT ******/
 
 .textBlack{ color:#333333;}
-.textPink{ color:#880042;}
+.textPink{
+  color:#880042;
+  font-weight: bold;
+}
 .textWhite{ color:#FFFFFF;}
 .textDarkenWhite{ color:#ededed;}
 .textGrey{ color: #DDDDDD;}

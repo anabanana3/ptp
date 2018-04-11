@@ -49,7 +49,11 @@ profesiones = new Array();
         this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
         this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
         this._profService.getProfesiones().subscribe(data=>this.profesiones = data);
-
+        //Recupero los 10 ultimos expedientes
+        let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
+        this._expedientesService.buscar2Exp(url).subscribe(data =>{
+          this.expedientes = data.Data;
+        })
       }
    }
 

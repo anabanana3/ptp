@@ -22,7 +22,7 @@ export class HomeAsociaciones{
   pagNext;
   pagBack;
   pagActual;
-  tamPag:number = 3;
+  tamPag:number = 10;
   displayedColumns = ['id', 'nombre', 'email', 'dni', 'opciones'];
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {

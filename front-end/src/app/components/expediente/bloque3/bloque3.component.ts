@@ -11,7 +11,7 @@ import {ExpedienteComponent} from '../expediente.component';
 })
 export class Bloque3Component implements OnInit {
 
-  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'N0'},{id:1, opcion:'SI'}];
+  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'No'},{id:1, opcion:'Si'}];
   //datos que voy a enviar a la bd
   json = {
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
@@ -39,11 +39,15 @@ export class Bloque3Component implements OnInit {
     }
     this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
       if(data.warningCount == 0){
-        this.expedienteComponent.bloque = 4;
-        this.mensaje = 'Guardado correctamente!';
-        document.getElementById('alert').className = 'alert alert-success';
+        //      this.expedienteComponent.bloque = 4;
+        this.cambiarBloque();
+        // this.mensaje = 'Guardado correctamente!';
+        // document.getElementById('alert').className = 'alert alert-success';
       }
      });
+  }
+  cambiarBloque(){
+     this.expedienteComponent.selectedTab = 3;
   }
   ngOnInit() {}
 }

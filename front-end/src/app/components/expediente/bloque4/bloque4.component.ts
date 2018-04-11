@@ -11,7 +11,7 @@ import {ExpedienteComponent} from '../expediente.component';
 })
 export class Bloque4Component implements OnInit {
 
-  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'N0'},{id:1, opcion:'SI'}];
+  opciones: Array<{id:number, opcion:string}> = [{id:0, opcion:'No'},{id:1, opcion:'Si'}];
   tiposMutilacion = new Array();
   consecuenciasSalud = new Array();
   consecuencia = new Array();
@@ -135,15 +135,21 @@ export class Bloque4Component implements OnInit {
         console.log(data);
       });
         if(data.warningCount == 0){
+
           this.mensaje = 'Guardado correctamente!';
           document.getElementById('alert').className = 'alert alert-success';
           //Despues de guardar, borrar el Array
           this.consecuencias = [];
-          this.expedienteComponent.bloque = 5;
+          this.cambiarBloque();
+          //this.expedienteComponent.bloque = 5;
         }
     });
 
   }
+  cambiarBloque(){
+     this.expedienteComponent.selectedTab = 4;
+  }
+
   ngOnInit() {
   }
 

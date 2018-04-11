@@ -4,9 +4,9 @@
 <div *ngIf="!error">
   <app-header></app-header>
 
-  <div>
+  <div class="divBlancoExpPcpal">
 <!-- TODO: No pudes voler para atras -->
-    <div class="tabsExpediente">
+    <!-- <div class="tabsExpediente">
       <button id="bl1" class="tabItem" (click)="bloque=1">
         Bloque 1
       </button>
@@ -22,13 +22,45 @@
       <button id="bl5" class="tabItem" (click)="bloque = 5">
         Bloque 5
       </button>
-    </div>
+    </div> -->
 
 <!--
     <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
     </button>-->
+    <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
+      <mat-tab label="Bloque 1">
+        <div class="divBloqueExp2">
+          <!-- {{ cambiarColorBl1() }} -->
+          <app-bloque1></app-bloque1>
+      </div>
+      </mat-tab>
+      <mat-tab label="Bloque 2">
+        <div class="divBloqueExp2">
+            <app-bloque2></app-bloque2>
+        </div>
+      </mat-tab>
+      <mat-tab label="Bloque 3">
+        <div class="divBloqueExp2">
+            <app-bloque3></app-bloque3>
+        </div>
+      </mat-tab>
+      <mat-tab label="Bloque 4">
+        <div class="divBloqueExp2">
+            <app-bloque4></app-bloque4>
+        </div>
+      </mat-tab>
+      <mat-tab label="Bloque 5">
+        <div class="divBloqueExp2">
+            <app-bloque5></app-bloque5>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
 
-    <div class="divBloque divBloqueExp">
+<!-- <button (click) = "prueba()">Prueba</button> -->
+
+<!--
+
+     <div class="divBloque divBloqueExp">
       <div *ngIf="bloque === 1">
         {{ cambiarColorBl1() }}
         <app-bloque1></app-bloque1>
@@ -49,13 +81,15 @@
         {{ cambiarColorBl5() }}
         <app-bloque5></app-bloque5>
       </div>
+
+    </div>-->
+  <!-- Div para poner el boton de terminar -->
+  <button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
+
+      <div>
     </div>
 
-  </div>
-<!-- Div para poner el boton de terminar -->
-<button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
 
-    <div>
     </div>
 
 

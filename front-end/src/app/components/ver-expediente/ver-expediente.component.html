@@ -10,7 +10,7 @@
     <h3>{{e.Titulo}}</h3>
     <p>{{e.Descripcion.split("'")[1]}}</p>
     <p>Lugar detección: <b>{{e.ID_Lugar.split("'")[1]}}</b></p>
-    <p>Fecha publicación: <b>{{e.Fecha.split('T')[0]}}</b> | Autor: </p>
+    <p>Fecha publicación: <b>{{e.Fecha.split('T')[0]}}</b> | Autor: {{e.Autor.split("'")[1]}} </p>
 
   </div>
 
@@ -334,7 +334,7 @@
       <div *ngFor="let comentario of comentarios">
         <div class="comentario">
           <div class="comentarioTitulo">
-            <h3>{{comentario.Nombre}} - {{comentario.Fecha.split("T")[0]}}</h3>
+            <h3>{{comentario.Nombre.split("'")[1]}} - {{comentario.Fecha.split("T")[0]}}</h3>
             <button *ngIf="comentario.ID_Usuario == sessionStorageID"type="submit" name="button" class="btn span icon-trash-empty"
               (click)="borrarComentario(comentario.ID_Comentario)"></button>
           </div>

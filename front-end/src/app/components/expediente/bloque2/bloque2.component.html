@@ -1,89 +1,112 @@
-<!-- TODO: Validacion=> debe marcar al menos una complicacion de cada para que no pete al mandar los datos
- -->
- <form (ngSubmit)="guardarDatos()"#form="ngForm">
-   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
+<!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
+almacene en la base de datos
+el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
+<form (ngSubmit)="guardarDatos3()"#form="ngForm">
+  <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
+  <div class="divLabels">
+    <div class="divExp">
+      <label>El implicado tiene conocimientos sobre la MGF:</label>
+      <span matTooltip='Posible pregunta:"Tengo entendido que en su país se realiza la ablación o el corte de los genitales de las
+       mujeres. ¿Conoce esta práctica?."' class="pointer icon-info info"></span>
+    </div>
+
+       <!-- <div class="divExp">
+         <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
+           <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
+         </select>
+        <br>
+      </div> -->
 
     <div class="divExp">
-      <label>El implicado tiene conocimientos sobre la MGF</label>
-       <span matTooltip="Posible pregunta Tengo entendido que
-       en su país se realiza la ablación o el corte de los genitales de las
-       mujeres. ¿Conoce esta práctica?." class="pointer icon-info info"></span>
-       <select [(ngModel)]="bloque2.Conoce_MGF" id="Prueba" name="Conoce_MGF">
-         <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-       </select>
-      <br>
+      <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+      <label class="labeltransr" for="Conoce_MGFSI">Sí</label>
+      <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
+      <label class="labeltransr" for="Conoce_MGFNO">No</label>
     </div>
 
     <div class="divExp">
-     <label>La MGF se realiza en la comunidad de origen</label>
-     <select [(ngModel)]="bloque2.MGF_realizada_com_origen" name="MGF_realizada_com_origen">
-       <option *ngFor="let op of opciones; let i = index"[value]="i">{{op}}
-     </select>
-     <br>
-   </div>
+     <label>La MGF se realiza en la comunidad de origen:</label>
+    </div>
 
-   <div class="divExp">
-     <label>Posicionamiento del padre frente a la MGF</label>
-     <span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
-     esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
-     <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
-       <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-     </select>
-     <br>
-   </div>
+     <div class="divExp">
+       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
+       <label class="labeltransr" for="Realizada_MGFSI">Sí</label>
+       <input class="radiotrans"type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
+       <label class="labeltransr"for="Realizada_MGFNO">No</label>
+     </div>
+    </div>
 
-   <label>Posicionamiento de la madre frente a la MGF</label>
-   <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
-     <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-   </select>
-   <br>
-   <label>Posicionamiento de la familia en el pais de origen</label>
-   <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
-     <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
-   </select>
-   <br>
+    <div class="divLabels">
+      <div class="divExp">
+         <label>Posicionamiento del padre frente a la MGF:</label>
+         <span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
+         esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
+      </div>
+      <div class="divExp">
+        <!-- <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
+         <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+        </select> -->
+        <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
+        <label class="labeltransr" for="Padre_MGFFavor">A favor</label>
+        <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
+        <label class="labeltransr" for="Padre_MGFContra">En contra</label>
+      </div>
 
- <div class="divExp">
-   <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia</label>
- </div>
- <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
- <br>
+      <div class="divExp">
+       <label>Posicionamiento de la madre frente a la MGF:</label>
+     </div>
+     <div class="divExp">
+       <!-- <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
+         <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+       </select> -->
+       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
+       <label class="labeltransr" for="Madre_MGFFavor">A favor</label>
+       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
+       <label class="labeltransr" for="Madre_MGFContra">En contra</label>
+      </div>
+    </div>
 
- <div class="divExp">
-   <label>Significado de la MGF para el implicado en el expediente</label>
-  </div>
- <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
- <br>
+    <div class="divLabelsDeUno">
+      <div class="divExpDeUno">
+        <label>Posicionamiento de la familia en el país de origen:</label>
+      </div>
 
- <div class="divExp">
-   <label>Formato de intervención</label>
-   <span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
- </div>
+     <div class="divExpDeUno">
+       <!-- <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
+         <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
+       </select> -->
+       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
+       <label class="labeltransr" for="Familia_MGFFavor">A favor</label>
+       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
+       <label class="labeltransr" for="Familia_MGFContra">En contra</label>
+     </div>
+    </div>
 
- <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Formato de intervención"></textarea>
- <br>
+    <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
 
- <div class="divExp">
-   <label>Consejos para otros profesionales</label>
-   <span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
-  </div>
+    <label>Significado de la MGF para el implicado en el expediente:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 
- <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
- <br>
+    <label>Formato de intervención:</label>
+    <span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Formato de intervención"></textarea>
 
-  <hr>
+    <label>Consejos para otros profesionales:</label>
+    <span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
+    <!-- <hr> -->
 
- <div class="grupoForm">
- <h2 class="text16 textPink">HISTORIA DE PARTOS
-   <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
-   <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
- </h2>
- <div *ngIf="hayParto==true">
-   <div class="divExp">
-     <label>Número de partos de los que desea guardar información</label>
-     <input id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
-  </div>
-   <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
+    <div class="grupoForm">
+      <h2 class="text16 textPink">HISTORIA DE PARTOS
+        <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
+        <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
+      </h2>
+      <div *ngIf="hayParto==true">
+        <label>Número de partos de los que desea guardar información:</label>
+        <input id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
+        <br>
+        <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
  <!-- <div class="partos">
    <div class="partoContainer" *ngFor="let p of partos; let i= index">
      <p> parto numero {{i+1}}</p>
@@ -139,13 +162,13 @@
  </div> -->
 
 
- </div>
- </div>
-<hr>
- <div class="centrar">
-   <button class="btn-relleno" type="submit">Guardar</button>
- </div>
- </form>
+     </div>
+   </div>
+   <hr>
+   <div class="centrar">
+    <button class="btn-relleno" type="submit">Guardar</button>
+  </div>
+</form>
 
  <!-- esto es lo que sale : false INVALID
  <p>

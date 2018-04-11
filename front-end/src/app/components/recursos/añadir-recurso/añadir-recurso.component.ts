@@ -33,7 +33,12 @@ export class RecursoComponent {
 
     _materialService.getFormatos().subscribe(data => {
       this.formatos = data;
-      console.log(this.formatos);
+      //Solucion regulera
+      let aux = {
+        ID_Formato: 3,
+        Nombre: 'jpeg'
+      };
+      this.formatos[5] = aux;
     }, error => {
       console.log(error);
     });
@@ -93,9 +98,13 @@ export class RecursoComponent {
 
     //Valido el tipo de fichero
     if(this.file != null){
+      console.log(this.file);
       let tipo = this.file.type.split('/')[1];
+      console.log(tipo)
       let existeTipo = false;
       for(let i in this.formatos){
+        console.log(this.formatos[i].Nombre);
+        console.log()
         if(this.formatos[i].Nombre === tipo){
           existeTipo = true;
           this.recurso.ID_Formato = this.formatos[i].ID_Formato;
