@@ -35,6 +35,7 @@ class TRecursoMalla extends TRecurso{
       this.vertices = obj.vertices;
       this.normales = obj.vertexNormals;
       this.indices = obj.indices;
+      this.texturas = obj.textures;
     })
   }
 
@@ -42,5 +43,6 @@ class TRecursoMalla extends TRecurso{
     GVertices = this.vertices;
     GIndices = this.indices;
     GNormales = this.normales;
+    GCoordTex = this.texturas;
   }
 }

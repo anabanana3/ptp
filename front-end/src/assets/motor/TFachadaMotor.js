@@ -96,7 +96,7 @@ class TFachadaMotor {
     nodo.setEntidad(entMalla);
     entMalla.malla = this.gestor.getRecurso(ficheroMalla, "malla");
     entMalla.material = this.gestor.getRecurso(ficheroMaterial, "material");
-    // entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
+    entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
     return entMalla;
   }
   crearMallaCompleto(nombre, ficheroMalla, ficheroMaterial, ficheroTextura){

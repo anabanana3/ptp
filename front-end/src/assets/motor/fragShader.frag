@@ -3,6 +3,7 @@ precision mediump float;
 
 varying vec3 Position; //VERTICES EN COORDINADAS DE VISTA
 varying vec3 Normal; //NORMAL EN COORDENADAS DE VISTA
+varying vec2 TexCoords; //COORDENADAS DE TEXTURA
 
 uniform vec4 color;
 
@@ -12,6 +13,10 @@ uniform vec3 LightIntensity; //INTENSIDAD DE LA LUZ
 uniform vec3 Kd; //COMPONENTE DIFUSA DEL MATERIAL
 uniform vec3 Ka; //COMPONENTE AMBIENTAL DEL MATERIAL
 uniform vec3 Ks; //COMPONENTE ESPECULAR DEL MATERIAL
+
+uniform sampler2D Ld; //COMPONENTE DIFUSA DE LA LUZ
+//uniform vec3 La; //COMPONENTE AMBIENTAL DE LA LUZ
+uniform sampler2D Ls; //COMPONENTE ESPECULAR DE LA LUZ
 
 uniform float Shininess;
 
@@ -23,9 +28,13 @@ vec3 Phong () {
 	vec3 s = normalize (vec3 (LightPosition) - Position);
 	vec3 v = normalize (-Position);
 	vec3 r = reflect (-s, n);
+	//componente AMBIENTAL
+	/*vec3 Ambient =  Ka * vec3(texture(Ld, TexCoords.xy));
+	vec3 Diffuse = Kd * max(dot(s, n), 0.0) * vec3(texture(Ld, TexCoords.xy));
+	vec3 Specular = Ks * pow(max(dot(r, v), 0.0), Shininess) * vec3(texture(Ls, TexCoords.xy));*/
 
 	vec3 light = LightIntensity * (Ka + Kd * max (dot (n, s), 0.0) + Ks * pow (max (dot (r, v), 0.0), Shininess));
-	//vec3 light = LightIntensity * (Kd * max (dot (n, s), 0.0));
+	//vec3 light = Ambient + Diffuse + Specular;
 
 	return light;
 }

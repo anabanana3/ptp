@@ -3,7 +3,7 @@ class TRecursoMaterial extends TRecurso{
   constructor(){
     super();
     this.colorDifuso;
-    this.colorEpecular;
+    this.colorEspecular;
     this.colorAmbiente;
     this.iluminacion;
     this.transparencia;
@@ -56,8 +56,8 @@ class TRecursoMaterial extends TRecurso{
       //console.log(this.colorDifuso);
 
       //color especular ks
-      let colorEpecular = vec3.fromValues(valoresKs[1], valoresKs[2], valoresKs[3]);
-      this.colorEpecular = colorEpecular;
+      let colorEspecular = vec3.fromValues(valoresKs[1], valoresKs[2], valoresKs[3]);
+      this.colorEspecular = colorEspecular;
       //console.log(this.colorEpecular);
 
       //el frag_color es la suma de a, d, s y otr cosa que no se que es jeje
@@ -67,7 +67,7 @@ class TRecursoMaterial extends TRecurso{
       //Guardo los valores del material para mandarlos al shader
       GDifuso = this.colorDifuso;
       GAmbiental = this.colorAmbiente;
-      GEspecular = this.colorEpecular;
+      GEspecular = this.colorEspecular;
       GBrillo = this.iluminacion;
       GIntensidadLuz = this.intensidad;
     })
