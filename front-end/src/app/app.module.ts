@@ -10,6 +10,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -114,6 +116,7 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatCheckboxModule,
   ],
   entryComponents: [
     Popup,

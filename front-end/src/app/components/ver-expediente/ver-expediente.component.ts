@@ -12,6 +12,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class VerExpedienteComponent implements OnInit {
 
   expID:number;
+  publico:number;
   expediente = new Array();
   bloque1 = new Array();
   bloque2 = new Array();
@@ -208,6 +209,12 @@ export class VerExpedienteComponent implements OnInit {
   cambiarTamPag(tam){
     this.tamPag=tam;
     this.getComentarios();
+  }
+
+  publicar(){
+    this._expedientesService.publicar(this.expID).subscribe(data=>{
+      //this.publico = this.expID; 
+    })
   }
 }
 
