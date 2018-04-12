@@ -57,6 +57,7 @@ class TShader extends TRecurso {
     let vertices = GVertices;
     let indices = GIndices;
     let normales = GNormales;
+    let texcords = GCoordTex;
 
     var canvas = document.getElementById('canvas');
     var gl = this.initWebGL(canvas);
@@ -108,6 +109,11 @@ class TShader extends TRecurso {
     gl.bindBuffer(gl.ARRAY_BUFFER, Normal_Buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normales), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    //buffer para las texturas
+    var Texture_Buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, Texture_Buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcords), gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
     console.log('Buffers ****');
     console.log('vertices: ' + vertices);
@@ -128,11 +134,36 @@ class TShader extends TRecurso {
     var sNormal = gl.getAttribLocation(programa, "VertexNormal");
     gl.vertexAttribPointer(sNormal, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(sNormal);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
+    gl.bindBuffer(gl.ARRAY_BUFFER, Texture_Buffer);
+    //texturas
+    var tex = gl.getAttribLocation(programa, "Textura");
+    gl.vertexAttribPointer(tex, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(tex);
     console.log('coordinates: ????');
     console.log('VertexNormal: ????');
-    //Le paso las matrices al shader
+    console.log('Textura: ?????');
 
+    //texturas
+    //asignamos la textura con la que vamos a trabajar
+    gl.bindTexture(gl.TEXTURE_2D, GTextura);
+    //ponemos la img de la textura en posicion vertical para poder trabajar con ella
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    //cargamos la imagen
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, GTextura.image);
+    //escalado de la textura
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    //se pone a null para dejar la variable libre para otras texturas
+    gl.bindTexture(gl.TEXTURE_2D, null);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, GTextura);
+    /*var Sampler = gl.getUniformLocation(programa, "Sampler");
+    gl.uniform1i(Sampler, 0);*/
+
+    //Le paso las matrices al shader
     //Obtengo la ModelViewMatrix con la libreria GLMATRIX
     GModelViewMatrix = mat4.create();
     mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix );
@@ -182,6 +213,16 @@ class TShader extends TRecurso {
 
     var SBrillo = gl.getUniformLocation(programa, "Shininess");
     gl.uniform1f(SBrillo, GBrillo);
+
+    //Pasamos las componentes de la luz
+    /*var LAmbiental = gl.getUniformLocation(programa, "La");
+    gl.uniform3fv(LAmbiental, GLAmbiental);*/
+
+    var LDifusa = gl.getUniformLocation(programa, "Ld");
+    gl.uniform1i(LDifusa, 0);
+
+    var LEspecular = gl.getUniformLocation(programa, "Ls");
+    gl.uniform1i(LEspecular, 0);
 
     //LIGTHPOSITION
     let luz = vec4.create();

@@ -30,3 +30,11 @@ var stack = [];
 var GVertices;
 var GIndices;
 var GNormales;
+var GCoordTex;
+
+var GTextura;
+
+//VARIABLES PARA LA LUZ
+var GLDifuso;
+var GLAmbiental;
+var GLEspecular;
