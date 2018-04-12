@@ -1,5 +1,5 @@
 input, textarea, select{
-  font-size: 14px;
+  font-size: 16px;
   color: #7F7F7F;
   width: 140px;
   border-radius: 3px;
@@ -30,6 +30,10 @@ textarea:hover{ border-bottom: 2px solid;}
 }
 
 .inputProfileUser{
+  width: 30px;
+  margin-left: 3%;
+}
+.labelpermisos .inputProfileUser{
   float: right;
-  margin-right: 10%;
+  margin-right: 5%;
 }

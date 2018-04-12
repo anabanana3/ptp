@@ -1,4 +1,3 @@
-
 .main-Chat{
   display: flex;
   width: 80%;
@@ -28,14 +27,6 @@
   padding: 7px;
   cursor: pointer;
 }
-/* .message-container{
-  background-image: url(../assets/img/CartelCherryRec.png);
-  background-repeat:no-repeat;
-  filter: opacity(0.5);
-  background-position: center;
-  background-size: auto;
-} */
-
 .btn-buscador{
   background: none;
   border: none;
@@ -45,7 +36,6 @@
 .message-container div{
   margin: 5px;
   text-align: left;
-
 }
 .lineaChat{
   width: 100%;
@@ -59,7 +49,6 @@
   max-width: 400px;
   overflow: hidden;
 }
-
 .rigth{
   float: right;
   background-color: rgba(136,0,66,0.6);
@@ -69,7 +58,6 @@
   float: left;
   border-radius: 10px 10px 10px 0;
   background-color: #F2F2F2;
-
 }
 .formChat{
   padding: 10px;
