@@ -104,7 +104,6 @@ button:hover{
   margin-top: 1%;
   transform: rotate(+45deg);
 }
-
 .btn-return:hover{
   transform: rotate(-45deg);
 }
