@@ -28,11 +28,14 @@
       <p class="language text12 textPink">ES | EN</p>
     </div>
   </div>
-  <div *ngIf="logueado && !admin">
+  <div *ngIf="logueado && !admin && !asociacion">
     <button type="submit" name="button" class="btn-border login" [routerLink]="['/home']">MENU</button>
   </div>
   <div *ngIf="admin">
     <button type="submit" name="button" class="btn-border login" [routerLink]="['/admin']">ADMIN</button>
+  </div>
+  <div *ngIf="asociacion">
+    <button type="submit" name="button" class="btn-border login" [routerLink]="['/asociacion']">ASOCIACIÓN</button>
   </div>
 </div>
 

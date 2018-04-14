@@ -26,10 +26,16 @@ export class RecursosComponent {
   pagActual;
   mensaje:string = '';
 
+  asociacion:boolean = false;
+
   constructor(private _materialService:MaterialService,
               private router:Router) {
     if(sessionStorage.length === 0){
       return;
+    }
+
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
     }
     this.error = false;
     this.getMaterialesPropios(1);

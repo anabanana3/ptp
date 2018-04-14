@@ -4,7 +4,7 @@
 <div *ngIf="!error">
   <div class="header bgColorBlack">
     <button class="icon-menu" (click)="expanded = !expanded"></button>
-    <a href="www.aisha.ovh/"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
+    <a [routerLink]="['/']"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
     <button (click)="logout();" type="button" name="button"
       class="submitGris logoutAdmin icon-logout"
       style="float:right;">

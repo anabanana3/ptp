@@ -70,8 +70,7 @@ canvas{
 
 .lineaDiv{
   border: 1px solid #DBDBDB;
-  margin: auto;
-  margin: 2% 0;
+  margin: 2% auto;
   width: 90%;
 }
 
@@ -1107,4 +1106,16 @@ option{
   display: flex;
   width: 50%;
   justify-content: flex-end;
+}
+
+.buttons-asociacion{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.buttons-asociacion-center{
+  justify-content: center;
 }
