@@ -62,9 +62,10 @@ profesiones = new Array();
       }
    }
 
- buscar2(pag, tam=this.tamPag){
-   console.log(this.Filtros);
- }
+   buscar2(pag, tam=this.tamPag){
+     console.log(this.Filtros);
+   }
+
    buscar(pag, tam=this.tamPag){
      console.log(this.Filtros);
      this.url='https://www.aisha.ovh/api/publicos/search/';

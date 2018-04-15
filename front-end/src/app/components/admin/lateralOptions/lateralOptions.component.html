@@ -2,9 +2,11 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <div class="header bgColorBlack">
-    <button class="icon-menu" (click)="expanded = !expanded"></button>
-    <a [routerLink]="['/']"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
+  <div class="header bgColorBlack header-buttons">
+    <div>
+      <button class="icon-menu" (click)="expanded = !expanded"></button>
+      <a [routerLink]="['/']"><img style="margin-left:1em;margin-top:15px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
+    </div>
     <button (click)="logout();" type="button" name="button"
       class="submitGris logoutAdmin icon-logout"
       style="float:right;">
