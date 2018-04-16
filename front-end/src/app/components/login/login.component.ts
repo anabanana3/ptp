@@ -50,6 +50,7 @@ export class LoginComponent {
           //// sesion ////
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('iD', data.data[0].ID_Asociacion);
+          sessionStorage.setItem('asociacion', 'true');
           location.href = '/asociacion';
         })
     }else{

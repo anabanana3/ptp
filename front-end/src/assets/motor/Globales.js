@@ -1,5 +1,6 @@
 //Guardar todas las variables que me hagan falta para el shader
 var GFachada;
+var GShader;
 var programa = null;// ShaderProgram con los dos shaders compilados
 
 var GlobalMalla;

@@ -33,7 +33,6 @@ export class HomeAsociaciones{
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
-      console.log(data);
       this.asociacion = data[0].Nombre.split("'")[1];
     })
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {
@@ -96,15 +95,13 @@ export class HomeAsociaciones{
   }
 
   cerrarSesion(){
-    sessionStorage.removeItem('iD');
-    sessionStorage.removeItem('token');
-    location.href = '/'
+    sessionStorage.clear();
+    location.href = '/login';
   }
 
   view(number, pagina=1, tam=3){
     if(number == 0){
       this._userService.getUsuarioSolicitantesAsociacion(this.id, pagina, tam).subscribe(data=>{
-        console.log(data);
         this.loading = false;
         this.tabla = 0
         this.user = data.Data;

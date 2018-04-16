@@ -3,8 +3,8 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button>
+  <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
+  <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
 
   <div class="searchBar">
     <form (ngSubmit)="buscar(1,10)">

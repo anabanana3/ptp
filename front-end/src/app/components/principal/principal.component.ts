@@ -21,13 +21,18 @@ export class PrincipalComponent implements OnInit {
 
   logueado:boolean = false;
   admin:boolean = false;
+  asociacion:boolean = false;
   constructor(private _noticiasService:NoticiasService) {
+    console.log(sessionStorage);
     if(sessionStorage.length !== 0){
       this.logueado = true;
 
       console.log(sessionStorage.getItem('iD'));
       if(sessionStorage.getItem('iD') == '44'){
         this.admin = true;
+      }
+      if(sessionStorage.getItem('asociacion') != null){
+        this.asociacion = true;
       }
     }
 
