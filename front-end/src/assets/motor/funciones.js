@@ -11,11 +11,18 @@ function iniciarMotor(){
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
   let canvas = document.getElementById('canvas');
+  recargar(true);
 
-  setTimeout(() => {
-    GFachada.draw();
-    GShader.loadShaders();
-  }, 1000);
+}
+function recargar(cambio){
+  while(cambio){
+    setTimeout(() => {
+      GFachada.draw();
+      GShader.loadShaders();
+    }, 500);
+    console.log("CAMBIO");
+    cambio = false;
+  }
 }
 
 function mostrarTipo1(){
@@ -36,8 +43,7 @@ function mostrarReal(){
   let camara = GFachada.getCamaras()[0];
   console.log(camara);
   GFachada.rotar(camara, 0.785398, 0, 0, 1);
-  GFachada.draw();
-  GShader.loadShaders();
+  recargar(true);
 }
 
 function mostrarCartoon(){
