@@ -53,18 +53,9 @@ class TShader extends TRecurso {
 
   //TODO => Pasarle los datos al Shader
 
-  loadShaders(){
-    let vertices = GVertices;
-    let indices = GIndices;
-    let normales = GNormales;
-    let texcords = GCoordTex;
-
-    var canvas = document.getElementById('canvas');
-    var gl = this.initWebGL(canvas);
-    //Compilo los dos shaders
-
+  load(gl){
+    // Program.load(attributeList, uniformList);
     //Vertex Shader
-    // console.log(this.VertexShader);
     var vertShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertShader, this.VertexShader);
     // console.log(this.VertexShader);
@@ -83,7 +74,8 @@ class TShader extends TRecurso {
 
     var error = gl.getShaderInfoLog(fragShader);
 
-   if (error.length > 0) {
+    if (error.length > 0) {
+      console.log(error);
       throw error;
     }
 
@@ -91,7 +83,18 @@ class TShader extends TRecurso {
     gl.attachShader(programa, vertShader);
     gl.attachShader(programa, fragShader);
     gl.linkProgram(programa);
+  }
 
+  loadShaders(){
+    let vertices = GVertices;
+    let indices = GIndices;
+    let normales = GNormales;
+    let texcords = GCoordTex;
+
+    var canvas = document.getElementById('canvas');
+    var gl = this.initWebGL(canvas);
+
+    this.load(gl);
     //Creo los buffers
 
     var vertex_buffer = gl.createBuffer();
@@ -134,34 +137,38 @@ class TShader extends TRecurso {
     var sNormal = gl.getAttribLocation(programa, "VertexNormal");
     gl.vertexAttribPointer(sNormal, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(sNormal);
+
+    console.log('coordinates: ????');
+    console.log('VertexNormal: ????');
+    console.log(GTextura);
+
+    //texturas
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+    var textura;
+    textura = gl.createTexture();
+    //creamos una imagen para asociarla a la textura
+    var image = new Image();
+    image.onload = function() {
+      gl.bindTexture(gl.TEXTURE_2D, textura);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.bindTexture(gl.TEXTURE_2D, null);
+    }
+    image.src = '/assets/motor/' + GTextura;
+
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, Texture_Buffer);
-    //texturas
     var tex = gl.getAttribLocation(programa, "Textura");
     gl.vertexAttribPointer(tex, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(tex);
-    console.log('coordinates: ????');
-    console.log('VertexNormal: ????');
-    console.log('Textura: ?????');
-
-    //texturas
-    //asignamos la textura con la que vamos a trabajar
-    gl.bindTexture(gl.TEXTURE_2D, GTextura);
-    //ponemos la img de la textura en posicion vertical para poder trabajar con ella
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-    //cargamos la imagen
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, GTextura.image);
-    //escalado de la textura
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-    //se pone a null para dejar la variable libre para otras texturas
-    gl.bindTexture(gl.TEXTURE_2D, null);
 
     gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, GTextura);
-    /*var Sampler = gl.getUniformLocation(programa, "Sampler");
-    gl.uniform1i(Sampler, 0);*/
+    gl.bindTexture(gl.TEXTURE_2D, textura);
+    gl.uniform1i(programa.uSampler, 0);
+
 
     //Le paso las matrices al shader
     //Obtengo la ModelViewMatrix con la libreria GLMATRIX
@@ -203,26 +210,27 @@ class TShader extends TRecurso {
 
     //Paso las componentes del material
     var SDifusa = gl.getUniformLocation(programa, "Kd");
-    gl.uniform3fv(SDifusa, GDifuso);
+    gl.uniform1i(SDifusa, GDifuso);
+    console.log(SDifusa);
 
     var SAmbiental = gl.getUniformLocation(programa, "Ka");
-    gl.uniform3fv(SAmbiental, GAmbiental);
+    gl.uniform1i(SAmbiental, GAmbiental);
 
     var SEspecular = gl.getUniformLocation(programa, "Ks");
-    gl.uniform3fv(SEspecular, GEspecular);
+    gl.uniform1i(SEspecular, GEspecular);
 
     var SBrillo = gl.getUniformLocation(programa, "Shininess");
     gl.uniform1f(SBrillo, GBrillo);
 
     //Pasamos las componentes de la luz
-    /*var LAmbiental = gl.getUniformLocation(programa, "La");
-    gl.uniform3fv(LAmbiental, GLAmbiental);*/
+    var LAmbiental = gl.getUniformLocation(programa, "La");
+    gl.uniform3fv(LAmbiental, GLAmbiental);
 
     var LDifusa = gl.getUniformLocation(programa, "Ld");
-    gl.uniform1i(LDifusa, 0);
+    gl.uniform3fv(LDifusa, GLDifuso);
 
     var LEspecular = gl.getUniformLocation(programa, "Ls");
-    gl.uniform1i(LEspecular, 0);
+    gl.uniform3fv(LEspecular, GLEspecular);
 
     //LIGTHPOSITION
     let luz = vec4.create();

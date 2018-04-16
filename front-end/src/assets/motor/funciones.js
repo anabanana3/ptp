@@ -16,11 +16,6 @@ function iniciarMotor(){
     GFachada.draw();
     GShader.loadShaders();
   }, 1000);
-
-  // while(true){
-  //
-  // }
-
 }
 
 function mostrarTipo1(){

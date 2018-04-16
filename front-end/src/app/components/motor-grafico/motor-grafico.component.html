@@ -4,14 +4,6 @@
 <div *ngIf="!error">
   <app-header></app-header>
 
-  <h3>Aula virtual</h3>
-  <button
-    class="btn-relleno"
-    type="button"
-    name="button"
-    style="display:block; margin:auto;">
-    Descargar modelo 3D
-  </button>
 
   <div class="divBlanco bgColorWhite">
     <div class="buttons-canvas">
@@ -25,7 +17,14 @@
         <button class="btn-relleno-negro" type="button" name="button" (click)="cartoon()">Cartoon</button>
       </div>
     </div>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" width="800" height="600" style="width:90%; height:500px;"></canvas>
   </div>
+  <button
+    class="btn-relleno"
+    type="button"
+    name="button"
+    style="display:block; margin:auto;">
+    Descargar modelo 3D
+  </button>
   <app-footer></app-footer>
 </div>
