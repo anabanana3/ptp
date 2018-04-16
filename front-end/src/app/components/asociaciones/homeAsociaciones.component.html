@@ -2,26 +2,41 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <div class="header bgColorBlack">
-    <a href="www.aisha.ovh/"><img style="float:left; margin-left:1em;margin-top:23px" src="../assets/img/LogoAishaLadoCherry.png" alt=""></a>
-    <button (click)="cerrarSesion();" type="button" name="button"
-      class="submitGris logoutAdmin icon-logout"
-      style="float:right;">
+  <div class="header bgColorBlack header-buttons">
+    <a [routerLink]="['/']"><img style="margin-left:1em;" src="../assets/img/LogoAishaLadoCherry.png" alt="logo"></a>
+    <div>
+      <button [routerLink]="['/asociacion/profile']" type="button" name="button"
+        class="submitGris" class="btn-relleno">
+        Perfil
+      </button>
+      <button (click)="cerrarSesion();" type="button" name="button"
+        class="submitGris logoutAdmin icon-logout">
+      </button>
+    </div>
+  </div>
+  <div class="buttons-asociacion">
+    <button
+      name="button"
+      class="btn-relleno"
+      [routerLink]="['/recursos']">
+      Biblioteca de Recursos
     </button>
-    <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-            class="submitGris" style="float: right; margin: 1%;" class="btn-relleno">
-            Perfil
+    <button
+      name="button"
+      class="btn-relleno"
+      [routerLink]="['/bibexpedientes']">
+      Biblioteca de Expedientes
+    </button>
+    <button
+      name="button"
+      class="btn-relleno"
+      [routerLink]="['/aulavirtual']">
+      Aula Virtual
     </button>
   </div>
-  <h1>Asociacion {{asociacion}}</h1>
-  <button
-    type="submit"
-    name="button"
-    class="btn-relleno"
-    [routerLink]="['/recursos']"
-    style="margin:1%;">
-    Biblioteca de Recursos</button>
-  <div>
+
+  <div class="lineaDiv"></div>
+  <div class="buttons-asociacion buttons-asociacion-center">
     <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
@@ -31,9 +46,8 @@
             Registrados
     </button>
   </div>
-  <div class="lineaDiv"></div>
 
-  <div >
+  <div>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div >

@@ -1,0 +1,15 @@
+var attributeList = ["coordinates",
+                    "VertexNormal"];
+var uniformList = ["ProjectionMatrix",
+                   "ModelViewMatrix",
+                   "NormalMatrix",
+                   "LightPosition",
+                   "La",
+                   "Ld",
+                   "Ls",
+                   "Ka",
+                   "Kd",
+                   "Ks",
+                   "Ns",
+                   "Shininess",
+                   "LightIntensity"];

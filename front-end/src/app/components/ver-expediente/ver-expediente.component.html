@@ -3,8 +3,7 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button>
+  <!-- <button type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
   <div  *ngFor="let e of expediente" class=expediente>
     <h2>Información básica sobre el expediente</h2>
     <h3>{{e.Titulo}}</h3>

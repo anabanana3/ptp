@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
 cerrarSesion() {
   sessionStorage.clear();
-  //Redirect to home-page
   location.href = '/';
 }
 }

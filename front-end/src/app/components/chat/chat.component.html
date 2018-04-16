@@ -4,8 +4,8 @@
 <div *ngIf="!error">
   <app-header></app-header>
 
-  <!-- Chats -->
   <div class="main-Chat">
+    <!-- Chats -->
   <div class="bgColorWhite">
     <header>
       <h2>Contactos</h2>
@@ -14,17 +14,19 @@
         <input type="text" class="lineaCampo" (keyup)="escribiendo($event, search.value)" placeholder="Busca a un contacto" style="width:80%;" #search>
       </p>
     </header>
-    <div *ngIf="resultSearch.length > 0">
+    <div *ngIf="resultSearch.length > 0" class="busquedachat">
       <div *ngFor="let s of resultSearch" class="conversacioness" (click) = "setConversation(s.ID_Usuario,s.Nombre)">
         <p class="text16">{{s.Nombre.split("'")[1]}}</p>
         <small>{{s.Email.split("'")[1]}}</small>
+        <small>-</small>
         <small>{{s.Profesion}}</small>
       </div>
     </div>
-    <div *ngIf="conversaciones.length > 0">
+    <div *ngIf="conversaciones.length > 0" class="busquedachat">
       <div *ngFor="let c of conversaciones" class="conversacioness" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre, c.Destinatario)">
         <p class="text16">{{c.Nombre.split("'")[1]}}</p>
         <small>{{c.Email.split("'")[1]}}</small>
+        <small>-</small>
         <small>{{c.Profesion}}</small>
       </div>
     </div>
@@ -37,7 +39,7 @@
       <header>
         <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
-      <div class="lineaDiv"></div>
+      <hr>
       <div class="message-container">
         <img>
         <div *ngIf="mensajes.length > 0">
@@ -46,12 +48,14 @@
           <div *ngIf="m.Autor == ID_Usuario" class=" mensaje rigth" >
             <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
             <span class="text16">{{m.Texto}}</span>
+            <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
           </div>
         </div>
         <div class=lineaChat>
           <div *ngIf="m.Autor != ID_Usuario" class=" mensaje left" >
             <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
             <span class="text16">{{m.Texto}}</span>
+            <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
           </div>
         </div>
 

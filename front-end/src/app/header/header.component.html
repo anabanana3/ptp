@@ -1,5 +1,5 @@
 <div class="header bgColorBlack">
-  <a href="/"><img src="../assets/img/LogoAishaLadoCherry.png" alt="LogoAisha"></a>
+  <a [routerLink]="['/']"><img src="../assets/img/LogoAishaLadoCherry.png" alt="LogoAisha"></a>
   <div class="notification bgColorPink">
     <p class="textDarkenWhite">3</p>
   </div>
@@ -12,7 +12,7 @@
 
 <div class="infoDivPerfil">
   <div class="options">
-    <p class="DivOption text16"><b>{{Nombre.split("'")[1]}}</b></p>
+    <p *ngIf="nombre != null"class="DivOption text16"><b>{{Nombre.split("'")[1]}}</b></p>
     <p class="DivOption">Comentarios<p>
     <p class="numberOption text12 textGreyDarken">20<p>
     <p class="DivOption">Mensajes</p>
