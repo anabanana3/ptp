@@ -21,6 +21,7 @@ export class Bloque1Component implements OnInit {
   HayPadre:boolean = false;
   etnias = new Array();
   form:FormGroup;
+  mensaje = '';
 
   expediente:Expedinete ={
     Titulo:'',
@@ -136,6 +137,19 @@ export class Bloque1Component implements OnInit {
   ngOnInit() {
 
   }
+
+  guardarDatos3(){
+    console.log('Muestro la informacion del formulario');
+    console.log(this.form.value);
+    console.log(this.form)
+    if(this.form.valid == false){
+      this.mensaje = 'Rellena todos los campos obligatorios'
+      document.getElementById('alert').className = 'alert alert-danger';
+      window.scroll(0, 0);
+
+
+    }
+  }
 //TODO => Solo falta meter a los familiares de la persona en el caso de que intropduzcan datos
 guardarDatos(){
   console.log('Muestro la persona que voy a crear');
@@ -143,7 +157,8 @@ guardarDatos(){
   //Obtengo los datos para rellenar la tabla de los campos de bloque 1
   this.bloque = this.form.get('bloque').value;
 
-  this._expedienteService.addPersona(this.menor).subscribe(data=>{
+  if(this.form.valid == true){
+    this._expedienteService.addPersona(this.menor).subscribe(data=>{
       //Falta un if para ver que la persona se crea Correctamente
       //Si se crea Correctamente
       let aux=data;
@@ -164,17 +179,23 @@ guardarDatos(){
       this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
         //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
         sessionStorage.IDExp = data.insertId;
-       this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
-         console.log(data)
-         //Por último => todo correcto cambiamos de bloque
-         this.cambiarBloque();
-        //  this.expedienteComponent.bloque = 2;
-         console.log('Cambio de bloque');
+        this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
+          console.log(data)
+          //Por último => todo correcto cambiamos de bloque
+          this.cambiarBloque();
+          //  this.expedienteComponent.bloque = 2;
+          console.log('Cambio de bloque');
 
-      });
+        });
         console.log(data);
       });
-  });
+    });
+  }else{
+    this.mensaje = 'Completa todos los campos obligatorios.'
+    document.getElementById('alert').className = 'alert alert-danger';
+    window.scroll(0, 0);
+  }
+
 
 }
 //Funcion de prueba para no estar creando expedientes tontamnte

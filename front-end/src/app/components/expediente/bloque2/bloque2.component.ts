@@ -29,6 +29,7 @@ export class Bloque2Component implements OnInit {
   hayParto:boolean = false;
   html:string;
   form:FormGroup;
+  mensaje='';
 
 //Prueba de git
 
@@ -36,11 +37,11 @@ export class Bloque2Component implements OnInit {
 bloque2={
   ID_Bloque:'',
   ID_Expediente:sessionStorage.IDExp,
-  Conoce_MGF:0,
-  MGF_realizada_com_origen:0,
-  Pos_madre:0,
-  Pos_padre:0,
-  Pos_familia:0,
+  Conoce_MGF:null,
+  MGF_realizada_com_origen:null,
+  Pos_madre:null,
+  Pos_padre:null,
+  Pos_familia:null,
   Otros:'',
   Significado_MGF:'',
   Formato_intervencion:'',
@@ -94,48 +95,52 @@ datosPartos = new Array();
     this.bloque2.ID_Expediente = sessionStorage.IDExp;
     //Ya tengo todos los datos que hacen falta
     //Pasos => Crear Bloque => crear Parto => Asociar el Parto al bloque2 (de uno en uno)
-    this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
-      console.log(data);
-      let bloque = data.insertId;
-      //Ver si existen los partos
-      if(this.datosPartos.length >0){
-        //Creo los partos
-        for(let i=0; i<this.datosPartos.length; i++){
-          this.datosPartos[i].Id_Bloque= bloque;
-          console.log(this.datosPartos[i]);
-          this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
-            console.log(data);
-            let idParto = data.ID_Parto;
-            console.log('Muestro el id del parto que acabo de crear');
-            console.log(idParto);
-            //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
-            //Miro si ha selecionado alguna complicacion
-            if(this.datosPartos[i].CompMadre.length>0){
-              this.getCompMadreSel(i);
-              // TODO: Implementar las funciones del ExpedientesService
-              console.log('Muestro el id del parto que voy a mandar');
+    //Valido la informacion del formulario
+    let error = this.validarDatos(form);
+    if(error == false){
+      this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
+        console.log(data);
+        let bloque = data.insertId;
+        //Ver si existen los partos
+        if(this.datosPartos.length >0){
+          //Creo los partos
+          for(let i=0; i<this.datosPartos.length; i++){
+            this.datosPartos[i].Id_Bloque= bloque;
+            console.log(this.datosPartos[i]);
+            this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
+              console.log(data);
+              let idParto = data.ID_Parto;
+              console.log('Muestro el id del parto que acabo de crear');
               console.log(idParto);
-              this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
-                console.log('Info sobre las complicaciones de la madre');
-                console.log(data);
-              });
-            }
-            //Miro si se ha selecionado alguna complicacion
-            if(this.datosPartos[i].compNacido.length>0){
-              this.getCompNacidoSel(i);
-              this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
-                console.log('Info sobre las complicaciones del nacido');
-                console.log(data);
-                //Cambio el bloque
-                this.cambiarBloque();
-                // this.expedienteComponent.bloque = 3;
-              })
-            }
-          })
+              //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
+              //Miro si ha selecionado alguna complicacion
+              if(this.datosPartos[i].CompMadre.length>0){
+                this.getCompMadreSel(i);
+                // TODO: Implementar las funciones del ExpedientesService
+                console.log('Muestro el id del parto que voy a mandar');
+                console.log(idParto);
+                this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
+                  console.log('Info sobre las complicaciones de la madre');
+                  console.log(data);
+                });
+              }
+              //Miro si se ha selecionado alguna complicacion
+              if(this.datosPartos[i].compNacido.length>0){
+                this.getCompNacidoSel(i);
+                this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
+                  console.log('Info sobre las complicaciones del nacido');
+                  console.log(data);
+                  //Cambio el bloque
+                  //this.cambiarBloque();
+                  // this.expedienteComponent.bloque = 3;
+                })
+              }
+              this.cambiarBloque();
+            })
+          }
         }
-      }
-
-    });
+      });
+    }
 
 
 
@@ -153,8 +158,54 @@ datosPartos = new Array();
     console.log(this.compMadreSel);
   }
 
-guardarDatos3(){
+  guardarDatos4(form){
+    let error = this.validarDatos(form);
+    if(error == false){
+
+      console.log('Puedo almacenar la informacion en la BD')
+    }
+  }
+ //TODO=> FALTA MONTARLO todo junto
+validarDatos(form){
+  let ok = true;
   console.log(this.bloque2);
+  console.log(form);
+
+
+  console.log('Compruebo manualmente los datos de los partos');
+  let aux = 0;
+  let error = false;
+  if(this.datosPartos.length >=1){
+    for(let i=0; i<this.datosPartos.length && error == false; i++){
+      if(this.datosPartos[i].Fecha ==null || this.datosPartos[i].ID_Formula == null || this.datosPartos[i].ID_Tipo == null ){
+        //No es valido y hay que modificar los partos
+        error = true;
+      }
+    }
+  }else{
+    console.log('no hay partos => no compruebo');
+  }
+  if(form.valid == false){
+    this.mensaje = 'Rellena todos los campos obligatorios';
+    if(error == true){
+      this.mensaje += ' y falta completar datos obligatorios en los partos'
+    }
+    document.getElementById('alert').className = 'alert alert-danger';
+    return ok;
+
+  }else{
+    if(error == true){
+      this.mensaje = 'Falta completar la información obligatoria de los partos';
+      document.getElementById('alert').className = 'alert alert-danger';
+      return ok
+    }else{
+      console.log('Todo Perfecto');
+      ok = false;
+      return ok;
+    }
+  }
+
+
 }
 //Funcion para obtener las complicaciones de la madre que ha selecionado el usuario
   getCompMadreSel(n){
@@ -174,7 +225,10 @@ guardarDatos3(){
     }
   }
   prueba(n){
+    //TODO : REVISAR ESTA FUNCION PARA PODER MODIFICAR LA Info
+    // DE LOS PARTOS SIN CREAR MAS
     if(n>0){
+      this.datosPartos = new Array();
       console.log('Funcion de prueba de ocntenido');
       console.log(this.numPartos);
       this.bloque2.Num_Partos = n;
@@ -188,8 +242,12 @@ guardarDatos3(){
       }
     }
 }
+modificarPartos(){
+  console.log('Funcion para modificar los partos');
+  this.openDialog2(this.datosPartos.length);
+}
 cambiarBloque(){
-
+   console.log('Cambio de bloque');
    this.expedienteComponent.selectedTab = 2;
 }
 
@@ -209,6 +267,24 @@ openDialog(nPartos): void {
     //this.animal = result;
   });
 }
+
+openDialog2(nPartos): void {
+  console.log(nPartos);
+  console.log(this.datosPartos);
+  let dialogRef = this.dialog.open(Popup2, {
+    width: '1000px',
+    //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+    data:{Npartos: nPartos, pagina: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(this.datosPartos);
+    //this.animal = result;
+  });
+}
+
+
 }
 @Component({
   selector: 'popup',
@@ -263,6 +339,22 @@ export class Popup2 {
     document.getElementById("complNinioContainer").style.display="none";
   }
 
+  calculaEdad(e, fecha){
+    console.log(fecha.value);
+    console.log(fecha.value.split('-')[0]);
+    let yearSelec = fecha.value.split('-')[0];
+    let aux = new Date();
+    let year = aux.getFullYear();
+    console.log(year - yearSelec);
+    let edad = year - yearSelec;
+    console.log(this.data)
+
+
+
+
+
+  }
+
 
 
 }
@@ -273,13 +365,13 @@ class Parto{
    Edad_Madre:number;
    Fecha:Date=null;
    Edad_Nacido:number;
-   Tiempo_Expulsivo:number;
-   Tiempo_Dilatacion:number;
-   Duracion_Parto:number;
-   ID_Formula:number;
-   Test_APGAR:number;
+   Tiempo_Expulsivo:number=0;
+   Tiempo_Dilatacion:number=0;
+   Duracion_Parto:number=0;
+   ID_Formula:number = null;
+   Test_APGAR:number=0;
    ID_Tipo:number=1;
-   ID_Mutilacion:number;
+   ID_Mutilacion:number= null;
    CompMadre:number[];
    compNacido:number[];
 
