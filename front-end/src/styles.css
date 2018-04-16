@@ -462,7 +462,7 @@ canvas{
 
 .itemOver{
   z-index: -1;
-  position: absolute;
+  position: relative;
   margin: 3%;
 }
 
