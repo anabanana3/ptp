@@ -60,6 +60,7 @@ import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedi
 import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
 import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     Popup,
     Popup2,
     ChatComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    ExpiredSessionComponent
   ],
   imports: [
     BrowserModule,

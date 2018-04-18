@@ -82,6 +82,10 @@ export class RecursoComponent {
       console.log(this.recurso);
       this._materialService.updateMaterial(this.idEditar, this.recurso).subscribe(data => {
         console.log(data);
+        if(data.Codigo == 501){
+          //La sesion ha expirado y reedirigimos
+          location.href = '/expired';
+        }
         this.mensaje = 'Su recurso ha sido editado';
         document.getElementById('alert').className = 'alert alert-success';
       })
