@@ -22,9 +22,9 @@
     <!-- <select [(ngModel)]='json.Mant_MGF' name="mant_MGF" id="mant_MGF" >
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFSI" value="1" name="mant_MGFSI">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFSI" value="1" name="mant_MGFSI">
     <label class="labeltransr" for="mant_MGFSI">Sí</label>
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFNO" value="0" name="mant_MGFNO">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFNO" value="0" name="mant_MGFNO">
     <label class="labeltransr" for="mant_MGFNO">No</label>
 
     <div *ngIf="json.Mant_MGF==1">
@@ -39,9 +39,9 @@
     <!-- <select [(ngModel)]='json.Conoc_consecM' id="conoc_consecM" name="conoc_consecM">
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMSI" value="1" name="conoc_consecMSI">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMSI" value="1" name="conoc_consecMSI">
     <label class="labeltransr" for="conoc_consecMSI">Sí</label>
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMNO" value="0" name="conoc_consecMNO">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Conoc_consecM" id="conoc_consecMNO" value="0" name="conoc_consecMNO">
     <label class="labeltransr" for="conoc_consecMNO">No</label>
 
     <label for="otros_consecM">¿Por qué?: </label>
@@ -51,9 +51,9 @@
 
     <label for="conoc_consecM">Sobre la salud de los hombres: </label>
 
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHSI" value="1" name="otros_consecHSI">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHSI" value="1" name="otros_consecHSI">
     <label class="labeltransr" for="otros_consecHSI">Sí</label>
-    <input class="radiotrans" type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHNO" value="0" name="otros_consecHNO">
+    <input class="radiotrans" required type="radio" [(ngModel)]="json.Conoc_consecH" id="otros_consecHNO" value="0" name="otros_consecHNO">
     <label class="labeltransr" for="otros_consecHNO">No</label>
 
     <!-- <select [(ngModel)]='json.Conoc_consecH' id="conoc_consecM" name="conoc_consecM">

@@ -33,18 +33,19 @@ export class Bloque3Component implements OnInit {
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
     if(forma.valid === false){
-      this.mensaje = 'Campos Incompletos';
+      this.mensaje = 'Completa todos los campos obligatorios';
       document.getElementById('alert').className = 'alert alert-danger';
       return;
+    }else{
+      this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
+        if(data.warningCount == 0){
+          //      this.expedienteComponent.bloque = 4;
+          this.cambiarBloque();
+          // this.mensaje = 'Guardado correctamente!';
+          // document.getElementById('alert').className = 'alert alert-success';
+        }
+      });
     }
-    this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
-      if(data.warningCount == 0){
-        //      this.expedienteComponent.bloque = 4;
-        this.cambiarBloque();
-        // this.mensaje = 'Guardado correctamente!';
-        // document.getElementById('alert').className = 'alert alert-success';
-      }
-     });
   }
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 3;

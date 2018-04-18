@@ -51,23 +51,7 @@ bloque2={
 }
 datosPartos = new Array();
 
-  // parto:Parto={
-  //   Edad_Madre:0,
-  //   Fecha:null,
-  //   Edad_Nacido:0,
-  //   Tiempo_Expulsivo:0,
-  //   Tiempo_Dilatacion:0,
-  //   Duracion_Parto:0,
-  //   ID_Formula:0,
-  //   Test_APGAR:0,
-  //   ID_Tipo:0,
-  //   ID_Mutilacion:0,
-  //   CompMadre:null,
-  //   compNacido:null
-  // };
-  // datosParto:Parto[];
-
-  constructor(private _expedienteService:ExpedientesService,
+    constructor(private _expedienteService:ExpedientesService,
     private expedienteComponent:ExpedienteComponent, public dialog: MatDialog) {
       console.log(sessionStorage.IDExp)
       console.log(this.bloque2.ID_Expediente);
@@ -145,33 +129,11 @@ datosPartos = new Array();
 
 
   }
-//Metodo para hacer pruebas con las complicaciones
-  guardarDatos2(){
-    console.log(this.datosPartos[0].CompMadre);
 
-    for(let i=0; i<this.datosPartos[0].CompMadre.length; i++){
-      if(this.datosPartos[0].CompMadre[i] == true){
-        this.compMadreSel.push(i+1);
-      }
-    }
-    console.log('Mustro el array auxiliar para guardar los selecionados');
-    console.log(this.compMadreSel);
-  }
-
-  guardarDatos4(form){
-    let error = this.validarDatos(form);
-    if(error == false){
-
-      console.log('Puedo almacenar la informacion en la BD')
-    }
-  }
- //TODO=> FALTA MONTARLO todo junto
 validarDatos(form){
   let ok = true;
   console.log(this.bloque2);
   console.log(form);
-
-
   console.log('Compruebo manualmente los datos de los partos');
   let aux = 0;
   let error = false;
@@ -180,7 +142,7 @@ validarDatos(form){
       if(this.datosPartos[i].Fecha ==null || this.datosPartos[i].ID_Formula == null || this.datosPartos[i].ID_Tipo == null ){
         //No es valido y hay que modificar los partos
         error = true;
-      }
+        }
     }
   }else{
     console.log('no hay partos => no compruebo');
@@ -191,12 +153,14 @@ validarDatos(form){
       this.mensaje += ' y falta completar datos obligatorios en los partos'
     }
     document.getElementById('alert').className = 'alert alert-danger';
+    window.scroll(0, 0);
     return ok;
 
   }else{
     if(error == true){
       this.mensaje = 'Falta completar la información obligatoria de los partos';
       document.getElementById('alert').className = 'alert alert-danger';
+      window.scroll(0, 0);
       return ok
     }else{
       console.log('Todo Perfecto');
@@ -253,19 +217,43 @@ cambiarBloque(){
 
 openDialog(nPartos): void {
   console.log(nPartos);
-  this.prueba(nPartos);
-  console.log(this.datosPartos);
-  let dialogRef = this.dialog.open(Popup2, {
-    width: '1000px',
-    //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
-    data:{Npartos: nPartos, pagina: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
-  });
+  if(nPartos != ''){
+    if(this.datosPartos.length >= 1){
+      console.log('Aqui tengo que modificar el tamaño si borrar datos');
+      console.log(nPartos);
+      console.log(this.datosPartos.length);
+      let aux = nPartos-this.datosPartos.length;
+      console.log(aux);
+      if(aux > 0){
+        //Anyado partos
+        for(let i = 0; i<aux; i++){
+          this.datosPartos.push(new Parto);
+        }
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(this.datosPartos);
-    //this.animal = result;
-  });
+      }else{
+        //Borro partos
+        aux = -aux;
+        for(let i = 0; i<aux && i<=this.datosPartos.length; i++){
+          this.datosPartos.pop();
+        }
+      }
+      console.log(this.datosPartos);
+    }else{
+      this.prueba(nPartos);
+      console.log(this.datosPartos);
+    }
+    let dialogRef = this.dialog.open(Popup2, {
+      width: '1000px',
+      //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+      data:{Npartos: nPartos, pagina: 0, datosPartos: this.datosPartos, compNacido: this.compNacido, compMadre: this.compMadre, formulas: this.formulas, tiposMutilacion: this.tiposMutilacion}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(this.datosPartos);
+      //this.animal = result;
+    });
+  }
 }
 
 openDialog2(nPartos): void {

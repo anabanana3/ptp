@@ -1,5 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
   <div>
+    <div id="alert">{{mensaje}}</div>
     <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
 
     <div class="divLabels">
@@ -10,9 +11,9 @@
         </select> -->
       </div>
       <div class="divExp">
-        <input class="radiotrans" type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
+        <input class="radiotrans" required type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
         <label class="labeltransr" for="viajePSI">Sí</label>
-        <input class="radiotrans" type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
+        <input class="radiotrans" required type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
         <label class="labeltransr" for="viajePNO">No</label>
       </div>
 
@@ -23,9 +24,9 @@
         </select> -->
       </div>
       <div class="divExp">
-        <input class="radiotrans" type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
+        <input class="radiotrans" required type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
         <label class="labeltransr" for="viajesSI">Sí</label>
-        <input class="radiotrans" type="radio" name="viajes" value="0" id="viajesNO" formControlName="Viajes">
+        <input class="radiotrans" required type="radio" name="viajes" value="0" id="viajesNO" formControlName="Viajes">
         <label class="labeltransr" for="viajesNO">No</label>
       </div>
     </div>
