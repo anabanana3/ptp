@@ -116,6 +116,13 @@ button:hover{
   display: block;
   margin-bottom: 25px;
 }
+.checktrans[type="checkbox"]:disabled + .labeltrans{
+  color: #dbdbdb;
+  cursor: default;
+  border-radius: 4px;
+  padding-left: 5px;
+  background: #880042;
+}
 /**   BOTONES    **/
 
 /**   FONTELLO    **/

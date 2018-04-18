@@ -307,6 +307,18 @@ addCompNacidoParto(idP, sel){
       return res.json();
     });
   }
+  getExpedientesPubById(id){
+    let url=this.urlExpedientePub+'/'+id;
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.get(url, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    });
+  }
 
 
   buscarExp(f){
@@ -545,13 +557,12 @@ getIndicadoresById(id){
 }
 publicar(id){
   let token =  sessionStorage.token;
-  console.log(token);
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':token
   });
   let publico = this.urlPublicar+'/'+id;
-  return this.http.post(publico, {headers}).map(res=>{
+  return this.http.get(publico, {headers}).map(res=>{
     console.log(res.json());
     return res.json();
   })

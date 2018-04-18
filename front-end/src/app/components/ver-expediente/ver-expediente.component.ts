@@ -12,7 +12,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class VerExpedienteComponent implements OnInit {
 
   expID:number;
-  publico:number;
+  publico:boolean = false;
   expediente = new Array();
   bloque1 = new Array();
   bloque2 = new Array();
@@ -49,6 +49,9 @@ export class VerExpedienteComponent implements OnInit {
   pagActual;
   mensaje:string = '';
   sessionStorageID;
+  estaCheck = false;
+  labelPublico = "Publicar expediente";
+  coment = 0;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
@@ -141,6 +144,16 @@ export class VerExpedienteComponent implements OnInit {
     this._expedientesService.getIndicadoresById(this.expID).subscribe(data=>{
       this.indicadores=data;
     })
+    this._expedientesService.getExpedientesPubById(this.expID).subscribe(data=>{
+      //this.indicadores=data;
+      this.publico = false;
+      if(data.length >0 && data[0].ID_Publico == this.expID){
+        console.log(data[0].ID_Publico);
+        this.publico = true;
+        this.mostrarComentarios();
+      }
+      console.log(data);
+    })
   }
 
   openDialog(): void {
@@ -210,10 +223,21 @@ export class VerExpedienteComponent implements OnInit {
     this.tamPag=tam;
     this.getComentarios();
   }
-
+  mostrarComentarios(){
+    this.coment = 1;
+    if(this.publico){
+      this.estaCheck = true;
+      this.labelPublico = "Expediente público";
+    }else{
+      this.estaCheck = true;
+      this.labelPublico = "Expediente público";
+      this.publicar();
+    }
+  }
   publicar(){
     this._expedientesService.publicar(this.expID).subscribe(data=>{
-      //this.publico = this.expID; 
+      //this.publico = this.expID;
+      console.log("Publicar");
     })
   }
 }

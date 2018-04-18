@@ -364,8 +364,12 @@
     </mat-tab>
     <mat-tab label="Permisos">
       <h3>Permisos del expediente</h3>
-      <mat-checkbox (click)="publicar()" color="primary" class="publico" value="">Publicar expediente</mat-checkbox>
-      <mat-checkbox color="warn">Permitir comentarios</mat-checkbox>
+      <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+      <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+      <div *ngIf="coment==1" class="coment" id="coment">
+        <input class="checktrans" type="checkbox" name="comentarios" id="comentarios">
+        <label class="labeltrans" for="comentarios">Permitir comentarios</label>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>
