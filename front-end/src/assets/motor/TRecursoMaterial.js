@@ -65,11 +65,12 @@ class TRecursoMaterial extends TRecurso{
       //le paso las 3 coordenadas de la suma de los colores y la transparencia
 
       //Guardo los valores del material para mandarlos al shader
-      GDifuso = this.colorDifuso;
+      GDifuso = vec4.fromValues(this.colorDifuso[0],this.colorDifuso[1], this.colorDifuso[2],1.0);
       GAmbiental = this.colorAmbiente;
       GEspecular = this.colorEspecular;
       GBrillo = this.iluminacion;
       GIntensidadLuz = this.intensidad;
+      this.colorDifuso = GDifuso;
     })
   }
 }

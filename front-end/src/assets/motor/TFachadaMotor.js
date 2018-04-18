@@ -120,7 +120,7 @@ class TFachadaMotor {
     GMaterial = malla.material;
     GModelMatrix=trasla.entidad.modelMatrix;
 
-    return null;
+    return malla;
   }
 
   crearShader(frag, vert){

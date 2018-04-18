@@ -9,17 +9,20 @@ function iniciarMotor(){
 
   let vagina = GFachada.crearMallaCompleto("Vagina", "tetera.obj", "material.mtl", "textura.jpg");
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
+  setTimeout(() => {
+    GShader.mainShader(vagina, luz1);
+  },500);
 
   let canvas = document.getElementById('canvas');
-  recargar(true);
+  recargar(true, vagina);
 
 }
-function recargar(cambio){
+function recargar(cambio, vagina){
   while(cambio){
     setTimeout(() => {
       GFachada.draw();
-      GShader.loadShaders();
-    }, 500);
+      GShader.bucle(vagina.malla);
+    }, 1000);
     console.log("CAMBIO");
     cambio = false;
   }
