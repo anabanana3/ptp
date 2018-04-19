@@ -4,23 +4,23 @@ function iniciarMotor(){
   let camara1 = GFachada.crearCamaraCompleto("camara1");
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  // let camara = fachada.getCamaras()[0];
-  // let rotacion = fachada.rotar(camara, 1.4, 1, 0, 0);
-
   let vagina = GFachada.crearMallaCompleto("Vagina", "tetera.obj", "material.mtl", "textura.jpg");
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
+  setTimeout(() => {
+    GFachada.draw();
+    GShader.mainShader(vagina, luz1);
+  },500);
 
   let canvas = document.getElementById('canvas');
-  recargar(true);
+  recargar(true, vagina);
 
 }
-function recargar(cambio){
+function recargar(cambio, vagina){
   while(cambio){
     setTimeout(() => {
-      GFachada.draw();
-      GShader.loadShaders();
-    }, 500);
-    console.log("CAMBIO");
+      // GFachada.draw();
+      GShader.bucle(vagina.malla);
+    }, 1000);
     cambio = false;
   }
 }
@@ -42,8 +42,7 @@ function mostrarReal(){
 
   let camara = GFachada.getCamaras()[0];
   console.log(camara);
-  GFachada.rotar(camara, 0.785398, 0, 0, 1);
-  recargar(true);
+  GFachada.rotar(camara, 3.141588943012, 0, 1, 0);
 }
 
 function mostrarCartoon(){

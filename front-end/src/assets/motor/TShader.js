@@ -4,6 +4,14 @@ class TShader extends TRecurso {
     this.VertexShader;
     this.FragmentShader;
     this.shaderProgram;
+    this.programa = null;
+    this.vertexBuffer = null; //buffer de vertices
+    this.indexBuffer = null; //buffer de indices
+    this.normalBuffer = null; //buffer de normales
+    this.canvas = document.getElementById('canvas');
+    this.gl = null;
+    this.lastTime = 0;
+    this.angle = 0;
   }
 
   initWebGL(canvas) {
@@ -51,22 +59,20 @@ class TShader extends TRecurso {
     })
   }
 
-  //TODO => Pasarle los datos al Shader
-
-  load(gl){
-    // Program.load(attributeList, uniformList);
+  initProgram(){
+    var gl = this.gl;
+    //creamos el programa y le pasamos los shader
     //Vertex Shader
     var vertShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertShader, this.VertexShader);
     // console.log(this.VertexShader);
     gl.compileShader(vertShader);
-
     var error = gl.getShaderInfoLog(vertShader);
 
     if (error.length > 0) {
-      console.log(error)
+      console.log(error);
+      throw(error);
     }
-
     //FragmentShader
     var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragShader, this.FragmentShader);
@@ -76,185 +82,138 @@ class TShader extends TRecurso {
 
     if (error.length > 0) {
       console.log(error);
-      throw error;
+      throw(error);
     }
 
-    programa = gl.createProgram();
-    gl.attachShader(programa, vertShader);
-    gl.attachShader(programa, fragShader);
-    gl.linkProgram(programa);
+    //creamos el programa
+    this.programa  = gl.createProgram();
+    gl.attachShader(this.programa, vertShader);
+    gl.attachShader(this.programa, fragShader);
+    gl.linkProgram(this.programa);
+
+    if(!gl.getProgramParameter(this.programa, gl.LINK_STATUS)){
+      alert("No se pueden inicializar los shaders");
+    }
+    gl.useProgram(this.programa);
+
+    //vertices
+    this.programa.aVertexPosition = gl.getAttribLocation(this.programa, "aVertexPosition");
+    this.programa.aVertexNormal = gl.getAttribLocation(this.programa, "aVertexNormal");
+    //matrices
+    this.programa.ProjectionMatrix = gl.getUniformLocation(this.programa, "ProjectionMatrix");
+    this.programa.ModelViewMatrix = gl.getUniformLocation(this.programa, "ModelViewMatrix");
+    this.programa.NormalMatrix = gl.getUniformLocation(this.programa, "NormalMatrix");
+    //luces
+    this.programa.uLightDirection = gl.getUniformLocation(this.programa, "uLightDirection");
+    this.programa.uLightPosition = gl.getUniformLocation(this.programa, "uLightPosition");
+    this.programa.uLightDiffuse = gl.getUniformLocation(this.programa, "uLightDiffuse");
+    this.programa.uLightAmbient= gl.getUniformLocation(this.programa, "uLightAmbient");
+    this.programa.uLightSpecular= gl.getUniformLocation(this.programa, "uLightSpecular");
+    //material
+    this.programa.uMaterialDiffuse = gl.getUniformLocation(this.programa, "uMaterialDiffuse");
+    this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
+    this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
+    this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
+  }
+  initLights(luz, material){
+    var gl = this.gl;
+
+    gl.uniform3fv(this.programa.uLightDirection, luz.entidad.direccion);
+    gl.uniform3fv(this.programa.uLightPosition, luz.entidad.position);
+    gl.uniform4fv(this.programa.uLightAmbient, luz.entidad.ambiente);
+    gl.uniform4fv(this.programa.uLightDiffuse, luz.entidad.difusa);
+
+    gl.uniform4fv(this.programa.uMaterialDiffuse, material.colorDifuso);
+    gl.uniform4fv(this.programa.uMaterialSpecular, material.colorEspecular);
+    gl.uniform4fv(this.programa.uMaterialAmbient, material.colorAmbiental);
+    gl.uniform1f(this.programa.uShininess, material.uShininess);
+
+    // gl.uniform3f(this.programa.uLightDirection, 0.0, -1.0, -1.0);
+    // gl.uniform4fv(this.programa.uLightAmbient, [0.03, 0.03, 0.03, 1.0]);
+    // gl.uniform4fv(this.programa.uLightDiffuse, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform4fv(this.programa.uLightSpecular, [1.0, 1.0, 1.0, 1.0]);
+    //
+    // gl.uniform4fv(this.programa.uMaterialAmbient, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform4fv(this.programa.uMaterialDiffuse, [0.5, 0.8, 0.1, 1.0]);
+    // gl.uniform4fv(this.programa.uMaterialSpecular, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform1f(this.programa.uShininess, 230.0);
   }
 
-  loadShaders(){
-    let vertices = GVertices;
-    let indices = GIndices;
-    let normales = GNormales;
-    let texcords = GCoordTex;
+  initBuffers(modelo){
+    var gl = this.gl;
+    //vertices
+    this.vertexBuffer  = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(modelo.vertices), gl.STATIC_DRAW); //TO DO
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-    var canvas = document.getElementById('canvas');
-    var gl = this.initWebGL(canvas);
-
-    this.load(gl);
-    //Creo los buffers
-
-    var vertex_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER, null); //unbind -> desatar
-
-    // Create an empty buffer object to store Index buffer
-    var Index_Buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+    //indices
+    this.indexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(modelo.indices), gl.STATIC_DRAW);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 
-    var Normal_Buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, Normal_Buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normales), gl.STATIC_DRAW);
+    //normales
+    this.normalBuffer  = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(modelo.normales), gl.STATIC_DRAW); //TO DO
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
-    //buffer para las texturas
-    var Texture_Buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, Texture_Buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcords), gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+  }
 
-    console.log('Buffers ****');
-    console.log('vertices: ' + vertices);
-    console.log('indices: ' + indices);
-    console.log('normales: ' + normales);
+  draw(modelo){
+    var gl = this.gl;
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer); // Bind vertex buffer object
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);  // Bind index buffer object
+    gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
+    gl.enable(gl.DEPTH_TEST);
 
-    gl.useProgram(programa);
-    // Get the attribute location
-    var coord = gl.getAttribLocation(programa, "coordinates");
-    gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(coord);
+    gl.viewport(0,0, this.canvas.width, this.canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, Normal_Buffer);
-    //NORMAL
-    var sNormal = gl.getAttribLocation(programa, "VertexNormal");
-    gl.vertexAttribPointer(sNormal, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(sNormal);
+    //projection matrix
+    // mat4.perspective(45, this.canvas.width/this.canvas.height, 0.1, 10000.0, GProjectionMatrix);
+    gl.uniformMatrix4fv(this.programa.ProjectionMatrix, false, GProjectionMatrix);
 
-    console.log('coordinates: ????');
-    console.log('VertexNormal: ????');
-    console.log(GTextura);
-
-    //texturas
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
-    var textura;
-    textura = gl.createTexture();
-    //creamos una imagen para asociarla a la textura
-    var image = new Image();
-    image.onload = function() {
-      gl.bindTexture(gl.TEXTURE_2D, textura);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-      gl.bindTexture(gl.TEXTURE_2D, null);
-    }
-    image.src = '/assets/motor/' + GTextura;
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, Texture_Buffer);
-    var tex = gl.getAttribLocation(programa, "Textura");
-    gl.vertexAttribPointer(tex, 2, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(tex);
-
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, textura);
-    gl.uniform1i(programa.uSampler, 0);
-
-
-    //Le paso las matrices al shader
-    //Obtengo la ModelViewMatrix con la libreria GLMATRIX
+    //model view matrix
     GModelViewMatrix = mat4.create();
     mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix );
-    var SModelViewMatrix = gl.getUniformLocation(programa, "ModelViewMatrix");
-    gl.uniformMatrix4fv(SModelViewMatrix, false, GModelViewMatrix);
+    // mat4.rotate(GModelViewMatrix, this.angle * 3.14/180, [0,1,0]);
+    // mat4.translate(GModelViewMatrix, [0.0, 0.0, -2.0]);
+    gl.uniformMatrix4fv(this.programa.ModelViewMatrix, false, GModelViewMatrix);
 
-    //NormalMatrix
-    GNormalMatrix = mat4.create();
-    mat4.invert(GNormalMatrix, GModelViewMatrix);
-    mat4.transpose(GNormalMatrix, GNormalMatrix);
-    var SNormalMatrix = gl.getUniformLocation(programa, "NormalMatrix");
-    gl.uniformMatrix4fv(SNormalMatrix, false, GNormalMatrix);
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+    gl.vertexAttribPointer(this.programa.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(this.programa.aVertexPosition);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-    //ProjectionMatrix
-    var SProjectionMatrix = gl.getUniformLocation(programa, "ProjectionMatrix");
-    gl.uniformMatrix4fv(SProjectionMatrix, false, GProjectionMatrix);
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
+    gl.vertexAttribPointer(this.programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(this.programa.aVertexNormal);
 
-    console.log('GModelMatrix: ' + GModelMatrix);
-    console.log('GViewMatrix: ' + GViewMatrix);
-    console.log('ModelViewMatrix: ' + GModelViewMatrix);
-    console.log('GNormalMatrix: ' + GNormalMatrix);
-    console.log('GProjectionMatrix: ' + GProjectionMatrix);
-
-    //MVP
-    gMVP = mat4.create();
-    mat4.multiply(gMVP, GModelViewMatrix, GProjectionMatrix);
-    var sMVP = gl.getUniformLocation(programa, "MVP");
-    gl.uniformMatrix4fv(sMVP, false, gMVP);
-
-    console.log('gMVP: ' + gMVP);
-
-    console.log('Materiales **** ');
-    console.log('GDifuso: ' + GDifuso);
-    console.log('GAmbiental: ' + GAmbiental);
-    console.log('GEspecular: ' + GEspecular);
-    console.log('GBrillo: ' + GBrillo);
-
-    //Paso las componentes del material
-    var SDifusa = gl.getUniformLocation(programa, "Kd");
-    gl.uniform1i(SDifusa, GDifuso);
-    console.log(SDifusa);
-
-    var SAmbiental = gl.getUniformLocation(programa, "Ka");
-    gl.uniform1i(SAmbiental, GAmbiental);
-
-    var SEspecular = gl.getUniformLocation(programa, "Ks");
-    gl.uniform1i(SEspecular, GEspecular);
-
-    var SBrillo = gl.getUniformLocation(programa, "Shininess");
-    gl.uniform1f(SBrillo, GBrillo);
-
-    //Pasamos las componentes de la luz
-    var LAmbiental = gl.getUniformLocation(programa, "La");
-    gl.uniform3fv(LAmbiental, GLAmbiental);
-
-    var LDifusa = gl.getUniformLocation(programa, "Ld");
-    gl.uniform3fv(LDifusa, GLDifuso);
-
-    var LEspecular = gl.getUniformLocation(programa, "Ls");
-    gl.uniform3fv(LEspecular, GLEspecular);
-
-    //LIGTHPOSITION
-    let luz = vec4.create();
-    mat4.multiply(luz, GPositionLuz, [1,1,1,1]);
-    var SPosicionLuz = gl.getUniformLocation(programa, "LightPosition");
-    gl.uniform4fv(SPosicionLuz, luz);
-    console.log('GPositionLuz: ' + GPositionLuz);
-    console.log('luz: ' + luz);
-
-    //LIGTHINTENSITY
-    var SIntensidad = gl.getUniformLocation(programa, "LightIntensity");
-    gl.uniform3fv(SIntensidad, GIntensidadLuz);
-    console.log('GIntensidadLuz: ' + GIntensidadLuz);
-
-    //Drawing
-    gl.viewport(0,0,canvas.width,canvas.height);
-
-    //gl.drawElements(Mode, Count, Type, Offset)
-    gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-    // gl.drawElements(gl.LINE_LOOP, indices.length, gl.UNSIGNED_SHORT,0);
-
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+    gl.drawElements(gl.TRIANGLES, modelo.indices.length, gl.UNSIGNED_SHORT, 0); //deberiamos de cambiar GIndices
   }
 
-  getShaderProgram(){
-    return this.shaderProgram;
+  bucle(modelo){
+    this.draw(modelo);
+    this.animate();
   }
+
+  animate(){
+      var timeNow = new Date().getTime();
+      if(this.lastTime != 0){
+        var elapsed = timeNow - this.lastTime;
+        this.angle += (90*elapsed) / 10000.0;
+      }
+      this.lastTime = timeNow;
+  }
+
+  mainShader(modelo, luz){
+    this.gl = this.initWebGL(this.canvas);
+    this.initProgram();
+    this.initBuffers(modelo.malla);
+    this.initLights(luz, modelo.material);
+    this.bucle(modelo.malla);
+    this.animate();
+  }
+  //BufferData( , , gl.STREAM_DRAW) para que los datos se cambien cada vez que se renderiza
 }
