@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService} from "../../services/user.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-contacto',
@@ -14,7 +15,7 @@ export class ContactoComponent {
   }
   mensaje:string = '';
 
-  constructor(private _userService:UserService) {}
+  constructor(private _userService:UserService, public dialog: MatDialog) {}
 
   contactar(forma:NgForm){
     console.log(this.json);
@@ -30,6 +31,42 @@ export class ContactoComponent {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }
-    this._userService.sendEmail(this.json).subscribe(data =>{ console.log(data) });
+    this._userService.sendEmail(this.json).subscribe(data =>{
+      if(data.Codigo == 400){
+        //Abrir un popUp para hacer la confirmación
+        this.openDialog();
+
+      }
+    });
   }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ContactPopup, {
+      width: '1000px',
+      //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+      location.href = '/';
+    });
+  }
+
+
+}
+
+@Component({
+  selector: 'popup',
+  templateUrl: 'popup.component.html',
+})
+export class ContactPopup {
+
+  constructor(
+    public dialogRef: MatDialogRef<ContactPopup>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
