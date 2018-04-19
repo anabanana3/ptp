@@ -8,6 +8,7 @@ class TRecursoMaterial extends TRecurso{
     this.iluminacion;
     this.transparencia;
     this.intensidad;
+    this.uShininess = 23;
   }
   //buscar estructura archivos .mtl leerlo y cargarlo como hacemos con la TRecursoMalla
   //almacenar color difuso, color especular, etc
@@ -71,6 +72,7 @@ class TRecursoMaterial extends TRecurso{
       GBrillo = this.iluminacion;
       GIntensidadLuz = this.intensidad;
       this.colorDifuso = GDifuso;
+      this.colorEspecular = vec4.fromValues(this.colorEspecular[0],this.colorEspecular[1], this.colorEspecular[2],1.0);
     })
   }
 }
