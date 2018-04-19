@@ -30,7 +30,7 @@ import { HomeAdminComponent } from './components/admin/home/homeAdmin.component'
 import { ExpedientesAdminComponent } from './components/admin/expedientes.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
-import { ContactoComponent } from './components/contacto/contacto.component';
+import { ContactoComponent, ContactPopup } from './components/contacto/contacto.component';
 import { FooterComponent } from './footer/footer.component';
 import { VermasComponent } from './components/vermas/vermas.component';
 import { Bloque1Component } from './components/expediente/bloque1/bloque1.component';
@@ -103,7 +103,8 @@ import { ExpiredSessionComponent } from './components/expired-session/expired-se
     Popup2,
     ChatComponent,
     EstadisticasComponent,
-    ExpiredSessionComponent
+    ExpiredSessionComponent,
+    ContactPopup
   ],
   imports: [
     BrowserModule,
@@ -122,7 +123,8 @@ import { ExpiredSessionComponent } from './components/expired-session/expired-se
   ],
   entryComponents: [
     Popup,
-    Popup2
+    Popup2,
+    ContactPopup
   ],
   providers: [
     ProfesionesService,
