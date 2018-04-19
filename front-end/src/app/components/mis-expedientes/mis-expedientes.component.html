@@ -3,15 +3,13 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button>
+  <!-- <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
+  </button> -->
+<div class="gridContainer">
+<div class="headerMisExp">
+  <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
 
-<div style="margin:2%">
-  <button class="btn-fill text12 textPink" [routerLink]="['/expediente']">Nuevo Expediente</button>
-</div>
-
-<div class="optionsExp">
-  <div class="optionsRigth" >
+  <div class="optionsRight" >
       <p (click)="cambio(1)" id="priv"> Privados </p>
       <p>  | </p>
       <p (click)="cambio(2)" id=publ> Publicos</p>
@@ -19,52 +17,112 @@
     </div>
 </div>
 
-<!-- TODO Formulario con todos los criterios de busqueda -->
-  <div class="searchBar">
-    <form (ngSubmit)="buscar(1,10)">
-      <label for="titulo">Titulo</label>
-      <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
+<div class="lateralSearch">
+      <form (ngSubmit)="buscar(1,10)">
+        <!-- <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="titulo">Titulo</label>
+        </div>
+        <div class="divExpDeUnoSearch">
+          <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título" name="Titulo" id="titulo">
+          <br>
+        </div>
+      </div> -->
+    <div class="divLabelsDeUnoSearch">
 
-      <label for="f1">Desde</label>
-      <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
-      <label for="f2">Hasta</label>
-      <input [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+      <div class="inputSearchDiv">
+        <img src="../assets/img/SearchIcon.png"/>
+        <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
+        <br>
+      </div>
+    </div>
 
-      <label for="lugar"> Lugar de detección </label>
-      <input [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+      <div class="divLabelsDeUnoSearch">
+        <div class="divExpDeUnoSearch">
 
-      <label for="etnia">Etnia de origen</label>
-      <select [(ngModel)]="Filtros.Etnia" name="Etnia">
-        <option value="0">Seleccione la etnia</option>
-        <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
-      </select>
+        <label for="f1">Desde</label>
+      </div>
+      <div class="divExpDeUnoSearch">
+        <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" data-date-inline-picker="true" type="date" id="f1" name="Fecha1">
+        <br>
+      </div>
+    </div>
 
-      <label for="tipoMGF">Tipo de MGF</label>
-      <select [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
-        <option value="0">Seleccione el tipo de MGF</option>
-        <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
-      </select>
+    <div class="divLabelsDeUnoSearch">
+      <div class="divExpDeUnoSearch">
+        <label for="f2">Hasta</label>
+      </div>
+      <div class="divExpDeUnoSearch">
+        <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" data-date-inline-picker="true" type="date" id="f2" name="Fecha2">
+        <br>
+      </div>
+    </div>
 
-      <button class="btn-relleno" type="submit" name="button">Buscar</button>
+    <div class="lineaSearch"></div>
+    <br>
 
-    </form>
+    <div class="divLabelsDeUnoSearch">
+      <div class="divExpDeUnoSearch">
+        <label for="lugar">Lugar de detección</label>
+      </div>
+      <div class="divExpDeUnoSearch">
+        <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+        <br>
+      </div>
+    </div>
 
+    <div class="divLabelsDeUnoSearch">
+      <div class="divExpDeUnoSearch">
+        <label for="etnia">Etnia de origen</label>
+      </div>
+      <div class="divExpDeUnoSearch">
+        <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
+          <option value="0">Seleccione la etnia</option>
+          <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+        </select>
+        <br>
+      </div>
+    </div>
+
+    <div class="divLabelsDeUnoSearch">
+      <div class="divExpDeUnoSearch">
+        <label for="tipoMGF">Tipo de MGF</label>
+      </div>
+      <div class="divExpDeUnoSearch">
+        <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+          <option value="0">Seleccione el tipo de MGF</option>
+          <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+
+  <div class="SubmitSearch">
+    <button class="btn-relleno" type="submit" name="button">Buscar</button>
   </div>
+      </form>
 
+</div>
+
+
+<div class="expedientesDiv">
 <!-- Mensaje de que no tienes nada almacenado -->
 <div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
 <!-- Mensaje de que no hay resultados de busqueda -->
 <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
 <div *ngIf="expedientes.length>0" class="expediente-container">
-  <div  *ngFor="let e of expedientes" class=expediente [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
-    <div class="expedienteDesc">
-      <img class="imgExp" src="/assets/img/folder.png" alt="Logo expediente">
-      <p>{{e.Descripcion.split("'")[1]}}</p>
-    </div>
+  <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
+    <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
+    <div class="expedienteDesc"> -->
+    <div class="imgCircle">
+      <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
+  </div>
+    <!-- </div> -->
     <div class="expediente-body">
       <p>{{e.Titulo}}</p>
-      <p>{{e.Fecha.split('T')[0]}}</p>
-      <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button>
+      <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
+      <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
     </div>
   </div>
 </div>
@@ -89,6 +147,7 @@
     </a>
   </li>
 </ul>
-
 </div>
-<app-footer></app-footer>
+</div>
+</div>
+ <app-footer></app-footer>
