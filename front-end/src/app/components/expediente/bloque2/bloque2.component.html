@@ -104,7 +104,7 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
       </h2>
       <div *ngIf="hayParto==true">
         <label>Número de partos de los que desea guardar información:</label>
-        <input id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
+        <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
         <br>
         <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
  <!-- <div class="partos">

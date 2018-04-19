@@ -1,5 +1,5 @@
 
-<div class="divBlanco bgColorWhite">
+<div class="divBlancoRegistro">
   <header>
     <a href="principal.component.html"><img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" alt="Logo"></a>
   </header>
@@ -26,12 +26,12 @@
       <label for="sexo">Sexo</label>
 
       <div class="radioButtons">
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="mujer" value="1" id="mujer">
-          <label for="mujer">Mujer</label>
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="hombre" value="2" id="hombre">
-          <label for="hombre">Hombre</label>
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="otro" value="3" id="otro">
-          <label for="otro">Prefiero no especificar</label>
+        <input class="radiotrans" [(ngModel)]="usuario.Sexo" type="radio" name="mujer" value="1" id="mujer">
+          <label class="labeltransr" for="mujer">Mujer</label>
+        <input class="radiotrans" [(ngModel)]="usuario.Sexo" type="radio" name="hombre" value="2" id="hombre">
+          <label class="labeltransr" for="hombre">Hombre</label>
+        <input class="radiotrans" [(ngModel)]="usuario.Sexo" type="radio" name="otro" value="3" id="otro">
+          <label class="labeltransr" for="otro">Prefiero no especificar</label>
       </div>
 
       <label for="dni">NIE/NIF *</label>

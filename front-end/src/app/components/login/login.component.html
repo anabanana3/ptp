@@ -16,8 +16,8 @@
         <input [(ngModel)]="json.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
     </div>
     <div>
-      <input [(ngModel)]="check_asoc" type="checkbox" name="asociacion" value="asociacion" id="check">
-        <label for="check" class="text12">Soy una asociación</label> <br>
+      <input class="radiotranslogin" [(ngModel)]="check_asoc" type="checkbox" name="asociacion" value="asociacion" id="check">
+      <label for="check" class="labeltransrlogin text12">Soy una asociación</label> <br>
       <button type="submit" name="button" class="btn-border">ENTRAR</button>
     </div>
   </form>
