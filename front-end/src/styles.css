@@ -465,8 +465,7 @@ canvas{
 /*** USUARIO HOME  *****/
 
 .itemOver{
-  z-index: -1;
-<<<<<<< HEAD
+  /* z-index: -1; */
   position: absolute;
   display: flex;
   flex-wrap: wrap;
@@ -1119,7 +1118,7 @@ option{
   padding: 20px 0px 15px 20px;
   height: 90vh;
   margin-bottom: -13%;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .lateralSearch > form{

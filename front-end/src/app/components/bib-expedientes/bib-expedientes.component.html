@@ -14,18 +14,50 @@
 
   <div class="lateralSearch">
     <form (ngSubmit)="buscar(1,10)">
-      <label for="autor">Autor</label>
-      <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
-      <label for="profesion">Profesion del autor</label>
-      <select [(ngModel)]="Filtros.Profesion" name="Profesion">
-        <option value="0">Selecione una profesión</option>
-        <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
-      </select>
-      <label for="titulo">Titulo</label>
-      <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
 
-      <label for="f1">Desde</label>
-      <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+      <div class="divLabelsDeUnoSearch">
+        <div class="divExpDeUnoSearch">
+          <label for="autor">Autor</label>
+        </div>
+        <div class="divExpDeUnoSearch">
+          <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+          <br>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUnoSearch">
+        <div class="divExpDeUnoSearch">
+          <label for="profesion">Profesion del autor</label>
+        </div>
+        <div class="divExpDeUnoSearch">
+          <select [(ngModel)]="Filtros.Profesion" name="Profesion">
+            <option value="0">Selecione una profesión</option>
+            <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+          </select>
+          <br>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUnoSearch">
+        <div class="divExpDeUnoSearch">
+          <label for="titulo">Titulo</label>
+        </div>
+        <div class="divExpDeUnoSearch">
+          <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
+          <br>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUnoSearch">
+        <div class="divExpDeUnoSearch">
+          <label for="f1">Desde</label>
+        </div>
+        <div class="divExpDeUnoSearch">
+          <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+        </div>
+        <br>
+      </div>
+
       <label for="f2">Hasta</label>
       <input [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
 
