@@ -38,17 +38,26 @@ export class Bloque3Component implements OnInit {
       return;
     }else{
       this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
-        if(data.warningCount == 0){
-          //      this.expedienteComponent.bloque = 4;
-          this.cambiarBloque();
-          // this.mensaje = 'Guardado correctamente!';
-          // document.getElementById('alert').className = 'alert alert-success';
+        if(data.Codigo == 501){
+          location.href ='/expired';
+        }else{
+          if(data.warningCount == 0){
+            //      this.expedienteComponent.bloque = 4;
+            this.cambiarBloque();
+            // this.mensaje = 'Guardado correctamente!';
+            // document.getElementById('alert').className = 'alert alert-success';
+          }
         }
       });
     }
   }
+  guardarDatos2(form){
+    this.cambiarBloque();
+  }
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 3;
+     this.expedienteComponent.bloquearPestanya(3);
+     this.expedienteComponent.desbloquearPestaña(4);
   }
   ngOnInit() {}
 }

@@ -38,11 +38,7 @@ export class Bloque4Component implements OnInit {
   }
 
 guardarDatos2(form){
-  console.log(form.valid);
-  console.log(form.value);
-  if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || form.valid == false){
-    console.log('Error');
-  }
+  this.cambiarBloque();
 }
 
   //guardo los id
@@ -138,11 +134,14 @@ guardarDatos2(form){
       }
     }
     this._expedienteService.addBloque4(this.json).subscribe(data =>{
-      console.log(data);
-      let bloque = data.insertId;
-      this._expedienteService.addConsecuenciasSalud(this.json.ID_Expediente, bloque, this.consecuencias).subscribe(data => {
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
         console.log(data);
-      });
+        let bloque = data.insertId;
+        this._expedienteService.addConsecuenciasSalud(this.json.ID_Expediente, bloque, this.consecuencias).subscribe(data => {
+          console.log(data);
+        });
         if(data.warningCount == 0){
 
           this.mensaje = 'Guardado correctamente!';
@@ -152,11 +151,15 @@ guardarDatos2(form){
           //this.expedienteComponent.bloque = 5;
         }
         this.cambiarBloque();
+      }
     });
 
   }
+
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 4;
+     this.expedienteComponent.bloquearPestanya(4);
+     this.expedienteComponent.desbloquearPestaña(5);
   }
 
   ngOnInit() {

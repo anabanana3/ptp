@@ -52,12 +52,16 @@ etnias = new Array();
       //Recupero los expedientes del usuario que ha iniciado sesion
       this.getExpedientesUser(1,1,this.tamPag);
       this._expedientesService.getExpedientesPrivUser(1, this.tamPag).subscribe(data =>{
-        console.log(data);
-        this.expedientes = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
-        //console.log(this.expedientes);
-        document.getElementById("priv").style.fontWeight = "bold";
-        console.log(this.expedientes);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          console.log(data);
+          this.expedientes = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+          //console.log(this.expedientes);
+          document.getElementById("priv").style.fontWeight = "bold";
+          console.log(this.expedientes);
+        }
       });
     }
    }
@@ -103,10 +107,20 @@ getExpedientesUser(tipo,pag, tam){
   switch (tipo){
     case 1:
     this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
-      this.expedientes = data.Data;
-      console.log('Resultado de la funcion aux privados');
-      console.log(data);
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Resultado == 'OK'){
+          this.expedientes = new Array();
+          this.mensaje = 'No tienes almacenado ningún expediente privado';
+          document.getElementById('alert').className = 'alert alert-danger';
+      }else{
+        if(data.Codigo == 501){
+          location.href ='/expired';
+        }else{
+          this.expedientes = data.Data;
+          console.log('Resultado de la funcion aux privados');
+          console.log(data);
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      }
       });
     break;
     case 2:
@@ -118,20 +132,28 @@ getExpedientesUser(tipo,pag, tam){
           this.mensaje = 'No tienes expediente públicos';
           document.getElementById('alert').className = 'alert alert-danger';
         }else{
-          this.expedientes = data.Data;
-          console.log('Resultado de la funcion aux publicos');
-          console.log(data);
-          this.paginacion(data.Pagina, data.Paginas_Totales);
+          if(data.Codigo == 501){
+            location.href = '/expired';
+          }else{
+            this.expedientes = data.Data;
+            console.log('Resultado de la funcion aux publicos');
+            console.log(data);
+            this.paginacion(data.Pagina, data.Paginas_Totales);
+          }
         }
       })
     break;
     case 3:
       //Todos
       this._expedientesService.getExpedientesUser(pag, tam).subscribe(data=>{
-        this.expedientes = data.Data;
-        console.log('Resultado de la funcion aux ambos');
-        console.log(data);
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.expedientes = data.Data;
+          console.log('Resultado de la funcion aux ambos');
+          console.log(data);
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
       })
 
     break;
@@ -197,14 +219,17 @@ getExpedientesUser(tipo,pag, tam){
          this.mensaje = 'No hay resultados para la busqueda solicitada';
          document.getElementById('alert').className = 'alert alert-danger';
          //return;
-
        }else{
-         console.log('Hay busqueda');
-         this.busqueda = true;
-         this.expedientes = data.Data;
-         this.mensaje = '';
-         this.paginacion(data.Pagina, data.Paginas_Totales);
-       }
+         if(data.Codigo == 501){
+           location.href = '/expired';
+         }else{
+           console.log('Hay busqueda');
+           this.busqueda = true;
+           this.expedientes = data.Data;
+           this.mensaje = '';
+           this.paginacion(data.Pagina, data.Paginas_Totales);
+         }
+        }
      });
   }
   buscar2(pag, tamPag=this.tamPag){

@@ -35,7 +35,11 @@ export class HomeComponent {
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._userService.getUsuario(this.id).subscribe(data =>{
-      this.user = data[0];
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.user = data[0];
+      }
     })
   }
 

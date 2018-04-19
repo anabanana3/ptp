@@ -159,36 +159,41 @@ guardarDatos(){
 
   if(this.form.valid == true){
     this._expedienteService.addPersona(this.menor).subscribe(data=>{
-      //Falta un if para ver que la persona se crea Correctamente
-      //Si se crea Correctamente
-      let aux=data;
-      console.log('Muestro la respuesta de crear una persona e intento mostrar el id de insercion');
-      console.log(data);
-      console.log(data.insertId);
-      let idP = data.insertId;
-      this.expediente.ID_Persona=data.insertId;
-
-      //He introducido a la menor implicada en el expediente => introduzco a sus familiares
-      if(this.HayMadre==true){
-        this.addFamiliar(this.madre,idP, 1);
-      }
-      if(this.HayPadre == true){
-        this.addFamiliar(this.padre, idP, 2);
-      }
-      //Una vez creadas las relaciones de perentesco creamos los campos del bloque 1
-      this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
-        //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
-        sessionStorage.IDExp = data.insertId;
-        this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
-          console.log(data)
-          //Por último => todo correcto cambiamos de bloque
-          this.cambiarBloque();
-          //  this.expedienteComponent.bloque = 2;
-          console.log('Cambio de bloque');
-
-        });
+      //TODO: Solo comprobamos una vez si ha caducado la sesion para que se almacene toda la informacion y no se quede a mitad el expediente
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        //Falta un if para ver que la persona se crea Correctamente
+        //Si se crea Correctamente
+        let aux=data;
+        console.log('Muestro la respuesta de crear una persona e intento mostrar el id de insercion');
         console.log(data);
-      });
+        console.log(data.insertId);
+        let idP = data.insertId;
+        this.expediente.ID_Persona=data.insertId;
+
+        //He introducido a la menor implicada en el expediente => introduzco a sus familiares
+        if(this.HayMadre==true){
+          this.addFamiliar(this.madre,idP, 1);
+        }
+        if(this.HayPadre == true){
+          this.addFamiliar(this.padre, idP, 2);
+        }
+        //Una vez creadas las relaciones de perentesco creamos los campos del bloque 1
+        this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
+          //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
+          sessionStorage.IDExp = data.insertId;
+          this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
+            console.log(data)
+            //Por último => todo correcto cambiamos de bloque
+            this.cambiarBloque();
+            //  this.expedienteComponent.bloque = 2;
+            console.log('Cambio de bloque');
+
+          });
+          console.log(data);
+        });
+      }
     });
   }else{
     this.mensaje = 'Completa todos los campos obligatorios.'
@@ -233,6 +238,9 @@ addFamiliar(persona, familiar, tipo){
 cambiarBloque(){
   console.log(this.expedienteComponent.bloque);
    this.expedienteComponent.selectedTab = 1;
+   this.expedienteComponent.bloquearPestanya(1);
+   this.expedienteComponent.desbloquearPestaña(2);
+
 }
 
 

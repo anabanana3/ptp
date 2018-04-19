@@ -71,6 +71,10 @@ datosPartos = new Array();
 
   ngOnInit() {
   }
+
+  guardarDatos2(){
+    this.cambiarBloque();
+  }
   // TODO: falta añadoir las complicacioes de la madre y del recien nacido
   guardarDatos(form){
     console.log('Se viene marronazo');
@@ -83,45 +87,50 @@ datosPartos = new Array();
     let error = this.validarDatos(form);
     if(error == false){
       this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
-        console.log(data);
-        let bloque = data.insertId;
-        //Ver si existen los partos
-        if(this.datosPartos.length >0){
-          //Creo los partos
-          for(let i=0; i<this.datosPartos.length; i++){
-            this.datosPartos[i].Id_Bloque= bloque;
-            console.log(this.datosPartos[i]);
-            this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
-              console.log(data);
-              let idParto = data.ID_Parto;
-              console.log('Muestro el id del parto que acabo de crear');
-              console.log(idParto);
-              //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
-              //Miro si ha selecionado alguna complicacion
-              if(this.datosPartos[i].CompMadre.length>0){
-                this.getCompMadreSel(i);
-                // TODO: Implementar las funciones del ExpedientesService
-                console.log('Muestro el id del parto que voy a mandar');
+        //Solo realizamos una comprobacion para que todo el proceso de almacenar la información no se quede a mitad
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          console.log(data);
+          let bloque = data.insertId;
+          //Ver si existen los partos
+          if(this.datosPartos.length >0){
+            //Creo los partos
+            for(let i=0; i<this.datosPartos.length; i++){
+              this.datosPartos[i].Id_Bloque= bloque;
+              console.log(this.datosPartos[i]);
+              this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
+                console.log(data);
+                let idParto = data.ID_Parto;
+                console.log('Muestro el id del parto que acabo de crear');
                 console.log(idParto);
-                this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
-                  console.log('Info sobre las complicaciones de la madre');
-                  console.log(data);
-                });
-              }
-              //Miro si se ha selecionado alguna complicacion
-              if(this.datosPartos[i].compNacido.length>0){
-                this.getCompNacidoSel(i);
-                this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
-                  console.log('Info sobre las complicaciones del nacido');
-                  console.log(data);
-                  //Cambio el bloque
-                  //this.cambiarBloque();
-                  // this.expedienteComponent.bloque = 3;
-                })
-              }
-              this.cambiarBloque();
-            })
+                //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
+                //Miro si ha selecionado alguna complicacion
+                if(this.datosPartos[i].CompMadre.length>0){
+                  this.getCompMadreSel(i);
+                  // TODO: Implementar las funciones del ExpedientesService
+                  console.log('Muestro el id del parto que voy a mandar');
+                  console.log(idParto);
+                  this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
+                    console.log('Info sobre las complicaciones de la madre');
+                    console.log(data);
+                  });
+                }
+                //Miro si se ha selecionado alguna complicacion
+                if(this.datosPartos[i].compNacido.length>0){
+                  this.getCompNacidoSel(i);
+                  this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
+                    console.log('Info sobre las complicaciones del nacido');
+                    console.log(data);
+                    //Cambio el bloque
+                    //this.cambiarBloque();
+                    // this.expedienteComponent.bloque = 3;
+                  })
+                }
+              })
+            }
           }
+          this.cambiarBloque();
         }
       });
     }
@@ -213,6 +222,8 @@ modificarPartos(){
 cambiarBloque(){
    console.log('Cambio de bloque');
    this.expedienteComponent.selectedTab = 2;
+   this.expedienteComponent.bloquearPestanya(2);
+   this.expedienteComponent.desbloquearPestaña(3);
 }
 
 openDialog(nPartos): void {

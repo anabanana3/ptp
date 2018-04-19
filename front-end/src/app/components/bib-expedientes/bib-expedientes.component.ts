@@ -54,7 +54,11 @@ profesiones = new Array();
       //Recupero los 10 ultimos expedientes
       let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
       this._expedientesService.buscar2Exp(url).subscribe(data =>{
-        this.expedientes = data.Data;
+        if(data.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          this.expedientes = data.Data;
+        }
       })
 
       if(sessionStorage.getItem('asociacion') != null){
@@ -132,11 +136,15 @@ profesiones = new Array();
         //return;
 
       }else{
-        console.log('Hay busqueda');
-        this.busqueda = true;
-        this.expedientes = data.Data;
-        this.mensaje = '';
-        //this.paginacion(data.Pagina, data.Paginas_Totales);
+        if(data.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          console.log('Hay busqueda');
+          this.busqueda = true;
+          this.expedientes = data.Data;
+          this.mensaje = '';
+          //this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
       }
     });
    }

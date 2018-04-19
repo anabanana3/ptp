@@ -50,11 +50,15 @@ export class RecursosComponent {
 
   getMaterialesPropios(pag){
     this._materialService.getMaterialesPropios(pag, this.tamPag).subscribe(data => {
-      this.loading = true;
-      this.recursos = data.Data;
-      document.getElementById("publicos").style.fontWeight = "normal";
-      document.getElementById("propios").style.fontWeight = "bold";
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href ='/expired';
+      }else{
+        this.loading = true;
+        this.recursos = data.Data;
+        document.getElementById("publicos").style.fontWeight = "normal";
+        document.getElementById("propios").style.fontWeight = "bold";
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      }
     }, error => {
       console.log(error);
     });
@@ -62,11 +66,15 @@ export class RecursosComponent {
 
   getMaterialesPublicos(pag){
     this._materialService.getMaterialesPublicos(pag, this.tamPag).subscribe(data => {
-      this.loading = true;
-      this.recursos = data.Data;
-      document.getElementById("propios").style.fontWeight = "normal";
-      document.getElementById("publicos").style.fontWeight = "bold";
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.loading = true;
+        this.recursos = data.Data;
+        document.getElementById("propios").style.fontWeight = "normal";
+        document.getElementById("publicos").style.fontWeight = "bold";
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      }
     }, error => {
       console.log(error);
     })
@@ -86,15 +94,23 @@ export class RecursosComponent {
 
     if(this.view === 0){
       this._materialService.searchMaterialPropios(nombre, formato, null, 1, this.tamPag).subscribe(data => {
-        this.recursos = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.recursos = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
       })
     }
 
     if(this.view === 1){
       this._materialService.searchMaterialPublicos(nombre, formato, 1, null, this.tamPag).subscribe(data => {
-        this.recursos = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.recursos = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
       })
     }
   }
@@ -150,8 +166,12 @@ export class RecursosComponent {
 
   borrar(id, path){
     this._materialService.deleteMaterial(id, path).subscribe(data => {
-      this.mensaje = 'Recurso eliminado correctamente';
-      document.getElementById('alert').className = 'alert alert-success';
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.mensaje = 'Recurso eliminado correctamente';
+        document.getElementById('alert').className = 'alert alert-success';
+      }
     }, error => {
       console.log(error);
     })

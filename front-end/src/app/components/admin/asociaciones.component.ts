@@ -25,10 +25,14 @@ export class AsociacionesComponent {
 
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
     this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
-      this.loading = false;
-      this.asociacion = data.Data;
-      console.log(this.asociacion);
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Codigo == 501 ){
+        location.href = '/expired';
+      }else{
+        this.loading = false;
+        this.asociacion = data.Data;
+        console.log(this.asociacion);
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      }
     })
   }
 
@@ -55,9 +59,14 @@ export class AsociacionesComponent {
         })
       }
       else{
-        this.mensaje = 'Ha ocurrido un error!';
-        location.href = '/admin/asociaciones#arriba';
-        document.getElementById('alert').className = 'alert alert-danger';
+        if(res.Codigo == 501){
+          //Ha expirado la sesion
+          location.href = '/expired';
+        }else{
+          this.mensaje = 'Ha ocurrido un error!';
+          location.href = '/admin/asociaciones#arriba';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
     })
   }
@@ -76,6 +85,10 @@ export class AsociacionesComponent {
           this.asociacion = data.Data;
           this.paginacion(data.Pagina, data.Paginas_Totales);
         })
+      }else{
+        if(res.Codigo == 501){
+          location.href = '/expired';
+        }
       }
     })
   }
@@ -107,21 +120,29 @@ export class AsociacionesComponent {
     //console.log('Muestro el tamaño de pagina que desea el usuario', tam);
     //this.view(this.tabla, pag, tam);
     this._asociacionesServices.getAsociaciones(pag, this.tamPag).subscribe(data =>{
-      this.loading = false;
-      console.log(data);
-      this.asociacion = data.Data;
-      this.paginacion(pag, data.Paginas_Totales);
-      this.pagActual = data.Pagina;
+      if(data.Codigo == 501){
+          location.href = '/expired';
+      }else{
+        this.loading = false;
+        console.log(data);
+        this.asociacion = data.Data;
+        this.paginacion(pag, data.Paginas_Totales);
+        this.pagActual = data.Pagina;
+      }
     });
   }
   cambiarTamPag(tam){
     console.log(tam);
     this.tamPag=tam;
     this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data =>{
-      this.loading = false;
-      console.log(data);
-      this.asociacion = data.Data;
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.loading = false;
+        console.log(data);
+        this.asociacion = data.Data;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      }
     });
     //this.view(this.tabla, 1, this.tamPag);;
   }

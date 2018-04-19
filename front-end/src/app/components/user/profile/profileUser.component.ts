@@ -82,18 +82,22 @@ export class ProfileUserComponent {
     this.id = parseInt(sessionStorage.getItem('iD'));
 
     this._userService.getUsuario(this.id).subscribe(data =>{
-      this.user = data[0];
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.user = data[0];
 
-      this.user.Nombre = this.user.Nombre.split("'")[1];
-      this.user.Email = this.user.Email.split("'")[1];
-      this.user.Direccion = this.user.Direccion.split("'")[1];
-      this.user.Asociacion = this.user.Asociacion.split("'")[1];
-      this.user.Apellidos = this.user.Apellidos.split("'")[1];
-      this.user.DNI = this.user.DNI.split("'")[1];
-      this.user.F_Nacimiento = data[0].F_Nacimiento.split('T')[0];
-      this.user.Sexo = data[0].ID_Sexo.toString();
+        this.user.Nombre = this.user.Nombre.split("'")[1];
+        this.user.Email = this.user.Email.split("'")[1];
+        this.user.Direccion = this.user.Direccion.split("'")[1];
+        this.user.Asociacion = this.user.Asociacion.split("'")[1];
+        this.user.Apellidos = this.user.Apellidos.split("'")[1];
+        this.user.DNI = this.user.DNI.split("'")[1];
+        this.user.F_Nacimiento = data[0].F_Nacimiento.split('T')[0];
+        this.user.Sexo = data[0].ID_Sexo.toString();
 
-      console.log(this.user);
+        console.log(this.user);
+      }
     })
   }
 
@@ -162,6 +166,9 @@ export class ProfileUserComponent {
     //Ya tengo todos los datos recuperados los envio al servidor
     //De momento la foto ya se sube al servidor
     this._userService.updateUsuario(datos).subscribe(data =>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }
       console.log(data);
 
     })

@@ -48,8 +48,12 @@ export class ExpedientesAdminComponent {
     //Recupero los 10 ultimos expedientes
     let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
     this._expedientesServices.buscar2Exp(url).subscribe(data =>{
-      this.expediente = data.Data;
-      this.loading = false;
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.expediente = data.Data;
+        this.loading = false;
+      }
     })
   }
 
@@ -119,11 +123,15 @@ export class ExpedientesAdminComponent {
        //return;
 
      }else{
-       console.log('Hay busqueda');
-       this.busqueda = true;
-       this.expediente = data.Data;
-       this.mensaje = '';
-       //this.paginacion(data.Pagina, data.Paginas_Totales);
+       if(data.Codigo == 501 ){
+          location.href = '/expired';
+       }else{
+         console.log('Hay busqueda');
+         this.busqueda = true;
+         this.expediente = data.Data;
+         this.mensaje = '';
+         //this.paginacion(data.Pagina, data.Paginas_Totales);
+       }
      }
    });
   }
@@ -156,10 +164,14 @@ export class ExpedientesAdminComponent {
   pasarPagina(pag){
     console.log(pag);
     this._expedientesServices.getExpedientes(pag, this.tamPag).subscribe(data => {
-      console.log(data);
-      this.expediente = data.Data;
-      this.loading = false;
-      this.paginacion(data.Pagina, data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href == '/expired';
+      }else{
+        console.log(data);
+        this.expediente = data.Data;
+        this.loading = false;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+      }
     })
   }
 

@@ -62,8 +62,12 @@ export class VerExpedienteComponent implements OnInit {
   getComentarios(){
     this._comentarioService.getComentariosByExpediente(this.router.snapshot.params['id'], 1, this.tamPag)
     .subscribe(data => {
-      this.comentarios = data.Data;
-      this.paginacion(this.pagActual, data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href ='/expired';
+      }else{
+        this.comentarios = data.Data;
+        this.paginacion(this.pagActual, data.Paginas_Totales);
+      }
     })
     this.sessionStorageID = sessionStorage.iD;
   }
@@ -72,21 +76,25 @@ export class VerExpedienteComponent implements OnInit {
     //obtenemos el id del exp que queremos ver
     this.expID = this.router.snapshot.params['id'];
     this._expedientesService.getExpedienteById(this.expID).subscribe(data=>{
-      this.expediente = data;
-      this.idPersona = data[0].ID_Persona;
-      this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{
-        this.persona = data;
-      })
-      //familiares de la persona
-      this._expedientesService.getFamiliarPersona(this.idPersona).subscribe(data=>{
-        for(let i = 0; i< data.length; i++){
-          if(data[i].Tipo == 1){
-            this.madre.push(data[i]);
-          }else if(data[i].Tipo == 2){
-            this.padre.push(data[i]);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.expediente = data;
+        this.idPersona = data[0].ID_Persona;
+        this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{
+          this.persona = data;
+        })
+        //familiares de la persona
+        this._expedientesService.getFamiliarPersona(this.idPersona).subscribe(data=>{
+          for(let i = 0; i< data.length; i++){
+            if(data[i].Tipo == 1){
+              this.madre.push(data[i]);
+            }else if(data[i].Tipo == 2){
+              this.padre.push(data[i]);
+            }
           }
-        }
-      })
+        })
+      }
     })
     //obtenemos datos b1
     this._expedientesService.getBloque1(this.expID).subscribe(data=>{
@@ -178,20 +186,26 @@ export class VerExpedienteComponent implements OnInit {
     console.log(comentario);
     this._comentarioService.newComentario(comentario)
     .subscribe(data => {
-      console.log(data);
-      this.mensaje = 'Gracias por su nuevo Comentario';
-      document.getElementById('alert').className = 'alert alert-success';
-      this.getComentarios();
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        console.log(data);
+        this.mensaje = 'Gracias por su nuevo Comentario';
+        document.getElementById('alert').className = 'alert alert-success';
+        this.getComentarios();
+      }
     }, error => console.log(error))
   }
 
   borrarComentario(id){
     this._comentarioService.deleteComentario(this.expID, id)
     .subscribe(data => {
-      console.log(data);
-      this.mensaje = 'Comentario borrado';
-      document.getElementById('alert').className = 'alert alert-success';
-      this.getComentarios();
+      if(data.Codigo == 501){
+        console.log(data);
+        this.mensaje = 'Comentario borrado';
+        document.getElementById('alert').className = 'alert alert-success';
+        this.getComentarios();
+      }
     }, error => console.log(error))
   }
 
@@ -236,8 +250,12 @@ export class VerExpedienteComponent implements OnInit {
   }
   publicar(){
     this._expedientesService.publicar(this.expID).subscribe(data=>{
-      //this.publico = this.expID;
-      console.log("Publicar");
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        //this.publico = this.expID;
+        console.log("Publicar");
+      }
     })
   }
 }

@@ -52,15 +52,19 @@ export class UsuariosComponent {
     }
     this.error = false;
     this._userService.getSolicitantes(1,this.tamPag).subscribe(data=>{
-      this.loading = false;
-      //this.user = data.Data;
-      this.resultado = data;
-      this.usuarios= this.resultado.Data;
-      this.pagActual = this.resultado.Pagina;
-      this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-      this.tamPag = this.resultado.Elementos_Pagina;
+      if(data.Codigo == '501'){
+        location.href = '/expired';
+      }else{
+        this.loading = false;
+        //this.user = data.Data;
+        this.resultado = data;
+        this.usuarios= this.resultado.Data;
+        this.pagActual = this.resultado.Pagina;
+        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        this.tamPag = this.resultado.Elementos_Pagina;
 
-      console.log(data);
+        console.log(data);
+      }
     })
     return;
   }
@@ -79,9 +83,13 @@ export class UsuariosComponent {
         })
       }
       else{
-        this.mensaje = 'Ha ocurrido un error!';
-        location.href = '/admin/usuarios#arriba';
-        document.getElementById('alert').className = 'alert alert-danger';
+        if(res.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.mensaje = 'Ha ocurrido un error!';
+          location.href = '/admin/usuarios#arriba';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
     })
   }
@@ -90,55 +98,67 @@ export class UsuariosComponent {
   view(number, pagina=1, tam=10){
     if(number == 0){
       this._userService.getSolicitantes(pagina, tam).subscribe(data=>{
-        this.loading = false;
-        console.log('Solicitantes');
-        this.tabla = 0
-        console.log(data);
-        this.resultado = data;
-        this.usuarios= this.resultado.Data;
-        console.log("Muestro la varibale resultado", this.resultado);
-        console.log("Muestro los usuario a mostrar", this.usuarios);
-        this.pagActual = this.resultado.Pagina;
-        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.loading = false;
+          console.log('Solicitantes');
+          this.tabla = 0
+          console.log(data);
+          this.resultado = data;
+          this.usuarios= this.resultado.Data;
+          console.log("Muestro la varibale resultado", this.resultado);
+          console.log("Muestro los usuario a mostrar", this.usuarios);
+          this.pagActual = this.resultado.Pagina;
+          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        }
       })
       return;
     }
 
     if(number == 1){
       this._userService.getRegistrados(pagina, tam).subscribe(data=>{
-        this.loading = false;
-        this.tabla = 1
-        console.log('Registrados');
-        console.log(data);
-        //console.log(data.Data);
-        //this.user = data;
-        this.resultado = data;
-        this.usuarios= this.resultado.Data;
-        console.log("Muestro la varibale resultado", this.resultado);
-        console.log("Muestro los usuario a mostrar", this.usuarios);
-        //console.log(this.user);
-        this.pagActual = this.resultado.Pagina;
-        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-        console.log("Muestro el tamaño pagina en la funcion de mostrar usuarios", this.tamPag);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.tabla = 1
+          console.log('Registrados');
+          console.log(data);
+          //console.log(data.Data);
+          //this.user = data;
+          this.resultado = data;
+          this.usuarios= this.resultado.Data;
+          console.log("Muestro la varibale resultado", this.resultado);
+          console.log("Muestro los usuario a mostrar", this.usuarios);
+          //console.log(this.user);
+          this.pagActual = this.resultado.Pagina;
+          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+          console.log("Muestro el tamaño pagina en la funcion de mostrar usuarios", this.tamPag);
+        }
       })
       return;
     }
 
     if(number == 2){
       this._userService.getCancelados(pagina, tam ).subscribe(data=>{
-        this.loading = false;
-        this.tabla = 2
-        console.log('Cancelados');
-        this.resultado = data;
-        this.usuarios= this.resultado.Data;
-        this.pagActual = this.resultado.Pagina;
-        console.log("Muestro la varibale resultado", this.resultado);
-        console.log("Muestro los usuario a mostrar", this.usuarios);
-        //console.log(data);
-        //this.user = data;
-        //console.log("Muestro la varibale user");
-        //console.log(this.user);
-        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.tabla = 2
+          console.log('Cancelados');
+          this.resultado = data;
+          this.usuarios= this.resultado.Data;
+          this.pagActual = this.resultado.Pagina;
+          console.log("Muestro la varibale resultado", this.resultado);
+          console.log("Muestro los usuario a mostrar", this.usuarios);
+          //console.log(data);
+          //this.user = data;
+          //console.log("Muestro la varibale user");
+          //console.log(this.user);
+          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        }
       })
       return;
     }

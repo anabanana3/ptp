@@ -28,28 +28,28 @@
     <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
     </button>-->
     <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
-      <mat-tab label="Bloque 1">
+      <mat-tab label="Bloque 1" [disabled]="bloque1" id="bloque1">
         <div class="divBloqueExp2">
           <!-- {{ cambiarColorBl1() }} -->
           <app-bloque1></app-bloque1>
       </div>
       </mat-tab>
-      <mat-tab label="Bloque 2">
+      <mat-tab label="Bloque 2" [disabled]="bloque2" id="bloque2">
         <div class="divBloqueExp2">
             <app-bloque2></app-bloque2>
         </div>
       </mat-tab>
-      <mat-tab label="Bloque 3">
+      <mat-tab label="Bloque 3" [disabled]="bloque3" id="bloque3">
         <div class="divBloqueExp2">
             <app-bloque3></app-bloque3>
         </div>
       </mat-tab>
-      <mat-tab label="Bloque 4">
+      <mat-tab label="Bloque 4" [disabled]  = "bloque4" id="bloque4">
         <div class="divBloqueExp2">
             <app-bloque4></app-bloque4>
         </div>
       </mat-tab>
-      <mat-tab label="Bloque 5">
+      <mat-tab label="Bloque 5" [disabled] = "bloque5" id="bloque5">
         <div class="divBloqueExp2">
             <app-bloque5></app-bloque5>
         </div>

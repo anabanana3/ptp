@@ -51,12 +51,16 @@ export class RecursoComponent {
     if(id !== undefined){
       this.idEditar = id;
       _materialService.getMaterial(id).subscribe(data => {
-        console.log(data);
-        this.recurso.Titulo = data[0].Titulo.split("'");
-        this.recurso.Descripcion = data[0].Descripcion.split("'");
-        this.recurso.Publico = data[0].Publico;
-        this.recurso.Archivo = data[0].Path;
-        this.recurso.ID_Formato = data[0].ID_Formato;
+        if(data.Codigo == 501){
+          location.href ='/expired';
+        }else{
+          console.log(data);
+          this.recurso.Titulo = data[0].Titulo.split("'");
+          this.recurso.Descripcion = data[0].Descripcion.split("'");
+          this.recurso.Publico = data[0].Publico;
+          this.recurso.Archivo = data[0].Path;
+          this.recurso.ID_Formato = data[0].ID_Formato;
+        }
       })
     }
   }

@@ -36,9 +36,13 @@ export class HomeAsociaciones{
       this.asociacion = data[0].Nombre.split("'")[1];
     })
     this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {
-      this.user = data.Data;
-      //Obtengo los valores para la paginacion
-      this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.user = data.Data;
+        //Obtengo los valores para la paginacion
+        this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+      }
     })
   }
 
@@ -56,9 +60,13 @@ export class HomeAsociaciones{
         })
       }
       else{
-        this.mensaje = 'Ha ocurrido un error!';
-        location.href = '/asociacion#arriba';
-        document.getElementById('alert').className = 'alert alert-danger';
+        if(res.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          this.mensaje = 'Ha ocurrido un error!';
+          location.href = '/asociacion#arriba';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
     })
   }
@@ -87,9 +95,13 @@ export class HomeAsociaciones{
         }
       }
       else{
-        this.mensaje = 'HA ocurrido un error!';
-        location.href = '/asociacion#arriba';
-        document.getElementById('alert').className = 'alert alert-danger';
+        if(res.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          this.mensaje = 'HA ocurrido un error!';
+          location.href = '/asociacion#arriba';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
     })
   }
@@ -102,22 +114,30 @@ export class HomeAsociaciones{
   view(number, pagina=1, tam=3){
     if(number == 0){
       this._userService.getUsuarioSolicitantesAsociacion(this.id, pagina, tam).subscribe(data=>{
-        this.loading = false;
-        this.tabla = 0
-        this.user = data.Data;
-        //Obtengo los valores para la paginacion
-        this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.tabla = 0
+          this.user = data.Data;
+          //Obtengo los valores para la paginacion
+          this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+        }
       })
       return;
     }
 
     if(number == 1){
       this._userService.getUsuarioRegistradosAsociacion(this.id, pagina, tam).subscribe(data=>{
-        this.loading = false;
-        this.tabla = 1
-        this.user = data.Data;
-        //Obtengo los valores para la paginacion
-        this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.tabla = 1
+          this.user = data.Data;
+          //Obtengo los valores para la paginacion
+          this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
+        }
       })
       return;
     }
