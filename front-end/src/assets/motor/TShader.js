@@ -10,6 +10,8 @@ class TShader extends TRecurso {
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
     this.gl = null;
+    this.lastTime = 0;
+    this.angle = 0;
   }
 
   initWebGL(canvas) {
@@ -103,21 +105,40 @@ class TShader extends TRecurso {
     this.programa.NormalMatrix = gl.getUniformLocation(this.programa, "NormalMatrix");
     //luces
     this.programa.uLightDirection = gl.getUniformLocation(this.programa, "uLightDirection");
+    this.programa.uLightPosition = gl.getUniformLocation(this.programa, "uLightPosition");
     this.programa.uLightDiffuse = gl.getUniformLocation(this.programa, "uLightDiffuse");
     this.programa.uLightAmbient= gl.getUniformLocation(this.programa, "uLightAmbient");
+    this.programa.uLightSpecular= gl.getUniformLocation(this.programa, "uLightSpecular");
     //material
     this.programa.uMaterialDiffuse = gl.getUniformLocation(this.programa, "uMaterialDiffuse");
+    this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
+    this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
+    this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
   }
   initLights(luz, material){
     var gl = this.gl;
-    console.log(luz);
 
     gl.uniform3fv(this.programa.uLightDirection, luz.entidad.direccion);
+    gl.uniform3fv(this.programa.uLightPosition, luz.entidad.position);
     gl.uniform4fv(this.programa.uLightAmbient, luz.entidad.ambiente);
     gl.uniform4fv(this.programa.uLightDiffuse, luz.entidad.difusa);
-    gl.uniform4fv(this.programa.uMaterialDiffuse, material.colorDifuso);
 
+    gl.uniform4fv(this.programa.uMaterialDiffuse, material.colorDifuso);
+    gl.uniform4fv(this.programa.uMaterialSpecular, material.colorEspecular);
+    gl.uniform4fv(this.programa.uMaterialAmbient, material.colorAmbiental);
+    gl.uniform1f(this.programa.uShininess, material.uShininess);
+
+    // gl.uniform3f(this.programa.uLightDirection, 0.0, -1.0, -1.0);
+    // gl.uniform4fv(this.programa.uLightAmbient, [0.03, 0.03, 0.03, 1.0]);
+    // gl.uniform4fv(this.programa.uLightDiffuse, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform4fv(this.programa.uLightSpecular, [1.0, 1.0, 1.0, 1.0]);
+    //
+    // gl.uniform4fv(this.programa.uMaterialAmbient, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform4fv(this.programa.uMaterialDiffuse, [0.5, 0.8, 0.1, 1.0]);
+    // gl.uniform4fv(this.programa.uMaterialSpecular, [1.0, 1.0, 1.0, 1.0]);
+    // gl.uniform1f(this.programa.uShininess, 230.0);
   }
+
   initBuffers(modelo){
     var gl = this.gl;
     //vertices
@@ -137,26 +158,26 @@ class TShader extends TRecurso {
     gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(modelo.normales), gl.STATIC_DRAW); //TO DO
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
-
-    //gl.uniform3f(progama.modelColor, );
   }
 
   draw(modelo){
-    console.log(modelo);
     var gl = this.gl;
 
     gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
     gl.enable(gl.DEPTH_TEST);
 
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.viewport(0,0, this.canvas.width, this.canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     //projection matrix
-
+    // mat4.perspective(45, this.canvas.width/this.canvas.height, 0.1, 10000.0, GProjectionMatrix);
     gl.uniformMatrix4fv(this.programa.ProjectionMatrix, false, GProjectionMatrix);
+
     //model view matrix
     GModelViewMatrix = mat4.create();
     mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix );
+    // mat4.rotate(GModelViewMatrix, this.angle * 3.14/180, [0,1,0]);
+    // mat4.translate(GModelViewMatrix, [0.0, 0.0, -2.0]);
     gl.uniformMatrix4fv(this.programa.ModelViewMatrix, false, GModelViewMatrix);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
@@ -174,6 +195,16 @@ class TShader extends TRecurso {
 
   bucle(modelo){
     this.draw(modelo);
+    this.animate();
+  }
+
+  animate(){
+      var timeNow = new Date().getTime();
+      if(this.lastTime != 0){
+        var elapsed = timeNow - this.lastTime;
+        this.angle += (90*elapsed) / 10000.0;
+      }
+      this.lastTime = timeNow;
   }
 
   mainShader(modelo, luz){
@@ -182,6 +213,7 @@ class TShader extends TRecurso {
     this.initBuffers(modelo.malla);
     this.initLights(luz, modelo.material);
     this.bucle(modelo.malla);
+    this.animate();
   }
   //BufferData( , , gl.STREAM_DRAW) para que los datos se cambien cada vez que se renderiza
 }
