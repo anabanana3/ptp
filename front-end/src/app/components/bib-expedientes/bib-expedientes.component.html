@@ -3,10 +3,16 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
-  <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
+  <!-- <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
+  <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
+<div class="gridContainer">
 
-  <div class="searchBar">
+  <div class="headerMisExp">
+    <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
+  </div>
+
+
+  <div class="lateralSearch">
     <form (ngSubmit)="buscar(1,10)">
       <label for="autor">Autor</label>
       <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
@@ -43,17 +49,17 @@
     </form>
   </div>
 
+<div class="expedientesDiv">
   <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
   <div *ngIf="expedientes.length>0" class="expediente-container">
     <div  *ngFor="let e of expedientes" class=expediente [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
-      <div class="expedienteDesc">
-        <img class="imgExp" src="/assets/img/folder.png" alt="Logo expediente">
-        <p>{{e.Descripcion.split("'")[1]}}</p>
+      <div class="imgCircle">
+        <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
+        <!-- <p>{{e.Descripcion.split("'")[1]}}</p> -->
       </div>
       <div class="expediente-body">
         <p>{{e.Titulo}}</p>
-        <p>{{e.Fecha.split('T')[0]}}</p>
-        <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Publico}]"> Ver más</button>
+        <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
       </div>
     </div>
   </div>
@@ -79,6 +85,7 @@
     </li>
   </ul>
 </div>
-
+</div>
+</div>
 
   <app-footer></app-footer>

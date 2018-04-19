@@ -6,23 +6,23 @@
   <!-- <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
   </button> -->
 <div class="gridContainer">
-<div class="headerMisExp">
-  <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
+  <div class="headerMisExp">
+    <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
 
-  <div class="optionsRight" >
+    <div class="optionsRight" >
       <p (click)="cambio(1)" id="priv"> Privados </p>
       <p>  | </p>
       <p (click)="cambio(2)" id=publ> Publicos</p>
       <p (click)="cambio(3)" id="todos"> | Todos </p>
     </div>
-</div>
+  </div>
 
 <div class="lateralSearch">
-      <form (ngSubmit)="buscar(1,10)">
-        <!-- <div class="divLabelsDeUnoSearch">
-          <div class="divExpDeUnoSearch">
+  <form (ngSubmit)="buscar(1,10)">
+    <!-- <div class="divLabelsDeUnoSearch">
+           <div class="divExpDeUnoSearch">
             <label for="titulo">Titulo</label>
-        </div>
+           </div>
         <div class="divExpDeUnoSearch">
           <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título" name="Titulo" id="titulo">
           <br>
@@ -37,9 +37,8 @@
       </div>
     </div>
 
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-
+    <div class="divLabelsDeUnoSearch">
+      <div class="divExpDeUnoSearch">
         <label for="f1">Desde</label>
       </div>
       <div class="divExpDeUnoSearch">
@@ -98,55 +97,54 @@
     <br>
     <br>
 
-  <div class="SubmitSearch">
-    <button class="btn-relleno" type="submit" name="button">Buscar</button>
-  </div>
-      </form>
-
+    <div class="SubmitSearch">
+      <button class="btn-relleno" type="submit" name="button">Buscar</button>
+    </div>
+  </form>
 </div>
 
 
 <div class="expedientesDiv">
-<!-- Mensaje de que no tienes nada almacenado -->
-<div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
-<!-- Mensaje de que no hay resultados de busqueda -->
-<div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
-<div *ngIf="expedientes.length>0" class="expediente-container">
-  <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
-    <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
-    <div class="expedienteDesc"> -->
-    <div class="imgCircle">
-      <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
-  </div>
-    <!-- </div> -->
-    <div class="expediente-body">
-      <p>{{e.Titulo}}</p>
-      <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
-      <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
+  <!-- Mensaje de que no tienes nada almacenado -->
+  <div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
+  <!-- Mensaje de que no hay resultados de busqueda -->
+  <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
+  <div *ngIf="expedientes.length>0" class="expediente-container">
+    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
+      <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
+      <div class="expedienteDesc"> -->
+      <div class="imgCircle">
+        <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
+      </div>
+      <!-- </div> -->
+      <div class="expediente-body">
+        <p>{{e.Titulo}}</p>
+        <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
+        <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
+      </div>
     </div>
   </div>
-</div>
 
-<ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
-<!--Boton de pagina anterior-->
-  <li>
-    <a (click)="pasarPagina(pagBack)">
-      <span aria-hidden="true">&laquo;</span>
-    </a>
-  </li>
-  <li *ngFor="let pag of paginas; let i=index">
-    <a (click)="pasarPagina(i+1)">
-      <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-      <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-    </a>
-  </li>
-  <!--Boton de pagina siguiente-->
-  <li>
-    <a (click)="pasarPagina(pagNext);">
-      <span aria-hidden="true">&raquo;</span>
-    </a>
-  </li>
-</ul>
+  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
+  <!--Boton de pagina anterior-->
+    <li>
+      <a (click)="pasarPagina(pagBack)">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let pag of paginas; let i=index">
+      <a (click)="pasarPagina(i+1)">
+        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+      </a>
+    </li>
+    <!--Boton de pagina siguiente-->
+    <li>
+      <a (click)="pasarPagina(pagNext);">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
 </div>
 </div>
 </div>

@@ -471,10 +471,8 @@ canvas{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-=======
-  position: relative;
-  margin: 3%;
->>>>>>> 137e97e866b15a00507c6a4cb5eab3f2c6af59dd
+  /* position: relative;
+  margin: 3%; */
 }
 
 .itemDescription{
@@ -1208,9 +1206,9 @@ option{
   margin: 8px;
   display: flex;
   text-align: left;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-left: 13px;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
 }
 
 .expediente:hover{
@@ -1263,9 +1261,10 @@ option{
 .expediente-body{
   width: 150px;/*Este tamaño es el ancho de la imagen del logo*/
   margin-left: 15px;
+  margin-top: 5px;
 }
 
-.expediente-body>p>p{
+.expediente-body>p{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
