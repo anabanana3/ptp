@@ -4,7 +4,7 @@ function iniciarMotor(){
   let camara1 = GFachada.crearCamaraCompleto("camara1");
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let vagina = GFachada.crearMallaCompleto("Vagina", "tetera.obj", "material.mtl", "textura.jpg");
+  let vagina = GFachada.crearMallaCompleto("Vagina", "VAGI0.obj", "material.mtl", "textura.jpg");
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
   setTimeout(() => {
     GFachada.draw();

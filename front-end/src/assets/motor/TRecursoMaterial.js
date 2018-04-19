@@ -73,6 +73,7 @@ class TRecursoMaterial extends TRecurso{
       GIntensidadLuz = this.intensidad;
       this.colorDifuso = GDifuso;
       this.colorEspecular = vec4.fromValues(this.colorEspecular[0],this.colorEspecular[1], this.colorEspecular[2],1.0);
+      this.colorAmbiente = vec4.fromValues(this.colorAmbiente[0],this.colorAmbiente[1], this.colorAmbiente[2],1.0);
     })
   }
 }

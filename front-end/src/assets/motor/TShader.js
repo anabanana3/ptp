@@ -125,18 +125,8 @@ class TShader extends TRecurso {
 
     gl.uniform4fv(this.programa.uMaterialDiffuse, material.colorDifuso);
     gl.uniform4fv(this.programa.uMaterialSpecular, material.colorEspecular);
-    gl.uniform4fv(this.programa.uMaterialAmbient, material.colorAmbiental);
+    gl.uniform4fv(this.programa.uMaterialAmbient, material.colorAmbiente);
     gl.uniform1f(this.programa.uShininess, material.uShininess);
-
-    // gl.uniform3f(this.programa.uLightDirection, 0.0, -1.0, -1.0);
-    // gl.uniform4fv(this.programa.uLightAmbient, [0.03, 0.03, 0.03, 1.0]);
-    // gl.uniform4fv(this.programa.uLightDiffuse, [1.0, 1.0, 1.0, 1.0]);
-    // gl.uniform4fv(this.programa.uLightSpecular, [1.0, 1.0, 1.0, 1.0]);
-    //
-    // gl.uniform4fv(this.programa.uMaterialAmbient, [1.0, 1.0, 1.0, 1.0]);
-    // gl.uniform4fv(this.programa.uMaterialDiffuse, [0.5, 0.8, 0.1, 1.0]);
-    // gl.uniform4fv(this.programa.uMaterialSpecular, [1.0, 1.0, 1.0, 1.0]);
-    // gl.uniform1f(this.programa.uShininess, 230.0);
   }
 
   initBuffers(modelo){
@@ -164,8 +154,10 @@ class TShader extends TRecurso {
     var gl = this.gl;
 
     gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
+    gl.clearDepth(100.0);
     gl.enable(gl.DEPTH_TEST);
 
+    gl.depthFunc(gl.LEQUAL);
     gl.viewport(0,0, this.canvas.width, this.canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -175,22 +167,30 @@ class TShader extends TRecurso {
 
     //model view matrix
     GModelViewMatrix = mat4.create();
-    mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix );
-    // mat4.rotate(GModelViewMatrix, this.angle * 3.14/180, [0,1,0]);
-    // mat4.translate(GModelViewMatrix, [0.0, 0.0, -2.0]);
+    mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix);
+    var angle = this.angle * Math.PI/180;
+    // mat4.rotate(GModelViewMatrix, angle, [0, 1, 0]);
     gl.uniformMatrix4fv(this.programa.ModelViewMatrix, false, GModelViewMatrix);
 
+    // normal matrix
+    GNormalMatrix = mat4.create();
+    mat4.invert(GNormalMatrix, GModelViewMatrix);
+    mat4.transpose(GNormalMatrix, GNormalMatrix);
+    gl.uniformMatrix4fv(this.programa.NormalMatrix, false, GNormalMatrix);
+
+    gl.enableVertexAttribArray(this.programa.aVertexPosition);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
     gl.vertexAttribPointer(this.programa.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(this.programa.aVertexPosition);
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
+    gl.enableVertexAttribArray(this.programa.aVertexNormal);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
     gl.vertexAttribPointer(this.programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(this.programa.aVertexNormal);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+
     gl.drawElements(gl.TRIANGLES, modelo.indices.length, gl.UNSIGNED_SHORT, 0); //deberiamos de cambiar GIndices
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
   }
 
   bucle(modelo){
