@@ -10,7 +10,6 @@ export class ContactoComponent {
 
   json = {
     Email:'',
-    Asunto:'',
     Mensaje: ''
   }
   mensaje:string = '';
