@@ -82,6 +82,10 @@ export class RecursoComponent {
       console.log(this.recurso);
       this._materialService.updateMaterial(this.idEditar, this.recurso).subscribe(data => {
         console.log(data);
+        if(data.Codigo == 501){
+          //La sesion ha expirado y reedirigimos
+          location.href = '/expired';
+        }
         this.mensaje = 'Su recurso ha sido editado';
         document.getElementById('alert').className = 'alert alert-success';
       })
@@ -137,10 +141,14 @@ export class RecursoComponent {
     datos.append('Titulo', this.recurso.Titulo);
 
     this._materialService.newMaterial(datos).subscribe(data => {
-      this.mensaje = 'Gracias por subir su Recurso';
-      document.getElementById('alert').className = 'alert alert-success';
-    }, error => {
-      console.log(error);
-    });
+      console.log('muestro la data')
+      console.log(data);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.mensaje = 'Gracias por subir su Recurso';
+        document.getElementById('alert').className = 'alert alert-success';
+      }
+    })
   }
 }

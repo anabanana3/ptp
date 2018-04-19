@@ -25,11 +25,18 @@ class TFachadaMotor {
     return trans;
   }
 
+  escalar(nodo, x, y, z){
+    let nodoEscala = nodo.getPadre().getPadre().getPadre();
+    console.log(nodoEscala);
+    nodoEscala.entidad.escalar(x, y, z);
+  }
+
   rotar(nodo, rad, axis1, axis2, axis3){
     let nodoRota = nodo.getPadre().getPadre();
     console.log(nodoRota);
     nodoRota.entidad.rotar(rad, axis1, axis2, axis3);
   }
+
   trasladar(nodo,tx, ty, tz){
     let nodoTrasla = nodo.getPadre();
     nodoTrasla.entidad.trasladar(tx, ty, tz);
@@ -96,7 +103,7 @@ class TFachadaMotor {
     nodo.setEntidad(entMalla);
     entMalla.malla = this.gestor.getRecurso(ficheroMalla, "malla");
     entMalla.material = this.gestor.getRecurso(ficheroMaterial, "material");
-    // entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
+    entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
     return entMalla;
   }
   crearMallaCompleto(nombre, ficheroMalla, ficheroMaterial, ficheroTextura){
@@ -104,8 +111,8 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaMalla", escala, this.crearTransform());
     let trasla = this.crearNodo("TraslaMalla", rota, this.crearTransform());
     let malla = this.crearMalla(nombre, ficheroMalla, ficheroMaterial, ficheroTextura, trasla);
-    trasla.entidad.escalar(0.03,0.03,0.03);
-    // trasla.entidad.trasladar(0,-20,0);
+    escala.entidad.escalar(0.03,0.03,0.03);
+    // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
     //Guaro las matrices de forma global para obtenerlas en el shader
@@ -113,7 +120,7 @@ class TFachadaMotor {
     GMaterial = malla.material;
     GModelMatrix=trasla.entidad.modelMatrix;
 
-    return null;
+    return malla;
   }
 
   crearShader(frag, vert){

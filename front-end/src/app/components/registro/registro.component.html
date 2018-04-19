@@ -66,13 +66,13 @@
       <label for="cif">CIF *</label>
         <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
       <label for="contra">Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
       <label for="repeatcontra">Repita la Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+        <input [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
 
-      <div class="progress">
+      <!-- <div class="progress">
         <div id="value" style="background-color:black;"></div>
-      </div>
+      </div> -->
     </div>
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"

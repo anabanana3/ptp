@@ -30,6 +30,7 @@ urlExp:string = 'https://aisha.ovh/api/privados';
 urlTieneComp:string = 'https://aisha.ovh/api/tieneCompM';
 urlTieneConsecSalud:string = 'https://aisha.ovh/api/tieneConsecuencias';
 urlTieneIndicadores:string = 'https://aisha.ovh/api/tieneIndicadores';
+urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
 
   constructor(private http:Http) { }
 
@@ -306,6 +307,18 @@ addCompNacidoParto(idP, sel){
       return res.json();
     });
   }
+  getExpedientesPubById(id){
+    let url=this.urlExpedientePub+'/'+id;
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization':token
+    });
+    return this.http.get(url, {headers}).map(res=>{
+      console.log(res.json());
+      return res.json();
+    });
+  }
 
 
   buscarExp(f){
@@ -539,6 +552,17 @@ getIndicadoresById(id){
   });
   let ind = this.urlTieneIndicadores+'/'+id;
   return this.http.get(ind, {headers}).map(res=>{
+    return res.json();
+  })
+}
+publicar(id){
+  let token =  sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let publico = this.urlPublicar+'/'+id;
+  return this.http.get(publico, {headers}).map(res=>{
     console.log(res.json());
     return res.json();
   })

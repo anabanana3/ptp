@@ -42,8 +42,6 @@ br{
 
 canvas{
   margin:2%;
-  width: 90%;
-  height: 500px;
   border: 3px solid #880042;
   background: grey;
 }
@@ -77,8 +75,7 @@ canvas{
 
 .lineaDiv{
   border: 1px solid #DBDBDB;
-  margin: auto;
-  margin: 2% 0;
+  margin: 2% auto;
   width: 90%;
 }
 
@@ -244,11 +241,6 @@ canvas{
   margin-bottom: 1rem;
   display: flex;
 }
-
-.editarPerfil{
-  width: 60%;
-}
-
 .headerPermisos{
   background: #9C0C54;
   border: 2px solid #9C0C54;
@@ -266,13 +258,20 @@ canvas{
   border: 2px solid #9C0C54;
   border-radius: 4px;
 }
-
 .fotoPerfil{
   width: 20%;
   margin-top: 2%;
 }
-
 .fotoPerfil:hover{background: rgba(191,191,191,0.50);}
+
+.editarPerfil{
+  width: 60%;
+}
+.labelpermisos{
+  margin-top: 5%;
+  margin-left: 5%;
+  text-align: left;
+}
 
 .alert{
   position: relative;
@@ -467,10 +466,15 @@ canvas{
 
 .itemOver{
   z-index: -1;
+<<<<<<< HEAD
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+=======
+  position: relative;
+  margin: 3%;
+>>>>>>> 137e97e866b15a00507c6a4cb5eab3f2c6af59dd
 }
 
 .itemDescription{
@@ -484,7 +488,7 @@ canvas{
   width:80%;
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   margin:0 auto;
-  margin-top:120px;
+  margin-top:110px;
   margin-bottom:40px;
   padding-bottom:15px;
 }
@@ -1077,7 +1081,6 @@ option{
 }
 
 .icon-cancel{
-  margin-top: -80px;
   padding: 0px;
   background: none;
   border: none;
@@ -1377,4 +1380,16 @@ option{
   display: flex;
   width: 50%;
   justify-content: flex-end;
+}
+
+.buttons-asociacion{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.buttons-asociacion-center{
+  justify-content: center;
 }

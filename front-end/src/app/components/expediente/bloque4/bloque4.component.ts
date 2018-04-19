@@ -20,9 +20,9 @@ export class Bloque4Component implements OnInit {
   json = {
     //ID_Bloque: '',
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
-    Detec_MGF: 0,
-    ID_Mutilacion: 0,
-    Cicatriz_genital: 0,
+    Detec_MGF: null,
+    ID_Mutilacion: null,
+    Cicatriz_genital: null,
     Descripcion: '',
     Elasticidad: '',
     Otros: '',
@@ -36,6 +36,15 @@ export class Bloque4Component implements OnInit {
     this._expedienteService.getTipoMutilacion().subscribe(data => this.tiposMutilacion = data);
     this._expedienteService.getConsecuenciasSalud().subscribe(data => this.consecuenciasSalud = data);
   }
+
+guardarDatos2(form){
+  console.log(form.valid);
+  console.log(form.value);
+  if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || form.valid == false){
+    console.log('Error');
+  }
+}
+
   //guardo los id
   loadConsecuencias(id){
     if(this.consecuencia.length > 0){
@@ -113,7 +122,7 @@ export class Bloque4Component implements OnInit {
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
     console.log(this.consecuencias);
-    if(forma.valid === false){
+    if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || forma.valid == false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
       return;
@@ -140,9 +149,9 @@ export class Bloque4Component implements OnInit {
           document.getElementById('alert').className = 'alert alert-success';
           //Despues de guardar, borrar el Array
           this.consecuencias = [];
-          this.cambiarBloque();
           //this.expedienteComponent.bloque = 5;
         }
+        this.cambiarBloque();
     });
 
   }

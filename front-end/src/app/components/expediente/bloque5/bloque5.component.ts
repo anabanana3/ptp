@@ -16,6 +16,9 @@ export class Bloque5Component implements OnInit {
   indicadores = new Array();
   //Variable que va a almacenar los indicadores que selecciona el usuario
   selecionados = new Array();
+  //Variable para imprimir un mensaje de Error
+  mensaje:string = '';
+
   constructor(private _expedienteService:ExpedientesService) {
     this._expedienteService.getIndicadores().subscribe(data=>{
       this.indicadores = data
@@ -48,27 +51,32 @@ export class Bloque5Component implements OnInit {
   }
 
   guardarDatos(){
-    console.log('A continuacionhay que recoger los datos para mandarlos al servidor');
-    //Aqui ya tengo los datos necesareos recogidos del formulario
-    console.log(this.form.value);
-    this._expedienteService.addbloque5(this.form.value).subscribe(data=>{
-      console.log('añadimos los campos del bloque 5');
-      console.log(data);
-      //Recupero el id del bloque que se acaba de generar
-      let idBloque = data.insertId;
-      this.obtenerSelecionados();
-      if(this.selecionados.length>0){
-        console.log('añado los indicadores');
-        //Los almaceno => necesito almacenar en la sessionStorage el id Expediente que se crea en el bloque 1
-        var exp = sessionStorage.IDExp;
-        this._expedienteService.addIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
-          console.log(data);
-          sessionStorage.removeItem('IDExp');
-          location.href = '/home';
+    if(this.form.valid == true){
+      console.log('A continuacionhay que recoger los datos para mandarlos al servidor');
+      //Aqui ya tengo los datos necesareos recogidos del formulario
+      console.log(this.form.value);
+      this._expedienteService.addbloque5(this.form.value).subscribe(data=>{
+        console.log('añadimos los campos del bloque 5');
+        console.log(data);
+        //Recupero el id del bloque que se acaba de generar
+        let idBloque = data.insertId;
+        this.obtenerSelecionados();
+        if(this.selecionados.length>0){
+          console.log('añado los indicadores');
+          //Los almaceno => necesito almacenar en la sessionStorage el id Expediente que se crea en el bloque 1
+          var exp = sessionStorage.IDExp;
+          this._expedienteService.addIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
+            console.log(data);
+            sessionStorage.removeItem('IDExp');
+            location.href = '/home';
 
-        })
-      }
-    })
+          })
+        }
+      });
+    }else{
+      this.mensaje = 'Completa todos los campos obligatorios';
+      document.getElementById('alert').className = 'alert alert-danger';
+    }
 
   }
   //Funcion que genera un array con todos los indicadores que el usuario ha selecionado
@@ -81,6 +89,12 @@ export class Bloque5Component implements OnInit {
       }
       k = k+1;
     }
+  }
+
+guardarDatos3(){
+    console.log('Metodo para hacer la validacion de los datos del bloque 5')
+    console.log(this.form);
+    console.log(this.form.value);
   }
 
 

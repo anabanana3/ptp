@@ -10,9 +10,11 @@ button:hover{
   font-size: 12px;
   background-color: #880042;
   border-color: #880042;
+  border-width: 2px;
 }
 
 .btn-relleno:hover{
+  padding: 6px 10px;
   background: none;
   color:#880042;
   border-radius: 10px;
@@ -46,9 +48,11 @@ button:hover{
   font-size: 12px;
   background-color: #333333;
   border-color: #333333;
+  border-width: 2px;
 }
 
 .btn-relleno-negro:hover{
+  padding: 6px 10px;
   background: none;
   color:#333333;
   border-radius: 10px;
@@ -104,7 +108,6 @@ button:hover{
   margin-top: 1%;
   transform: rotate(+45deg);
 }
-
 .btn-return:hover{
   transform: rotate(-45deg);
 }
@@ -112,6 +115,13 @@ button:hover{
 .radioButtons{
   display: block;
   margin-bottom: 25px;
+}
+.checktrans[type="checkbox"]:disabled + .labeltrans{
+  color: #dbdbdb;
+  cursor: default;
+  border-radius: 4px;
+  padding-left: 5px;
+  background: #880042;
 }
 /**   BOTONES    **/
 

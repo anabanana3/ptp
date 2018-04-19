@@ -13,9 +13,9 @@
         <!-- <select [(ngModel)]='json.Detec_MGF' name="detec_MGF" id="detec_MGF" >
           <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
         </select> -->
-        <input class="radiotrans" type="radio" [(ngModel)]="json.Detec_MGF" id="detec_MGFSI" value="1" name="detec_MGFSI">
+        <input class="radiotrans" type="radio" required [(ngModel)]="json.Detec_MGF" id="detec_MGFSI" value="1" name="detec_MGFSI">
         <label class="labeltransr" for="detec_MGFSI">Sí</label>
-        <input class="radiotrans" type="radio" [(ngModel)]="json.Detec_MGF" id="detec_MGFNO" value="0" name="detec_MGFNO">
+        <input class="radiotrans" type="radio" required [(ngModel)]="json.Detec_MGF" id="detec_MGFNO" value="0" name="detec_MGFNO">
         <label class="labeltransr" for="detec_MGFNO">No</label>
 
       </div>
@@ -25,7 +25,7 @@
       </div>
       <!-- cambiar -->
       <div class="divExp">
-        <select [(ngModel)]='json.ID_Mutilacion' name="id_mutilacion" id="id_mutilacion" >
+        <select [(ngModel)]='json.ID_Mutilacion' required name="id_mutilacion" id="id_mutilacion" >
           <option value="0">Seleccionar</option>
           <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
         </select>
@@ -41,9 +41,9 @@
       </select> -->
     </div>
     <div class="divExpDeUno">
-      <input class="radiotrans" type="radio" [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalSI" value="1" name="cicatriz_genitalSI">
+      <input class="radiotrans" type="radio" required [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalSI" value="1" name="cicatriz_genitalSI">
       <label class="labeltransr" for="cicatriz_genitalSI">Sí</label>
-      <input class="radiotrans" type="radio" [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalNO" value="0" name="cicatriz_genitalNO">
+      <input class="radiotrans" type="radio" required [(ngModel)]="json.Cicatriz_genital" id="cicatriz_genitalNO" value="0" name="cicatriz_genitalNO">
       <label class="labeltransr" for="cicatriz_genitalNO">No</label>
 
     </div>

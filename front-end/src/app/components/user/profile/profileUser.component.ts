@@ -163,6 +163,7 @@ export class ProfileUserComponent {
     //De momento la foto ya se sube al servidor
     this._userService.updateUsuario(datos).subscribe(data =>{
       console.log(data);
+
     })
 
   }

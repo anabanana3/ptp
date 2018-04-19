@@ -1,34 +1,63 @@
 <div class="divAdmin-content">
   <h1>Expedientes</h1>
   <hr><br>
+  <div class="searchBar">
+    <form (ngSubmit)="buscar(1,10)">
+      <label for="autor">Autor</label>
+      <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+      <label for="profesion">Profesion del autor</label>
+      <select [(ngModel)]="Filtros.Profesion" name="Profesion">
+        <option value="0">Selecione una profesión</option>
+        <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+      </select>
+      <label for="titulo">Titulo</label>
+      <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
+
+      <label for="f1">Desde</label>
+      <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+      <label for="f2">Hasta</label>
+      <input [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+
+      <label for="lugar"> Lugar de detección </label>
+      <input [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+
+      <label for="etnia">Etnia de origen</label>
+      <select [(ngModel)]="Filtros.Etnia" name="Etnia">
+        <option value="0">Seleccione la etnia</option>
+        <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+      </select>
+
+      <label for="tipoMGF">Tipo de MGF</label>
+      <select [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+        <option value="0">Seleccione el tipo de MGF</option>
+        <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+      </select>
+
+      <button class="btn-relleno" type="submit" name="button">Buscar</button>
+
+    </form>
+  </div>
   <div>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="expediente">
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Expediente}} </mat-cell>
-          </ng-container>
           <ng-container matColumnDef="titulo">
             <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Titulo}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="autor">
             <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Usuario}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.Autor}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Fecha}} </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="estado">
-            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="rect-success" *ngIf="element.Estado == 1">Publicado</span>
-              <span class="rect-danger" *ngIf="element.Estado == 0">No Publicado</span>
-            </mat-cell>
+          <ng-container matColumnDef="lugar">
+            <mat-header-cell *matHeaderCellDef> Lugar </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Lugar}} </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -57,13 +86,12 @@
       </li>
     </ul>
 
-      <div  *ngIf="(expediente | keys).length === 0 && !loading"
+      <div  *ngIf="expediente.length === 0 && !loading"
             class="alert alert-info" role="alert">
         <strong>No hay</strong> registros que mostrar
       </div>
 
-      <div  *ngIf="loading"
-            class="alert alert-info" role="alert">
+      <div  *ngIf="loading" class="alert alert-info" role="alert">
         <strong>Cargando...</strong>por favor espere
       </div>
 

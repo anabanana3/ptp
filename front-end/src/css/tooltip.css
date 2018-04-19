@@ -13,3 +13,7 @@
   background: #0C8A9C;
   font-size: 14px;
 }
+
+.mat-checkbox-checked.mat-warn .mat-checkbox-background{
+  background-color: black;
+}

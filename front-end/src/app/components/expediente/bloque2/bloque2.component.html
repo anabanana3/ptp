@@ -1,7 +1,8 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
 almacene en la base de datos
 el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
-<form (ngSubmit)="guardarDatos3()"#form="ngForm">
+<form (ngSubmit)="guardarDatos(form)"#form="ngForm">
+  <div id="alert">{{mensaje}}</div>
   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
   <div class="divLabels">
     <div class="divExp">
@@ -18,9 +19,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
       </div> -->
 
     <div class="divExp">
-      <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
-      <label class="labeltransr" for="Conoce_MGFSI">Sí</label>
-      <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
+      <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+      <label class="labeltransr"  for="Conoce_MGFSI">Sí</label>
+      <input class="radiotrans" required type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
       <label class="labeltransr" for="Conoce_MGFNO">No</label>
     </div>
 
@@ -29,9 +30,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     </div>
 
      <div class="divExp">
-       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
+       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
        <label class="labeltransr" for="Realizada_MGFSI">Sí</label>
-       <input class="radiotrans"type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
+       <input class="radiotrans"type="radio" required [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
        <label class="labeltransr"for="Realizada_MGFNO">No</label>
      </div>
     </div>
@@ -46,9 +47,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
         <!-- <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
         </select> -->
-        <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
+        <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
         <label class="labeltransr" for="Padre_MGFFavor">A favor</label>
-        <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
+        <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
         <label class="labeltransr" for="Padre_MGFContra">En contra</label>
       </div>
 
@@ -59,9 +60,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
        <!-- <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
        </select> -->
-       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
+       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
        <label class="labeltransr" for="Madre_MGFFavor">A favor</label>
-       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
+       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
        <label class="labeltransr" for="Madre_MGFContra">En contra</label>
       </div>
     </div>
@@ -75,9 +76,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
        <!-- <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
        </select> -->
-       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
+       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
        <label class="labeltransr" for="Familia_MGFFavor">A favor</label>
-       <input class="radiotrans" type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
+       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
        <label class="labeltransr" for="Familia_MGFContra">En contra</label>
      </div>
     </div>
@@ -106,7 +107,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
         <label>Número de partos de los que desea guardar información:</label>
         <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
         <br>
-        <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Ver Partos</button>
+        <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Añadir partos</button>
+        <button *ngIf="datosPartos.length>=1" mat-raised-button (click)="modificarPartos()"  type="button" name="button" class="btn-border bgColorPink">Modificar partos</button>
+
  <!-- <div class="partos">
    <div class="partoContainer" *ngFor="let p of partos; let i= index">
      <p> parto numero {{i+1}}</p>

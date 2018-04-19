@@ -8,13 +8,24 @@ function iniciarMotor(){
   // let rotacion = fachada.rotar(camara, 1.4, 1, 0, 0);
 
   let vagina = GFachada.crearMallaCompleto("Vagina", "tetera.obj", "material.mtl", "textura.jpg");
-  let shader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
-
+  GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
   setTimeout(() => {
-    GFachada.draw();
-    shader.loadShaders();
-  }, 1000);
+    GShader.mainShader(vagina, luz1);
+  },500);
 
+  let canvas = document.getElementById('canvas');
+  recargar(true, vagina);
+
+}
+function recargar(cambio, vagina){
+  while(cambio){
+    setTimeout(() => {
+      GFachada.draw();
+      GShader.bucle(vagina.malla);
+    }, 1000);
+    console.log("CAMBIO");
+    cambio = false;
+  }
 }
 
 function mostrarTipo1(){
@@ -31,9 +42,11 @@ function mostrarTipo3(){
 
 function mostrarReal(){
   console.log('mostrarReal');
+
   let camara = GFachada.getCamaras()[0];
   console.log(camara);
   GFachada.rotar(camara, 0.785398, 0, 0, 1);
+  recargar(true);
 }
 
 function mostrarCartoon(){

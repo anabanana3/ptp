@@ -21,6 +21,7 @@ import { BibExpedientesComponent} from './components/bib-expedientes/bib-expedie
 import { VerExpedienteComponent } from './components/ver-expediente/ver-expediente.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 
 const app_routes: Routes = [
   {
@@ -127,6 +128,11 @@ const app_routes: Routes = [
     path: 'verexpediente',
     component: VerExpedienteComponent,
     data:{title: 'Ver Expediente'}
+  },
+  {
+    path: 'expired',
+    component: ExpiredSessionComponent,
+    data:{title: 'Expired Session'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

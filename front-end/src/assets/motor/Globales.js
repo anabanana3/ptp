@@ -1,5 +1,6 @@
 //Guardar todas las variables que me hagan falta para el shader
 var GFachada;
+var GShader;
 var programa = null;// ShaderProgram con los dos shaders compilados
 
 var GlobalMalla;
@@ -30,3 +31,11 @@ var stack = [];
 var GVertices;
 var GIndices;
 var GNormales;
+var GCoordTex;
+
+var GTextura;
+
+//VARIABLES PARA LA LUZ
+var GLDifuso;
+var GLAmbiental;
+var GLEspecular;
