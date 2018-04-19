@@ -1,7 +1,7 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que se almecene la informacion en la
 base de datos.
 El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
-<form [formGroup]="form" (ngSubmit)="guardarDatos2()">
+<form [formGroup]="form" (ngSubmit)="guardarDatos()">
   <div id="alert">{{mensaje}}</div>
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
@@ -65,11 +65,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-<<<<<<< HEAD
         <input class="sizeinput" [(ngModel)]="menor.Edad" max="99" type="number" id="edadM" formControlName="edad">
-=======
         <input [(ngModel)]="menor.Edad" min="1" max="99" type="number" id="edadM" formControlName="edad">
->>>>>>> 137e97e866b15a00507c6a4cb5eab3f2c6af59dd
       </div>
 
       <div class="divExp">
