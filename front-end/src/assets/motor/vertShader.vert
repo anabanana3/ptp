@@ -41,20 +41,15 @@ varying vec3 vLightRay;
 varying vec3 vEyeVec;
 
 void main(void){
-  // vec3 N = vec3(ModelViewMatrix * vec4(aVertexNormal, 1.0));
-  // vec3 L = normalize(uLightDirection);
-  // float lambertTerm = dot(N, -L);
-  // vec4 Ia = uLightAmbient;
-  // vec4 Id = uMaterialDiffuse * uLightDiffuse * lambertTerm;
-
   vec4 vertex = ModelViewMatrix * vec4(aVertexPosition, 1.0);
-  // vec4 light = ModelViewMatrix * vec4(uLightPosition, 1.0);
-  vNormal = vec3(NormalMatrix * vec4(aVertexNormal, 1.0));
-  vEyeVec = -vec3(vertex.xyz);
-  // vLightRay = vertex.xyz - light.xyz;
 
-  // vFinalColor = Ia + Id;
-  // vFinalColor.a = 1.0;
+  vNormal = vec3(NormalMatrix * vec4(aVertexNormal, 1.0));
+
+  vec4 light = ModelViewMatrix * vec4(uLightPosition, 1.0);
+
+  vLightRay = vertex.xyz - light.xyz;
+
+  vEyeVec = -vec3(vertex.xyz);
 
   gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(aVertexPosition, 1.0);
 }

@@ -54,6 +54,7 @@ precision highp float;
 uniform float uShininess;
 
 uniform vec3 uLightDirection;
+uniform vec3 uLightPosition;
 uniform vec4 uLightAmbient;
 uniform vec4 uLightDiffuse;
 uniform vec4 uLightSpecular;
@@ -68,7 +69,8 @@ varying vec3 vEyeVec;
 
 void main(void)
 {
-	vec3 L = normalize(uLightDirection);
+	// vec3 L = normalize(uLightDirection);	//Directional light
+	vec3 L = normalize(uLightPosition);	//Positional light
 	vec3 N = normalize(vNormal);
 
 	float lambertTerm = dot(N,-L);
