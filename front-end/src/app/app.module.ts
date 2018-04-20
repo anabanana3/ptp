@@ -61,6 +61,7 @@ import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-e
 import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
+import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { ExpiredSessionComponent } from './components/expired-session/expired-se
     ChatComponent,
     EstadisticasComponent,
     ExpiredSessionComponent,
-    ContactPopup
+    ContactPopup,
+    PoliticaPrivacidadComponent
   ],
   imports: [
     BrowserModule,

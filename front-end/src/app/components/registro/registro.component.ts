@@ -18,13 +18,13 @@ export class RegistroComponent {
   usuario:User={
     Nombre:'',
     Apellidos: '',
-    F_Nacimiento: '',
+    F_Nacimiento: '', /*TODO BORRAR*/
     Email: '',
     ID_Asociacion: 0,
     ID_Profesion: 0,
     ID_Lugar: '',
     Direccion: '',
-    Sexo: '',
+    Sexo: '',   /*TODO BORRAR*/
     DNI: ''
   }
 
@@ -74,12 +74,10 @@ export class RegistroComponent {
     private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
 
     this._profesionesService.getProfesiones().subscribe(data=>{
-      console.log(data);
       this.profesiones = data;
     })
 
     this._asociacionesService.getAsociacionesValidadas().subscribe(data=>{
-      console.log(data);
       this.asociaciones = data;
     })
   }
@@ -94,9 +92,7 @@ export class RegistroComponent {
     }
 
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-
     if(!bool){
-
       if(!emailRegex.test(this.asociacion.Email)){
         location.href = '/registro#arriba';
         this.mensaje = 'Email mal introducido';
@@ -119,9 +115,8 @@ export class RegistroComponent {
       }
 
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
-        console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte! Recibira un email cuando sea aceptado';
+          this.mensaje = 'Gracias por registrarse! Recibirá un email cuando la asociación sea aceptada.';
           document.getElementById('alert').className = 'alert alert-success';
         }
       }, error=>{
@@ -139,9 +134,8 @@ export class RegistroComponent {
 
       this.usuario.Direccion = this.usuario.ID_Lugar;
       this._userService.newUsuario(this.usuario).subscribe(data=>{
-        console.log(data);
         if(data.warningCount == 0){
-          this.mensaje = 'Gracias por registrarte! Recibira un email cuando sea aceptado por su asociación';
+          this.mensaje = 'Gracias por registrarse! Recibirá un email cuando sea aceptado por su asociación';
           location.href = '/registro#arriba';
           document.getElementById('alert').className = 'alert alert-success';
         }
