@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   Nombre:String;
 
   constructor() {
-   this.Nombre = sessionStorage.Nombre;
+   this.Nombre = sessionStorage.Nombre.split("'")[1];
   }
 
   ngOnInit() {

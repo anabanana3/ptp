@@ -38,43 +38,39 @@ export class LoginComponent {
       return;
     }
 
-    if(this.check_asoc){
-      ////// ****** asociacion ****** //////
-      this._asociacionesService.loginAsociacion(this.json)
-        .subscribe(data =>{
-          if (data.Resultado == "ERROR") {
-            this.mensaje = 'Email o contraseña incorrectos';
-            document.getElementById('alert').className = 'alert alert-danger';
-            return;
-          }
-          //// sesion ////
-          sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('iD', data.data[0].ID_Asociacion);
-          sessionStorage.setItem('asociacion', 'true');
-          location.href = '/asociacion';
-        })
-    }else{
-      ////// ****** usuario ****** //////
-      this._userService.loginUser(this.json)
-        .subscribe(data =>{
-          if (data.Resultado == "ERROR") {
-            this.mensaje = 'Email o contraseña incorrectos';
-            document.getElementById('alert').className = 'alert alert-danger';
-            return;
-          }
-          //// sesion ////
-          sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('iD', data.data);
-          sessionStorage.setItem('Nombre', data.n);
-
-          if(sessionStorage.getItem('iD') == '44'){
-            location.href = '/admin';
-          }else{
+    this._userService.login(this.json).subscribe(data =>{
+      console.log(data);
+      console.log(data.data);
+      console.log(data.token);
+      console.log(data.tipo);
+      if(data.Codigo == 450){
+        this.mensaje = 'Email o contraseña incorrectos';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }else{
+        sessionStorage.setItem('token', data.token);
+        console.log(data.tipo);
+        let datos = JSON.parse(data.data);
+        sessionStorage.setItem('Nombre', datos[0].Nombre);
+        switch (data.tipo){
+          case 1:
+            //Admin
+          sessionStorage.setItem('iD', datos[0].ID_Usuario);
+          location.href = '/admin';
+          break;
+          case 2:
+            //Asociacion
+            sessionStorage.setItem('iD', datos[0].ID_Asociacion);
+            sessionStorage.setItem('asociacion', 'true');
+            location.href = '/asociacion';
+          break;
+          case 3:
+            //Usuario
+            sessionStorage.setItem('iD', datos[0].ID_Usuario);
             location.href = '/home';
-          }
-
-        })
-
-    }
+          break;
+        }
+      }
+    });
   }
 }
