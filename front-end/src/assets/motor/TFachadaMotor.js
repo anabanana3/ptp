@@ -58,8 +58,8 @@ class TFachadaMotor {
     let trasla = this.crearNodo("TraslaCam", rota, this.crearTransform());
     let cam = this.crearCamara(nombre, trasla);
     rota.entidad.rotar(0.785398, 0, 0, 1);
-    // rota.entidad.rotar(3.141588943012, 0, 1, 0);
-    // rota.entidad.rotar(0.785398, 1, 0, 0);
+    rota.entidad.rotar(3.141588943012, 0, 1, 0);
+    rota.entidad.rotar(0.2, 1, 0, 0);
     trasla.entidad.trasladar(0,-20,0);
     GViewMatrix = trasla.entidad.modelMatrix;
     GProjectionMatrix = cam.getProjectionMatrix();
