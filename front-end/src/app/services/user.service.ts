@@ -10,7 +10,6 @@ export class UserService {
   canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
   registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
-  loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
   activarURL:string = "https://www.aisha.ovh/api/mail/send";
   mensajeURL:string = "https://www.aisha.ovh/api/mail/send/contacto";
   loginURL2:string = "https://www.aisha.ovh/api/login";
@@ -112,19 +111,6 @@ updateUsuario(usuario){
     return this.http.post(this.loginURL2, body, {headers}).map(res =>{
       return res.json();
     })
-  }
-
-  loginUser(json){
-    let body = JSON.stringify(json);
-
-    let headers = new Headers({
-      'Content-Type':'application/json'
-    });
-
-    return this.http.post(this.loginURL, body, {headers})
-        .map(res=>{
-          return res.json();
-        })
   }
 
   getUsuarioSolicitantesAsociacion(id, numPag, tamPag){

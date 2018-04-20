@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 @Injectable()
 export class AsociacionesService {
   url:string = "https://www.aisha.ovh/api/asociacion/";
-  loginURL:string = "https://www.aisha.ovh/api/asociacion/login";
   activarURL:string = "https://www.aisha.ovh/api/mail/send/asociacion";
   validadasURL:string = "https://www.aisha.ovh/api/asociacion/validadas/1";
   cancelarURL:string ="https://www.aisha.ovh/api/asociacion/cancelar/";
@@ -52,19 +51,6 @@ export class AsociacionesService {
     return this.http.post(this.url, body, {headers})
         .map(res=>{
           console.log(res.json());
-          return res.json();
-        })
-  }
-
-  loginAsociacion(json){ //json con email y contrasena
-    let body = JSON.stringify(json);
-
-    let headers = new Headers({
-      'Content-Type':'application/json'
-    });
-
-    return this.http.post(this.loginURL, body, {headers})
-        .map(res=>{
           return res.json();
         })
   }
