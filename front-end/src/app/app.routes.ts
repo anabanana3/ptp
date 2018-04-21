@@ -22,6 +22,7 @@ import { VerExpedienteComponent } from './components/ver-expediente/ver-expedien
 import { ChatComponent } from './components/chat/chat.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
+import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 
 const app_routes: Routes = [
   {
@@ -133,6 +134,11 @@ const app_routes: Routes = [
     path: 'expired',
     component: ExpiredSessionComponent,
     data:{title: 'Expired Session'}
+  },
+  {
+    path: 'politica-privacidad',
+    component: PoliticaPrivacidadComponent,
+    data:{title: 'Politica Privacidad'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
