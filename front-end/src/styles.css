@@ -1079,8 +1079,10 @@ option{
 
 .headerMisExp{
   grid-column-start: 1;
+  /* autoprefixer: off */
   grid-column-end: 2;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end:2;
   display: flex;
   justify-content: space-between;
@@ -1089,15 +1091,19 @@ option{
 
 .expedientesDiv{
   grid-column-start: 1;
+  /* autoprefixer: off */
   grid-column-end: 2;
   grid-row-start: 2;
+  /* autoprefixer: off */
   grid-row-end:3;
 }
 
 .lateralSearch{
   grid-column-start: 2;
+  /* autoprefixer: off */
   grid-column-end: 3;
   grid-row-start: 1;
+  /* autoprefixer: off */
   grid-row-end:3;
   background-color: white;
   box-shadow: 1px 0px 1px 0px rgba(203,203,203,0.50);
