@@ -123,6 +123,11 @@ button:hover{
   padding-left: 5px;
   background: #880042;
 }
+
+.btn-atras{
+  float:left;
+  margin-left: 5%;
+}
 /**   BOTONES    **/
 
 /**   FONTELLO    **/
