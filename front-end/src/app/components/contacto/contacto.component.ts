@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService} from "../../services/user.service";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -18,7 +18,7 @@ export class ContactoComponent {
 
   captcha;
 
-  constructor(private _userService:UserService, public dialog: MatDialog) {}
+  constructor(private _userService:UserService, public dialog: MatDialog, private element:ElementRef) {}
 
   contactar(forma:NgForm){
     console.log(this.json);
@@ -35,7 +35,7 @@ export class ContactoComponent {
       return;
     }
 
-    let captcha = document.querySelector('#g-recaptcha-response').value;
+    let captcha = this.element.nativeElement.querySelector('#g-recaptcha-response').value;
     console.log(captcha);
 
     this.json.Captcha = captcha;
