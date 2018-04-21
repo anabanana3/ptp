@@ -4,6 +4,8 @@
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
+  <!-- (ngSubmit)="contactar(forma)"
+      (ngSubmit)="guardarDatos(forma, captcha.value)"-->
   <form (ngSubmit)="contactar(forma)" #forma="ngForm">
     <div class="text12 textRed">* Campos obligatorios</div><br>
     <div class="camposForm">
@@ -13,6 +15,7 @@
         <textarea [(ngModel)]='json.Mensaje' type="mensaje" name="mensaje" id="mensaje" placeholder="Escriba su mensaje aquí..." required rows="10" cols="120">
         </textarea>
     </div>
+    <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
     <div style="padding-bottom:1%;">
       <button [routerLink]="['/principal']" type="reset" name="button" class="btn-relleno-negro">ATRÁS</button>
       <button type="submit" name="button" class="btn-border">ENVIAR</button>

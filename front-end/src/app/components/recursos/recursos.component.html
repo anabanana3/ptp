@@ -3,58 +3,35 @@
 </div>
 <div *ngIf="!error">
   <app-header></app-header>
-  <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
-  <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
-  <button
-    style="margin:2%;"
-    [routerLink]="['/recurso']"
-    class="btn-relleno"
-    type="button"
-    name="button">
-    Añadir recurso
-  </button>
-  <div class="recursos-container-filter">
-    <div style="padding: 20px; display:inline-flex">
+  <div class="gridContainer">
+  <!-- <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
+  <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
+
+  <div class="headerMisExp">
+    <button class="btn-relleno" type="button" name="button" [routerLink]="['/recurso']">AÑADIR RECURSO</button>
+
+    <!-- <div style="padding: 20px; display:inline-flex"> -->
+    <div class="optionsRight" >
       <p id="propios" (click)="mostrar(0)">Subidos por mí</p>
       <p style="margin:0px 5px 0px 5px;">|</p>
       <p id="publicos" (click)="mostrar(1)">Públicos</p>
     </div>
+  </div>
 
-    <div class="">
-      <select
-        class="lineaCampo"
-        name="formatos"
-        id="formatos"
-        [(ngModel)]="selectFormato"
-        (change)="buscar($event)"
-      >
-      <option
-        value="null"
-        selected>
-        Ningun formato seleccionado
-      </option>
-        <option
-          *ngFor="let k of formatos | keys;"
-          value="{{formatos[k].ID_Formato}}"
-        >
-          {{formatos[k].Nombre}}
-        </option>
+
+  <div class="recursos-container-filter">
+
+
+    <div class="lateralSearch">
+      <select class="lineaCampo" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
+      <option value="null" selected>Ningun formato seleccionado</option>
+        <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">{{formatos[k].Nombre}}</option>
       </select>
-    </div>
+
 
     <form (ngSubmit)="buscar()" #forma="ngForm">
-      <input
-        id="fieldSearch"
-        class="lineaCampo"
-        type="text"
-        name="fieldSearch"
-        placeholder="Buscar recurso..."
-        [(ngModel)]="fieldSearch"
-        style="width:80%;"/>
-        <button
-          style="background:none; border:none; padding:0; font-size:15px;"
-          type="submit"
-          class="pointer icon-search">
+      <input  id="fieldSearch" class="lineaCampo" type="text" name="fieldSearch" placeholder="Buscar recurso..." [(ngModel)]="fieldSearch" style="width:80%;"/>
+        <button style="background:none; border:none; padding:0; font-size:15px;" type="submit" class="pointer icon-search">
         </button>
       </form>
   </div>
@@ -124,6 +101,6 @@
       </a>
     </li>
   </ul>
-
+</div>
   <app-footer></app-footer>
 </div>
