@@ -11,9 +11,12 @@ export class ContactoComponent {
 
   json = {
     Email:'',
-    Mensaje: ''
+    Mensaje: '',
+    Captcha: null,
   }
   mensaje:string = '';
+
+  captcha;
 
   constructor(private _userService:UserService, public dialog: MatDialog) {}
 
@@ -31,6 +34,11 @@ export class ContactoComponent {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }
+
+    let captcha = document.querySelector('#g-recaptcha-response').value;
+    console.log(captcha);
+
+    this.json.Captcha = captcha;
     this._userService.sendEmail(this.json).subscribe(data =>{
       if(data.Codigo == 400){
         //Abrir un popUp para hacer la confirmación
@@ -38,6 +46,15 @@ export class ContactoComponent {
 
       }
     });
+  }
+
+  guardarDatos(form, captcha){
+    console.log(form);
+    // console.log(document.querySelector('#g-recaptcha-response').value);
+    console.log(captcha);
+
+
+
   }
 
   openDialog(): void {

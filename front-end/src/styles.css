@@ -1391,3 +1391,9 @@ option{
 .buttons-asociacion-center{
   justify-content: center;
 }
+
+/*Para el captcha*/
+div.g-recaptcha > div{
+  margin:auto;
+  margin-bottom: 4%;
+}
