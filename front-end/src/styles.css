@@ -1249,6 +1249,96 @@ option{
 }
 
 /**** Recursos ****/
+.recursoTarget{
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  background-color: white;
+  width: 20%;
+  /* margin: 8px; */
+  display: -ms-flexbox;
+  /* display: flex; */
+  text-align: center;
+}
+
+.recursoTarget:hover{
+  box-shadow: 0px 0px 13px 0px rgba(186,186,186,1);
+}
+
+.recursoTarget:hover .additionalInfoSelected{
+  background-color: lightgray;
+  color:white;
+}
+
+.recursoTarget:hover .icon-edit{
+  color:white;
+}
+
+.recursoTarget:hover .icon-edit:hover{
+  color:#880042;
+}
+
+.recursoTarget:hover .icon-trash-empty{
+  color:white;
+}
+
+.recursoTarget:hover .icon-trash-empty:hover{
+  color:#880042;
+}
+/* The Modal (background) */
+.popUpBorrar {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.popupBorrar-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.seguro{
+  margin: 20px 0px;
+  color:black;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.additionalInfoSelected{
+  padding: 0px;
+  margin: 0px;
+}
+
+.additionalInfo{
+  padding:10px 0px;
+}
+
+.additionalInfo > p{
+  margin-bottom:8px;
+}
+
 .recursos-container-filter{
   display: flex;
   flex-wrap: wrap;
@@ -1264,32 +1354,33 @@ option{
 
 .recursos-container{
   display: flex;
-  justify-content: space-around;
+  padding: 10px 20px;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
 }
 
 .recurso-item{
   margin: 1%;
-  padding: 1%;
+  display: block;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .recurso-info{
-  position: relative;
+  padding: 30px 0px;
+  padding: 0 auto;
+}
+.recurso-img{
+  width: 30%;
 }
 
-.recurso-info img{
-  opacity: 1;
-  top: 0;
-  width: 100%;
-}
-
-.recurso-info:hover img{
+/* .recurso-info:hover img{
   opacity: 0.2;
-}
+} */
 
-.recurso-info:hover p{
+/* .recurso-info:hover p{
   opacity: 1;
-}
+} */
 
 .recurso-info p{
   position: absolute;

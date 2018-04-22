@@ -111,7 +111,7 @@
 <div class="expedientesDiv">
   <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
   <div *ngIf="expedientes.length>0" class="expediente-container">
-    <div  *ngFor="let e of expedientes" class=expediente [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
+    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
       <div class="imgCircle">
         <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
         <!-- <p>{{e.Descripcion.split("'")[1]}}</p> -->
