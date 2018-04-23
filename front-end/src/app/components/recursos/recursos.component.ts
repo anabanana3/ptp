@@ -174,7 +174,7 @@ export class RecursosComponent {
     var btnNo = document.getElementById("noBorrar");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var span = document.getElementById("close");
 
     modal.style.display = "block";
 
@@ -188,8 +188,8 @@ export class RecursosComponent {
     }
 
     span.onclick = function() {
-        modal.style.display = "none";
         console.log("entro en span.onclick");
+        modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it

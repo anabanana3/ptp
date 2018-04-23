@@ -60,7 +60,7 @@
 
       <div class="popUpBorrar" id="popupBorrar">
         <div class="popupBorrar-content">
-          <span class="close">&times;</span>
+          <span id="close">&times;</span>
           <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
           <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
           <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>
