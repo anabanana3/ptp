@@ -112,15 +112,10 @@ class TShader extends TRecurso {
     this.programa.NormalMatrix = gl.getUniformLocation(this.programa, "NormalMatrix");
     //luces
     this.programa.uLightDirection = gl.getUniformLocation(this.programa, "uLightDirection");
-    this.programa.uLightPosition = gl.getUniformLocation(this.programa, "uLightPosition");
     this.programa.uLightDiffuse = gl.getUniformLocation(this.programa, "uLightDiffuse");
     this.programa.uLightAmbient= gl.getUniformLocation(this.programa, "uLightAmbient");
-    this.programa.uLightSpecular= gl.getUniformLocation(this.programa, "uLightSpecular");
     //material
     this.programa.uMaterialDiffuse = gl.getUniformLocation(this.programa, "uMaterialDiffuse");
-    this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
-    this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
-    this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
   }
 
   initLights(){
