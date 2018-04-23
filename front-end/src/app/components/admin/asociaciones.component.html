@@ -8,7 +8,9 @@
     <div>
       <form method="post" (ngSubmit)="filter()">
         <label for="Nombre">Nombre</label>
-        <input [(ngModel)]="fieldSearch" type="text" name="Nombre" id="nombre">
+        <input [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre">
+        <label for="Email">Email</label>
+        <input [(ngModel)]="searchEmail" type="text" name="Email" id="email">
         <button type="submit" name="button" class="icon-search span"></button>
       </form>
       <div class="example-container mat-elevation-z8">
@@ -76,15 +78,15 @@
       </li>
     </ul>
 
-      <div  *ngIf="(asociacion | keys).length === 0 && !loading"
-            class="alert alert-info" role="alert">
-        <strong>No hay</strong> registros que mostrar
-      </div>
+    <div  *ngIf="(asociacion | keys).length === 0 && !loading"
+          class="alert alert-info" role="alert">
+      <strong>No hay</strong> registros que mostrar
+    </div>
 
-      <div  *ngIf="loading"
-            class="alert alert-info" role="alert">
-        <strong>Cargando...</strong>por favor espere
-      </div>
+    <div  *ngIf="loading"
+          class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>por favor espere
+    </div>
 
     </div>
 

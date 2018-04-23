@@ -19,6 +19,20 @@
   <div >
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
+    <form method="post" (ngSubmit)="filter()">
+      <label for="Nombre">Nombre</label>
+      <input [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre">
+      <label for="Email">Email</label>
+      <input [(ngModel)]="searchEmail" type="text" name="Email" id="email">
+      <label for="profesion">Profesión</label>
+      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" required>
+        <option value=""> -- </option>
+        <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
+          {{profesiones[k].Nombre}}
+        </option>
+      </select>
+      <button type="submit" name="button" class="icon-search span"></button>
+    </form>
     <div>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="usuarios">
@@ -40,11 +54,21 @@
           </ng-container>
           <ng-container matColumnDef="asociacion">
             <mat-header-cell *matHeaderCellDef> Asociación </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.Asociacion.split("'")[1]}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.Asociacion}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> Fecha Registro </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.FechaRegistro}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
+              <button *ngIf="tabla == 0"
+                      type="button" class="btn btn-outline-success span"
+                      (click)="activate(element.ID_Usuario, element.Email)"
+                      title="Aceptar Asociación">
+                <span class="icon-ok"></span>
+              </button>
               <button type="button" class="btn btn-outline-danger icon-cancel span"
                       (click)="cancelUser(element.ID_Usuario)"
                       title="Cancelar Usuario">
@@ -77,15 +101,15 @@
      </li>
    </ul>
 
-      <div  *ngIf="(user | keys).length === 0 && !loading"
-            class="alert alert-info" role="alert">
-        <strong>No hay</strong> registros que mostrar
-      </div>
+    <div  *ngIf="(usuarios | keys).length === 0 && !loading"
+          class="alert alert-info" role="alert">
+      <strong>No hay</strong> registros que mostrar
+    </div>
 
-      <div  *ngIf="loading"
-            class="alert alert-info" role="alert">
-        <strong>Cargando...</strong>por favor espere
-      </div>
+    <div  *ngIf="loading"
+          class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>por favor espere
+    </div>
 
     </div>
 
