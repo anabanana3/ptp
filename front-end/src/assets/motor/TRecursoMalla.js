@@ -40,9 +40,7 @@ class TRecursoMalla extends TRecurso{
   }
 
   draw(){
-    GVertices = this.vertices;
-    GIndices = this.indices;
-    GNormales = this.normales;
-    GCoordTex = this.texturas;
+    
+
   }
 }

@@ -5,21 +5,24 @@ function iniciarMotor(){
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
   let vagina = GFachada.crearMallaCompleto("Vagina", "VAGI0.obj", "material.mtl", "textura.jpg");
+  let tetera = GFachada.crearMallaCompleto("Tetera", "tetera.obj", "material2.mtl", "textura.jpg");
+  GFachada.trasladar(tetera, 10, -10, 0);
+
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
   setTimeout(() => {
     GFachada.draw();
-    GShader.mainShader(vagina, luz1);
+    GShader.mainShader();
   },500);
 
   let canvas = document.getElementById('canvas');
-  recargar(true, vagina);
+  recargar(true);
 
 }
-function recargar(cambio, vagina){
+function recargar(cambio){
   while(cambio){
     setTimeout(() => {
       // GFachada.draw();
-      GShader.bucle(vagina.malla);
+      GShader.bucle();
     }, 1000);
     cambio = false;
   }
