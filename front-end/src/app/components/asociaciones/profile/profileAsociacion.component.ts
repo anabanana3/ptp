@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {AsociacionesService} from "../../../services/asociaciones.service";
 import {Asociacion} from "../../../interfaces/asociacion.interface";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 
@@ -22,6 +23,7 @@ export class ProfileAsociacionComponent {
     CIF: '',
     Foto: '',
   }
+  oldPassword = null;
 //Variable que almacena la foto de perfil
 fP:File;
   //TODO Quitar estos paquetes del package.json
@@ -35,7 +37,7 @@ mensaje:string = '';
 
   form;
 
-  constructor(private _asociacionesService:AsociacionesService) {
+  constructor(private _asociacionesService:AsociacionesService, private dialog: MatDialog) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -87,33 +89,71 @@ mensaje:string = '';
       }else{
         this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
         document.getElementById('alert').className = 'alert alert-danger';
+        return;
       }
     }
-    //Compruebo que hay contraseña
+    //Compruebo que hay contraseña => falta validar que las dos contraseñas sean iguales
     if(forma.value.newpassword != null){
-      //Añado la contrraseña
-      datos.append('Paswword',forma.value.newpassword);
+      if(this.oldPassword == forma.value.newpassword){
+        //Añado la contrraseña
+        datos.append('Paswword',forma.value.newpassword);
+      }else{
+        this.mensaje = 'Las contraseñas no coinciden';
+        document.getElementById('alert').className = 'alert alert-danger';
+        return;
+      }
     }
     //La dierrecion siempre se añade
     datos.append('Direccion', forma.value.direc);
 
+    console.log(datos);
+    console.log(forma.value);
     //Hago la peticion
     this._asociacionesService.upload(datos, idA).subscribe(data => {
-      console.log(data);
-      this.mensaje = 'Cambios registrados correctamente';
-      document.getElementById('alert').className = 'alert alert-success';
-      this.cargarAsociacion(idA);
-    }, error => {
-      this.mensaje = 'ALGO MAL';
-      document.getElementById('alert').className = 'alert alert-danger';
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        //PopUp
+        this.openDialog();
+        console.log(data);
+        this.mensaje = 'Cambios registrados correctamente';
+        document.getElementById('alert').className = 'alert alert-success';
+        this.cargarAsociacion(idA);
+        }
     })
   }
-
-
 
 //Metodo para recuperar el fichero
   onFileChange(event){
     let files = event.target.files[0];
     this.fP = files;
   }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ProfilePopUp2, {
+      width: '1000px',
+      //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+}
+@Component({
+  selector: 'popup',
+  templateUrl: '../../user/profile/popup.component.html',
+})
+export class ProfilePopUp2 {
+
+  constructor(
+    public dialogRef: MatDialogRef<ProfilePopUp2>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  toHome(){
+    this.dialogRef.close();
+    location.href = '/asociacion';
+  }
+
 }
