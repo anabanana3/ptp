@@ -86,13 +86,6 @@ export class HomeAsociaciones{
           })
           return;
         }
-        if(this.tabla === 1){
-          this._userService.getUsuarioRegistradosAsociacion(this.id, 1, 3).subscribe(data=>{
-            this.loading = false;
-            this.user = data;
-          })
-          return;
-        }
       }
       else{
         if(res.Codigo == 501 ){

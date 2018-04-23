@@ -58,7 +58,7 @@
           </ng-container>
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha Registro </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.FechaRegistro}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.FechaRegistro.split('T')[0]}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>

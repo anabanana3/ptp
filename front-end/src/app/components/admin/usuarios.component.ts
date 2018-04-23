@@ -226,6 +226,30 @@ export class UsuariosComponent {
           location.href = '/expired';
       }else{
         console.log(data);
+        if(data.Resultado === 'OK'){
+          this.loading = true;
+          this.mensaje = 'Usuario validado Correctamente!';
+          document.getElementById('alert').className = 'alert alert-success';
+
+          if(this.tabla === 0){
+            this._userService.getSolicitantes(this.pagActual, this.tamPag).subscribe(data=>{
+              if(data.Codigo == 501){
+                location.href = '/expired';
+              }else{
+                this.loading = false;
+                this.resultado = data;
+                this.usuariosOLD = data.Data;
+                this.usuarios= this.resultado.Data;
+                this.pagActual = this.resultado.Pagina;
+                this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+              }
+            })
+          }
+        }
+        else{
+          this.mensaje = 'Ha ocurrido un error!';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
     })
   }
