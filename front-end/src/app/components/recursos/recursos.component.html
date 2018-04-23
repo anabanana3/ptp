@@ -19,8 +19,7 @@
   </div>
 
 
-  <div class="recursos-container-filter">
-
+  <!-- <div class="recursos-container-filter"> -->
 
     <div class="lateralSearch">
       <select class="lineaCampo" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
@@ -35,48 +34,39 @@
         </button>
       </form>
   </div>
+
+<div class="expedientesDiv">
+
   <div id="alert">{{mensaje}}</div>
   <div *ngIf="recursos" class="recursos-container">
-    <div *ngFor="let r of recursos;"  class="recurso-item">
+    <div *ngFor="let r of recursos;"  class="recurso-item recursoTarget">
       <a href="{{r.Path}}" target="_blank">
         <div class="recurso-info">
-          <img
-            *ngIf="r.ID_Formato === 1"
-            class="imgExp"
-            src="/assets/img/pdf.png"
-            alt="Logo pdf"
-            style="width: 50%;"
-            >
-          <img
-            *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3"
-            class="imgExp"
-            src="/assets/img/ImgIcon2.png"
-            alt="Logo ppt"
-            style="width: 50%;"
-            >
-          <img
-            *ngIf="r.ID_Formato === 4"
-            class="imgExp"
-            src="/assets/img/VideoIcon.png"
-            alt="Logo video"
-            style="width: 50%;"
-            >
-          <img
-            *ngIf="r.ID_Formato === 5"
-            class="imgExp"
-            src="/assets/img/PPTIcon.png"
-            alt="Logo imagen"
-            style="width: 50%;"
-            >
-          <p class="texto-ellipsis">{{r.Descripcion.split("'")[1]}}</p>
+          <img class="recurso-img" *ngIf="r.ID_Formato === 1" src="/assets/img/pdf.png" alt="Logo pdf">
+          <img class="recurso-img" *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3" src="/assets/img/ImgIcon2.png" alt="Logo ppt">
+          <img class="recurso-img" *ngIf="r.ID_Formato === 4" src="/assets/img/VideoIcon.png" alt="Logo video">
+          <img class="recurso-img" *ngIf="r.ID_Formato === 5" src="/assets/img/PPTIcon.png" alt="Logo imagen">
+          <!-- <p class="texto-ellipsis">{{r.Descripcion.split("'")[1]}}</p> -->
         </div>
       </a>
-      <div>
-        <p class="texto-ellipsis">{{r.Titulo.split("'")[1]}}</p>
+      <div class="additionalInfoSelected">
+
+      <div class="additionalInfo">
+        <p>{{r.Titulo.split("'")[1]}}</p>
         <p class="textGreyDarken text12" >{{r.Nombre}}</p>
         <button *ngIf="view === 0" class="btn icon-edit span" (click)="editar(r.ID_Material)"></button>
-        <button *ngIf="view === 0" class="btn span icon-trash-empty" (click)="borrar(r.ID_Material, r.Path)"></button>
+        <button *ngIf="view === 0" id="myBtnDelete" class="btn span icon-trash-empty" (click)="openPopUp()"></button>
       </div>
+
+      <div class="popUpBorrar" id="popupBorrar">
+        <div class="popupBorrar-content">
+          <span class="close">&times;</span>
+          <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
+          <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
+          <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -101,6 +91,8 @@
       </a>
     </li>
   </ul>
+</div>
+<!-- </div> -->
 </div>
   <app-footer></app-footer>
 </div>

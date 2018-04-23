@@ -164,6 +164,43 @@ export class RecursosComponent {
     this.router.navigate(['/recurso', id]);
   }
 
+  openPopUp(){
+      // Get the modal
+    var modal = document.getElementById('popupBorrar');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtnDelete");
+    var btnSi = document.getElementById("siBorrar");
+    var btnNo = document.getElementById("noBorrar");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    btnSi.onclick = function(){
+      modal.style.display = "none";
+    }
+
+    btnNo.onclick = function(){
+      modal.style.display = "none";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        console.log("entro en span.onclick");
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    console.log("entro en windon.onclick");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  }
+
   borrar(id, path){
     this._materialService.deleteMaterial(id, path).subscribe(data => {
       if(data.Codigo == 501){
