@@ -4,28 +4,18 @@ function iniciarMotor(){
   let camara1 = GFachada.crearCamaraCompleto("camara1");
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let vagina = GFachada.crearMallaCompleto("Vagina", "VAGI0.obj", "material.mtl", "textura.jpg");
+  let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaTipo1.obj", "VaginaTipo1.mtl", "textura.jpg");
   let tetera = GFachada.crearMallaCompleto("Tetera", "tetera.obj", "material2.mtl", "textura.jpg");
-  GFachada.trasladar(tetera, 10, -10, 0);
+  GFachada.trasladar(tetera, 0, -15, 0);
 
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
+
   setTimeout(() => {
-    GFachada.draw();
     GShader.mainShader();
+    GFachada.draw();
   },1000);
 
   let canvas = document.getElementById('canvas');
-  recargar(true);
-
-}
-function recargar(cambio){
-  while(cambio){
-    setTimeout(() => {
-      // GFachada.draw();
-      GShader.bucle();
-    }, 1000);
-    cambio = false;
-  }
 }
 
 function mostrarTipo1(){

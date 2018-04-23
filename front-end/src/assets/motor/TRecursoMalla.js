@@ -39,8 +39,51 @@ class TRecursoMalla extends TRecurso{
     })
   }
 
-  draw(){
-    
+  initBuffers(modelo){
+    let gl = GShader.gl;
+    //vertices
+    let vertexBuffer  = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW); //TO DO
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
+    //indices
+    let indexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indices), gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+
+    //normales
+    let normalBuffer  = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.normales), gl.STATIC_DRAW); //TO DO
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+    let buffer = {
+      vb: vertexBuffer,
+      ib: indexBuffer,
+      nb: normalBuffer
+    };
+    return buffer;
+  }
+
+  draw(){
+    console.log(this);
+    let buffers = this.initBuffers(this);
+    let programa = GShader.programa;
+    let gl = GShader.gl;
+
+    gl.enableVertexAttribArray(programa.aVertexPosition);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.vb);
+    gl.vertexAttribPointer(programa.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
+
+    gl.enableVertexAttribArray(programa.aVertexNormal);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.nb);
+    gl.vertexAttribPointer(programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ib);
+    gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
   }
 }
