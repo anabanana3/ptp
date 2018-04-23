@@ -10,8 +10,6 @@ class TShader extends TRecurso {
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
     this.gl = null;
-    this.lastTime = 0;
-    this.angle = 0;
   }
 
   initWebGL(canvas) {
@@ -136,7 +134,6 @@ class TShader extends TRecurso {
       gl.uniform4fv(this.programa.uLightDiffuse, luces[i].entidad.difusa);
     }
   }
-
   initBuffers(modelo){
     var gl = this.gl;
     //vertices
@@ -170,6 +167,7 @@ class TShader extends TRecurso {
 
     gl.viewport(0,0, this.canvas.width, this.canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.viewport(0,0, this.canvas.width, this.canvas.height);
 
     try{
       //actualizamos  luz si eso...
