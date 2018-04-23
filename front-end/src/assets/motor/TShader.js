@@ -129,8 +129,6 @@ class TShader extends TRecurso {
       gl.uniform4fv(this.programa.uLightDiffuse, luces[i].entidad.difusa);
     }
   }
-
-  }
   initBuffers(modelo){
     var gl = this.gl;
     //vertices
