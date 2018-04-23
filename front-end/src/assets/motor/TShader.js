@@ -64,6 +64,10 @@ class TShader extends TRecurso {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     //crear camara
+    let camara = new TCamara();
+    camara.goHome([0,200,2000]);
+
+    let interactor = new TCamaraInteractor(camara, this.gl);
   }
 
   initProgram(){
