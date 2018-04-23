@@ -12,7 +12,7 @@ function iniciarMotor(){
   setTimeout(() => {
     GFachada.draw();
     GShader.mainShader();
-  },500);
+  },1000);
 
   let canvas = document.getElementById('canvas');
   recargar(true);
