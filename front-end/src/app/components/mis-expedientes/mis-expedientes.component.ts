@@ -279,6 +279,10 @@ getExpedientesUser(tipo,pag, tam){
 //GESTION DE LA CARPETAS
   getCarpetasUser(idU){
     this._carpetaService.getCarpetasUser(idU, this.tamPag, 1).subscribe(data =>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
       console.log(data);
       this.carpetas = data.Data;
       console.log(this.carpetas);
@@ -289,6 +293,10 @@ getExpedientesUser(tipo,pag, tam){
     //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
     console.log(nombre);
     this._carpetaService.newCarpeta(nombre).subscribe(data =>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
       console.log(data);
     })
 
