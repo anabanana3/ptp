@@ -72,7 +72,8 @@
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <button type="button" class="btn btn-outline-success icon-ok span"
+              <button *ngIf="tabla == 0"
+                      type="button" class="btn btn-outline-success icon-ok span"
                       (click)="activateUser(element.ID_Usuario, element.Email)"
                       title="Aceptar Usuarios">
               </button>
