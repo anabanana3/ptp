@@ -25,7 +25,8 @@ export class RegistroComponent {
     ID_Lugar: '',
     Direccion: '',
     Sexo: '',   /*TODO BORRAR*/
-    DNI: ''
+    DNI: '',
+    Captcha: null
   }
 
   asociacion:Asociacion ={
@@ -33,7 +34,8 @@ export class RegistroComponent {
     Direccion: '',
     Email: '',
     Password: '',
-    CIF: ''
+    CIF: '',
+    Captcha: null
   }
 
   fuerza = {
@@ -70,8 +72,10 @@ export class RegistroComponent {
   repeatpass:string = '';
   scorepass:string = '';
 
+  captcha;
+
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
-    private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute) {
+    private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute, private element:ElementRef) {
 
     this._profesionesService.getProfesiones().subscribe(data=>{
       this.profesiones = data;
@@ -92,7 +96,13 @@ export class RegistroComponent {
     }
 
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+    //obtengo el valor del captcha
+    let captcha = this.element.nativeElement.querySelector('#g-recaptcha-response').value;
+
     if(!bool){
+      //ASOCIACION
+      this.asociacion.Captcha = captcha;
       if(!emailRegex.test(this.asociacion.Email)){
         location.href = '/registro#arriba';
         this.mensaje = 'Email mal introducido';
@@ -113,8 +123,10 @@ export class RegistroComponent {
         document.getElementById('alert').className = 'alert alert-danger';
         return;
       }
-
+      console.log(this.asociacion);
       this._asociacionesService.newAsociacion(this.asociacion).subscribe(data=>{
+        console.log('data');
+        console.log(data);
         if(data.warningCount == 0){
           this.mensaje = 'Gracias por registrarse! Recibirá un email cuando la asociación sea aceptada.';
           document.getElementById('alert').className = 'alert alert-success';
@@ -126,6 +138,8 @@ export class RegistroComponent {
       });
     }
     else{
+      //USUARIO
+      this.usuario.Captcha = captcha;
       if(!emailRegex.test(this.usuario.Email)){
         this.mensaje = 'Email mal introducido';
         document.getElementById('alert').className = 'alert alert-danger';
@@ -133,6 +147,7 @@ export class RegistroComponent {
       }
 
       this.usuario.Direccion = this.usuario.ID_Lugar;
+      console.log(this.usuario);
       this._userService.newUsuario(this.usuario).subscribe(data=>{
         if(data.warningCount == 0){
           this.mensaje = 'Gracias por registrarse! Recibirá un email cuando sea aceptado por su asociación';

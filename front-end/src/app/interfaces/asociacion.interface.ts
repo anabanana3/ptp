@@ -9,4 +9,5 @@ export interface Asociacion{
   Foto?:string;
   ID_Asociacion?:number //? dato opcional
   UploadFoto?:object
+  Captcha?:string
 }
