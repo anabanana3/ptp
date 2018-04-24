@@ -62,6 +62,7 @@ import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
+import { CarpetasService } from './services/carpetas.service';
 
 
 @NgModule({
@@ -140,7 +141,8 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     NoticiasService,
     MaterialService,
     ComentarioService,
-    ChatService
+    ChatService,
+    CarpetasService
   ],
   bootstrap: [AppComponent]
 })

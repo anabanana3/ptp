@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
+import { CarpetasService } from '../../services/carpetas.service';
+
 
 @Component({
   selector: 'app-mis-expedientes',
@@ -40,8 +42,10 @@ etnias = new Array();
     TipoMGF:0,
   }
 
+  carpetas = new Array();
 
-  constructor(private _expedientesService:ExpedientesService) {
+
+  constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
     if(sessionStorage.length == 0){
       return;
     }else{
@@ -61,6 +65,9 @@ etnias = new Array();
           //console.log(this.expedientes);
           document.getElementById("priv").style.fontWeight = "bold";
           console.log(this.expedientes);
+
+          //TODO: Obtengo las carpetas que tiene el usuario
+          this.getCarpetasUser(sessionStorage.iD);
         }
       });
     }
@@ -267,6 +274,25 @@ getExpedientesUser(tipo,pag, tam){
       console.log('Hay busqueda. Como paso la pagina de la busqueda');
       this.buscar(pag);
     }
+  }
+
+//GESTION DE LA CARPETAS
+  getCarpetasUser(idU){
+    this._carpetaService.getCarpetasUser(idU, this.tamPag, 1).subscribe(data =>{
+      console.log(data);
+      this.carpetas = data.Data;
+      console.log(this.carpetas);
+      console.log(this.carpetas.length);
+    })
+  }
+  nuevaCarpeta(nombre){
+    //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
+    console.log(nombre);
+    this._carpetaService.newCarpeta(nombre).subscribe(data =>{
+      console.log(data);
+    })
+
+
   }
 
 }

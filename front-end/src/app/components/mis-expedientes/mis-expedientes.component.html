@@ -125,6 +125,13 @@
     </div>
   </div>
 
+  <div *ngIf="carpetas.length > 0">
+    <h3> Carpetas <input type="text" #nombre> <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">NUEVA CARPETA</button> </h3>
+    <p *ngFor="let c of carpetas">
+        <span>{{c.Nombre}}</span>
+    </p>
+  </div>
+
   <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
   <!--Boton de pagina anterior-->
     <li>
