@@ -22,6 +22,14 @@
       <p class="text12 textRed">* Campos obligatorios</p> <br>
       <p class="text12 textGreyDarken">Si la asociación a la que pertenece no
         está en la lista, debe registrarla primero.</p>
+
+<!-- TODO: Campo de prueba para la api de Google maps -->
+<div id="locationField">
+  <!-- <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input> -->
+  <input type="text" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+</div>
+<!-- TODO:  Fin campo de prueba para la api de Google maps -->
+
       <label for="asociacion">Asociación *</label>
       <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">

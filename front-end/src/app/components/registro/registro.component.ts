@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from "../../interfaces/user.interface";
@@ -8,6 +8,11 @@ import { ProfesionesService } from "../../services/profesiones.service";
 import { AsociacionesService } from "../../services/asociaciones.service";
 import { UserService } from "../../services/user.service";
 import { Asociacion } from "../../interfaces/asociacion.interface";
+
+//Maps
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+
 
 @Component({
   selector: 'app-registro',
@@ -74,8 +79,10 @@ export class RegistroComponent {
 
   captcha;
 
+  @ViewChild('place') public searchElement: ElementRef;
+
   constructor(private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService,
-    private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute, private element:ElementRef) {
+    private router:Router, private _userService:UserService, private activatedRoute:ActivatedRoute, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
 
     this._profesionesService.getProfesiones().subscribe(data=>{
       this.profesiones = data;
@@ -84,8 +91,27 @@ export class RegistroComponent {
     this._asociacionesService.getAsociacionesValidadas().subscribe(data=>{
       this.asociaciones = data;
     })
+
+    this.apiGoogle();
   }
 
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
+
+        autocomplete.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
+  }
 
   new(forma:NgForm, bool){
     if(forma.valid === false){
@@ -169,5 +195,7 @@ export class RegistroComponent {
 
     this.scorepass = score;
   }
+
+
 
 }

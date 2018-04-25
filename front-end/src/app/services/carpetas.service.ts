@@ -35,4 +35,15 @@ export class CarpetasService {
 
   }
 
+  deleteCarpeta(idC){
+    let token = sessionStorage.token,
+    headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    let url = this.carpetaExpURL+'/'+idC;
+
+    return this.http.delete(url, {headers}).map(res=> res.json());
+  }
+
 }

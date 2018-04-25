@@ -129,6 +129,7 @@
     <h3> Carpetas <input type="text" #nombre> <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">NUEVA CARPETA</button> </h3>
     <p *ngFor="let c of carpetas">
         <span>{{c.Nombre}}</span>
+        <button (click)="borrarCarpeta(c.ID_Carpeta)">Borrar carpeta </button>
     </p>
   </div>
 

@@ -299,8 +299,17 @@ getExpedientesUser(tipo,pag, tam){
       }
       console.log(data);
     })
+  }
 
-
+  borrarCarpeta(idC){
+    console.log(idC);
+    this._carpetaService.deleteCarpeta(idC).subscribe(data =>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return
+      }
+      console.log(data);
+    })
   }
 
 }

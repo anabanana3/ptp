@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AgmCoreModule } from '@agm/core';
 
 
 //Components
@@ -125,6 +126,10 @@ import { CarpetasService } from './services/carpetas.service';
     MatInputModule,
     MatDialogModule,
     MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB22qgoaAWVVA8Ht3cUK4ouCfFLNiDAhEc',
+      libraries: ['places']
+    })
   ],
   entryComponents: [
     Popup,
