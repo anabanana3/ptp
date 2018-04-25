@@ -53,7 +53,7 @@
           </ng-container>
           <ng-container matColumnDef="titulo">
             <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Titulo}} </mat-cell>
+            <mat-cell *matCellDef="let element">{{element.Titulo.split("'")[1]}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="estado">
             <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
@@ -65,6 +65,7 @@
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
+              <a href="{{element.Path}}" target="_blank">enlace</a>
               <button type="button" class="btn btn-outline-danger icon-cancel span"
                       (click)="borrarMaterial(element.ID_Usuario, element.Path)"
                       title="Cancelar Usuario">

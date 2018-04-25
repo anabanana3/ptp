@@ -10,8 +10,6 @@ class TShader extends TRecurso {
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
     this.gl = null;
-    this.lastTime = 0;
-    this.angle = 0;
   }
 
   initWebGL(canvas) {
@@ -57,6 +55,19 @@ class TShader extends TRecurso {
         this.FragmentShader = e;
       }
     })
+  }
+
+  configure(){
+    this.gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
+    this.gl.clearDepth(100.0);
+    this.gl.enable(this.gl.DEPTH_TEST);
+    this.gl.depthFunc(this.gl.LEQUAL);
+
+    //crear camara
+    let camara = new TCamara();
+    camara.goHome([0,200,2000]);
+
+    let interactor = new TCamaraInteractor(camara, this.gl);
   }
 
   initProgram(){
@@ -115,87 +126,17 @@ class TShader extends TRecurso {
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
   }
-  initLights(luz, material){
+
+  initLights(){
     var gl = this.gl;
+    let luces = GFachada.regLuces;
 
-    gl.uniform3fv(this.programa.uLightDirection, luz.entidad.direccion);
-    gl.uniform3fv(this.programa.uLightPosition, luz.entidad.position);
-    gl.uniform4fv(this.programa.uLightAmbient, luz.entidad.ambiente);
-    gl.uniform4fv(this.programa.uLightDiffuse, luz.entidad.difusa);
-
-    gl.uniform4fv(this.programa.uMaterialDiffuse, material.colorDifuso);
-    gl.uniform4fv(this.programa.uMaterialSpecular, material.colorEspecular);
-    gl.uniform4fv(this.programa.uMaterialAmbient, material.colorAmbiente);
-    gl.uniform1f(this.programa.uShininess, material.uShininess);
-  }
-
-  initBuffers(modelo){
-    var gl = this.gl;
-    //vertices
-    this.vertexBuffer  = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(modelo.vertices), gl.STATIC_DRAW); //TO DO
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
-
-    //indices
-    this.indexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(modelo.indices), gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
-
-    //normales
-    this.normalBuffer  = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(modelo.normales), gl.STATIC_DRAW); //TO DO
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
-  }
-
-  draw(modelo){
-    var gl = this.gl;
-
-    gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
-    gl.clearDepth(100.0);
-    gl.enable(gl.DEPTH_TEST);
-
-    gl.depthFunc(gl.LEQUAL);
-    gl.viewport(0,0, this.canvas.width, this.canvas.height);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-    //projection matrix
-    // mat4.perspective(45, this.canvas.width/this.canvas.height, 0.1, 10000.0, GProjectionMatrix);
-    gl.uniformMatrix4fv(this.programa.ProjectionMatrix, false, GProjectionMatrix);
-
-    //model view matrix
-    GModelViewMatrix = mat4.create();
-    mat4.multiply(GModelViewMatrix, GModelMatrix, GViewMatrix);
-    var angle = this.angle * Math.PI/180;
-    // mat4.rotate(GModelViewMatrix, angle, [0, 1, 0]);
-    gl.uniformMatrix4fv(this.programa.ModelViewMatrix, false, GModelViewMatrix);
-
-    // normal matrix
-    GNormalMatrix = mat4.create();
-    mat4.invert(GNormalMatrix, GModelViewMatrix);
-    mat4.transpose(GNormalMatrix, GNormalMatrix);
-    gl.uniformMatrix4fv(this.programa.NormalMatrix, false, GNormalMatrix);
-
-    gl.enableVertexAttribArray(this.programa.aVertexPosition);
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-    gl.vertexAttribPointer(this.programa.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
-
-    gl.enableVertexAttribArray(this.programa.aVertexNormal);
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.normalBuffer);
-    gl.vertexAttribPointer(this.programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
-
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
-
-    gl.drawElements(gl.TRIANGLES, modelo.indices.length, gl.UNSIGNED_SHORT, 0); //deberiamos de cambiar GIndices
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
-  }
-
-  bucle(modelo){
-    this.draw(modelo);
-    this.animate();
+    for (var i = 0; i < luces.length; i++) {
+      gl.uniform3fv(this.programa.uLightDirection, luces[i].entidad.direccion);
+      gl.uniform3fv(this.programa.uLightPosition, luces[i].entidad.position);
+      gl.uniform4fv(this.programa.uLightAmbient, luces[i].entidad.ambiente);
+      gl.uniform4fv(this.programa.uLightDiffuse, luces[i].entidad.difusa);
+    }
   }
 
   animate(){
@@ -207,13 +148,16 @@ class TShader extends TRecurso {
       this.lastTime = timeNow;
   }
 
-  mainShader(modelo, luz){
+  mainShader(){
     this.gl = this.initWebGL(this.canvas);
+    this.configure();
     this.initProgram();
-    this.initBuffers(modelo.malla);
-    this.initLights(luz, modelo.material);
-    this.bucle(modelo.malla);
-    this.animate();
+    this.initLights();
+
+    this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
+    this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+    this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
+    // this.animate();
   }
   //BufferData( , , gl.STREAM_DRAW) para que los datos se cambien cada vez que se renderiza
 }

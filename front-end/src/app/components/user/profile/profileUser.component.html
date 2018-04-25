@@ -17,16 +17,16 @@
       <form (ngSubmit)="save2(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;margin-bottom: 5%; ">
 
         <!-- [(ngModel)]="" -->
-        <label for="nombre">Nombre</label>
+        <label for="nombre">Nombre *</label>
           <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
                  value="user[0].Nombre" name="nombre" id="nombre" required>
-        <label for="apellido">Apellidos</label>
+        <label for="apellido">Apellidos *</label>
           <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
                  value="user[0].Apellidos" name="apellido" id="apellido" required>
         <label for="apellido">Email</label>
           <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
                  value="user[0].Email" name="email" id="email" disabled="false">
-         <label for="nacimiento">Fecha de Nacimiento</label>
+         <label for="nacimiento">Fecha de Nacimiento *</label>
            <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="date"
                   value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
         <label for="sexo">Sexo</label>
@@ -38,7 +38,7 @@
           <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
             <label for="otro">Prefiero no especificar</label>
         </div>
-        <label for="dni">DNI</label>
+        <label for="dni">DNI *</label>
           <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
                  value="user[0].DNI" name="dni" id="dni" required>
        <label for="asociacion">Asociacion</label>
@@ -78,7 +78,7 @@
         </div>
         <div>
           <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Atrás</button>
-          <button type="submit" name="button" class="btn-relleno" [disabled]="!this.forma.valid">GUARDAR</button>
+          <button type="submit" name="button" class="btn-relleno">GUARDAR</button>
         </div>
     </form>
 

@@ -36,7 +36,7 @@
       <div class="" *ngIf="change" style="display: inline-grid;">
         <div class="" style="margin-right:10%;">
           <label for="pass">Antigua Contraseña:</label>
-          <input type="password" name="password" value="" id="pass" class="lineaCampo">
+          <input type="password" [(ngModel)]="oldPassword" name="password" value="" id="pass" class="lineaCampo">
         </div>
         <div class="" style="margin-right:10%;">
           <label for="newpass">Nueva Contraseña:</label>

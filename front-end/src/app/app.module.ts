@@ -22,8 +22,8 @@ import { RegistroLoginComponent } from './components/registro/registroLogin.comp
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
-import { ProfileUserComponent } from './components/user/profile/profileUser.component';
+import { ProfileAsociacionComponent, ProfilePopUp2 } from './components/asociaciones/profile/profileAsociacion.component';
+import { ProfileUserComponent, ProfilePopUp } from './components/user/profile/profileUser.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
@@ -106,7 +106,9 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     EstadisticasComponent,
     ExpiredSessionComponent,
     ContactPopup,
-    PoliticaPrivacidadComponent
+    PoliticaPrivacidadComponent,
+    ProfilePopUp,
+    ProfilePopUp2
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,9 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
   entryComponents: [
     Popup,
     Popup2,
-    ContactPopup
+    ContactPopup,
+    ProfilePopUp,
+    ProfilePopUp2
   ],
   providers: [
     ProfesionesService,

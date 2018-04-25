@@ -49,15 +49,25 @@
           </ng-container>
           <ng-container matColumnDef="autor">
             <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Autor}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.Autor.split("'")[1]}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Fecha}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.Fecha.split('T')[0]}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="lugar">
             <mat-header-cell *matHeaderCellDef> Lugar </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Lugar}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.ID_Lugar.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="options">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a [routerLink]="['/verexpediente', {id:element.ID_Publico}]">enlace</a>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="borrarExpediente(element.ID_Expediente)"
+                      title="Cancelar Usuario">
+              </button>
+            </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

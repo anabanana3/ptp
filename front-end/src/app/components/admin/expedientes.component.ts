@@ -19,7 +19,7 @@ export class ExpedientesAdminComponent {
   tamPag:number=10;
   pagActual;
 
-  displayedColumns = ['titulo', 'autor', 'fecha', 'lugar'];
+  displayedColumns = ['titulo', 'autor', 'fecha', 'lugar', 'options'];
 
   etnias = new Array();
   profesiones = new Array();
@@ -53,6 +53,7 @@ export class ExpedientesAdminComponent {
       }else{
         this.expediente = data.Data;
         this.loading = false;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
       }
     })
   }
@@ -155,10 +156,6 @@ export class ExpedientesAdminComponent {
     }else{
       this.pagNext = paginaActual;
     }
-    console.log("Total de paginas", this.paginas.length);
-    console.log('PAgina Actual', paginaActual);
-    console.log("Pagina Siguiente", this.pagNext);
-    console.log("Pagina anterior", this.pagBack);
   }
 
   pasarPagina(pag){
@@ -183,5 +180,9 @@ export class ExpedientesAdminComponent {
   changeView(view){
     console.log(view);
     this.view = view;
+  }
+
+  borrarExpediente(id){
+    console.log('Borrar' + id);
   }
 }
