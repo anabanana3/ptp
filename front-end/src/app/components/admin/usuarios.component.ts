@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html'
 })
-export class UsuariosComponent {
+export class UsuariosAdminComponent {
 
   user:User ={
     Nombre:'',

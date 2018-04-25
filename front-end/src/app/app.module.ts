@@ -16,8 +16,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 //Components
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { UsuariosComponent } from './components/admin/usuarios.component';
-import { AsociacionesComponent } from './components/admin/asociaciones.component';
+import { UsuariosAdminComponent } from './components/admin/usuarios.component';
+import { AsociacionesAdminComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 import { HomeComponent } from './components/user/home/home.component';
@@ -69,8 +69,8 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     AppComponent,
     RegistroComponent,
     KeysPipe,
-    UsuariosComponent,
-    AsociacionesComponent,
+    UsuariosAdminComponent,
+    AsociacionesAdminComponent,
     RegistroLoginComponent,
     HomeComponent,
     LoginComponent,

@@ -157,15 +157,19 @@ canvas{
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
   padding-bottom: 1%;
   position: absolute;
-  width: 250px;
+  width: 200px;
   height: 100%;
+}
+
+.formAdmin{
+  background-color: white;
+  padding: 0.5%;
 }
 
 .divAdmin-menuExpanded{ display: none;}
 
 .divAdmin-content{
-  width: 80%;
-  float: right;
+  margin-left: 200px;
 }
 
 .icon-menu{
@@ -193,6 +197,7 @@ canvas{
 
 .divAdmin ul{float: left; width: 100%; padding: 10%}
 .divAdmin li{padding: 10%;}
+.divAdmin a{font-size: x-large;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{

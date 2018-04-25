@@ -1,24 +1,19 @@
 <div class="divAdmin-content">
   <h1>Recursos</h1>
   <hr><br>
-  <div class="recursos-container-filter">
+  <div class="recursos-container-filter divBlanco formAdmin">
     <div class="">
       <select
-        class="lineaCampo"
+        class="sizeinput"
         name="formatos"
         id="formatos"
         [(ngModel)]="selectFormato"
         (change)="buscar($event)"
       >
-        <option
-          value="null"
-          selected>
-          Ningun formato seleccionado
+        <option value="0">
+          Seleccione Formato
         </option>
-        <option
-          *ngFor="let k of formatos | keys;"
-          value="{{formatos[k].ID_Formato}}"
-        >
+        <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">
           {{formatos[k].Nombre}}
         </option>
       </select>
@@ -27,7 +22,7 @@
     <form (ngSubmit)="buscar()" #forma="ngForm">
       <input
         id="fieldSearch"
-        class="lineaCampo"
+        class="sizeinput"
         type="text"
         name="fieldSearch"
         placeholder="Buscar recurso..."

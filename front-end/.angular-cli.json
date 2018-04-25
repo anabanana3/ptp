@@ -27,7 +27,8 @@
         "css/footer.css",
         "css/tooltip.css",
         "css/responsive.css",
-        "css/chat.css"
+        "css/chat.css",
+        "css/administrador.css",
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
