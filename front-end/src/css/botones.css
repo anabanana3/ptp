@@ -13,13 +13,32 @@ button:hover{
   border-width: 2px;
 }
 
-.btn-relleno:hover{
+.btn-relleno:hover,
+.registroVerMas:hover{
   padding: 6px 10px;
   background: none;
   color:#880042;
   border-radius: 10px;
   border-color: #880042;
   border-width: 2px;
+}
+
+
+.registroVerMas{
+  padding: 6px 10px;
+  margin-right: 2%;
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: #880042;
+  border-color: #880042;
+  border-width: 2px;
+  position: absolute;
+  float: right;
+  margin-top: 570px;
+  /* margin-right: 0px; */
+  margin-left: -60px;
+  /* z-index: 9999; */
 }
 
 .btn-border{
