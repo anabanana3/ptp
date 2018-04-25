@@ -35,9 +35,10 @@ button:hover{
   border-width: 2px;
   position: absolute;
   float: right;
-  margin-top: 570px;
+  /* z-index: 2; */
+  margin-top: 118%;
   /* margin-right: 0px; */
-  margin-left: -60px;
+  margin-left: -5%;
   /* z-index: 9999; */
 }
 

@@ -554,9 +554,17 @@ canvas{
 }
 
 .flujo{
+  width: 100%;
+  float:left;
+}
+
+.containerFlujo{
+  width: 90%;
+  /* border: dotted; */
   float: left;
+  margin-top: -35px;
   position: relative;
-  margin-left: -107px;
+  margin-left: -106px;
 }
 
 .dchaVerMas{
@@ -572,7 +580,7 @@ canvas{
   width: 100%;
   margin-top: 50px;
   height: 50px;
-  margin-bottom: 250px;
+  margin-bottom: 180px;
 }
 .restoVerMas{
   padding-left: 50px;
