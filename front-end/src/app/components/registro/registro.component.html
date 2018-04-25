@@ -6,8 +6,8 @@
   <div class="lineaDiv"></div>
 
   <div id="alert">{{mensaje}}</div>
-
-  <form (ngSubmit)="new(forma, usuarios)" #forma="ngForm">
+<!-- (ngSubmit)="new(forma, usuarios)" -->
+  <form  #forma="ngForm">
 
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
             style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Asociación
@@ -26,7 +26,7 @@
 <!-- TODO: Campo de prueba para la api de Google maps -->
 <div id="locationField">
   <!-- <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input> -->
-  <input type="text" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+  <input type="text"  id="prueba" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
 </div>
 <!-- TODO:  Fin campo de prueba para la api de Google maps -->
 
@@ -77,7 +77,7 @@
     <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
 
     <div>
-     <button type="submit" name="button" class="btn-border">REGISTRAR</button>
+     <button (click)="guardarDatos(forma, place)" type="submit" name="button" class="btn-border">REGISTRAR</button>
     </div>
     <br>
     <p class="text12 textGreyDarken">Al registrarte, aceptas la

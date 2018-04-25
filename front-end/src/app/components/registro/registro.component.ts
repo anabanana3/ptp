@@ -78,6 +78,8 @@ export class RegistroComponent {
   scorepass:string = '';
 
   captcha;
+  sitio;
+  idSitio;
 
   @ViewChild('place') public searchElement: ElementRef;
 
@@ -98,11 +100,14 @@ export class RegistroComponent {
   apiGoogle(){
     this.mapsAPILoader.load().then(
       () =>{
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
 
-        autocomplete.addListener('place_change', () => {
+        this.sitio.addListener('place_change', () => {
             this.ngZone.run(()=>{
-              let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+
+
 
               if(place.geometry === undefined || place.geometry === null){
                 return
@@ -111,6 +116,19 @@ export class RegistroComponent {
         })
       }
     );
+  }
+
+  guardarDatos(form, place){
+    console.log(form);
+    console.log(form.value);
+    // console.log(place);
+    console.log(this.sitio);
+    console.log('Muestro lo del la api de google');
+    // console.log(this.sitio.gm_accessors_.place.Jc.place.id);
+    //Muestro el pais del sitio seleccionado => el ultimo valor del array
+    let datos = this.sitio.gm_accessors_.place.Jc.place.address_components;
+    console.log(datos);
+    console.log(this.idSitio)
   }
 
   new(forma:NgForm, bool){
