@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {UserService} from "../../../services/user.service";
 import {AsociacionesService} from "../../../services/asociaciones.service";
 import {ProfesionesService} from "../../../services/profesiones.service";
 import { User } from "../../../interfaces/user.interface";
 import zxcvbn from "zxcvbn";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-profileUser',
@@ -69,7 +70,7 @@ export class ProfileUserComponent {
   }
 
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
-              private _profesionesService:ProfesionesService) {
+              private _profesionesService:ProfesionesService, private dialog: MatDialog) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -130,48 +131,51 @@ export class ProfileUserComponent {
   }
 
   save2(form:NgForm){
-    console.log('Recojo todos los datos');
-    console.log(form.value);
+    if(form.valid == true){
+      //Recojo todos los datos del formulario
+      let datos = new FormData();
+      datos.append('Nombre', form.value.nombre);
+      datos.append('Apellidos', form.value.apellido);
+      datos.append('Fecha', form.value.nacimiento);
+      datos.append('ID_Sexo', form.value.Sexo);
+      datos.append('ID_Profesion',form.value.Profesion);
+      datos.append('Direccion', form.value.direccion);
+      //Valido las contraseñas
+      if(form.value.contra != null && form.value.repeatcontra){
+        if(form.value.contra == form.value.repeatcontra){
+          datos.append('Password',form.value.contra);
+        }else{
+          this.mensaje = 'Las contraseñas deben de ser iguales';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
+      }
 
-    let datos = new FormData();
-    datos.append('Nombre', form.value.nombre);
-    datos.append('Apellidos', form.value.apellido);
-    datos.append('Fecha', form.value.nacimiento);
-    datos.append('ID_Sexo', form.value.Sexo);
-    datos.append('ID_Profesion',form.value.Profesion);
-    datos.append('Direccion', form.value.direccion);
-    //Valido las contraseñas
-    if(form.value.contra != null && form.value.repeatcontra){
-      if(form.value.contra == form.value.repeatcontra){
-        datos.append('Password',form.value.contra);
-      }else{
-        this.mensaje = 'Las contraseñas deben de ser iguales';
-        document.getElementById('alert').className = 'alert alert-danger';
+      //Valido la foto de perfil
+      if(this.fP != null){
+        let tipo = this.fP.type;
+        let aux = tipo.split('/');
+        let size = this.fP.size;
+        if(aux[0] ==='image' && size <= 5242880){
+          //Fichero Valido
+          datos.append('fotoP', this.fP, this.fP.name);
+        }else{
+          this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
       }
+      //Tengo todos los datos => hago la peticion
+      this._userService.updateUsuario(datos).subscribe(data =>{
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          console.log(data);
+          this.openDialog();
+        }
+      })
+    }else{
+      this.mensaje = 'Rellena todos los campos obligatorios de tu perfil';
+      document.getElementById('alert').className = 'alert alert-danger';
     }
-    //datos.append('Password',)
-    //Valido la foto de perfil
-    if(this.fP != null){
-      let tipo = this.fP.type;
-      let aux = tipo.split('/');
-      let size = this.fP.size;
-      if(aux[0] ==='image' && size <= 5242880){
-        //Fichero Valido
-        datos.append('fotoP', this.fP, this.fP.name);
-      }else{
-        this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
-        document.getElementById('alert').className = 'alert alert-danger';
-      }
-    }
-    //Ya tengo todos los datos recuperados los envio al servidor
-    //De momento la foto ya se sube al servidor
-    this._userService.updateUsuario(datos).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-      }
-      console.log(data);
-
-    })
 
   }
 
@@ -220,5 +224,35 @@ export class ProfileUserComponent {
       this.fP = files;
       console.log(this.fP);
     }
+
+    openDialog(): void {
+      let dialogRef = this.dialog.open(ProfilePopUp, {
+        width: '1000px',
+        //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+
+}
+
+@Component({
+  selector: 'popup',
+  templateUrl: 'popup.component.html',
+})
+export class ProfilePopUp {
+
+  constructor(
+    public dialogRef: MatDialogRef<ProfilePopUp>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  toHome(){
+    this.dialogRef.close();
+    location.href = '/home';
+  }
 
 }

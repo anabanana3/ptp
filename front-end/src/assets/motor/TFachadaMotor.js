@@ -6,6 +6,7 @@ class TFachadaMotor {
     //Registros objetos
     this.regLuces = new Array();
     this.regCamaras = new Array();
+    this.objetos = [];
   }
 
   crearNodo(nombre, padre, entidad){
@@ -37,7 +38,8 @@ class TFachadaMotor {
     nodoRota.entidad.rotar(rad, axis1, axis2, axis3);
   }
 
-  trasladar(nodo,tx, ty, tz){
+  trasladar(nodo, tx, ty, tz){
+    console.log(nodo);
     let nodoTrasla = nodo.getPadre();
     nodoTrasla.entidad.trasladar(tx, ty, tz);
   }
@@ -57,10 +59,10 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaCam", this.escena, this.crearTransform());
     let trasla = this.crearNodo("TraslaCam", rota, this.crearTransform());
     let cam = this.crearCamara(nombre, trasla);
-    rota.entidad.rotar(0.785398, 0, 0, 1);
+    // rota.entidad.rotar(0.785398, 0, 0, 1);
     rota.entidad.rotar(3.141588943012, 0, 1, 0);
-    rota.entidad.rotar(0.2, 1, 0, 0);
-    trasla.entidad.trasladar(0,-20,0);
+    rota.entidad.rotar(-1, 1, 0, 0);
+    trasla.entidad.trasladar(0,0,0);
     GViewMatrix = trasla.entidad.modelMatrix;
     GProjectionMatrix = cam.getProjectionMatrix();
     return cam;
@@ -105,7 +107,7 @@ class TFachadaMotor {
     entMalla.malla = this.gestor.getRecurso(ficheroMalla, "malla");
     entMalla.material = this.gestor.getRecurso(ficheroMaterial, "material");
     entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
-    return entMalla;
+    return nodo;
   }
   crearMallaCompleto(nombre, ficheroMalla, ficheroMaterial, ficheroTextura){
     let escala = this.crearNodo("EscalaMalla", this.escena, this.crearTransform());
@@ -117,10 +119,9 @@ class TFachadaMotor {
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
     //Guaro las matrices de forma global para obtenerlas en el shader
-    //GlobalMalla = malla;
-    GMaterial = malla.material;
-    GModelMatrix=trasla.entidad.modelMatrix;
+    malla.entidad.modelMatrix=trasla.entidad.modelMatrix;
 
+    this.objetos.push(malla);
     return malla;
   }
 

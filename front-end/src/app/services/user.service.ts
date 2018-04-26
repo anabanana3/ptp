@@ -30,11 +30,12 @@ export class UserService {
   }
 
   // TODO: Falta implementarlo en la API
-updateUsuario(usuario){
-  let token = sessionStorage.token;
-  let url = this.usuariosURL + 'upload/'+token;
-  return this.http.post(url, usuario).map(res=>res.json())
-}
+  updateUsuario(usuario){
+    let token = sessionStorage.token;
+    let url = this.usuariosURL + 'upload/'+token;
+    return this.http.post(url, usuario).map(res=>res.json())
+  }
+
   updateUsuario2(usu, id){
     let body = JSON.stringify(usu);
     let headers = new Headers({
@@ -218,5 +219,25 @@ updateUsuario(usuario){
             console.log(res.json());
             return res.json();
           })
+  }
+
+  filtroUsuarios(tabla, nombre, email, profesion, numPag, tamPag){
+    let urlAPI:string = "https://aisha.ovh/api/";
+    let url;
+    if(tabla === 0)
+      url = `${urlAPI}solicitantes/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+    else if(tabla === 1)
+      url = `${urlAPI}registrados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+    else if(tabla === 2)
+      url = `${urlAPI}cancelados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
   }
 }

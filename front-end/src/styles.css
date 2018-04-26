@@ -157,15 +157,19 @@ canvas{
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
   padding-bottom: 1%;
   position: absolute;
-  width: 250px;
+  width: 200px;
   height: 100%;
+}
+
+.formAdmin{
+  background-color: white;
+  padding: 0.5%;
 }
 
 .divAdmin-menuExpanded{ display: none;}
 
 .divAdmin-content{
-  width: 80%;
-  float: right;
+  margin-left: 200px;
 }
 
 .icon-menu{
@@ -193,6 +197,7 @@ canvas{
 
 .divAdmin ul{float: left; width: 100%; padding: 10%}
 .divAdmin li{padding: 10%;}
+.divAdmin a{font-size: x-large;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
 .logoutAdmin{
@@ -479,13 +484,142 @@ canvas{
 }
 
 
-.vermasCentro{
-  width:80%;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-  margin:0 auto;
-  margin-top:70px;
-  margin-bottom:40px;
-  padding-bottom:15px;
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.tdVermasText{
+  text-align: left;
+}
+.tdVermas {
+  padding: 10px 40px;
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fade1{
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.fade2{
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+.fade3{
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.fade4{
+  -webkit-animation-delay: 1.4s;
+  -moz-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+.fade5{
+  -webkit-animation-delay: 1.8s;
+  -moz-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+.fade6{
+  -webkit-animation-delay: 2.2s;
+  -moz-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+}
+.fade7{
+  -webkit-animation-delay: 2.6s;
+  -moz-animation-delay: 2.6s;
+  animation-delay: 2.6s;
+}
+
+.verMasCentro{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.verMasTabla{
+  margin-top:20px;
+  margin: 0 auto;
+}
+
+.containerVerMas{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100vh;
+}
+
+.izqVerMas{
+  grid-column-start: 1;
+  grid-column-end:2;
+  grid-row: 1;
+  width: 100%;
+  height: 100vh;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-image:url("assets/img/ninios.jpg");
+}
+
+.flujo{
+  width: 100%;
+  float:left;
+}
+
+.containerFlujo{
+  width: 90%;
+  /* border: dotted; */
+  float: left;
+  margin-top: -35px;
+  position: relative;
+  margin-left: -106px;
+}
+
+.dchaVerMas{
+  grid-column-start: 2;
+  grid-column-end:3;
+  grid-row: 1;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: -1px 0 12px 0 rgba(89,89,89,0.50);
+}
+
+.buttonVerMas{
+  width: 100%;
+  margin-top: 50px;
+  height: 50px;
+  margin-bottom: 180px;
+}
+.restoVerMas{
+  padding-left: 50px;
+  width: 100%;
+  text-align: left;
+}
+.verVideo{
+  margin-top:30px;
+}
+
+.textovermas{
+  width: 80%;
+}
+.verMasRegistro{
+  margin: 0 auto;
+  width:40%;
+  margin-top:30px;
+  padding-top:30px;
+  padding-bottom:40px;
 }
 
 .vermasPeq{
@@ -504,9 +638,10 @@ canvas{
 }
 
 .vermasCentroText{
-  margin:0 auto;
-  width:80%;
+  margin: 0 auto;
+  width: 80%;
   margin-top: 15px;
+  padding-bottom: 10px;
 }
 
 .caracteristicasLeft{
@@ -518,10 +653,7 @@ canvas{
 }
 
 .tickCrossIcon{
-  margin-top:-30px;
   width: 25px;
-  float: right;
-  margin-bottom: 10px;
 }
 
 /********** Expedientes ***********/
@@ -1324,15 +1456,15 @@ option{
   color:black;
 }
 /* The Close Button */
-.close {
+#close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+#close:hover,
+#close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

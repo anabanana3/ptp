@@ -10,10 +10,10 @@
     <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
 
     <div class="optionsRight" >
-      <p (click)="cambio(1)" id="priv"> Privados </p>
-      <p>  | </p>
-      <p (click)="cambio(2)" id=publ> Publicos</p>
-      <p (click)="cambio(3)" id="todos"> | Todos </p>
+      <p (click)="cambio(1)" id="priv"> Privados  </p>
+      <p>   | </p>
+      <p (click)="cambio(2)" id=publ>  Publicos</p>
+      <p (click)="cambio(3)" id="todos"> |Todos </p>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
     <div class="divLabelsDeUnoSearch">
 
       <div class="inputSearchDiv">
-        <img src="../assets/img/SearchIcon.png"/>
+        <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
         <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
         <br>
       </div>

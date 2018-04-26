@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
+import { ProfesionesService } from "../../services/profesiones.service";
 import { User } from "../../interfaces/user.interface";
 //Para las rutas
 import {ActivatedRoute} from '@angular/router';
@@ -8,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html'
 })
-export class UsuariosComponent {
+export class UsuariosAdminComponent {
 
   user:User ={
     Nombre:'',
@@ -25,6 +26,8 @@ export class UsuariosComponent {
 
   resultado:any;
   usuarios:User[];
+  usuariosOLD:User[];
+  profesiones;
 
   //Para la paginacion
   paginas= new Array(3);
@@ -34,7 +37,9 @@ export class UsuariosComponent {
   tamPag:number = 10;
 
   loading:boolean = true;
-
+  searchNombre = null;
+  searchEmail = null;
+  searchProfesion = null;
   tabla:number = 0;
   /* tabla
     0: Solicitantes
@@ -42,11 +47,12 @@ export class UsuariosComponent {
     2: Cancelados
   */
 
-  displayedColumns = ['id', 'nombre', 'email', 'profesion', 'asociacion', 'opciones'];
+  displayedColumns = ['id', 'nombre', 'email', 'profesion', 'asociacion', 'fecha', 'opciones'];
 
   mensaje:string = '';
   error:boolean = true;
-  constructor(private _userService:UserService, private activatedRoute:ActivatedRoute){
+  constructor(private _userService:UserService, private activatedRoute:ActivatedRoute,
+    private _profesionesService:ProfesionesService){
     if(sessionStorage.getItem('iD') !== '44'){
       return;
     }
@@ -59,6 +65,7 @@ export class UsuariosComponent {
         //this.user = data.Data;
         this.resultado = data;
         this.usuarios= this.resultado.Data;
+        this.usuariosOLD = data.Data;
         this.pagActual = this.resultado.Pagina;
         this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
         this.tamPag = this.resultado.Elementos_Pagina;
@@ -66,7 +73,14 @@ export class UsuariosComponent {
         console.log(data);
       }
     })
-    return;
+
+    this._profesionesService.getProfesiones().subscribe(data => {
+      if(data.Codigo == '501'){
+        location.href = '/expired';
+      }else{
+        this.profesiones = data;
+      }
+    })
   }
 
   cancelUser(id){
@@ -95,20 +109,17 @@ export class UsuariosComponent {
   }
 
 //Funcion con parametro por defecto => si recibe uno diferente lo cambia
-  view(number, pagina=1, tam=10){
+  view(number, pagina=1){
     if(number == 0){
-      this._userService.getSolicitantes(pagina, tam).subscribe(data=>{
+      this._userService.getSolicitantes(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
           location.href = '/expired';
         }else{
           this.loading = false;
-          console.log('Solicitantes');
           this.tabla = 0
-          console.log(data);
           this.resultado = data;
+          this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
-          console.log("Muestro la varibale resultado", this.resultado);
-          console.log("Muestro los usuario a mostrar", this.usuarios);
           this.pagActual = this.resultado.Pagina;
           this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
         }
@@ -117,46 +128,35 @@ export class UsuariosComponent {
     }
 
     if(number == 1){
-      this._userService.getRegistrados(pagina, tam).subscribe(data=>{
+      this._userService.getRegistrados(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
           location.href = '/expired';
         }else{
           this.loading = false;
           this.tabla = 1
-          console.log('Registrados');
-          console.log(data);
-          //console.log(data.Data);
-          //this.user = data;
           this.resultado = data;
+          console.log(data);
+
+          this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
-          console.log("Muestro la varibale resultado", this.resultado);
-          console.log("Muestro los usuario a mostrar", this.usuarios);
-          //console.log(this.user);
           this.pagActual = this.resultado.Pagina;
           this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-          console.log("Muestro el tamaño pagina en la funcion de mostrar usuarios", this.tamPag);
         }
       })
       return;
     }
 
     if(number == 2){
-      this._userService.getCancelados(pagina, tam ).subscribe(data=>{
+      this._userService.getCancelados(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
           location.href = '/expired';
         }else{
           this.loading = false;
           this.tabla = 2
-          console.log('Cancelados');
           this.resultado = data;
+          this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
           this.pagActual = this.resultado.Pagina;
-          console.log("Muestro la varibale resultado", this.resultado);
-          console.log("Muestro los usuario a mostrar", this.usuarios);
-          //console.log(data);
-          //this.user = data;
-          //console.log("Muestro la varibale user");
-          //console.log(this.user);
           this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
         }
       })
@@ -183,22 +183,74 @@ export class UsuariosComponent {
     }else{
       this.pagNext = paginaActual;
     }
-    console.log("Total de paginas", this.paginas.length);
-    console.log('PAgina Actual', paginaActual);
-    console.log("Pagina Siguiente", this.pagNext);
-    console.log("Pagina anterior", this.pagBack);
   }
 
   pasarPagina(pag){
-    console.log(pag);
-    console.log('Muestro el numero ese de andrea', this.tabla);
-    this.view(this.tabla, pag, this.tamPag);
+    this.view(this.tabla, pag);
     this.pagActual = pag;
   }
 
   cambiarTamPag(tam){
-    console.log(tam);
     this.tamPag=tam;
-    this.view(this.tabla, 1, this.tamPag);;
+    this.view(this.tabla, 1);;
+  }
+
+  filter(){
+    if(this.searchEmail === '')
+      this.searchEmail = null;
+    if(this.searchNombre === '')
+      this.searchNombre = null;
+    if(this.searchProfesion === '')
+      this.searchProfesion = null;
+
+    if(this.searchNombre === null && this.searchEmail === null && this.searchProfesion === null){
+      this.usuarios = this.usuariosOLD;
+      return;
+    }
+
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, this.searchProfesion, 1, this.tamPag)
+      .subscribe(data => {
+        if(data.Codigo == 501){
+            location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.usuarios = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      })
+  }
+
+  activate(id, email){
+    this._userService.activateUsuario(id, email).subscribe(data => {
+      if(data.Codigo == 501){
+          location.href = '/expired';
+      }else{
+        console.log(data);
+        if(data.Resultado === 'OK'){
+          this.loading = true;
+          this.mensaje = 'Usuario validado Correctamente!';
+          document.getElementById('alert').className = 'alert alert-success';
+
+          if(this.tabla === 0){
+            this._userService.getSolicitantes(this.pagActual, this.tamPag).subscribe(data=>{
+              if(data.Codigo == 501){
+                location.href = '/expired';
+              }else{
+                this.loading = false;
+                this.resultado = data;
+                this.usuariosOLD = data.Data;
+                this.usuarios= this.resultado.Data;
+                this.pagActual = this.resultado.Pagina;
+                this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+              }
+            })
+          }
+        }
+        else{
+          this.mensaje = 'Ha ocurrido un error!';
+          document.getElementById('alert').className = 'alert alert-danger';
+        }
+      }
+    })
   }
 }

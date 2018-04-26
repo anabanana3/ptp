@@ -22,16 +22,33 @@
   <!-- <div class="recursos-container-filter"> -->
 
     <div class="lateralSearch">
-      <select class="lineaCampo" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
-      <option value="null" selected>Ningun formato seleccionado</option>
+      <form (ngSubmit)="buscar()" #forma="ngForm">
+        <div class="divLabelsDeUnoSearch">
+
+          <div class="inputSearchDiv">
+
+              <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
+              <input class="inputSearch" id="fieldSearch" type="text" name="fieldSearch" placeholder="Buscar recurso..." [(ngModel)]="fieldSearch"/>
+              <br>
+              <!-- <button style="background:none; border:none; padding:0; font-size:15px;" type="submit" class="pointer icon-search">
+              </button> -->
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label>Formato del recurso</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+
+      <select class="sizeinput" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
+      <option value="null" selected>Ninguno seleccionado</option>
         <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">{{formatos[k].Nombre}}</option>
       </select>
 
+    </div>
+  </div>
 
-    <form (ngSubmit)="buscar()" #forma="ngForm">
-      <input  id="fieldSearch" class="lineaCampo" type="text" name="fieldSearch" placeholder="Buscar recurso..." [(ngModel)]="fieldSearch" style="width:80%;"/>
-        <button style="background:none; border:none; padding:0; font-size:15px;" type="submit" class="pointer icon-search">
-        </button>
       </form>
   </div>
 
@@ -60,7 +77,7 @@
 
       <div class="popUpBorrar" id="popupBorrar">
         <div class="popupBorrar-content">
-          <span class="close">&times;</span>
+          <span id="close">&times;</span>
           <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
           <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
           <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>

@@ -91,29 +91,20 @@
 
 @media (max-width: 1384px) {
   /* laptop */
-  h1{
-    font-size:16px;
-  }
-  p{
-    font-size:14px;
-  }
+  h1{font-size:16px;}
 
-  .vermasCentroText{
-    font-size:16px;
-  }
+  p{font-size:14px;}
 
-  .tickCrossIcon{
-    width: 20px;
-  }
+  .vermasCentroText{font-size:16px;}
+
+  .tickCrossIcon{width: 20px;}
 
   .caracteristicasLeft{
     margin-left:20px;
     width:78%;
   }
 
-  .recursosText{
-    margin-left:15%;
-  }
+  .recursosText{margin-left:15%;}
 
   .divRecurso{
     float:left;
@@ -127,54 +118,27 @@
     height: 30px;
   }
 
-  .recursosDiv{
-    height:500px;
-  }
+  .recursosDiv{height:500px;}
 
 }
 
 @media (max-width:1025px) {
   /* big landscape tablets, laptops, and desktops */
-  .camposForm{
-    width: 70%;
-  }
+  .camposForm{width: 70%;}
 
-  .divBlanco{
-    width: 80%;
-  }
+  .divBlanco{width: 80%;}
 
-  .divAdmin{
-    display: none;
-  }
+  .divAdmin span{display: none;}
 
-  .divAdmin-menuExpanded{
-    display: block;
-    background: #D8D8D8;
-    border: 1px solid #979797;
-    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
-    padding-bottom: 1%;
-    position: absolute;
-    width: 30%;
-    min-width: 200px;
-  }
+  .divAdmin{ width: 70px;}
 
-  .divAdmin-menuExpanded li{
-    text-align: left;
-    padding: 2%;
-    margin-left: 0.3em;
-  }
+  .divAdmin li{ padding: 30%;}
 
-  .divAdmin-content{
-    width: 100%;
-  }
+  .divAdmin ul{ width: 70%;}
 
-  .icon-menu{
-    display: inline-block;
-  }
+  .divAdmin-content{margin-left: 70px;}
 
-  .noticiasConIcon{
-    width: 620px;
-  }
+  .noticiasConIcon{width: 620px;}
 }
 
 @media (max-width: 481px) {
@@ -208,8 +172,27 @@
     float: none;
   }
 
+  .divAdmin { display: none;}
+
   .divAdmin-menuExpanded{
+    display: block;
+    background: #D8D8D8;
+    border: 1px solid #979797;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24);
+    padding-bottom: 1%;
+    position: absolute;
     width: 100%;
+    min-width: 200px;
+  }
+
+  .icon-menu{
+    display: inline-block;
+  }
+
+  .divAdmin-menuExpanded li{
+    text-align: left;
+    padding: 2%;
+    margin-left: 0.3em;
   }
 
   .divError{

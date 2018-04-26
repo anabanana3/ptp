@@ -16,14 +16,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 //Components
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { UsuariosComponent } from './components/admin/usuarios.component';
-import { AsociacionesComponent } from './components/admin/asociaciones.component';
+import { UsuariosAdminComponent } from './components/admin/usuarios.component';
+import { AsociacionesAdminComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
-import { ProfileUserComponent } from './components/user/profile/profileUser.component';
+import { ProfileAsociacionComponent, ProfilePopUp2 } from './components/asociaciones/profile/profileAsociacion.component';
+import { ProfileUserComponent, ProfilePopUp } from './components/user/profile/profileUser.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { HomeAdminComponent } from './components/admin/home/homeAdmin.component';
@@ -69,8 +69,8 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     AppComponent,
     RegistroComponent,
     KeysPipe,
-    UsuariosComponent,
-    AsociacionesComponent,
+    UsuariosAdminComponent,
+    AsociacionesAdminComponent,
     RegistroLoginComponent,
     HomeComponent,
     LoginComponent,
@@ -106,7 +106,9 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     EstadisticasComponent,
     ExpiredSessionComponent,
     ContactPopup,
-    PoliticaPrivacidadComponent
+    PoliticaPrivacidadComponent,
+    ProfilePopUp,
+    ProfilePopUp2
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,9 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
   entryComponents: [
     Popup,
     Popup2,
-    ContactPopup
+    ContactPopup,
+    ProfilePopUp,
+    ProfilePopUp2
   ],
   providers: [
     ProfesionesService,

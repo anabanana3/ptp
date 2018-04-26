@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
   selector: 'app-asociaciones',
   templateUrl: './asociaciones.component.html'
 })
-export class AsociacionesComponent {
+export class AsociacionesAdminComponent {
   loading:boolean=true;
 
   asociacion = []
+  asociacionesOLD = []
 
   mensaje:string = '';
-  fieldSearch:string = '';
+  searchNombre = null;
+  searchEmail = null;
   //Para la paginacion
   paginas = new Array(3);
   pagNext;
@@ -30,7 +32,7 @@ export class AsociacionesComponent {
       }else{
         this.loading = false;
         this.asociacion = data.Data;
-        console.log(this.asociacion);
+        this.asociacionesOLD = data.Data;
         this.paginacion(data.Pagina, data.Paginas_Totales);
       }
     })
@@ -42,9 +44,6 @@ export class AsociacionesComponent {
       // Asociacion: this.asociacion.Nombre
     }
     this._asociacionesServices.deleteAsociacion(id, asociacion).subscribe(res=>{
-
-      console.log(res);
-
       if(res.Resultado === 'OK'){
         this.mensaje = 'Asociación Cancelada!';
         location.href = '/admin/asociaciones#arriba';
@@ -53,7 +52,6 @@ export class AsociacionesComponent {
         this.loading = true;
         this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
           this.loading = false;
-          console.log(data);
           this.asociacion = data.Data;
           this.paginacion(data.Pagina, data.Paginas_Totales);
         })
@@ -73,7 +71,6 @@ export class AsociacionesComponent {
 
   activate(id, email){
     this._asociacionesServices.activateAsociacion(id, email).subscribe(res=>{
-      console.log(res);
       if(res.Resultado === 'OK'){
         this.loading = true;
         this.mensaje = 'Asociacion validada Correctamente!';
@@ -97,6 +94,7 @@ export class AsociacionesComponent {
   paginacion( paginaActual , pagTotales){
     //Total de paginas
     this.paginas = [];
+    this.pagActual = paginaActual;
     for(let i=0; i<pagTotales; i++){
       this.paginas.push(i);
     }
@@ -115,16 +113,11 @@ export class AsociacionesComponent {
   }
 
   pasarPagina(pag){
-    console.log(pag);
-  //  console.log('Muestro el numero ese de andrea', this.tabla);
-    //console.log('Muestro el tamaño de pagina que desea el usuario', tam);
-    //this.view(this.tabla, pag, tam);
     this._asociacionesServices.getAsociaciones(pag, this.tamPag).subscribe(data =>{
       if(data.Codigo == 501){
           location.href = '/expired';
       }else{
         this.loading = false;
-        console.log(data);
         this.asociacion = data.Data;
         this.paginacion(pag, data.Paginas_Totales);
         this.pagActual = data.Pagina;
@@ -139,7 +132,6 @@ export class AsociacionesComponent {
         location.href = '/expired';
       }else{
         this.loading = false;
-        console.log(data);
         this.asociacion = data.Data;
         this.paginacion(data.Pagina, data.Paginas_Totales);
       }
@@ -148,6 +140,24 @@ export class AsociacionesComponent {
   }
 
   filter(){
-    console.log(this.fieldSearch);
+    if(this.searchEmail === '')
+      this.searchEmail = null;
+    if(this.searchNombre === '')
+      this.searchNombre = null;
+
+    if(this.searchNombre === null && this.searchEmail === null){
+      this.asociacion = this.asociacionesOLD;
+      return;
+    }
+    this._asociacionesServices.filtroAsociaciones(this.searchNombre, this.searchEmail, 1, this.tamPag)
+      .subscribe(data => {
+        if(data.Codigo == 501){
+            location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.asociacion = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      })
   }
 }

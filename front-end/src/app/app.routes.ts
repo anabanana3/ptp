@@ -1,12 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { RegistroComponent } from './components/registro/registro.component';
-import { UsuariosComponent } from './components/admin/usuarios.component';
-import { AsociacionesComponent } from './components/admin/asociaciones.component';
 import { RegistroLoginComponent } from './components/registro/registroLogin.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { HomeAsociaciones } from './components/asociaciones/homeAsociaciones.component';
 import { LoginComponent } from './components/login/login.component';
-import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 import { ProfileUserComponent } from './components/user/profile/profileUser.component';
 import { ProfileAsociacionComponent } from './components/asociaciones/profile/profileAsociacion.component';
 import { PrincipalComponent } from './components/principal/principal.component';
@@ -23,6 +20,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
+import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
 
 const app_routes: Routes = [
   {
