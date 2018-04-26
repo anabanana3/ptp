@@ -8,9 +8,11 @@ export interface User{
   ID_Asociacion?: number;
   ID_Profesion?: number;
   ID_Lugar: string;
+  Lugar?:string;
+  Pais?:string;
   Direccion: string;
   DNI: string;
-  Sexo: string;
+  Sexo: number;
   Foto?: string;
   ID_Usuario$?:string //? dato opcional
   Captcha?:string
