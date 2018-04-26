@@ -386,32 +386,65 @@ canvas{
   background-color: #F5BFBF;
 }
 
-.itemContainer{
-  max-width: 83%;
-  width: 83%;
-  padding-left: 60px;
-  margin:0 auto;
-  margin-top:100px;
+/*** USUARIO HOME  *****/
+.itemTodo{
+  margin: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
-.itemBg{
-  display: inline-block;
-  width: 300px;
-  margin:2%;
-  height: 300px;
-  float:left;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-}
-
 .itemColor{
-  width:300px;
-  height:172px;
+  width: 270px;
+  height: 270px;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.itemColor:hover{
+  background-color: #880042;
 }
 
+.itemImagenCherry{
+  margin: 30px;
+  height: 35%;
+  width: 40%;
+}
+.itemImagenWhite{
+  display: none;
+  margin: 25px;
+}
+.itemColor:hover .itemImagenCherry{
+  display:none;
+}
+.itemColor:hover .itemImagenWhite{
+  display: inline;
+  height: 20%;
+  width: 25%;
+}
+.itemColor:hover .itemImagenAlta{
+  width: 17%;
+}
+.itemImagenAlta{
+  width: 30%;
+}
+
+.itemTitle{
+  font-size: 20px;
+  text-shadow: 0.05em 0.05em #DDDDDD;
+}
+.itemColor:hover .itemTitle{
+  color: white;
+  text-shadow: 0.05em 0.05em #333333;
+}
 .itemText{
-  padding-top:20px;
-  font-size:22px;
-  color:white;
+  display: none;
+  margin: 20px;
+  margin-top: 30px;
+  color: white;
+  text-shadow: 0.05em 0.05em #333333;
+}
+.itemColor:hover .itemText{
+  display: inherit;
 }
 
 
@@ -445,24 +478,6 @@ canvas{
   height: 330px;
 }
 
-/*** USUARIO HOME  *****/
-
-.itemOver{
-  /* z-index: -1; */
-  position: absolute;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  /* position: relative;
-  margin: 3%; */
-}
-
-.itemDescription{
-  width:87%;
-  margin:0 auto;
-  height: 77px;
-  margin-top:10px;
-}
 
 .vermasCentro{
   width:80%;

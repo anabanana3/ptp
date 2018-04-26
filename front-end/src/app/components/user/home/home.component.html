@@ -3,54 +3,70 @@
 </div>
 <div *ngIf="!error">
 <app-header></app-header>
-  <div class="itemOver">
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorPink">
-        <p class="itemText">Mis Expedientes</p>
-        <img style=" margin: 0 auto; margin-top:17px; width:65px" src="../assets/img/Expediente.png" alt="iconExpediente">
+
+  <div class="itemTodo">
+  <a [routerLink]="['/misexpedientes']">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenAlta itemImagenWhite" src="../assets/img/Expediente.png" alt="iconExpediente">
+          <img class="itemImagenAlta itemImagenCherry" src="../assets/img/Expediente.png" alt="iconExpediente">
+        <p class="itemTitle textPink">Mis Expedientes</p>
+        <p class="itemText">Lleve el seguimiento de sus casos con la creación de expedientes</p>
       </div>
-      <p class="itemDescription">Lleve el seguimiento de sus casos con la creación de expedientes</p>
-      <button type="submit" name="button" class="btn-relleno-negro" [routerLink]="['/misexpedientes']">ENTRAR</button>
-    </div>
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorBlue">
-        <p class="itemText">Expedientes Públicos</p>
-        <img style="margin: 0 auto; margin-top:30px; width:120px" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
+  </a>
+
+  <a [routerLink]="['/bibexpedientes']">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
+          <img class="itemImagenCherry" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
+        <p class="itemTitle textPink">Expedientes Públicos</p>
+
+        <p class="itemText">Consulte expedientes que otros profesionales hayan compartido</p>
       </div>
-      <p class="itemDescription">Consulte expedientes que otros profesionales hayan compartido</p>
-      <button type="button" name="button" class="btn-relleno-negro" [routerLink]="['/bibexpedientes']">ENTRAR</button>
-    </div>
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorPink">
-        <p class="itemText">Estadísticas</p>
-        <img style="margin: 0 auto; margin-top:40px; width:90px" src="../assets/img/ApiDatos.png" alt="iconApiDatos">
+  </a>
+
+  <a [routerLink]="['/estadisticas']">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/ApiDatos.png" alt="iconApiDatos">
+          <img class="itemImagenCherry" src="../assets/img/estadisticas.png" alt="iconApiDatosCherry">
+        <p class="itemTitle textPink">Estadísticas</p>
+
+        <p class="itemText">Conozca el riesgo de ablación según estos factores</p>
       </div>
-      <p class="itemDescription">Estadísticas que ayudarán a la predicción del riesgo de ablación en mujeres</p>
-      <button type="button" name="button" class="btn-relleno-negro" [routerLink]="['/estadisticas']">ENTRAR</button>
-    </div>
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorBlue">
-        <p class="itemText">Biblioteca de Recursos</p>
-        <img style=" margin: 0 auto; margin-top:20px; width:65px" src="../assets/img/PDFIcon.png" alt="iconPDF">
+  </a>
+
+  <a [routerLink]="['/recursos']">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenAlta itemImagenWhite" src="../assets/img/PDFIcon.png" alt="iconPDF">
+          <img class="itemImagenAlta itemImagenCherry" src="../assets/img/pdf.png" alt="iconPDFCherry">
+          <!-- <img class="itemImagenWhite" src="../assets/img/ImgIcon2.png" alt="iconImg">
+          <img class="itemImagenCherry" src="../assets/img/ImgIcon2.png" alt="iconImg">
+          <img class="itemImagenWhite" src="../assets/img/VideoIcon.png" alt="iconImg">
+          <img class="itemImagenCherry" src="../assets/img/VideoIcon.png" alt="iconImg"> -->
+        <p class="itemTitle textPink">Biblioteca de Recursos</p>
+
+          <p class="itemText">Acceda a todo tipo de recursos como PDFs, imágenes o vídeos</p>
       </div>
-      <p class="itemDescription">Acceda a todo tipo de recursos como PDFs, imágenes o vídeos</p>
-      <button type="button" name="button" class="btn-relleno-negro" [routerLink]="['/recursos']">ENTRAR</button>
-    </div>
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorPink">
-        <p class="itemText">Aula virtual</p>
-        <img style="margin: 0 auto; margin-top:20px; width:90px" src="../assets/img/Cubes.png" alt="icon3D">
+  </a>
+
+  <a [routerLink]="['/aulavirtual']">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/Cubes.png" alt="icon3D">
+          <img class="itemImagenCherry" src="../assets/img/ModeloIcon.png" alt="icon3DCherry">
+        <p class="itemTitle textPink">Aula virtual</p>
+
+        <p class="itemText">Modelo en 3D que muestra las causas de la MGF</p>
       </div>
-      <p class="itemDescription">Modelo en 3D que muestra las causas de la MGF</p>
-      <button type="button" name="button" class="btn-relleno-negro" [routerLink]="['/aulavirtual']">ENTRAR</button>
-    </div>
-    <div class="itemBg bgColorWhite">
-      <div class="itemColor bgColorBlue">
-        <p class="itemText">Chat</p>
-        <img style="margin: 0 auto; margin-top:30px; width:90px" src="../assets/img/Chat.png" alt="iconChat">
+  </a>
+
+  <a [routerLink]="['/chat']">
+      <div class="itemColor bgColorWhite">
+            <img class="itemImagenWhite" src="../assets/img/Foro.png" alt="iconChat">
+            <img class="itemImagenCherry" src="../assets/img/Chat.png" alt="iconChatCherry">
+          <p class="itemTitle textPink">Chat</p>
+
+          <p class="itemText">Póngase en contacto con otros profesionales mediante nuestro chat</p>
       </div>
-      <p class="itemDescription">Póngase en contacto con otros profesionales mediante nuestro chat</p>
-      <button type="button" name="button" class="btn-relleno-negro" [routerLink]="['/chat']">ENTRAR</button>
-    </div>
+  </a>
   </div>
 </div>
+<app-footer></app-footer>
