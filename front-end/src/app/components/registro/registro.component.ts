@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
     ID_Profesion: 0,
     ID_Lugar: '',
     Direccion: '',
-    Sexo: 1,   /*TODO BORRAR*/
+    Sexo: '1',   /*TODO BORRAR*/
     DNI: '',
     Captcha: null
   }

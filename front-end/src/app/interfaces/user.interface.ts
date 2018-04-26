@@ -12,7 +12,7 @@ export interface User{
   Pais?:string;
   Direccion: string;
   DNI: string;
-  Sexo: number;
+  Sexo: string;
   Foto?: string;
   ID_Usuario$?:string //? dato opcional
   Captcha?:string
