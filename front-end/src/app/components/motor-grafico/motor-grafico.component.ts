@@ -6,6 +6,7 @@ declare var mostrarTipo3;
 declare var mostrarReal;
 declare var mostrarCartoon;
 declare var borrarLuzCompleto;
+declare var moverCamara;
 
 @Component({
   selector: 'app-motor-grafico',
