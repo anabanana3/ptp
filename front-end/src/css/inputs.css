@@ -16,7 +16,7 @@ input, textarea, select{
   width: 100%;
 }
 
-.inputSearchDiv > img{
+.lupaIcon{
   width: 15px;
   height: 15px;
   margin: 5px;

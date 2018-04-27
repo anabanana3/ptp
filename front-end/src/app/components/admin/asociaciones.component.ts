@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-asociaciones',
   templateUrl: './asociaciones.component.html'
 })
-export class AsociacionesComponent {
+export class AsociacionesAdminComponent {
   loading:boolean=true;
 
   asociacion = []
