@@ -14,6 +14,7 @@ class TCamara extends TEntidad {
 		this.up = vec3.create();
 		this.right = vec3.create();
 		this.normal = vec3.create();
+		this.interactor = null;
 	}
 
 	goHome(h){

@@ -92,6 +92,26 @@ class TCamaraInteractor extends TEntidad {
   update(){
     var self = this;
   	var canvas = this.canvas;
+    console.log(this.canvas);
+    canvas.onmousedown = function(ev) {
+  		self.onMouseDown(ev);
+    }
+
+    canvas.onmouseup = function(ev) {
+  		self.onMouseUp(ev);
+    }
+
+  	canvas.onmousemove = function(ev) {
+  		self.onMouseMove(ev);
+    }
+
+  	window.onkeydown = function(ev){
+  		self.onKeyDown(ev);
+  	}
+
+  	window.onkeyup = function(ev){
+  		self.onKeyUp(ev);
+  	}
   }
 
   translate(value){

@@ -1,5 +1,6 @@
 function iniciarMotor(){
   GFachada = new TFachadaMotor();
+  GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
   let luz1 = GFachada.crearLuzCompleto("luz1");
@@ -8,7 +9,6 @@ function iniciarMotor(){
   let tetera = GFachada.crearMallaCompleto("Tetera", "tetera.obj", "material2.mtl", "textura.jpg");
   GFachada.trasladar(tetera, 0, -15, 0);
 
-  GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
   setTimeout(() => {
     GShader.mainShader();
@@ -40,4 +40,10 @@ function mostrarReal(){
 
 function mostrarCartoon(){
   console.log('mostrarCartoon');
+}
+
+function moverCamara(camara, ev){
+  if(camara == 0){
+    GFachada.regCamaras[0].interactor.onMouseMove(ev);
+  }
 }

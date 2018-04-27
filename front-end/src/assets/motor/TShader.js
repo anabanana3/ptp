@@ -9,6 +9,7 @@ class TShader extends TRecurso {
     this.indexBuffer = null; //buffer de indices
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
+    console.log(this.canvas);
     this.gl = null;
   }
 
@@ -62,12 +63,12 @@ class TShader extends TRecurso {
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.depthFunc(this.gl.LEQUAL);
-
     //crear camara
-    let camara = new TCamara();
-    camara.goHome([0,200,2000]);
-
-    let interactor = new TCamaraInteractor(camara, this.gl);
+    for (var i = 0; i < GFachada.regCamaras.length; i++) {
+      let camara  = GFachada.regCamaras[i].entidad;
+      console.log(camara);
+      camara.interactor = new TCamaraInteractor(camara, this.canvas);
+    }
   }
 
   initProgram(){
