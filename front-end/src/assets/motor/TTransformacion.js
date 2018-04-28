@@ -52,11 +52,14 @@ class TTransformacion extends TEntidad{
     if(stack[0]){
       aux = stack[0];
     }
+
     //mat4.multiply(out, a, b);
-    mat4.multiply(this.modelMatrix, aux, this.transfMatrix);
+    mat4.multiply(this.modelMatrix, this.transfMatrix, aux);
   }
 
   endDraw(){
+    this.transfMatrix = mat4.create();
+    this.modelMatrix = stack[stack.length-1];
     stack.pop();
   }
 }

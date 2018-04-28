@@ -9,6 +9,7 @@ class TCamara extends TEntidad {
 		this.azimuth = 0.0;
 		this.elevation = 0.0;
 		this.steps = 0;
+
 		this.position = vec3.create();
 		this.matrix = mat4.create();
 		this.up = vec3.create();
@@ -26,6 +27,7 @@ class TCamara extends TEntidad {
     this.setElevation(0);
     this.steps = 0;
 	}
+
 	dolly(s){
 		var c = this;
 
@@ -60,39 +62,45 @@ class TCamara extends TEntidad {
     this.update();
 	}
 
-	setAzimuth(az){
-		this.changeAzimuth(az - this.azimuth);
-	}
-	changeAzimuth(az){
-    this.azimuth +=az;
+	// setAzimuth(az){
+	// 	this.changeAzimuth(az - this.azimuth);
+	// }
+	//
+	// changeAzimuth(az){
+  //   this.azimuth +=az;
+	//
+  //   if (this.azimuth > 360 || this.azimuth <-360) {
+	// 		this.azimuth = this.azimuth % 360;
+	// 	}
+	// 	console.log(this.azimuth);
+  //   this.update();
+	// }
+	//
+	// setElevation(el){
+	// 	this.changeElevation(el - this.elevation);
+	// }
+	//
+	// changeElevation(el){
+	// 	this.elevation +=el;
+	//
+  //   if (this.elevation > 360 || this.elevation <-360) {
+	// 		this.elevation = this.elevation % 360;
+	// 	}
+	// 	console.log(this.elevation);
+  //   this.update();
+	// }
 
-    if (this.azimuth > 360 || this.azimuth <-360) {
-		this.azimuth = this.azimuth % 360;
-	}
-    this.update();
-	}
-	setElevation(el){
-		this.changeElevation(el - this.elevation);
-	}
-	changeElevation(el){
-		this.elevation +=el;
-
-    if (this.elevation > 360 || this.elevation <-360) {
-		this.elevation = this.elevation % 360;
-	}
-    this.update();
-	}
 	update(){
 		//para la orbiting
-		mat4.identity(this.matrix);
-		mat4.rotateY(this.matrix, this.matrix, this.azimuth * Math.PI/180);
-		mat4.rotateX(this.matrix, this.matrix, this.elevation * Math.PI/180);
-		mat4.translate(this.matrix, this.matrix, this.position);
+		// mat4.identity(this.matrix);
+		// mat4.rotateY(this.matrix, this.matrix, this.azimuth * Math.PI/180);
+		// mat4.rotateX(this.matrix, this.matrix, this.elevation * Math.PI/180);
+		// mat4.translate(this.matrix, this.matrix, this.position);
 
-		var m = this.matrix;
-		let aux = mat4.create();
-		mat4.identity(aux);
-		mat4.multiply(this.matrix, aux,m);
+		let rotaCamara = GFachada.regCamaras[0].getPadre().getPadre().entidad;
+		rotaCamara.rotar(0.3, 0, 1, 0);
+		// rotaCamara.rotar(this.azimuth * Math.PI/180, 0,1, 0);
+		GFachada.draw();
 	}
 
 	getViewTransform(){
@@ -100,6 +108,7 @@ class TCamara extends TEntidad {
     mat4.inverse(this.matrix, m);
     return m;
 	}
+
 	//fovy => Angulo de vision en radianes
 	//aspect => Relacion de aspecto
 	setPerspectiva (fovy, aspect, near, far){
@@ -128,7 +137,6 @@ class TCamara extends TEntidad {
 	getTipo(){
 		return this.esPrespectiva;
 	}
-
 
 	beginDraw(){}
 	endDraw(){}

@@ -66,7 +66,6 @@ class TShader extends TRecurso {
     //crear camara
     for (var i = 0; i < GFachada.regCamaras.length; i++) {
       let camara  = GFachada.regCamaras[i].entidad;
-      console.log(camara);
       camara.interactor = new TCamaraInteractor(camara, this.canvas);
     }
   }

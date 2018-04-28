@@ -51,7 +51,7 @@ class TFachadaMotor {
   	nodo.setEntidad(camara);
     this.regCamaras.push(nodo);
     //fovy, aspect, near, far - angulo en radianes, aspecto, cerca, lejos
-    let canvas = document.getElementById('canvas')
+    // let canvas = document.getElementById('canvas')
     // camara.setPerspectiva(30, canvas.width, canvas.height, 10, 1000)
   	return camara;
   }
@@ -60,10 +60,10 @@ class TFachadaMotor {
     let trasla = this.crearNodo("TraslaCam", rota, this.crearTransform());
     let cam = this.crearCamara(nombre, trasla);
     // rota.entidad.rotar(0.785398, 0, 0, 1);
-    rota.entidad.rotar(3.141588943012, 0, 1, 0);
-    rota.entidad.rotar(-1, 1, 0, 0);
-    trasla.entidad.trasladar(0,0,0);
-    GViewMatrix = trasla.entidad.modelMatrix;
+    // rota.entidad.rotar(3.141588943012, 0, 1, 0);
+    // rota.entidad.rotar(-1, 1, 0, 0);
+    // trasla.entidad.trasladar(0,0,0);
+    // GViewMatrix = trasla.entidad.modelMatrix;
     GProjectionMatrix = cam.getProjectionMatrix();
     return cam;
   }
@@ -114,6 +114,7 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaMalla", escala, this.crearTransform());
     let trasla = this.crearNodo("TraslaMalla", rota, this.crearTransform());
     let malla = this.crearMalla(nombre, ficheroMalla, ficheroMaterial, ficheroTextura, trasla);
+    console.log('malla')
     escala.entidad.escalar(0.03,0.03,0.03);
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);

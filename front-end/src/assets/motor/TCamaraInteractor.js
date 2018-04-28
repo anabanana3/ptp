@@ -15,7 +15,7 @@ class TCamaraInteractor extends TEntidad {
       this.ctrl = false;
       this.key = 0;
 
-      this.MOTION_FACTOR = 10.0;
+      this.MOTION_FACTOR = 1.0;
   }
 
   onMouseUp(ev){
@@ -23,22 +23,23 @@ class TCamaraInteractor extends TEntidad {
   }
 
   onMouseDown(ev){
-    console.log("hola");
-      this.dragging = true;
-      this.x = ev.clientX;
+    this.dragging = true;
+    this.x = ev.clientX;
   	this.y = ev.clientY;
   	this.button = ev.button;
   }
 
   onMouseMove(ev){
-  	this.lastX = this.x;
+  	/*this.lastX = this.x;
   	this.lastY = this.y;
   	this.x = ev.clientX;
-      this.y = ev.clientY;
-
+    this.y = ev.clientY;
+*/
   	if (!this.dragging) return;
+
   	this.ctrl = ev.ctrlKey;
   	this.alt = ev.altKey;
+
   	var dx = this.x - this.lastX;
   	var dy = this.y - this.lastY;
 
@@ -47,13 +48,13 @@ class TCamaraInteractor extends TEntidad {
   			this.translate(dy);
   		}
   		else{
-  			this.rotate(dx,dy);
+  			this.rotate(dx, dy);
   		}
   	}
   }
 
-  onKeyDown(ev){
-      var c = this.camera;
+  /*onKeyDown(ev){
+    var c = this.camera;
 
   	this.key = ev.keyCode;
   	this.ctrl = ev.ctrlKey;
@@ -71,28 +72,18 @@ class TCamaraInteractor extends TEntidad {
   		else if (this.key == 39){
   			c.changeAzimuth(10);
   		}
-          else if (this.key == 87) {  //w -wide
-              if(fovy < 120) fovy+=5;
-              console.info('FovY:'+fovy);
-          }
-          else if (this.key == 78) { //n - narrow
-              if(fovy >15 ) fovy-=5;
-              console.info('FovY:'+fovy);
-          }
   	}
-
   }
 
   onKeyUp(ev){
       if (ev.keyCode == 17){
   		this.ctrl = false;
   	}
-  }
+  }*/
 
   update(){
     var self = this;
   	var canvas = this.canvas;
-    console.log(this.canvas);
     canvas.onmousedown = function(ev) {
   		self.onMouseDown(ev);
     }
@@ -105,36 +96,37 @@ class TCamaraInteractor extends TEntidad {
   		self.onMouseMove(ev);
     }
 
-  	window.onkeydown = function(ev){
-  		self.onKeyDown(ev);
-  	}
+  	// window.onkeydown = function(ev){
+  	// 	self.onKeyDown(ev);
+  	// }
 
-  	window.onkeyup = function(ev){
-  		self.onKeyUp(ev);
-  	}
+  	// window.onkeyup = function(ev){
+  	// 	self.onKeyUp(ev);
+  	// }
   }
 
-  translate(value){
-
+  /*translate(value){
+    console.log("si que entro");
   	var c = this.camera;
-  	var dv = 2 * this.MOTION_FACTOR * value / camera.view.canvas.height;
+  	var dv = 2 * this.MOTION_FACTOR * value / canvas.height;
 
   	c.dolly(Math.pow(1.1,dv));
-  }
+  }*/
 
   rotate(dx, dy){
-
-
   	var camera = this.camera;
-  	var canvas = this.canvas;
+  	// var canvas = this.canvas;
+    //
+  	// var delta_elevation = -2.0 / canvas.height;
+  	// var delta_azimuth   = -2.0 / canvas.width;
+    //
+  	// var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
+  	// var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
+    // console.log(nAzimuth);
+    // console.log(nElevation);
 
-  	var delta_elevation = -20.0 / canvas.height;
-  	var delta_azimuth   = -20.0 / canvas.width;
-
-  	var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
-  	var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
-
-  	camera.changeAzimuth(nAzimuth);
-  	camera.changeElevation(nElevation);
+  	//camera.changeAzimuth(nAzimuth);
+  	//camera.changeElevation(nElevation);
+    camera.update();
   }
 }

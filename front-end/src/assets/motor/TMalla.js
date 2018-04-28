@@ -28,7 +28,12 @@ class TMalla extends TEntidad{
 
     //model view matrix
     GModelViewMatrix = mat4.create();
-    mat4.multiply(GModelViewMatrix, this.modelMatrix, GViewMatrix);
+    let viewMatrix = mat4.create();
+    console.log(GFachada.regCamaras[0]);
+    let rotaCam = GFachada.regCamaras[0].getPadre().getPadre().entidad.modelMatrix;
+    let traslaCam = GFachada.regCamaras[0].getPadre().entidad.modelMatrix;
+    mat4.multiply(viewMatrix, rotaCam, traslaCam);
+    mat4.multiply(GModelViewMatrix, this.modelMatrix, viewMatrix);
     var angle = this.angle * Math.PI/180;
     // mat4.rotate(GModelViewMatrix, angle, [0, 1, 0]);
     gl.uniformMatrix4fv(programa.ModelViewMatrix, false, GModelViewMatrix);
