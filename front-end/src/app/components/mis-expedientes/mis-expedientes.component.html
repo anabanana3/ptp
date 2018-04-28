@@ -126,7 +126,7 @@
   <div *ngIf="carpetas.length>0" class="expediente-container">
 
     <br>
-    <div  *ngFor="let c of carpetas" class="carpeta" [routerLink]="['/verexpediente', {id:c.ID_Carpeta}]">
+    <div  *ngFor="let c of carpetas" class="carpeta">
       <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
       <div class="expedienteDesc"> -->
       <div class="imgCircle">
@@ -135,11 +135,21 @@
       <!-- </div> -->
       <div class="expediente-body">
         <p>{{c.Nombre}}</p>
+
         <!-- <p class="fechaExp">{{c.Fecha.split('T')[0]}}</p> -->
         <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
       </div>
+      <div class="imgOptions">
+
+          <img (click)="mostrarOpThreePoints()" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
+          <div class="menuOp" id="menuOp3">
+            <p class="text12">Editar</p>
+            <p (click)="borrarCarpeta(c.ID_Carpeta)" class="text12">Borrar</p>
+          </div>
+      </div>
     </div>
   </div>
+
 
 
   <!-- <div *ngIf="carpetas.length > 0">
@@ -201,7 +211,7 @@
   <div *ngIf="expedientes.length>0" class="expediente-container">
 
     <br>
-    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
+    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/', {id:e.ID_Expediente}]">
 
       <!-- <div class="imgCircle">
         <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
@@ -228,7 +238,7 @@
       <span id="closeExp">&times;</span>
       <div class="insidePopExp">
         <p>Crear nueva carpeta</p>
-        <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
+        <input placeholder="Nombre" class="sizeinput" type="text" id="nombre">
         <br>
         </div>
         <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>

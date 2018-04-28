@@ -1124,6 +1124,7 @@ option{
 .carpeta:hover{
   background-color: lightgray;
   color:white;
+  cursor:pointer;
 }
 
 .carpeta:hover .imgCircle{
@@ -1173,6 +1174,30 @@ option{
   height: 44px;
   padding: 12px;
   padding-top: 12px;
+}
+
+.imgOptions{
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  padding-top: 12px;
+}
+
+.optionPoints{
+  width: 15px;
+  filter: contrast(30%);
+}
+
+.menuOp{
+  color:grey;
+  display: none;
+  float: right;
+  z-index: 1;
+  padding: 5px;
+  position: absolute;
+  background: white;
+  box-shadow: 0px 0px 2px 0 rgba(203,203,203,0.50);
+
 }
 
 .fechaExp{
@@ -1259,6 +1284,16 @@ option{
   padding-top: 10px;
 }
 
+.expediente:hover{
+  background-color: lightgray;
+  color:white;
+  cursor:pointer;
+}
+
+.expediente:hover .fechaExp{
+  color:white;
+}
+
 .statusExp{
   width: 100%;
   padding-right: 5px;
@@ -1301,9 +1336,12 @@ option{
 } */
 
 .expediente-body{
-  width: 100%;/*Este tamaño es el ancho de la imagen del logo*/
+  width: 100%;
   margin-left: 15px;
   margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .expediente-body>p{

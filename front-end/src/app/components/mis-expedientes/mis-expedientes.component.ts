@@ -119,6 +119,16 @@ mostrarOpciones() {
     }
 }
 
+mostrarOpThreePoints(){
+
+  var x = document.getElementById("menuOp3");
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+  }
+}
+
 openPopUp(){
     // Get the modal
   var modal = document.getElementById('popupBorrarExp');
@@ -323,7 +333,7 @@ getExpedientesUser(tipo,pag, tam){
   }
   nuevaCarpeta(nombre){
     //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
-    console.log(nombre);
+    console.log("Nombre de la carpeta" + nombre);
     this._carpetaService.newCarpeta(nombre).subscribe(data =>{
       if(data.Codigo == 501){
         location.href = '/expired';
