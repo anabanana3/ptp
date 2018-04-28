@@ -110,6 +110,38 @@ cambio(n){
 }
 
 
+mostrarOpciones() {
+    var x = document.getElementById("desplegable");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+openPopUp(){
+    // Get the modal
+  var modal = document.getElementById('popupBorrarExp');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtnDeleteExp");
+  var btnNo = document.getElementById("noBorrarExp");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementById("closeExp");
+
+  modal.style.display = "block";
+
+  btnNo.onclick = function(){
+    modal.style.display = "none";
+  }
+
+  span.onclick = function() {
+      console.log("entro en span.onclick");
+      modal.style.display = "none";
+  }
+}
+
 getExpedientesUser(tipo,pag, tam){
   switch (tipo){
     case 1:
