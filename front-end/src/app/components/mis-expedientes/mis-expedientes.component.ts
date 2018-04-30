@@ -54,7 +54,7 @@ etnias = new Array();
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
       //Recupero los expedientes del usuario que ha iniciado sesion
-      this.getExpedientesUser(1,1,this.tamPag);
+      //this.getExpedientesUser(1,1,this.tamPag);
       this._expedientesService.getExpedientesPrivUser(1, this.tamPag).subscribe(data =>{
         if(data.Codigo == 501){
           location.href = '/expired';
