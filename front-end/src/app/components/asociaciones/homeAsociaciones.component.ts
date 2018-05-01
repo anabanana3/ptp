@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { AsociacionesService } from "../../services/asociaciones.service";
+import {ProfesionesService} from "../../services/profesiones.service";
 import { User } from "../../interfaces/user.interface";
 
 @Component({
@@ -17,15 +18,21 @@ export class HomeAsociaciones{
   mensaje:string = '';
   error:boolean = true;
 
+  searchNombre = null;
+  searchEmail = null;
+  searchProfesion = 0;
+  profesiones = [];
+
   //Variables para la paginacion
-  paginas= new Array(3);
+  paginas= new Array(1);
   pagNext;
   pagBack;
   pagActual;
   tamPag:number = 10;
-  displayedColumns = ['id', 'nombre', 'email', 'dni', 'opciones'];
+  displayedColumns = ['nombre', 'email', 'dni', 'opciones'];
 
-  constructor(private _userService:UserService, private _asociacionesService:AsociacionesService) {
+  constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
+              private _profesionesService:ProfesionesService) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -35,12 +42,23 @@ export class HomeAsociaciones{
     this._asociacionesService.getAsociacion(this.id).subscribe(data=>{
       this.asociacion = data[0].Nombre.split("'")[1];
     })
-    this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, this.tamPag).subscribe(data => {
+
+    this.getSolicitantes(1, this.tamPag);
+
+    this._profesionesService.getProfesiones().subscribe(data => {
+      this.profesiones = data;
+    })
+  }
+
+  getSolicitantes(pag, tamPag){
+    this._userService.getUsuarioSolicitantesAsociacion(this.id, pag, tamPag).subscribe(data => {
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
         this.user = data.Data;
-        //Obtengo los valores para la paginacion
+        this.loading = false;
+        this.pagActual = parseInt(data.Pagina);
+        this.tamPag = data.Paginas_Totales;
         this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
       }
     })
@@ -54,10 +72,8 @@ export class HomeAsociaciones{
         document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
         this.loading = true;
-        this._userService.getSolicitantes(1, 3).subscribe(data=>{
-          this.loading = false;
-          this.user = data;
-        })
+
+        this.getSolicitantes(this.pagActual, this.tamPag);
       }
       else{
         if(res.Codigo == 501 ){
@@ -80,10 +96,8 @@ export class HomeAsociaciones{
         document.getElementById('alert').className = 'alert alert-success';
 
         if(this.tabla === 0){
-          this._userService.getUsuarioSolicitantesAsociacion(this.id, 1, 3).subscribe(data =>{
-            this.user = data;
-            this.loading = false;
-          })
+          this.getSolicitantes(this.pagActual, this.tamPag);
+
           return;
         }
       }
@@ -104,19 +118,11 @@ export class HomeAsociaciones{
     location.href = '/login';
   }
 
-  view(number, pagina=1, tam=3){
+  view(number, pagina = 1, tam){
+    tam = 10;
+    this.tabla = number;
     if(number == 0){
-      this._userService.getUsuarioSolicitantesAsociacion(this.id, pagina, tam).subscribe(data=>{
-        if(data.Codigo == 501){
-          location.href = '/expired';
-        }else{
-          this.loading = false;
-          this.tabla = 0
-          this.user = data.Data;
-          //Obtengo los valores para la paginacion
-          this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
-        }
-      })
+      this.getSolicitantes(pagina, tam);
       return;
     }
 
@@ -128,7 +134,7 @@ export class HomeAsociaciones{
           this.loading = false;
           this.tabla = 1
           this.user = data.Data;
-          //Obtengo los valores para la paginacion
+          this.tamPag = data.Elemetos_Pagina;
           this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
         }
       })
@@ -157,9 +163,34 @@ export class HomeAsociaciones{
   }
 
   pasarPagina(pag){
-    this.view(this.tabla, pag, this.tamPag);
     this.pagActual = pag;
+    this.view(this.tabla, pag, this.tamPag);
   }
 
+  filter(){
+    let searchProfesion = null;
+    if(this.searchEmail === '')
+      this.searchEmail = null;
+    if(this.searchNombre === '')
+      this.searchNombre = null;
+    if(this.searchProfesion != 0)
+      searchProfesion = this.searchProfesion;
+
+    if(this.searchNombre === null && this.searchEmail === null && searchProfesion === null){
+      this.view(this.tabla, 1, this.tamPag);
+      return;
+    }
+
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, 1, this.tamPag)
+      .subscribe(data => {
+        if(data.Codigo == 501){
+            location.href = '/expired';
+        }else{
+          this.loading = false;
+          this.user = data.Data;
+          this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      })
+  }
 
 }

@@ -19,27 +19,25 @@
   <div >
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
-    <form method="post" (ngSubmit)="filter()">
-      <label for="Nombre">Nombre</label>
-      <input [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre">
-      <label for="Email">Email</label>
-      <input [(ngModel)]="searchEmail" type="text" name="Email" id="email">
-      <label for="profesion">Profesión</label>
-      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" required>
-        <option value=""> -- </option>
+    <form method="post" (ngSubmit)="filter()" class="formAdmin">
+      <input [(ngModel)]="searchNombre" class="sizeinput" type="text" name="Nombre" id="nombre" placeholder="Nombre">
+      <input [(ngModel)]="searchEmail" class="sizeinput" type="text" name="Email" id="email" placeholder="Email">
+      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" (change)="filter()">
+        <option value="0"> Seleccione Profesión </option>
         <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
           {{profesiones[k].Nombre}}
         </option>
       </select>
-      <button type="submit" name="button" class="icon-search span"></button>
+      <select [(ngModel)]="searchAsociacion" name="asociacion" id="asociacion" (change)="filter()">
+        <option value="0"> Seleccione Asociación </option>
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Profesion}}">
+          {{asociaciones[k].Nombre}}
+        </option>
+      </select>
     </form>
     <div>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="usuarios">
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Usuario}} </mat-cell>
-          </ng-container>
           <ng-container matColumnDef="nombre">
             <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
@@ -58,7 +56,9 @@
           </ng-container>
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha Registro </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.FechaRegistro.split('T')[0]}}</mat-cell>
+            <mat-cell *matCellDef="let element">
+              <p *ngIf="element.FechaRegistro !== null">{{element.FechaRegistro.split('T')[0]}}</p>
+            </mat-cell>
           </ng-container>
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>

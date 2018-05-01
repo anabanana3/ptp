@@ -6,19 +6,13 @@
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div>
-      <form method="post" (ngSubmit)="filter()">
-        <label for="Nombre">Nombre</label>
-        <input [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre">
-        <label for="Email">Email</label>
-        <input [(ngModel)]="searchEmail" type="text" name="Email" id="email">
+      <form method="post" (ngSubmit)="filter()" class="formAdmin">
+        <input class="sizeinput" [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre" placeholder="Nombre">
+        <input class="sizeinput" [(ngModel)]="searchEmail" type="text" name="Email" id="email" placeholder="Email">
         <button type="submit" name="button" class="icon-search span"></button>
       </form>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="asociacion">
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Asociacion}} </mat-cell>
-          </ng-container>
           <ng-container matColumnDef="nombre">
             <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
@@ -33,6 +27,12 @@
               <span class="rect-success" *ngIf="element.Validada === 1">Validada</span>
               <span class="rect-danger" *ngIf="element.Validada === 0">No Validada</span>
               <span *ngIf="element.Validada === null">Cancelada</span>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> Fecha Registro </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <p *ngIf="element.FechaRegistro !== null">{{element.FechaRegistro.split('T')[0]}}</p>
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="opciones">

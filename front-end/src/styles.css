@@ -163,7 +163,14 @@ canvas{
 
 .formAdmin{
   background-color: white;
-  padding: 0.5%;
+  padding: 1%;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  margin: auto;
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
 }
 
 .divAdmin-menuExpanded{ display: none;}

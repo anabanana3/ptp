@@ -21,6 +21,7 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
+import {HistoricoComponent} from './components/user/historico/historico.component';
 
 const app_routes: Routes = [
   {
@@ -54,6 +55,16 @@ const app_routes: Routes = [
     data: { title: 'Home' }
   },
   {
+    path: 'asociacion/profile',
+    component: ProfileAsociacionComponent,
+    data: { title: 'profile' }
+  },
+  {
+    path: 'user',
+    component: HistoricoComponent,
+    data:{title: 'Historico'}
+  },
+  {
     path: 'estadisticas',
     component: EstadisticasComponent,
     data: { title: 'Estadisticas' }
@@ -61,11 +72,6 @@ const app_routes: Routes = [
   {
     path: 'user/profile',
     component: ProfileUserComponent,
-    data: { title: 'profile' }
-  },
-  {
-    path: 'asociacion/profile',
-    component: ProfileAsociacionComponent,
     data: { title: 'profile' }
   },
   {

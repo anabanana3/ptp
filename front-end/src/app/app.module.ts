@@ -46,6 +46,7 @@ import { RecursosComponent } from './components/recursos/recursos.component';
 import { MotorGraficoComponent } from './components/motor-grafico/motor-grafico.component';
 import { RecursosAdminComponent } from './components/admin/recursos.component';
 import { ChatComponent } from './components/chat/chat.component';
+import {HistoricoComponent} from './components/user/historico/historico.component'
 
 import { KeysPipe } from './pipes/keys.pipe';
 
@@ -108,7 +109,8 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     ContactPopup,
     PoliticaPrivacidadComponent,
     ProfilePopUp,
-    ProfilePopUp2
+    ProfilePopUp2,
+    HistoricoComponent
   ],
   imports: [
     BrowserModule,

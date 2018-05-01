@@ -11,29 +11,32 @@ import { Router } from '@angular/router';
 export class AsociacionesAdminComponent {
   loading:boolean=true;
 
-  asociacion = []
-  asociacionesOLD = []
+  asociacion = [];
 
   mensaje:string = '';
   searchNombre = null;
   searchEmail = null;
   //Para la paginacion
-  paginas = new Array(3);
+  paginas = new Array(1);
   pagNext;
   pagBack;
   tamPag:number=10;
   pagActual;
-  displayedColumns = ['id', 'nombre', 'email', 'estado', 'opciones'];
+  displayedColumns = ['nombre', 'email', 'estado', 'fecha', 'opciones'];
 
   constructor(private _asociacionesServices:AsociacionesService, private router:Router) {
-    this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data=>{
+    this.getAsociaciones(1, this.tamPag);
+  }
+
+  getAsociaciones(pag, tamPag){
+    this._asociacionesServices.getAsociaciones(pag, tamPag).subscribe(data=>{
       if(data.Codigo == 501 ){
         location.href = '/expired';
       }else{
         this.loading = false;
         this.asociacion = data.Data;
-        this.asociacionesOLD = data.Data;
         this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.pagActual = data.Pagina;
       }
     })
   }
@@ -113,30 +116,7 @@ export class AsociacionesAdminComponent {
   }
 
   pasarPagina(pag){
-    this._asociacionesServices.getAsociaciones(pag, this.tamPag).subscribe(data =>{
-      if(data.Codigo == 501){
-          location.href = '/expired';
-      }else{
-        this.loading = false;
-        this.asociacion = data.Data;
-        this.paginacion(pag, data.Paginas_Totales);
-        this.pagActual = data.Pagina;
-      }
-    });
-  }
-  cambiarTamPag(tam){
-    console.log(tam);
-    this.tamPag=tam;
-    this._asociacionesServices.getAsociaciones(1, this.tamPag).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-      }else{
-        this.loading = false;
-        this.asociacion = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
-      }
-    });
-    //this.view(this.tabla, 1, this.tamPag);;
+    this.getAsociaciones(pag, this.tamPag);
   }
 
   filter(){
@@ -146,7 +126,7 @@ export class AsociacionesAdminComponent {
       this.searchNombre = null;
 
     if(this.searchNombre === null && this.searchEmail === null){
-      this.asociacion = this.asociacionesOLD;
+      this.getAsociaciones(1, this.tamPag);
       return;
     }
     this._asociacionesServices.filtroAsociaciones(this.searchNombre, this.searchEmail, 1, this.tamPag)

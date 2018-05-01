@@ -12,33 +12,20 @@ export class RecursosAdminComponent{
   loading:boolean=true;
 
   recursos = [];
-  selectFormato;
-  fieldSearch;
+  recursosOLD = [];
+  selectFormato = 0;
+  fieldSearch = null;
   formatos = [];
   //Para la paginacion
-  paginas = new Array(3);
+  paginas = new Array(1);
   pagNext;
   pagBack;
   tamPag:number=10;
   pagActual;
-  displayedColumns = ['id', 'titulo', 'estado', 'opciones'];
+  displayedColumns = ['titulo', 'estado', 'opciones'];
 
   constructor(private _materialService:MaterialService) {
-
-    _materialService.getMateriales(1, this.tamPag).subscribe(data => {
-      if(data.Codigo == 501){
-        //La sesion ha expirado
-        location.href = '/expired';
-      }else{
-        console.log(data);
-        this.recursos = data.Data;
-        console.log(data);
-        this.loading = false;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
-      }
-    }, error => {
-      console.log(error);
-    })
+    this.getMateriales(1, this.tamPag);
 
     _materialService.getFormatos().subscribe(data => {
       if(data.Codigo == 501){
@@ -49,6 +36,21 @@ export class RecursosAdminComponent{
     }, error => {
       console.log(error);
     });
+  }
+
+  getMateriales(pag, tamPag){
+    this._materialService.getMateriales(pag, tamPag).subscribe(data => {
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.recursos = data.Data;
+        this.loading = false;
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.pagActual = data.Pagina;
+      }
+    }, error => {
+      console.log(error);
+    })
   }
 
   paginacion( paginaActual , pagTotales){
@@ -72,28 +74,20 @@ export class RecursosAdminComponent{
   }
 
   pasarPagina(pag){
-    this._materialService.getMateriales(pag, this.tamPag).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-      }else{
-        this.loading = false;
-        this.recursos = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
-        this.pagActual = data.Pagina;
-      }
-    });
+    this.getMateriales(pag, this.tamPag);
   }
 
   buscar(){
     let nombre = null;
     let formato = null;
 
-    if(this.selectFormato){
-      formato = this.selectFormato;
-    }
+    if(this.selectFormato && this.selectFormato != 0){formato = this.selectFormato;}
 
-    if(this.fieldSearch){
-      nombre = this.fieldSearch;
+    if(this.fieldSearch){nombre = this.fieldSearch;}
+
+    if(this.selectFormato == 0 && (this.fieldSearch == null || this.fieldSearch == '')){
+      this.getMateriales(1, this.tamPag);
+      return;
     }
 
     this._materialService.searchMaterialPublicos(nombre, formato, null, 1, this.tamPag).subscribe(data => {
@@ -107,13 +101,10 @@ export class RecursosAdminComponent{
   }
 
   borrarMaterial(id, path){
-    console.log(id);
-    console.log(path);
     this._materialService.deleteMaterial(id, path).subscribe(data => {
       if(data.Codigo == 501){
         location.href = '/expired';
       }
-      console.log(data);
     }, error => {
       console.log(error);
     })

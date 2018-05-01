@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { ProfesionesService } from "../../services/profesiones.service";
+import {AsociacionesService} from "../../services/asociaciones.service";
 import { User } from "../../interfaces/user.interface";
 //Para las rutas
 import {ActivatedRoute} from '@angular/router';
@@ -28,9 +29,10 @@ export class UsuariosAdminComponent {
   usuarios:User[];
   usuariosOLD:User[];
   profesiones;
+  asociaciones;
 
   //Para la paginacion
-  paginas= new Array(3);
+  paginas= new Array(1);
   pagNext;
   pagBack;
   pagActual;
@@ -39,7 +41,8 @@ export class UsuariosAdminComponent {
   loading:boolean = true;
   searchNombre = null;
   searchEmail = null;
-  searchProfesion = null;
+  searchProfesion = 0;
+  searchAsociacion = 0;
   tabla:number = 0;
   /* tabla
     0: Solicitantes
@@ -47,38 +50,47 @@ export class UsuariosAdminComponent {
     2: Cancelados
   */
 
-  displayedColumns = ['id', 'nombre', 'email', 'profesion', 'asociacion', 'fecha', 'opciones'];
+  displayedColumns = ['nombre', 'email', 'profesion', 'asociacion', 'fecha', 'opciones'];
 
   mensaje:string = '';
   error:boolean = true;
   constructor(private _userService:UserService, private activatedRoute:ActivatedRoute,
-    private _profesionesService:ProfesionesService){
+    private _profesionesService:ProfesionesService, private _asociacionesService:AsociacionesService){
     if(sessionStorage.getItem('iD') !== '44'){
       return;
     }
     this.error = false;
-    this._userService.getSolicitantes(1,this.tamPag).subscribe(data=>{
-      if(data.Codigo == '501'){
-        location.href = '/expired';
-      }else{
-        this.loading = false;
-        //this.user = data.Data;
-        this.resultado = data;
-        this.usuarios= this.resultado.Data;
-        this.usuariosOLD = data.Data;
-        this.pagActual = this.resultado.Pagina;
-        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-        this.tamPag = this.resultado.Elementos_Pagina;
-
-        console.log(data);
-      }
-    })
+    this.getSolicitantes(1, this.tamPag);
 
     this._profesionesService.getProfesiones().subscribe(data => {
       if(data.Codigo == '501'){
         location.href = '/expired';
       }else{
         this.profesiones = data;
+      }
+    })
+
+    this._asociacionesService.getAsociacionesValidadas().subscribe(data => {
+      if(data.Codigo == '501'){
+        location.href = '/expired';
+      }else{
+        console.log(data);
+        this.asociaciones = data;
+      }
+    })
+  }
+
+  getSolicitantes(pag, tamPag){
+    this._userService.getSolicitantes(1,this.tamPag).subscribe(data=>{
+      if(data.Codigo == '501'){
+        location.href = '/expired';
+      }else{
+        this.loading = false;
+        this.resultado = data;
+        this.usuarios= this.resultado.Data;
+        this.pagActual = this.resultado.Pagina;
+        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        this.tamPag = this.resultado.Elementos_Pagina;
       }
     })
   }
@@ -91,10 +103,8 @@ export class UsuariosAdminComponent {
         document.getElementById('alert').className = 'alert alert-success';
         delete this.user[id];
         this.loading = true;
-        this._userService.getSolicitantes(1, this.tamPag).subscribe(data=>{
-          this.loading = false;
-          this.user = data.Data;
-        })
+
+        this.getSolicitantes(this.pagActual, this.tamPag);
       }
       else{
         if(res.Codigo == 501){
@@ -111,19 +121,7 @@ export class UsuariosAdminComponent {
 //Funcion con parametro por defecto => si recibe uno diferente lo cambia
   view(number, pagina=1){
     if(number == 0){
-      this._userService.getSolicitantes(pagina, this.tamPag).subscribe(data=>{
-        if(data.Codigo == 501){
-          location.href = '/expired';
-        }else{
-          this.loading = false;
-          this.tabla = 0
-          this.resultado = data;
-          this.usuariosOLD = data.Data;
-          this.usuarios= this.resultado.Data;
-          this.pagActual = this.resultado.Pagina;
-          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-        }
-      })
+      this.getSolicitantes(pagina, this.tamPag);
       return;
     }
 
@@ -190,25 +188,24 @@ export class UsuariosAdminComponent {
     this.pagActual = pag;
   }
 
-  cambiarTamPag(tam){
-    this.tamPag=tam;
-    this.view(this.tabla, 1);;
-  }
-
   filter(){
+    let searchProfesion = null;
+    let searchAsociacion = null;
     if(this.searchEmail === '')
       this.searchEmail = null;
     if(this.searchNombre === '')
       this.searchNombre = null;
-    if(this.searchProfesion === '')
-      this.searchProfesion = null;
+    if(this.searchProfesion != 0)
+      searchProfesion = this.searchProfesion;
+    if(this.searchAsociacion != 0)
+      searchAsociacion = this.searchAsociacion;
 
-    if(this.searchNombre === null && this.searchEmail === null && this.searchProfesion === null){
-      this.usuarios = this.usuariosOLD;
+    if(this.searchNombre === null && this.searchEmail === null && searchProfesion === null && searchAsociacion === null){
+      this.view(this.tabla, 1);
       return;
     }
 
-    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, this.searchProfesion, 1, this.tamPag)
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, 1, this.tamPag)
       .subscribe(data => {
         if(data.Codigo == 501){
             location.href = '/expired';
@@ -232,18 +229,7 @@ export class UsuariosAdminComponent {
           document.getElementById('alert').className = 'alert alert-success';
 
           if(this.tabla === 0){
-            this._userService.getSolicitantes(this.pagActual, this.tamPag).subscribe(data=>{
-              if(data.Codigo == 501){
-                location.href = '/expired';
-              }else{
-                this.loading = false;
-                this.resultado = data;
-                this.usuariosOLD = data.Data;
-                this.usuarios= this.resultado.Data;
-                this.pagActual = this.resultado.Pagina;
-                this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
-              }
-            })
+            this.getSolicitantes(this.pagActual, this.tamPag);
           }
         }
         else{

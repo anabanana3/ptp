@@ -1,24 +1,20 @@
 <div class="divAdmin-content">
   <h1>Recursos</h1>
   <hr><br>
-  <div class="recursos-container-filter divBlanco formAdmin">
-    <div class="">
-      <select
-        class="sizeinput"
-        name="formatos"
-        id="formatos"
-        [(ngModel)]="selectFormato"
-        (change)="buscar($event)"
-      >
-        <option value="0">
-          Seleccione Formato
-        </option>
-        <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">
-          {{formatos[k].Nombre}}
-        </option>
-      </select>
-    </div>
-
+  <div class="formAdmin">
+    <select
+      class="sizeinput"
+      name="formatos"
+      id="formatos"
+      [(ngModel)]="selectFormato"
+      (change)="buscar($event)">
+      <option value="0">
+        Seleccione Formato
+      </option>
+      <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">
+        {{formatos[k].Nombre}}
+      </option>
+    </select>
     <form (ngSubmit)="buscar()" #forma="ngForm">
       <input
         id="fieldSearch"
@@ -26,13 +22,12 @@
         type="text"
         name="fieldSearch"
         placeholder="Buscar recurso..."
-        [(ngModel)]="fieldSearch"
-        style="width:80%;"/>
-        <button
+        [(ngModel)]="fieldSearch"/>
+        <!-- <button
           style="background:none; border:none; padding:0; font-size:15px;"
           type="submit"
           class="pointer icon-search">
-        </button>
+        </button> -->
     </form>
   </div>
 
@@ -42,10 +37,6 @@
     <div>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="recursos">
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Material}} </mat-cell>
-          </ng-container>
           <ng-container matColumnDef="titulo">
             <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.Titulo.split("'")[1]}}</mat-cell>
