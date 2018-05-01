@@ -259,8 +259,8 @@ export class VerExpedienteComponent implements OnInit {
     })
   }
 
-  comentar(){
-    
+  permitirComent(){
+
   }
 }
 
