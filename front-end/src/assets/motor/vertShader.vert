@@ -24,6 +24,7 @@ void main(void) {
 
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
+attribute vec2 aVertexTextureCoords;
 
 uniform mat4 ModelViewMatrix;
 uniform mat4 ProjectionMatrix;
@@ -39,6 +40,7 @@ varying vec4 vFinalColor;
 varying vec3 vNormal;
 varying vec3 vLightRay;
 varying vec3 vEyeVec;
+varying vec2 vTextureCoord;
 
 void main(void){
   vec4 vertex = ModelViewMatrix * vec4(aVertexPosition, 1.0);
@@ -52,4 +54,6 @@ void main(void){
   vEyeVec = -vec3(vertex.xyz);
 
   gl_Position = ProjectionMatrix * ModelViewMatrix * vec4(aVertexPosition, 1.0);
+
+  vTextureCoord = aVertexTextureCoords;
 }

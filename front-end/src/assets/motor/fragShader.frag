@@ -62,9 +62,11 @@ uniform vec4 uLightSpecular;
 uniform vec4 uMaterialAmbient;
 uniform vec4 uMaterialDiffuse;
 uniform vec4 uMaterialSpecular;
+uniform sampler2D uSampler;
 
 varying vec3 vNormal;
 varying vec3 vEyeVec;
+varying vec2 vTextureCoord;
 // varying vec4 vFinalColor;
 
 void main(void)
@@ -91,4 +93,5 @@ void main(void)
 	vec4 finalColor = Ia + Id + Is;
 	finalColor.a = 1.0;
 	gl_FragColor = finalColor;
+	//gl_FragColor = finalColor * texture2D(uSampler, vTextureCoord);
 }

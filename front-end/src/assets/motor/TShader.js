@@ -107,6 +107,8 @@ class TShader extends TRecurso {
     }
     gl.useProgram(this.programa);
 
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
     //vertices
     this.programa.aVertexPosition = gl.getAttribLocation(this.programa, "aVertexPosition");
     this.programa.aVertexNormal = gl.getAttribLocation(this.programa, "aVertexNormal");
@@ -125,6 +127,7 @@ class TShader extends TRecurso {
     this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
+
   }
 
   initLights(){
@@ -137,6 +140,27 @@ class TShader extends TRecurso {
       gl.uniform4fv(this.programa.uLightAmbient, luces[i].entidad.ambiente);
       gl.uniform4fv(this.programa.uLightDiffuse, luces[i].entidad.difusa);
     }
+  }
+
+  initTexture(){
+    var gl = this.gl;
+    //textura
+    var texture = gl.createTexture();
+    var image = new Image();
+
+    image.onload = function(){
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.bindTexture(gl.TEXTURE_2D, null);
+    }
+    image.src= '/assets/motor/'+GTexturaImg;
+    GTextura = texture;
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, GTextura);
+    gl.uniform1i(this.programa.uSampler, 0);
+    console.log(GTextura);
   }
 
   animate(){
@@ -153,6 +177,7 @@ class TShader extends TRecurso {
     this.configure();
     this.initProgram();
     this.initLights();
+    this.initTexture();
 
     this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);

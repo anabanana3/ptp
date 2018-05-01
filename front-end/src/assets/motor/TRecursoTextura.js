@@ -6,7 +6,7 @@ class TRecursoTextura extends TRecurso{
   }
 
   cargarFichero(nombre){
-    GTextura = nombre;
+    GTexturaImg = nombre;
   }
 
   draw(){}

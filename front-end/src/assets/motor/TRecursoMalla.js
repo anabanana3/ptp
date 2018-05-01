@@ -59,10 +59,17 @@ class TRecursoMalla extends TRecurso{
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.normales), gl.STATIC_DRAW); //TO DO
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
+    //texturas
+    let textureBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, textureBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.texturas), gl.STATIC_DRAW); //TO DO
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
     let buffer = {
       vb: vertexBuffer,
       ib: indexBuffer,
-      nb: normalBuffer
+      nb: normalBuffer,
+      tb: textureBuffer
     };
     return buffer;
   }
@@ -83,6 +90,12 @@ class TRecursoMalla extends TRecurso{
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ib);
     gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
+
+    //texturas
+    gl.enableVertexAttribArray(programa.aVertexTextureCoords);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.tb);
+    gl.vertexAttribPointer(programa.aVertexTextureCoords, 2, gl.FLOAT, false, 0, 0);
+
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
   }

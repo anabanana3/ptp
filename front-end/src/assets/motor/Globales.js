@@ -33,6 +33,7 @@ var GIndices;
 var GNormales;
 var GCoordTex;
 
+var GTexturaImg;
 var GTextura;
 
 //VARIABLES PARA LA LUZ
