@@ -7,8 +7,29 @@ import 'rxjs/add/operator/map'; //no lo dice en los tutoriales->para que funcion
 export class CarpetasService {
 
   carpetaExpURL:string ='https://aisha.ovh/api/carpeta/exp';
+  carpetaExpURL2:string ='https://aisha.ovh/api/carpeta/exp1';
 
   constructor(private http:Http) { }
+
+  getRaizUser(id){
+    let token = sessionStorage.token,
+        url = this.carpetaExpURL2+'/user/'+id,
+        headers = new Headers({
+          'Content-Type':'application/json',
+          'Authorization': token
+        });
+        return this.http.get(url, {headers}).map(res => res.json());
+  }
+
+  getCarpeta(id){
+    let token = sessionStorage.token,
+        url = this.carpetaExpURL2+'/carpeta/'+id,
+        headers = new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        });
+        return this.http.get(url, {headers}).map(res=> res.json());
+  }
 
   getCarpetasUser(idU, tamPag, pag){
     let token = sessionStorage.token,

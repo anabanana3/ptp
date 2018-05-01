@@ -19,7 +19,7 @@ export class MisExpedientesComponent implements OnInit {
   pagNext:number;
   pagBack:number;
   pagActual:number;
-  tamPag:number=10;
+  tamPag:number=2;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -43,6 +43,8 @@ etnias = new Array();
   }
 
   carpetas = new Array();
+  //Variable que va almacenar el contenido de una carpeta tanto EXP como Carpetas
+  contenido = new Array();
 
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
@@ -55,21 +57,11 @@ etnias = new Array();
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
       //Recupero los expedientes del usuario que ha iniciado sesion
       //this.getExpedientesUser(1,1,this.tamPag);
-      this._expedientesService.getExpedientesPrivUser(1, this.tamPag).subscribe(data =>{
-        if(data.Codigo == 501){
-          location.href = '/expired';
-        }else{
-          console.log(data);
-          this.expedientes = data.Data;
-          this.paginacion(data.Pagina, data.Paginas_Totales);
-          //console.log(this.expedientes);
-          document.getElementById("priv").style.fontWeight = "bold";
-          console.log(this.expedientes);
 
-          //TODO: Obtengo las carpetas que tiene el usuario
-          this.getCarpetasUser(sessionStorage.iD);
-        }
-      });
+      //TODO: Obtengo la raiz del usuario que ha iniciado sesion
+      this.getRaizUser(sessionStorage.iD);
+      this.getExpedientesUser(1, this.tamPag, 1);
+
     }
    }
 
@@ -79,33 +71,46 @@ etnias = new Array();
 // TODO: Funcion para cargar los expedientes privados, publicos o ambos
 cambio(n){
   this.n = n;
+  this.paginas = new Array();
   switch(this.n){
     case 1:
+    this.tipoExp = 1;
+      console.log('Modo Arbol');
+      document.getElementById("arb").style.fontWeight = "bold";
+      document.getElementById("priv").style.fontWeight = "normal";
+      document.getElementById("publ").style.fontWeight = "normal";
+      document.getElementById("todos").style.fontWeight = "normal";
+      this.getExpedientesUser(this.tipoExp,1, this.tamPag);
+
+    break;
+    case 2:
       console.log("Expedientes Privados");
-      this.tipoExp = 1;
+      this.tipoExp = 2;
       //TODO: Faltan estos metodos
+      document.getElementById("arb").style.fontWeight = "normal";
       document.getElementById("priv").style.fontWeight = "bold";
       document.getElementById("publ").style.fontWeight = "normal";
       document.getElementById("todos").style.fontWeight = "normal";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
-    case 2:
+    case 3:
       console.log("Expedientes Publicos");
-      this.tipoExp = 2;
+      this.tipoExp = 3;
       //TODO: Faltan estos metodos
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "bold";
       document.getElementById("todos").style.fontWeight = "normal";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
-    case 3:
-      this.tipoExp = 3;
+    case 4:
+      this.tipoExp = 4;
       console.log('Todos los expedientes');
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "normal";
       document.getElementById("todos").style.fontWeight = "bold";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-    break;
+  break;
+
   }
 }
 
@@ -153,30 +158,39 @@ openPopUp(){
 }
 
 getExpedientesUser(tipo,pag, tam){
+  console.log(tipo);
   switch (tipo){
     case 1:
-    this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
-      if(data.Resultado == 'OK'){
-          this.expedientes = new Array();
-          this.mensaje = 'No tienes almacenado ningún expediente privado';
-          document.getElementById('alert').className = 'alert alert-danger';
-      }else{
-        if(data.Codigo == 501){
-          location.href ='/expired';
-        }else{
-          this.expedientes = data.Data;
-          console.log('Resultado de la funcion aux privados');
-          console.log(data);
-          this.paginacion(data.Pagina, data.Paginas_Totales);
-        }
-      }
-      });
+      //Modo Arbol
+      this.getRaizUser(sessionStorage.iD);
     break;
     case 2:
+      //Privados
+      this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
+        if(data.Resultado == 'OK' || data == ''){
+            // this.expedientes = new Array();
+            this.contenido = new Array();
+            this.mensaje = 'No tienes almacenado ningún expediente privado';
+            document.getElementById('alert').className = 'alert alert-danger';
+        }else{
+          if(data.Codigo == 501){
+            location.href ='/expired';
+          }else{
+            this.contenido = data.Data;
+            // this.expedientes = data.Data;
+            console.log('Resultado de la funcion aux privados');
+            console.log(data);
+            this.paginacion(data.Pagina, data.Paginas_Totales);
+          }
+        }
+        });
+    break;
+    case 3:
       //Los publicos
       this._expedientesService.getExpedientesPubUser(pag,tam).subscribe(data=>{
-        if(data.Resultado == 'OK'){
-          this.expedientes = new Array();
+        if(data.Resultado == 'OK' || data == ''){
+          // this.expedientes = new Array();
+          this.contenido = new Array();
           console.log('Todavia no tienes alamcenado nada publico');
           this.mensaje = 'No tienes expediente públicos';
           document.getElementById('alert').className = 'alert alert-danger';
@@ -184,7 +198,8 @@ getExpedientesUser(tipo,pag, tam){
           if(data.Codigo == 501){
             location.href = '/expired';
           }else{
-            this.expedientes = data.Data;
+            // this.expedientes = data.Data;
+            this.contenido = data.Data;
             console.log('Resultado de la funcion aux publicos');
             console.log(data);
             this.paginacion(data.Pagina, data.Paginas_Totales);
@@ -192,19 +207,19 @@ getExpedientesUser(tipo,pag, tam){
         }
       })
     break;
-    case 3:
+    case 4:
       //Todos
       this._expedientesService.getExpedientesUser(pag, tam).subscribe(data=>{
         if(data.Codigo == 501){
           location.href = '/expired';
         }else{
-          this.expedientes = data.Data;
+          // this.expedientes = data.Data;
+          this.contenido = data.Data;
           console.log('Resultado de la funcion aux ambos');
           console.log(data);
           this.paginacion(data.Pagina, data.Paginas_Totales);
         }
       })
-
     break;
   }
 
@@ -262,7 +277,8 @@ getExpedientesUser(tipo,pag, tam){
        console.log(data);
        if(data.Resultado == 'OK'){
          console.log('No hay resultados');
-         this.expedientes = new Array();
+        //  this.expedientes = new Array();
+         this.contenido  = new Array();
          //Falta mostrar mensaje de no hay resultados
          this.busqueda = true;
          this.mensaje = 'No hay resultados para la busqueda solicitada';
@@ -274,7 +290,8 @@ getExpedientesUser(tipo,pag, tam){
          }else{
            console.log('Hay busqueda');
            this.busqueda = true;
-           this.expedientes = data.Data;
+           //this.expedientes = data.Data;
+           this.contenido = data.Data;
            this.mensaje = '';
            this.paginacion(data.Pagina, data.Paginas_Totales);
          }
@@ -319,39 +336,68 @@ getExpedientesUser(tipo,pag, tam){
   }
 
 //GESTION DE LA CARPETAS
-  getCarpetasUser(idU){
-    this._carpetaService.getCarpetasUser(idU, this.tamPag, 1).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-        return;
-      }
-      console.log(data);
-      this.carpetas = data.Data;
-      console.log(this.carpetas);
-      console.log(this.carpetas.length);
-    })
-  }
-  nuevaCarpeta(nombre){
-    //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
-    console.log("Nombre de la carpeta" + nombre);
-    this._carpetaService.newCarpeta(nombre).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-        return;
-      }
-      console.log(data);
-    })
-  }
+// TODO: Obtengo la raiz del usuario
 
-  borrarCarpeta(idC){
-    console.log(idC);
-    this._carpetaService.deleteCarpeta(idC).subscribe(data =>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-        return
-      }
-      console.log(data);
-    })
-  }
+getRaizUser(id){
+  this._carpetaService.getRaizUser(id).subscribe(data=>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+      return;
+    }
+    document.getElementById('arb').style.fontWeight = 'bold';
+    console.log(data);
+    this.contenido = data;
+    //Reinicio la paginacion
+    this.paginas = new Array();
+    // this.expedientes = new Array();
+  })
+}
+
+getCarpeta(id){
+  this._carpetaService.getCarpeta(id).subscribe(data=>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+      return
+    }
+    console.log(data);
+    this.contenido = data;
+  })
+}
+
+getCarpetasUser(idU){
+  this._carpetaService.getCarpetasUser(idU, this.tamPag, 1).subscribe(data =>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+      return;
+    }
+    console.log(data);
+    this.carpetas = data.Data;
+    console.log(this.carpetas);
+    console.log(this.carpetas.length);
+  })
+}
+
+nuevaCarpeta(nombre){
+  //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
+  console.log("Nombre de la carpeta" + nombre);
+  this._carpetaService.newCarpeta(nombre).subscribe(data =>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+      return;
+    }
+    console.log(data);
+  })
+}
+
+borrarCarpeta(idC){
+  console.log(idC);
+  this._carpetaService.deleteCarpeta(idC).subscribe(data =>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+      return
+    }
+    console.log(data);
+  })
+}
 
 }

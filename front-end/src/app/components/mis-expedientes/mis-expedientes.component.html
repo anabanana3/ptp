@@ -21,10 +21,11 @@
     </div>
 
     <div class="optionsRight" >
-      <p (click)="cambio(1)" id="priv"> Privados </p>
+      <p (click) = "cambio(1)" id="arb"> Arbol |</p>
+      <p (click) = "cambio(2)" id="priv"> Privados </p>
       <p>  | </p>
-      <p (click)="cambio(2)" id=publ> Publicos</p>
-      <p (click)="cambio(3)" id="todos"> |Todos </p>
+      <p (click) = "cambio(3)" id=publ> Publicos</p>
+      <p (click) = "cambio(4)" id="todos"> |Todos </p>
     </div>
   </div>
 
@@ -114,31 +115,121 @@
   </form>
 </div>
 
-
+<!-- TODO:  Version CARLOS => Todo dentro del mismo for por temas de API ademas se reduce el codigo -->
 <div class="carpetasDivContainer">
   <div class="carpetasDiv">
-    <p>Carpetas</p>
+  <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
+    <p>Ruta en la que estas / Privados / Publicos / Todos</p>
   </div>
+
   <!-- Mensaje de que no tienes nada almacenado -->
-  <div *ngIf="carpetas.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
+  <div *ngIf="contenido.length == 0 && busqueda==false" id="alert">{{mensaje}}</div>
   <!-- Mensaje de que no hay resultados de busqueda -->
-  <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
-  <div *ngIf="carpetas.length>0" class="expediente-container">
+  <div *ngIf="busqueda == true" id="alert">{{mensaje}}</div>
+
+  <div class="expediente-container">
+    <div *ngFor="let c of contenido" class="carpeta" >
+      <div *ngIf="c.Tipo == 0">
+        <!-- TODO: Carpetas -->
+          <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor)">
+            <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
+          </div>
+          <div class="expediente-body">
+            <p>{{c.Nombre}}</p>
+          </div>
+
+          <div class="imgOptions">
+              <img (click)="mostrarOpThreePoints()" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
+              <div class="menuOp" id="menuOp3">
+                <p class="text12">Editar</p>
+                <p (click)="borrarCarpeta(c.ID_Gestor)" class="text12">Borrar</p>
+              </div>
+          </div>
+          <div class="popUpBorrar" id="popupBorrarExp">
+            <div class="popupBorrar-contentExp">
+              <span id="closeExp">&times;</span>
+              <div class="insidePopExp">
+                <p>Crear nueva carpeta</p>
+                <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
+                <br>
+              </div>
+              <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
+              <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
+            </div>
+          </div>
+      </div>
+
+      <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
+        <!-- TODO: Esxpedientes -->
+        <div class="expediente-body">
+          <p>{{c.ID_Expediente}}</p>
+          <p class="fechaExp">{{c.ID_Lugar}}</p>
+          <p class="fechaExp">Edad {{c.Edad}}</p>
+          <div class="statusExp">
+            <svg height="20" width="120">
+              <circle cx="110" cy="10" r="5" fill="red" />
+              Sorry, your browser does not support inline SVG.
+            </svg>
+          </div>
+          <!-- <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p> -->
+          <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="paginationContainer">
+    <!-- TODO: paginacion -->
+    <ul class="pagination" *ngIf="paginas.length >1">
+      <!--Boton de pagina anterior-->
+      <li>
+        <a (click)="pasarPagina(pagBack)">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let pag of paginas; let i=index">
+        <a (click)="pasarPagina(i+1)">
+          <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+          <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+        </a>
+      </li>
+      <!--Boton de pagina siguiente-->
+      <li>
+        <a (click)="pasarPagina(pagNext);">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- TODO: Fin version 2 -->
+
+<!-- <div class="carpetasDivContainer">
+  <div class="carpetasDiv">
+    <p>Carpetas</p>
+  </div> -->
+  <!-- Mensaje de que no tienes nada almacenado -->
+  <!-- <div *ngIf="carpetas.length ==0 && busqueda==false" id="alert">{{mensaje}}</div> -->
+  <!-- Mensaje de que no hay resultados de busqueda -->
+  <!-- <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div> -->
+  <!-- <div *ngIf="carpetas.length>0" class="expediente-container">
 
     <br>
-    <div  *ngFor="let c of carpetas" class="carpeta">
+    <div  *ngFor="let c of carpetas" class="carpeta"> -->
       <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
-      <div class="expedienteDesc"> -->
+      <div class="expedienteDesc">
       <div class="imgCircle">
         <img class="imgExp" src="/assets/img/carpeta.png" alt="Logo expediente">
       </div>
       <!-- </div> -->
-      <div class="expediente-body">
-        <p>{{c.Nombre}}</p>
+      <!-- <div class="expediente-body">
+        <p>{{c.Nombre}}</p> -->
 
         <!-- <p class="fechaExp">{{c.Fecha.split('T')[0]}}</p> -->
         <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
-      </div>
+      <!-- </div>
       <div class="imgOptions">
 
           <img (click)="mostrarOpThreePoints()" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
@@ -148,7 +239,7 @@
           </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -163,23 +254,23 @@
 
 
 
-  <div class="popUpBorrar" id="popupBorrarExp">
-    <div class="popupBorrar-contentExp">
-      <span id="closeExp">&times;</span>
-      <div class="insidePopExp">
-        <p>Crear nueva carpeta</p>
-        <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
-        <br>
-        </div>
-        <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
-        <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
+  <!-- <div class="popUpBorrar" id="popupBorrarExp">
+  <div class="popupBorrar-contentExp">
+  <span id="closeExp">&times;</span>
+  <div class="insidePopExp">
+  <p>Crear nueva carpeta</p>
+  <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
+  <br>
+</div>
+<button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
+<button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
 
-    </div>
-  </div>
+</div>
+</div>
 
-  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
-  <!--Boton de pagina anterior-->
-    <li>
+<ul class="pagination" *ngIf="paginas.length >1 && expedientes.length "> -->
+<!--Boton de pagina anterior-->
+    <!-- <li>
       <a (click)="pasarPagina(pagBack)">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -189,9 +280,9 @@
         <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
         <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
       </a>
-    </li>
+    </li> -->
     <!--Boton de pagina siguiente-->
-    <li>
+    <!-- <li>
       <a (click)="pasarPagina(pagNext);">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -203,21 +294,21 @@
 <div class="expedientesDiv">
   <div class="carpetasDiv">
     <p>Expedientes</p>
-  </div>
+  </div> -->
   <!-- Mensaje de que no tienes nada almacenado -->
-  <div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div>
+  <!-- <div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div> -->
   <!-- Mensaje de que no hay resultados de busqueda -->
-  <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
-  <div *ngIf="expedientes.length>0" class="expediente-container">
+  <!-- <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div> -->
+  <!-- <div *ngIf="expedientes.length>0" class="expediente-container">
 
     <br>
-    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/', {id:e.ID_Expediente}]">
+    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/', {id:e.ID_Expediente}]"> -->
 
       <!-- <div class="imgCircle">
         <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
       </div> -->
 
-      <div class="expediente-body">
+      <!-- <div class="expediente-body">
         <p>{{e.ID_Expediente}}</p>
         <p class="fechaExp">{{e.ID_Lugar}}</p>
         <p class="fechaExp">Edad {{e.Edad}}</p>
@@ -226,10 +317,10 @@
             <circle cx="110" cy="10" r="5" fill="red" />
             Sorry, your browser does not support inline SVG.
           </svg>
-        </div>
+        </div> -->
         <!-- <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p> -->
         <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
-      </div>
+      <!-- </div>
     </div>
   </div>
 
@@ -247,9 +338,9 @@
     </div>
   </div>
 
-  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
+  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">-->
   <!--Boton de pagina anterior-->
-    <li>
+    <!-- <li>
       <a (click)="pasarPagina(pagBack)">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -259,9 +350,9 @@
         <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
         <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
       </a>
-    </li>
+    </li> -->
     <!--Boton de pagina siguiente-->
-    <li>
+    <!-- <li>
       <a (click)="pasarPagina(pagNext);">
         <span aria-hidden="true">&raquo;</span>
       </a>
@@ -270,7 +361,7 @@
 </div>
 
 <div class="paginationContainer">
-</div>
+</div> -->
 
 
 
