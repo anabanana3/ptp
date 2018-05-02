@@ -83,7 +83,6 @@ cambio(n){
       document.getElementById("arb").style.fontWeight = "bold";
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "normal";
-      document.getElementById("todos").style.fontWeight = "normal";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag);
 
     break;
@@ -94,7 +93,6 @@ cambio(n){
       document.getElementById("arb").style.fontWeight = "normal";
       document.getElementById("priv").style.fontWeight = "bold";
       document.getElementById("publ").style.fontWeight = "normal";
-      document.getElementById("todos").style.fontWeight = "normal";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
     case 3:
@@ -103,17 +101,9 @@ cambio(n){
       //TODO: Faltan estos metodos
       document.getElementById("priv").style.fontWeight = "normal";
       document.getElementById("publ").style.fontWeight = "bold";
-      document.getElementById("todos").style.fontWeight = "normal";
       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
     break;
-    case 4:
-      this.tipoExp = 4;
-      console.log('Todos los expedientes');
-      document.getElementById("priv").style.fontWeight = "normal";
-      document.getElementById("publ").style.fontWeight = "normal";
-      document.getElementById("todos").style.fontWeight = "bold";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-  break;
+
 
   }
 }
@@ -215,20 +205,6 @@ getExpedientesUser(tipo,pag, tam){
         }
       })
     break;
-    case 4:
-      //Todos
-      this._expedientesService.getExpedientesUser(pag, tam).subscribe(data=>{
-        if(data.Codigo == 501){
-          location.href = '/expired';
-        }else{
-          // this.expedientes = data.Data;
-          this.contenido = data.Data;
-          console.log('Resultado de la funcion aux ambos');
-          console.log(data);
-          this.paginacion(data.Pagina, data.Paginas_Totales);
-        }
-      })
-    break;
   }
 
 }
@@ -238,73 +214,81 @@ getExpedientesUser(tipo,pag, tam){
     console.log(this.Filtros);
     console.log('Muestro el estado de la url antes de pillar los datos');
     console.log(this.url);
-      this.url='https://www.aisha.ovh/api/privados/'+sessionStorage.iD+'/search/';
-      let primero = 1;
-      if(this.Filtros.Titulo != ''){
-        //No son nulos => los pongo tal cual
-        this.url += 'titulo='+this.Filtros.Titulo;
-      }else{
-        this.url += 'titulo='+null;
-      }
-      if(this.Filtros.Fecha1 != ''){
-        this.url += '&f1='+this.Filtros.Fecha1;
-      }else{
-        this.url += '&f1='+null;
-      }
-      if(this.Filtros.Fecha2 != ''){
-        this.url += '&f2='+this.Filtros.Fecha2;
-      }else{
-        this.  url += '&f2='+null;
-      }
-      //Lugar
-      if(this.Filtros.Lugar != ''){
-        this.url += '&l='+this.Filtros.Lugar;
-      }else{
-        this.url += '&l='+null;
-      }
-      //Etnia
-      if(this.Filtros.Etnia != 0){
-        this.url += '&e='+this.Filtros.Etnia
-      }else{
-        this.  url += '&e='+null;
-      }
-      //TipoMGF
-      if(this.Filtros.TipoMGF != 0){
-        this.url += '&tipo='+this.Filtros.TipoMGF;
-      }else{
-        this.url += '&tipo='+null;
-      }
+    console.log('Muestro el tipo de expediente que voy a buscar');
+    console.log(this.tipoExp);
+    //Cambiar la URL en funcion del tipo seleccionado
+    this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
+    if(this.tipoExp == 3){
+      //Busco expedientes privados
+      this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
+    }
+    console.log(this.url);
+    let primero = 1;
+    if(this.Filtros.Titulo != ''){
+      //No son nulos => los pongo tal cual
+      this.url += 'titulo='+this.Filtros.Titulo;
+    }else{
+      this.url += 'titulo='+null;
+    }
+    if(this.Filtros.Fecha1 != ''){
+      this.url += '&f1='+this.Filtros.Fecha1;
+    }else{
+      this.url += '&f1='+null;
+    }
+    if(this.Filtros.Fecha2 != ''){
+      this.url += '&f2='+this.Filtros.Fecha2;
+    }else{
+      this.  url += '&f2='+null;
+    }
+    //Lugar
+    if(this.Filtros.Lugar != ''){
+      this.url += '&l='+this.Filtros.Lugar;
+    }else{
+      this.url += '&l='+null;
+    }
+    //Etnia
+    if(this.Filtros.Etnia != 0){
+      this.url += '&e='+this.Filtros.Etnia
+    }else{
+      this.  url += '&e='+null;
+    }
+    //TipoMGF
+    if(this.Filtros.TipoMGF != 0){
+      this.url += '&tipo='+this.Filtros.TipoMGF;
+    }else{
+      this.url += '&tipo='+null;
+    }
 
-     //Añado los parametros de la paginacion
-     this.url += '/pag='+pag+'&n='+tamPag;
+   //Añado los parametros de la paginacion
+   this.url += '/pag='+pag+'&n='+tamPag;
 
-     console.log('Muestro la url que mando al servicio');
-     console.log(this.url);
+   console.log('Muestro la url que mando al servicio');
+   console.log(this.url);
 
-     this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
-       console.log(data);
-       if(data.Resultado == 'OK'){
-         console.log('No hay resultados');
-        //  this.expedientes = new Array();
-         this.contenido  = new Array();
-         //Falta mostrar mensaje de no hay resultados
-         this.busqueda = true;
-         this.mensaje = 'No hay resultados para la busqueda solicitada';
-         document.getElementById('alert').className = 'alert alert-danger';
-         //return;
+   this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
+     console.log(data);
+     if(data.Resultado == 'OK'){
+       console.log('No hay resultados');
+      //  this.expedientes = new Array();
+       this.contenido  = new Array();
+       //Falta mostrar mensaje de no hay resultados
+       this.busqueda = true;
+       this.mensaje = 'No hay resultados para la busqueda solicitada';
+       document.getElementById('alert').className = 'alert alert-danger';
+       //return;
+     }else{
+       if(data.Codigo == 501){
+         location.href = '/expired';
        }else{
-         if(data.Codigo == 501){
-           location.href = '/expired';
-         }else{
-           console.log('Hay busqueda');
-           this.busqueda = true;
-           //this.expedientes = data.Data;
-           this.contenido = data.Data;
-           this.mensaje = '';
-           this.paginacion(data.Pagina, data.Paginas_Totales);
-         }
-        }
-     });
+         console.log('Hay busqueda');
+         this.busqueda = true;
+         //this.expedientes = data.Data;
+         this.contenido = data.Data;
+         this.mensaje = '';
+         this.paginacion(data.Pagina, data.Paginas_Totales);
+       }
+      }
+   });
   }
   buscar2(pag, tamPag=this.tamPag){
     console.log(this.Filtros);
@@ -364,7 +348,7 @@ getRaizUser(id){
 }
 
 getCarpeta(id, name){
-  if(this.carpetaActual != id){
+  //if(this.carpetaActual != id){
     this.carpetaActual = id;
     this._carpetaService.getCarpeta(id).subscribe(data=>{
       if(data.Codigo == 501){
@@ -383,7 +367,7 @@ getCarpeta(id, name){
       console.log(data);
       this.contenido = data;
     })
-  }
+  //}
 }
 
 getCarpetasUser(idU){
@@ -408,6 +392,7 @@ nuevaCarpeta(nombre){
       return;
     }
     console.log(data);
+    this.getCarpeta(this.carpetaActual, nombre);
   })
 }
 
