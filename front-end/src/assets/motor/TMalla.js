@@ -33,7 +33,7 @@ class TMalla extends TEntidad{
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
       let isPowerOf2Height = (image.height & (image.height - 1)) == 0;
       let isPowerOf2Width = (image.width & (image.width - 1)) == 0;
-      console.log(isPowerOf2Height);
+
       if (isPowerOf2Height && isPowerOf2Width) {
          gl.generateMipmap(gl.TEXTURE_2D);
       } else {
@@ -54,7 +54,8 @@ class TMalla extends TEntidad{
 
     //projection matrix
     // mat4.perspective(45, this.canvas.width/this.canvas.height, 0.1, 10000.0, GProjectionMatrix);
-    gl.uniformMatrix4fv(programa.ProjectionMatrix, false, GProjectionMatrix);
+    console.log(GFachada.regCamaras[0].entidad.projectionMatrix);
+    gl.uniformMatrix4fv(programa.ProjectionMatrix, false, GFachada.regCamaras[0].entidad.projectionMatrix);
 
     //model view matrix
     GModelViewMatrix = mat4.create();

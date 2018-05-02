@@ -15,7 +15,7 @@ class TCamaraInteractor extends TEntidad {
       this.ctrl = false;
       this.key = 0;
 
-      this.MOTION_FACTOR = 1.0;
+      this.MOTION_FACTOR = 10.0;
   }
 
   onMouseUp(ev){
@@ -30,11 +30,11 @@ class TCamaraInteractor extends TEntidad {
   }
 
   onMouseMove(ev){
-  	/*this.lastX = this.x;
+  	this.lastX = this.x;
   	this.lastY = this.y;
   	this.x = ev.clientX;
     this.y = ev.clientY;
-*/
+
   	if (!this.dragging) return;
 
   	this.ctrl = ev.ctrlKey;
@@ -105,28 +105,28 @@ class TCamaraInteractor extends TEntidad {
   	// }
   }
 
-  /*translate(value){
-    console.log("si que entro");
-  	var c = this.camera;
-  	var dv = 2 * this.MOTION_FACTOR * value / canvas.height;
-
-  	c.dolly(Math.pow(1.1,dv));
-  }*/
+  // translate(value){
+  //   console.log("si que entro");
+  // 	var c = this.camera;
+  // 	var dv = 2 * this.MOTION_FACTOR * value / canvas.height;
+  //
+  // 	c.dolly(Math.pow(1.1,dv));
+  // }
 
   rotate(dx, dy){
   	var camera = this.camera;
-  	// var canvas = this.canvas;
-    //
-  	// var delta_elevation = -2.0 / canvas.height;
-  	// var delta_azimuth   = -2.0 / canvas.width;
-    //
-  	// var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
-  	// var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
-    // console.log(nAzimuth);
-    // console.log(nElevation);
+  	var canvas = this.canvas;
 
-  	//camera.changeAzimuth(nAzimuth);
-  	//camera.changeElevation(nElevation);
+  	var delta_elevation = -8.0 / canvas.height;
+  	var delta_azimuth   = -8.0 / canvas.width;
+
+  	var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
+  	var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
+    console.log(nAzimuth);
+    console.log(nElevation);
+
+  	camera.changeAzimuth(nAzimuth);
+  	camera.changeElevation(nElevation);
     camera.update();
   }
 }
