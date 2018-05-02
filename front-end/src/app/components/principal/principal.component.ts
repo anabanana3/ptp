@@ -19,7 +19,7 @@ export class PrincipalComponent implements OnInit {
   id:number = 0;
   arrayIds = new Array();
 
-  slideIndex:number = 0;
+  //slideIndex:number = 0;
 
   logueado:boolean = false;
   admin:boolean = false;
