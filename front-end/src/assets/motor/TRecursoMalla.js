@@ -88,13 +88,17 @@ class TRecursoMalla extends TRecurso{
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.nb);
     gl.vertexAttribPointer(programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
 
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ib);
-    gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
-
     //texturas
     gl.enableVertexAttribArray(programa.aVertexTextureCoords);
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.tb);
     gl.vertexAttribPointer(programa.aVertexTextureCoords, 2, gl.FLOAT, false, 0, 0);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, GTextura);
+    gl.uniform1i(programa.uSampler, 0);
+    console.log(GTextura);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ib);
+    gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);

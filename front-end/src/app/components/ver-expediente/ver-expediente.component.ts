@@ -260,7 +260,7 @@ export class VerExpedienteComponent implements OnInit {
   }
 
   permitirComent(){
-
+    console.log("Comentarios");
   }
 }
 

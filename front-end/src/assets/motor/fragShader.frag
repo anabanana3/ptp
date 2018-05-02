@@ -92,6 +92,6 @@ void main(void)
 	}
 	vec4 finalColor = Ia + Id + Is;
 	finalColor.a = 1.0;
-	gl_FragColor = finalColor;
-	//gl_FragColor = finalColor * texture2D(uSampler, vTextureCoord);
+	//gl_FragColor = finalColor;
+	gl_FragColor = finalColor * texture2D(uSampler, vTextureCoord);
 }
