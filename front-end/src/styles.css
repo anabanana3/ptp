@@ -121,11 +121,7 @@ canvas{
   float:right;
   margin-top:180px;
 }
-.CarouselImage{/*
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;*/
+.CarouselImage{
   margin: 0 auto;
   max-width: 800px;
   width:80%;
@@ -135,6 +131,24 @@ canvas{
 .mySlides{
   display: none;
   margin: 0 auto;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
 }
 
 /** CAROUSEL **/

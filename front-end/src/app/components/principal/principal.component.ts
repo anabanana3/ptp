@@ -19,11 +19,15 @@ export class PrincipalComponent implements OnInit {
   id:number = 0;
   arrayIds = new Array();
 
+  slideIndex:number = 0;
+
   logueado:boolean = false;
   admin:boolean = false;
   asociacion:boolean = false;
   constructor(private _noticiasService:NoticiasService) {
+    // this.showSlides();
     console.log(sessionStorage);
+
     if(sessionStorage.length !== 0){
       this.logueado = true;
 
@@ -105,15 +109,13 @@ export class PrincipalComponent implements OnInit {
       caca2.style.backgroundImage = 'url("'+this.arrayIds[1]+'")';
       caca3.style.backgroundImage = 'url("'+this.arrayIds[2]+'")';
 
+
     });
 
   }
 
   ngOnInit() {
   }
-
-
-
 
   plusDivs(n) {
     console.log("entro en plusDivs()");
@@ -138,7 +140,41 @@ export class PrincipalComponent implements OnInit {
     x[this.slideIndex-1].style.display = "block";/*
     x[this.slideIndex-1].style.visibility = "visible";
     x[this.slideIndex-1].style.transition = "opacity 2s ease-in-out";*/
+
   }
+//
+//   showSlides() {
+//
+//     console.log("::::::::::::::::::::::::::::::::::::");
+//     console.log("SHOWSLIDES()");
+//
+//     var slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
+//     console.log("num de slides: " + slides.length);
+//
+//     for (let i = 0; i < slides.length; i++) {
+//        slides[i].style.display = "none";
+//        console.log("entro en bucle for");
+//        console.log("slides["+i+"]: " + slides[i]);
+//     }
+//
+//     console.log("antes valia  " + this.slideIndex);
+//     this.slideIndex++;
+//     console.log(" ahora this.slideIndex ++ :" + this.slideIndex);
+//
+//     if (this.slideIndex > slides.length) {
+//       console.log("IF");
+//       console.log("this.slideIndex: " + this.slideIndex);
+//       console.log("this.slide: " + this.slide);
+//       this.slideIndex = 1;
+//     }
+//
+//     console.log("VA A DIBUJAR");
+//     console.log(this.slideIndex - 1);
+//
+//     slides[this.slideIndex-1].style.display = "block";
+//     console.log("DIBUJA -> slides["+ (this.slideIndex - 1) +"].style.display = block");
+//     // setTimeout(this.showSlides, 4000);
+// }
 
 
 }
