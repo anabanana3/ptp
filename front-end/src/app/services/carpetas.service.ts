@@ -41,7 +41,7 @@ export class CarpetasService {
         return this.http.get(url, {headers}).map(res => res.json());
   }
 
-  newCarpeta(nombre){
+  newCarpeta(nombre, idCarpetaActual){
     let token = sessionStorage.token,
     headers = new Headers({
       'Content-Type':'application/json',
@@ -49,10 +49,11 @@ export class CarpetasService {
     });
     let body = {
       ID_Usuario: sessionStorage.iD,
-      Nombre: nombre
-    };
+      Nombre: nombre,
+      Padre: idCarpetaActual,
+      };
 
-    return this.http.post(this.carpetaExpURL, body, {headers}).map(res => res.json());
+    return this.http.post(this.carpetaExpURL2, body, {headers}).map(res => res.json());
 
   }
 

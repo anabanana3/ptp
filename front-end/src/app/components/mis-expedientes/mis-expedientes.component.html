@@ -119,7 +119,7 @@
 <div class="carpetasDivContainer">
   <div class="carpetasDiv">
   <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
-    <p>Ruta en la que estas / Privados / Publicos / Todos</p>
+    <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Raiz /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
   </div>
 
   <!-- Mensaje de que no tienes nada almacenado -->
@@ -131,7 +131,7 @@
     <div *ngFor="let c of contenido" class="carpeta" >
       <div *ngIf="c.Tipo == 0">
         <!-- TODO: Carpetas -->
-          <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor)">
+          <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
             <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
           </div>
           <div class="expediente-body">
@@ -144,18 +144,6 @@
                 <p class="text12">Editar</p>
                 <p (click)="borrarCarpeta(c.ID_Gestor)" class="text12">Borrar</p>
               </div>
-          </div>
-          <div class="popUpBorrar" id="popupBorrarExp">
-            <div class="popupBorrar-contentExp">
-              <span id="closeExp">&times;</span>
-              <div class="insidePopExp">
-                <p>Crear nueva carpeta</p>
-                <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
-                <br>
-              </div>
-              <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
-              <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
-            </div>
           </div>
       </div>
 
@@ -201,6 +189,19 @@
         </a>
       </li>
     </ul>
+  </div>
+</div>
+
+<div class="popUpBorrar" id="popupBorrarExp">
+  <div class="popupBorrar-contentExp">
+    <span id="closeExp">&times;</span>
+    <div class="insidePopExp">
+      <p>Crear nueva carpeta</p>
+      <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
+      <br>
+    </div>
+    <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
+    <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
   </div>
 </div>
 

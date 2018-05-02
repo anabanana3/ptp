@@ -25,7 +25,8 @@ export class MisExpedientesComponent implements OnInit {
   mensaje:string='';
 //Url para hacer las busquedas
   url:string='';
-
+//Variable con el ID_Usuario
+idU = sessionStorage.iD;
 
 //Variables para filtar los expedientes
 etnias = new Array();
@@ -45,6 +46,9 @@ etnias = new Array();
   carpetas = new Array();
   //Variable que va almacenar el contenido de una carpeta tanto EXP como Carpetas
   contenido = new Array();
+  raiz;
+  carpetaActual = null;
+  NameRuta = new Array();
 
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
@@ -148,12 +152,16 @@ openPopUp(){
   modal.style.display = "block";
 
   btnNo.onclick = function(){
+    //Boton cancelar
     modal.style.display = "none";
+    // this.getCarpeta(this.carpetaActual);
   }
 
   span.onclick = function() {
+    //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
+      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -346,22 +354,36 @@ getRaizUser(id){
     }
     document.getElementById('arb').style.fontWeight = 'bold';
     console.log(data);
-    this.contenido = data;
+    this.contenido = data.Data;
+    this.carpetaActual = data.ID_Carpeta;
     //Reinicio la paginacion
     this.paginas = new Array();
     // this.expedientes = new Array();
+    this.NameRuta = new Array();
   })
 }
 
-getCarpeta(id){
-  this._carpetaService.getCarpeta(id).subscribe(data=>{
-    if(data.Codigo == 501){
-      location.href = '/expired';
-      return
-    }
-    console.log(data);
-    this.contenido = data;
-  })
+getCarpeta(id, name){
+  if(this.carpetaActual != id){
+    this.carpetaActual = id;
+    this._carpetaService.getCarpeta(id).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return
+      }
+      this.carpetaActual = id;
+      //this.Ruta.push(id);
+      this.actualizarRuta(id, name);
+      if(data.Codigo==405){
+        //Carpeta vacia
+        this.mensaje = 'La carpeta que has selecionado esta vacia'
+        this.contenido = new Array();
+        return
+      }
+      console.log(data);
+      this.contenido = data;
+    })
+  }
 }
 
 getCarpetasUser(idU){
@@ -378,9 +400,9 @@ getCarpetasUser(idU){
 }
 
 nuevaCarpeta(nombre){
-  //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos
+  //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos => Tener en cuenta la carpeta actual en la que nos encontramos
   console.log("Nombre de la carpeta" + nombre);
-  this._carpetaService.newCarpeta(nombre).subscribe(data =>{
+  this._carpetaService.newCarpeta(nombre, this.carpetaActual).subscribe(data =>{
     if(data.Codigo == 501){
       location.href = '/expired';
       return;
@@ -398,6 +420,35 @@ borrarCarpeta(idC){
     }
     console.log(data);
   })
+}
+
+actualizarRuta(id, name){
+  console.log('actualizarRuta');
+  console.log('Ruta', this.NameRuta);
+  console.log('CarpetaActual', this.carpetaActual);
+  console.log(this.carpetaActual);
+  let pos=-1;
+  for(let i=0; i<this.NameRuta.length && pos ==-1; i++){
+    console.log('iteracion numero', i );
+    console.log(this.NameRuta[i].ID_Carpeta);
+    if(this.NameRuta[i].ID_Carpeta == id){
+      pos = i;
+    }
+  }
+
+  console.log(pos)
+  if(pos == -1){
+    let aux = {
+      ID_Carpeta: id,
+      Nombre: name
+    }
+    this.NameRuta.push(aux);
+  }else{
+    //Borro todo lo que haya en el array hasta la pos empezando por el final
+    for(let i = this.NameRuta.length-1; i>pos; i--){
+      this.NameRuta.pop();
+    }
+  }
 }
 
 }
