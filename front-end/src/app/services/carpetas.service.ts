@@ -63,7 +63,7 @@ export class CarpetasService {
       'Content-Type':'application/json',
       'Authorization': token
     });
-    let url = this.carpetaExpURL+'/'+idC;
+    let url = this.carpetaExpURL2+'/delete/'+idC;
 
     return this.http.delete(url, {headers}).map(res=> res.json());
   }
