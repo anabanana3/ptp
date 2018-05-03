@@ -1,15 +1,34 @@
 <div class="header bgColorBlack">
-  <a [routerLink]="['/home']"><img src="../assets/img/LogoAishaLadoCherry.png" alt="LogoAisha"></a>
-  <div class="notification bgColorPink">
-    <p class="textDarkenWhite">3</p>
+  <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/LogoAishaLadoCherry.png" id="0" alt="LogoAisha"></a>
+
+<div class="menuNav" id="myTopnav">
+  <a [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="">Mis Expedientes</a>
+  <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes Públicos</a>
+  <a [routerLink]="['/estadisticas']" (click)="activo(3)" id="3" class="">Estadísticas</a>
+  <a [routerLink]="['/recursos']" (click)="activo(4)" id="4" class="">Recursos</a>
+  <a [routerLink]="['/aulavirtual']" (click)="activo(5)" id="5" class="">Aula Virtual</a>
+  <a [routerLink]="['/chat']" (click)="activo(6)" id="6" class="">Chat</a>
+  <div class="dropdown">
+    <button class="dropbtn">Perfil
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a [routerLink]="['/user/profile']">Editar Perfil</a>
+      <a (click)="cerrarSesion();">Cerrar Sesión</a>
+    </div>
   </div>
-  <label for="perfilTrigger">
-    <img src="../../assets/img/user.png" alt="">
-  </label>
+  <a href="javascript:void(0);" class="icon" (click)="myFunction()">&#9776;</a>
 </div>
 
+<!-- <div class="notification bgColorPink">
+  <p class="textDarkenWhite">3</p>
+</div>
+  <label for="perfilTrigger">
+    <img src="../../assets/img/user.png" alt="">
+  </label> -->
+</div>
+<!--
 <input id="perfilTrigger" type="checkbox">
-
 <div class="infoDivPerfil">
   <div class="options">
     <p *ngIf="Nombre != null"class="DivOption text16"><b>{{Nombre}}</b></p>
@@ -24,7 +43,7 @@
     <button (click)="cerrarSesion();" type="button" name="button" class="DivOptionLogout textGreyDarken">Cerrar Sesión</button>
     <img class="divPerfil" src="../../assets/img/DivPerfil.png" alt="">
   </div>
-</div>
+</div> -->
 
 
   <!-- <nav class="confi">
