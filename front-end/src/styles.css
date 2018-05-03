@@ -112,20 +112,16 @@ canvas{
   width:90%;
 }
 .LeftDiv{
-  width:10%;
+  /* width:10%; */
   float:left;
   margin-top:180px;
 }
 .RightDiv{
-  width:10%;
+  /* width:10%; */
   float:right;
   margin-top:180px;
 }
-.CarouselImage{/*
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;*/
+.CarouselImage{
   margin: 0 auto;
   max-width: 800px;
   width:80%;
@@ -135,6 +131,24 @@ canvas{
 .mySlides{
   display: none;
   margin: 0 auto;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .5}
+  to {opacity: 1}
 }
 
 /** CAROUSEL **/
@@ -216,7 +230,7 @@ canvas{
 .logoPeque{width: 4%; float: left;}
 
 .logoPrincipal{
-    width: 200px;
+    width: 150px;
     float: left;
     margin-top: 3%;
     margin-left: 9%;
@@ -245,7 +259,7 @@ canvas{
 .headerPrincipal{
   display: block;
   width: 100%;
-  padding-bottom: 12%;
+  padding-bottom: 11%;
 }
 
 .permisos{
@@ -1229,7 +1243,7 @@ option{
 .gridContainer{
   display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 90px 100%;
+  grid-template-rows: 90px 50% 50% 50px;
 }
 
 .headerMisExp{
@@ -1248,9 +1262,75 @@ option{
   grid-column-start: 1;
   /* autoprefixer: off */
   grid-column-end: 2;
+  grid-row-start: 3;
+  /* autoprefixer: off */
+  grid-row-end:4;
+}
+
+.carpetasDivContainer{
+  grid-column-start: 1;
+  /* autoprefixer: off */
+  grid-column-end: 2;
   grid-row-start: 2;
   /* autoprefixer: off */
   grid-row-end:3;
+  margin-bottom:14px;
+}
+
+/* .carpeta{
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  background-color: white;
+  width: 22%;
+  margin: 8px;
+  display: flex;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+} */
+
+.carpeta{
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  background-color: white;
+  /* width: 32%; */
+  margin: 8px;
+  height: 62px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-box-pack: row;
+  -ms-flex-pack: row;
+  justify-content: row;
+}
+
+.carpeta:hover{
+  background-color: lightgray;
+  color:white;
+  cursor:pointer;
+}
+
+.carpeta:hover .imgCircle{
+  background: white;
+}
+
+.carpeta:hover .fechaExp{
+  color:white;
+}
+
+.carpetaIF{
+  /* width: 100%; */
+  display: table;
+  padding-top: 8px;
+}
+
+.paginationContainer{
+  grid-column-start: 1;
+  /* autoprefixer: off */
+  grid-column-end: 2;
+  grid-row-start: 4;
+  /* autoprefixer: off */
+  grid-row-end:5;
 }
 
 .lateralSearch{
@@ -1259,7 +1339,7 @@ option{
   grid-column-end: 3;
   grid-row-start: 1;
   /* autoprefixer: off */
-  grid-row-end:3;
+  grid-row-end:5;
   background-color: white;
   box-shadow: 1px 0px 1px 0px rgba(203,203,203,0.50);
   padding: 20px 0px 15px 20px;
@@ -1272,20 +1352,65 @@ option{
   text-align: left;
 }
 
-.imgExp{
+/* .imgExp{
   width: 20px;
-  height: 28px;
   margin-right: 10px;
-  -webkit-filter: invert();
-  filter: invert(100%);
+} */
+
+.imgExp{
+  width: 21px;
 }
 
-.imgCircle{
+/* .imgCircle{
   border-radius: 100%;
   width: 44px;
   height: 44px;
   padding: 12px;
-  padding-top: 8px;
+  padding-top: 12px;
+} */
+
+.imgCircle{
+  border-radius: 100%;
+  width: 47px;
+  height: 47px;
+  padding: 14px;
+  padding-top: 14px;
+}
+
+/* .imgOptions{
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  padding-top: 12px;
+} */
+.izqCarpeta{
+  display: table-cell;
+  padding-left: 8px;
+}
+
+.imgOptions{
+  display: table-cell;
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  padding-top: 12px;
+}
+
+.optionPoints{
+  width: 15px;
+  filter: contrast(30%);
+}
+
+.menuOp{
+  color:grey;
+  display: none;
+  float: right;
+  z-index: 1;
+  padding: 5px;
+  position: absolute;
+  background: white;
+  box-shadow: 0px 0px 2px 0 rgba(203,203,203,0.50);
+
 }
 
 .fechaExp{
@@ -1319,10 +1444,42 @@ option{
   float: right;
 }
 
+.desplegableContainer{
+  width: 115px;
+}
+
+.desplegableButton{
+  display: none;
+  width: 115px;
+  position: fixed;
+  z-index: 1;
+  text-align: left;
+  background: white;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+}
+
+.expOpt,
+.carOpt{
+  padding: 8px 20px;
+  color:gray;
+}
+
+.expOpt:hover,
+.carOpt:hover{
+  background-color:lightgray;
+  color:white;
+}
+
+.carpetasDiv{
+  width: 100%;
+  text-align: left;
+  padding: 0px 28px;
+}
+
 .expediente-container{
   display: flex;
   flex-wrap: wrap;
-  padding:20px;
+  padding:0px 20px;
   margin: auto;
   margin-top: 2%;
   overflow: hidden;
@@ -1331,31 +1488,35 @@ option{
 .expediente{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
-  width: 30%;
+  width: 22%;
   margin: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: left;
   padding-top: 10px;
-  padding-left: 13px;
-  padding-bottom: 10px;
 }
 
 .expediente:hover{
   background-color: lightgray;
   color:white;
-}
-
-.expediente:hover .imgCircle{
-  background: white;
+  cursor:pointer;
 }
 
 .expediente:hover .fechaExp{
   color:white;
 }
 
-.expedienteDesc{
+.statusExp{
+  width: 100%;
+  padding-right: 5px;
+  text-align: right;
+  margin-top: 25%;
+}
+
+/* .expedienteDesc{
   position: relative;
-  letf:0;
+  left:0;
   top:0;
   width: 100%;
 }
@@ -1385,12 +1546,24 @@ option{
 
 .expedienteDesc:hover img{
   opacity: .5;
-}
+} */
 
-.expediente-body{
-  width: 150px;/*Este tamaño es el ancho de la imagen del logo*/
+/* .expediente-body{
+  width: 100%;
   margin-left: 15px;
   margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+.expediente-body{
+  width: 50%;
+  display: table-cell;
+  padding-left: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .expediente-body>p{
@@ -1458,12 +1631,31 @@ option{
     width: 80%;
 }
 
+/* Modal Content */
+.popupBorrar-contentExp {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.insidePopExp{
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.insidePopExp > p{
+  margin-bottom:8px;
+}
+
 .seguro{
   margin: 20px 0px;
   color:black;
 }
 /* The Close Button */
-#close {
+#close,
+#closeExp {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -1471,7 +1663,9 @@ option{
 }
 
 #close:hover,
-#close:focus {
+#close:focus,
+#closeExp:hover,
+#closeExp:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

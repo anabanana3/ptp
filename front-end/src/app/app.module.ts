@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AgmCoreModule } from '@agm/core';
 
 
 //Components
@@ -63,6 +64,7 @@ import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
+import { CarpetasService } from './services/carpetas.service';
 
 
 @NgModule({
@@ -126,6 +128,10 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     MatInputModule,
     MatDialogModule,
     MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB22qgoaAWVVA8Ht3cUK4ouCfFLNiDAhEc',
+      libraries: ['places']
+    })
   ],
   entryComponents: [
     Popup,
@@ -142,7 +148,8 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
     NoticiasService,
     MaterialService,
     ComentarioService,
-    ChatService
+    ChatService,
+    CarpetasService
   ],
   bootstrap: [AppComponent]
 })

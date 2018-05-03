@@ -142,27 +142,6 @@ class TShader extends TRecurso {
     }
   }
 
-  initTexture(){
-    var gl = this.gl;
-    //textura
-    var texture = gl.createTexture();
-    var image = new Image();
-
-    image.onload = function(){
-      gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-      gl.bindTexture(gl.TEXTURE_2D, null);
-    }
-    image.src= '/assets/motor/'+GTexturaImg;
-    GTextura = texture;
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, GTextura);
-    gl.uniform1i(this.programa.uSampler, 0);
-    console.log(GTextura);
-  }
-
   animate(){
       var timeNow = new Date().getTime();
       if(this.lastTime != 0){
@@ -177,7 +156,7 @@ class TShader extends TRecurso {
     this.configure();
     this.initProgram();
     this.initLights();
-    this.initTexture();
+    //this.initTexture();
 
     this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);

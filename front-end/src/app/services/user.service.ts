@@ -14,6 +14,7 @@ export class UserService {
   mensajeURL:string = "https://www.aisha.ovh/api/mail/send/contacto";
   loginURL2:string = "https://www.aisha.ovh/api/login";
 
+
   constructor(private http:Http) { }
 
   newUsuario(usuario:User){
@@ -240,4 +241,6 @@ export class UserService {
 
     return this.http.get(url, {headers}).map(res=>res.json());
   }
+
+
 }
