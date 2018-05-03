@@ -1277,31 +1277,16 @@ option{
   margin-bottom:14px;
 }
 
-/* .carpeta{
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
-  background-color: white;
-  width: 22%;
-  margin: 8px;
-  display: flex;
-  text-align: left;
-  padding-top: 10px;
-  padding-left: 13px;
-  padding-bottom: 10px;
-} */
-
 .carpeta{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
-  /* width: 32%; */
+  /* width: 41%; */
   margin: 8px;
   height: 62px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   text-align: left;
-  -webkit-box-pack: row;
-  -ms-flex-pack: row;
-  justify-content: row;
 }
 
 .carpeta:hover{
@@ -1320,8 +1305,12 @@ option{
 
 .carpetaIF{
   /* width: 100%; */
-  display: table;
   padding-top: 8px;
+}
+
+.sideBySide{
+  float: left;
+  padding: 0px -2px;
 }
 
 .paginationContainer{
@@ -1377,23 +1366,18 @@ option{
   padding-top: 14px;
 }
 
-/* .imgOptions{
-  width: 44px;
-  height: 44px;
-  padding: 12px;
-  padding-top: 12px;
-} */
 .izqCarpeta{
-  display: table-cell;
   padding-left: 8px;
 }
 
 .imgOptions{
-  display: table-cell;
   width: 44px;
   height: 44px;
   padding: 12px;
-  padding-top: 12px;
+  padding-top: 17px;
+  /* border: dashed; */
+  /* position: absolute; */
+  /* float: right; */
 }
 
 .optionPoints{
@@ -1514,53 +1498,12 @@ option{
   margin-top: 25%;
 }
 
-/* .expedienteDesc{
-  position: relative;
-  left:0;
-  top:0;
-  width: 100%;
-}
-
-.expedienteDesc img{
-  opacity: 1;
-  transition: opacity .5s;
-}
-
-.expedienteDesc p{
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity .5s;
-
-}
-
-.expedienteDesc:hover p{
-  opacity: 1;
-  background: #333333;
-  color: white;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.expedienteDesc:hover img{
-  opacity: .5;
-} */
-
-/* .expediente-body{
-  width: 100%;
-  margin-left: 15px;
-  margin-top: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
-
 .expediente-body{
-  width: 50%;
-  display: table-cell;
+  /* width: 50%; */
   padding-left: 14px;
+  /* border: dotted; */
+  padding-top: 15px;
+  /* padding-right: 7%; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
