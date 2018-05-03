@@ -1374,7 +1374,7 @@ option{
   width: 44px;
   height: 44px;
   padding: 12px;
-  padding-top: 17px;
+  padding-top: 16px;
   /* border: dashed; */
   /* position: absolute; */
   /* float: right; */
@@ -1435,7 +1435,7 @@ option{
 .desplegableButton{
   display: none;
   width: 115px;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   text-align: left;
   background: white;
@@ -1509,12 +1509,27 @@ option{
   text-overflow: ellipsis;
 }
 
-.expediente-body>p{
+.expediente-body>p,
+.expediente-body-exp>p{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.expediente-body-exp{
+  width: 182px;
+  padding-left: 14px;
+  /* border: dotted; */
+  padding-top: 6px;
+  /* padding-right: 7%; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tituloExp{
+  margin-bottom:2px;
+}
 /**** Recursos ****/
 .recursoTarget{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
