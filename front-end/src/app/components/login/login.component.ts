@@ -68,6 +68,7 @@ export class LoginComponent {
             //Usuario
             sessionStorage.setItem('iD', datos[0].ID_Usuario);
             location.href = '/home';
+            sessionStorage.setItem('ventana', "0");
           break;
         }
       }

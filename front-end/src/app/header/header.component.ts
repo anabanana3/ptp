@@ -14,10 +14,26 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    if( sessionStorage.ventana != 0){
+      document.getElementById(sessionStorage.ventana).className = "active";
+    }
   }
 
-cerrarSesion() {
-  sessionStorage.clear();
-  location.href = '/';
-}
+  cerrarSesion() {
+    sessionStorage.clear();
+    location.href = '/';
+  }
+  activo(num){
+    sessionStorage.setItem('ventana', num);
+    document.getElementById(num).className = "active";
+  }
+
+  myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "menuNav") {
+          x.className += " responsive";
+      } else {
+          x.className = "menuNav";
+      }
+  }
 }

@@ -40,7 +40,7 @@ export class HomeComponent {
       }else{
         this.user = data[0];
       }
-    })
+    });
   }
 
   logout(){
