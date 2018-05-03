@@ -19,13 +19,13 @@ export class PrincipalComponent implements OnInit {
   id:number = 0;
   arrayIds = new Array();
 
-  slideIndex:number = 0;
+  slideIndexAuto:number = 0;
 
   logueado:boolean = false;
   admin:boolean = false;
   asociacion:boolean = false;
   constructor(private _noticiasService:NoticiasService) {
-    // this.showSlides();
+
     console.log(sessionStorage);
 
     if(sessionStorage.length !== 0){
@@ -109,7 +109,7 @@ export class PrincipalComponent implements OnInit {
       caca2.style.backgroundImage = 'url("'+this.arrayIds[1]+'")';
       caca3.style.backgroundImage = 'url("'+this.arrayIds[2]+'")';
 
-
+      // this.showSlides();
     });
 
   }
@@ -142,7 +142,7 @@ export class PrincipalComponent implements OnInit {
     x[this.slideIndex-1].style.transition = "opacity 2s ease-in-out";*/
 
   }
-//
+
 //   showSlides() {
 //
 //     console.log("::::::::::::::::::::::::::::::::::::");
@@ -157,23 +157,23 @@ export class PrincipalComponent implements OnInit {
 //        console.log("slides["+i+"]: " + slides[i]);
 //     }
 //
-//     console.log("antes valia  " + this.slideIndex);
-//     this.slideIndex++;
-//     console.log(" ahora this.slideIndex ++ :" + this.slideIndex);
+//     console.log("antes valia  " + this.slideIndexAuto);
+//     this.slideIndexAuto++;
+//     console.log(" ahora this.slideIndex ++ :" + this.slideIndexAuto);
 //
-//     if (this.slideIndex > slides.length) {
+//     if (this.slideIndexAuto > slides.length) {
 //       console.log("IF");
-//       console.log("this.slideIndex: " + this.slideIndex);
+//       console.log("this.slideIndexAuto: " + this.slideIndexAuto);
 //       console.log("this.slide: " + this.slide);
-//       this.slideIndex = 1;
+//       this.slideIndexAuto = 1;
 //     }
 //
 //     console.log("VA A DIBUJAR");
-//     console.log(this.slideIndex - 1);
+//     console.log(this.slideIndexAuto - 1);
 //
-//     slides[this.slideIndex-1].style.display = "block";
-//     console.log("DIBUJA -> slides["+ (this.slideIndex - 1) +"].style.display = block");
-//     // setTimeout(this.showSlides, 4000);
+//     slides[this.slideIndexAuto-1].style.display = "block";
+//     console.log("DIBUJA -> slides["+ (this.slideIndexAuto - 1) +"].style.display = block");
+//      setTimeout(this.showSlides, 4000);
 // }
 
 

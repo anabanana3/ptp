@@ -112,12 +112,12 @@ canvas{
   width:90%;
 }
 .LeftDiv{
-  width:10%;
+  /* width:10%; */
   float:left;
   margin-top:180px;
 }
 .RightDiv{
-  width:10%;
+  /* width:10%; */
   float:right;
   margin-top:180px;
 }
@@ -218,7 +218,7 @@ canvas{
 .logoPeque{width: 4%; float: left;}
 
 .logoPrincipal{
-    width: 200px;
+    width: 150px;
     float: left;
     margin-top: 3%;
     margin-left: 9%;
@@ -247,7 +247,7 @@ canvas{
 .headerPrincipal{
   display: block;
   width: 100%;
-  padding-bottom: 12%;
+  padding-bottom: 11%;
 }
 
 .permisos{
@@ -1123,7 +1123,7 @@ option{
   margin-bottom:14px;
 }
 
-.carpeta{
+/* .carpeta{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
   width: 22%;
@@ -1133,6 +1133,21 @@ option{
   padding-top: 10px;
   padding-left: 13px;
   padding-bottom: 10px;
+} */
+
+.carpeta{
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  background-color: white;
+  /* width: 32%; */
+  margin: 8px;
+  height: 62px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-box-pack: row;
+  -ms-flex-pack: row;
+  justify-content: row;
 }
 
 .carpeta:hover{
@@ -1147,6 +1162,12 @@ option{
 
 .carpeta:hover .fechaExp{
   color:white;
+}
+
+.carpetaIF{
+  /* width: 100%; */
+  display: table;
+  padding-top: 8px;
 }
 
 .paginationContainer{
@@ -1177,20 +1198,44 @@ option{
   text-align: left;
 }
 
-.imgExp{
+/* .imgExp{
   width: 20px;
   margin-right: 10px;
+} */
+
+.imgExp{
+  width: 21px;
 }
 
-.imgCircle{
+/* .imgCircle{
   border-radius: 100%;
   width: 44px;
   height: 44px;
   padding: 12px;
   padding-top: 12px;
+} */
+
+.imgCircle{
+  border-radius: 100%;
+  width: 47px;
+  height: 47px;
+  padding: 14px;
+  padding-top: 14px;
+}
+
+/* .imgOptions{
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  padding-top: 12px;
+} */
+.izqCarpeta{
+  display: table-cell;
+  padding-left: 8px;
 }
 
 .imgOptions{
+  display: table-cell;
   width: 44px;
   height: 44px;
   padding: 12px;
@@ -1349,10 +1394,19 @@ option{
   opacity: .5;
 } */
 
-.expediente-body{
+/* .expediente-body{
   width: 100%;
   margin-left: 15px;
   margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+.expediente-body{
+  width: 50%;
+  display: table-cell;
+  padding-left: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

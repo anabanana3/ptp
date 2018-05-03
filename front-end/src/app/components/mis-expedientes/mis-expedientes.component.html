@@ -128,19 +128,21 @@
   <div *ngIf="busqueda == true" id="alert">{{mensaje}}</div>
 
   <div class="expediente-container">
-    <div *ngFor="let c of contenido" class="carpeta" >
-      <div *ngIf="c.Tipo == 0">
+    <div *ngFor="let c of contenido" class="carpeta">
+      <div *ngIf="c.Tipo == 0" class="carpetaIF">
         <!-- TODO: Carpetas -->
+        <div class="izqCarpeta">
           <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
             <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
           </div>
+        </div>
           <div class="expediente-body">
-            <p>{{c.Nombre}}</p>
+            <p (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">{{c.Nombre}}</p>
           </div>
 
           <div class="imgOptions">
-              <img (click)="mostrarOpThreePoints()" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
-              <div class="menuOp" id="menuOp3">
+              <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
+              <div class="menuOp" id="{{c.ID_Gestor}}">
                 <p class="text12">Editar</p>
                 <p (click)="borrarCarpeta(c.ID_Gestor)" class="text12">Borrar</p>
               </div>

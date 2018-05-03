@@ -128,9 +128,9 @@ mostrarOpciones() {
     }
 }
 
-mostrarOpThreePoints(){
+mostrarOpThreePoints(id){
 
-  var x = document.getElementById("menuOp3");
+  var x = document.getElementById(id);
   if (x.style.display === "none") {
       x.style.display = "block";
   } else {
