@@ -6,9 +6,9 @@
   <div class="lineaDiv"></div>
 
   <div id="alert">{{mensaje}}</div>
-
-  <form (ngSubmit)="new(forma, usuarios)" #forma="ngForm">
-
+<!-- (ngSubmit)="new(forma, usuarios)" -->
+  <form  #forma="ngForm">
+    {{usuarios}}
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
             style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Asociación
     </button>
@@ -22,6 +22,13 @@
       <p class="text12 textRed">* Campos obligatorios</p> <br>
       <p class="text12 textGreyDarken">Si la asociación a la que pertenece no
         está en la lista, debe registrarla primero.</p>
+
+<!-- TODO: Campo de prueba para la api de Google maps -->
+<!-- <div id="locationField">
+  <input type="text"  id="prueba" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+</div> -->
+<!-- TODO:  Fin campo de prueba para la api de Google maps -->
+
       <label for="asociacion">Asociación *</label>
       <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
@@ -36,10 +43,19 @@
         <input [(ngModel)]="usuario.Apellidos" class="lineaCampo" type="text"
                 name="apellido" id="apellido" minlength="3" maxlength="20" required>
 
+      <label for="fechaNacimiento">Fecha Nacimiento</label>
+        <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date" name="fechaNacimiento" id="fechaNacimiento" required>
+
       <label for="dni">NIE/NIF *</label>
         <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni" required>
-      <label for="direccion">Dirección *</label>
+
+      <!-- <label for="direccion">Dirección *</label>
         <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion" required>
+        <div id="locationField">
+          <input type="text"  id="prueba" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+        </div> -->
+
+
       <label for="email">Email *</label>
         <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="profesion">Profesión *</label>
@@ -55,8 +71,8 @@
       <label for="nombre">Nombre Asociación *</label>
         <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre" required>
       <label for="direccion">Direccion *</label>
-        <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required>
-      <label for="email">Email *</label>
+        <!-- <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required> -->
+        <label for="email">Email *</label>
         <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="cif">CIF *</label>
         <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
@@ -66,10 +82,19 @@
         <input [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
     </div>
 
-    <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
+    <!-- TODO: Lo pongo aqui para que no le afecte el ngIf y no pete la referencia => Buscando solucion -->
+    <div class="camposForm">
+      <label for="direccion">Dirección *</label>
+      <div id="locationField">
+        <input type="text"  id="direccion" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+      </div>
+      <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
+    </div>
 
     <div>
-     <button type="submit" name="button" class="btn-border">REGISTRAR</button>
+      <!-- new(forma, usuarios, place) -->
+      <!-- guardarDatos(forma,place) -->
+     <button (click)="new(forma, usuarios, place)" type="submit" name="button" class="btn-border">REGISTRAR</button>
     </div>
     <br>
     <p class="text12 textGreyDarken">Al registrarte, aceptas la
