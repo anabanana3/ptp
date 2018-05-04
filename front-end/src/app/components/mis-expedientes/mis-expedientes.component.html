@@ -143,8 +143,14 @@
           <div class="imgOptions sideBySide">
               <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
               <div class="menuOp" id="{{c.ID_Gestor}}">
-                <p class="text12">Editar</p>
-                <p (click)="borrarCarpeta(c.ID_Gestor)" class="text12">Borrar</p>
+                <div class="EditarDiv">
+                  <p class="text12">Editar</p>
+                </div>
+                <div class="BorrarDiv">
+                  <a id="myBtnDeleteCarpeta" (click)="popUpBorrarCarpeta(c.ID_Gestor)"><p class="text12">Borrar</p></a>
+                  <!-- "borrarCarpeta(c.ID_Gestor)" -->
+                </div>
+
               </div>
           </div>
 
@@ -203,6 +209,17 @@
     </div>
     <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
     <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
+  </div>
+</div>
+
+<div class="popUpBorrar" id="popupBorrarCarpeta">
+  <div class="popupBorrar-contentExp">
+    <span id="closeCarpeta">&times;</span>
+    <div class="insidePopExp">
+      <p>¿Estás seguro de eliminar la carpeta?</p>
+    </div>
+    <button class="btn-relleno" (click)="borrarCarpeta(c.ID_Gestor)">SÍ</button>
+    <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
   </div>
 </div>
 

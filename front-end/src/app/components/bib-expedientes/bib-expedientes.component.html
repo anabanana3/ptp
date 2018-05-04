@@ -108,16 +108,13 @@
     </form>
   </div>
 
-<div class="expedientesDiv">
+<div class="carpetasDivContainer">
   <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
   <div *ngIf="expedientes.length>0" class="expediente-container">
-    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
-      <div class="imgCircle">
-        <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
-        <!-- <p>{{e.Descripcion.split("'")[1]}}</p> -->
-      </div>
-      <div class="expediente-body">
-        <p>{{e.Titulo}}</p>
+    <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
+
+      <div class="expediente-body-exp">
+        <p class="tituloExp">{{e.Titulo}}</p>
         <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
       </div>
     </div>

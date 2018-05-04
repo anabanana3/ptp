@@ -155,6 +155,34 @@ openPopUp(){
   }
 }
 
+popUpBorrarCarpeta(idCarpeta){
+    // Get the modal
+    console.log("entro en popUpBorrarCarpeta");
+  var modal = document.getElementById('popupBorrarCarpeta');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtnDeleteCarpeta");
+  var btnNo = document.getElementById("noBorrarCarpeta");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementById("closeCarpeta");
+
+  modal.style.display = "block";
+
+  btnNo.onclick = function(){
+    //Boton cancelar
+    modal.style.display = "none";
+    // this.getCarpeta(this.carpetaActual);
+  }
+
+  span.onclick = function() {
+    //Boton con la X
+      console.log("entro en span.onclick");
+      modal.style.display = "none";
+      // this.getCarpeta(this.carpetaActual);
+  }
+}
+
 getExpedientesUser(tipo,pag, tam){
   console.log(tipo);
   switch (tipo){
