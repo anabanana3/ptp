@@ -10,7 +10,7 @@
     <hr>
 
     <div id="alert">{{mensaje}}</div>
-    <form (ngSubmit)="save(form)" #form="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
+    <form (ngSubmit)="save(form, place)" #form="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
       <div style="margin-right:10%;">
         <label for="nombre">Nombre Asociación:</label>
         <input [(ngModel)]="asociacion.Nombre" type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaCampo" disabled>
@@ -21,9 +21,12 @@
               [(ngModel)]="asociacion.Email" class="lineaCampo" required>
       </div>
       <div class="" style="margin-right:10%;">
-        <label for="direc">Dirección:</label>
-        <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc"
-                [(ngModel)]="asociacion.Direccion" class="lineaCampo" required>
+        <label for="direccion">Dirección:</label>
+        <div id="locationField">
+          <input type="text"  id="direccion" class="lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
+        </div>
+        <!-- <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" -->
+                <!-- [(ngModel)]="asociacion.Direccion" class="lineaCampo" required> -->
       </div>
       <div class="" style="margin-right:10%;">
         <label for="cif">CIF:</label>
