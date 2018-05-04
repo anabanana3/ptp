@@ -84,6 +84,10 @@
   margin-right:27px;
 }
 
+/* .usuario_icono{
+  float: right;
+  margin-top: -70px;
+} */
  .infoDivPerfil,
 #perfilTrigger{
   display: none;
@@ -161,6 +165,7 @@ label > img{
     display: none;
 }
 .dropdown {
+  /* display: none; */
   float: left;
   overflow: hidden;
 }
