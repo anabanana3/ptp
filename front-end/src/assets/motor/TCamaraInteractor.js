@@ -53,33 +53,24 @@ class TCamaraInteractor extends TEntidad {
   	}
   }
 
-  /*onKeyDown(ev){
+  onKeyDown(ev){
     var c = this.camera;
 
   	this.key = ev.keyCode;
   	this.ctrl = ev.ctrlKey;
-
-  	if (!this.ctrl){
-  		if (this.key == 38){
-  			c.changeElevation(10);
-  		}
-  		else if (this.key == 40){
-  			c.changeElevation(-10);
-  		}
-  		else if (this.key == 37){
-  			c.changeAzimuth(-10);
-  		}
-  		else if (this.key == 39){
-  			c.changeAzimuth(10);
-  		}
-  	}
+    //tecla +
+  	if(this.key == 187){
+      this.zoomIn();
+    }else if(this.key == 189){
+      this.zoomOut();
+    }
   }
 
   onKeyUp(ev){
       if (ev.keyCode == 17){
-  		this.ctrl = false;
-  	}
-  }*/
+    		this.ctrl = false;
+    	}
+  }
 
   update(){
     var self = this;
