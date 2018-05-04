@@ -21,7 +21,7 @@
     </div>
 
     <div class="optionsRight" >
-      <p (click) = "cambio(1)" id="arb"> Arbol |</p>
+      <p (click) = "cambio(1)" id="arb"> Todo |</p>
       <p (click) = "cambio(2)" id="priv"> Privados </p>
       <p>  | </p>
       <p (click) = "cambio(3)" id=publ> Publicos</p>
@@ -131,16 +131,16 @@
     <div *ngFor="let c of contenido" class="carpeta">
       <div *ngIf="c.Tipo == 0" class="carpetaIF">
         <!-- TODO: Carpetas -->
-        <div class="izqCarpeta">
+        <div class="izqCarpeta sideBySide">
           <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
             <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
           </div>
         </div>
-          <div class="expediente-body">
+          <div class="expediente-body sideBySide">
             <p (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">{{c.Nombre}}</p>
           </div>
 
-          <div class="imgOptions">
+          <div class="imgOptions sideBySide">
               <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
               <div class="menuOp" id="{{c.ID_Gestor}}">
                 <p class="text12">Editar</p>
@@ -151,16 +151,16 @@
       </div>
       <!-- TODO: Esxpedientes -->
       <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
-        <div class="expediente-body">
-          <p>{{c.ID_Expediente}}</p>
+        <div class="expediente-body-exp">
+          <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
           <p class="fechaExp">{{c.ID_Lugar}}</p>
           <p class="fechaExp">Edad {{c.Edad}}</p>
-          <div class="statusExp">
+          <!-- <div class="statusExp">
             <svg height="20" width="120">
               <circle cx="110" cy="10" r="5" fill="red" />
               Sorry, your browser does not support inline SVG.
             </svg>
-          </div>
+          </div> -->
           <!-- <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p> -->
           <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
         </div>

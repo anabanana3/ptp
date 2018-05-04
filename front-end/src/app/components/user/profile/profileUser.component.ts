@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {UserService} from "../../../services/user.service";
 import {AsociacionesService} from "../../../services/asociaciones.service";
@@ -6,6 +6,10 @@ import {ProfesionesService} from "../../../services/profesiones.service";
 import { User } from "../../../interfaces/user.interface";
 import zxcvbn from "zxcvbn";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+//Maps
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-profileUser',
@@ -15,7 +19,7 @@ export class ProfileUserComponent {
 
   id:number = -1;
   change:boolean = false;
-
+// TODO: Recuperar los valores de google Maps para ponerlos por defecto en el campo de direccion
   user:User ={
     Nombre:'',
     Apellidos: '',
@@ -69,8 +73,20 @@ export class ProfileUserComponent {
     }
   }
 
+  //Para lo Google Maps
+  sitio;
+  idSitio;
+  datos = new FormData();
+
+  //Para validaciones en la API
+  oldPlaceName;
+  oldPais;
+  oldPlaceId;
+
+  @ViewChild('place') public searchElement: ElementRef;
+
   constructor(private _userService:UserService, private _asociacionesService:AsociacionesService,
-              private _profesionesService:ProfesionesService, private dialog: MatDialog) {
+              private _profesionesService:ProfesionesService, private dialog: MatDialog, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -86,6 +102,7 @@ export class ProfileUserComponent {
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
+        console.log(data);
         this.user = data[0];
 
         this.user.Nombre = this.user.Nombre.split("'")[1];
@@ -96,10 +113,38 @@ export class ProfileUserComponent {
         this.user.DNI = this.user.DNI.split("'")[1];
         this.user.F_Nacimiento = data[0].F_Nacimiento.split('T')[0];
         this.user.Sexo = data[0].ID_Sexo.toString();
+        this.oldPlaceName = data[0].Sitio;
+        this.oldPais = data[0].Pais;
+        this.oldPlaceId = data[0].ID_Lugar;
 
         console.log(this.user);
       }
     })
+  }
+
+  ngOnInit(){
+    this.apiGoogle();
+  }
+
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
+
+        this.sitio.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+
+
+
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
   }
 
   save(forma:NgForm){
@@ -130,20 +175,19 @@ export class ProfileUserComponent {
 
   }
 
-  save2(form:NgForm){
+  save2(form:NgForm, place){
     if(form.valid == true){
       //Recojo todos los datos del formulario
-      let datos = new FormData();
-      datos.append('Nombre', form.value.nombre);
-      datos.append('Apellidos', form.value.apellido);
-      datos.append('Fecha', form.value.nacimiento);
-      datos.append('ID_Sexo', form.value.Sexo);
-      datos.append('ID_Profesion',form.value.Profesion);
-      datos.append('Direccion', form.value.direccion);
+      this.datos.append('Nombre', form.value.nombre);
+      this.datos.append('Apellidos', form.value.apellido);
+      this.datos.append('Fecha', form.value.nacimiento);
+      this.datos.append('ID_Sexo', form.value.Sexo);
+      this.datos.append('ID_Profesion',form.value.Profesion);
+      this.datos.append('Direccion', form.value.direccion);
       //Valido las contraseñas
       if(form.value.contra != null && form.value.repeatcontra){
         if(form.value.contra == form.value.repeatcontra){
-          datos.append('Password',form.value.contra);
+          this.datos.append('Password',form.value.contra);
         }else{
           this.mensaje = 'Las contraseñas deben de ser iguales';
           document.getElementById('alert').className = 'alert alert-danger';
@@ -157,14 +201,25 @@ export class ProfileUserComponent {
         let size = this.fP.size;
         if(aux[0] ==='image' && size <= 5242880){
           //Fichero Valido
-          datos.append('fotoP', this.fP, this.fP.name);
+          this.datos.append('fotoP', this.fP, this.fP.name);
         }else{
           this.mensaje = 'La foto de perfil debe de ser una imagen y menor de 5MB';
           document.getElementById('alert').className = 'alert alert-danger';
         }
       }
+
+      //Obtengo el valor de google Maps
+      if(this.sitio.gm_accessors_.place.Jc.b == true){
+        this.datos.append('ChangePais', '1');
+        this.getDataGoogle(place);
+      }else{
+        this.datos.append('Pais',this.oldPais);
+        this.datos.append('ID_Lugar', this.oldPlaceId);
+        this.datos.append('Lugar', this.oldPlaceName);
+        this.datos.append('ChangePais', '0');
+      }
       //Tengo todos los datos => hago la peticion
-      this._userService.updateUsuario(datos).subscribe(data =>{
+      this._userService.updateUsuario(this.datos).subscribe(data =>{
         if(data.Codigo == 501){
           location.href = '/expired';
         }else{
@@ -210,6 +265,36 @@ export class ProfileUserComponent {
 
   }
 
+  save4(forma, place){
+    console.log(forma.value);
+    console.log(place);
+    console.log(this.sitio.gm_accessors_.place.Jc.b);
+    console.log(this.datos)
+    // this.getDataGoogle(place);
+  }
+
+  getDataGoogle(l){
+    console.log(l);
+    if(l != ''){
+      let pais,
+      nombre=this.sitio.gm_accessors_.place.Jc.place.name ,
+      id = this.sitio.gm_accessors_.place.Jc.place.id,
+      aux = this.sitio.gm_accessors_.place.Jc.place.address_components;
+      if(aux.length >=5 ){
+        pais = aux[aux.length-2].long_name;
+      }else{
+        pais = aux[aux.length-1].long_name;
+      }
+      //Usuario
+      this.user.Pais = pais;
+      this.datos.append('Pais',pais);
+      this.user.ID_Lugar = id;
+      this.datos.append('ID_Lugar', id);
+      this.user.Lugar = nombre;
+      this.datos.append('Lugar', nombre);
+      console.log(this.user);
+    }
+  }
   // validate(pass){
   //   var score = JSON.stringify(zxcvbn(pass).score);
   //   document.getElementById("value").style.width = this.fuerza[score].width;

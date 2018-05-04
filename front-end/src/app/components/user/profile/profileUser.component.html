@@ -13,8 +13,8 @@
 
     <div style="width: 60%; float: left;margin-left: 3%; margin-top: 2%;">
       <!-- TODO: La función buena es save -->
-
-      <form (ngSubmit)="save2(forma)" #forma="ngForm" style="display: inline-grid; width: 80%;margin-bottom: 5%; ">
+      <!-- save2 -->
+      <form (ngSubmit)="save2(forma, place.value)" #forma="ngForm" style="display: inline-grid; width: 80%;margin-bottom: 5%; ">
 
         <!-- [(ngModel)]="" -->
         <label for="nombre">Nombre *</label>
@@ -51,8 +51,11 @@
           </option>
         </select>
        <label for="direccion">Dirección</label>
-         <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text"
-                value="user[0].Direccion" name="direccion" id="direccion" required>
+       <div id="locationField">
+         <input type="text"  id="direccion" class="lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
+       </div>
+         <!-- <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text" -->
+                <!-- value="user[0].Direccion" name="direccion" id="direccion" required> -->
 
         <label for="fotoP">Foto de perfil</label>
         <input class="lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
