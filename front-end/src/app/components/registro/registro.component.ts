@@ -149,6 +149,7 @@ export class RegistroComponent implements OnInit {
   }
 
   getDataGoogle(l){
+    console.log(l)
     let pais,
         nombre=this.sitio.gm_accessors_.place.Jc.place.name ,
         id = this.sitio.gm_accessors_.place.Jc.place.id,
