@@ -54,7 +54,7 @@ class TFachadaMotor {
     let canvas = document.getElementById('canvas');
     console.log(canvas.width / canvas.height);
     //camara.setPerspectiva(0.3, canvas.width / canvas.height, 0, 50);
-    camara.setParalela(-50, 50, -20, 20, 25, -15);
+    //camara.setParalela(-50, 50, -20, 20, 25, -15);
   	return camara;
   }
   crearCamaraCompleto(nombre){
@@ -116,7 +116,7 @@ class TFachadaMotor {
     let trasla = this.crearNodo("TraslaMalla", rota, this.crearTransform());
     let malla = this.crearMalla(nombre, ficheroMalla, ficheroMaterial, ficheroTextura, trasla);
     console.log('malla')
-    //escala.entidad.escalar(0.03,0.03,0.03);
+    escala.entidad.escalar(0.03,0.03,0.03);
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
