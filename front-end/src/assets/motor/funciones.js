@@ -15,7 +15,7 @@ function iniciarMotor(){
     GShader.mainShader();
     GFachada.draw();
     console.log(GFachada.escena);
-  },1000);
+  },3000);
 
   let canvas = document.getElementById('canvas');
 }
