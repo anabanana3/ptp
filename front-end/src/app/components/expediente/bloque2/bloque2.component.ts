@@ -222,8 +222,8 @@ modificarPartos(){
 cambiarBloque(){
    console.log('Cambio de bloque');
    this.expedienteComponent.selectedTab = 2;
-   this.expedienteComponent.bloquearPestanya(2);
-   this.expedienteComponent.desbloquearPestaña(3);
+  //  this.expedienteComponent.bloquearPestanya(2);
+  //  this.expedienteComponent.desbloquearPestaña(3);
 }
 
 openDialog(nPartos): void {

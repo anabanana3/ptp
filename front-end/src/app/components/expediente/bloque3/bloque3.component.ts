@@ -56,8 +56,8 @@ export class Bloque3Component implements OnInit {
   }
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 3;
-     this.expedienteComponent.bloquearPestanya(3);
-     this.expedienteComponent.desbloquearPestaña(4);
+    //  this.expedienteComponent.bloquearPestanya(3);
+    //  this.expedienteComponent.desbloquearPestaña(4);
   }
   ngOnInit() {}
 }
