@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { UserService } from "../../services/user.service";
 declare var iniciarMotor;
 declare var mostrarTipo1;
 declare var mostrarTipo2;
@@ -15,7 +16,7 @@ declare var moverCamara;
 export class MotorGraficoComponent implements AfterViewInit {
 
   error:boolean = true;
-  constructor() {
+  constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
       return;
     }
@@ -25,6 +26,11 @@ export class MotorGraficoComponent implements AfterViewInit {
 
   ngAfterViewInit(){
     new iniciarMotor();
+    let visita = {
+      ID_Usuario: sessionStorage.iD
+    }
+    this._userService.visitasModelo3D(visita).subscribe(data=>{
+    });
   }
 
   tipo1(){
