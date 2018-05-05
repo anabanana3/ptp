@@ -79,6 +79,7 @@ export class VerExpedienteComponent implements OnInit {
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
+        console.log(data);
         this.expediente = data;
         this.idPersona = data[0].ID_Persona;
         this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{

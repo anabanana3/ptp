@@ -152,6 +152,7 @@ export class RecursoComponent {
       }else{
         this.mensaje = 'Gracias por subir su Recurso';
         document.getElementById('alert').className = 'alert alert-success';
+        location.href='/recursos';
       }
     })
   }

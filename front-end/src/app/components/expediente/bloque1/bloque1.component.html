@@ -1,7 +1,7 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que se almecene la informacion en la
 base de datos.
 El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
-<form [formGroup]="form" (ngSubmit)="guardarDatos()">
+<form [formGroup]="form" (ngSubmit)="guardarDatos3()">
   <div id="alert">{{mensaje}}</div>
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
@@ -25,7 +25,9 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <input class="sizeinput" [(ngModel)]="expediente.ID_Lugar" type="text" placeholder="Lugar"  name="lugarD" formControlName="lugarD" id="lugarD" >
+        <div id="locationField">
+          <input type="text"  id="lugarD" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+        </div>
       </div>
     </div>
 
@@ -65,8 +67,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <input class="sizeinput" [(ngModel)]="menor.Edad" max="99" type="number" id="edadM" formControlName="edad">
-        <input [(ngModel)]="menor.Edad" min="1" max="99" type="number" id="edadM" formControlName="edad">
+        <input class="sizeinput" [(ngModel)]="menor.Edad" min = "1" max="99" type="number" id="edadM" formControlName="edad">
       </div>
 
       <div class="divExp">
@@ -74,7 +75,10 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <input class="sizeinput" [(ngModel)]="menor.ID_Lugar" type="text" id="lugarN" name="lugarN" placeholder="Lugar" formControlName="lugarN">
+        <div id="locationField2">
+          <input type="text"  id="lugarN" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place2>
+        </div>
+        <!-- <input class="sizeinput" [(ngModel)]="menor.ID_Lugar" type="text" id="lugarN" name="lugarN" placeholder="Lugar" formControlName="lugarN"> -->
       </div>
     </div>
   </div>
@@ -113,8 +117,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
           <label for="lugarNM">Lugar de nacimiento:</label>
         </div>
 
-        <div class="divExp">
-          <input class="sizeinput" [(ngModel)]="madre.ID_Lugar" type="text" id="lugarNM" name="lugarNM" placeholder="Lugar" formControlName="lugarN">
+        <div id="locationField3">
+          <input type="text"  id="lugarNM" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place3>
         </div>
 
         <div class="divExp">
@@ -183,10 +187,9 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
           <label for="lugarNP">Lugar de nacimiento:</label>
         </div>
 
-        <div class="divExp">
-          <input class="sizeinput" [(ngModel)]="padre.ID_Lugar" type="text" id="lugarNP" name="lugarNP" placeholder="Lugar" formControlName="lugarN">
+        <div id="locationField4">
+          <input type="text"  id="lugarNP" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place4>
         </div>
-
         <div class="divExp">
           <label for="etniaPa">Etina de origen:</label>
         </div>
@@ -205,11 +208,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExpDeUno">
-<<<<<<< HEAD
-          <input class="sizeinput" type="number" id="edadPa" formControlName="edad">
-=======
-          <input type="number" min="1" max="99" id="edadPa" formControlName="edad">
->>>>>>> 137e97e866b15a00507c6a4cb5eab3f2c6af59dd
+          <input type="number" class="sizeinput" min="1" max="99" id="edadPa" formControlName="edad">
         </div>
       </div>
     </div>

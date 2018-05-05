@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit } from '@angular/core';
 import { ExpedientesService } from "../../../services/expedientes.service";
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { Persona } from '../../../interfaces/persona';
 import { Expedinete } from '../../../interfaces/expediente';
 import { ExpedienteComponent } from '../expediente.component';
+
+//Maps
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 
 @Component({
@@ -38,7 +42,7 @@ export class Bloque1Component implements OnInit {
     Nombre:'',
     Edad:0,
     ID_Sexo:1,
-    ID_Etnia:null,
+    ID_Etnia:164,
     ID_Lugar:'',
 
   };
@@ -47,17 +51,17 @@ export class Bloque1Component implements OnInit {
     Nombre:'',
     Edad:0,
     ID_Sexo:1,
-    ID_Etnia:null,
+    ID_Etnia:164,
     ID_Lugar:'',
-    ID_Actividad:null
+    ID_Actividad:27
   }
   padre:Persona = {
     Nombre:'',
     Edad:0,
     ID_Sexo:2,
-    ID_Etnia:null,
+    ID_Etnia:164,
     ID_Lugar:'',
-    ID_Actividad:null
+    ID_Actividad:27
   }
 
   bloque:any = {
@@ -77,8 +81,20 @@ export class Bloque1Component implements OnInit {
     Centro_Salud:'Prueba'
   }
 
+  sitiosGoogle = new Array();
+  lugarDetec;
+  lugarVict;
+  lugarMadre;
+  lugarPadre;
+  idSitio;
+
+  @ViewChild('place') public searchElement: ElementRef;
+  @ViewChild('place2') public searchElement2: ElementRef;
+  @ViewChild('place3') public searchElement3: ElementRef;
+  @ViewChild('place4') public searchElement4: ElementRef;
+
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
-  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {
+  constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     console.log('Hola');
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
@@ -134,9 +150,51 @@ export class Bloque1Component implements OnInit {
     console.log(this.bloque);
    }
 
-  ngOnInit() {
+   ngOnInit(){
+     this.apiGoogle();
+   }
 
-  }
+   apiGoogle(){
+     this.mapsAPILoader.load().then(
+       () =>{
+         //Para el primer campo de google Maps => Lugar de detecion del expediente
+         this.lugarDetec = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
+         this.lugarDetec.addListener('place_change', () => {
+             this.ngZone.run(()=>{
+               let place: google.maps.places.PlaceResult = this.lugarDetec.getPlace();
+               if(place.geometry === undefined || place.geometry === null){
+                 return
+               }
+             });
+         })
+         //Segundo campo de google Maps => lugar de nacimiento del implicado
+         this.lugarVict = new  google.maps.places.Autocomplete(this.searchElement2.nativeElement, {types:["geocode"]});
+         this.lugarVict.addListener('place_change', () =>{
+           this.ngZone.run(()=>{
+             let place: google.maps.places.PlaceResult = this.lugarVict.getPlace();
+             this.sitiosGoogle.push(place);
+           })
+         })
+         //Lugar de nacimiento de la Madre
+         this.lugarMadre = new  google.maps.places.Autocomplete(this.searchElement3.nativeElement, {types:["geocode"]});
+         this.lugarMadre.addListener('place_change', () =>{
+           this.ngZone.run(()=>{
+             let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
+             this.sitiosGoogle.push(place);
+           })
+         })
+         //Lugar de nacimiento del Padre
+         //Lugar de nacimiento de la Madre
+         this.lugarPadre = new  google.maps.places.Autocomplete(this.searchElement4.nativeElement, {types:["geocode"]});
+         this.lugarPadre.addListener('place_change', () =>{
+           this.ngZone.run(()=>{
+             let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
+             this.sitiosGoogle.push(place);
+           })
+         })
+       }
+     );
+   }
 
   guardarDatos3(){
     console.log('Muestro la informacion del formulario');
@@ -149,6 +207,10 @@ export class Bloque1Component implements OnInit {
 
 
     }
+    console.log('Probando google maps')
+    console.log(this.sitiosGoogle);
+    console.log(this.lugarVict);
+    console.log(this.lugarDetec);
   }
 //TODO => Solo falta meter a los familiares de la persona en el caso de que intropduzcan datos
 guardarDatos(){
@@ -238,8 +300,8 @@ addFamiliar(persona, familiar, tipo){
 cambiarBloque(){
   console.log(this.expedienteComponent.bloque);
    this.expedienteComponent.selectedTab = 1;
-   this.expedienteComponent.bloquearPestanya(1);
-   this.expedienteComponent.desbloquearPestaña(2);
+  //  this.expedienteComponent.bloquearPestanya(1);
+  //  this.expedienteComponent.desbloquearPestaña(2);
 
 }
 

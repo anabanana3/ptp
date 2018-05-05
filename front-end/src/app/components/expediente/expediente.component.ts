@@ -11,11 +11,11 @@ export class ExpedienteComponent{
   error:boolean = true;
   bloque:number=0;
   selectedTab = 0;
-  bloque1:boolean = false;
-  bloque2:boolean = true;
-  bloque3:boolean = true;
-  bloque4:boolean = true;
-  bloque5:boolean = true;
+  // bloque1:boolean = false;
+  // bloque2:boolean = true;
+  // bloque3:boolean = true;
+  // bloque4:boolean = true;
+  // bloque5:boolean = true;
 
 
 
@@ -80,45 +80,45 @@ cambiarColorBl5(){
   document.getElementById("bl5").style.background="white";
 }
 
-bloquearPestanya(numero){
-  console.log('Bloqueo la pestanya del bloque ', numero);
-  switch(numero){
-    case 1:
-      this.bloque1 = true;
-    break;
-    case 2:
-      this.bloque2 = true;
-    break;
-    case 3:
-      this.bloque3 = true;
-    break;
-    case 4:
-      this.bloque4 = true;
-    break;
-    case 5:
-      this.bloque5 = true;
-    break;
-  }
-}
-
-desbloquearPestaña(numero){
-  console.log('Desbloque la pestanya del bloque ', numero);
-  switch(numero){
-    case 1:
-      this.bloque1 = false;
-    break;
-    case 2:
-      this.bloque2 = false;
-    break;
-    case 3:
-      this.bloque3 = false;
-    break;
-    case 4:
-      this.bloque4 = false;
-    break;
-    case 5:
-      this.bloque5 = false;
-    break;
-  }
-}
+// bloquearPestanya(numero){
+//   console.log('Bloqueo la pestanya del bloque ', numero);
+//   switch(numero){
+//     case 1:
+//       this.bloque1 = true;
+//     break;
+//     case 2:
+//       this.bloque2 = true;
+//     break;
+//     case 3:
+//       this.bloque3 = true;
+//     break;
+//     case 4:
+//       this.bloque4 = true;
+//     break;
+//     case 5:
+//       this.bloque5 = true;
+//     break;
+//   }
+// }
+//
+// desbloquearPestaña(numero){
+//   console.log('Desbloque la pestanya del bloque ', numero);
+//   switch(numero){
+//     case 1:
+//       this.bloque1 = false;
+//     break;
+//     case 2:
+//       this.bloque2 = false;
+//     break;
+//     case 3:
+//       this.bloque3 = false;
+//     break;
+//     case 4:
+//       this.bloque4 = false;
+//     break;
+//     case 5:
+//       this.bloque5 = false;
+//     break;
+//   }
+// }
 }

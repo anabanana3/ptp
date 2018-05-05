@@ -1243,7 +1243,7 @@ option{
 .gridContainer{
   display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 90px 100% 30px 50px;
+  grid-template-rows: 90px 100% 50px;
 }
 
 .headerMisExp{
@@ -1256,15 +1256,6 @@ option{
   display: flex;
   justify-content: space-between;
   padding: 28px 30px;
-}
-
-.expedientesDiv{
-  grid-column-start: 1;
-  /* autoprefixer: off */
-  grid-column-end: 2;
-  grid-row-start: 3;
-  /* autoprefixer: off */
-  grid-row-end:4;
 }
 
 .carpetasDivContainer{
@@ -1281,6 +1272,7 @@ option{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
   /* width: 41%; */
+  width: 204px;
   margin: 8px;
   height: 62px;
   display: -webkit-box;
@@ -1390,11 +1382,21 @@ option{
   display: none;
   float: right;
   z-index: 1;
-  padding: 5px;
   position: absolute;
   background: white;
   box-shadow: 0px 0px 2px 0 rgba(203,203,203,0.50);
+}
 
+.EditarDiv, .BorrarDiv{
+  width: 100%;
+  padding: 8px 20px;
+  width: 100%;
+}
+
+.EditarDiv:hover, .BorrarDiv:hover{
+  cursor:pointer;
+  color:white;
+  background: lightgray;
 }
 
 .fechaExp{
@@ -1499,7 +1501,7 @@ option{
 }
 
 .expediente-body{
-  /* width: 50%; */
+  width: 100px;
   padding-left: 14px;
   /* border: dotted; */
   padding-top: 15px;

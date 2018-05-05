@@ -158,8 +158,8 @@ guardarDatos2(form){
 
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 4;
-     this.expedienteComponent.bloquearPestanya(4);
-     this.expedienteComponent.desbloquearPestaña(5);
+    //  this.expedienteComponent.bloquearPestanya(4);
+    //  this.expedienteComponent.desbloquearPestaña(5);
   }
 
   ngOnInit() {
