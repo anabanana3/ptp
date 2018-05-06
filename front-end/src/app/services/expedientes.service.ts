@@ -62,6 +62,19 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
     })
   }
 
+  updatePersona(p, idPer){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = this.urlPersona+'/'+idPer;
+
+    return this.http.put(url, p, {headers}).map(res =>{
+      return res.json();
+    })
+  }
+
   addExpediente(exp){
     //creo el expediente
     let token =  sessionStorage.token;
@@ -78,6 +91,21 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
       console.log(res.json());
       return res.json();
     });
+  }
+
+  updateExpediente(exp, idExp){
+    //Metodo para modificar el expediente
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = this.urlExpediente+'/'+idExp;
+
+    return this.http.put(url, exp, {headers}).map(res => {
+      console.log(res.json());
+      return res.json();
+    })
   }
 
   addBloque(bloque, idE){
