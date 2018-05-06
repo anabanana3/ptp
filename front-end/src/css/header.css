@@ -115,11 +115,12 @@
 /*logo*/
 .header > a > img{
   float:left;
-  width: 120px;
+  width: 55px;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 8px;
   margin-right: 14px;
 }
+
 
 /*usuario*/
 label > img{
@@ -183,7 +184,7 @@ label > img{
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #333333;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -191,7 +192,7 @@ label > img{
 /* Links inside the dropdown */
 .dropdown-content a {
   float: none;
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -200,4 +201,5 @@ label > img{
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
+  color: white;
 }

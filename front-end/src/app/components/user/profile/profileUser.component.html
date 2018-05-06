@@ -2,11 +2,13 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
+  <app-header></app-header>
+</div>
+<div *ngIf="!error">
   <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
   </button>
   <div class="editarPerfil divBlanco bgColorWhite">
-
-    <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
+    <h1 class="textPink text20">Mi Perfil</h1>
     <hr>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
@@ -17,19 +19,19 @@
       <form (ngSubmit)="save2(forma, place.value)" #forma="ngForm" style="display: inline-grid; width: 80%;margin-bottom: 5%; ">
 
         <!-- [(ngModel)]="" -->
-        <label for="nombre">Nombre *</label>
-          <input [(ngModel)]="user.Nombre" class="lineaCampo" type="text"
+        <label for="nombre" class="perfilForm">Nombre *</label>
+          <input [(ngModel)]="user.Nombre" class="lineaPerfil" type="text"
                  value="user[0].Nombre" name="nombre" id="nombre" required>
-        <label for="apellido">Apellidos *</label>
+        <label for="apellido" class="perfilForm">Apellidos *</label>
           <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
                  value="user[0].Apellidos" name="apellido" id="apellido" required>
-        <label for="apellido">Email</label>
+        <label for="apellido" class="perfilForm">Email</label>
           <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
                  value="user[0].Email" name="email" id="email" disabled="false">
-         <label for="nacimiento">Fecha de Nacimiento *</label>
+         <label for="nacimiento" class="perfilForm">Fecha de Nacimiento *</label>
            <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="date"
                   value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
-        <label for="sexo">Sexo</label>
+        <label for="sexo" class="perfilForm">Sexo</label>
         <div class="radioButtons">
           <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="1" id="mujer">
             <label for="mujer">Mujer</label>
@@ -38,19 +40,19 @@
           <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
             <label for="otro">Prefiero no especificar</label>
         </div>
-        <label for="dni">DNI *</label>
+        <label for="dni" class="perfilForm">DNI *</label>
           <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
                  value="user[0].DNI" name="dni" id="dni" required>
-       <label for="asociacion">Asociacion</label>
+       <label for="asociacion" class="perfilForm">Asociacion</label>
           <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
                 value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
-        <label for="profesion">Profesion</label>
+        <label for="profesion" class="perfilForm">Profesion</label>
         <select [(ngModel)]="user.ID_Profesion" class="lineaCampo" name="Profesion" id="profesion">
           <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
             {{profesiones[k].Nombre}}
           </option>
         </select>
-       <label for="direccion">Dirección</label>
+       <label for="direccion" class="perfilForm">Dirección</label>
        <div id="locationField">
          <input type="text"  id="direccion" class="lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
        </div>
@@ -86,6 +88,8 @@
     </form>
 
     </div>
+    <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
+
     <!-- Permisos -->
       <div class="permisos" style="width: 30%; float:left; margin-left:3%; display: inline-grid; margin-top: 5%;">
         <div class="headerPermisos">
