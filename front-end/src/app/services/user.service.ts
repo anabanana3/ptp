@@ -13,7 +13,7 @@ export class UserService {
   activarURL:string = "https://www.aisha.ovh/api/mail/send";
   mensajeURL:string = "https://www.aisha.ovh/api/mail/send/contacto";
   loginURL2:string = "https://www.aisha.ovh/api/login";
-
+  visitasURL:string = "https://www.aisha.ovh/api/logs";
 
   constructor(private http:Http) { }
 
@@ -240,6 +240,32 @@ export class UserService {
     });
 
     return this.http.get(url, {headers}).map(res=>res.json());
+  }
+  visitasWeb(json){
+    let body =JSON.stringify(json);
+    let token = sessionStorage.getItem('token');
+    let visitas = this.visitasURL + "/visitas";
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    return this.http.post(visitas, body, {headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+  visitasModelo3D(json){
+    let body =JSON.stringify(json);
+    let token = sessionStorage.getItem('token');
+    let visitas = this.visitasURL + "/modelo3D";
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    return this.http.post(visitas, body, {headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    })
   }
 
 
