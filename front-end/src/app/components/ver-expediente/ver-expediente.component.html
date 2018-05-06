@@ -9,12 +9,12 @@
     <h3>{{e.Titulo}}</h3>
     <p>{{e.Descripcion.split("'")[1]}}</p>
     <p>Lugar detección: <b>{{e.Nombre}}</b></p>
-    <p>Fecha publicación: <b>{{e.Fecha.split('T')[0]}}</b> | Autor: {{e.Autor.split("'")[1]}} </p>
+    <p>Fecha publicación: <b>{{e.Fecha}}</b> | Autor: {{e.Autor.split("'")[1]}} </p>
 
   </div>
 
   <mat-tab-group>
-    <mat-tab label="Bloque 1">
+    <mat-tab label="Datos sociodemográficos">
       <h3>Datos sociodemográficos</h3>
       <h4>Datos sobre la menor</h4>
       <div *ngFor="let p of persona" class="persona">
@@ -123,7 +123,7 @@
 
       </div>
     </mat-tab>
-    <mat-tab label="Bloque 2">
+    <mat-tab label="Conocimiento sobre MGF">
       <div *ngIf="bloque2.length != 0">
         <h3>Conocimiento e información sobre la MGF</h3>
         <p>El implicado tiene conocimientos sobre la MGF:
@@ -163,7 +163,7 @@
       </div>
 
     </mat-tab>
-    <mat-tab label="Bloque 3">
+    <mat-tab label="Experiencias con la titular">
       <div *ngFor="let w of bloque3">
         <h3>Experiencias con la MGF</h3>
           <p *ngIf="w.Exp_propias !=''">Experiencias Propias:
@@ -206,7 +206,7 @@
         <h3>No hay datos :(</h3>
       </div>
     </mat-tab>
-    <mat-tab label="Bloque 4">
+    <mat-tab label="Exploracion genital">
       <div *ngFor="let w of bloque4">
         <h3>Exploración genital</h3>
         <p *ngIf="w.Detec_MGF == 1 || w.Detec_MGF == 0">Detección MGF:
@@ -287,7 +287,7 @@
         <h3>No hay datos :(</h3>
       </div>
     </mat-tab>
-    <mat-tab label="Bloque 5">
+    <mat-tab label="Posibles viajes">
       <div *ngFor="let w of bloque5">
         <h3>Valoración sobre posibles viajes</h3>
         <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
