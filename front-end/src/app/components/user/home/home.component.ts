@@ -33,7 +33,12 @@ export class HomeComponent {
     }
     this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
-
+    //visitas
+    let visita = {
+      ID_Usuario: this.id
+    }
+    this._userService.visitasWeb(visita).subscribe(data=>{
+    });
     this._userService.getUsuario(this.id).subscribe(data =>{
       if(data.Codigo == 501){
         location.href = '/expired';

@@ -55,8 +55,8 @@ export class LoginComponent {
         switch (data.tipo){
           case 1:
             //Admin
-          sessionStorage.setItem('iD', datos[0].ID_Usuario);
-          location.href = '/admin';
+            sessionStorage.setItem('iD', datos[0].ID_Usuario);
+            location.href = '/admin';
           break;
           case 2:
             //Asociacion
