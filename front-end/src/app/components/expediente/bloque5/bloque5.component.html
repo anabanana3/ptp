@@ -11,10 +11,12 @@
         </select> -->
       </div>
       <div class="divExp">
-        <input class="radiotrans" required type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
         <label class="labeltransr" for="viajePSI">Sí</label>
-        <input class="radiotrans" required type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
         <label class="labeltransr" for="viajePNO">No</label>
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="2" id="viajePNS" >
+        <label class="labeltransr" for="viajePNS">N/S</label>
       </div>
 
       <div class="divExp">
@@ -24,10 +26,12 @@
         </select> -->
       </div>
       <div class="divExp">
-        <input class="radiotrans" required type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
+        <input class="radiotrans"  type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
         <label class="labeltransr" for="viajesSI">Sí</label>
-        <input class="radiotrans" required type="radio" name="viajes" value="0" id="viajesNO" formControlName="Viajes">
+        <input class="radiotrans"  type="radio" name="viajes" value="0" id="viajesNO" formControlName="Viajes">
         <label class="labeltransr" for="viajesNO">No</label>
+        <input class="radiotrans"  type="radio" name="viajes" value="2" id="viajesNS" formControlName="Viajes">
+        <label class="labeltransr" for="viajesNS">N/S</label>
       </div>
     </div>
 
@@ -48,7 +52,7 @@
   </h2>
 
   <div *ngIf="mostrar == true">
-    <p>A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente:</p>
+    <p>A continuación seleccione los indicadores que se dan la titular del expediente:</p>
     <br>
       <div formGroupName="indicadores">
         <!-- <div class="divContainerPopUp">

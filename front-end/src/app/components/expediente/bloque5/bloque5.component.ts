@@ -29,8 +29,8 @@ export class Bloque5Component implements OnInit {
       'ID_Campos': new FormControl(null),
       //Este campo lo suyo sera almacenarlo en la sessionStorage cuando se completa el bloque 1
       'ID_Expediente': new FormControl(sessionStorage.IDExp),
-      'Viajes': new FormControl(),
-      'ViajesPlanifiacados': new FormControl(),
+      'Viajes': new FormControl(2),
+      'ViajesPlanifiacados': new FormControl(2),
       'Intervencion': new FormControl(),
       'Consejos': new FormControl(),
 //Esto lo puedo poner de forma dinamica?
