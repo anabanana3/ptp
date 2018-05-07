@@ -12,15 +12,10 @@ class TMalla extends TEntidad{
   }
 
   isPowerOf2(img){
-    console.log(img);
-    console.log((img & (img - 1)) == 0);
     return (img & (img - 1)) == 0;
   }
 
   beginDraw(){
-    console.log(GShader);
-    console.log(this);
-    console.log(this.malla);
     let gl = GShader.gl;
     let programa = GShader.programa;
     //texturas
@@ -53,27 +48,20 @@ class TMalla extends TEntidad{
     gl.uniform1f(programa.uShininess, this.material.uShininess);
 
     //projection matrix
-    // mat4.perspective(45, this.canvas.width/this.canvas.height, 0.1, 10000.0, GProjectionMatrix);
-    console.log(GFachada.regCamaras[0].entidad.projectionMatrix);
     gl.uniformMatrix4fv(programa.ProjectionMatrix, false, GFachada.regCamaras[0].entidad.projectionMatrix);
 
     //model view matrix
-    GModelViewMatrix = mat4.create();
-    let viewMatrix = mat4.create();
-    console.log(GFachada.regCamaras[0]);
-    let rotaCam = GFachada.regCamaras[0].getPadre().getPadre().entidad.modelMatrix;
-    let traslaCam = GFachada.regCamaras[0].getPadre().entidad.modelMatrix;
-    mat4.multiply(viewMatrix, rotaCam, traslaCam);
-    mat4.multiply(GModelViewMatrix, this.modelMatrix, viewMatrix);
+    let modelViewMatrix = mat4.create();
+    mat4.multiply(modelViewMatrix, this.modelMatrix, GFachada.regCamaras[0].entidad.viewMatrix);
+
     var angle = this.angle * Math.PI/180;
-    // mat4.rotate(GModelViewMatrix, angle, [0, 1, 0]);
-    gl.uniformMatrix4fv(programa.ModelViewMatrix, false, GModelViewMatrix);
+    gl.uniformMatrix4fv(programa.ModelViewMatrix, false, modelViewMatrix);
 
     // normal matrix
-    GNormalMatrix = mat4.create();
-    mat4.invert(GNormalMatrix, GModelViewMatrix);
-    mat4.transpose(GNormalMatrix, GNormalMatrix);
-    gl.uniformMatrix4fv(programa.NormalMatrix, false, GNormalMatrix);
+    let normalMatrix = mat4.create();
+    mat4.invert(normalMatrix, modelViewMatrix);
+    mat4.transpose(normalMatrix, normalMatrix);
+    gl.uniformMatrix4fv(programa.NormalMatrix, false, normalMatrix);
     this.malla.draw();
 
   }

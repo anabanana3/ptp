@@ -17,11 +17,11 @@ export class Bloque3Component implements OnInit {
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
     Exp_propias:'',
     Exp_terceros:'',
-    Mant_MGF: 0,
+    Mant_MGF: 2,
     Mant_MGF_texto: '',
-    Conoc_consecM: 0,
+    Conoc_consecM:2,
     Otros_consecM: '',
-    Conoc_consecH: 0,
+    Conoc_consecH: 2,
     Otros_consecH: '',
     Formato_int: '',
     Consejo: ''
@@ -52,7 +52,8 @@ export class Bloque3Component implements OnInit {
     }
   }
   guardarDatos2(form){
-    this.cambiarBloque();
+    //this.cambiarBloque();
+    console.log(this.json);
   }
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 3;

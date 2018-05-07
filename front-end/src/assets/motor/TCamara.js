@@ -18,6 +18,9 @@ class TCamara extends TEntidad {
 		this.position = vec3.create();
 		this.focus = vec3.create();
 		this.interactor = null;
+
+		this.projectionMatrix = mat4.create();
+		this.viewMatrix = mat4.create();
 	}
 
 	goHome(h){
@@ -30,34 +33,34 @@ class TCamara extends TEntidad {
     this.steps = 0;
 	}
 
-	dolly(s){
-		var c = this;
-
-    var p =  vec3.create();
-    var n = vec3.create();
-
-    p = c.position;
-
-    var step = s - c.steps;
-
-    vec3.normalize(c.normal,n);
-
-    var newPosition = vec3.create();
-
-    /*if(c.type == CAMERA_TRACKING_TYPE){
-        newPosition[0] = p[0] - step*n[0];
-        newPosition[1] = p[1] - step*n[1];
-        newPosition[2] = p[2] - step*n[2];
-    }
-    else{*/
-        newPosition[0] = p[0];
-        newPosition[1] = p[1];
-        newPosition[2] = p[2] - step;
-    //}
-
-    c.setPosition(newPosition);
-    c.steps = s;
-	}
+	// dolly(s){
+	// 	var c = this;
+	//
+  //   var p =  vec3.create();
+  //   var n = vec3.create();
+	//
+  //   p = c.position;
+	//
+  //   var step = s - c.steps;
+	//
+  //   vec3.normalize(c.normal,n);
+	//
+  //   var newPosition = vec3.create();
+	//
+  //   /*if(c.type == CAMERA_TRACKING_TYPE){
+  //       newPosition[0] = p[0] - step*n[0];
+  //       newPosition[1] = p[1] - step*n[1];
+  //       newPosition[2] = p[2] - step*n[2];
+  //   }
+  //   else{*/
+  //       newPosition[0] = p[0];
+  //       newPosition[1] = p[1];
+  //       newPosition[2] = p[2] - step;
+  //   //}
+	//
+  //   c.setPosition(newPosition);
+  //   c.steps = s;
+	// }
 
 	setPosition(p){
 		this.position = vec3.fromValues(p[0], p[1], p[2]);
@@ -94,28 +97,16 @@ class TCamara extends TEntidad {
 	}
 
 	update(){
-		//para la orbiting
-		// mat4.identity(this.matrix);
-		// mat4.rotateY(this.matrix, this.matrix, this.azimuth * Math.PI/180);
-		// mat4.rotateX(this.matrix, this.matrix, this.elevation * Math.PI/180);
-		// mat4.translate(this.matrix, this.matrix, this.position);
 
 		let rotaCamara = GFachada.regCamaras[0].getPadre().getPadre().entidad;
-		let traslaCamara = GFachada.regCamaras[0].getPadre().entidad;
-		console.log(this.azimuth * Math.PI/180);
+		//let traslaCamara = GFachada.regCamaras[0].getPadre().entidad;
 		rotaCamara.rotar(this.azimuth * Math.PI/180, 0, 1, 0);
 		rotaCamara.rotar(this.elevation * Math.PI/180, 1, 0, 0);
-		traslaCamara.trasladar(this.position[0], this.position[1], this.position[2]);
+		//traslaCamara.trasladar(this.position[0], this.position[1], this.position[2]);
 
 		// rotaCamara.rotar(0.3, 0, 1, 0);
 		GFachada.draw();
 	}
-
-	// getViewTransform(){
-	// 	var m = mat4.create();
-  //   mat4.inverse(this.matrix, m);
-  //   return m;
-	// }
 
 	//fovy => Angulo de vision en radianes
 	//aspect => Relacion de aspecto
@@ -147,7 +138,11 @@ class TCamara extends TEntidad {
 		return this.esPrespectiva;
 	}
 
-	beginDraw(){}
+	beginDraw(){
+		let rotaCam = GFachada.regCamaras[0].getPadre().getPadre().entidad.modelMatrix;
+    let traslaCam = GFachada.regCamaras[0].getPadre().entidad.modelMatrix;
+    mat4.multiply(this.viewMatrix, rotaCam, traslaCam);
+	}
 	endDraw(){}
 
 }

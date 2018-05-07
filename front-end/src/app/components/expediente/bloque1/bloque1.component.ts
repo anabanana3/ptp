@@ -100,7 +100,7 @@ export class Bloque1Component implements OnInit {
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     console.log('Hola');
-    this.prueba();
+    //this.prueba();
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 

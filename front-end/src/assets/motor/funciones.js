@@ -3,18 +3,17 @@ function iniciarMotor(){
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
+  //GFachada.trasladar(camara1, 0,0,-20);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  //let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaTipo1.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
-  let vagina2 = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
-  //let tetera = GFachada.crearMallaCompleto("Tetera", "tetera.obj", "material2.mtl", "textura.jpg");
-  // GFachada.trasladar(tetera, 0, -15, 0);
+  //let piernas = GFachada.crearMallaCompleto("Piernas", "VaginaSinTipo.obj", "material.mtl");
+  //let tipo2 = GFachada.crearMallaCompleto("Tipo2", "Tipo2Solo.obj", "material.mtl", "WEBGL.png");
+  let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-    console.log(GFachada.escena);
   },3000);
 
   let canvas = document.getElementById('canvas');

@@ -1,12 +1,12 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
 almacene en la base de datos
 el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
-<form (ngSubmit)="guardarDatos(form)"#form="ngForm">
+<form (ngSubmit)="guardarDatos2(form)"#form="ngForm">
   <div id="alert">{{mensaje}}</div>
   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
   <div class="divLabels">
     <div class="divExp">
-      <label>El implicado tiene conocimientos sobre la MGF:</label>
+      <label>El titular tiene conocimientos sobre la MGF:</label>
       <span matTooltip='Posible pregunta:"Tengo entendido que en su país se realiza la ablación o el corte de los genitales de las
        mujeres. ¿Conoce esta práctica?."' class="pointer icon-info info"></span>
     </div>
@@ -19,10 +19,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
       </div> -->
 
     <div class="divExp">
-      <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+      <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
       <label class="labeltransr"  for="Conoce_MGFSI">Sí</label>
-      <input class="radiotrans" required type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
+      <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
       <label class="labeltransr" for="Conoce_MGFNO">No</label>
+      <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.Conoce_MGF" id="Conoce_MGFNS" value="2" name="Conoce_MGF">
+      <label class="labeltransr" for="Conoce_MGFNS">N/S</label>
     </div>
 
     <div class="divExp">
@@ -30,10 +32,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     </div>
 
      <div class="divExp">
-       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
+       <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="Realizada_MGFSI">
        <label class="labeltransr" for="Realizada_MGFSI">Sí</label>
-       <input class="radiotrans"type="radio" required [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
+       <input class="radiotrans"type="radio"  [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="Realizada_MGFNO">
        <label class="labeltransr"for="Realizada_MGFNO">No</label>
+       <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.MGF_realizada_com_origen" id="Realizada_MGFNS" value="2" name="Realizada_MGFNS">
+       <label class="labeltransr" for="Realizada_MGFNS">N/S</label>
      </div>
     </div>
 
@@ -47,10 +51,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
         <!-- <select [(ngModel)]="bloque2.Pos_padre" name="Pos_padre">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
         </select> -->
-        <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
+        <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFFavor" value="1" name="Padre_MGFFavor">
         <label class="labeltransr" for="Padre_MGFFavor">A favor</label>
-        <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
+        <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFContra" value="0" name="Padre_MGFContra">
         <label class="labeltransr" for="Padre_MGFContra">En contra</label>
+        <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.Pos_padre" id="Padre_MGFNS" value="2" name="Padre_MGFNS">
+        <label class="labeltransr" for="Padre_MGFNS">N/S</label>
       </div>
 
       <div class="divExp">
@@ -60,10 +66,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
        <!-- <select [(ngModel)]="bloque2.Pos_madre" name="Pos_madre">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
        </select> -->
-       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
+       <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFFavor" value="1" name="Madre_MGFFavor">
        <label class="labeltransr" for="Madre_MGFFavor">A favor</label>
-       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
+       <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFContra" value="0" name="Madre_MGFContra">
        <label class="labeltransr" for="Madre_MGFContra">En contra</label>
+       <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.Pos_madre" id="Madre_MGFNS" value="2" name="Madre_MGFNS">
+       <label class="labeltransr" for="Madre_MGFNS">N/S</label>
       </div>
     </div>
 
@@ -76,17 +84,19 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
        <!-- <select [(ngModel)]="bloque2.Pos_familia" name="Pos_familia">
          <option *ngFor="let op of opciones2; let i = index"[value]="i">{{op}}
        </select> -->
-       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
+       <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFFavor" value="1" name="Familia_MGFFavor">
        <label class="labeltransr" for="Familia_MGFFavor">A favor</label>
-       <input class="radiotrans" type="radio" required [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
+       <input class="radiotrans" type="radio"  [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFContra" value="0" name="Familia_MGFContra">
        <label class="labeltransr" for="Familia_MGFContra">En contra</label>
+       <input class="radiotrans"  type="radio" [(ngModel)]="bloque2.Pos_familia" id="Familia_MGFNS" value="2" name="Familia_MGFNS">
+       <label class="labeltransr" for="Familia_MGFNS">N/S</label>
      </div>
     </div>
 
     <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:</label>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
 
-    <label>Significado de la MGF para el implicado en el expediente:</label>
+    <label>Significado de la MGF para el titular en el expediente:</label>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 
     <label>Formato de intervención:</label>

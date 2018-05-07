@@ -20,9 +20,9 @@ export class Bloque4Component implements OnInit {
   json = {
     //ID_Bloque: '',
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
-    Detec_MGF: null,
-    ID_Mutilacion: null,
-    Cicatriz_genital: null,
+    Detec_MGF: 2,
+    ID_Mutilacion: 5,
+    Cicatriz_genital: 2,
     Descripcion: '',
     Elasticidad: '',
     Otros: '',
