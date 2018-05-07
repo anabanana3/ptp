@@ -8,6 +8,21 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class PoliticaPrivacidadComponent {
 
-  constructor() { }
+  asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
+  noRegistrado:boolean = false;
+
+  constructor() {
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else if(sessionStorage.getItem('admin') != null){
+      this.admin = true;
+    }else{
+      this.noRegistrado = true;
+    }
+  }
 
 }

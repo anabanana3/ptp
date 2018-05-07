@@ -8,7 +8,7 @@
   <div id="alert">{{mensaje}}</div>
 <!-- (ngSubmit)="new(forma, usuarios)" -->
   <form  #forma="ngForm">
-    {{usuarios}}
+    <!-- {{usuarios}} -->
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
             style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Asociación
     </button>
@@ -94,7 +94,7 @@
     <div>
       <!-- new(forma, usuarios, place) -->
       <!-- guardarDatos(forma,place) -->
-     <button (click)="new(forma, usuarios, place)" type="submit" name="button" class="btn-border">REGISTRAR</button>
+     <button (click)="new(forma, usuarios, place)" type="submit" name="button" class="btn-border">ACEPTAR</button>
     </div>
     <br>
     <p class="text12 textGreyDarken">Al registrarte, aceptas la
