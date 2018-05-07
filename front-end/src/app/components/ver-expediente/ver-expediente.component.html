@@ -2,8 +2,17 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header></app-header>
-  <!-- <button type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+
+    <!-- <button type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
   <div  *ngFor="let e of expediente" class=expediente>
     <h2>Información básica sobre el expediente</h2>
     <h3>{{e.Titulo}}</h3>

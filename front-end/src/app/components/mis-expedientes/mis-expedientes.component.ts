@@ -48,16 +48,23 @@ etnias = new Array();
   raiz;
   carpetaActual = null;
   NameRuta = new Array();
-  asociacion:boolean = false;
 
+  asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
     if(sessionStorage.length == 0){
       return;
     }else{
       this.error = false;
+      
       if(sessionStorage.getItem('asociacion') != null){
         this.asociacion = true;
+      }else if(sessionStorage.getItem('usuario') != null){
+        this.usuario = true;
+      }else if(sessionStorage.getItem('admin') != null){
+        this.admin = true;
       }
       //Recupero las etnias para añadirlas al menu de busqueda
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);

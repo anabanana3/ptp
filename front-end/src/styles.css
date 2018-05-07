@@ -221,11 +221,11 @@ canvas{
 .divAdmin a{font-size: x-large;}
 .divAdmin a:hover{color: #880042; text-decoration: underline;}
 
-.logoutAdmin{
+/* .logoutAdmin{
   background: none;
   border: none;
   margin: 1%;
-}
+} */
 
 .logoPeque{width: 4%; float: left;}
 

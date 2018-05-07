@@ -91,7 +91,6 @@
 
 @media (max-width: 1384px) {
   /* laptop */
-  h1{font-size:16px;}
 
   p{font-size:14px;}
 
@@ -146,6 +145,7 @@
   html{
     max-width: 320px;
   }
+  h1{font-size: 16px;}
 
   .botonesPrincipal{
     width:321px;

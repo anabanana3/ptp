@@ -66,6 +66,7 @@ import { ExpiredSessionComponent } from './components/expired-session/expired-se
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 import { CarpetasService } from './services/carpetas.service';
 import { HeaderAsociacionComponent } from './header/header-asociacion/header-asociacion.component';
+import { HeaderAdminComponent } from './header/header-admin/header-admin.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { HeaderAsociacionComponent } from './header/header-asociacion/header-aso
     ProfilePopUp,
     ProfilePopUp2,
     HistoricoComponent,
-    HeaderAsociacionComponent
+    HeaderAsociacionComponent,
+    HeaderAdminComponent
   ],
   imports: [
     BrowserModule,

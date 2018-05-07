@@ -24,7 +24,9 @@ export class RecursoComponent {
   mensaje:string = '';
   formatos:object = {};
   asociacion:boolean = false;
-
+  admin:boolean = false;
+  usuario:boolean = false;
+  
   constructor(private _materialService:MaterialService,
               private activatedRoute: ActivatedRoute) {
     if(sessionStorage.length === 0){
@@ -34,7 +36,12 @@ export class RecursoComponent {
 
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else if(sessionStorage.getItem('admin') != null){
+      this.admin = true;
     }
+
     _materialService.getFormatos().subscribe(data => {
       this.formatos = data;
       //Solucion regulera

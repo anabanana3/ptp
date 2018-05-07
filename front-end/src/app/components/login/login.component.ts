@@ -52,10 +52,12 @@ export class LoginComponent {
         console.log(data.tipo);
         let datos = JSON.parse(data.data);
         sessionStorage.setItem('Nombre', datos[0].Nombre);
+        sessionStorage.setItem('ventana', "0");
         switch (data.tipo){
           case 1:
             //Admin
             sessionStorage.setItem('iD', datos[0].ID_Usuario);
+            sessionStorage.setItem('admin', 'true');
             location.href = '/admin';
           break;
           case 2:
@@ -67,8 +69,8 @@ export class LoginComponent {
           case 3:
             //Usuario
             sessionStorage.setItem('iD', datos[0].ID_Usuario);
+            sessionStorage.setItem('usuario', 'true');
             location.href = '/home';
-            sessionStorage.setItem('ventana', "0");
           break;
         }
       }

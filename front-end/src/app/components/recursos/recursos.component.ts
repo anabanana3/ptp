@@ -27,6 +27,8 @@ export class RecursosComponent {
   mensaje:string = '';
 
   asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
 
   constructor(private _materialService:MaterialService,
               private router:Router) {
@@ -36,7 +38,12 @@ export class RecursosComponent {
 
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else if(sessionStorage.getItem('admin') != null){
+      this.admin = true;
     }
+    
     this.error = false;
     this.getMaterialesPropios(1);
 
@@ -45,7 +52,7 @@ export class RecursosComponent {
     }, error => {
       console.log(error);
     });
-    
+
   }
 
   getMaterialesPropios(pag){
