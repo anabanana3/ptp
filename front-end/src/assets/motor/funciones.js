@@ -6,7 +6,7 @@ function iniciarMotor(){
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
   //let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaTipo1.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
-  let vagina2 = GFachada.crearMallaCompleto("Vagina", "VaginaRealistaTipo2.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+  let vagina2 = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   //let tetera = GFachada.crearMallaCompleto("Tetera", "tetera.obj", "material2.mtl", "textura.jpg");
   // GFachada.trasladar(tetera, 0, -15, 0);
   // GFachada.trasladar(vagina2, 0, -0.8, 0);

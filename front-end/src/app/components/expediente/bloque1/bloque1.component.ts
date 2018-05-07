@@ -32,53 +32,57 @@ export class Bloque1Component implements OnInit {
     ID_Expediente:null,
     Fecha:null,
     Descripcion:'',
-    ID_Persona:3,
-    ID_Lugar:null,
+    ID_Persona:null,
+    ID_Lugar:0,
     ID_Usuario:parseInt(sessionStorage.iD)
 
   };
 
   menor:Persona = {
+    ID_Persona:null,
     Nombre:'',
     Edad:0,
     ID_Sexo:1,
     ID_Etnia:164,
-    ID_Lugar:'',
+    ID_Lugar:0,
+    ID_Actividad:27
 
   };
 
   madre:Persona ={
+    ID_Persona:null,
     Nombre:'',
     Edad:0,
-    ID_Sexo:1,
+    ID_Sexo:3,
     ID_Etnia:164,
-    ID_Lugar:'',
+    ID_Lugar:0,
     ID_Actividad:27
   }
   padre:Persona = {
+    ID_Persona:null,
     Nombre:'',
     Edad:0,
-    ID_Sexo:2,
+    ID_Sexo:3,
     ID_Etnia:164,
-    ID_Lugar:'',
+    ID_Lugar:0,
     ID_Actividad:27
   }
 
   bloque:any = {
     ID_Expediente:'',
-    Citacion:0,
-    Deriv_Riesgo:0,
-    Deriv_Sospecha:0,
+    Citacion:2,
+    Deriv_Riesgo:2,
+    Deriv_Sospecha:2,
     Otros:'',
-    Acomp_P:0,
-    Acomp_M:0,
-    Acomp_H:0,
+    Acomp_P:2,
+    Acomp_M:2,
+    Acomp_H:2,
     Acomp_O:'',
-    Dif_Idi_M:0,
-    Traduccion:0,
-    Mediacion:0,
-    Curso:'1ESO',
-    Centro_Salud:'Prueba'
+    Dif_Idi_M:2,
+    Traduccion:2,
+    Mediacion:2,
+    Curso:'No empleado',
+    Centro_Salud:'No empleado'
   }
 
   sitiosGoogle = new Array();
@@ -90,27 +94,28 @@ export class Bloque1Component implements OnInit {
 
   @ViewChild('place') public searchElement: ElementRef;
   @ViewChild('place2') public searchElement2: ElementRef;
-  @ViewChild('place3') public searchElement3: ElementRef;
-  @ViewChild('place4') public searchElement4: ElementRef;
+  // @ViewChild('place3') public searchElement3: ElementRef;
+  // @ViewChild('place4') public searchElement4: ElementRef;
 
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     console.log('Hola');
+    this.prueba();
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 
    this.form = new FormGroup({
       // 'titulo': new FormControl('', Validators.required),
-      'fechaC': new FormControl('', Validators.required),
-      'descripcion': new FormControl('Hola', Validators.required),
-      'lugarD': new FormControl('', Validators.required),
+      'fechaC': new FormControl('' ),
+      'descripcion': new FormControl('Hola'),
+      'lugarD': new FormControl(),
       'menor': new FormGroup({
-              'nombre': new FormControl('', Validators.required),
-              'edad': new FormControl('', Validators.required),
+              'nombre': new FormControl(''),
+              'edad': new FormControl(''),
               'sexo': new FormControl(),
-              'etnia': new FormControl('', Validators.required),
-              'lugarN': new FormControl('', Validators.required),
-              'actividad': new FormControl(null)
+              'etnia': new FormControl(),
+              'lugarN': new FormControl(),
+              'actividad': new FormControl()
       }),
       'madre': new FormGroup({
               'nombre': new FormControl(),
@@ -130,17 +135,17 @@ export class Bloque1Component implements OnInit {
       }),
       'bloque': new FormGroup({
               'ID_Expediente': new FormControl(),
-              'Citacion': new FormControl('', Validators.required),
-              'Deriv_Riesgo': new FormControl('', Validators.required),
-              'Deriv_Sospecha': new FormControl('', Validators.required),
-              'Otros': new FormControl(),
-              'Acomp_P': new FormControl('', Validators.required),
-              'Acomp_M': new FormControl('', Validators.required),
-              'Acomp_H': new FormControl('', Validators.required),
-              'Acomp_O': new FormControl(),
-              'Dif_Idi_M': new FormControl('', Validators.required),
-              'Traduccion': new FormControl('', Validators.required),
-              'Mediacion': new FormControl('', Validators.required),
+              'Citacion': new FormControl(2),
+              'Deriv_Riesgo': new FormControl(2),
+              'Deriv_Sospecha': new FormControl(2),
+              'Otros': new FormControl(''),
+              'Acomp_P': new FormControl(2),
+              'Acomp_M': new FormControl(2),
+              'Acomp_H': new FormControl(2),
+              'Acomp_O': new FormControl(''),
+              'Dif_Idi_M': new FormControl(2),
+              'Traduccion': new FormControl(2),
+              'Mediacion': new FormControl(2),
               'Curso': new FormControl(),
               'Centro_Salud': new FormControl()
       })
@@ -148,6 +153,31 @@ export class Bloque1Component implements OnInit {
     });
     //this.form.controls['bloque'].setValue(this.bloque);
     console.log(this.bloque);
+   }
+   prueba(){
+     console.log('Muestro el estado inicial del Expediente ');
+     console.log(this.expediente);
+     console.log('Muestro el estado actual del titular del exp');
+     console.log(this.menor);
+     console.log('Muestro el bloque por defecto');
+     console.log(this.bloque);
+
+    //  Creo la persona
+     this._expedienteService.addPersona(this.menor).subscribe(data =>{
+       if(data.Codigo == 501){
+         location.href = '/expired';
+         return;
+       }
+       //Obtengo el id de la persona que acabamos de crear
+       let idP = data.insertId;
+       this.menor.ID_Persona = idP;
+       this.expediente.ID_Persona=idP;//Asigo ese id al expediente
+       //Creo el expediente vacio
+       this._expedienteService.addExpediente(this.expediente).subscribe(data => {
+         this.expediente.ID_Expediente = data.insertId;
+         sessionStorage.IDExp = data.insertId;
+        })
+     })
    }
 
    ngOnInit(){
@@ -176,25 +206,26 @@ export class Bloque1Component implements OnInit {
            })
          })
          //Lugar de nacimiento de la Madre
-         this.lugarMadre = new  google.maps.places.Autocomplete(this.searchElement3.nativeElement, {types:["geocode"]});
-         this.lugarMadre.addListener('place_change', () =>{
-           this.ngZone.run(()=>{
-             let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
-             this.sitiosGoogle.push(place);
-           })
-         })
-         //Lugar de nacimiento del Padre
-         //Lugar de nacimiento de la Madre
-         this.lugarPadre = new  google.maps.places.Autocomplete(this.searchElement4.nativeElement, {types:["geocode"]});
-         this.lugarPadre.addListener('place_change', () =>{
-           this.ngZone.run(()=>{
-             let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
-             this.sitiosGoogle.push(place);
-           })
-         })
+        //  this.lugarMadre = new  google.maps.places.Autocomplete(this.searchElement3.nativeElement, {types:["geocode"]});
+        //  this.lugarMadre.addListener('place_change', () =>{
+        //    this.ngZone.run(()=>{
+        //      let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
+        //      this.sitiosGoogle.push(place);
+        //    })
+        //  })
+        //  //Lugar de nacimiento del Padre
+        //  //Lugar de nacimiento de la Madre
+        //  this.lugarPadre = new  google.maps.places.Autocomplete(this.searchElement4.nativeElement, {types:["geocode"]});
+        //  this.lugarPadre.addListener('place_change', () =>{
+        //    this.ngZone.run(()=>{
+        //      let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
+        //      this.sitiosGoogle.push(place);
+        //    })
+        //  })
        }
      );
    }
+
 
   guardarDatos3(){
     console.log('Muestro la informacion del formulario');
@@ -212,7 +243,7 @@ export class Bloque1Component implements OnInit {
     console.log(this.lugarVict);
     console.log(this.lugarDetec);
   }
-//TODO => Solo falta meter a los familiares de la persona en el caso de que intropduzcan datos
+// TODO: Ahora los metodos de addPersona y addExpediente van a ser UPDATES, ya que el expiente ya lo voy a tener creado de antemano
 guardarDatos(){
   console.log('Muestro la persona que voy a crear');
   console.log(this.menor);
@@ -220,7 +251,9 @@ guardarDatos(){
   this.bloque = this.form.get('bloque').value;
 
   if(this.form.valid == true){
-    this._expedienteService.addPersona(this.menor).subscribe(data=>{
+    this.getDataGoogle();
+    // this._expedienteService.addPersona(this.menor).subscribe(data=>{
+    this._expedienteService.updatePersona(this.menor, this.menor.ID_Persona).subscribe(data=>{
       //TODO: Solo comprobamos una vez si ha caducado la sesion para que se almacene toda la informacion y no se quede a mitad el expediente
       if(data.Codigo == 501){
         location.href = '/expired';
@@ -242,10 +275,11 @@ guardarDatos(){
           this.addFamiliar(this.padre, idP, 2);
         }
         //Una vez creadas las relaciones de perentesco creamos los campos del bloque 1
-        this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
+        //this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
+        this._expedienteService.updateExpediente(this.expediente, this.expediente.ID_Expediente).subscribe(data=>{
           //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
-          sessionStorage.IDExp = data.insertId;
-          this._expedienteService.addBloque(this.bloque, data.insertId).subscribe(data=>{
+          //sessionStorage.IDExp = data.insertId;
+          this._expedienteService.addBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
             console.log(data)
             //Por último => todo correcto cambiamos de bloque
             this.cambiarBloque();
@@ -274,15 +308,47 @@ guardarDatos2(){
   console.log(this.madre);
   console.log('Muestro al padre');
   console.log(this.padre);
-  //Por último => todo correcto cambiamos de bloque
-  console.log('Cambio de bloque');
-  this.cambiarBloque();
-  console.log('Muestro el expediente'),
-  console.log(this.expediente);
-
-  this.expedienteComponent.bloque = 2;
+  console.log('Muestro el formulario');
+  console.log(this.form);
+  console.log('Muestro el estado inicial del bloque');
+  console.log(this.bloque);
+  this.getDataGoogle();
 
 }
+
+getDataGoogle(){
+  console.log('Funcion para obtener los datos de google Maps');
+  console.log('Lugar de deteccion del expediente');
+  console.log(this.lugarDetec);
+  //Compruebo que se ha introducido informacion
+  if(this.lugarDetec.gm_accessors_.place.Jc.b == true){
+    //Hay datos => obtengo el pais y el lugar
+    this.expediente.ID_Lugar = this.lugarDetec.gm_accessors_.place.Jc.place.id;
+    this.expediente.Sitio = this.lugarDetec.gm_accessors_.place.Jc.place.name;
+    let aux = this.lugarDetec.gm_accessors_.place.Jc.place.address_components;
+    if(aux.length >=5 ){
+      this.expediente.Pais = aux[aux.length-2].long_name;
+    }else{
+      this.expediente.Pais = aux[aux.length-1].long_name;
+    }
+  }
+  console.log('Lugar de nacimiento del titular');
+  console.log(this.lugarVict);
+  if(this.lugarDetec.gm_accessors_.place.Jc.b == true){
+    //Hay datos => obtengo el pais y el lugar
+    this.menor.ID_Lugar = this.lugarVict.gm_accessors_.place.Jc.place.id;
+    this.menor.Sitio = this.lugarVict.gm_accessors_.place.Jc.place.name;
+    let aux = this.lugarVict.gm_accessors_.place.Jc.place.address_components;
+    if(aux.length >=5 ){
+      this.menor.Pais = aux[aux.length-2].long_name;
+    }else{
+      this.menor.Pais = aux[aux.length-1].long_name;
+    }
+  }
+  console.log(this.expediente);
+  console.log(this.menor);
+}
+
 
 addFamiliar(persona, familiar, tipo){
   this._expedienteService.addPersona(persona).subscribe(data =>{

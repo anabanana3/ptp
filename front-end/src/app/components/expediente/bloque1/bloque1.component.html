@@ -1,7 +1,8 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que se almecene la informacion en la
 base de datos.
+//Prueba
 El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
-<form [formGroup]="form" (ngSubmit)="guardarDatos3()">
+<form [formGroup]="form" (ngSubmit)="guardarDatos()">
   <div id="alert">{{mensaje}}</div>
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
@@ -39,7 +40,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   <div class="grupoForm" formGroupName = "menor">
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-    <h2 class="text16 textPink">DATOS SOBRE LA VÍCTIMA</h2>
+    <h2 class="text16 textPink">DATOS SOBRE EL TITULAR DEL EXPEDIENTE</h2>
     <div class="divLabels">
       <div class="divExp">
         <label for="nombreM">Nombre completo:</label>
@@ -237,6 +238,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
               <label class="labeltransr" for="citaAborMGFSI">Sí</label>
               <input class="radiotrans" type="radio" name="Citacion" value="0" id="citaAborMGFNO" formControlName="Citacion">
               <label class="labeltransr" for="citaAborMGFNO">No</label>
+              <input class="radiotrans" type="radio" name="Citacion" value="2" id="citaAborMGFNS" formControlName="Citacion">
+              <label class="labeltransr" for="citaAborMGFNS">N/S</label>
 
             </div>
           </div>
@@ -250,6 +253,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
             <label class="labeltransr" for="deriDetMGFSI">Sí</label>
             <input class="radiotrans" type="radio" name="Deriv_Riesgo" value="0" id="deriDetMGFNO" formControlName="Deriv_Riesgo">
             <label class="labeltransr" for="deriDetMGFNO">No</label>
+            <input class="radiotrans" type="radio" name="Deriv_Riesgo" value="2" id="deriDetMGFNS" formControlName="Deriv_Riesgo">
+            <label class="labeltransr" for="deriDetMGFNS">N/S</label>
           </div>
       </div>
 
@@ -263,6 +268,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
             <label class="labeltransr" for="deriSosMGFSI">Sí</label>
             <input class="radiotrans" type="radio" name="Deriv_Sospecha" value="0" id="deriSosMGFNO" formControlName="Deriv_Sospecha">
             <label class="labeltransr" for="deriSosMGFNO">No</label>
+            <input class="radiotrans" type="radio" name="Deriv_Sospecha" value="2" id="deriSosMGFNS" formControlName="Deriv_Sospecha">
+            <label class="labeltransr" for="deriSosMGFNS">N/S</label>
           </div>
       </div>
       <div class="divLabels">
@@ -348,6 +355,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <label class="labeltransr" for="dificultadMSI">Sí</label>
         <input class="radiotrans" type="radio" name="Dif_Idi_M" value="0" id="dificultadMNO" formControlName="Dif_Idi_M">
         <label class="labeltransr" for="dificultadMNO">No</label>
+        <input class="radiotrans" type="radio" name="Dif_Idi_M" value="2" id="dificultadMNS" formControlName="Dif_Idi_M">
+        <label class="labeltransr" for="dificultadMNS">N/S</label>
       </div>
 
       <div class="divExp">
@@ -362,6 +371,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <label class="labeltransr" for="traduccionSI">Sí</label>
         <input class="radiotrans" type="radio" name="Traduccion" value="0" id="traduccionNO" formControlName="Traduccion">
         <label class="labeltransr" for="traduccionNO">No</label>
+        <input class="radiotrans" type="radio" name="Traduccion" value="2" id="traduccionNS" formControlName="Traduccion">
+        <label class="labeltransr" for="traduccionNS">N/S</label>
       </div>
     </div>
     <div class="divLabelsDeUno">
@@ -377,6 +388,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <label class="labeltransr" for="mediacionSI">Sí</label>
         <input class="radiotrans"type="radio" name="Mediacion" value="0" id="mediacionNO" formControlName="Mediacion">
         <label class="labeltransr" for="mediacionNO">No</label>
+        <input class="radiotrans" type="radio" name="Mediacion" value="2" id="mediacionNS" formControlName="Mediacion">
+        <label class="labeltransr" for="mediacionNS">N/S</label>
       </div>
     </div>
   </div>

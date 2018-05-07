@@ -6,4 +6,6 @@ export interface Expedinete{
   ID_Persona:number;
   ID_Lugar:number;
   ID_Usuario:number;
+  Pais?:string;
+  Sitio?:string;
 }

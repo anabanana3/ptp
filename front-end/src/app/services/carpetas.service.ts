@@ -57,6 +57,23 @@ export class CarpetasService {
 
   }
 
+  updateCarpeta(nombre,idC){
+    let token = sessionStorage.token,
+    headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    let url = this.carpetaExpURL2+'/'+idC;
+
+    let body = {
+      ID_Carpeta: idC,
+      Nombre: nombre
+    };
+    return this.http.put(url, body, {headers}).map(res => res.json());
+
+
+  }
+
   deleteCarpeta(idC){
     let token = sessionStorage.token,
     headers = new Headers({
