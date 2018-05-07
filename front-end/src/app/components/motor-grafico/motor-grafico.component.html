@@ -2,8 +2,12 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header></app-header>
-
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="!asociacion">
+    <app-header></app-header>
+  </div>
 
   <div class="divBlanco bgColorWhite">
     <div class="buttons-canvas">
@@ -19,12 +23,12 @@
     </div>
     <canvas id="canvas" width="800" height="600" style="width:90%; height:500px;"></canvas>
   </div>
-  <button
+  <!-- <button
     class="btn-relleno"
     type="button"
     name="button"
     style="display:block; margin:auto;">
     Descargar modelo 3D
-  </button>
+  </button> -->
   <app-footer></app-footer>
 </div>

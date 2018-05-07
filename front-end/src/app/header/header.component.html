@@ -1,5 +1,5 @@
 <div class="header bgColorBlack">
-  <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/LogoAishaLadoCherry.png" id="0" alt="LogoAisha"></a>
+  <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" alt="LogoAisha"></a>
 
 <div class="menuNav" id="myTopnav">
   <a [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="">Mis Expedientes</a>
@@ -13,7 +13,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a [routerLink]="['/user/profile']">Editar Perfil</a>
+      <a [routerLink]="['/user/profile']" (click)="activo(7)" id="7" class="">Editar Perfil</a>
       <a (click)="cerrarSesion();">Cerrar Sesión</a>
     </div>
   </div>

@@ -45,7 +45,7 @@ export class RecursosComponent {
     }, error => {
       console.log(error);
     });
-
+    
   }
 
   getMaterialesPropios(pag){

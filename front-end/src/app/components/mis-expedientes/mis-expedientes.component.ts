@@ -5,8 +5,7 @@ import { CarpetasService } from '../../services/carpetas.service';
 
 @Component({
   selector: 'app-mis-expedientes',
-  templateUrl: './mis-expedientes.component.html',
-  styleUrls: ['./mis-expedientes.component.css']
+  templateUrl: './mis-expedientes.component.html'
 })
 
 // TODO: Recoger todos los expedientes de un usuario no solo los provados y luego hacer un boton para obtener publicos/privados
@@ -49,6 +48,7 @@ etnias = new Array();
   raiz;
   carpetaActual = null;
   NameRuta = new Array();
+  asociacion:boolean = false;
 
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
@@ -56,6 +56,9 @@ etnias = new Array();
       return;
     }else{
       this.error = false;
+      if(sessionStorage.getItem('asociacion') != null){
+        this.asociacion = true;
+      }
       //Recupero las etnias para añadirlas al menu de busqueda
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
