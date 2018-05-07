@@ -2,8 +2,12 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header></app-header>
-</div>
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="!asociacion">
+    <app-header></app-header>
+  </div></div>
 
 <div class="divBlanco bgColorWhite estadisticas">
   <h1>GRAFICOS SOBRE LOS CASOS REGISTRADOS</h1>

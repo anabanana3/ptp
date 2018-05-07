@@ -23,6 +23,7 @@ export class RecursoComponent {
   error:boolean = true;
   mensaje:string = '';
   formatos:object = {};
+  asociacion:boolean = false;
 
   constructor(private _materialService:MaterialService,
               private activatedRoute: ActivatedRoute) {
@@ -31,6 +32,9 @@ export class RecursoComponent {
     }
     this.error = false;
 
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
+    }
     _materialService.getFormatos().subscribe(data => {
       this.formatos = data;
       //Solucion regulera

@@ -16,11 +16,16 @@ declare var moverCamara;
 export class MotorGraficoComponent implements AfterViewInit {
 
   error:boolean = true;
+  asociacion:boolean = false;
+
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
       return;
     }
     this.error = false;
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
+    }
 
   }
 

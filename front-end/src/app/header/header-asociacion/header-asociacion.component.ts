@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html'
+  selector: 'app-header-asociacion',
+  templateUrl: './header-asociacion.component.html'
 })
-
-export class HeaderComponent implements OnInit {
+export class HeaderAsociacionComponent implements OnInit {
   Nombre:String;
 
   constructor() {
@@ -32,12 +30,13 @@ export class HeaderComponent implements OnInit {
 
   myFunction() {
       var x = document.getElementById("myTopnav");
-      if(x.hasOwnProperty('className')){
+      if (x.hasOwnProperty('className')) {
         if (x.className === "menuNav") {
             x.className += " responsive";
         } else {
             x.className = "menuNav";
         }
       }
+
   }
 }

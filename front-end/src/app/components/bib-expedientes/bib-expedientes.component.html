@@ -2,8 +2,12 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header></app-header>
-  <!-- <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="!asociacion">
+    <app-header></app-header>
+  </div>  <!-- <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
   <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
 <div class="gridContainer">
 

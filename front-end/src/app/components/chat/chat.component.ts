@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit{
   resultSearch = new Object;
   //Variable para maquetar los mensajes
   ID_Usuario = sessionStorage.iD;
+  asociacion:boolean = false;
 
   constructor(private _chatService: ChatService ) {
     console.log(sessionStorage.iD);
@@ -31,6 +32,9 @@ export class ChatComponent implements OnInit{
     });
     this.conversacion = {
       Nombre: "'Busca a un contacto y empieza a chatear!'",
+    }
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
     }
   }
   setConversation(id2, nombre){
