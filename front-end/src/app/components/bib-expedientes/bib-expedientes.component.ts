@@ -4,8 +4,7 @@ import { ProfesionesService } from '../../services/profesiones.service';
 
 @Component({
   selector: 'app-bib-expedientes',
-  templateUrl: './bib-expedientes.component.html',
-  styleUrls: ['./bib-expedientes.component.css']
+  templateUrl: './bib-expedientes.component.html'
 })
 export class BibExpedientesComponent implements OnInit {
   expedientes = new Array();

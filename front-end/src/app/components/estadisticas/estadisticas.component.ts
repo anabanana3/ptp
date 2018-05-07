@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-estadisticas',
-  templateUrl: './estadisticas.component.html',
-  styleUrls: ['./estadisticas.component.css']
+  templateUrl: './estadisticas.component.html'
 })
-export class EstadisticasComponent implements OnInit {
+export class EstadisticasComponent{
 
-  constructor() { }
+  asociacion:boolean = false;
 
-  ngOnInit() {
+  constructor() {
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
+    }
   }
+
 
 }

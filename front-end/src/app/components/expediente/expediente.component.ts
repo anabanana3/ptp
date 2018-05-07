@@ -16,6 +16,7 @@ export class ExpedienteComponent{
   // bloque3:boolean = true;
   // bloque4:boolean = true;
   // bloque5:boolean = true;
+  asociacion:boolean = false;
 
 
 
@@ -24,6 +25,9 @@ export class ExpedienteComponent{
       return;
     }
     this.error = false;
+    if(sessionStorage.getItem('asociacion') != null){
+      this.asociacion = true;
+    }
 
   }
 
