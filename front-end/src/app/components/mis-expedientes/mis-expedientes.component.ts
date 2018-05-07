@@ -183,6 +183,31 @@ popUpBorrarCarpeta(idCarpeta){
   }
 }
 
+
+popUpModificarCarpeta(idCarpeta, nombre){
+  // Get the modal
+  console.log("entro en popUpModificarCarpeta");
+  console.log("Nombre anterior: " + nombre);
+  var modal = document.getElementById('popupModificarCarpeta');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtnModifyCarpeta");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementById("closeModifyCarpeta");
+
+  modal.style.display = "block";
+
+
+
+  span.onclick = function() {
+    //Boton con la X
+      console.log("entro en span.onclick");
+      modal.style.display = "none";
+      // this.getCarpeta(this.carpetaActual);
+  }
+}
+
 getExpedientesUser(tipo,pag, tam){
   console.log(tipo);
   switch (tipo){
@@ -436,6 +461,7 @@ borrarCarpeta(idC){
 }
 
 modificarCarpeta(nombre, idC){
+  console.log("MODIFICAR CARPETA");
   this._carpetaService.updateCarpeta(nombre, idC).subscribe(data=>{
     if(data.Codigo == 501){
       location.href = '/expired';

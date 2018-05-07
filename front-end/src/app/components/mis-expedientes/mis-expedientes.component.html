@@ -144,7 +144,7 @@
               <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
               <div class="menuOp" id="{{c.ID_Gestor}}">
                 <div class="EditarDiv">
-                  <p class="text12">Editar</p>
+                  <a id="myBtnModifyCarpeta" (click)="popUpModificarCarpeta(c.ID_Gestor, c.Nombre)"><p class="text12">Editar</p></a>
                 </div>
                 <div class="BorrarDiv">
                   <a id="myBtnDeleteCarpeta" (click)="popUpBorrarCarpeta(c.ID_Gestor)"><p class="text12">Borrar</p></a>
@@ -155,7 +155,7 @@
           </div>
 
       </div>
-      <!-- TODO: Esxpedientes -->
+      <!-- TODO: Expedientes -->
       <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
         <div class="expediente-body-exp">
           <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
@@ -223,6 +223,17 @@
   </div>
 </div>
 
+<div class="popUpBorrar" id="popupModificarCarpeta">
+  <div class="popupBorrar-contentExp">
+    <span id="closeModifyCarpeta">&times;</span>
+    <div class="insidePopExp">
+      <p>Nombre</p>
+      <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
+
+      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value,c.ID_Gestor)">GUARDAR</button>
+      </div>
+  </div>
+</div>
 <!-- TODO: Fin version 2 -->
 
 <!-- <div class="carpetasDivContainer">
