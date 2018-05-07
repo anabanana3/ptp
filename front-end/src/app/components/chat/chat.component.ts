@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ElementRef} from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 
 
@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit{
   //Variable para maquetar los mensajes
   ID_Usuario = sessionStorage.iD;
 
-  constructor(private _chatService: ChatService ) {
+  constructor(private _chatService: ChatService, private element:ElementRef ) {
     console.log(sessionStorage.iD);
     _chatService.connectSocketServer().subscribe(data=>{
         this.socketID = data;
@@ -84,6 +84,9 @@ export class ChatComponent implements OnInit{
     console.log(this.conversacion);
     this._chatService.getMessages(id1, id2).subscribe(data => {
       this.mensajes = data;
+      // let aux = p.lastElementChild;
+      // console.log(aux);
+
     });
   }
 

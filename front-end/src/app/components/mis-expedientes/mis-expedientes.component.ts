@@ -435,6 +435,15 @@ borrarCarpeta(idC){
   })
 }
 
+modificarCarpeta(nombre, idC){
+  this._carpetaService.updateCarpeta(nombre, idC).subscribe(data=>{
+    if(data.Codigo == 501){
+      location.href = '/expired';
+    }
+    console.log(data);
+  })
+}
+
 actualizarRuta(id, name){
   console.log('actualizarRuta');
   console.log('Ruta', this.NameRuta);
