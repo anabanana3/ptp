@@ -9,7 +9,6 @@ class TShader extends TRecurso {
     this.indexBuffer = null; //buffer de indices
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
-    console.log(this.canvas);
     this.gl = null;
   }
 

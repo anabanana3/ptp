@@ -2,8 +2,12 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header></app-header>
-
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="!asociacion">
+    <app-header></app-header>
+  </div>
   <div class="main-Chat">
     <!-- Chats -->
   <div class="bgColorWhite">

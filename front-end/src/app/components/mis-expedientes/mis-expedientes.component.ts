@@ -5,8 +5,7 @@ import { CarpetasService } from '../../services/carpetas.service';
 
 @Component({
   selector: 'app-mis-expedientes',
-  templateUrl: './mis-expedientes.component.html',
-  styleUrls: ['./mis-expedientes.component.css']
+  templateUrl: './mis-expedientes.component.html'
 })
 
 // TODO: Recoger todos los expedientes de un usuario no solo los provados y luego hacer un boton para obtener publicos/privados
@@ -49,6 +48,7 @@ etnias = new Array();
   raiz;
   carpetaActual = null;
   NameRuta = new Array();
+  asociacion:boolean = false;
 
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
@@ -56,6 +56,9 @@ etnias = new Array();
       return;
     }else{
       this.error = false;
+      if(sessionStorage.getItem('asociacion') != null){
+        this.asociacion = true;
+      }
       //Recupero las etnias para añadirlas al menu de busqueda
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
@@ -174,6 +177,31 @@ popUpBorrarCarpeta(idCarpeta){
     modal.style.display = "none";
     // this.getCarpeta(this.carpetaActual);
   }
+
+  span.onclick = function() {
+    //Boton con la X
+      console.log("entro en span.onclick");
+      modal.style.display = "none";
+      // this.getCarpeta(this.carpetaActual);
+  }
+}
+
+
+popUpModificarCarpeta(idCarpeta, nombre){
+  // Get the modal
+  console.log("entro en popUpModificarCarpeta");
+  console.log("Nombre anterior: " + nombre);
+  var modal = document.getElementById('popupModificarCarpeta');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtnModifyCarpeta");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementById("closeModifyCarpeta");
+
+  modal.style.display = "block";
+
+
 
   span.onclick = function() {
     //Boton con la X
@@ -436,6 +464,7 @@ borrarCarpeta(idC){
 }
 
 modificarCarpeta(nombre, idC){
+  console.log("MODIFICAR CARPETA");
   this._carpetaService.updateCarpeta(nombre, idC).subscribe(data=>{
     if(data.Codigo == 501){
       location.href = '/expired';

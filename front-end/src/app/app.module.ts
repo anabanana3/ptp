@@ -65,6 +65,7 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 import { CarpetasService } from './services/carpetas.service';
+import { HeaderAsociacionComponent } from './header/header-asociacion/header-asociacion.component';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { CarpetasService } from './services/carpetas.service';
     PoliticaPrivacidadComponent,
     ProfilePopUp,
     ProfilePopUp2,
-    HistoricoComponent
+    HistoricoComponent,
+    HeaderAsociacionComponent
   ],
   imports: [
     BrowserModule,

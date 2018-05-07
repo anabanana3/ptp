@@ -113,8 +113,6 @@ class TCamaraInteractor extends TEntidad {
 
   	var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
   	var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
-    console.log(nAzimuth);
-    console.log(nElevation);
 
   	camera.changeAzimuth(nAzimuth);
   	camera.changeElevation(nElevation);

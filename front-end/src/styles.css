@@ -261,7 +261,13 @@ canvas{
   width: 100%;
   padding-bottom: 11%;
 }
-
+.perfilForm{
+  text-align: left;
+}
+.lineaPerfil{
+  float: left;
+  width: 30%;
+}
 .permisos{
   background-color: none;
   border: 2px solid #9C0C54;
@@ -274,7 +280,7 @@ canvas{
 .fotoPerfil:hover{background: rgba(191,191,191,0.50);}
 
 .editarPerfil{
-  width: 60%;
+  width: 70%;
 }
 .labelpermisos{
   margin-top: 5%;
@@ -1755,13 +1761,13 @@ option{
   justify-content: flex-end;
 }
 
-.buttons-asociacion{
+/* .buttons-asociacion{
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
   margin-top: 1%;
   margin-bottom: 1%;
-}
+} */
 
 .buttons-asociacion-center{
   justify-content: center;
