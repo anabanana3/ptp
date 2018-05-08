@@ -18,7 +18,7 @@ export class MisExpedientesComponent implements OnInit {
   pagNext:number;
   pagBack:number;
   pagActual:number;
-  tamPag:number=2;
+  tamPag:number=10;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -50,6 +50,8 @@ etnias = new Array();
   NameRuta = new Array();
   asociacion:boolean = false;
 
+  carpetaSelect = null;
+  nombreSelect='';
 
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
     if(sessionStorage.length == 0){
@@ -160,8 +162,10 @@ openPopUp(){
 
 popUpBorrarCarpeta(idCarpeta){
     // Get the modal
-    console.log("entro en popUpBorrarCarpeta");
+  console.log("entro en popUpBorrarCarpeta");
   var modal = document.getElementById('popupBorrarCarpeta');
+
+  this.carpetaSelect = idCarpeta;
 
   // Get the button that opens the modal
   var btn = document.getElementById("myBtnDeleteCarpeta");
@@ -189,6 +193,9 @@ popUpBorrarCarpeta(idCarpeta){
 
 popUpModificarCarpeta(idCarpeta, nombre){
   // Get the modal
+  this.carpetaSelect = idCarpeta;
+  this.nombreSelect = nombre;
+
   console.log("entro en popUpModificarCarpeta");
   console.log("Nombre anterior: " + nombre);
   var modal = document.getElementById('popupModificarCarpeta');
@@ -452,24 +459,26 @@ nuevaCarpeta(nombre){
   })
 }
 
-borrarCarpeta(idC){
-  console.log(idC);
-  this._carpetaService.deleteCarpeta(idC).subscribe(data =>{
+borrarCarpeta(){
+  // console.log(idC);
+  this._carpetaService.deleteCarpeta(this.carpetaSelect).subscribe(data =>{
     if(data.Codigo == 501){
       location.href = '/expired';
       return
     }
     console.log(data);
+    this.getCarpeta(this.carpetaActual, this.NameRuta[this.NameRuta.length]);
   })
 }
 
-modificarCarpeta(nombre, idC){
+modificarCarpeta(nombre){
   console.log("MODIFICAR CARPETA");
-  this._carpetaService.updateCarpeta(nombre, idC).subscribe(data=>{
+  this._carpetaService.updateCarpeta(nombre, this.carpetaSelect).subscribe(data=>{
     if(data.Codigo == 501){
       location.href = '/expired';
     }
     console.log(data);
+    this.getCarpeta(this.carpetaActual, this.NameRuta[this.NameRuta.length]);
   })
 }
 

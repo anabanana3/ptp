@@ -23,6 +23,7 @@ export class RecursosAdminComponent{
   tamPag:number=10;
   pagActual;
   displayedColumns = ['titulo', 'estado', 'opciones'];
+  mensaje;
 
   constructor(private _materialService:MaterialService) {
     this.getMateriales(1, this.tamPag);
@@ -77,7 +78,8 @@ export class RecursosAdminComponent{
     this.getMateriales(pag, this.tamPag);
   }
 
-  buscar(){
+  buscar(e?){
+
     let nombre = null;
     let formato = null;
 

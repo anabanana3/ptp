@@ -7,8 +7,13 @@ import { Component} from '@angular/core';
 export class EstadisticasComponent{
 
   asociacion:boolean = false;
+  error:boolean = true;
 
   constructor() {
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
     }

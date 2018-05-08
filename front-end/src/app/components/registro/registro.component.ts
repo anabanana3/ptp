@@ -40,6 +40,7 @@ export class RegistroComponent implements OnInit {
     Email: '',
     Password: '',
     CIF: '',
+    Telefono: '',
     Captcha: null
   }
 

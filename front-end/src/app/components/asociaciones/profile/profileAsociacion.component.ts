@@ -27,6 +27,7 @@ export class ProfileAsociacionComponent {
     Password: '',
     CIF: '',
     Foto: '',
+    Telefono:''
   }
   oldPassword = null;
 //Variable que almacena la foto de perfil
@@ -157,6 +158,7 @@ oldPlaceId;
       this.datos.append('Lugar', this.oldPlaceName);
       this.datos.append('ChangePais', '0');
     }
+    this.datos.append('Telefono', this.asociacion.Telefono);
 
     //console.log(datos);
     console.log(forma.value);

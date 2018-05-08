@@ -72,10 +72,14 @@
         <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre" required>
       <label for="direccion">Direccion *</label>
         <!-- <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required> -->
-        <label for="email">Email *</label>
-        <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
+      <label for="email">Email *</label>
+      <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
+
+      <label for="tel"> Teléfono </label>
+      <input type="tel" [(ngModel)]="asociacion.Telefono" class="lineaCampo" name="tel" id="tel" required>
+
       <label for="cif">CIF *</label>
-        <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
+      <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
       <label for="contra">Contraseña *</label>
         <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
       <label for="repeatcontra">Repita la Contraseña *</label>

@@ -21,8 +21,13 @@ export class ChatComponent implements OnInit{
   //Variable para maquetar los mensajes
   ID_Usuario = sessionStorage.iD;
   asociacion:boolean = false;
+  error:boolean = true;
 
   constructor(private _chatService: ChatService, private element:ElementRef ) {
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     console.log(sessionStorage.iD);
     _chatService.connectSocketServer().subscribe(data=>{
         this.socketID = data;

@@ -12,4 +12,5 @@ export interface Asociacion{
   ID_Asociacion?:number //? dato opcional
   UploadFoto?:object
   Captcha?:string
+  Telefono?:string
 }

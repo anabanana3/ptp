@@ -218,7 +218,7 @@
     <div class="insidePopExp">
       <p>¿Estás seguro de eliminar la carpeta?</p>
     </div>
-    <button class="btn-relleno" (click)="borrarCarpeta(c.ID_Gestor)">SÍ</button>
+    <button class="btn-relleno" (click)="borrarCarpeta()">SÍ</button>
     <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
   </div>
 </div>
@@ -230,7 +230,7 @@
       <p>Nombre</p>
       <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
 
-      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value,c.ID_Gestor)">GUARDAR</button>
+      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value)">GUARDAR</button>
       </div>
   </div>
 </div>

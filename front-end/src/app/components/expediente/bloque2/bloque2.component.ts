@@ -72,7 +72,7 @@ datosPartos = new Array();
   ngOnInit() {
   }
 
-  guardarDatos2(){
+  guardarDatos2(form){
     //this.cambiarBloque();
     console.log(this.bloque2);
     console.log(this.datosPartos);
