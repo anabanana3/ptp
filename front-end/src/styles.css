@@ -400,6 +400,10 @@ canvas{
   margin:37px 30px;
   margin-right:0px;
 }
+.grafana{
+  float: left;
+  margin-bottom: 10px;
+}
 
 .textoRecursos{
   line-height: 16px;
