@@ -126,7 +126,7 @@
 <div class="carpetasDivContainer">
   <div class="carpetasDiv">
   <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
-    <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Raiz /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
+    <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Todo /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
   </div>
 
   <!-- Mensaje de que no tienes nada almacenado -->
@@ -225,7 +225,7 @@
     <div class="insidePopExp">
       <p>¿Estás seguro de eliminar la carpeta?</p>
     </div>
-    <button class="btn-relleno" (click)="borrarCarpeta(c.ID_Gestor)">SÍ</button>
+    <button class="btn-relleno" (click)="borrarCarpeta()">SÍ</button>
     <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
   </div>
 </div>
@@ -234,10 +234,11 @@
   <div class="popupBorrar-contentExp">
     <span id="closeModifyCarpeta">&times;</span>
     <div class="insidePopExp">
-      <p>Nombre</p>
-      <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
-
-      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value,c.ID_Gestor)">GUARDAR</button>
+      <p>Introduzca el nuevo nombre</p>
+      <div class="paraInput">
+        <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
+      </div>
+      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value)">GUARDAR</button>
       </div>
   </div>
 </div>

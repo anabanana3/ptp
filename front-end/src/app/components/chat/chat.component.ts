@@ -23,8 +23,13 @@ export class ChatComponent implements OnInit{
   asociacion:boolean = false;
   admin:boolean = false;
   usuario:boolean = false;
+  error:boolean = true;
 
   constructor(private _chatService: ChatService, private element:ElementRef ) {
+    if(sessionStorage.length === 0){
+      return;
+    }
+    this.error = false;
     console.log(sessionStorage.iD);
     _chatService.connectSocketServer().subscribe(data=>{
         this.socketID = data;

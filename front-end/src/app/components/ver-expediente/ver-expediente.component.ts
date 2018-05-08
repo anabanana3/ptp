@@ -53,6 +53,7 @@ export class VerExpedienteComponent implements OnInit {
   estaCheck = false;
   labelPublico = "Publicar expediente";
   coment = 0;
+  error:boolean = true;
 
   asociacion:boolean = false;
   admin:boolean = false;
@@ -61,8 +62,7 @@ export class VerExpedienteComponent implements OnInit {
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
     public dialog: MatDialog, private _comentarioService:ComentarioService) {
-
-      if(sessionStorage.length == 0){
+      if(sessionStorage.length === 0){
         return;
       }
       this.error = false;
