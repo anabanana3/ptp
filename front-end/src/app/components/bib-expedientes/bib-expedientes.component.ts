@@ -39,7 +39,9 @@ profesiones = new Array();
     Orden:this.filtro
   }
 
-  asociacion = false;
+  asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
 
   constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
       if(sessionStorage.length == 0){
@@ -62,6 +64,10 @@ profesiones = new Array();
 
       if(sessionStorage.getItem('asociacion') != null){
         this.asociacion = true;
+      }else if(sessionStorage.getItem('usuario') != null){
+        this.usuario = true;
+      }else if(sessionStorage.getItem('admin') != null){
+        this.admin = true;
       }
    }
 

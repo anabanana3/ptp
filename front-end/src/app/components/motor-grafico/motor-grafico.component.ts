@@ -17,16 +17,22 @@ export class MotorGraficoComponent implements AfterViewInit {
 
   error:boolean = true;
   asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
 
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
       return;
     }
     this.error = false;
+
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else{
+      this.admin = true;
     }
-
   }
 
   ngAfterViewInit(){

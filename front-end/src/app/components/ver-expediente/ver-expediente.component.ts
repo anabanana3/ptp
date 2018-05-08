@@ -6,10 +6,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-ver-expediente',
-  templateUrl: './ver-expediente.component.html',
-  styleUrls: ['./ver-expediente.component.css']
+  templateUrl: './ver-expediente.component.html'
 })
 export class VerExpedienteComponent implements OnInit {
+
+  error:boolean=true;
 
   expID:number;
   publico:boolean = false;
@@ -54,6 +55,10 @@ export class VerExpedienteComponent implements OnInit {
   coment = 0;
   error:boolean = true;
 
+  asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
+
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
     public dialog: MatDialog, private _comentarioService:ComentarioService) {
@@ -62,6 +67,15 @@ export class VerExpedienteComponent implements OnInit {
       }
       this.error = false;
       this.getComentarios();
+
+
+      if(sessionStorage.getItem('asociacion') != null){
+        this.asociacion = true;
+      }else if(sessionStorage.getItem('usuario') != null){
+        this.usuario = true;
+      }else if(sessionStorage.getItem('admin') != null){
+        this.admin = true;
+      }
   }
 
   getComentarios(){

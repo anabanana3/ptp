@@ -21,6 +21,8 @@ export class ChatComponent implements OnInit{
   //Variable para maquetar los mensajes
   ID_Usuario = sessionStorage.iD;
   asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
   error:boolean = true;
 
   constructor(private _chatService: ChatService, private element:ElementRef ) {
@@ -40,6 +42,10 @@ export class ChatComponent implements OnInit{
     }
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else if(sessionStorage.getItem('admin') != null){
+      this.admin = true;
     }
   }
   setConversation(id2, nombre){

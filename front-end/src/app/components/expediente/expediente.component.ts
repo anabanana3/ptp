@@ -17,7 +17,8 @@ export class ExpedienteComponent{
   // bloque4:boolean = true;
   // bloque5:boolean = true;
   asociacion:boolean = false;
-
+  admin:boolean = false;
+  usuario:boolean = false;
 
 
   constructor(private _expedienteService:ExpedientesService) {
@@ -25,8 +26,13 @@ export class ExpedienteComponent{
       return;
     }
     this.error = false;
+    
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
+    }else if(sessionStorage.getItem('usuario') != null){
+      this.usuario = true;
+    }else if(sessionStorage.getItem('admin') != null){
+      this.admin = true;
     }
 
   }

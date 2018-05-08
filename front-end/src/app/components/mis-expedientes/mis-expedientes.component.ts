@@ -48,7 +48,10 @@ etnias = new Array();
   raiz;
   carpetaActual = null;
   NameRuta = new Array();
+
   asociacion:boolean = false;
+  admin:boolean = false;
+  usuario:boolean = false;
 
   carpetaSelect = null;
   nombreSelect='';
@@ -58,8 +61,13 @@ etnias = new Array();
       return;
     }else{
       this.error = false;
+      
       if(sessionStorage.getItem('asociacion') != null){
         this.asociacion = true;
+      }else if(sessionStorage.getItem('usuario') != null){
+        this.usuario = true;
+      }else if(sessionStorage.getItem('admin') != null){
+        this.admin = true;
       }
       //Recupero las etnias para añadirlas al menu de busqueda
       this._expedientesService.getEtnias().subscribe(data=>this.etnias = data);
