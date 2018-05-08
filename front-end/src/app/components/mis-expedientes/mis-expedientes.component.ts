@@ -61,7 +61,7 @@ etnias = new Array();
       return;
     }else{
       this.error = false;
-      
+
       if(sessionStorage.getItem('asociacion') != null){
         this.asociacion = true;
       }else if(sessionStorage.getItem('usuario') != null){
@@ -208,15 +208,11 @@ popUpModificarCarpeta(idCarpeta, nombre){
   console.log("Nombre anterior: " + nombre);
   var modal = document.getElementById('popupModificarCarpeta');
 
-  // Get the button that opens the modal
   var btn = document.getElementById("myBtnModifyCarpeta");
 
-  // Get the <span> element that closes the modal
   var span = document.getElementById("closeModifyCarpeta");
 
   modal.style.display = "block";
-
-
 
   span.onclick = function() {
     //Boton con la X
@@ -255,6 +251,7 @@ getExpedientesUser(tipo,pag, tam){
         });
     break;
     case 3:
+
       //Los publicos
       this._expedientesService.getExpedientesPubUser(pag,tam).subscribe(data=>{
         if(data.Resultado == 'OK' || data == ''){
@@ -481,6 +478,8 @@ borrarCarpeta(){
 
 modificarCarpeta(nombre){
   console.log("MODIFICAR CARPETA");
+  var modal = document.getElementById('popupModificarCarpeta');
+
   this._carpetaService.updateCarpeta(nombre, this.carpetaSelect).subscribe(data=>{
     if(data.Codigo == 501){
       location.href = '/expired';
@@ -488,6 +487,9 @@ modificarCarpeta(nombre){
     console.log(data);
     this.getCarpeta(this.carpetaActual, this.NameRuta[this.NameRuta.length]);
   })
+
+  modal.style.display="none";
+
 }
 
 actualizarRuta(id, name){
