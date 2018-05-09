@@ -19,7 +19,7 @@ export class ExpedientesAdminComponent {
   tamPag:number=10;
   pagActual;
 
-  displayedColumns = ['titulo', 'autor', 'fecha', 'lugar', 'options'];
+  displayedColumns = ['titulo', 'autor', 'fecha', 'options'];
 
   etnias = new Array();
   profesiones = new Array();
@@ -52,13 +52,15 @@ export class ExpedientesAdminComponent {
         location.href = '/expired';
       }else{
         this.expediente = data.Data;
+        console.log(this.expediente);
         this.loading = false;
         this.paginacion(data.Pagina, data.Paginas_Totales);
       }
     })
   }
 
-  buscar(pag, tam=this.tamPag){
+  buscar(pag){
+    let tam = this.tamPag;
     console.log(this.Filtros);
     this.url='https://www.aisha.ovh/api/publicos/search/';
     let primero = 1;

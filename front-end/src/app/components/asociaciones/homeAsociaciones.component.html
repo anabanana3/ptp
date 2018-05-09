@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!error">
   <app-header-asociacion></app-header-asociacion>
-  
+
   <h1 class="textPink text20">Administrador de Usuarios</h1>
   <div class="lineaDiv"></div>
   <div class="buttons-asociacion buttons-asociacion-center">
@@ -49,7 +49,7 @@
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <a [routerLink]="['/user', {id:element.ID_Usuario}]">histórico</a>
+              <a [routerLink]="['/asociacion/user', {id:element.ID_Usuario}]">histórico</a>
               <button *ngIf="tabla == 0"
                       type="button" class="btn btn-outline-success icon-ok span"
                       (click)="activateUser(element.ID_Usuario, element.Email)"
@@ -67,27 +67,27 @@
         </mat-table>
       </div>
 
-      <!-- PAGINACION -->
-   <ul class="pagination" *ngIf="paginas.length >1">
-   <!--Boton de pagina anterior-->
-     <li>
-       <a (click)="pasarPagina(pagBack)">
-         <span aria-hidden="true">&laquo;</span>
-       </a>
-     </li>
-     <li *ngFor="let pag of paginas; let i=index">
-       <a (click)="pasarPagina(i+1)">
-         <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-         <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-       </a>
-     </li>
-     <!--Boton de pagina siguiente-->
-     <li>
-       <a (click)="pasarPagina(pagNext);">
-         <span aria-hidden="true">&raquo;</span>
-       </a>
-     </li>
-   </ul>
+          <!-- PAGINACION -->
+       <ul class="pagination" *ngIf="paginas.length >1">
+       <!--Boton de pagina anterior-->
+         <li>
+           <a (click)="pasarPagina(pagBack)">
+             <span aria-hidden="true">&laquo;</span>
+           </a>
+         </li>
+         <li *ngFor="let pag of paginas; let i=index">
+           <a (click)="pasarPagina(i+1)">
+             <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+             <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+           </a>
+         </li>
+         <!--Boton de pagina siguiente-->
+         <li>
+           <a (click)="pasarPagina(pagNext);">
+             <span aria-hidden="true">&raquo;</span>
+           </a>
+         </li>
+       </ul>
 
       <div *ngIf="(user | keys).length === 0 && !loading"
            class="alert alert-info" role="alert">
@@ -98,7 +98,6 @@
            class="alert alert-info" role="alert">
         <strong>Cargando...</strong>por favor espere
       </div>
-
     </div>
   </div>
 </div>

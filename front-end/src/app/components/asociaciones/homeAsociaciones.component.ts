@@ -22,6 +22,7 @@ export class HomeAsociaciones{
   searchEmail = null;
   searchProfesion = 0;
   profesiones = [];
+  asociaciones = [];
 
   //Variables para la paginacion
   paginas= new Array(1);
@@ -181,7 +182,7 @@ export class HomeAsociaciones{
       return;
     }
 
-    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, 1, this.tamPag)
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, this.id, 1, this.tamPag)
       .subscribe(data => {
         if(data.Codigo == 501){
             location.href = '/expired';

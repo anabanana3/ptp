@@ -13,6 +13,7 @@
   </div>
 
     <!-- <button type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
+<<<<<<< HEAD
   <div  *ngFor="let e of expediente" class=expediente>
     <h2>Información básica sobre el expediente</h2>
     <h3>{{e.Titulo}}</h3>
@@ -241,95 +242,71 @@
         <div *ngFor="let c of consecSalud1">
           <div>
             <p>{{c.Nombre}}</p>
+=======
+  <div class="gridVerExp">
+    <div class="infoExp">
+      <div style="padding-left:15px" *ngFor="let e of expediente">
+        <h2 class="cherry textleft">INFORMACIÓN BÁSICA DEL EXPEDIENTE</h2>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Título</b></label>
+>>>>>>> 8c00cb745c40e5ccb1cf4e8194da0a982c9f380e
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Titulo}}</p>
           </div>
         </div>
-        <div *ngIf="!consecSalud1?.length">
-          <p>No hay registros</p>
-        </div>
-        <h4>Consecuencias Físicas A Largo Plazo</h4>
-        <div *ngFor="let c of consecSalud2">
-          <div>
-            <p>{{c.Nombre}}</p>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Descripción</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Descripcion.split("'")[1]}}</p>
           </div>
         </div>
-        <div *ngIf="!consecSalud2?.length">
-          <p>No hay registros</p>
-        </div>
-        <h4>Consecuencias Obstétrico Ginecológicas</h4>
-        <div *ngFor="let c of consecSalud4">
-          <div>
-            <p>{{c.Nombre}}</p>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Lugar de detección</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Nombre}}</p>
           </div>
         </div>
-        <div *ngIf="!consecSalud4?.length">
-          <p>No hay registros</p>
-        </div>
-        <h4>Consecuencias Psicosociales</h4>
-        <div *ngFor="let c of consecSalud5">
-          <div>
-            <p>{{c.Nombre}}</p>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Fecha de detección</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Fecha.split("T")[0]}}</p>
           </div>
         </div>
-        <div *ngIf="!consecSalud5?.length">
-          <p>No hay registros</p>
-        </div>
-        <h4>Consecuencias sobre la Sexualidad</h4>
-        <div *ngFor="let c of consecSalud6">
-          <div>
-            <p>{{c.Nombre}}</p>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Autor</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
-        <div *ngIf="!consecSalud6?.length">
-          <p>No hay registros</p>
+
+      </div>
+
+      <div class="permisosVerExp">
+        <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+        <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+        <div *ngIf="coment==1" class="coment" id="coment">
+          <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()">
+          <label class="labeltrans" for="comentarios">Permitir comentarios</label>
         </div>
-        <h4 *ngIf="w.Otros != ''">Otras</h4>
-        <p *ngIf="w.Otros != ''">{{w.Otros}}</p>
-        <h3>Intervención</h3>
-        <p *ngIf="w.Formato_int != ''">Formato de la intervención:
-          <b>{{w.Formato_int}}</b>
-        </p>
-        <p *ngIf="w.Consejos != ''">Consejos:
-          <b>{{w.Consejos}}</b>
-        </p>
       </div>
-      <div *ngIf="bloque4.length == 0">
-        <h3>No hay datos :(</h3>
-      </div>
-    </mat-tab>
-    <mat-tab label="Posibles viajes">
-      <div *ngFor="let w of bloque5">
-        <h3>Valoración sobre posibles viajes</h3>
-        <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
-          <b *ngIf="w.Viajes == 1">Sí</b>
-          <b *ngIf="w.Viajes == 0">No</b>
-        </p>
-        <p *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:
-          <b *ngIf="w.ViajesPlanificados == 1">Sí</b>
-          <b *ngIf="w.ViajesPlanificados == 0">No</b>
-        </p>
-        <p *ngIf="w.Intervencion != ''">Descripción del formato de la intervención:
-          <b>{{w.Intervencion}}</b>
-        </p>
-        <p *ngIf="w.Consejos != ''">Consejos:
-          <b>{{w.Consejos}}</b>
-        </p>
-      </div>
-      <h3>Indicadores de sospecha de MGF en el ambito escolar</h3>
-      <div *ngFor="let i of indicadores">
-        <p>{{i.Nombre}}</p>
-      </div>
-      <div *ngIf="!indicadores?.length">
-        <p>No hay registros</p>
-      </div>
-      <div *ngIf="bloque5.length == 0">
-        <h3>No hay datos :(</h3>
-      </div>
-    </mat-tab>
-    <mat-tab label="Comentarios">
+
+      <div class="lineaDiv"></div>
+
+    <div class="sliderComentarios">
       <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
       <div class="comentario comentarioNuevo">
-        <h3>Nuevo Comentario:</h3>
+        <h2>Nuevo comentario</h2>
         <textarea
           [(ngModel)]='comentario' type="text" id="comentario"
           placeholder="Escriba su comentario aquí...">
@@ -339,7 +316,7 @@
         </div>
       </div>
 
-      <div *ngFor="let comentario of comentarios">
+      <div style="width:100%;" *ngFor="let comentario of comentarios">
         <div class="comentario">
           <div class="comentarioTitulo">
             <h3>{{comentario.Nombre.split("'")[1]}} - {{comentario.Fecha.split("T")[0]}}</h3>
@@ -370,6 +347,7 @@
           </a>
         </li>
       </ul>
+<<<<<<< HEAD
     </mat-tab>
     <mat-tab label="Permisos">
       <h3>Permisos del expediente</h3>
@@ -378,8 +356,324 @@
       <div *ngIf="coment==1" class="coment" id="coment">
         <input type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="tieneComent">
         <label for="comentarios">Permitir comentarios</label>
+=======
+    </div>
+  </div>
+
+
+    <div class="datosExp">
+      <div class="divBlancoVerExp">
+        <mat-tab-group>
+          <mat-tab label="Datos sociodemográficos">
+            <h3>Datos sociodemográficos</h3>
+            <h4>Datos sobre el titular del expediente</h4>
+            <div *ngFor="let p of persona" class="persona">
+              <p>Edad:
+                <b>{{p.Edad}}</b>
+              </p>
+              <p *ngIf="p.Actividad != NULL">Actividad Laboral:
+                <b>{{p.Actividad}}</b>
+              </p>
+              <p>Etnia de origen:
+                <b>{{p.Etnia}}</b>
+              </p>
+              <p>Lugar de nacimiento:
+                <b>{{p.Sitio}}, {{p.Pais}}</b>
+              </p>
+            </div>
+            <h4>Datos sobre el padre</h4>
+            <div *ngFor="let p of padre" class="padre">
+              <p>Edad:
+                <b>{{p.Edad}}</b>
+              </p>
+              <p *ngIf="p.Actividad != NULL">Actividad Laboral:
+                <b>{{p.Actividad}}</b>
+              </p>
+              <p>Etnia de origen:
+                <b>{{p.Etnia}}</b>
+              </p>
+              <p>Lugar de nacimiento:
+                <b>{{p.ID_Lugar.split("'")[1]}}</b>
+              </p>
+            </div>
+            <div *ngIf="!padre?.length" class="padre">
+              <p>No hay datos registrados</p>
+            </div>
+            <h4>Datos sobre la madre</h4>
+            <div *ngFor="let m of madre" class="madre">
+              <p>Edad:
+                <b>{{m.Edad}}</b>
+              </p>
+              <p *ngIf="m.Actividad != NULL">Actividad Laboral:
+                <b>{{m.Actividad}}</b>
+              </p>
+              <p>Etnia de origen:
+                <b>{{m.Etnia}}</b>
+              </p>
+              <p>Lugar de nacimiento:
+                <b>{{m.ID_Lugar.split("'")[1]}}</b>
+              </p>
+            </div>
+            <div *ngIf="!madre?.length" class="madre">
+              <p>No hay datos registrados</p>
+            </div>
+            <h3>Contexto de la cita</h3>
+            <h4>Tipo de cita</h4>
+            <div *ngFor="let k of bloque1" class="bloque1">
+              <p>Citación por abordaje de riesgo de la MGF:
+                <b *ngIf="k.Citacion == 1">Sí</b>
+                <b *ngIf="k.Citacion == 0">No</b>
+              </p>
+              <p>Derivación por detección de riesgo de MGF:
+                <b *ngIf="k.Deriv_Riesgo == 1">Sí</b>
+                <b *ngIf="k.Deriv_Riesgo == 0">No</b>
+              </p>
+              <p>Derivación por sospecha de MGF:
+                <b *ngIf="k.Deriv_Sospecha == 1">Sí</b>
+                <b *ngIf="k.Deriv_Sospecha == 0">No</b>
+              </p>
+              <p *ngIf="k.Otros != 'NULL'">Otros motivos:
+                <b>{{k.Otros}}</b>
+              </p>
+              <h4>Personas durante la cita</h4>
+              <p>Acompañada por la madre:
+                <b *ngIf="k.Acomp_M == 1">Sí</b>
+                <b *ngIf="k.Acomp_M == 0">No</b>
+              </p>
+              <p>Acompañada por el padre:
+                <b *ngIf="k.Acomp_P == 1">Sí</b>
+                <b *ngIf="k.Acomp_P == 0">No</b>
+              </p>
+              <p>Acompañado por hermano/a:
+                <b *ngIf="k.Acomp_H == 1">Sí</b>
+                <b *ngIf="k.Acomp_H == 0">No</b>
+              </p>
+              <p *ngIf="k.Acomp_O != 'NULL'">Acompañado por otros:
+                <b>{{k.Acomp_O}}</b>
+              </p>
+              <h4>Dificultad con el idioma</h4>
+              <p>Dificultad con el idioma materno:
+                <b *ngIf="k.Dif_Idi_M == 1">Sí</b>
+                <b *ngIf="k.Dif_Idi_M == 0">No</b>
+              </p>
+              <p>Precisa traducción:
+                <b *ngIf="k.Traduccion == 1">Sí</b>
+                <b *ngIf="k.Traduccion == 0">No</b>
+              </p>
+              <p>Precisa mediación intercultural:
+                <b *ngIf="k.Mediacion == 1">Sí</b>
+                <b *ngIf="k.Mediacion == 0">No</b>
+              </p>
+              <p *ngIf="curso != 'NULL'">Curso de la menor:
+                <b>{{k.Curso}}</b>
+              </p>
+              <p *ngIf="centro_Salud != 'NULL'">Centro de salud de la menor:
+                <b>{{k.Centro_Salud}}</b>
+              </p>
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Acerca de MGF">
+            <div *ngIf="bloque2.length != 0">
+              <h3>Conocimiento e información sobre la MGF</h3>
+              <p>El implicado tiene conocimientos sobre la MGF:
+                <b *ngIf="bloque2[0].Conoce_MGF == 1">Sí</b>
+                <b *ngIf="bloque2[0].Conoce_MGF == 0">No</b>
+              </p>
+              <p>La MGF se realiza en la comunidad de origen:
+                <b *ngIf="bloque2[0].MGF_realizada_com_origen == 1">Sí</b>
+                <b *ngIf="bloque2[0].MGF_realizada_com_origen == 0">No</b>
+              </p>
+              <p *ngIf="bloque2[0].Pos_padre != NULL">Cual es el posicionamiento del padre frente a la MGF:
+                <b *ngIf="bloque2[0].Pos_padre == 1">A favor</b>
+                <b *ngIf="bloque2[0].Pos_padre == 0">En contra</b>
+              </p>
+              <p *ngIf="bloque2[0].Pos_madre != NULL">Cual es el posicionamiento de la madre frente a la MGF:
+                <b *ngIf="bloque2[0].Pos_madre == 1">A favor</b>
+                <b *ngIf="bloque2[0].Pos_madre == 0">En contra</b>
+              </p>
+              <p *ngIf="bloque2[0].Pos_familia != NULL">Cual es el posicionamiento de la familia en el pais de origen:
+                <b *ngIf="bloque2[0].Pos_familia == 1">A favor</b>
+                <b *ngIf="bloque2[0].Pos_familia == 0">En contra</b>
+              </p>
+              <p *ngIf="b2Otros != ''">Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:
+                <b>{{b2Otros}}</b>
+              </p>
+              <p *ngIf="bloque2[0].Sintomas_MGF != 'NULL'">Cual es el significado de la MGF para el implicado en el expediente:
+                <b>{{bloque2[0].Sintomas_MGF}}</b>
+              </p>
+              <p>Número de partos:
+                <b>{{bloque2[0].Num_Partos}}</b>
+                <button mat-raised-button *ngIf="bloque2[0].Num_Partos != 0" (click)="openDialog()" type="submit" name="button" class="btn-border bgColorPink">Ver Partos</button>
+              </p>
+
+            </div>
+            <div *ngIf="bloque2.length == 0">
+              <h3>No hay datos :(</h3>
+            </div>
+
+          </mat-tab>
+          <mat-tab label="Experiencias con la titular">
+            <div *ngFor="let w of bloque3">
+              <h3>Experiencias con MGF</h3>
+                <p *ngIf="w.Exp_propias !=''">Experiencias Propias:
+                  <b>{{w.Exp_propias}}</b>
+                </p>
+                <p *ngIf="w.Exp_terceros !=''">Experiencias de Terceros:
+                  <b>{{w.Exp_terceros}}</b>
+                </p>
+                <p *ngIf= "w.Mant_MGF ==1 || w.Mant_MGF ==0">Matenimiento de la MGF:
+                  <b *ngIf="w.Mant_MGF == 1">Sí</b>
+                  <b *ngIf="w.Mant_MGF == 0">No</b>
+                </p>
+                <p *ngIf="w.Mant_MGF_texto != ''">¿Por qué?
+                  <b>{{w.Mant_MGF_texto}}</b>
+                </p>
+              <h3>Conocimiento sobre consecuencias MGF</h3>
+                <p *ngIf="w.Conoc_consecM == 0 || w.Conoc_consecM == 1">Sobre la salud de las mujeres:
+                  <b *ngIf="w.Conoc_consecM == 1">Sí</b>
+                  <b *ngIf="w.Conoc_consecM == 0">No</b>
+                </p>
+                <p *ngIf="w.Otros_consecM == ''">¿Por qué?
+                  <b>{{w.Otros_consecM}}</b>
+                </p>
+                <p *ngIf="w.Conoc_consecH == 1 || w.Conoc_consecH == 0">Sobre la salud de los hombres:
+                  <b *ngIf="w.Conoc_consecH == 1">Sí</b>
+                  <b *ngIf="w.Conoc_consecH == 0">No</b>
+                </p>
+                <p *ngIf="w.Otros_consecH == ''">¿Por qué?
+                  <b>{{w.Otros_consecH}}</b>
+                </p>
+              <h3>Intervención</h3>
+              <p *ngIf="w.Formato_int != ''">Formato intervención:
+                <b>{{w.Formato_int}}</b>
+              </p>
+              <p *ngIf="w.Consejo != ''">Consejo para otros profesionales:
+                <b>{{w.Consejo}}</b>
+              </p>
+            </div>
+            <div *ngIf="bloque3.length == 0">
+              <h3>No hay datos :(</h3>
+            </div>
+          </mat-tab>
+          <mat-tab label="Exploracion genital">
+            <div *ngFor="let w of bloque4">
+              <h3>Exploración genital</h3>
+              <p *ngIf="w.Detec_MGF == 1 || w.Detec_MGF == 0">Detección MGF:
+                <b *ngIf="w.Detec_MGF == 1">Sí</b>
+                <b *ngIf="w.Detec_MGF == 0">No</b>
+              </p>
+              <p *ngIf="w.ID_Mutilacion != ''">Tipo de MGF:
+                <b>{{w.ID_Mutilacion}}</b>
+              </p>
+              <p *ngIf="w.Cicatriz_genital == 1 || w.Cicatriz_genital == 0">Cicatrices en la zona genital:
+                <b *ngIf="w.Cicatriz_genital == 1">Sí</b>
+                <b *ngIf="w.Cicatriz_genital == 0">No</b>
+              </p>
+              <p *ngIf="w.Cicatriz_genital == 1">Descripción:
+                <b>{{w.Descripcion}}</b>
+              </p>
+              <p *ngIf="w.Elasticidad != ''">Elasticidad:
+                <b>{{w.Elasticidad}}</b>
+              </p>
+              <h3>Posibles consecuencias para la salud</h3>
+              <!-- CONSECUENCIAS -->
+              <h4>Consecuencias Físicas Inmediatas</h4>
+              <div *ngFor="let c of consecSalud1">
+                <div>
+                  <p>{{c.Nombre}}</p>
+                </div>
+              </div>
+              <div *ngIf="!consecSalud1?.length">
+                <p>No hay registros</p>
+              </div>
+              <h4>Consecuencias Físicas A Largo Plazo</h4>
+              <div *ngFor="let c of consecSalud2">
+                <div>
+                  <p>{{c.Nombre}}</p>
+                </div>
+              </div>
+              <div *ngIf="!consecSalud2?.length">
+                <p>No hay registros</p>
+              </div>
+              <h4>Consecuencias Obstétrico Ginecológicas</h4>
+              <div *ngFor="let c of consecSalud4">
+                <div>
+                  <p>{{c.Nombre}}</p>
+                </div>
+              </div>
+              <div *ngIf="!consecSalud4?.length">
+                <p>No hay registros</p>
+              </div>
+              <h4>Consecuencias Psicosociales</h4>
+              <div *ngFor="let c of consecSalud5">
+                <div>
+                  <p>{{c.Nombre}}</p>
+                </div>
+              </div>
+              <div *ngIf="!consecSalud5?.length">
+                <p>No hay registros</p>
+              </div>
+              <h4>Consecuencias sobre la Sexualidad</h4>
+              <div *ngFor="let c of consecSalud6">
+                <div>
+                  <p>{{c.Nombre}}</p>
+                </div>
+              </div>
+              <div *ngIf="!consecSalud6?.length">
+                <p>No hay registros</p>
+              </div>
+              <h4 *ngIf="w.Otros != ''">Otras</h4>
+              <p *ngIf="w.Otros != ''">{{w.Otros}}</p>
+              <h3>Intervención</h3>
+              <p *ngIf="w.Formato_int != ''">Formato de la intervención:
+                <b>{{w.Formato_int}}</b>
+              </p>
+              <p *ngIf="w.Consejos != ''">Consejos:
+                <b>{{w.Consejos}}</b>
+              </p>
+            </div>
+            <div *ngIf="bloque4.length == 0">
+              <h3>No hay datos :(</h3>
+            </div>
+          </mat-tab>
+          <mat-tab label="Viajes">
+            <div *ngFor="let w of bloque5">
+              <h3>Valoración sobre posibles viajes</h3>
+              <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
+                <b *ngIf="w.Viajes == 1">Sí</b>
+                <b *ngIf="w.Viajes == 0">No</b>
+              </p>
+              <p *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:
+                <b *ngIf="w.ViajesPlanificados == 1">Sí</b>
+                <b *ngIf="w.ViajesPlanificados == 0">No</b>
+              </p>
+              <p *ngIf="w.Intervencion != ''">Descripción del formato de la intervención:
+                <b>{{w.Intervencion}}</b>
+              </p>
+              <p *ngIf="w.Consejos != ''">Consejos:
+                <b>{{w.Consejos}}</b>
+              </p>
+            </div>
+            <h3>Indicadores de sospecha de MGF en el ambito escolar</h3>
+            <div *ngFor="let i of indicadores">
+              <p>{{i.Nombre}}</p>
+            </div>
+            <div *ngIf="!indicadores?.length">
+              <p>No hay registros</p>
+            </div>
+            <div *ngIf="bloque5.length == 0">
+              <h3>No hay datos :(</h3>
+            </div>
+          </mat-tab>
+
+        </mat-tab-group>
+>>>>>>> 8c00cb745c40e5ccb1cf4e8194da0a982c9f380e
       </div>
-    </mat-tab>
-  </mat-tab-group>
+
+    </div>
+
+  </div>
+  <!-- DIV DEL ERROR-->
 </div>
 <app-footer></app-footer>
