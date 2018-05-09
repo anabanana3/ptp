@@ -22,7 +22,9 @@ export class Bloque1Component implements OnInit {
   opciones = ["NO","SI"];
   actividades= new Array();
   HayMadre:boolean = false;
+  MadreCreate:boolean = false;
   HayPadre:boolean = false;
+  PadreCreate:boolean = false;
   etnias = new Array();
   form:FormGroup;
   mensaje = '';
@@ -99,8 +101,8 @@ export class Bloque1Component implements OnInit {
 
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
-    console.log('Hola');
-    //this.prueba();
+    console.log('Hola Contructor del bloque 1');
+    console.log( this.expedienteComponent.selectedTab);
     this._expedienteService.getEtnias().subscribe(data=>this.etnias=data);
     this._expedienteService.getActividades().subscribe(data=>this.actividades=data);
 
@@ -153,31 +155,6 @@ export class Bloque1Component implements OnInit {
     });
     //this.form.controls['bloque'].setValue(this.bloque);
     console.log(this.bloque);
-   }
-   prueba(){
-     console.log('Muestro el estado inicial del Expediente ');
-     console.log(this.expediente);
-     console.log('Muestro el estado actual del titular del exp');
-     console.log(this.menor);
-     console.log('Muestro el bloque por defecto');
-     console.log(this.bloque);
-
-    //  Creo la persona
-     this._expedienteService.addPersona(this.menor).subscribe(data =>{
-       if(data.Codigo == 501){
-         location.href = '/expired';
-         return;
-       }
-       //Obtengo el id de la persona que acabamos de crear
-       let idP = data.insertId;
-       this.menor.ID_Persona = idP;
-       this.expediente.ID_Persona=idP;//Asigo ese id al expediente
-       //Creo el expediente vacio
-       this._expedienteService.addExpediente(this.expediente).subscribe(data => {
-         this.expediente.ID_Expediente = data.insertId;
-         sessionStorage.IDExp = data.insertId;
-        })
-     })
    }
 
    ngOnInit(){
@@ -261,25 +238,39 @@ guardarDatos(){
         //Falta un if para ver que la persona se crea Correctamente
         //Si se crea Correctamente
         let aux=data;
-        console.log('Muestro la respuesta de crear una persona e intento mostrar el id de insercion');
+        console.log('Muestro la respuesta de actualizar una persona e intento mostrar el id de insercion');
         console.log(data);
-        console.log(data.insertId);
+        // console.log(data.insertId);
         let idP = data.insertId;
-        this.expediente.ID_Persona=data.insertId;
+        // this.expediente.ID_Persona=data.insertId;
+        this.expediente.ID_Persona = this.menor.ID_Persona;
 
         //He introducido a la menor implicada en el expediente => introduzco a sus familiares
-        if(this.HayMadre==true){
-          this.addFamiliar(this.madre,idP, 1);
+        if(this.HayMadre == true ){
+          if(this.MadreCreate == false){
+            this.addFamiliar(this.madre,this.menor.ID_Persona, 1);
+            this.MadreCreate = true;
+          }else{
+            //Update Madre
+            this._expedienteService.updatePersona(this.madre, this.madre.ID_Persona)
+          }
         }
         if(this.HayPadre == true){
-          this.addFamiliar(this.padre, idP, 2);
+          if(this.PadreCreate == false){
+            this.addFamiliar(this.padre, this.menor.ID_Persona, 2);
+            this.PadreCreate = true;
+          }else{
+            //Update Padre
+            this._expedienteService.updatePersona(this.padre, this.padre.ID_Persona);
+          }
         }
         //Una vez creadas las relaciones de perentesco creamos los campos del bloque 1
         //this._expedienteService.addExpediente(this.expediente).subscribe(data=>{
         this._expedienteService.updateExpediente(this.expediente, this.expediente.ID_Expediente).subscribe(data=>{
           //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
           //sessionStorage.IDExp = data.insertId;
-          this._expedienteService.addBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
+          //this._expedienteService.addBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
+          this._expedienteService.updateBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
             console.log(data)
             //Por último => todo correcto cambiamos de bloque
             this.cambiarBloque();
@@ -313,6 +304,7 @@ guardarDatos2(){
   console.log('Muestro el estado inicial del bloque');
   console.log(this.bloque);
   this.getDataGoogle();
+  this.cambiarBloque();
 
 }
 
@@ -334,7 +326,7 @@ getDataGoogle(){
   }
   console.log('Lugar de nacimiento del titular');
   console.log(this.lugarVict);
-  if(this.lugarDetec.gm_accessors_.place.Jc.b == true){
+  if(this.lugarVict.gm_accessors_.place.Jc.b == true){
     //Hay datos => obtengo el pais y el lugar
     this.menor.ID_Lugar = this.lugarVict.gm_accessors_.place.Jc.place.id;
     this.menor.Sitio = this.lugarVict.gm_accessors_.place.Jc.place.name;
@@ -364,7 +356,10 @@ addFamiliar(persona, familiar, tipo){
 
 //Cambio el bloque del expediente
 cambiarBloque(){
-  console.log(this.expedienteComponent.bloque);
+  console.log('Muestro el selectedTab actual');
+  console.log(this.expedienteComponent.selectedTab);
+  // console.log(this.expedienteComponent.bloque);
+
    this.expedienteComponent.selectedTab = 1;
   //  this.expedienteComponent.bloquearPestanya(1);
   //  this.expedienteComponent.desbloquearPestaña(2);

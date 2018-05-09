@@ -17,6 +17,7 @@ export class Bloque4Component implements OnInit {
   consecuencia = new Array();
   //aqui almaceno las consecuencias seleccionadas
   consecuencias = new Array();
+  createConse = false;
   json = {
     //ID_Bloque: '',
     ID_Expediente: sessionStorage.IDExp,//sessionStorage.IDExp,
@@ -133,22 +134,31 @@ guardarDatos2(form){
         }
       }
     }
-    this._expedienteService.addBloque4(this.json).subscribe(data =>{
+    this._expedienteService.updateBloque4(this.json).subscribe(data =>{
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
         console.log(data);
-        let bloque = data.insertId;
-        this._expedienteService.addConsecuenciasSalud(this.json.ID_Expediente, bloque, this.consecuencias).subscribe(data => {
-          console.log(data);
-        });
-        if(data.warningCount == 0){
+        let bloque = sessionStorage.bloque4;
+        if(this.createConse == false){
+          this._expedienteService.addConsecuenciasSalud(this.json.ID_Expediente, bloque, this.consecuencias).subscribe(data => {
+            this.createConse = true;
+            console.log(data);
+            if(data.warningCount == 0){
 
-          this.mensaje = 'Guardado correctamente!';
-          document.getElementById('alert').className = 'alert alert-success';
-          //Despues de guardar, borrar el Array
-          this.consecuencias = [];
-          //this.expedienteComponent.bloque = 5;
+              this.mensaje = 'Guardado correctamente!';
+              document.getElementById('alert').className = 'alert alert-success';
+              //Despues de guardar, borrar el Array
+              this.consecuencias = [];
+              //this.expedienteComponent.bloque = 5;
+            }
+          });
+
+        }else{
+          //Actualizo las consecuencias porque ya estaban creadas
+          this._expedienteService.updateConsecuenciasSalud(this.json.ID_Expediente, bloque, this.consecuencias).subscribe(data => {
+            console.log(data);
+          });
         }
         this.cambiarBloque();
       }

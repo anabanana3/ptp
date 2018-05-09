@@ -63,6 +63,7 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
   }
 
   updatePersona(p, idPer){
+    console.log('Actualizo la persona');
     let token =  sessionStorage.token;
     let headers = new Headers({
       'Content-Type':'application/json',
@@ -126,6 +127,22 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
 
   }
 
+  updateBloque(bloque, idE){
+    console.log('Actualizo el bloque 1');
+    let token =  sessionStorage.token;
+    //console.log(token);
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    bloque.ID_Expediente=idE;
+    let body = JSON.stringify(bloque),
+        url = this.urlBloque+'/'+idE;
+    return this.http.put(url, body, {headers}).map(res=>{
+      return res.json();
+    })
+  }
+
   addFamiliar(persona, familiar, tipo){
     let body={
       ID_Persona:parseInt(persona),
@@ -156,6 +173,21 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
     })
   }
 
+  updateBloque2(bloque, idBloque){
+    let token = sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    console.log('Actualizo el bloque2 Servicio');
+    let url = this.urlBloque2+'/'+idBloque;
+    console.log(url);
+
+    return this.http.put(url, bloque, {headers}).map(res=>{
+      return res.json();
+    })
+  }
+
   addParto(parto){
     let token = sessionStorage.token;
     let headers = new Headers({
@@ -168,7 +200,19 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
     })
   }
 
-// TODO: Implementar estas dos funciones
+updateParto(parto){
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let url = this.urlPartos+'/'+parto.ID_Parto;
+
+  return this.http.put(url, parto, {headers}).map(res=>{
+    console.log(res.json());
+    return res.json();
+  })
+}
 
 //Funcion para añadir todas las complicacione que ha selecionado el usuario
   addCompMadreParto(idP, sel){
@@ -193,6 +237,27 @@ addCompNacidoParto(idP, sel){
   return this.http.post(url, sel, {headers}).map(res => res.json());
 }
 
+updateCompMadreParto(idP, sel){
+  let url = this.urlPartos+'/complicacionesMadre/'+idP;
+  let token =  sessionStorage.token;
+  //console.log(token);
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  return this.http.put(url, sel, {headers}).map(res=>res.json());
+}
+updateCompNacidoParto(idP, sel){
+  let url = this.urlPartos+'/complicacionesNacido/'+idP;
+  let token =  sessionStorage.token;
+  //console.log(token);
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  return this.http.put(url, sel, {headers}).map(res => res.json());
+}
+
   addbloque5(bloque){
     console.log('Muestro lo que recibo en el servicio');
     console.log(bloque);
@@ -210,6 +275,17 @@ addCompNacidoParto(idP, sel){
       return res.json();
     });
   }
+
+  updatebloque5(bloque){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = this.urlBloque5+'/'+bloque.ID_Expediente;
+
+    return this.http.put(url, bloque, {headers}).map(res=>res.json());
+  }
   addBloque3(bloque){
     let body = JSON.stringify(bloque);
     console.log('Muestro lo que recibo en el servicio');
@@ -224,6 +300,16 @@ addCompNacidoParto(idP, sel){
             return res.json();
     });
   }
+
+  updateBloque3(bloque){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = this.urlBloque3+'/'+bloque.ID_Expediente;
+    return this.http.put(url, bloque , {headers}).map(res=>res.json())
+  }
   addBloque4(bloque){
     let body = JSON.stringify(bloque);
     console.log('Muestro lo que recibo en el servicio');
@@ -237,6 +323,18 @@ addCompNacidoParto(idP, sel){
             return res.json();
     })
   }
+
+  updateBloque4(bloque){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = this.urlBloque4+'/'+bloque.ID_Expediente;
+    return this.http.put(url, bloque, {headers}).map(res=>{
+            return res.json();
+    })
+  }
   addIndicadores(exp, bloque, sel){
     let token =  sessionStorage.token;
     let headers = new Headers({
@@ -245,6 +343,18 @@ addCompNacidoParto(idP, sel){
     });
     let url = `${this.urlBloque5}/indicadores/idB=${bloque}&idE=${exp}`;
     return this.http.post(url, sel,{headers}).map(res=>{
+      return res.json();
+    })
+  }
+
+  updateIndicadores(exp, bloque, sel){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = `${this.urlBloque5}/indicadores/idB=${bloque}&idE=${exp}`;
+    return this.http.put(url, sel,{headers}).map(res=>{
       return res.json();
     })
   }
@@ -283,6 +393,18 @@ addCompNacidoParto(idP, sel){
     });
     let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
     return this.http.post(url, sel,{headers}).map(res=>{
+      return res.json();
+    })
+  }
+
+  updateConsecuenciasSalud(exp,bloque,sel){
+    let token =  sessionStorage.token;
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization':token
+    });
+    let url = `${this.urlBloque4}/consecuencias/id=${exp}&b=${bloque}`;
+    return this.http.put(url, sel,{headers}).map(res=>{
       return res.json();
     })
   }

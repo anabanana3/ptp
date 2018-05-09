@@ -53,7 +53,7 @@ export class VerExpedienteComponent implements OnInit {
   estaCheck = false;
   labelPublico = "Publicar expediente";
   coment = 0;
-  error:boolean = true;
+  
 
   asociacion:boolean = false;
   admin:boolean = false;
