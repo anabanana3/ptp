@@ -70,7 +70,7 @@
           <b>{{m.Etnia}}</b>
         </p>
         <p>Lugar de nacimiento:
-          <b>{{m.ID_Lugar.split("'")[1]}}</b>
+          <!--<b>{{m.ID_Lugar.split("'")[1]}}</b>-->
         </p>
       </div>
       <div *ngIf="!madre?.length" class="madre">
@@ -376,8 +376,8 @@
       <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
       <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
       <div *ngIf="coment==1" class="coment" id="coment">
-        <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()">
-        <label class="labeltrans" for="comentarios">Permitir comentarios</label>
+        <input type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="tieneComent">
+        <label for="comentarios">Permitir comentarios</label>
       </div>
     </mat-tab>
   </mat-tab-group>

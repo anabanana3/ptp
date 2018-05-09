@@ -8,7 +8,7 @@ function iniciarMotor(){
 
   //let piernas = GFachada.crearMallaCompleto("Piernas", "VaginaSinTipo.obj", "material.mtl");
   //let tipo2 = GFachada.crearMallaCompleto("Tipo2", "Tipo2Solo.obj", "material.mtl", "WEBGL.png");
-  let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
+  let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
 
   setTimeout(() => {
