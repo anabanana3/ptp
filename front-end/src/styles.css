@@ -1249,6 +1249,80 @@ option{
   height: 40px;
 }
 
+/*Ver Exp **/
+
+.gridVerExp{
+  display: grid;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 100%;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.infoExp{
+  grid-column-start: 1;
+  /* autoprefixer: off */
+  grid-column-end: 2;
+  grid-row-start: 1;
+  /* autoprefixer: off */
+  grid-row-end:2;
+  padding: 10px 0px 0px 20px;
+}
+
+.datosExp{
+  grid-column-start: 2;
+  /* autoprefixer: off */
+  grid-column-end: 3;
+  grid-row-start: 1;
+  /* autoprefixer: off */
+  grid-row-end:2;
+}
+
+.divVerExp{
+  display: inline-block;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom:1%;
+  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  width: 100%;
+  padding: 20px;
+}
+
+.divLabelsVer{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.divExpVer{
+  margin-bottom: 3px;
+  width: 45.7%;
+}
+
+.textleft{
+  text-align: left;
+}
+
+.divBlancoVerExp {
+  background: #FFFFFF;
+  padding: 0px;
+  margin: 0 auto;
+  width: 90%;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  border-radius: 8px;
+}
+
+.permisosVerExp{
+  margin-top:24px;
+}
+
 /*Mis Expedientes*/
 .gridContainer{
   display: grid;
@@ -1734,13 +1808,26 @@ option{
 }
 
 .comentario{
-  width: 60%;
+  width: 90%;
+  border-radius: 4px;
   margin: auto;
   text-align: left;
   padding: 2%;
-  box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
   background-color: white;
   margin-top: 2%;
+}
+
+.sliderComentarios{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
+  padding-bottom:10px;
+  overflow: scroll;
 }
 
 .comentarioTitulo{
