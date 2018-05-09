@@ -400,6 +400,10 @@ canvas{
   margin:37px 30px;
   margin-right:0px;
 }
+.grafana{
+  float: left;
+  margin-bottom: 10px;
+}
 
 .textoRecursos{
   line-height: 16px;
@@ -1615,13 +1619,20 @@ option{
   margin-bottom:8px;
 }
 
+.paraInput{
+  margin-bottom:10px;
+  width: 100%;
+}
+
 .seguro{
   margin: 20px 0px;
   color:black;
 }
 /* The Close Button */
 #close,
-#closeExp {
+#closeExp,
+#closeCarpeta,
+#closeModifyCarpeta {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -1631,7 +1642,11 @@ option{
 #close:hover,
 #close:focus,
 #closeExp:hover,
-#closeExp:focus {
+#closeExp:focus,
+#closeCarpeta:hover,
+#closeCarpeta:focus,
+#closeModifyCarpeta:hover,
+#closeModifyCarpeta:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

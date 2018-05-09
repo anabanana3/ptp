@@ -30,13 +30,11 @@ export class HeaderAsociacionComponent implements OnInit {
 
   myFunction() {
       var x = document.getElementById("myTopnav");
-      if (x.hasOwnProperty('className')) {
         if (x.className === "menuNav") {
             x.className += " responsive";
         } else {
             x.className = "menuNav";
         }
-      }
 
   }
 }
