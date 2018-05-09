@@ -1,4 +1,5 @@
 function iniciarMotor(){
+  //PRUEBA GIT
   GFachada = new TFachadaMotor();
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
