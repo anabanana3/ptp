@@ -219,6 +219,8 @@ export class Bloque1Component implements OnInit {
     console.log(this.sitiosGoogle);
     console.log(this.lugarVict);
     console.log(this.lugarDetec);
+    console.log('Probando cosas');
+    console.log(this.expediente);
   }
 // TODO: Ahora los metodos de addPersona y addExpediente van a ser UPDATES, ya que el expiente ya lo voy a tener creado de antemano
 guardarDatos(){
@@ -230,6 +232,8 @@ guardarDatos(){
   if(this.form.valid == true){
     this.getDataGoogle();
     // this._expedienteService.addPersona(this.menor).subscribe(data=>{
+    this.menor.ID_Persona = sessionStorage.Persona;
+    this.expediente.ID_Expediente = sessionStorage.IDExp;
     this._expedienteService.updatePersona(this.menor, this.menor.ID_Persona).subscribe(data=>{
       //TODO: Solo comprobamos una vez si ha caducado la sesion para que se almacene toda la informacion y no se quede a mitad el expediente
       if(data.Codigo == 501){
