@@ -126,6 +126,8 @@ class TShader extends TRecurso {
     this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
+    //texturas
+    //this.progama.uSampler = gl.getUniformLocation(this.progama, "uSampler");
 
   }
 

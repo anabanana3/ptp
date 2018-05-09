@@ -51,6 +51,7 @@ export class VerExpedienteComponent implements OnInit {
   mensaje:string = '';
   sessionStorageID;
   estaCheck = false;
+  tieneComent = false;
   labelPublico = "Publicar expediente";
   coment = 0;
 
@@ -138,7 +139,6 @@ export class VerExpedienteComponent implements OnInit {
         this._expedientesService.getConsecM(this.partos[i].ID_Parto).subscribe(dataM=>{
           this.auxM.push(dataM);
         })
-        // ESTA PUTA MIERDA ESTA MAL HECHA
         this._expedientesService.getConsecN(this.partos[i].ID_Parto).subscribe(dataN=>{
           this.auxN.push(dataN);
         })
@@ -269,7 +269,11 @@ export class VerExpedienteComponent implements OnInit {
     }
   }
   publicar(){
-    this._expedientesService.publicar(this.expID).subscribe(data=>{
+    let datos = {
+      ID_Publico: this.expID,
+      Comentario: 0
+    }
+    this._expedientesService.publicar(datos).subscribe(data=>{
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
