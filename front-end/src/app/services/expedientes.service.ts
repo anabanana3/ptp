@@ -705,29 +705,14 @@ getIndicadoresById(id){
     return res.json();
   })
 }
-publicar(datos){
-  let body = JSON.stringify(datos);
+publicar(id){
   let token =  sessionStorage.token;
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':token
   });
-  let publico = this.urlPublicar;
-  //return this.http.get(publico, {headers}).map(res=>{
-  return this.http.post(publico, body, {headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
-comentarios(datos){
-  let body = JSON.stringify(datos);
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let publico = this.urlPublicar+'/';//?????
-  return this.http.put(publico, body, {headers}).map(res=>{
+  let publico = this.urlPublicar+'/'+id;
+  return this.http.get(publico, {headers}).map(res=>{
     console.log(res.json());
     return res.json();
   })
