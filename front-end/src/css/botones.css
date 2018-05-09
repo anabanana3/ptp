@@ -169,4 +169,74 @@ button:hover{
   color:#880042;
 }
 
+.boton-flotante {
+  width:60px;
+  height:60px;
+  border-radius:100%;
+  background:#F44336;
+  left:0;
+  top:0;
+  position:absolute;
+  margin-left:16px;
+  margin-top:16px;
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:36px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;
+}
+#tipo1 {
+  background: blue;
+  margin-left: 90px;
+  transition: 0.5s;
+}
+#tipo2 {
+  background: blue;
+  margin-left: 140px;
+  transition: 0.5s;
+}
+#tipo3 {
+  background: blue;
+  margin-left: 190px;
+  transition: 0.5s;
+}
+#tipo4 {
+  background: blue;
+  margin-left: 240px;
+  transition: 0.5s;
+}
+#span {
+  text-align: center;
+  font-size: 20px;
+  transition: .5s;
+}
+.contenedor{
+  width: 240px;
+  height: 90px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.botones-flotantes-min{
+  width:40px;
+  height:40px;
+  border-radius:100%;
+  border:none;
+  color:#FFF;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size:28px;
+  outline:none;
+  position:absolute;
+  left:0;
+  top:0;
+  margin-top:25px;
+  transform:scale(0);
+}
+
+.animacion-flotante {
+  transform: scale(1);
+}
+
 /**   FONTELLO    **/

@@ -37,11 +37,26 @@ export class MotorGraficoComponent implements AfterViewInit {
 
   ngAfterViewInit(){
     new iniciarMotor();
+    //contador visitas
     let visita = {
       ID_Usuario: sessionStorage.iD
     }
     this._userService.visitasModelo3D(visita).subscribe(data=>{
     });
+  }
+
+  hola(){
+    document.getElementById("tipo1").setAttribute("class", "animacion-flotante botones-flotantes-min");
+    document.getElementById("tipo2").setAttribute("class", "animacion-flotante botones-flotantes-min");
+    document.getElementById("tipo3").setAttribute("class", "animacion-flotante botones-flotantes-min");
+    document.getElementById("tipo4").setAttribute("class", "animacion-flotante botones-flotantes-min");
+  }
+
+  adios(){
+    document.getElementById("tipo1").setAttribute("class", "botones-flotantes-min");
+    document.getElementById("tipo2").setAttribute("class", "botones-flotantes-min");
+    document.getElementById("tipo3").setAttribute("class", "botones-flotantes-min");
+    document.getElementById("tipo4").setAttribute("class", "botones-flotantes-min");
   }
 
   tipo1(){
