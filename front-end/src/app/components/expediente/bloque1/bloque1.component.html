@@ -86,7 +86,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   <!-- <hr> -->
   <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <div class="grupoForm" formGroupName="madre">
-    <h2 class="text16 textPink">DATOS SOBRE LA MADRE
+    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre">DATOS SOBRE LA MADRE
       <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
       <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
     </h2>
@@ -150,7 +150,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
-    <h2 class="text16 textPink">DATOS SOBRE EL PADRE
+    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre">DATOS SOBRE EL PADRE
       <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
       <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
     </h2>

@@ -37,7 +37,7 @@ export class Bloque3Component implements OnInit {
       document.getElementById('alert').className = 'alert alert-danger';
       return;
     }else{
-      this._expedienteService.addBloque3(this.json).subscribe(data =>{ console.log(data);
+      this._expedienteService.updateBloque3(this.json).subscribe(data =>{ console.log(data);
         if(data.Codigo == 501){
           location.href ='/expired';
         }else{
