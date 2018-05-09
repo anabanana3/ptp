@@ -222,15 +222,15 @@ export class UserService {
           })
   }
 
-  filtroUsuarios(tabla, nombre, email, profesion, numPag, tamPag){
+  filtroUsuarios(tabla, nombre, email, profesion, asociacion, numPag, tamPag){
     let urlAPI:string = "https://aisha.ovh/api/";
     let url;
     if(tabla === 0)
-      url = `${urlAPI}solicitantes/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+      url = `${urlAPI}solicitantes/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
     else if(tabla === 1)
-      url = `${urlAPI}registrados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+      url = `${urlAPI}registrados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
     else if(tabla === 2)
-      url = `${urlAPI}cancelados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}/pag=${numPag}&n=${tamPag}`;
+      url = `${urlAPI}cancelados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
 
     let token = sessionStorage.getItem('token');
 

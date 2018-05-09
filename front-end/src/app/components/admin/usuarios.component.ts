@@ -205,7 +205,7 @@ export class UsuariosAdminComponent {
       return;
     }
 
-    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, 1, this.tamPag)
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, searchAsociacion, 1, this.tamPag)
       .subscribe(data => {
         if(data.Codigo == 501){
             location.href = '/expired';

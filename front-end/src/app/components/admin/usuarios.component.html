@@ -30,7 +30,7 @@
       </select>
       <select [(ngModel)]="searchAsociacion" name="asociacion" id="asociacion" (change)="filter()">
         <option value="0"> Seleccione Asociación </option>
-        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Profesion}}">
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
           {{asociaciones[k].Nombre}}
         </option>
       </select>

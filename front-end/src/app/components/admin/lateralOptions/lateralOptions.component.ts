@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 export class LateralOptionsComponent{
 
   expanded:boolean = false;
-  option = 1;
+  option = 2;
   error:boolean = true;
-  
+
   constructor(){
     if(sessionStorage.getItem('iD') !== '44'){
       return;

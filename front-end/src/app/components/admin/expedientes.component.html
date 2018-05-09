@@ -2,39 +2,29 @@
   <h1>Administración de Expedientes</h1>
   <hr><br>
   <div class="searchBar">
-    <form (ngSubmit)="buscar(1,10)">
-      <label for="autor">Autor</label>
-      <input [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
-      <label for="profesion">Profesion del autor</label>
-      <select [(ngModel)]="Filtros.Profesion" name="Profesion">
+    <form (ngSubmit)="buscar(1)" class="formAdmin">
+      <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor" placeholder="Autor">
+      <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesion">
         <option value="0">Selecione una profesión</option>
         <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
       </select>
-      <label for="titulo">Titulo</label>
-      <input [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo">
+      <input class="sizeinput" [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo" placeholder="Titulo">
 
-      <label for="f1">Desde</label>
-      <input [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
-      <label for="f2">Hasta</label>
-      <input [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+      <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1" placeholder="Desde">
+      <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2" placeholder="Hasta">
+      <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar" placeholder="Lugar">
 
-      <label for="lugar"> Lugar de detección </label>
-      <input [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
-
-      <label for="etnia">Etnia de origen</label>
-      <select [(ngModel)]="Filtros.Etnia" name="Etnia">
+      <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
         <option value="0">Seleccione la etnia</option>
         <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
       </select>
 
-      <label for="tipoMGF">Tipo de MGF</label>
-      <select [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+      <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
         <option value="0">Seleccione el tipo de MGF</option>
         <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
       </select>
 
       <button class="btn-relleno" type="submit" name="button">Buscar</button>
-
     </form>
   </div>
   <div>
@@ -54,10 +44,6 @@
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.Fecha.split('T')[0]}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="lugar">
-            <mat-header-cell *matHeaderCellDef> Lugar </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID_Lugar.split("'")[1]}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="options">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>

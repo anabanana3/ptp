@@ -60,7 +60,12 @@ const app_routes: Routes = [
     data: { title: 'profile' }
   },
   {
-    path: 'user',
+    path: 'asociacion/user',
+    component: HistoricoComponent,
+    data:{title: 'Historico'}
+  },
+  {
+    path: 'admin/user',
     component: HistoricoComponent,
     data:{title: 'Historico'}
   },
