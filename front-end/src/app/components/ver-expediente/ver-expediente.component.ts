@@ -54,6 +54,7 @@ export class VerExpedienteComponent implements OnInit {
   labelPublico = "Publicar expediente";
   coment = 0;
 
+
   asociacion:boolean = false;
   admin:boolean = false;
   usuario:boolean = false;

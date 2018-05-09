@@ -10,14 +10,16 @@
   </div>
   <div *ngIf="usuario">
     <app-header></app-header>
-  </div>  
+  </div>
 
-  <button [routerLink]="['/recursos']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button>
-  <h3>Añadir Recurso</h3>
-
+  <div class="espacio"></div>
+  <div class="espacio"></div>
   <div class="divBlanco bgColorWhite">
     <div id="alert">{{mensaje}}</div>
+  <header>
+    <h1 class="textPink">Añadir un Recurso</h1>
+  </header>
+  <div class="lineaDiv"></div>
 
     <form (ngSubmit)="newRecurso(forma)" #forma="ngForm">
       <div class="camposForm">
@@ -49,7 +51,7 @@
           value="{{recurso.Descripcion}}"
           required>
         </textarea>
-        <label for="publicar" *ngIf="idEditar === undefined">Publicar:</label>
+        <label for="publicar" *ngIf="idEditar === undefined">¿Quiere que su recurso se haga público para toda la comunidad Aisha?:</label>
         <div class="radioButtons" *ngIf="idEditar === undefined">
           <label for="si">Sí</label>
           <input [(ngModel)]="recurso.Publico" type="radio" name="si" value="1" id="si">
@@ -78,8 +80,14 @@
         *ngIf="idEditar !== undefined">
         Actualizar Recurso
       </button>
+      <br>
+      <button [routerLink]="['/recursos']"type="button" name="button" class="btn-relleno-negro">
+        Cancelar
+      </button>
+      <div class="espacio"></div>
     </form>
   </div>
+  <div class="espacio"></div>
 
   <app-footer></app-footer>
 </div>

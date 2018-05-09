@@ -35,7 +35,7 @@ export class Bloque2Component implements OnInit {
 
 //Campos del bloque2
 bloque2={
-  ID_Bloque:'',
+  ID_Bloque:sessionStorage.bloque2,
   ID_Expediente:sessionStorage.IDExp,
   Conoce_MGF:2,
   MGF_realizada_com_origen:2,
@@ -51,8 +51,12 @@ bloque2={
 }
 datosPartos = new Array();
 
+partosCreate = false;
+
     constructor(private _expedienteService:ExpedientesService,
     private expedienteComponent:ExpedienteComponent, public dialog: MatDialog) {
+      console.log('Contructor del bloque 2')
+      console.log(sessionStorage);
       console.log(sessionStorage.IDExp)
       console.log(this.bloque2.ID_Expediente);
     this._expedienteService.getFormulasObstreticas().subscribe(data=>{
@@ -62,9 +66,6 @@ datosPartos = new Array();
     this._expedienteService.getTipoMutilacion().subscribe(data => this.tiposMutilacion = data);
     this._expedienteService.getCompMadre().subscribe(data => this.compMadre = data);
     this._expedienteService.getCompNacido().subscribe(data => this.compNacido = data);
-
-
-
    }
 
 
@@ -79,52 +80,64 @@ datosPartos = new Array();
   }
   // TODO: falta añadoir las complicacioes de la madre y del recien nacido
   guardarDatos(form){
+    console.log('Guardo datos');
     this.bloque2.ID_Expediente = sessionStorage.IDExp;
     //Ya tengo todos los datos que hacen falta
     //Pasos => Crear Bloque => crear Parto => Asociar el Parto al bloque2 (de uno en uno)
     //Valido la informacion del formulario
-    this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
+    this._expedienteService.updateBloque2(this.bloque2, this.bloque2.ID_Bloque).subscribe(data=>{
+    // this._expedienteService.addBloque2(this.bloque2).subscribe(data=>{
       //Solo realizamos una comprobacion para que todo el proceso de almacenar la información no se quede a mitad
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
         console.log(data);
-        let bloque = data.insertId;
+        this.bloque2.ID_Bloque = sessionStorage.bloque2;
+        let bloque = this.bloque2.ID_Bloque;
         //Ver si existen los partos
         if(this.datosPartos.length >0){
           //Creo los partos
-          for(let i=0; i<this.datosPartos.length; i++){
-            this.datosPartos[i].Id_Bloque= bloque;
-            console.log(this.datosPartos[i]);
-            this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
-              console.log(data);
-              let idParto = data.ID_Parto;
-              console.log('Muestro el id del parto que acabo de crear');
-              console.log(idParto);
-              //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
-              //Miro si ha selecionado alguna complicacion
-              if(this.datosPartos[i].CompMadre.length>0){
-                this.getCompMadreSel(i);
-                // TODO: Implementar las funciones del ExpedientesService
-                console.log('Muestro el id del parto que voy a mandar');
+          if(this.partosCreate == false){
+            for(let i=0; i<this.datosPartos.length; i++){
+              this.datosPartos[i].Id_Bloque= bloque;
+              console.log(this.datosPartos[i]);
+              this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
+                this.partosCreate = true;
+                console.log('Muestro la informacion que me devuelve al crear un parto!!!!!!!!!!');
+                console.log(data);
+                let idParto = data.ID_Parto;
+                this.datosPartos[i].ID_Parto = idParto;
+                console.log('Muestro el id del parto que acabo de crear');
                 console.log(idParto);
-                this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
-                  console.log('Info sobre las complicaciones de la madre');
-                  console.log(data);
-                });
-              }
-              //Miro si se ha selecionado alguna complicacion
-              if(this.datosPartos[i].compNacido.length>0){
-                this.getCompNacidoSel(i);
-                this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
-                  console.log('Info sobre las complicaciones del nacido');
-                  console.log(data);
-                  //Cambio el bloque
-                  //this.cambiarBloque();
-                  // this.expedienteComponent.bloque = 3;
-                })
-              }
-            })
+                //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
+                //Miro si ha selecionado alguna complicacion
+                if(this.datosPartos[i].CompMadre.length>0){
+                  this.getCompMadreSel(i);
+                  // TODO: Implementar las funciones del ExpedientesService
+                  console.log('Muestro el id del parto que voy a mandar');
+                  console.log(idParto);
+                  this._expedienteService.addCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
+                    console.log('Info sobre las complicaciones de la madre');
+                    console.log(data);
+                  });
+                }
+                //Miro si se ha selecionado alguna complicacion
+                if(this.datosPartos[i].compNacido.length>0){
+                  this.getCompNacidoSel(i);
+                  this._expedienteService.addCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
+                    console.log('Info sobre las complicaciones del nacido');
+                    console.log(data);
+                    //Cambio el bloque
+                    //this.cambiarBloque();
+                    // this.expedienteComponent.bloque = 3;
+                  })
+                }
+              })
+            }
+          }else{
+            //Actualizo los partos=> Pensar como hacerlo
+            console.log('Actualizo los partos')
+            this.updatePartos(bloque);
           }
         }
         this.cambiarBloque();
@@ -171,8 +184,39 @@ datosPartos = new Array();
 //     }
 //   }
 // }
+
+//FUNCION PARA ACTUALIZAR LOS PARTOS
+updatePartos(bloque){
+  console.log(this.datosPartos);
+  for(let i=0; i<this.datosPartos.length; i++){
+      this._expedienteService.updateParto(this.datosPartos[i]).subscribe(data=>{
+      console.log(data);
+      let idParto = this.datosPartos[i].ID_Parto;
+      //Una vez creo el parto añado las complicaciones del nacido y del madre que ha selecionado el usuario
+      //Miro si ha selecionado alguna complicacion
+      if(this.datosPartos[i].CompMadre.length>0){
+        this.getCompMadreSel(i);
+        this._expedienteService.updateCompMadreParto(idParto, this.compMadreSel).subscribe(data=>{
+          console.log('Info sobre las complicaciones de la madre');
+          console.log(data);
+        });
+      }
+      //Miro si se ha selecionado alguna complicacion
+      if(this.datosPartos[i].compNacido.length>0){
+        this.getCompNacidoSel(i);
+        this._expedienteService.updateCompNacidoParto(idParto, this.compNacidoSel).subscribe(data=>{
+          console.log('Info sobre las complicaciones del nacido');
+          console.log(data);
+        })
+      }
+    })
+  }
+}
+
+
 //Funcion para obtener las complicaciones de la madre que ha selecionado el usuario
   getCompMadreSel(n){
+    this.compMadreSel = new Array();
     for(let i=0; i<this.datosPartos[n].CompMadre.length; i++){
       if(this.datosPartos[n].CompMadre[i] == true){
         this.compMadreSel.push(i+1);
@@ -182,6 +226,7 @@ datosPartos = new Array();
 
   //Funcion para obtener las complicaciones del recien nacido que seleciona el usuario
   getCompNacidoSel(n){
+    this.compNacidoSel = new Array();
     for(let i=0; i<this.datosPartos[n].compNacido.length; i++){
       if(this.datosPartos[n].compNacido[i] == true){
         this.compNacidoSel.push(i+1);
@@ -350,6 +395,7 @@ export class Popup2 {
 }
 
 class Parto{
+  ID_Parto = null;
    ID_Expediente:number=sessionStorage.IDExp;
    Id_Bloque:number;
    Edad_Madre:number=0;
@@ -360,7 +406,7 @@ class Parto{
    Duracion_Parto:number=0;
    ID_Formula:number = 6;
    Test_APGAR:number=0;
-   ID_Tipo:number=0;
+   ID_Tipo:number=1;
    ID_Mutilacion:number= 5;
    CompMadre:number[];
    compNacido:number[];

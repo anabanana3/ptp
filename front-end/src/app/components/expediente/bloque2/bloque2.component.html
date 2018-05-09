@@ -1,7 +1,7 @@
 <!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
 almacene en la base de datos
 el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
-<form (ngSubmit)="guardarDatos2(form)"#form="ngForm">
+<form (ngSubmit)="guardarDatos(form)"#form="ngForm">
   <div id="alert">{{mensaje}}</div>
   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
   <div class="divLabels">
@@ -100,7 +100,7 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 
     <label>Formato de intervención:</label>
-    <span matTooltip="Texto libre para indicar cual a sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+    <span matTooltip="Texto libre para indicar cual ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Formato de intervención"></textarea>
 
     <label>Consejos para otros profesionales:</label>
