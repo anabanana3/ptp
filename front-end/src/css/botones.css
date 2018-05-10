@@ -173,7 +173,7 @@ button:hover{
   width:60px;
   height:60px;
   border-radius:100%;
-  background:#F44336;
+  background:#880042;
   left:0;
   top:0;
   position:absolute;
@@ -185,24 +185,25 @@ button:hover{
   font-size:36px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition:.3s;
+  padding-bottom: 5%;
 }
 #tipo1 {
-  background: blue;
+  background: #0C8A9C;
   margin-left: 90px;
   transition: 0.5s;
 }
 #tipo2 {
-  background: blue;
+  background: #0C8A9C;
   margin-left: 140px;
   transition: 0.5s;
 }
 #tipo3 {
-  background: blue;
+  background: #0C8A9C;
   margin-left: 190px;
   transition: 0.5s;
 }
 #tipo4 {
-  background: blue;
+  background: #0C8A9C;
   margin-left: 240px;
   transition: 0.5s;
 }
@@ -233,6 +234,7 @@ button:hover{
   top:0;
   margin-top:25px;
   transform:scale(0);
+  padding-bottom: 5%;
 }
 
 .animacion-flotante {

@@ -17,6 +17,11 @@ class TFachadaMotor {
     return nodo;
   }
   borrarNodo(nodo){
+    for (var i = 0; i < this.objetos.length; i++) {
+      if(this.objetos[i].nombre != "Piernas"){
+        this.objetos.splice(i,1);
+      }
+    }
     let padre = nodo.getPadre();
     padre.removeHijo(nodo);
   }
@@ -97,7 +102,9 @@ class TFachadaMotor {
     nodo.setEntidad(entMalla);
     entMalla.malla = this.gestor.getRecurso(ficheroMalla, "malla");
     entMalla.material = this.gestor.getRecurso(ficheroMaterial, "material");
-    entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
+    if(ficheroTextura){
+      entMalla.textura = this.gestor.getRecurso(ficheroTextura, "textura");
+    }
     return nodo;
   }
   crearMallaCompleto(nombre, ficheroMalla, ficheroMaterial, ficheroTextura){
@@ -105,7 +112,7 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaMalla", escala, this.crearTransform());
     let trasla = this.crearNodo("TraslaMalla", rota, this.crearTransform());
     let malla = this.crearMalla(nombre, ficheroMalla, ficheroMaterial, ficheroTextura, trasla);
-    escala.entidad.escalar(0.03,0.03,0.03);
+    escala.entidad.escalar(0.1,0.1,0.1);
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
