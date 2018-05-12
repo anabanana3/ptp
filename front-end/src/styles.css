@@ -731,34 +731,6 @@ canvas{
   margin-left: 6%;
 }
 
-.divBlancoExpPcpal{
-  background: #FFFFFF;
-  padding: 0px;
-  margin: 0 auto;
-  width: 67%;
-  padding-bottom: 10px;
-  margin-top: 30px;
-  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
-  border-radius: 8px;
-}
-
-.divBlancoRegistro {
-    background: #FFFFFF;
-    z-index: -9999;
-    position: absolute;
-    padding: 0px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    /* margin: 0 auto; */
-    width: 50%;
-    padding-bottom: 10px;
-    margin-top: 30px;
-    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
-    border-radius: 8px;
-}
-
 .divContainerPopUp{
   display: flex;
   flex-wrap: wrap;

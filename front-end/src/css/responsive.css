@@ -142,9 +142,9 @@
 
 @media (max-width: 481px) {
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-  html{
+  /* html{
     max-width: 320px;
-  }
+  } */
   h1{font-size: 16px;}
 
   .botonesPrincipal{
@@ -193,6 +193,10 @@
     text-align: left;
     padding: 2%;
     margin-left: 0.3em;
+  }
+
+  .divAdmin-content{
+    margin: 0;
   }
 
   .divError{

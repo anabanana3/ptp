@@ -133,7 +133,6 @@ export class HomeAsociaciones{
           location.href = '/expired';
         }else{
           this.loading = false;
-          this.tabla = 1
           this.user = data.Data;
           this.tamPag = data.Elemetos_Pagina;
           this.paginacion(parseInt(data.Pagina), data.Paginas_Totales);
