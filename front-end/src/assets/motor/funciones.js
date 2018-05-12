@@ -9,8 +9,7 @@ function iniciarMotor(){
   //GFachada.rotar(camara1, 3, 0, 0, 1);
   //GFachada.trasladar(camara1, 0,0,-20);
   let luz1 = GFachada.crearLuzCompleto("luz1");
-
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "cesped.jpg");
+  
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
