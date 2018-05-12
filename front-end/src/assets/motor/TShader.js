@@ -41,6 +41,7 @@ class TShader extends TRecurso {
 
   configure(){
     this.gl.clearColor(0.5, 0.5,0.5,1.0); //color del fondo
+    this.gl.clearColor(1, 1, 1,1.0); //color del fondo
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.depthFunc(this.gl.LEQUAL);
@@ -109,6 +110,8 @@ class TShader extends TRecurso {
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
 
+    this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
+    //this.programa.uShininess = gl.getUniformLocation(this.programa, "uSampler");
   }
 
   initLights(){
