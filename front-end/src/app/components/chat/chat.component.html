@@ -51,23 +51,22 @@
         <img>
         <div *ngIf="mensajes.length > 0">
         <div *ngFor="let m of mensajes">
-        <div class=lineaChat>
-          <div *ngIf="m.Autor == ID_Usuario" class=" mensaje rigth" >
-            <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
-            <span class="text16">{{m.Texto}}</span>
-            <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
+          <div class=lineaChat>
+            <div *ngIf="m.Autor == ID_Usuario" class=" mensaje rigth" >
+              <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
+              <span class="text16">{{m.Texto}}</span>
+              <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
+            </div>
+          </div>
+          <div class=lineaChat>
+            <div *ngIf="m.Autor != ID_Usuario" class=" mensaje left" >
+              <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
+              <span class="text16">{{m.Texto}}</span>
+              <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
+            </div>
+          </div>
           </div>
         </div>
-        <div class=lineaChat>
-          <div *ngIf="m.Autor != ID_Usuario" class=" mensaje left" >
-            <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
-            <span class="text16">{{m.Texto}}</span>
-            <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
-          </div>
-        </div>
-
-        </div>
-      </div>
       </div>
 
       <footer class ="formChat bgColorPink">

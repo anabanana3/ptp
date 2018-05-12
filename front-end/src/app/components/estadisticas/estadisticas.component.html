@@ -14,86 +14,18 @@
 </div>
 
 <div class="divBlanco bgColorWhite estadisticas">
-  <h1>GRAFICOS SOBRE LOS CASOS REGISTRADOS</h1>
-  <div class="lineaDiv"></div>
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/4dKTLRpTJqwrrwq7WfrA6N355bquG6z6"
-    width="650" height="400">Detección Casos por Lugar</iframe>
-    <p>Detección Casos por Lugar</p>
-  </div>
-
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/kAvTHuDT1GtKJ6dxUAbrq5kEsBmjz85z"
-    width="650" height="400"> Edad media Mujeres Mutiladas / Edad media Total</iframe>
-    <p>Edad media Mujeres Mutiladas / Edad media Total</p>
-  </div>
-
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/q17NBhBjEVIoOFlseE2Pf2katwmkVG5V"
-    width="650" height="400"> Expedientes con MGF / Total</iframe>
-    <p> Expedientes con MGF / Total</p>
-  </div>
+  <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
+    <mat-tab label="Estadísticas sobre Casos">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/g8h7aKKA3aL6PNBz2Wtw91TH31b32KHc"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+    <mat-tab label="Acerca de AISHA">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/M5YsR8l4uftKFBSWsaSrfRs6Yg0au33V"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+    <mat-tab label="Predicción de la MGF">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/M5YsR8l4uftKFBSWsaSrfRs6Yg0au33V"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-
-<div class="divBlanco bgColorWhite estadisticas">
-  <h1>INFORMACIÓN SOBRE AISHA</h1>
-  <div class="lineaDiv"></div>
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/UtdMUUXBJfpeKJfo0UfpVdD1gTv8vJD9"
-    width="650" height="400"> Nº visitas / Página web </iframe>
-    <p> Nº visitas / Página web </p>
-  </div>
-
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/r4nr0UWe1fJMnS1YgMazGMHeMshKPJwE"
-    width="650" height="400"> Nº de recursos por administrador / Por Profesional / Por Asociación </iframe>
-    <p> Nº de recursos por administrador / Por Profesional / Por Asociación </p>
-  </div>
-
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/vjl5qujg9a4G3P4vAHscMTyR6JbsGSWh"
-    width="650" height="400"> Expedientes con todos los bloques</iframe>
-    <p> Expedientes con todos los bloques</p>
-  </div>
-
-  <div class="grafana">
-    <iframe src="https://snapshot.raintank.io/dashboard/snapshot/50XWNLEPVT0oKRIl2DXk3qGyiAGHkTky"
-    width="650" height="400">Expedientes Públicos / Privados</iframe>
-    <p>Expedientes Públicos / Privados</p>
-  </div>
-
-</div>
-
-<!-- <div class="divBlanco bgColorWhite estadisticas">
-<h1> DOCUMENTACIÓN API BANCO DE DATOS </h1>
-<div class="lineaDiv"></div>
-<p class="textEstadisticas">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.</p>
-
-<button type="submit" name="button" class="btn-border" disabled="true" >OBTENER APIKEY</button>
-</div> -->
-
-
-<!-- <div class="estadisticasContainer">
-  <div class="bgColorWhite estadisticasItems">
-    <h1> GRÁFICOS HUMANOS </h1>
-    <div class="lineaDiv"></div>
-    <img style="width:45%; margin-top:50px;" src="../assets/img/EdadB.jpg" alt="Edad">
-  </div>
-
-  <div class="bgColorWhite estadisticasItems">
-    <h1> GRÁFICOS DE MAPAS </h1>
-    <div class="lineaDiv"></div>
-    <img style="width:70%; margin-top:0px;" src="../assets/img/LugarDetB.jpg" alt="LugarDet">
-  </div>
-
-  <div class="bgColorWhite estadisticasItems">
-    <h1> GRÁFICOS DE PIRÁMIDES </h1>
-    <div class="lineaDiv"></div>
-    <img style="width:50%; margin-top:50px;" src="../assets/img/QuesitosEtniasB.jpg" alt="QuesitosEtnias">
-  </div>
-  <div class="bgColorWhite estadisticasItems">
-    <h1> GRÁFICOS CIRCULARES </h1>
-    <div class="lineaDiv"></div>
-    <img style="width:50%; margin-top:50px;" src="../assets/img/QuesitosEtniasB.jpg" alt="QuesitosEtnias">
-  </div>
-</div> -->

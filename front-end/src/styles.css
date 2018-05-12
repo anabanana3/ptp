@@ -404,9 +404,11 @@ canvas{
   margin:37px 30px;
   margin-right:0px;
 }
-.grafana{
-  float: left;
-  margin-bottom: 10px;
+
+.estadisticas{
+  padding: 5px;
+  width: 95%;
+  margin-top: 10px;
 }
 
 .textoRecursos{
@@ -488,35 +490,6 @@ canvas{
 }
 
 
-/***** ESTADISTICAS *****/
-
-.estadisticas{
-  padding:40px;
-  width: 90%;
-  margin-top: 50px;
-}
-
-.textEstadisticas{
-  text-align: left;
-  padding: 0 58px;
-  margin-bottom: 2%;
-}
-
-.estadisticasContainer{
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: auto;
-  margin-top: 1%;
-  margin-bottom:1%;
-}
-
-.estadisticasItems{
-  margin-bottom: 10px;
-  width: 590px;
-  height: 330px;
-}
 
 
 

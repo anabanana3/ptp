@@ -18,7 +18,7 @@ export class MisExpedientesComponent implements OnInit {
   pagNext:number;
   pagBack:number;
   pagActual:number;
-  tamPag:number=10;
+  tamPag:number=28;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';

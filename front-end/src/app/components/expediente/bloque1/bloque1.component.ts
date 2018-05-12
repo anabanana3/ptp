@@ -12,8 +12,7 @@ import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-bloque1',
-  templateUrl: './bloque1.component.html',
-  styleUrls: ['./bloque1.component.css']
+  templateUrl: './bloque1.component.html'
 })
 
 //TODO => Revisar bien las aproximacions porque hay una mezcla entre data y template
