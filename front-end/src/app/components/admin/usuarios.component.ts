@@ -120,6 +120,7 @@ export class UsuariosAdminComponent {
 
 //Funcion con parametro por defecto => si recibe uno diferente lo cambia
   view(number, pagina=1){
+  this.tabla = number;
     if(number == 0){
       this.getSolicitantes(pagina, this.tamPag);
       return;
@@ -131,7 +132,6 @@ export class UsuariosAdminComponent {
           location.href = '/expired';
         }else{
           this.loading = false;
-          this.tabla = 1
           this.resultado = data;
           console.log(data);
 
@@ -150,7 +150,6 @@ export class UsuariosAdminComponent {
           location.href = '/expired';
         }else{
           this.loading = false;
-          this.tabla = 2
           this.resultado = data;
           this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;

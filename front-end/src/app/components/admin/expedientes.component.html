@@ -48,7 +48,7 @@
           <ng-container matColumnDef="options">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <a [routerLink]="['/verexpediente', {id:element.ID_Publico}]">enlace</a>
+              <a [routerLink]="['/verexpediente', {id:element.ID_Publico}]" class="icon-eye" title="Visualizar expediente"></a>
               <button type="button" class="btn btn-outline-danger icon-cancel span"
                       (click)="borrarExpediente(element.ID_Expediente)"
                       title="Cancelar Usuario">
