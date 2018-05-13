@@ -53,7 +53,8 @@ export class VerExpedienteComponent implements OnInit {
   estaCheck = false;
   labelPublico = "Publicar expediente";
   coment = 0;
-  
+  estaComent = false;
+
 
   asociacion:boolean = false;
   admin:boolean = false;
@@ -179,6 +180,13 @@ export class VerExpedienteComponent implements OnInit {
         console.log(data[0].ID_Publico);
         this.publico = true;
         this.mostrarComentarios();
+        this._expedientesService.getComents(this.expID).subscribe(data=>{
+          if(data[0].Comentario == 0){
+            this.estaComent = false;
+          }else{
+            this.estaComent = true;
+          }
+        })
       }
       console.log(data);
     })
@@ -269,7 +277,12 @@ export class VerExpedienteComponent implements OnInit {
     }
   }
   publicar(){
-    this._expedientesService.publicar(this.expID).subscribe(data=>{
+    let body = {
+      ID_Publico: this.expID,
+      Comentario: 0
+    }
+    console.log(body);
+    this._expedientesService.publicar(body).subscribe(data=>{
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
@@ -281,6 +294,33 @@ export class VerExpedienteComponent implements OnInit {
 
   permitirComent(){
     console.log("Comentarios");
+    let body = {
+      ID_Publico: this.expID,
+      Comentario: 1
+    }
+    if(this.estaComent){
+      //si los comentarios están activos los desactivo
+      this.estaComent = false;
+      this._expedientesService.desactivarComentarios(body, this.expID).subscribe(data=>{
+        if(data.Codigo == 501){
+          //location.href = '/expired';
+        }else{
+          //this.publico = this.expID;
+          console.log(data);
+        }
+      })
+    }else{
+      //si no tiene comentarios activos, los activo
+      this.estaComent = true;
+      this._expedientesService.comentarios(body, this.expID).subscribe(data=>{
+        if(data.Codigo == 501){
+          location.href = '/expired';
+        }else{
+          //this.publico = this.expID;
+          console.log(data);
+        }
+      })
+    }
   }
 }
 
