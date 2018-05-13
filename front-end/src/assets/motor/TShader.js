@@ -111,7 +111,7 @@ class TShader extends TRecurso {
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
 
     this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
-    //this.programa.uShininess = gl.getUniformLocation(this.programa, "uSampler");
+    // this.programa.uShininess = gl.getUniformLocation(this.programa, "uSampler");
   }
 
   initLights(){

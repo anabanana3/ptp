@@ -12,34 +12,74 @@
     <app-header></app-header>
   </div>
   <div class="gridContainer">
-  <!-- <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
-  <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
+    <div class="carpetasDivContainer">
+      <div class="headerMisExp">
+        <button class="btn-relleno" type="button" name="button" [routerLink]="['/recurso']">AÑADIR RECURSO</button>
 
-  <div class="headerMisExp">
-    <button class="btn-relleno" type="button" name="button" [routerLink]="['/recurso']">AÑADIR RECURSO</button>
-
-    <!-- <div style="padding: 20px; display:inline-flex"> -->
-    <div class="optionsRight" >
-      <p id="propios" (click)="mostrar(0)">Subidos por mí</p>
-      <p style="margin:0px 5px 0px 5px;">|</p>
-      <p id="publicos" (click)="mostrar(1)">Públicos</p>
+        <div class="optionsRight" >
+          <p id="propios" (click)="mostrar(0)">Subidos por mí</p>
+          <p style="margin:0px 5px 0px 5px;">|</p>
+          <p id="publicos" (click)="mostrar(1)">Públicos</p>
+        </div>
+      </div>
+      <div id="alert">{{mensaje}}</div>
+      <div *ngIf="recursos" class="recursos-container">
+        <div *ngFor="let r of recursos;"  class="recurso-item recursoTarget">
+          <a href="{{r.Path}}" target="_blank">
+            <div class="recurso-info">
+              <img class="recurso-img" *ngIf="r.ID_Formato === 1" src="/assets/img/PDFIconPink.png" alt="Logo pdf">
+              <img class="recurso-img" *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3" src="/assets/img/ImgIcon2.png" alt="Logo ppt">
+              <img class="recurso-img" *ngIf="r.ID_Formato === 4" src="/assets/img/VideoIcon.png" alt="Logo video">
+              <img class="recurso-img" *ngIf="r.ID_Formato === 5" src="/assets/img/PPTIcon.png" alt="Logo imagen">
+            </div>
+          </a>
+          <div class="additionalInfoSelected">
+            <div class="additionalInfo">
+              <p>{{r.Titulo.split("'")[1]}}</p>
+              <p class="textGreyDarken text12" >{{r.Nombre}}</p>
+              <button *ngIf="view === 0" class="btn icon-edit span" (click)="editar(r.ID_Material)"></button>
+              <button *ngIf="view === 0" id="myBtnDelete" class="btn span icon-trash-empty" (click)="openPopUp()"></button>
+            </div>
+            <div class="popUpBorrar" id="popupBorrar">
+              <div class="popupBorrar-content">
+                <span id="close">&times;</span>
+                <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
+                <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
+                <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGINACION -->
+      <ul class="pagination" *ngIf="paginas.length>1">
+      <!--Boton de pagina anterior-->
+        <li>
+          <a (click)="pasarPagina(pagBack)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let pag of paginas; let i=index">
+          <a (click)="pasarPagina(i+1)">
+            <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+            <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+          </a>
+        </li>
+        <!--Boton de pagina siguiente-->
+        <li>
+          <a (click)="pasarPagina(pagNext);">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
-
-
-  <!-- <div class="recursos-container-filter"> -->
-
     <div class="lateralSearch">
       <form (ngSubmit)="buscar()" #forma="ngForm">
         <div class="divLabelsDeUnoSearch">
-
           <div class="inputSearchDiv">
-
               <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
               <input class="inputSearch" id="fieldSearch" type="text" name="fieldSearch" placeholder="Buscar recurso..." [(ngModel)]="fieldSearch"/>
               <br>
-              <!-- <button style="background:none; border:none; padding:0; font-size:15px;" type="submit" class="pointer icon-search">
-              </button> -->
           </div>
         </div>
 
@@ -48,76 +88,14 @@
             <label>Formato del recurso</label>
           </div>
           <div class="divExpDeUnoSearch">
-
-      <select class="sizeinput" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
-      <option value="null" selected>Ninguno seleccionado</option>
-        <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">{{formatos[k].Nombre}}</option>
-      </select>
-
-    </div>
-  </div>
-
+            <select class="sizeinput" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
+            <option value="null" selected>Ninguno seleccionado</option>
+              <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">{{formatos[k].Nombre}}</option>
+            </select>
+          </div>
+        </div>
       </form>
-  </div>
-
-<div class="carpetasDivContainer">
-
-  <div id="alert">{{mensaje}}</div>
-  <div *ngIf="recursos" class="recursos-container">
-    <div *ngFor="let r of recursos;"  class="recurso-item recursoTarget">
-      <a href="{{r.Path}}" target="_blank">
-        <div class="recurso-info">
-          <img class="recurso-img" *ngIf="r.ID_Formato === 1" src="/assets/img/PDFIconPink.png" alt="Logo pdf">
-          <img class="recurso-img" *ngIf="r.ID_Formato === 2 || r.ID_Formato === 3" src="/assets/img/ImgIcon2.png" alt="Logo ppt">
-          <img class="recurso-img" *ngIf="r.ID_Formato === 4" src="/assets/img/VideoIcon.png" alt="Logo video">
-          <img class="recurso-img" *ngIf="r.ID_Formato === 5" src="/assets/img/PPTIcon.png" alt="Logo imagen">
-          <!-- <p class="texto-ellipsis">{{r.Descripcion.split("'")[1]}}</p> -->
-        </div>
-      </a>
-      <div class="additionalInfoSelected">
-
-      <div class="additionalInfo">
-        <p>{{r.Titulo.split("'")[1]}}</p>
-        <p class="textGreyDarken text12" >{{r.Nombre}}</p>
-        <button *ngIf="view === 0" class="btn icon-edit span" (click)="editar(r.ID_Material)"></button>
-        <button *ngIf="view === 0" id="myBtnDelete" class="btn span icon-trash-empty" (click)="openPopUp()"></button>
-      </div>
-
-      <div class="popUpBorrar" id="popupBorrar">
-        <div class="popupBorrar-content">
-          <span id="close">&times;</span>
-          <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
-          <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
-          <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
-
-  <!-- PAGINACION -->
-  <ul class="pagination" *ngIf="paginas.length>1">
-  <!--Boton de pagina anterior-->
-    <li>
-      <a (click)="pasarPagina(pagBack)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li *ngFor="let pag of paginas; let i=index">
-      <a (click)="pasarPagina(i+1)">
-        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-      </a>
-    </li>
-    <!--Boton de pagina siguiente-->
-    <li>
-      <a (click)="pasarPagina(pagNext);">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<!-- </div> -->
-</div>
   <app-footer></app-footer>
 </div>

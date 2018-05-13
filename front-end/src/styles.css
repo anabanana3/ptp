@@ -1274,9 +1274,13 @@ option{
 
 /*Mis Expedientes*/
 .gridContainer{
-  display: grid;
+  /* display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 90px 100% 50px;
+  grid-template-rows: 90px 100% 50px; */
+  display: flex;
+  flex-wrap: wrap;
+  height: 90vh;
+  width: 100%;
 }
 
 .headerMisExp{
@@ -1292,13 +1296,16 @@ option{
 }
 
 .carpetasDivContainer{
-  grid-column-start: 1;
+  /* grid-column-start: 1; */
   /* autoprefixer: off */
-  grid-column-end: 2;
-  grid-row-start: 2;
+  /* grid-column-end: 2;
+  grid-row-start: 2; */
   /* autoprefixer: off */
-  grid-row-end:3;
-  margin-bottom:14px;
+  /* grid-row-end:3;
+  margin-bottom:14px; */
+  width: 70%;
+  height: 100%;
+  margin:auto;
 }
 
 .carpeta{
@@ -1348,17 +1355,18 @@ option{
 }
 
 .lateralSearch{
-  grid-column-start: 2;
+  /* grid-column-start: 2; */
   /* autoprefixer: off */
-  grid-column-end: 3;
-  grid-row-start: 1;
+  /* grid-column-end: 3; */
+  /* grid-row-start: 1; */
   /* autoprefixer: off */
-  grid-row-end:5;
+  /* grid-row-end:5; */
   background-color: white;
   box-shadow: 1px 0px 1px 0px rgba(203,203,203,0.50);
   padding: 20px 0px 15px 20px;
   height: 90vh;
-  margin-bottom: -13%;
+  width: 30%;
+  /* margin-bottom: -13%; */
   /* z-index: -1; */
 }
 
