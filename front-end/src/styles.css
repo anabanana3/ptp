@@ -782,7 +782,7 @@ canvas{
 
 .divExpDeUnoSearch{
   margin-bottom: 3px;
-  width: 50%;
+  /* width: 50%; */
 }
 
 .divLabels{
@@ -809,7 +809,7 @@ canvas{
 .SubmitSearch{
   width: 70px;
   margin: 0 auto;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .gineblock{
@@ -1284,15 +1284,16 @@ option{
 }
 
 .headerMisExp{
-  grid-column-start: 1;
+  /* grid-column-start: 1; */
   /* autoprefixer: off */
-  grid-column-end: 2;
-  grid-row-start: 1;
+  /* grid-column-end: 2; */
+  /* grid-row-start: 1; */
   /* autoprefixer: off */
-  grid-row-end:2;
+  /* grid-row-end:2; */
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 28px 30px;
+  padding: 20px 20px;
 }
 
 .carpetasDivContainer{
@@ -1305,7 +1306,9 @@ option{
   margin-bottom:14px; */
   width: 70%;
   height: 100%;
-  margin:auto;
+  margin: auto;
+  overflow-y: scroll;
+  z-index: 1;
 }
 
 .carpeta{
@@ -1374,6 +1377,7 @@ option{
   text-align: left;
 }
 
+.formPlus {display: none;}
 /* .imgExp{
   width: 20px;
   margin-right: 10px;
@@ -1467,8 +1471,9 @@ option{
 }
 
 .optionsRight{
-  display: inline-flex;
-  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .desplegableContainer{
@@ -1719,7 +1724,6 @@ option{
 .recurso-item{
   margin: 1%;
   display: block;
-  margin-bottom: 0px;
   padding-bottom: 0px;
 }
 
@@ -1849,4 +1853,9 @@ div.g-recaptcha > div{
   padding: 10%;
   padding-top: 5%;
   text-align: justify;
+}
+
+.sombra-z{
+  z-index: -1;
+  color: grey;
 }

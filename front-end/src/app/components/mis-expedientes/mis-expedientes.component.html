@@ -13,7 +13,7 @@
   </div>
   <div class="gridContainer">
     <!-- TODO:  Version CARLOS => Todo dentro del mismo for por temas de API ademas se reduce el codigo -->
-    <div class="carpetasDivContainer">
+    <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
       <div class="headerMisExp">
         <div class="desplegableContainer">
           <button class="btn-relleno" id="btn-options" (click)="mostrarOpciones()">NUEVO</button>
@@ -141,8 +141,10 @@
         </div>
       </div>
     </div>
-    <div class="lateralSearch">
-      <form (ngSubmit)="buscar(1,10)">
+    <div class="lateralSearch ocultar-lateralSearch" id="lateralSearch">
+      <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
+      <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
+      <form (ngSubmit)="buscar(1,10)" id="formFilter" class="ocultar-form">
         <div class="divLabelsDeUnoSearch">
 
           <div class="inputSearchDiv">

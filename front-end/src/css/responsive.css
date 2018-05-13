@@ -86,6 +86,16 @@
   .LeftDiv, .RightDiv{
     margin-top:50px;
   }
+
+  .ocultar-lateralSearch{width: 15%;}
+  .mostrar-lateralSearch{width: 70%;}
+
+  .mostrar-form {display: block;}
+  .ocultar-form {display: none;}
+
+  .mostrar-carpetasDivContainer{width: 85%;}
+  .ocultar-carpetasDivContainer{width: 30%;}
+  .recursos-container{padding: 0;}
 }
 
 
@@ -119,7 +129,7 @@
 
   .recursosDiv{height:500px;}
 
-  .recurso-item{width: 40%;}
+  .recurso-item{width: 30%;}
 
 }
 
@@ -140,6 +150,12 @@
   .divAdmin-content{margin-left: 70px;}
 
   .noticiasConIcon{width: 620px;}
+
+  .recursoTarget{
+    width: 40%;
+    margin: auto;
+    margin-bottom: 1%;
+  }
 }
 
 @media (max-width: 481px) {
@@ -149,34 +165,25 @@
   } */
   h1{font-size: 16px;}
 
+  .formPlus {
+    display: block;
+    padding: 0;
+  }
+
   .botonesPrincipal{
     width:321px;
     margin-bottom:30px;
   }
 
-  .recursosDiv{
-    padding: 0px;
-  }
+  .recursosDiv{padding: 0px;}
 
-  .recursosText{
-    margin-left:8px;
-  }
+  .recursosText{margin-left:8px;}
 
-  .divBlanco{
-    width: 100%;
-  }
+  .divBlanco{width: 100%;}
 
-  .recursoTarget {
-    width: 90%;
-  }
+  .recursoTarget {width: 90%;}
 
-  .camposForm{
-    width: 90%;
-  }
-
-  .btn-return{
-    float: none;
-  }
+  .camposForm{width: 90%;}
 
   .divAdmin { display: none;}
 
@@ -285,10 +292,10 @@
   }
 
   /**** HEADER ****/
-  .header > a > img{
+  /* .header > a > img{
     margin-left: 30px;
     margin-top: 20px;
-  }
+  } */
 
   .header{
     height: 70px;

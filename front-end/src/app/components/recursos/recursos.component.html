@@ -12,7 +12,7 @@
     <app-header></app-header>
   </div>
   <div class="gridContainer">
-    <div class="carpetasDivContainer">
+    <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
       <div class="headerMisExp">
         <button class="btn-relleno" type="button" name="button" [routerLink]="['/recurso']">AÑADIR RECURSO</button>
 
@@ -73,8 +73,10 @@
         </li>
       </ul>
     </div>
-    <div class="lateralSearch">
-      <form (ngSubmit)="buscar()" #forma="ngForm">
+    <div class="lateralSearch ocultar-lateralSearch" id="lateralSearch">
+      <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
+      <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
+      <form (ngSubmit)="buscar()" #forma="ngForm" id="formFilter" class="ocultar-form">
         <div class="divLabelsDeUnoSearch">
           <div class="inputSearchDiv">
               <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>

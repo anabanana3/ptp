@@ -56,6 +56,8 @@ etnias = new Array();
   carpetaSelect = null;
   nombreSelect='';
 
+  mostrarForm:boolean = false;
+
   constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
     if(sessionStorage.length == 0){
       return;
@@ -518,6 +520,19 @@ actualizarRuta(id, name){
     for(let i = this.NameRuta.length-1; i>pos; i--){
       this.NameRuta.pop();
     }
+  }
+}
+mostrarFilters(){
+  this.mostrarForm = !this.mostrarForm;
+  if(this.mostrarForm){
+    document.getElementById("formFilter").className="mostrar-form";
+    document.getElementById("lateralSearch").className="lateralSearch mostrar-lateralSearch";
+    document.getElementById("divContainer").className="carpetasDivContainer ocultar-carpetasDivContainer";
+  }
+  else{
+    document.getElementById("formFilter").className="ocultar-form";
+    document.getElementById("lateralSearch").className="lateralSearch ocultar-lateralSearch";
+    document.getElementById("divContainer").className="carpetasDivContainer mostrar-carpetasDivContainer";
   }
 }
 
