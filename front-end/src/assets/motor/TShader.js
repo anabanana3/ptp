@@ -3,6 +3,8 @@ class TShader extends TRecurso {
     super();
     this.VertexShader;
     this.FragmentShader;
+    this.ToonFragmentShader;
+    this.ToonVertexShader;
     this.shaderProgram;
     this.programa = null;
     this.vertexBuffer = null; //buffer de vertices
@@ -10,6 +12,7 @@ class TShader extends TRecurso {
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
     this.gl = gl;
+    //declarar toon
   }
 
   request(url) {
@@ -26,15 +29,24 @@ class TShader extends TRecurso {
     });
   }
 
-  cargarFichero(nombre){
+  cargarFichero(nombre, cartoon = false){
     let request = this.request('/assets/motor/' + nombre).then((e) => {
       let aux = nombre.split('.');
       let ext = aux[aux.length-1];
       if(ext === 'vert'){
-        this.VertexShader = e;
+        if(cartoon){
+          this.ToonVertexShader = e;
+          console.log('es cartoon');
+        }else{
+          this.VertexShader = e;
+        }
       }
       else if(ext === 'frag'){
-        this.FragmentShader = e;
+        if(cartoon){
+          this.ToonFragmentShader = e;
+        }else{
+          this.FragmentShader = e;
+        }
       }
     })
   }
@@ -52,12 +64,12 @@ class TShader extends TRecurso {
     }
   }
 
-  initProgram(){
+  initProgram(frag, vert){
     var gl = this.gl;
     //creamos el programa y le pasamos los shader
     //Vertex Shader
     var vertShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertShader, this.VertexShader);
+    gl.shaderSource(vertShader, vert);
     // console.log(this.VertexShader);
     gl.compileShader(vertShader);
     var error = gl.getShaderInfoLog(vertShader);
@@ -68,7 +80,7 @@ class TShader extends TRecurso {
     }
     //FragmentShader
     var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragShader, this.FragmentShader);
+    gl.shaderSource(fragShader, frag);
     gl.compileShader(fragShader);
 
     var error = gl.getShaderInfoLog(fragShader);
@@ -78,10 +90,16 @@ class TShader extends TRecurso {
       throw(error);
     }
 
+
+//// TODO: crear otro programa con un if
+
+
     //creamos el programa
-    this.programa  = gl.createProgram();
-    gl.attachShader(this.programa, vertShader);
-    gl.attachShader(this.programa, fragShader);
+    let programa1  = gl.createProgram();
+    gl.attachShader(programa1, vertShader);
+    gl.attachShader(programa1, fragShader);
+
+    this.programa = programa1;
     gl.linkProgram(this.programa);
 
     if(!gl.getProgramParameter(this.programa, gl.LINK_STATUS)){
@@ -135,9 +153,17 @@ class TShader extends TRecurso {
       this.lastTime = timeNow;
   }
 
+//// TODO: ******************************************************************************************
   mainShader(){
     this.configure();
-    this.initProgram();
+    if(GCartoon){
+      this.initProgram(this.ToonFragmentShader, this.ToonVertexShader);
+      console.log('cartooon');
+    }
+    else{
+      this.initProgram(this.FragmentShader, this.VertexShader);
+      console.log('no cartoon');
+    }
     this.initLights();
     //this.initTexture();
 

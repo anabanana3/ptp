@@ -1,7 +1,7 @@
 var GFachada;
 var GShader;
 var gl;
-
+var GCartoon = false;
 //VARIABLES PARA EL MATERIAL
 var GDifuso;
 var GAmbiental;

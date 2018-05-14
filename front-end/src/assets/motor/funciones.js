@@ -2,14 +2,14 @@ function iniciarMotor(){
   //PRUEBA GIT
   gl = initWebGL(document.getElementById('canvas'));
   GFachada = new TFachadaMotor();
-  GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
+  GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert', 'toonFragShader.frag', 'toonVertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
   GFachada.rotar(camara1, 1, 1, 0, 0);
   //GFachada.rotar(camara1, 3, 0, 0, 1);
   //GFachada.trasladar(camara1, 0,0,-20);
   let luz1 = GFachada.crearLuzCompleto("luz1");
-  
+
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
@@ -78,9 +78,15 @@ function mostrarReal(){
     GFachada.draw();
   },3000);
 }
-
+//****************************// TODO: **************************************/
 function mostrarCartoon(){
+  GCartoon = true;
   console.log('mostrarCartoon');
+
+  setTimeout(() => {
+    GShader.mainShader();
+    GFachada.draw();
+  },3000);
 }
 
 function moverCamara(camara, ev){

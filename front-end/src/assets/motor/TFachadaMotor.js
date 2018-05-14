@@ -116,17 +116,20 @@ class TFachadaMotor {
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
-    //Guaro las matrices de forma global para obtenerlas en el shader
-    malla.entidad.modelMatrix=trasla.entidad.modelMatrix;
+    //Guardo las matrices de forma global para obtenerlas en el shader
+    malla.entidad.modelMatrix = trasla.entidad.modelMatrix;
 
     this.objetos.push(malla);
     return malla;
   }
 
-  crearShader(frag, vert){
+// TODO: **********************************************************************************
+  crearShader(frag, vert, toonfrag, toonvert){
     let shader = new TShader();
     shader.cargarFichero(frag);
     shader.cargarFichero(vert);
+    shader.cargarFichero(toonfrag, true);
+    shader.cargarFichero(toonvert, true);
     return shader;
   }
 
