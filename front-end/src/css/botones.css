@@ -173,75 +173,55 @@ button:hover{
 }
 
 .boton-flotante {
-  width:60px;
-  height:60px;
-  border-radius:100%;
-  background:#880042;
+  background:#0C8A9C;
   left:0;
   top:0;
+  border-radius: 10px;
   position:absolute;
+  width: 76px;
+  height: 20px;
   margin-left:16px;
   margin-top:16px;
   border:none;
   outline:none;
   color:#FFF;
-  font-size:36px;
+  /* font-size:36px; */
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  transition:.3s;
+  /* transition:.3s; */
   padding-bottom: 5%;
 }
 #tipo1 {
   background: #0C8A9C;
-  margin-left: 90px;
-  transition: 0.5s;
+  margin-left: 100px;
 }
 #tipo2 {
   background: #0C8A9C;
-  margin-left: 140px;
-  transition: 0.5s;
+  margin-left: 180px;
 }
 #tipo3 {
   background: #0C8A9C;
-  margin-left: 190px;
-  transition: 0.5s;
+  margin-left: 260px;
 }
 #tipo4 {
-  background: #0C8A9C;
-  margin-left: 240px;
-  transition: 0.5s;
+  background: #880042;
+  margin-left: 340px;
+  width: 120px;
 }
 #span {
   text-align: center;
-  font-size: 20px;
   transition: .5s;
 }
+
+.btn-activo{
+  background: grey;
+}
+
 .contenedor{
   width: 240px;
   height: 90px;
   position: absolute;
   left: 0;
   top: 0;
-}
-
-.botones-flotantes-min{
-  width:40px;
-  height:40px;
-  border-radius:100%;
-  border:none;
-  color:#FFF;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  font-size:28px;
-  outline:none;
-  position:absolute;
-  left:0;
-  top:0;
-  margin-top:25px;
-  transform:scale(0);
-  padding-bottom: 5%;
-}
-
-.animacion-flotante {
-  transform: scale(1);
 }
 
 /**   FONTELLO    **/

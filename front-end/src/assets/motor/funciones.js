@@ -5,11 +5,11 @@ function iniciarMotor(){
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
-  GFachada.rotar(camara1, 1, 1, 0, 0);
+  // GFachada.rotar(camara1, 3.14, 0, 1, 0);
   //GFachada.rotar(camara1, 3, 0, 0, 1);
   //GFachada.trasladar(camara1, 0,0,-20);
   let luz1 = GFachada.crearLuzCompleto("luz1");
-  
+
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");

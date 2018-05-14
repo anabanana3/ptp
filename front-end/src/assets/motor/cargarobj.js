@@ -1,3 +1,7 @@
+/*
+función sacada de internet
+necesaria para poder leer un modelo .obj
+*/
 (function (scope, undefined) {
   'use strict';
 
