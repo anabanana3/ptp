@@ -10,399 +10,215 @@
   </div>
   <div *ngIf="usuario">
     <app-header></app-header>
-  </div>  <!-- <button [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return">
-  </button> -->
-<div class="gridContainer">
-  <div class="headerMisExp">
-    <div class="desplegableContainer">
-      <button class="btn-relleno" id="btn-options" (click)="mostrarOpciones()">NUEVO</button>
-      <br>
-      <div id="desplegable" class="desplegableButton">
-        <a [routerLink]="['/expediente']"><div class="expOpt">
-          <p class="text12">Expediente</p>
-        </div></a>
-        <a style="cursor:pointer" id="myBtnDeleteExp" (click)="openPopUp()"><div class="carOpt">
-          <p class="text12">Carpeta</p>
-        </div></a>
-      </div>
-    </div>
-
-    <div class="optionsRight" >
-      <p (click) = "cambio(1)" id="arb"> Todo |</p>
-      <p (click) = "cambio(2)" id="priv"> Privados </p>
-      <p>  | </p>
-      <p (click) = "cambio(3)" id=publ> Publicos</p>
-      <!-- <p (click) = "cambio(4)" id="todos"> |Todos </p> -->
-    </div>
   </div>
-
-<div class="lateralSearch">
-  <form (ngSubmit)="buscar(1,10)">
-    <!-- <div class="divLabelsDeUnoSearch">
-           <div class="divExpDeUnoSearch">
-            <label for="titulo">Titulo</label>
-           </div>
-        <div class="divExpDeUnoSearch">
-          <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título" name="Titulo" id="titulo">
+  <div class="gridContainer">
+    <!-- TODO:  Version CARLOS => Todo dentro del mismo for por temas de API ademas se reduce el codigo -->
+    <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
+      <div class="headerMisExp">
+        <div class="desplegableContainer">
+          <button class="btn-relleno" id="btn-options" (click)="mostrarOpciones()">NUEVO</button>
           <br>
-        </div>
-      </div> -->
-    <div class="divLabelsDeUnoSearch">
-
-      <div class="inputSearchDiv">
-        <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
-        <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
-        <br>
-      </div>
-    </div>
-
-    <div class="divLabelsDeUnoSearch">
-      <div class="divExpDeUnoSearch">
-        <label for="f1">Desde</label>
-      </div>
-      <div class="divExpDeUnoSearch">
-        <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" data-date-inline-picker="true" type="date" id="f1" name="Fecha1">
-        <br>
-      </div>
-    </div>
-
-    <div class="divLabelsDeUnoSearch">
-      <div class="divExpDeUnoSearch">
-        <label for="f2">Hasta</label>
-      </div>
-      <div class="divExpDeUnoSearch">
-        <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" data-date-inline-picker="true" type="date" id="f2" name="Fecha2">
-        <br>
-      </div>
-    </div>
-
-    <div class="lineaSearch"></div>
-    <br>
-
-    <div class="divLabelsDeUnoSearch">
-      <div class="divExpDeUnoSearch">
-        <label for="lugar">Lugar de detección</label>
-      </div>
-      <div class="divExpDeUnoSearch">
-        <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
-        <br>
-      </div>
-    </div>
-
-    <div class="divLabelsDeUnoSearch">
-      <div class="divExpDeUnoSearch">
-        <label for="etnia">Etnia de origen</label>
-      </div>
-      <div class="divExpDeUnoSearch">
-        <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
-          <option value="0">Seleccione la etnia</option>
-          <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
-        </select>
-        <br>
-      </div>
-    </div>
-
-    <div class="divLabelsDeUnoSearch">
-      <div class="divExpDeUnoSearch">
-        <label for="tipoMGF">Tipo de MGF</label>
-      </div>
-      <div class="divExpDeUnoSearch">
-        <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
-          <option value="0">Seleccione el tipo de MGF</option>
-          <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
-        </select>
-      </div>
-    </div>
-    <br>
-    <br>
-
-    <div class="SubmitSearch">
-      <button class="btn-relleno" type="submit" name="button">Buscar</button>
-    </div>
-  </form>
-</div>
-
-<!-- TODO:  Version CARLOS => Todo dentro del mismo for por temas de API ademas se reduce el codigo -->
-<div class="carpetasDivContainer">
-  <div class="carpetasDiv">
-  <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
-    <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Todo /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
-  </div>
-
-  <!-- Mensaje de que no tienes nada almacenado -->
-  <div *ngIf="contenido.length == 0 && busqueda==false" id="alert">{{mensaje}}</div>
-  <!-- Mensaje de que no hay resultados de busqueda -->
-  <div *ngIf="busqueda == true" id="alert">{{mensaje}}</div>
-
-  <div class="expediente-container">
-    <div *ngFor="let c of contenido" class="carpeta">
-      <div *ngIf="c.Tipo == 0" class="carpetaIF">
-        <!-- TODO: Carpetas -->
-        <div class="izqCarpeta sideBySide">
-          <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
-            <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
+          <div id="desplegable" class="desplegableButton">
+            <a [routerLink]="['/expediente']"><div class="expOpt">
+              <p class="text12">Expediente</p>
+            </div></a>
+            <a style="cursor:pointer" id="myBtnDeleteExp" (click)="openPopUp()"><div class="carOpt">
+              <p class="text12">Carpeta</p>
+            </div></a>
           </div>
         </div>
-          <div class="expediente-body sideBySide">
-            <p (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">{{c.Nombre}}</p>
-          </div>
 
-          <div class="imgOptions sideBySide">
-              <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
-              <div class="menuOp" id="{{c.ID_Gestor}}">
-                <div class="EditarDiv">
-                  <a id="myBtnModifyCarpeta" (click)="popUpModificarCarpeta(c.ID_Gestor, c.Nombre)"><p class="text12">Editar</p></a>
-                </div>
-                <div class="BorrarDiv">
-                  <a id="myBtnDeleteCarpeta" (click)="popUpBorrarCarpeta(c.ID_Gestor)"><p class="text12">Borrar</p></a>
-                  <!-- "borrarCarpeta(c.ID_Gestor)" -->
-                </div>
+        <div class="optionsRight" >
+          <p (click) = "cambio(1)" id="arb"> Todo |</p>
+          <p (click) = "cambio(2)" id="priv"> Privados </p>
+          <p>  | </p>
+          <p (click) = "cambio(3)" id=publ> Publicos</p>
+          <!-- <p (click) = "cambio(4)" id="todos"> |Todos </p> -->
+        </div>
+      </div>
+      <div class="carpetasDiv">
+      <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
+        <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Todo /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
+      </div>
 
+      <!-- Mensaje de que no tienes nada almacenado -->
+      <div *ngIf="contenido.length == 0 && busqueda==false" id="alert">{{mensaje}}</div>
+      <!-- Mensaje de que no hay resultados de busqueda -->
+      <div *ngIf="busqueda == true" id="alert">{{mensaje}}</div>
+
+      <div class="expediente-container">
+        <div *ngFor="let c of contenido" class="carpeta">
+          <div *ngIf="c.Tipo == 0" class="carpetaIF">
+            <!-- TODO: Carpetas -->
+            <div class="izqCarpeta sideBySide">
+              <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
+                <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
+              </div>
+            </div>
+              <div class="expediente-body sideBySide">
+                <p (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">{{c.Nombre}}</p>
+              </div>
+
+              <div class="imgOptions sideBySide">
+                  <img (click)="mostrarOpThreePoints(c.ID_Gestor)" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
+                  <div class="menuOp" id="{{c.ID_Gestor}}">
+                    <div class="EditarDiv">
+                      <a id="myBtnModifyCarpeta" (click)="popUpModificarCarpeta(c.ID_Gestor, c.Nombre)"><p class="text12">Editar</p></a>
+                    </div>
+                    <div class="BorrarDiv">
+                      <a id="myBtnDeleteCarpeta" (click)="popUpBorrarCarpeta(c.ID_Gestor)"><p class="text12">Borrar</p></a>
+                      <!-- "borrarCarpeta(c.ID_Gestor)" -->
+                    </div>
+
+                  </div>
               </div>
           </div>
-
-      </div>
-      <!-- TODO: Expedientes -->
-      <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
-        <div class="expediente-body-exp">
-          <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
-          <p class="fechaExp">{{c.ID_Lugar}}</p>
-          <p class="fechaExp">Edad {{c.Edad}}</p>
-          <!-- <div class="statusExp">
-            <svg height="20" width="120">
-              <circle cx="110" cy="10" r="5" fill="red" />
-              Sorry, your browser does not support inline SVG.
-            </svg>
-          </div> -->
-          <!-- <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p> -->
-          <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
-        </div>
-
-      </div>
-    </div>
-</div>
-
-<div class="paginationContainer">
-  <!-- TODO: paginacion -->
-  <ul class="pagination" *ngIf="paginas.length >1">
-    <!--Boton de pagina anterior-->
-    <li>
-      <a (click)="pasarPagina(pagBack)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li *ngFor="let pag of paginas; let i=index">
-      <a (click)="pasarPagina(i+1)">
-        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-      </a>
-    </li>
-    <!--Boton de pagina siguiente-->
-    <li>
-      <a (click)="pasarPagina(pagNext);">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-<div class="popUpBorrar" id="popupBorrarExp">
-  <div class="popupBorrar-contentExp">
-    <span id="closeExp">&times;</span>
-    <div class="insidePopExp">
-      <p>Crear nueva carpeta</p>
-      <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
-      <br>
-    </div>
-    <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
-    <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
-  </div>
-</div>
-
-<div class="popUpBorrar" id="popupBorrarCarpeta">
-  <div class="popupBorrar-contentExp">
-    <span id="closeCarpeta">&times;</span>
-    <div class="insidePopExp">
-      <p>¿Estás seguro de eliminar la carpeta?</p>
-    </div>
-    <button class="btn-relleno" (click)="borrarCarpeta()">SÍ</button>
-    <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
-  </div>
-</div>
-
-<div class="popUpBorrar" id="popupModificarCarpeta">
-  <div class="popupBorrar-contentExp">
-    <span id="closeModifyCarpeta">&times;</span>
-    <div class="insidePopExp">
-      <p>Introduzca el nuevo nombre</p>
-      <div class="paraInput">
-        <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
-      </div>
-      <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value)">GUARDAR</button>
-      </div>
-  </div>
-</div>
-<!-- TODO: Fin version 2 -->
-
-<!-- <div class="carpetasDivContainer">
-  <div class="carpetasDiv">
-    <p>Carpetas</p>
-  </div> -->
-  <!-- Mensaje de que no tienes nada almacenado -->
-  <!-- <div *ngIf="carpetas.length ==0 && busqueda==false" id="alert">{{mensaje}}</div> -->
-  <!-- Mensaje de que no hay resultados de busqueda -->
-  <!-- <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div> -->
-  <!-- <div *ngIf="carpetas.length>0" class="expediente-container">
-
-    <br>
-    <div  *ngFor="let c of carpetas" class="carpeta"> -->
-      <!-- <p>{{e.Descripcion.split("'")[1]}}</p>
-      <div class="expedienteDesc">
-      <div class="imgCircle">
-        <img class="imgExp" src="/assets/img/carpeta.png" alt="Logo expediente">
-      </div>
-      <!-- </div> -->
-      <!-- <div class="expediente-body">
-        <p>{{c.Nombre}}</p> -->
-
-        <!-- <p class="fechaExp">{{c.Fecha.split('T')[0]}}</p> -->
-        <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
-      <!-- </div>
-      <div class="imgOptions">
-
-          <img (click)="mostrarOpThreePoints()" class="optionPoints" src="/assets/img/ThreePointsIcon.png" alt="Opciones">
-          <div class="menuOp" id="menuOp3">
-            <p class="text12">Editar</p>
-            <p (click)="borrarCarpeta(c.ID_Carpeta)" class="text12">Borrar</p>
+          <!-- TODO: Expedientes -->
+          <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
+            <div class="expediente-body-exp">
+              <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
+              <p class="fechaExp">{{c.ID_Lugar}}</p>
+              <p class="fechaExp">Edad {{c.Edad}}</p>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="paginationContainer">
+        <!-- TODO: paginacion -->
+        <ul class="pagination" *ngIf="paginas.length >1">
+          <!--Boton de pagina anterior-->
+          <li>
+            <a (click)="pasarPagina(pagBack)">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li *ngFor="let pag of paginas; let i=index">
+            <a (click)="pasarPagina(i+1)">
+              <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+              <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+            </a>
+          </li>
+          <!--Boton de pagina siguiente-->
+          <li>
+            <a (click)="pasarPagina(pagNext);">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="popUpBorrar" id="popupBorrarExp">
+        <div class="popupBorrar-contentExp">
+          <span id="closeExp">&times;</span>
+          <div class="insidePopExp">
+            <p>Crear nueva carpeta</p>
+            <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
+            <br>
+          </div>
+          <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
+          <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
+        </div>
+      </div>
+      <div class="popUpBorrar" id="popupBorrarCarpeta">
+        <div class="popupBorrar-contentExp">
+          <span id="closeCarpeta">&times;</span>
+          <div class="insidePopExp">
+            <p>¿Estás seguro de eliminar la carpeta?</p>
+          </div>
+          <button class="btn-relleno" (click)="borrarCarpeta()">SÍ</button>
+          <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
+        </div>
+      </div>
+      <div class="popUpBorrar" id="popupModificarCarpeta">
+        <div class="popupBorrar-contentExp">
+          <span id="closeModifyCarpeta">&times;</span>
+          <div class="insidePopExp">
+            <p>Introduzca el nuevo nombre</p>
+            <div class="paraInput">
+              <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
+            </div>
+            <button class="btn-relleno" type="submit" (click)="modificarCarpeta(nombreNuevo.value)">GUARDAR</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div> -->
+    <div class="lateralSearch ocultar-lateralSearch" id="lateralSearch">
+      <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
+      <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
+      <form (ngSubmit)="buscar(1,10)" id="formFilter" class="ocultar-form">
+        <div class="divLabelsDeUnoSearch">
 
-
-
-  <!-- <div *ngIf="carpetas.length > 0">
-
-    <p *ngFor="let c of carpetas">
-        <span>{{c.Nombre}}</span>
-        <button (click)="borrarCarpeta(c.ID_Carpeta)">Borrar carpeta </button>
-    </p>
-  </div> -->
-
-
-
-
-  <!-- <div class="popUpBorrar" id="popupBorrarExp">
-  <div class="popupBorrar-contentExp">
-  <span id="closeExp">&times;</span>
-  <div class="insidePopExp">
-  <p>Crear nueva carpeta</p>
-  <input placeholder="Nombre" class="sizeinput" type="text" #nombre>
-  <br>
-</div>
-<button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
-<button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
-
-</div>
-</div>
-
-<ul class="pagination" *ngIf="paginas.length >1 && expedientes.length "> -->
-<!--Boton de pagina anterior-->
-    <!-- <li>
-      <a (click)="pasarPagina(pagBack)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li *ngFor="let pag of paginas; let i=index">
-      <a (click)="pasarPagina(i+1)">
-        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-      </a>
-    </li> -->
-    <!--Boton de pagina siguiente-->
-    <!-- <li>
-      <a (click)="pasarPagina(pagNext);">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-<div class="expedientesDiv">
-  <div class="carpetasDiv">
-    <p>Expedientes</p>
-  </div> -->
-  <!-- Mensaje de que no tienes nada almacenado -->
-  <!-- <div *ngIf="expedientes.length ==0 && busqueda==false" id="alert">{{mensaje}}</div> -->
-  <!-- Mensaje de que no hay resultados de busqueda -->
-  <!-- <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div> -->
-  <!-- <div *ngIf="expedientes.length>0" class="expediente-container">
-
-    <br>
-    <div  *ngFor="let e of expedientes" class="expediente" [routerLink]="['/', {id:e.ID_Expediente}]"> -->
-
-      <!-- <div class="imgCircle">
-        <img class="imgExp" src="/assets/img/Expediente.png" alt="Logo expediente">
-      </div> -->
-
-      <!-- <div class="expediente-body">
-        <p>{{e.ID_Expediente}}</p>
-        <p class="fechaExp">{{e.ID_Lugar}}</p>
-        <p class="fechaExp">Edad {{e.Edad}}</p>
-        <div class="statusExp">
-          <svg height="20" width="120">
-            <circle cx="110" cy="10" r="5" fill="red" />
-            Sorry, your browser does not support inline SVG.
-          </svg>
-        </div> -->
-        <!-- <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p> -->
-        <!-- <button class="btn-border" style="margin-top:5%" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]"> Ver más</button> -->
-      <!-- </div>
-    </div>
-  </div>
-
-  <div class="popUpBorrar" id="popupBorrarExp">
-    <div class="popupBorrar-contentExp">
-      <span id="closeExp">&times;</span>
-      <div class="insidePopExp">
-        <p>Crear nueva carpeta</p>
-        <input placeholder="Nombre" class="sizeinput" type="text" id="nombre">
-        <br>
+          <div class="inputSearchDiv">
+            <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
+            <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
+            <br>
+          </div>
         </div>
-        <button class="btn-relleno" (click)="nuevaCarpeta(nombre.value)">CREAR</button>
-        <button class="btn-border" id="noBorrarExp" type="submit" [routerLink]="['/misexpedientes']" name="button">CANCELAR</button>
 
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f1">Desde</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" data-date-inline-picker="true" type="date" id="f1" name="Fecha1">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f2">Hasta</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" data-date-inline-picker="true" type="date" id="f2" name="Fecha2">
+            <br>
+          </div>
+        </div>
+
+        <div class="lineaSearch"></div>
+        <br>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="lugar">Lugar de detección</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="etnia">Etnia de origen</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
+              <option value="0">Seleccione la etnia</option>
+              <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+            </select>
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="tipoMGF">Tipo de MGF</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+              <option value="0">Seleccione el tipo de MGF</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="SubmitSearch">
+          <button class="btn-relleno" type="submit" name="button">Buscar</button>
+        </div>
+      </form>
     </div>
   </div>
-
-  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">-->
-  <!--Boton de pagina anterior-->
-    <!-- <li>
-      <a (click)="pasarPagina(pagBack)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li *ngFor="let pag of paginas; let i=index">
-      <a (click)="pasarPagina(i+1)">
-        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-      </a>
-    </li> -->
-    <!--Boton de pagina siguiente-->
-    <!-- <li>
-      <a (click)="pasarPagina(pagNext);">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+  <app-footer></app-footer>
 </div>
-
-<div class="paginationContainer">
-</div> -->
-
-
-
-</div>
-</div>
- <app-footer></app-footer>

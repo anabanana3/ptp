@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {ExpedientesService} from "../../../services/expedientes.service";
+import {MaterialService} from "../../../services/material.service";
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,10 +22,11 @@ export class HistoricoComponent{
   recursos;
   data;
   error:boolean = true;
+  loading:boolean = false;
 
   constructor(
     private _expedienteService:ExpedientesService, private router:ActivatedRoute,
-    private _userService:UserService
+    private _userService:UserService, private _materialService:MaterialService
   ) {
     if(sessionStorage.length === 0){
       return;
@@ -39,8 +41,12 @@ export class HistoricoComponent{
     _expedienteService.getExpedientesPubById(this.idUsuario).subscribe(data => {
       this.expedientes = data;
       this.data = data;
+      this.loading = true;
     })
     //getRecursos
+    _materialService.getMaterialesByUser(this.idUsuario).subscribe(data => {
+      this.recursos = data;
+    })
   }
 
   cambiarOpcion(opcion){

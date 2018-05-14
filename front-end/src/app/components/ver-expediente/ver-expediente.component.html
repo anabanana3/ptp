@@ -12,7 +12,6 @@
     <app-header></app-header>
   </div>
 
-    <!-- <button type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
   <div class="gridVerExp">
     <div class="infoExp">
       <div style="padding-left:15px" *ngFor="let e of expediente">
@@ -30,7 +29,8 @@
             <label><b>Descripción</b></label>
           </div>
           <div class="divExpVer">
-            <p>{{e.Descripcion.split("'")[1]}}</p>
+            <!-- <p>{{e.Descripcion.split("'")[1]}}</p> -->
+            <p>{{e.Descripcion}}</p>
           </div>
         </div>
         <div class="divLabelsVer">
@@ -64,14 +64,14 @@
         <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
         <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
         <div *ngIf="coment==1" class="coment" id="coment">
-          <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()">
+          <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
           <label class="labeltrans" for="comentarios">Permitir comentarios</label>
         </div>
       </div>
 
       <div class="lineaDiv"></div>
 
-    <div class="sliderComentarios">
+    <div *ngIf="estaComent" class="sliderComentarios" id="sliderComentarios">
       <a name="arriba"></a>
       <div id="alert">{{mensaje}}</div>
       <div class="comentario comentarioNuevo">
@@ -427,10 +427,6 @@
           </mat-tab>
 
         </mat-tab-group>
-
-        <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()">
-        <label class="labeltrans" for="comentarios">Permitir comentarios</label>
-
       </div>
 
     </div>

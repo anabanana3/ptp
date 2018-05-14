@@ -49,7 +49,7 @@
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <a [routerLink]="['/asociacion/user', {id:element.ID_Usuario}]">histórico</a>
+              <a *ngIf="tabla !== 0" [routerLink]="['/asociacion/user', {id:element.ID_Usuario}]">histórico</a>
               <button *ngIf="tabla == 0"
                       type="button" class="btn btn-outline-success icon-ok span"
                       (click)="activateUser(element.ID_Usuario, element.Email)"
