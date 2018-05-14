@@ -2,7 +2,15 @@
   <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" class="" alt="LogoAisha"></a>
 
 <div class="menuNav" id="myTopnav">
-  <a [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="">Mis Expedientes</a>
+  <div class="dropdown">
+    <button (click)="activo(1)" [routerLink]="['/misexpedientes']" class="dropbtn " id="1">Mis Expedientes
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a [routerLink]="['/expediente']" class="">Nuevo Expediente</a>
+    </div>
+  </div>
+  <!-- <a [routerLink]="['/misexpedientes']" (click)="activo(1)"  class="">Mis Expedientes</a> -->
   <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes Públicos</a>
   <a [routerLink]="['/estadisticas']" (click)="activo(3)" id="3" class="">Estadísticas</a>
   <a [routerLink]="['/recursos']" (click)="activo(4)" id="4" class="">Recursos</a>
@@ -19,48 +27,4 @@
   </div>
   <a href="javascript:void(0);" class="icon" (click)="myFunction()">&#9776;</a>
 </div>
-
-<!-- <div class="usuario_icono">
-  <div class="notification bgColorPink">
-    <p class="textDarkenWhite">3</p>
-  </div>
-    <label for="perfilTrigger">
-      <img src="../../assets/img/user.png" alt="perfil">
-    </label>
-  </div> -->
 </div>
-
-
-<!-- <input id="perfilTrigger" type="checkbox">
-<div class="infoDivPerfil">
-  <div class="options">
-    <p *ngIf="Nombre != null"class="DivOption text16"><b>{{Nombre}}</b></p>
-    <p class="DivOption">Comentarios<p>
-    <p class="numberOption text12 textGreyDarken">20<p>
-    <p class="DivOption">Mensajes</p>
-    <p class="numberOption text12 textGreyDarken">15<p>
-    <p class="DivOption">Permisos</p>
-    <p class="numberOption text12 textGreyDarken">0<p>
-    <p class="DivOption textGreyDarken">Idioma</p>
-    <p [routerLink]="['/user/profile']" class="DivOption textGreyDarken">Editar Perfil</p>
-    <button (click)="cerrarSesion();" type="button" name="button" class="DivOptionLogout textGreyDarken">Cerrar Sesión</button>
-    <img class="divPerfil" src="../../assets/img/DivPerfil.png" alt="perfil">
-  </div>
-</div> -->
-
-
-  <!-- <nav class="confi">
-    <ul>
-      <li><a href=""><label for="perfilTrigger">
-          <img src="../../assets/img/user.png" alt="">
-        </label></a>
-        <ul>
-          <li>Nombre</li>
-          <li><button (click)="cerrarSesion();" type="button" name="button"
-            class="submitGris logoutAdmin icon-logout">
-          </button></li>
-          <li><a href="/user/profile">Perfil</li>
-       </ul>
-      </li>
-    </ul>
-  </nav> -->

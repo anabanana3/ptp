@@ -25,10 +25,10 @@ export class MisExpedientesComponent implements OnInit {
 //Url para hacer las busquedas
   url:string='';
 //Variable con el ID_Usuario
-idU = sessionStorage.iD;
+  idU = sessionStorage.iD;
 
 //Variables para filtar los expedientes
-etnias = new Array();
+  etnias = new Array();
   n:number = 1;
   //Variable para mostrar expedientes publicos, privados o ambos => 1:privados, 2:publicos, 3:ambos
   tipoExp:number=1;
