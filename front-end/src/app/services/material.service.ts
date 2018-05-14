@@ -11,7 +11,6 @@ export class MaterialService {
   formatos:string = "https://aisha.ovh/api/formato/";
   search:string = "https://www.aisha.ovh/api/material/search/";
   publicar:string = "https://www.aisha.ovh/api/material/publicar/";
-  materialByUser:string = "https://aisha.ovh/api/material/pub/user/";
 
   constructor(private http:Http) { }
 
@@ -168,18 +167,5 @@ export class MaterialService {
     });
 
     return this.http.post(this.publicar, {headers}).map(res=> res.json());
-  }
-
-  getMaterialesByUser(idUser){
-    let url = this.materialByUser + idUser;
-    let token = sessionStorage.getItem('token');
-    console.log(url);
-
-    let headers = new Headers({
-      'Content-Type':'application/json',
-      'Authorization': token
-    });
-
-    return this.http.get(url, {headers}).map(res=>res.json());
   }
 }

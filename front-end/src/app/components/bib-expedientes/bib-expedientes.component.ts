@@ -43,8 +43,6 @@ profesiones = new Array();
   admin:boolean = false;
   usuario:boolean = false;
 
-  mostrarForm:boolean = false;
-
   constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
       if(sessionStorage.length == 0){
         return;
@@ -178,20 +176,6 @@ profesiones = new Array();
 
    pasarPagina(pag){
        this.buscar(pag);
-   }
-
-   mostrarFilters(){
-     this.mostrarForm = !this.mostrarForm;
-     if(this.mostrarForm){
-       document.getElementById("formFilter").className="mostrar-form";
-       document.getElementById("lateralSearch").className="lateralSearch mostrar-lateralSearch";
-       document.getElementById("divContainer").className="carpetasDivContainer ocultar-carpetasDivContainer";
-     }
-     else{
-       document.getElementById("formFilter").className="ocultar-form";
-       document.getElementById("lateralSearch").className="lateralSearch ocultar-lateralSearch";
-       document.getElementById("divContainer").className="carpetasDivContainer mostrar-carpetasDivContainer";
-     }
    }
 
   ngOnInit() {

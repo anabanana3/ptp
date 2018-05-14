@@ -11,7 +11,7 @@
 <div *ngIf="usuario">
   <app-header></app-header>
 </div>
-  <div class="divBlanco bgColorWhite">
+  <div class="divBlancoExpPcpal">
 <!-- TODO: No pudes voler para atras -->
     <!-- <div class="tabsExpediente">
       <button id="bl1" class="tabItem" (click)="bloque=1">
@@ -30,7 +30,10 @@
         Bloque 5
       </button>
     </div> -->
-    
+
+<!--
+    <button [routerLink]="['/misexpedientes']"type="button" name="button" class="btn-return textoBlanco icon-return">
+    </button>-->
     <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
       <mat-tab label="Datos sociodemográficos"  id="bloque1">
         <div class="divBloqueExp2">

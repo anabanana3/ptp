@@ -30,8 +30,6 @@ export class RecursosComponent {
   admin:boolean = false;
   usuario:boolean = false;
 
-  mostrarForm:boolean = false;
-
   constructor(private _materialService:MaterialService,
               private router:Router) {
     if(sessionStorage.length === 0){
@@ -45,7 +43,7 @@ export class RecursosComponent {
     }else if(sessionStorage.getItem('admin') != null){
       this.admin = true;
     }
-
+    
     this.error = false;
     this.getMaterialesPropios(1);
 
@@ -221,19 +219,5 @@ export class RecursosComponent {
     }, error => {
       console.log(error);
     })
-  }
-
-  mostrarFilters(){
-    this.mostrarForm = !this.mostrarForm;
-    if(this.mostrarForm){
-      document.getElementById("formFilter").className="mostrar-form";
-      document.getElementById("lateralSearch").className="lateralSearch mostrar-lateralSearch";
-      document.getElementById("divContainer").className="carpetasDivContainer ocultar-carpetasDivContainer";
-    }
-    else{
-      document.getElementById("formFilter").className="ocultar-form";
-      document.getElementById("lateralSearch").className="lateralSearch ocultar-lateralSearch";
-      document.getElementById("divContainer").className="carpetasDivContainer mostrar-carpetasDivContainer";
-    }
   }
 }

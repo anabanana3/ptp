@@ -156,10 +156,7 @@ button:hover{
 .icon-ok,
 .icon-search,
 .icon-edit,
-.icon-trash-empty,
-.icon-eye,
-.icon-left-open,
-.icon-right-open{
+.icon-trash-empty{
   font-size: 20px;
   color:#333333;
 }

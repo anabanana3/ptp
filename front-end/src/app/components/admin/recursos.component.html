@@ -51,7 +51,7 @@
           <ng-container matColumnDef="opciones">
             <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <a href="{{element.Path}}" target="_blank" class="icon-eye" title="Visualizar recurso"></a>
+              <a href="{{element.Path}}" target="_blank">enlace</a>
               <button type="button" class="btn btn-outline-danger icon-cancel span"
                       (click)="borrarMaterial(element.ID_Usuario, element.Path)"
                       title="Cancelar Usuario">

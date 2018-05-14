@@ -728,6 +728,34 @@ br{
   margin-left: 6%;
 }
 
+.divBlancoExpPcpal{
+  background: #FFFFFF;
+  padding: 0px;
+  margin: 0 auto;
+  width: 67%;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  border-radius: 8px;
+}
+
+.divBlancoRegistro {
+    background: #FFFFFF;
+    z-index: -9999;
+    position: absolute;
+    padding: 0px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: 0 auto; */
+    width: 50%;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+    border-radius: 8px;
+}
+
 .divContainerPopUp{
   display: flex;
   flex-wrap: wrap;
@@ -779,7 +807,7 @@ br{
 
 .divExpDeUnoSearch{
   margin-bottom: 3px;
-  /* width: 50%; */
+  width: 50%;
 }
 
 .divLabels{
@@ -806,7 +834,7 @@ br{
 .SubmitSearch{
   width: 70px;
   margin: 0 auto;
-  /* margin-top: 40px; */
+  margin-top: 40px;
 }
 
 .gineblock{
@@ -1271,42 +1299,31 @@ option{
 
 /*Mis Expedientes*/
 .gridContainer{
-  /* display: grid;
+  display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 90px 100% 50px; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  height: 90vh;
-  width: 100%;
+  grid-template-rows: 90px 100% 50px;
 }
 
 .headerMisExp{
-  /* grid-column-start: 1; */
+  grid-column-start: 1;
   /* autoprefixer: off */
-  /* grid-column-end: 2; */
-  /* grid-row-start: 1; */
+  grid-column-end: 2;
+  grid-row-start: 1;
   /* autoprefixer: off */
-  /* grid-row-end:2; */
+  grid-row-end:2;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px 20px;
+  padding: 28px 30px;
 }
 
 .carpetasDivContainer{
-  /* grid-column-start: 1; */
+  grid-column-start: 1;
   /* autoprefixer: off */
-  /* grid-column-end: 2;
-  grid-row-start: 2; */
+  grid-column-end: 2;
+  grid-row-start: 2;
   /* autoprefixer: off */
-  /* grid-row-end:3;
-  margin-bottom:14px; */
-  width: 70%;
-  height: 100%;
-  margin: auto;
-  overflow-y: scroll;
-  z-index: 1;
+  grid-row-end:3;
+  margin-bottom:14px;
 }
 
 .carpeta{
@@ -1356,18 +1373,17 @@ option{
 }
 
 .lateralSearch{
-  /* grid-column-start: 2; */
+  grid-column-start: 2;
   /* autoprefixer: off */
-  /* grid-column-end: 3; */
-  /* grid-row-start: 1; */
+  grid-column-end: 3;
+  grid-row-start: 1;
   /* autoprefixer: off */
-  /* grid-row-end:5; */
+  grid-row-end:5;
   background-color: white;
   box-shadow: 1px 0px 1px 0px rgba(203,203,203,0.50);
   padding: 20px 0px 15px 20px;
   height: 90vh;
-  width: 30%;
-  /* margin-bottom: -13%; */
+  margin-bottom: -13%;
   /* z-index: -1; */
 }
 
@@ -1375,7 +1391,6 @@ option{
   text-align: left;
 }
 
-.formPlus {display: none;}
 /* .imgExp{
   width: 20px;
   margin-right: 10px;
@@ -1469,9 +1484,8 @@ option{
 }
 
 .optionsRight{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: inline-flex;
+  float: right;
 }
 
 .desplegableContainer{
@@ -1581,8 +1595,6 @@ option{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
   width: 20%;
-  height: 200px;
-  overflow: hidden;
   /* margin: 8px; */
   display: -ms-flexbox;
   /* display: flex; */
@@ -1724,11 +1736,12 @@ option{
 .recurso-item{
   margin: 1%;
   display: block;
+  margin-bottom: 0px;
   padding-bottom: 0px;
 }
 
 .recurso-info{
-  padding: 20px 0px;
+  padding: 30px 0px;
   padding: 0 auto;
 }
 .recurso-img{
@@ -1853,9 +1866,4 @@ div.g-recaptcha > div{
   padding: 10%;
   padding-top: 5%;
   text-align: justify;
-}
-
-.sombra-z{
-  z-index: -1;
-  color: grey;
 }

@@ -459,13 +459,13 @@ updateCompNacidoParto(idP, sel){
   }
   getExpedientesPubById(id){
     let url=this.urlExpedientePub+'/'+id;
-    console.log(url);
     let token = sessionStorage.token;
     let headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization':token
     });
     return this.http.get(url, {headers}).map(res=>{
+      console.log(res.json());
       return res.json();
     });
   }
@@ -707,51 +707,12 @@ getIndicadoresById(id){
 }
 publicar(id){
   let token =  sessionStorage.token;
-  let body = JSON.stringify(id);
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':token
   });
-  let publico = this.urlPublicar;
-  return this.http.post(publico, body, {headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
-comentarios(bod, id){
-  let token =  sessionStorage.token;
-  let body = JSON.stringify(bod);
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let publico = this.urlExpedientePub+'/permitir/comentarios/'+id;
-  return this.http.post(publico, body, {headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
-getComents(id){
-  let token =  sessionStorage.token;
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let publico = this.urlExpedientePub+'/'+id;
-  return this.http.get(publico,{headers}).map(res=>{
-    console.log(res.json());
-    return res.json();
-  })
-}
-desactivarComentarios(bod, id){
-  let token =  sessionStorage.token;
-  let body = JSON.stringify(bod);
-  let headers = new Headers({
-    'Content-Type':'application/json',
-    'Authorization':token
-  });
-  let publico = this.urlExpedientePub+'/bloquear/comentarios/'+id;
-  return this.http.post(publico, body, {headers}).map(res=>{
+  let publico = this.urlPublicar+'/'+id;
+  return this.http.get(publico, {headers}).map(res=>{
     console.log(res.json());
     return res.json();
   })

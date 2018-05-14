@@ -125,24 +125,6 @@
       "css": "snapchat-ghost",
       "code": 62124,
       "src": "fontawesome"
-    },
-    {
-      "uid": "c5fd349cbd3d23e4ade333789c29c729",
-      "css": "eye",
-      "code": 59405,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "d870630ff8f81e6de3958ecaeac532f2",
-      "css": "left-open",
-      "code": 59406,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "399ef63b1e23ab1b761dfbb5591fa4da",
-      "css": "right-open",
-      "code": 59407,
-      "src": "fontawesome"
     }
   ]
 }

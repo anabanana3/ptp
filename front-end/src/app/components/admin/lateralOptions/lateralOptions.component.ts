@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class LateralOptionsComponent{
 
-  expanded:boolean = true;
+  expanded:boolean = false;
   option = 2;
   error:boolean = true;
 
