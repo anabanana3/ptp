@@ -3,29 +3,29 @@
 </div>
 <div *ngIf="!error">
   <div *ngIf="asociacion">
-    <app-header-asociacion></app-header-asociacion>
+    <!-- <app-header-asociacion></app-header-asociacion> -->
   </div>
   <div *ngIf="admin">
-    <app-header-admin></app-header-admin>
+    <!-- <app-header-admin></app-header-admin> -->
   </div>
   <div *ngIf="usuario">
     <!-- <app-header></app-header> -->
   </div>
-  <div class="contenedor" (mouseleave)="adios()">
-    <button class="boton-flotante" id="general" (mouseover)="hola()" (click)="real()">
-      <span class="icon-cubes" id="span"></span>
+  <div class="contenedor">
+    <button class="boton-flotante" id="tipo0" (click)="real()">
+      <span id="span">NORMAL</span>
     </button>
-    <button class="botones-flotantes-min" id="tipo1" (click)="tipo1()">
-      <span id="span">1</span>
+    <button class="boton-flotante" id="tipo1" (click)="tipo1()">
+      <span id="span">TIPO 1</span>
     </button>
-    <button class="botones-flotantes-min" id="tipo2" (click)="tipo2()">
-      <span id="span">2</span>
+    <button class="boton-flotante" id="tipo2" (click)="tipo2()">
+      <span id="span">TIPO 2</span>
     </button>
-    <button class="botones-flotantes-min" id="tipo3" (click)="tipo3()">
-      <span id="span">3</span>
+    <button class="boton-flotante" id="tipo3" (click)="tipo3()">
+      <span id="span">TIPO 3</span>
     </button>
-    <button class="botones-flotantes-min" id="tipo4" (click)="cartoon()">
-      <span class="icon-snapchat-ghost" id="span"></span>
+    <button class="boton-flotante" id="tipo4" (click)="cartoon()">
+      <span id="span">{{nombre}}</span>
     </button>
   </div>
   <canvas id="canvas" width="1800" height="1000" style="width:100%; height:100%;"></canvas>

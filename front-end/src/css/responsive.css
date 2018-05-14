@@ -1,4 +1,3 @@
-
 /**** RESPONSIVE ****/
 @media (max-width: 700px) { /*1384*/
   h1{
@@ -40,6 +39,7 @@
   .recursosDiv{
     height:500px;
   }
+
   .headerPrincipal{
     margin-bottom:20px;
   }
@@ -86,6 +86,21 @@
   .LeftDiv, .RightDiv{
     margin-top:50px;
   }
+
+  .ocultar-lateralSearch{width: 15%;}
+  .mostrar-lateralSearch{width: 90%;}
+
+  .mostrar-form {display: block;}
+  .ocultar-form {display: none;}
+
+  .mostrar-carpetasDivContainer{
+    width: 85%;
+  }
+  .ocultar-carpetasDivContainer{
+    width: 30%;
+    display: none;
+  }
+  .recursos-container{padding: 0;}
 }
 
 
@@ -118,7 +133,6 @@
   }
 
   .recursosDiv{height:500px;}
-
 }
 
 @media (max-width:1025px) {
@@ -138,39 +152,43 @@
   .divAdmin-content{margin-left: 70px;}
 
   .noticiasConIcon{width: 620px;}
+
+  .recursoTarget{
+    width: 30%;
+    margin: auto;
+    margin-bottom: 1%;
+  }
 }
 
 @media (max-width: 481px) {
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-  html{
+  /* html{
     max-width: 320px;
-  }
+  } */
   h1{font-size: 16px;}
+
+  .formPlus {
+    display: block;
+    padding: 0;
+  }
 
   .botonesPrincipal{
     width:321px;
     margin-bottom:30px;
   }
 
-  .recursosDiv{
-    padding: 0px;
-  }
+  .recursosDiv{padding: 0px;}
 
-  .recursosText{
-    margin-left:8px;
-  }
+  .recursosText{margin-left:8px;}
 
-  .divBlanco{
-    width: 100%;
-  }
+  .divBlanco{width: 100%;}
 
-  .camposForm{
+  .recursoTarget {
+    height: 250px;
     width: 90%;
   }
 
-  .btn-return{
-    float: none;
-  }
+  .camposForm{width: 90%;}
 
   .divAdmin { display: none;}
 
@@ -193,6 +211,10 @@
     text-align: left;
     padding: 2%;
     margin-left: 0.3em;
+  }
+
+  .divAdmin-content{
+    margin: 0;
   }
 
   .divError{
@@ -275,10 +297,10 @@
   }
 
   /**** HEADER ****/
-  .header > a > img{
+  /* .header > a > img{
     margin-left: 30px;
     margin-top: 20px;
-  }
+  } */
 
   .header{
     height: 70px;

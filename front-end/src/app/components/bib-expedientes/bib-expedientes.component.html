@@ -11,145 +11,139 @@
   <div *ngIf="usuario">
     <app-header></app-header>
   </div>
-    <!-- <button *ngIf="asociacion" [routerLink]="['/asociacion']"type="button" name="button" class="btn-return textoBlanco icon-return"></button>
-  <button *ngIf="!asociacion" [routerLink]="['/home']"type="button" name="button" class="btn-return textoBlanco icon-return"></button> -->
-<div class="gridContainer">
-
-  <div class="headerMisExp">
-    <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
-  </div>
-
-
-  <div class="lateralSearch">
-    <form (ngSubmit)="buscar(1,10)">
-      <div class="divLabelsDeUnoSearch">
-
-        <div class="inputSearchDiv">
-          <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
-          <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
-          <br>
+  <div class="gridContainer">
+    <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
+      <div class="headerMisExp">
+        <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
+      </div>
+      <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
+      <div *ngIf="expedientes.length>0" class="expediente-container">
+        <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
+          <div class="expediente-body-exp">
+            <p class="tituloExp">{{e.Titulo}}</p>
+            <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
+          </div>
         </div>
       </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="autor">Autor</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
-          <br>
-        </div>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="profesion">Profesion del autor</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesion">
-            <option value="0">Selecione una profesión</option>
-            <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
-          </select>
-          <br>
-        </div>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="f1">Desde</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
-        </div>
-        <br>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="f2">Hasta</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
-        </div>
-        <br>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="lugar"> Lugar de detección </label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
-        </div>
-        <br>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="etnia">Etnia de origen</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
-            <option value="0">Seleccione la etnia</option>
-            <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
-          </select>
-        </div>
-        <br>
-      </div>
-
-      <div class="divLabelsDeUnoSearch">
-        <div class="divExpDeUnoSearch">
-          <label for="tipoMGF">Tipo de MGF</label>
-        </div>
-        <div class="divExpDeUnoSearch">
-          <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
-            <option value="0">Seleccione el tipo de MGF</option>
-            <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
-          </select>
-        </div>
-        <br>
-      </div>
-
-      <div class="SubmitSearch">
-        <button class="btn-relleno" type="submit" name="button">Buscar</button>
-      </div>
-    </form>
-  </div>
-
-<div class="carpetasDivContainer">
-  <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
-  <div *ngIf="expedientes.length>0" class="expediente-container">
-    <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
-
-      <div class="expediente-body-exp">
-        <p class="tituloExp">{{e.Titulo}}</p>
-        <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
-      </div>
+      <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
+      <!--Boton de pagina anterior-->
+        <li>
+          <a (click)="pasarPagina(pagBack)">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let pag of paginas; let i=index">
+          <a (click)="pasarPagina(i+1)">
+            <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+            <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+          </a>
+        </li>
+        <!--Boton de pagina siguiente-->
+        <li>
+          <a (click)="pasarPagina(pagNext);">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
 
-  <ul class="pagination" *ngIf="paginas.length >1 && expedientes.length ">
-  <!--Boton de pagina anterior-->
-    <li>
-      <a (click)="pasarPagina(pagBack)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li *ngFor="let pag of paginas; let i=index">
-      <a (click)="pasarPagina(i+1)">
-        <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-        <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-      </a>
-    </li>
-    <!--Boton de pagina siguiente-->
-    <li>
-      <a (click)="pasarPagina(pagNext);">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</div>
-</div>
-</div>
+    <div class="lateralSearch ocultar-lateralSearch" id="lateralSearch">
+      <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
+      <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
+      <form (ngSubmit)="buscar(1,10)" id="formFilter" class="ocultar-form">
+        <div class="divLabelsDeUnoSearch">
 
+          <div class="inputSearchDiv">
+            <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
+            <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="autor">Autor</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="profesion">Profesion del autor</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesion">
+              <option value="0">Selecione una profesión</option>
+              <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+            </select>
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f1">Desde</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f2">Hasta</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="lugar"> Lugar de detección </label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="etnia">Etnia de origen</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
+              <option value="0">Seleccione la etnia</option>
+              <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+            </select>
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="tipoMGF">Tipo de MGF</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+              <option value="0">Seleccione el tipo de MGF</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+            </select>
+          </div>
+          <br>
+        </div>
+
+        <div class="SubmitSearch">
+          <button class="btn-relleno" type="submit" name="button">Buscar</button>
+        </div>
+      </form>
+    </div>
+    </div>
   <app-footer></app-footer>
+</div>

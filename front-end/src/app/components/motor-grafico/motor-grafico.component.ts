@@ -19,6 +19,8 @@ export class MotorGraficoComponent implements AfterViewInit {
   asociacion:boolean = false;
   admin:boolean = false;
   usuario:boolean = false;
+  nombre:string = "CARTOON";
+  tipo = 0;
 
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
@@ -43,39 +45,45 @@ export class MotorGraficoComponent implements AfterViewInit {
     }
     this._userService.visitasModelo3D(visita).subscribe(data=>{
     });
-  }
-
-  hola(){
-    document.getElementById("tipo1").setAttribute("class", "animacion-flotante botones-flotantes-min");
-    document.getElementById("tipo2").setAttribute("class", "animacion-flotante botones-flotantes-min");
-    document.getElementById("tipo3").setAttribute("class", "animacion-flotante botones-flotantes-min");
-    document.getElementById("tipo4").setAttribute("class", "animacion-flotante botones-flotantes-min");
-  }
-
-  adios(){
-    document.getElementById("tipo1").setAttribute("class", "botones-flotantes-min");
-    document.getElementById("tipo2").setAttribute("class", "botones-flotantes-min");
-    document.getElementById("tipo3").setAttribute("class", "botones-flotantes-min");
-    document.getElementById("tipo4").setAttribute("class", "botones-flotantes-min");
+    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante btn-activo");
   }
 
   tipo1(){
+    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
+    this.tipo = 1;
+    document.getElementById('tipo1').setAttribute("class", "boton-flotante btn-activo");
     new mostrarTipo1();
   }
 
   tipo2(){
+    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
+    this.tipo = 2;
+    document.getElementById('tipo2').setAttribute("class", "boton-flotante btn-activo");
+
     new mostrarTipo2();
   }
 
   tipo3(){
+    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
+    this.tipo = 3;
+    document.getElementById('tipo3').setAttribute("class", "boton-flotante btn-activo");
+
     new mostrarTipo3();
   }
 
   real(){
+    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
+    this.tipo = 0;
+    document.getElementById('tipo0').setAttribute("class", "boton-flotante btn-activo");
+
     new mostrarReal();
   }
 
   cartoon(){
+    if(this.nombre === "CARTOON")
+      this.nombre = "NO CARTOON"
+    else
+      this.nombre = "CARTOON"
     new mostrarCartoon();
   }
 }
