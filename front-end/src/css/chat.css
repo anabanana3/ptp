@@ -1,32 +1,23 @@
 .main-Chat{
   display: flex;
   width: 100%;
-  height: 90%;
+  height: 100%;
   flex-direction:row;
   overflow: hidden;
-}
-.main-Chat .bgColorWhite{
-  width: 25%;
 }
 .chat-container{
   flex-grow: 2;
   border-left: 1px solid #DBDBDB;
 }
-.message-container{
-  height: 630px;
-  max-height: 900px;
-  overflow-y: scroll;
-  align-items: flex-start;
+
+.chat-contactos{
+
 }
 .conversacioness{
   border-bottom: 1px solid #DBDBDB;
   padding: 7px;
   cursor: pointer;
 }
-.busquedachat{
-   height: 78%;
-   overflow-y: scroll;
- }
 .btn-buscador{
   background: none;
   border: none;
@@ -76,4 +67,37 @@
 }
 .btn-salirchat{
   margin: 2%;
+}
+
+.message-container{
+   height: 550px;
+   overflow: scroll;
+   align-items: flex-start;
+}
+
+.busquedachat{
+  height: 100%;
+  overflow: scroll;
+}
+
+.btn-chat-volver{display: none}
+
+@media (max-width: 481px) {
+  .chat-contactos{
+    width: 100%;
+  }
+  .chat-container{
+    width: 100%;
+  }
+
+  .message-container{
+     height: 350px;
+     overflow: scroll;
+     align-items: flex-start;
+  }
+  .busquedachat{height: 400px;}
+  .btn-chat-volver{display: inherit;}
+  .chat-container header{
+    display: flex;
+  }
 }

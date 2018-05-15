@@ -159,7 +159,8 @@ button:hover{
 .icon-trash-empty,
 .icon-eye,
 .icon-left-open,
-.icon-right-open{
+.icon-right-open,
+.icon-left-big{
   font-size: 20px;
   color:#333333;
 }
