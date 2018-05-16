@@ -79,49 +79,60 @@ profesiones = new Array();
 
    buscar(pag, tam=this.tamPag){
      console.log(this.Filtros);
+     sessionStorage.setItem('FAutor', this.Filtros.Autor);
+     sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
+     sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
+     sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
+     sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
+     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
+     sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
+     sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
+     console.log(sessionStorage);
+
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
-     if(this.Filtros.Autor != ''){
-       this.url += 'autor='+this.Filtros.Autor;
+     if(sessionStorage.FAutor != ''){
+       // this.url += 'autor='+this.Filtros.Autor;
+       this.url += 'autor='+sessionStorage.FAutor;
      }else{
        this.url += 'autor='+null;
      }
-     if(this.Filtros.Profesion != 0){
-       this.url += '&profesion='+this.Filtros.Profesion;
+     if(parseInt(sessionStorage.FProfesion) != 0){
+       this.url += '&profesion='+parseInt(sessionStorage.FProfesion);
      }else{
        this.url += '&profesion='+null ;
      }
-     if(this.Filtros.Titulo != ''){
+     if(sessionStorage.FTitulo != ''){
        //No son nulos => los pongo tal cual
-       this.url += '&titulo='+this.Filtros.Titulo;
+       this.url += '&titulo='+sessionStorage.FTitulo;
      }else{
        this.url += '&titulo='+null;
      }
-     if(this.Filtros.Fecha1 != ''){
-       this.url += '&f1='+this.Filtros.Fecha1;
+     if(sessionStorage.FFecha1 != ''){
+       this.url += '&f1='+sessionStorage.FFecha1;
      }else{
        this.url += '&f1='+null;
      }
-     if(this.Filtros.Fecha2 != ''){
-       this.url += '&f2='+this.Filtros.Fecha2;
+     if(sessionStorage.FFecha2 != ''){
+       this.url += '&f2='+sessionStorage.FFecha2;
      }else{
        this.  url += '&f2='+null;
      }
      //Lugar
-     if(this.Filtros.Lugar != ''){
-       this.url += '&l='+this.Filtros.Lugar;
+     if(sessionStorage.FLugar != ''){
+       this.url += '&l='+sessionStorage.FLugar;
      }else{
        this.url += '&l='+null;
      }
      //Etnia
-     if(this.Filtros.Etnia != 0){
-       this.url += '&e='+this.Filtros.Etnia
+     if(parseInt(sessionStorage.FEtnia) != 0){
+       this.url += '&e='+parseInt(sessionStorage.FEtnia)
      }else{
        this.  url += '&e='+null;
      }
      //TipoMGF
-     if(this.Filtros.TipoMGF != 0){
-       this.url += '&tipo='+this.Filtros.TipoMGF;
+     if(parseInt(sessionStorage.FTipoMGF) != 0){
+       this.url += '&tipo='+parseInt(sessionStorage.FTipoMGF);
      }else{
        this.url += '&tipo='+null;
      }
