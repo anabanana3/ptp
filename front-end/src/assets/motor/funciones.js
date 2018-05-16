@@ -78,7 +78,6 @@ function mostrarReal(){
     GFachada.draw();
   },3000);
 }
-//****************************// TODO: **************************************/
 function mostrarCartoon(){
   GCartoon = true;
   console.log('mostrarCartoon');
