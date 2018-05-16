@@ -13,7 +13,7 @@
   </div>
   <div class="main-Chat">
     <!-- Chats -->
-  <div class="bgColorWhite">
+  <div class="mostrar chat-contactos bgColorWhite" id="contactos">
     <header>
       <h2>Contactos</h2>
       <p>
@@ -37,13 +37,14 @@
         <small>{{c.Profesion}}</small>
       </div>
     </div>
-    <footer> <button (click)=salir() type="button" class="btn btn-relleno btn-salirchat" [routerLink]="['/home']">Salir</button>
-    </footer>
+    <!-- <footer> <button (click)=salir() type="button" class="btn btn-relleno btn-salirchat" [routerLink]="['/home']">Salir</button>
+    </footer> -->
   </div>
 
   <!-- Conversacion -->
-    <div class="chat-container bgColorWhite">
+    <div class="ocultar chat-container bgColorWhite" id="chat">
       <header>
+        <button (click)="volver()" class="btn-chat-volver icon-left-big"></button>
         <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
       <hr>
@@ -71,12 +72,14 @@
 
       <footer class ="formChat bgColorPink">
         <form>
-            <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
-            <button type="button" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
+          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
+          <button type="submit" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
         </form>
       </footer>
       </div>
     </div>
-    <app-footer></app-footer>
+    <div class="ocultar">
+      <app-footer></app-footer>
+    </div>
 
 </div>
