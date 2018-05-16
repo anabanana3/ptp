@@ -857,7 +857,7 @@ br{
   padding:15px 0px;
   color: #880042;
   margin: 0;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-align: center;
   margin-top: 0;
 }
