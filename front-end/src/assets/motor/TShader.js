@@ -12,7 +12,6 @@ class TShader extends TRecurso {
     this.normalBuffer = null; //buffer de normales
     this.canvas = document.getElementById('canvas');
     this.gl = gl;
-    //declarar toon
   }
 
   request(url) {
@@ -89,9 +88,6 @@ class TShader extends TRecurso {
     }
 
 
-//// TODO: crear otro programa con un if
-
-
     //creamos el programa
     let programa1  = gl.createProgram();
     gl.attachShader(programa1, vertShader);
@@ -128,6 +124,7 @@ class TShader extends TRecurso {
 
     this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
     this.programa.uSampler = gl.getUniformLocation(this.programa, "uSampler");
+
   }
 
   initLights(){
@@ -151,12 +148,11 @@ class TShader extends TRecurso {
       this.lastTime = timeNow;
   }
 
-//// TODO: ******************************************************************************************
   mainShader(){
     this.configure();
     if(GCartoon){
       this.initProgram(this.ToonFragmentShader, this.ToonVertexShader);
-      console.log('cartooon');
+      console.log('cartoon');
     }
     else{
       this.initProgram(this.FragmentShader, this.VertexShader);
