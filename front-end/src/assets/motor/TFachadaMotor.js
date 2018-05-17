@@ -53,8 +53,8 @@ class TFachadaMotor {
   	nodo.setEntidad(camara);
     this.regCamaras.push(nodo);
     //fovy, aspect, near, far - angulo en radianes, aspecto, cerca, lejos
-    // camara.setPerspectiva(0.3, canvas.width / canvas.height, 0, 50);
-    //camara.setParalela(-50, 50, -20, 20, 25, -15);
+    //camara.setPerspectiva(0.3, canvas.width / canvas.height, 0, 10);
+    //camara.setParalela(-50, 50, -20, 20, 20, -15);
   	return nodo;
   }
   crearCamaraCompleto(nombre){

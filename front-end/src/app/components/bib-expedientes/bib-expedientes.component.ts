@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { ProfesionesService } from '../../services/profesiones.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bib-expedientes',
@@ -45,7 +46,7 @@ profesiones = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
+  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute) {
       if(sessionStorage.length == 0){
         return;
       }
@@ -71,6 +72,7 @@ profesiones = new Array();
       }else if(sessionStorage.getItem('admin') != null){
         this.admin = true;
       }
+
    }
 
    buscar2(pag, tam=this.tamPag){

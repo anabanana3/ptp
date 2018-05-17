@@ -190,6 +190,7 @@ button:hover{
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   /* transition:.3s; */
   padding-bottom: 5%;
+  z-index: 15;
 }
 #tipo1 {
   background: #0C8A9C;
@@ -211,6 +212,54 @@ button:hover{
 #span {
   text-align: center;
   transition: .5s;
+}
+
+.switch{
+  background-color: blue;
+  width: 200px;
+  display: inline-block;
+  border-radius: 10px;
+  /* padding: 6px 10px; */
+  height: 40px;
+  position: relative;
+}
+.switch label{
+  float: left;
+  width: 50%;
+  position: relative;
+  z-index: 2;
+  line-height: 40px;
+  cursor: pointer;
+  color: white;
+  border-radius: 10px;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch input:checked + label{
+  color: blue;
+  font-weight: bold;
+}
+
+.switch span{
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: block;
+  border-radius: 10px;
+  background-color: #FFF;
+  transition: all 200ms ease;
+}
+
+.cambio-switch{
+  left: 50%;
+  border-radius: 10px;
+  transition: all 200ms ease;
 }
 
 .btn-activo{
