@@ -73,10 +73,96 @@ profesiones = new Array();
         this.admin = true;
       }
 
+      this.buscar2(1,10);
    }
 
    buscar2(pag, tam=this.tamPag){
+     //metodo para mantener la busqueda anterior
+     this.Filtros.Autor = sessionStorage.FAutor;
+     this.Filtros.Profesion = sessionStorage.FProfesion;
+     this.Filtros.Titulo = sessionStorage.FTitulo;
+     this.Filtros.Fecha1 = sessionStorage.FFecha1;
+     this.Filtros.Fecha2 = sessionStorage.FFecha2;
+     this.Filtros.Lugar = sessionStorage.FLugar;
+     this.Filtros.Etnia = sessionStorage.FEtnia;
+     this.Filtros.TipoMGF = sessionStorage.FTipoMGF;
      console.log(this.Filtros);
+     this.url='https://www.aisha.ovh/api/publicos/search/';
+     let primero = 1;
+     if(sessionStorage.FAutor != ''){
+       // this.url += 'autor='+this.Filtros.Autor;
+       this.url += 'autor='+sessionStorage.FAutor;
+     }else{
+       this.url += 'autor='+null;
+     }
+     if(parseInt(sessionStorage.FProfesion) != 0){
+       this.url += '&profesion='+parseInt(sessionStorage.FProfesion);
+     }else{
+       this.url += '&profesion='+null ;
+     }
+     if(sessionStorage.FTitulo != ''){
+       //No son nulos => los pongo tal cual
+       this.url += '&titulo='+sessionStorage.FTitulo;
+     }else{
+       this.url += '&titulo='+null;
+     }
+     if(sessionStorage.FFecha1 != ''){
+       this.url += '&f1='+sessionStorage.FFecha1;
+     }else{
+       this.url += '&f1='+null;
+     }
+     if(sessionStorage.FFecha2 != ''){
+       this.url += '&f2='+sessionStorage.FFecha2;
+     }else{
+       this.  url += '&f2='+null;
+     }
+     //Lugar
+     if(sessionStorage.FLugar != ''){
+       this.url += '&l='+sessionStorage.FLugar;
+     }else{
+       this.url += '&l='+null;
+     }
+     //Etnia
+     if(parseInt(sessionStorage.FEtnia) != 0){
+       this.url += '&e='+parseInt(sessionStorage.FEtnia)
+     }else{
+       this.  url += '&e='+null;
+     }
+     //TipoMGF
+     if(parseInt(sessionStorage.FTipoMGF) != 0){
+       this.url += '&tipo='+parseInt(sessionStorage.FTipoMGF);
+     }else{
+       this.url += '&tipo='+null;
+     }
+
+    //Añado los parametros de la paginacion
+    this.url += '/pag='+pag+'&n='+tam;
+
+    console.log('Muestro la url que mando al servicio');
+    console.log(this.url);
+    this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
+      console.log(data);
+      if(data.Resultado == 'OK'){
+        console.log('No hay resultados');
+        this.expedientes = new Array();
+        //Falta mostrar mensaje de no hay resultados
+        this.busqueda = true;
+        this.mensaje = 'No hay resultados para la busqueda solicitada';
+        document.getElementById('alert').className = 'alert alert-danger';
+        //return;
+
+      }else{
+        if(data.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          console.log('Hay busqueda');
+          this.busqueda = true;
+          this.expedientes = data.Data;
+          this.mensaje = '';
+          //this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      }
+    });
    }
 
    buscar(pag, tam=this.tamPag){
@@ -167,6 +253,25 @@ profesiones = new Array();
         }
       }
     });
+   }
+   borrarBusqueda(){
+     this.Filtros.Autor = "";
+     sessionStorage.FAutor = "";
+     this.Filtros.Profesion = 0;
+     sessionStorage.FProfesion = "";
+     this.Filtros.Titulo = "";
+     sessionStorage.FTitulo = "";
+     this.Filtros.Fecha1 = "";
+     sessionStorage.FFecha1 = "";
+     this.Filtros.Fecha2 = "";
+     sessionStorage.FFecha2 = "";
+     this.Filtros.Lugar = "";
+     sessionStorage.FLugar = "";
+     this.Filtros.Etnia = 0;
+     sessionStorage.FEtnia = "";
+     this.Filtros.TipoMGF = 0;
+     sessionStorage.FTipoMGF = 0;
+     this.buscar(1,10);
    }
 
    paginacion( paginaActual , pagTotales){

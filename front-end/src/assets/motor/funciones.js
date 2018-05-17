@@ -6,9 +6,7 @@ function iniciarMotor(){
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert', 'toonFragShader.frag', 'toonVertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
-  // GFachada.rotar(camara1, 3.14, 0, 1, 0);
-  //GFachada.rotar(camara1, 3, 0, 0, 1);
-  //GFachada.trasladar(camara1, 0,0,-20);
+  GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "PIERNAS.mtl", "piel.jpg");
@@ -33,7 +31,7 @@ function iniciarMotor(){
 function mostrarTipo1(){
   console.log('mostrarTipo1');
   texto("Tipo 1 o Clitoridectomia", "Consiste en la extirpación del prepucio del clítoris con o sin excisión parcial o total del glande del clítoris.");
-  
+
   for (var i = 0; i < GFachada.objetos.length; i++) {
     if (GFachada.objetos[i].nombre != "Piernas") {
       GFachada.borrarNodo(GFachada.objetos[i]);
@@ -103,6 +101,7 @@ function mostrarCartoon(){
   },3000);
 }
 
+
 function texto(titulo, desc){
   //función que cambia el texto segun el tipo de mutilación que se está mostrando
   //nos hemos basado en https://webglfundamentals.org/webgl/lessons/webgl-text-html.html
@@ -111,6 +110,16 @@ function texto(titulo, desc){
 
   GtituloElement.appendChild(GtituloNode);
   GdescripcionElement.appendChild(GdescripcionNode);
+}
+
+function mostrarNoCartoon(){
+  GCartoon = false;
+  console.log('mostrarNoCartoon');
+
+  setTimeout(() => {
+    GShader.mainShader();
+    GFachada.draw();
+  },3000);
 }
 
 function initWebGL(canvas) {

@@ -87,7 +87,6 @@ class TShader extends TRecurso {
       throw(error);
     }
 
-
     //creamos el programa
     let programa1  = gl.createProgram();
     gl.attachShader(programa1, vertShader);
@@ -123,8 +122,10 @@ class TShader extends TRecurso {
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
     this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
 
-    this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
-    this.programa.uSampler = gl.getUniformLocation(this.programa, "uSampler");
+    if(GCartoon ==false){
+      this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
+      this.programa.uSampler = gl.getUniformLocation(this.programa, "uSampler");
+    }
 
   }
 

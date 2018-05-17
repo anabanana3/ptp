@@ -123,7 +123,6 @@ class TFachadaMotor {
     return malla;
   }
 
-// TODO: **********************************************************************************
   crearShader(frag, vert, toonfrag, toonvert){
     let shader = new TShader();
     shader.cargarFichero(frag);

@@ -843,6 +843,8 @@ br{
   width: 70px;
   margin: 0 auto;
   /* margin-top: 40px; */
+  display: inline;
+  margin-left: 10%;
 }
 
 .gineblock{
@@ -880,7 +882,7 @@ br{
   padding:15px 0px;
   color: #880042;
   margin: 0;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-align: center;
   margin-top: 0;
 }
