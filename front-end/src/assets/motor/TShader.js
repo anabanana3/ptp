@@ -87,7 +87,6 @@ class TShader extends TRecurso {
       throw(error);
     }
 
-
     //creamos el programa
     let programa1  = gl.createProgram();
     gl.attachShader(programa1, vertShader);

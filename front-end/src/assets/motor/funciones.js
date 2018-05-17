@@ -5,9 +5,7 @@ function iniciarMotor(){
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert', 'toonFragShader.frag', 'toonVertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
-  // GFachada.rotar(camara1, 3.14, 0, 1, 0);
-  //GFachada.rotar(camara1, 3, 0, 0, 1);
-  //GFachada.trasladar(camara1, 0,0,-20);
+  GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
@@ -81,6 +79,16 @@ function mostrarReal(){
 function mostrarCartoon(){
   GCartoon = true;
   console.log('mostrarCartoon');
+
+  setTimeout(() => {
+    GShader.mainShader();
+    GFachada.draw();
+  },3000);
+}
+
+function mostrarNoCartoon(){
+  GCartoon = false;
+  console.log('mostrarNoCartoon');
 
   setTimeout(() => {
     GShader.mainShader();

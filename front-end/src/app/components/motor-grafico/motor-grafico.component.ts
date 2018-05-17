@@ -6,6 +6,7 @@ declare var mostrarTipo2;
 declare var mostrarTipo3;
 declare var mostrarReal;
 declare var mostrarCartoon;
+declare var mostrarNoCartoon;
 declare var borrarLuzCompleto;
 declare var moverCamara;
 
@@ -80,10 +81,13 @@ export class MotorGraficoComponent implements AfterViewInit {
   }
 
   cartoon(){
-    if(this.nombre === "CARTOON")
+    if(this.nombre === "CARTOON"){
       this.nombre = "NO CARTOON"
-    else
+      new mostrarCartoon();
+    }
+    else{
       this.nombre = "CARTOON"
-    new mostrarCartoon();
+      new mostrarNoCartoon();
+    }
   }
 }
