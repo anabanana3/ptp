@@ -14,6 +14,9 @@ export class EditB4Component implements OnInit {
   consecuenciasSalud = new Array();
   consecuencia = new Array();
   form:FormGroup;
+  consecBD;
+  consecuencias = new Array();
+
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
     let id:number;
     activatedRoute.params.subscribe(params=>{
@@ -67,10 +70,78 @@ export class EditB4Component implements OnInit {
     this._expedientesService.getTieneConsecSalud(id).subscribe(data=>{
       console.log('***********************************')
       console.log(data);
+      this.consecBD = data;
+      this.selecionarCampos();
     })
   }
 
   ngOnInit() {
+  }
+
+  guardarDatos(forma){
+    console.log('Metodo para guardar los datos');
+    console.log(forma);
+    if(this.consecuencia.length > 0){
+      console.log("entro 1"+ this.consecuenciasSalud.length);
+      for(var i=1; i< this.consecuenciasSalud.length+1; i++){
+        if(this.consecuencia[i] == true){
+          console.log("entro 2 "+ this.consecuencias[i]);
+          this.consecuencias.push(i);
+          console.log(this.consecuencias);
+        }
+      }
+    }
+    //Tengo que añadir las que habia en la BD
+    for(let i=0; i<this.consecBD.length; i++){
+      this.consecuencias.push(this.consecBD[i].ID_Consecuencia);
+    }
+    console.log(this.consecuencias);//Consecuencias selecionadas por el usuario
+    console.log(this.json);
+    this._expedientesService.updateBloque4(this.json).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      this._expedientesService.updateConsecuenciasSalud(this.json.ID_Expediente, this.json.ID_Bloque, this.consecuencias).subscribe(data => {
+        console.log(data);
+      });
+    })
+
+  }
+  selecionarCampos(){
+    console.log('Metodo axiliar para marcar las complicaciones');
+    console.log(this.consecuenciasSalud);
+    console.log(this.consecBD);
+    console.log(this.consecBD.length)
+    console.log(this.consecBD[0]);
+    for(let i = 0; i<this.consecBD.length; i++){
+      console.log('Iteracion en BD');
+      console.log(this.consecBD[i]);
+      let aux = this.consecBD[i];
+      let encontrada = false;
+      for(let j = 0; j<this.consecuenciasSalud.length && encontrada == false; j++){
+        if(aux.ID_Consecuencia == this.consecuenciasSalud[j].ID_Consecuencia){
+          //Encontrada
+          this.consecuenciasSalud[j].Cheked = 1;
+          encontrada = true;
+        }
+      }
+    }
+    console.log('Muestro las consecuenciasSalud despues de los bucles');
+    console.log(this.consecuenciasSalud);
+  }
+  //guardo los id
+  loadConsecuencias(id){
+    if(this.consecuencia.length > 0){
+      for(var i=0; i< this.consecuenciasSalud.length; i++){
+        if(this.consecuencia[i] == true){
+          console.log(this.consecuencias);
+          this.consecuencias.push(id);
+        }else{
+          this.consecuencias.splice(id,1);
+        }
+      }
+    }
   }
 
   mostrarConsec_fisicas(){

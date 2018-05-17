@@ -71,7 +71,7 @@
             <div *ngIf="consecuenciasSalud[k].Tipo==1">
 
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <input class="checktrans"  name="consecuencia{{k}}" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' [checked]="consecuenciasSalud[k].Cheked == 1" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
 
@@ -93,7 +93,8 @@
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==2">
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <!--  -->
+                <input class="checktrans"  [checked]="consecuenciasSalud[k].Cheked == 1" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
             </div>
@@ -113,7 +114,8 @@
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==4">
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <!--  -->
+                <input class="checktrans"  name="consecuencia{{k}}" [checked]="consecuenciasSalud[k].Cheked == 1" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
             </div>
@@ -132,7 +134,8 @@
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==5">
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <!-- [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' -->
+                <input class="checktrans"  name="consecuencia{{k}}" [checked]="consecuenciasSalud[k].Cheked == 1" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
             </div>
@@ -151,7 +154,8 @@
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==6">
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <!--  -->
+                <input class="checktrans"  name="consecuencia{{k}}" [checked]="consecuenciasSalud[k].Cheked == 1" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
             </div>
