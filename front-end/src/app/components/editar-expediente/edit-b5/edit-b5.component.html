@@ -1,0 +1,72 @@
+<form (ngSubmit)="guardarDatos()">
+  <div>
+    <div id="alert">{{mensaje}}</div>
+    <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label>Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:</label>
+
+      </div>
+      <div class="divExp">
+        <input class="radiotrans"  type="radio" [(ngModel)]="bloque5.ViajesPlanificados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
+        <label class="labeltransr" for="viajePSI">Sí</label>
+        <input class="radiotrans"  type="radio" [(ngModel)]="bloque5.ViajesPlanificados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
+        <label class="labeltransr" for="viajePNO">No</label>
+        <input class="radiotrans"  type="radio" [(ngModel)]="bloque5.ViajesPlanificados" name="ViajesPlanifiacados" value="2" id="viajePNS" >
+        <label class="labeltransr" for="viajePNS">N/S</label>
+      </div>
+
+      <div class="divExp">
+        <label>Realiza viajes al país de origen en vacaciones:</label>
+
+      </div>
+      <div class="divExp">
+        <input class="radiotrans"  type="radio" name="viajes" value="1" id="viajesSI" [(ngModel)]="bloque5.Viajes">
+        <label class="labeltransr" for="viajesSI">Sí</label>
+        <input class="radiotrans"  type="radio" name="viajes" value="0" id="viajesNO" [(ngModel)]="bloque5.Viajes">
+        <label class="labeltransr" for="viajesNO">No</label>
+        <input class="radiotrans"  type="radio" name="viajes" value="2" id="viajesNS" [(ngModel)]="bloque5.Viajes">
+        <label class="labeltransr" for="viajesNS">N/S</label>
+      </div>
+    </div>
+
+    <br>
+
+    <label for="formato">Descripción del formato de intervención:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque5.Intervencion" name="Descripcion"  placeholder="Descripción" id="formato"></textarea>
+    <br>
+
+    <label for="consejo">Consejo para otros profesionales:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque5.Consejos" id="consejo" name="Consejos" placeholder="Consejos"></textarea>
+    <br>
+  </div>
+
+  <h2 class="text16 textPink">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR
+      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus"></span>
+      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus"></span>
+  </h2>
+
+  <!-- <div *ngIf="mostrar == true">
+    <p>A continuación seleccione los indicadores que se dan la titular del expediente:</p>
+    <br>
+      <div >
+
+      <div class="divContainerBl4">
+        <div *ngFor="let in of indicadores; let i = index;">
+            <div class="divPrueba">
+              <input class="checktrans" formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+              <label class="labeltrans" for="indicador{{i}}">{{in.Nombre}}</label>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div> -->
+
+  <div class="centrar">
+    <button class="btn-relleno" type="submit">Guardar</button>
+  </div>
+
+</form>
