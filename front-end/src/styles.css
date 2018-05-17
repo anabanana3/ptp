@@ -820,6 +820,8 @@ br{
   width: 70px;
   margin: 0 auto;
   /* margin-top: 40px; */
+  display: inline;
+  margin-left: 10%;
 }
 
 .gineblock{
