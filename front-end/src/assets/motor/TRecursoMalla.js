@@ -90,7 +90,7 @@ class TRecursoMalla extends TRecurso{
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.nb);
     gl.vertexAttribPointer(programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
 
-    if(textura !== null && cargando == false){
+    if(textura !== null && cargando == false && GCartoon == false){
       console.log(textura);
       //texturas
       gl.enableVertexAttribArray(programa.aVertexTextureCoords);

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if( sessionStorage.ventana != 0){
-      document.getElementById(sessionStorage.ventana).className = "active";
+      document.getElementById(sessionStorage.ventana).className += " active";
     }
   }
 
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   activo(num){
     sessionStorage.setItem('ventana', num);
     if( sessionStorage.ventana != 0){
-      document.getElementById(num).className = "active";
+      document.getElementById(num).className += " active";
     }
   }
 
