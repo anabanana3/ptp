@@ -9,8 +9,8 @@ function iniciarMotor(){
   GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "PIERNAS.mtl", "piel.jpg");
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "textura.jpg");
+  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
   // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
 
@@ -37,7 +37,7 @@ function mostrarTipo1(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let pieza1 = GFachada.crearMallaCompleto("tipo1", "Tipo1.obj", "VaginaTipo1.mtl");
+  let pieza1 = GFachada.crearMallaCompleto("tipo1", "Tipo1.obj", "VaginaCarne.mtl");
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
@@ -53,7 +53,7 @@ function mostrarTipo2(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let pieza2 = GFachada.crearMallaCompleto("tipo2", "Tipo2.obj", "VaginaTipo1.mtl");
+  let pieza2 = GFachada.crearMallaCompleto("tipo2", "Tipo2.obj", "VaginaCarne.mtl");
   console.log(GFachada.objetos);
   //GFachada.borrarNodo()
   setTimeout(() => {
@@ -70,7 +70,7 @@ function mostrarTipo3(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let pieza3 = GFachada.crearMallaCompleto("tipo3", "Tipo3.obj", "VaginaTipo1.mtl");
+  let pieza3 = GFachada.crearMallaCompleto("tipo3", "Tipo3.obj", "VaginaCarne.mtl");
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
@@ -85,7 +85,7 @@ function mostrarReal(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();

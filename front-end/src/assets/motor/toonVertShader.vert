@@ -1,3 +1,7 @@
+
+//En este archivo simplemente hemos borrado el codigo que tenía que ver con las
+// texturas, ya que solo usamos el material y unicamente usamos la luz ambiental
+
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
 
@@ -6,9 +10,7 @@ uniform mat4 ProjectionMatrix;
 uniform mat4 NormalMatrix;
 
 uniform vec3 uLightDirection; //Directional light
-uniform vec4 uLightDiffuse;
 uniform vec4 uLightAmbient;
-uniform vec4 uMaterialDiffuse;
 
 varying vec4 vFinalColor;
 varying vec3 vNormal;

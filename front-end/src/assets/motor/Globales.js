@@ -1,7 +1,7 @@
 var GFachada;
 var GShader;
 var gl;
-var GCartoon = false;
+var GCartoon = false; //para comprobar si esta en cartoon o no
 //VARIABLES PARA EL MATERIAL
 var GDifuso;
 var GAmbiental;
