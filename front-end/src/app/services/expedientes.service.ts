@@ -38,7 +38,7 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
 
   getEtnias(){
     return this.http.get(this.urlEtnias).map(res=>{
-      console.log(res.json());
+      //console.log(res.json());
       return res.json();
     })
   }
