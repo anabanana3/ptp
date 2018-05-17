@@ -48,6 +48,13 @@ export class HomeComponent {
     });
   }
 
+  activo(num){
+    sessionStorage.setItem('ventana', num);
+    if( sessionStorage.ventana != 0){
+      document.getElementById(num).className += " active";
+    }
+  }
+
   logout(){
     sessionStorage.clear();
     location.href = '/login';
