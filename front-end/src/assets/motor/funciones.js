@@ -1,16 +1,15 @@
 function iniciarMotor(){
   //PRUEBA GIT
   gl = initWebGL(document.getElementById('canvas'));
+
   GFachada = new TFachadaMotor();
   GShader = GFachada.crearShader('fragShader.frag', 'vertShader.vert', 'toonFragShader.frag', 'toonVertShader.vert');
 
   let camara1 = GFachada.crearCamaraCompleto("camara1");
-  // GFachada.rotar(camara1, 3.14, 0, 1, 0);
-  //GFachada.rotar(camara1, 3, 0, 0, 1);
-  //GFachada.trasladar(camara1, 0,0,-20);
+  GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "PIERNAS.mtl", "piel.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
   // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
@@ -19,10 +18,20 @@ function iniciarMotor(){
     GShader.mainShader();
     GFachada.draw();
   },5000);
+
+  GtituloElement = document.getElementById("titulo");
+  GdescripcionElement = document.getElementById("descripcion");
+
+  // Creamos los nodos para los textos.
+  GtituloNode = document.createTextNode("");
+  GdescripcionNode = document.createTextNode("");
+  texto("Vagina sin mutilación", "Aquella que no ha sufrido ningun tipo de procedimiento dañino.");
 }
 
 function mostrarTipo1(){
   console.log('mostrarTipo1');
+  texto("Tipo 1 o Clitoridectomia", "Consiste en la extirpación del prepucio del clítoris con o sin excisión parcial o total del glande del clítoris.");
+
   for (var i = 0; i < GFachada.objetos.length; i++) {
     if (GFachada.objetos[i].nombre != "Piernas") {
       GFachada.borrarNodo(GFachada.objetos[i]);
@@ -37,6 +46,8 @@ function mostrarTipo1(){
 
 function mostrarTipo2(){
   console.log('mostrarTipo2');
+
+  texto("Tipo 2 o Excisión","La ablación parcial o total del clítoris y los labios menores, con o sin excisión de labios mayores.");
   for (var i = 0; i < GFachada.objetos.length; i++) {
     if (GFachada.objetos[i].nombre != "Piernas") {
       GFachada.borrarNodo(GFachada.objetos[i]);
@@ -53,6 +64,7 @@ function mostrarTipo2(){
 
 function mostrarTipo3(){
   console.log('mostrarTipo3');
+  texto("Tipo 3 o Infibulación", "Consiste en la extirpación del clítoris, labios menores y labios mayores, produciendo así un estrechamiento del orificio vaginal.");
   for (var i = 0; i < GFachada.objetos.length; i++) {
     if (GFachada.objetos[i].nombre != "Piernas") {
       GFachada.borrarNodo(GFachada.objetos[i]);
@@ -67,6 +79,7 @@ function mostrarTipo3(){
 
 function mostrarReal(){
   console.log('mostrarReal');
+  texto("Vagina sin mutilación", "Aquella que no ha sufrido ningun tipo de procedimiento dañino.")
   for (var i = 0; i < GFachada.objetos.length; i++) {
     if (GFachada.objetos[i].nombre != "Piernas") {
       GFachada.borrarNodo(GFachada.objetos[i]);
@@ -78,7 +91,6 @@ function mostrarReal(){
     GFachada.draw();
   },3000);
 }
-//****************************// TODO: **************************************/
 function mostrarCartoon(){
   GCartoon = true;
   console.log('mostrarCartoon');
@@ -89,10 +101,25 @@ function mostrarCartoon(){
   },3000);
 }
 
-function moverCamara(camara, ev){
-  if(camara == 0){
-    // GFachada.regCamaras[0].interactor.onMouseMove(ev);
-  }
+
+function texto(titulo, desc){
+  //función que cambia el texto segun el tipo de mutilación que se está mostrando
+  //nos hemos basado en https://webglfundamentals.org/webgl/lessons/webgl-text-html.html
+   GtituloNode.nodeValue = titulo;
+   GdescripcionNode.nodeValue = desc;
+
+  GtituloElement.appendChild(GtituloNode);
+  GdescripcionElement.appendChild(GdescripcionNode);
+}
+
+function mostrarNoCartoon(){
+  GCartoon = false;
+  console.log('mostrarNoCartoon');
+
+  setTimeout(() => {
+    GShader.mainShader();
+    GFachada.draw();
+  },3000);
 }
 
 function initWebGL(canvas) {
@@ -101,6 +128,9 @@ function initWebGL(canvas) {
   try {
     // Tratar de tomar el contexto estandar. Si falla, retornar al experimental.
     gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    //canvas para mostrar las partes del modelo
+    // var textCanvas = document.getElementById("text");
+    ctx = canvas.getContext("2d");
   }
   catch(e) {}
 

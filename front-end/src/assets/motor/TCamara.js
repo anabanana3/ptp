@@ -112,9 +112,9 @@ class TCamara extends TEntidad {
 	//aspect => Relacion de aspecto
 	setPerspectiva (fovy, aspect, near, far){
 		this.esPrespectiva = true;
-		let out = mat4.create();
-		mat4.perspective(out, fovy, aspect, near, far)
-		this.projectionMatrix = out;
+		// let out = mat4.create();
+		mat4.perspective(this.projectionMatrix, fovy, aspect, near, far)
+		// this.projectionMatrix = out;
 		console.log(this.projectionMatrix);
 		this.cercano = near;
 		this.lejano = far;

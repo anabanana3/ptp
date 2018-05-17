@@ -23,7 +23,7 @@ varying vec2 vTextureCoord;
 
 void main(void)
 {
-	// vec3 L = normalize(uLightDirection);	//Directional light
+	//vec3 L = normalize(uLightDirection);	//Directional light
 	vec3 L = normalize(uLightPosition);	//Positional light
 	vec3 N = normalize(vNormal);
 

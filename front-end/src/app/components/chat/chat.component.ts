@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit{
   usuario:boolean = false;
   error:boolean = true;
 
+  // contactos:boolean = true;
+
   constructor(private _chatService: ChatService, private element:ElementRef ) {
     if(sessionStorage.length === 0){
       return;
@@ -64,6 +66,8 @@ export class ChatComponent implements OnInit{
 
       this.getMessages(this.conversacion['ID_Usuario1'], this.conversacion['ID_Usuario2'], this.conversacion['SocketID'], nombre, 8);
     });
+    document.getElementById("chat").setAttribute("class", "mostrar chat-container-responsive chat-container bgColorWhite");
+    document.getElementById("contactos").setAttribute("class", "ocultar chat-contactos-responsive chat-contactos bgColorWhite");
   }
 
   escribiendo(e, search){
@@ -103,6 +107,8 @@ export class ChatComponent implements OnInit{
       // console.log(aux);
 
     });
+    document.getElementById("chat").setAttribute("class", "mostrar chat-container bgColorWhite");
+    document.getElementById("contactos").setAttribute("class", "ocultar chat-contactos bgColorWhite");
   }
 
   buscarUsuarios(search){
@@ -130,5 +136,10 @@ export class ChatComponent implements OnInit{
 
   ngOnInit() {
     this.getConversations();
+  }
+
+  volver(){
+    document.getElementById("chat").setAttribute("class", "ocultar chat-container bgColorWhite");
+    document.getElementById("contactos").setAttribute("class", "mostrar chat-contactos bgColorWhite");
   }
 }
