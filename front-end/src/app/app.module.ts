@@ -67,6 +67,12 @@ import { PoliticaPrivacidadComponent } from './components/politica-privacidad/po
 import { CarpetasService } from './services/carpetas.service';
 import { HeaderAsociacionComponent } from './header/header-asociacion/header-asociacion.component';
 import { HeaderAdminComponent } from './header/header-admin/header-admin.component';
+import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
+import { EditB1Component } from './components/editar-expediente/edit-b1/edit-b1.component';
+import { EditB2Component } from './components/editar-expediente/edit-b2/edit-b2.component';
+import { EditB3Component } from './components/editar-expediente/edit-b3/edit-b3.component';
+import { EditB4Component } from './components/editar-expediente/edit-b4/edit-b4.component';
+import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.component';
 
 
 @NgModule({
@@ -116,7 +122,13 @@ import { HeaderAdminComponent } from './header/header-admin/header-admin.compone
     ProfilePopUp2,
     HistoricoComponent,
     HeaderAsociacionComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    EditarExpedienteComponent,
+    EditB1Component,
+    EditB2Component,
+    EditB3Component,
+    EditB4Component,
+    EditB5Component
   ],
   imports: [
     BrowserModule,

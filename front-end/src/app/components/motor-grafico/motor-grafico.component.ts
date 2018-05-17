@@ -90,4 +90,15 @@ export class MotorGraficoComponent implements AfterViewInit {
       new mostrarNoCartoon();
     }
   }
+
+  // cambiaLuz(num){
+  //   console.log(num);
+  //   if(num == 1){
+  //       document.getElementById("label-dir").setAttribute("class", "cambio-switch");
+  //       document.getElementById("label-pos").setAttribute("class", "");
+  //   }else{
+  //     document.getElementById("label-pos").setAttribute("class", "cambio-switch");
+  //     document.getElementById("label-dir").setAttribute("class", "");
+  //   }
+  // }
 }

@@ -137,6 +137,8 @@ class TShader extends TRecurso {
     let luces = GFachada.regLuces;
 
     for (var i = 0; i < luces.length; i++) {
+      // luces[i].entidad.setAmbiente(vec4.fromValues(0.4,0.4,0.4,1.0));
+      gl.uniform3fv(this.programa.uLight, luces[i].entidad.position);
       gl.uniform3fv(this.programa.uLightDirection, luces[i].entidad.direccion);
       gl.uniform3fv(this.programa.uLightPosition, luces[i].entidad.position);
       gl.uniform4fv(this.programa.uLightAmbient, luces[i].entidad.ambiente);

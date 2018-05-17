@@ -19,3 +19,10 @@ var GLEspecular;
 
 //cargando
 var cargando = true;
+
+//texto
+var GtituloElement;
+var GtituloNode;
+var GdescripcionElement;
+var GdescripcionNode;
+var ctx;

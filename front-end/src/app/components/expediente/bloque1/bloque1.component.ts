@@ -33,14 +33,14 @@ export class Bloque1Component implements OnInit {
     ID_Expediente:null,
     Fecha:null,
     Descripcion:'',
-    ID_Persona:null,
+    ID_Persona:sessionStorage.IDPer,
     ID_Lugar:0,
     ID_Usuario:parseInt(sessionStorage.iD)
 
   };
 
   menor:Persona = {
-    ID_Persona:null,
+    ID_Persona:sessionStorage.IDPer,
     Nombre:'',
     Edad:0,
     ID_Sexo:1,
@@ -231,8 +231,9 @@ guardarDatos(){
   if(this.form.valid == true){
     this.getDataGoogle();
     // this._expedienteService.addPersona(this.menor).subscribe(data=>{
-    this.menor.ID_Persona = sessionStorage.Persona;
+    this.menor.ID_Persona = sessionStorage.IDPer;
     this.expediente.ID_Expediente = sessionStorage.IDExp;
+    this.expediente.ID_Persona = sessionStorage.IDPer
     this._expedienteService.updatePersona(this.menor, this.menor.ID_Persona).subscribe(data=>{
       //TODO: Solo comprobamos una vez si ha caducado la sesion para que se almacene toda la informacion y no se quede a mitad el expediente
       if(data.Codigo == 501){
@@ -251,7 +252,12 @@ guardarDatos(){
         //He introducido a la menor implicada en el expediente => introduzco a sus familiares
         if(this.HayMadre == true ){
           if(this.MadreCreate == false){
-            this.addFamiliar(this.madre,this.menor.ID_Persona, 1);
+            //Creo la persona y le asigno su familiares
+            console.log('Menor');
+            console.log(this.menor.ID_Persona);
+            console.log('Expediente');
+            console.log(this.expediente.ID_Persona);
+             this.addFamiliar(this.madre,this.menor.ID_Persona, 1);
             this.MadreCreate = true;
           }else{
             //Update Madre
@@ -316,11 +322,11 @@ getDataGoogle(){
   console.log('Lugar de deteccion del expediente');
   console.log(this.lugarDetec);
   //Compruebo que se ha introducido informacion
-  if(this.lugarDetec.gm_accessors_.place.Jc.b == true){
+  if(this.lugarDetec.gm_accessors_.place.gd.b == true){
     //Hay datos => obtengo el pais y el lugar
-    this.expediente.ID_Lugar = this.lugarDetec.gm_accessors_.place.Jc.place.id;
-    this.expediente.Sitio = this.lugarDetec.gm_accessors_.place.Jc.place.name;
-    let aux = this.lugarDetec.gm_accessors_.place.Jc.place.address_components;
+    this.expediente.ID_Lugar = this.lugarDetec.gm_accessors_.place.gd.place.id;
+    this.expediente.Sitio = this.lugarDetec.gm_accessors_.place.gd.place.name;
+    let aux = this.lugarDetec.gm_accessors_.place.gd.place.address_components;
     if(aux.length >=5 ){
       this.expediente.Pais = aux[aux.length-2].long_name;
     }else{
@@ -329,11 +335,11 @@ getDataGoogle(){
   }
   console.log('Lugar de nacimiento del titular');
   console.log(this.lugarVict);
-  if(this.lugarVict.gm_accessors_.place.Jc.b == true){
+  if(this.lugarVict.gm_accessors_.place.gd.b == true){
     //Hay datos => obtengo el pais y el lugar
-    this.menor.ID_Lugar = this.lugarVict.gm_accessors_.place.Jc.place.id;
-    this.menor.Sitio = this.lugarVict.gm_accessors_.place.Jc.place.name;
-    let aux = this.lugarVict.gm_accessors_.place.Jc.place.address_components;
+    this.menor.ID_Lugar = this.lugarVict.gm_accessors_.place.gd.place.id;
+    this.menor.Sitio = this.lugarVict.gm_accessors_.place.gd.place.name;
+    let aux = this.lugarVict.gm_accessors_.place.gd.place.address_components;
     if(aux.length >=5 ){
       this.menor.Pais = aux[aux.length-2].long_name;
     }else{
@@ -346,9 +352,12 @@ getDataGoogle(){
 
 
 addFamiliar(persona, familiar, tipo){
+  console.log('Probando a crear la madre/padre');
+  console.log(persona);
+  console.log(familiar);
   this._expedienteService.addPersona(persona).subscribe(data =>{
     console.log('Creamos la madre o padre');
-    console.log(data);
+    console.log(data.insertId);
     //una vez creo la persona creo la relacion de parentesco
     this._expedienteService.addFamiliar(data.insertId, familiar, tipo).subscribe(data=>{
       console.log('Creamos la relacion de parentesco');

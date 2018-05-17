@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { ProfesionesService } from '../../services/profesiones.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bib-expedientes',
@@ -45,7 +46,7 @@ profesiones = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
+  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute) {
       if(sessionStorage.length == 0){
         return;
       }
@@ -71,11 +72,18 @@ profesiones = new Array();
       }else if(sessionStorage.getItem('admin') != null){
         this.admin = true;
       }
+      if(sessionStorage.FAutor == undefined){
+        sessionStorage.setItem('FAutor', '');
+        sessionStorage.setItem('FProfesion', '0');
+        sessionStorage.setItem('FTitulo', '');
+        sessionStorage.setItem('FFecha1', '');
+        sessionStorage.setItem('FFecha2', '');
+        sessionStorage.setItem('FLugar', '');
+        sessionStorage.setItem('FEtnia', '0');
+        sessionStorage.setItem('FTipoMGF', '0');
+      }
+
       this.buscar2(1,10);
-   }
-
-   onInit(){
-
    }
 
    buscar2(pag, tam=this.tamPag){
@@ -169,14 +177,14 @@ profesiones = new Array();
 
    buscar(pag, tam=this.tamPag){
      console.log(this.Filtros);
-     sessionStorage.setItem('FAutor', this.Filtros.Autor);
-     sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
-     sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
-     sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
-     sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
-     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
-     sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
-     sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
+     sessionStorage.FAutor = this.Filtros.Autor;
+     sessionStorage.FProfesion = this.Filtros.Profesion.toString();
+     sessionStorage.FTitulo = this.Filtros.Titulo;
+     sessionStorage.FFecha1 = this.Filtros.Fecha1;
+     sessionStorage.FFecha2 = this.Filtros.Fecha2;
+     sessionStorage.FLugar = this.Filtros.Lugar;
+     sessionStorage.FEtnia = this.Filtros.Etnia.toString();
+     sessionStorage.FTipoMGF = this.Filtros.TipoMGF.toString();
      console.log(sessionStorage);
 
      this.url='https://www.aisha.ovh/api/publicos/search/';
