@@ -69,7 +69,7 @@ import { HeaderAsociacionComponent } from './header/header-asociacion/header-aso
 import { HeaderAdminComponent } from './header/header-admin/header-admin.component';
 import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
 import { EditB1Component } from './components/editar-expediente/edit-b1/edit-b1.component';
-import { EditB2Component } from './components/editar-expediente/edit-b2/edit-b2.component';
+import { EditB2Component, PopupEditB2 } from './components/editar-expediente/edit-b2/edit-b2.component';
 import { EditB3Component } from './components/editar-expediente/edit-b3/edit-b3.component';
 import { EditB4Component } from './components/editar-expediente/edit-b4/edit-b4.component';
 import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.component';
@@ -128,7 +128,8 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     EditB2Component,
     EditB3Component,
     EditB4Component,
-    EditB5Component
+    EditB5Component,
+    PopupEditB2
   ],
   imports: [
     BrowserModule,
@@ -154,7 +155,8 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     Popup2,
     ContactPopup,
     ProfilePopUp,
-    ProfilePopUp2
+    ProfilePopUp2,
+    PopupEditB2
   ],
   providers: [
     ProfesionesService,
