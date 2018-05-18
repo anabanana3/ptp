@@ -9,10 +9,14 @@ function iniciarMotor(){
   GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "PIERNAS.mtl", "piel.jpg");
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
-  // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
+  // let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "PIERNAS.mtl", "piel.jpg");
+  // let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+  // piernas.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  // real.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
+
+  let animacion = GFachada.crearAnimacionCompleto("animacion1", "animacion-box");
 
   setTimeout(() => {
     GShader.mainShader();
