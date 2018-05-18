@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
   activo(num){
     sessionStorage.setItem('ventana', num);
-    if( sessionStorage.ventana != 0){
+    if( sessionStorage.ventana != 0 ){
       document.getElementById(num).className += " active";
     }
   }

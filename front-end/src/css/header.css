@@ -20,21 +20,10 @@
   margin-right: 14px;
 }
 
-/*usuario*/
-label > img{
-  width: 60px;
-  float: right;
-  margin-right: -15px;
-  margin-top:8px;
-}
-
-/* Add a black background color to the top navigation */
 .menuNav {
-    background-color: #333;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
 .menuNav a {
     float: left;
     display: block;
@@ -44,36 +33,33 @@ label > img{
     text-decoration: none;
     font-size: 17px;
 }
-/* Change the color of links on hover */
-.menuNav a:hover, .dropdown:hover .dropbtn{
-    background-color: #ddd;
+.menuNav a:hover, .menuNav button:hover{
+    background-color: #ddd !important;
     color: black;
 }
 
-/* Add an active class to highlight the current page */
 .active {
-    background-color: #880042;
+    background-color: #880042 !important;
     color: white;
 }
-/* Hide the link that should open and close the topnav on small screens */
 .menuNav .icon {
     display: none;
 }
 .dropdown {
   float: left;
   overflow: hidden;
+
 }
-.dropdown .dropbtn {
+.dropdown button {
   font-size: 17px;
   border: none;
   outline: none;
   color: #f2f2f2;
   padding: 17px 17px;
-  background-color: inherit;
+  background-color: #333333;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
-/* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -82,7 +68,6 @@ label > img{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 2;
 }
-/* Links inside the dropdown */
 .dropdown-content a {
   float: none;
   color: white;
@@ -91,7 +76,6 @@ label > img{
   display: block;
   text-align: left;
 }
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
   color: white;
