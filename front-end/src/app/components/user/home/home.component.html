@@ -5,7 +5,7 @@
 <app-header></app-header>
 
   <div class="itemTodo">
-  <a [routerLink]="['/misexpedientes']">
+  <a [routerLink]="['/misexpedientes']" (click)="activo(1)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenAlta itemImagenWhite" src="../assets/img/Expediente.png" alt="iconExpediente">
           <img class="itemImagenAlta itemImagenCherry" src="../assets/img/ExpedientePink.png" alt="iconExpediente">
@@ -14,7 +14,7 @@
       </div>
   </a>
 
-  <a [routerLink]="['/bibexpedientes']">
+  <a [routerLink]="['/bibexpedientes']" (click)="activo(2)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenWhite" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
           <img class="itemImagenCherry" src="../assets/img/BiblioIcon.png" alt="iconBiblioExpediente">
@@ -24,7 +24,7 @@
       </div>
   </a>
 
-  <a [routerLink]="['/estadisticas']">
+  <a [routerLink]="['/estadisticas']" (click)="activo(3)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenWhite" src="../assets/img/ApiDatos.png" alt="iconApiDatos">
           <img class="itemImagenCherry" src="../assets/img/estadisticas.png" alt="iconApiDatosCherry">
@@ -34,7 +34,7 @@
       </div>
   </a>
 
-  <a [routerLink]="['/recursos']">
+  <a [routerLink]="['/recursos']" (click)="activo(4)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenAlta itemImagenWhite" src="../assets/img/PDFIcon.png" alt="iconPDF">
           <img class="itemImagenAlta itemImagenCherry" src="../assets/img/PDFIconPink.png" alt="iconPDFCherry">
@@ -48,7 +48,7 @@
       </div>
   </a>
 
-  <a [routerLink]="['/aulavirtual']">
+  <a [routerLink]="['/aulavirtual']" (click)="activo(5)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenWhite" src="../assets/img/Cubes.png" alt="icon3D">
           <img class="itemImagenCherry" src="../assets/img/ModeloIcon.png" alt="icon3DCherry">
@@ -58,7 +58,7 @@
       </div>
   </a>
 
-  <a [routerLink]="['/chat']">
+  <a [routerLink]="['/chat']" (click)="activo(6)">
       <div class="itemColor bgColorWhite">
             <img class="itemImagenWhite" src="../assets/img/Foro.png" alt="iconChat">
             <img class="itemImagenCherry" src="../assets/img/ChatIconPink.png" alt="iconChatCherry">

@@ -109,24 +109,27 @@ class TShader extends TRecurso {
     this.programa.ProjectionMatrix = gl.getUniformLocation(this.programa, "ProjectionMatrix");
     this.programa.ModelViewMatrix = gl.getUniformLocation(this.programa, "ModelViewMatrix");
     this.programa.NormalMatrix = gl.getUniformLocation(this.programa, "NormalMatrix");
-    //luces
-    this.programa.uLight = gl.getUniformLocation(this.programa, "uLight");
-    this.programa.uLightDirection = gl.getUniformLocation(this.programa, "uLightDirection");
-    this.programa.uLightPosition = gl.getUniformLocation(this.programa, "uLightPosition");
-    this.programa.uLightDiffuse = gl.getUniformLocation(this.programa, "uLightDiffuse");
-    this.programa.uLightAmbient= gl.getUniformLocation(this.programa, "uLightAmbient");
-    this.programa.uLightSpecular= gl.getUniformLocation(this.programa, "uLightSpecular");
-    //material
-    this.programa.uMaterialDiffuse = gl.getUniformLocation(this.programa, "uMaterialDiffuse");
-    this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
-    this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
-    this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
 
+    //Estas variables no se usan en el shader cartoon, por eso comprobamos
+    //que se trate del modelo realista
     if(GCartoon ==false){
+      //luces
+      this.programa.uLightPosition = gl.getUniformLocation(this.programa, "uLightPosition");
+      this.programa.uLightDiffuse = gl.getUniformLocation(this.programa, "uLightDiffuse");
+      this.programa.uLightSpecular= gl.getUniformLocation(this.programa, "uLightSpecular");
+      //material
+      this.programa.uMaterialDiffuse = gl.getUniformLocation(this.programa, "uMaterialDiffuse");
+      this.programa.uMaterialSpecular = gl.getUniformLocation(this.programa, "uMaterialSpecular");
+      this.programa.uShininess = gl.getUniformLocation(this.programa, "uShininess");
+      //texturas
       this.programa.aVertexTextureCoords = gl.getAttribLocation(this.programa, "aVertexTextureCoords");
       this.programa.uSampler = gl.getUniformLocation(this.programa, "uSampler");
     }
-
+    //luces
+    this.programa.uLightDirection = gl.getUniformLocation(this.programa, "uLightDirection");
+    this.programa.uLightAmbient= gl.getUniformLocation(this.programa, "uLightAmbient");
+    //material
+    this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
   }
 
   initLights(){

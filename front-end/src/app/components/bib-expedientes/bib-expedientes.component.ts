@@ -72,18 +72,10 @@ profesiones = new Array();
       }else if(sessionStorage.getItem('admin') != null){
         this.admin = true;
       }
-      if(sessionStorage.FAutor == undefined){
-        sessionStorage.setItem('FAutor', '');
-        sessionStorage.setItem('FProfesion', '0');
-        sessionStorage.setItem('FTitulo', '');
-        sessionStorage.setItem('FFecha1', '');
-        sessionStorage.setItem('FFecha2', '');
-        sessionStorage.setItem('FLugar', '');
-        sessionStorage.setItem('FEtnia', '0');
-        sessionStorage.setItem('FTipoMGF', '0');
-      }
 
-      this.buscar2(1,10);
+      if(sessionStorage.FTitulo != undefined){
+        this.buscar2(1,10);
+      }
    }
 
    buscar2(pag, tam=this.tamPag){
@@ -177,14 +169,14 @@ profesiones = new Array();
 
    buscar(pag, tam=this.tamPag){
      console.log(this.Filtros);
-     sessionStorage.FAutor = this.Filtros.Autor;
-     sessionStorage.FProfesion = this.Filtros.Profesion.toString();
-     sessionStorage.FTitulo = this.Filtros.Titulo;
-     sessionStorage.FFecha1 = this.Filtros.Fecha1;
-     sessionStorage.FFecha2 = this.Filtros.Fecha2;
-     sessionStorage.FLugar = this.Filtros.Lugar;
-     sessionStorage.FEtnia = this.Filtros.Etnia.toString();
-     sessionStorage.FTipoMGF = this.Filtros.TipoMGF.toString();
+     sessionStorage.setItem('FAutor', this.Filtros.Autor);
+     sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
+     sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
+     sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
+     sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
+     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
+     sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
+     sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
      console.log(sessionStorage);
 
      this.url='https://www.aisha.ovh/api/publicos/search/';

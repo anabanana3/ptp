@@ -21,7 +21,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
 import { PoliticaPrivacidadComponent } from './components/politica-privacidad/politica-privacidad.component';
 import { LateralOptionsComponent } from './components/admin/lateralOptions/lateralOptions.component';
-import {HistoricoComponent} from './components/user/historico/historico.component';
+import { HistoricoComponent } from './components/user/historico/historico.component';
+import { EditarExpedienteComponent } from './components/editar-expediente/editar-expediente.component';
 
 const app_routes: Routes = [
   {
@@ -148,6 +149,11 @@ const app_routes: Routes = [
     path: 'politica-privacidad',
     component: PoliticaPrivacidadComponent,
     data:{title: 'Politica Privacidad'}
+  },
+  {
+    path: 'editar-expediente/:id',
+    component: EditarExpedienteComponent,
+    data:{title: 'Editar Expediente'}
   },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

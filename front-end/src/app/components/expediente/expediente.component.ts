@@ -145,7 +145,7 @@ this._expedienteService.addPersona(this.menor).subscribe(data =>{
  }
  //Obtengo el id de la persona que acabamos de crear
  let idP = data.insertId;
- sessionStorage.IDExp = idP
+ sessionStorage.IDPer = idP
  this.menor.ID_Persona = idP;
  this.expediente.ID_Persona=idP;//Asigo ese id al expediente
  //Creo el expediente vacio
