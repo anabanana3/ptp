@@ -2,10 +2,8 @@
   <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" class="" alt="LogoAisha"></a>
 
 <div class="menuNav" id="myTopnav">
-
-
   <div class="dropdown">
-    <button [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="dropbtn">Mis Expedientes
+    <button [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="">Mis Expedientes
     </button>
     <div class="dropdown-content">
       <a [routerLink]="['/expediente']" (click)="activo(1)" class="">Nuevo Expediente</a>
@@ -13,15 +11,20 @@
   </div>
   <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes Públicos</a>
   <a [routerLink]="['/estadisticas']" (click)="activo(3)" id="3" class="">Estadísticas</a>
-  <a [routerLink]="['/recursos']" (click)="activo(4)" id="4" class="">Recursos</a>
+
+  <div class="dropdown">
+    <button [routerLink]="['/recursos']" (click)="activo(4)" id="4" class="">Recursos
+    </button>
+    <div class="dropdown-content">
+      <a [routerLink]="['/recurso']" (click)="activo(4)" class="">Nuevo Recurso</a>
+    </div>
+  </div>
   <a [routerLink]="['/aulavirtual']" (click)="activo(5)" id="5" class="">Aula Virtual</a>
   <a [routerLink]="['/chat']" (click)="activo(6)" id="6" class="">Chat</a>
   <div class="dropdown">
-    <button class="dropbtn">Perfil
-      <i class="fa fa-caret-down"></i>
+    <button [routerLink]="['/user/profile']" (click)="activo(7)" id="7" class="">Perfil
     </button>
     <div class="dropdown-content">
-      <a [routerLink]="['/user/profile']" (click)="activo(7)" id="7" class="">Editar Perfil</a>
       <a (click)="cerrarSesion();">Cerrar Sesión</a>
     </div>
   </div>
