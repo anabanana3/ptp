@@ -9,7 +9,7 @@ class TAnimacion extends TEntidad {
     let mallasAnimacion = [];
 
     for(let i = 0; i<4; i++){
-      let malla = GFachada.crearMallaCompleto("Box" + i, carpeta + "/" + i + ".obj", "VaginaRealistaTipo2.mtl", "textura.jpg");
+      let malla = GFachada.crearMallaCompleto("Box" + i, carpeta + "/" + i + ".obj", "VaginaCarne.mtl", "textura.jpg");
       let rota = malla.getPadre().getPadre().getPadre();
       rota.entidad.escalar(0.01, 0.01, 0.01);
 
