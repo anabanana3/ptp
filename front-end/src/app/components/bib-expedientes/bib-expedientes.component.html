@@ -109,8 +109,8 @@
           <div class="divExpDeUnoSearch">
             <label for="lugar">Lugar de detección:</label>
           </div>
-          <div class="divExpDeUnoSearch">
-            <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+          <div divExpDeUnoSearch id="locationField">
+            <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
           </div>
           <br>
         </div>

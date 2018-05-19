@@ -101,6 +101,67 @@
     display: none;
   }
   .recursos-container{padding: 0;}
+
+  /*Principal*/
+
+  .cabecera{height: 305px;}
+
+  .textosCabecera{
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .tituloCabecera{
+    text-align: center;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .subtituloCabecera{
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .imgCabecera{
+    width: 100%;
+    margin-top: 296px;
+  }
+
+  .funcionalidadesContainer{
+
+  }
+
+  .funcionalidades{
+    /* background-image:url("assets/img/BolitasMvl.png"); */
+  }
+
+  .imgListadoContainer{width: 100%;}
+
+  .imgListado1{height: 263px;}
+
+  .imgListado2{height: 262px;}
+
+  .imgListado3{height: 159px;}
+
+  .imgListado4{height: 277px;}
+
+  .imgListado5{height: 264px;}
+
+  .listadoFunciones{display: inline-block;}
+
+  .textoListado{
+    width: 100%;
+    padding: 10px;
+  }
+
+  .textoP{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
 }
 
 
