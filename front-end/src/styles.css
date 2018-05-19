@@ -231,22 +231,15 @@ br{
   background-color: #EFEFEFEF;
 }
 
-.funcionalidades{
-  height: 271px;
-  /* border: dotted; */
-  background-size: contain;
 
-  background-repeat: no-repeat;
-  /* background-size: 33% 50%; */
-  /* background: #EFEFEFEF; */
-  background-position: center;
-  background-image:url("assets/img/Bolitas.png");
-}
-
-/* .imgFunciones{
+.imgFunciones{
   width: 80%;
   max-width: 800px;
-} */
+}
+
+.imgFunciones2{
+  display: none;
+}
 
 .language{
   float:right;

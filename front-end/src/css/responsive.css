@@ -117,6 +117,7 @@
     text-align: center;
     font-size: 18px;
     line-height: 21px;
+    margin-top: 20px;
   }
 
   .subtituloCabecera{
@@ -126,16 +127,15 @@
   }
 
   .imgCabecera{
-    width: 100%;
-    margin-top: 296px;
+    display: none;
   }
 
-  .funcionalidadesContainer{
+  .imgFunciones{display: none;}
 
-  }
-
-  .funcionalidades{
-    /* background-image:url("assets/img/BolitasMvl.png"); */
+  .imgFunciones2{
+    display: block;
+    width: 45%;
+    margin: 0 auto;
   }
 
   .imgListadoContainer{width: 100%;}
@@ -161,6 +161,8 @@
     font-size: 20px;
     margin-top: 10px;
   }
+
+  .suscripcion{width: 90%;}
 
 }
 
