@@ -1,4 +1,5 @@
 class TShader extends TRecurso {
+  //hemos creado el shader basandonos en el libro webgl en varios capitulos, y en los ejemplos
   constructor(){
     super();
     this.VertexShader;
@@ -13,7 +14,7 @@ class TShader extends TRecurso {
     this.canvas = document.getElementById('canvas');
     this.gl = gl;
   }
-
+  //para cargar el archivo
   request(url) {
     return new Promise(function (resolve, reject) {
       let req = new XMLHttpRequest();
@@ -27,7 +28,7 @@ class TShader extends TRecurso {
       req.send();
     });
   }
-
+  //leemos los archivos, y separamos entre shader cartoon y shader normal
   cargarFichero(nombre, cartoon = false){
     let request = this.request('/assets/motor/' + nombre).then((e) => {
       let aux = nombre.split('.');
@@ -49,7 +50,8 @@ class TShader extends TRecurso {
       }
     })
   }
-
+  //configuramos el canvas
+  //creamos las camaras
   configure(){
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
@@ -60,7 +62,7 @@ class TShader extends TRecurso {
       camara.interactor = new TCamaraInteractor(camara, this.canvas);
     }
   }
-
+  //inicializamos el programa
   initProgram(frag, vert){
     var gl = this.gl;
     //creamos el programa y le pasamos los shader
@@ -101,7 +103,7 @@ class TShader extends TRecurso {
     gl.useProgram(this.programa);
 
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
+    //asignamos las variables a los shades
     //vertices
     this.programa.aVertexPosition = gl.getAttribLocation(this.programa, "aVertexPosition");
     this.programa.aVertexNormal = gl.getAttribLocation(this.programa, "aVertexNormal");
@@ -131,11 +133,11 @@ class TShader extends TRecurso {
     //material
     this.programa.uMaterialAmbient = gl.getUniformLocation(this.programa, "uMaterialAmbient");
   }
-
+  //incializamos las luces
   initLights(){
     var gl = this.gl;
     let luces = GFachada.regLuces;
-
+    //para cada luz, le pasamos sus valores al shader
     for (var i = 0; i < luces.length; i++) {
       // luces[i].entidad.setAmbiente(vec4.fromValues(0.4,0.4,0.4,1.0));
       gl.uniform3fv(this.programa.uLight, luces[i].entidad.position);
@@ -145,7 +147,7 @@ class TShader extends TRecurso {
       gl.uniform4fv(this.programa.uLightDiffuse, luces[i].entidad.difusa);
     }
   }
-
+  //animacion
   animate(){
       var timeNow = new Date().getTime();
       if(this.lastTime != 0){
@@ -154,7 +156,7 @@ class TShader extends TRecurso {
       }
       this.lastTime = timeNow;
   }
-
+//desde aqui llamamos a todas las funcines pasandole el shader cartoon o el realista
   mainShader(){
     this.configure();
     if(GCartoon){
@@ -167,11 +169,10 @@ class TShader extends TRecurso {
     }
     this.initLights();
     //this.initTexture();
-
+    //inicializamos el viewport
     this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
     this.gl.viewport(0,0, this.canvas.width, this.canvas.height);
     // this.animate();
   }
-  //BufferData( , , gl.STREAM_DRAW) para que los datos se cambien cada vez que se renderiza
 }

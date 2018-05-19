@@ -1,18 +1,20 @@
 class TGestorRecursos{
-
+//esta clase la hemos creado basandonos en las transparecias y lo explicado en clase
   constructor(){
     this.recursos = [];
   }
 
   getRecurso(nombre, tipo){
     var recurso;
+    //comprobamos si ya tenemos el recurso en memoria
     for(let i=0; i<this.recursos.length; i++){
       if(this.recursos[i].nombre == nombre){
         recurso = this.recursos[i];
         return recurso;
       }
     }
-    //creamos el recurso
+    //si no lo tenemos
+    //creamos el recurso segun el tipo
     if(tipo == "malla"){
       recurso = new TRecursoMalla();
       //llamamos a cargar el recurso
@@ -30,8 +32,7 @@ class TGestorRecursos{
       recurso.cargarFichero(nombre);
       this.recursos.push(recurso);
     }
-    console.log(this.recursos);
-
+    //devolvemos el recuro
     return recurso;
   }
 }

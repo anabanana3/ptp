@@ -2,7 +2,8 @@
 #ifdef GL_ES
 precision highp float;
 #endif
-
+//hemos creado el fragment shader utilizando la iluminación de phong
+//nos hemos basado en el capitulo 3 del libro de web gl - pag 87
 uniform float uShininess;
 
 uniform vec3 uLightDirection;
@@ -45,5 +46,7 @@ void main(void)
 	vec4 finalColor = Ia + Id + Is;
 	finalColor.a = 1.0;
 	//gl_FragColor = finalColor;
+
+	//aqui hemos añadido la multiplicación para aplicar las texturas
 	gl_FragColor = finalColor * texture2D(uSampler, vTextureCoord);
 }
