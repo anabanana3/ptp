@@ -27,6 +27,7 @@ void main(void)
 	//Fuente: http://www.lighthouse3d.com/tutorials/glsl-12-tutorial/toon-shading-version-iii/
   //Aqui comprobamos si el color es mas claro o mas oscuro, separando por cuatro
   //franjas distintas de tonalidades y adjudicando un tono comun del material
+  //a dicha franja
 		float intensity = dot(vec3(L), N);
 
 		if (intensity > 0.3){             //tono mas oscuro
@@ -42,7 +43,7 @@ void main(void)
 			finalColor = finalColor * 1.15;
 		}
 
-//finalmente ponemos la transparencia a 1.0 
+//finalmente ponemos la transparencia a 1.0
 	finalColor.a = 1.0;
 	gl_FragColor = finalColor;
 }
