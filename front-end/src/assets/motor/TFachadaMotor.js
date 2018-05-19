@@ -6,6 +6,7 @@ class TFachadaMotor {
     //Registros objetos
     this.regLuces = new Array();
     this.regCamaras = new Array();
+    this.animaciones = [];
     this.objetos = [];
   }
 
@@ -62,6 +63,7 @@ class TFachadaMotor {
     let animacion = this.crearAnimacion(nombre, trasla, carpeta);
     escala.entidad.escalar(0.1,0.1,0.1);
 
+    this.animaciones.push(animacion);
     return animacion;
   }
 

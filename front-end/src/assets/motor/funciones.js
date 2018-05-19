@@ -11,12 +11,10 @@ function iniciarMotor(){
 
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "piel.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
-  piernas.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
-  real.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  GFachada.escalar(piernas, 0.1,0.1,0.1);
+  GFachada.escalar(real, 0.1,0.1,0.1);
 
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
-
-  // let animacion = GFachada.crearAnimacionCompleto("animacion1", "animacion-box");
 
   setTimeout(() => {
     GShader.mainShader();
@@ -42,7 +40,7 @@ function mostrarTipo1(){
     }
   }
   let pieza1 = GFachada.crearMallaCompleto("tipo1", "Tipo1.obj", "VaginaCarne.mtl");
-  pieza1.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  GFachada.escalar(pieza1, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
@@ -60,7 +58,7 @@ function mostrarTipo2(){
     }
   }
   let pieza2 = GFachada.crearMallaCompleto("tipo2", "Tipo2.obj", "VaginaCarne.mtl");
-  pieza2.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  GFachada.escalar(pieza2, 0.1,0.1,0.1);
 
   console.log(GFachada.objetos);
   //GFachada.borrarNodo()
@@ -79,7 +77,7 @@ function mostrarTipo3(){
     }
   }
   let pieza3 = GFachada.crearMallaCompleto("tipo3", "Tipo3.obj", "VaginaCarne.mtl");
-  pieza3.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  GFachada.escalar(pieza3, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
@@ -96,7 +94,7 @@ function mostrarReal(){
     }
   }
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
-  real.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  GFachada.escalar(real, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
@@ -128,6 +126,32 @@ function mostrarNoCartoon(){
   GCartoon = false;
   console.log('mostrarNoCartoon');
 
+  setTimeout(() => {
+    GShader.mainShader();
+    GFachada.draw();
+  },2000);
+}
+
+function mostrarAnimacion(){
+  // funcion que se llama desde la interfaz de anigular para inicializar la animacion
+  GAnimacion = true;
+
+  let animacion = GFachada.crearAnimacionCompleto("animacion1", "animacion-box");
+
+  GShader.mainShader();
+  setTimeout(() => {
+    // creamos un while para ejecutar el dibujado de la animacion
+    do {
+      GFachada.draw();
+    } while (GAnimacion);
+  },1000);
+}
+
+function quitarAnimacion(){
+  // funcion que se ejecuta cuando acaba la animacion para volver a mostrar el modelo inicial
+  GAnimacion = false;
+
+  GFachada.borrarNodo(GFachada.animaciones[0]);
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();

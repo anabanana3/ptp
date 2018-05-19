@@ -1,10 +1,13 @@
-// foo instanceof TNodo -> para saber de que tipo es foo
 class TNodo {
-
+  /*
+  la clase nodo la cual tiene una entidad, un padre e hijos
+  le hemos añadido la propiedad nombre para poder hacer un mejor debug del arbol
+  */
   constructor(nombre, padre) {
     this.entidad = null;
     this.hijos = new Array();
     this.nombre = nombre;
+
     if(padre !== undefined){
       this.padre = padre;
       this.padre.addHijo(this);
@@ -47,6 +50,10 @@ class TNodo {
   }
 
   draw(){
+    /*
+    en el método draw además de llamar al método pintar correspondiente de la Entidad recorremos
+    todos sus nodos hijos para llamar a su draw correspondiente y de esta forma pintar el árbol
+    */
     if(this.entidad != null){
       this.entidad.beginDraw();
     }

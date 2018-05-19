@@ -55,9 +55,12 @@ class TShader extends TRecurso {
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.depthFunc(this.gl.LEQUAL);
     //crear camara
-    for (var i = 0; i < GFachada.regCamaras.length; i++) {
-      let camara  = GFachada.regCamaras[i].entidad;
-      camara.interactor = new TCamaraInteractor(camara, this.canvas);
+    if(!GAnimacion){
+      console.log('giro');
+      for (var i = 0; i < GFachada.regCamaras.length; i++) {
+        let camara  = GFachada.regCamaras[i].entidad;
+        camara.interactor = new TCamaraInteractor(camara, this.canvas);
+      }
     }
   }
 
