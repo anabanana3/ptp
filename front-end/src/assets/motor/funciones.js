@@ -9,15 +9,19 @@ function iniciarMotor(){
   GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "textura.jpg");
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "piel.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
-  // let vagina = GFachada.crearMallaCompleto("Vagina", "VaginaCentroEje.obj", "VaginaRealistaTipo2.mtl", "WEBGL.png");
+  piernas.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+  real.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   // GFachada.trasladar(vagina2, 0, -0.8, 0);
+
+  // let animacion = GFachada.crearAnimacionCompleto("animacion1", "animacion-box");
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },5000);
+  },4000);
 
   GtituloElement = document.getElementById("titulo");
   GdescripcionElement = document.getElementById("descripcion");
@@ -38,10 +42,12 @@ function mostrarTipo1(){
     }
   }
   let pieza1 = GFachada.crearMallaCompleto("tipo1", "Tipo1.obj", "VaginaCarne.mtl");
+  pieza1.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },1000);
 }
 
 function mostrarTipo2(){
@@ -54,12 +60,14 @@ function mostrarTipo2(){
     }
   }
   let pieza2 = GFachada.crearMallaCompleto("tipo2", "Tipo2.obj", "VaginaCarne.mtl");
+  pieza2.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   console.log(GFachada.objetos);
   //GFachada.borrarNodo()
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },1000);
 }
 
 function mostrarTipo3(){
@@ -71,10 +79,12 @@ function mostrarTipo3(){
     }
   }
   let pieza3 = GFachada.crearMallaCompleto("tipo3", "Tipo3.obj", "VaginaCarne.mtl");
+  pieza3.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },1000);
 }
 
 function mostrarReal(){
@@ -86,10 +96,12 @@ function mostrarReal(){
     }
   }
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
+  real.getPadre().getPadre().getPadre().entidad.escalar(0.1,0.1,0.1);
+
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },1000);
 }
 function mostrarCartoon(){
   GCartoon = true;
@@ -98,7 +110,7 @@ function mostrarCartoon(){
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },2000);
 }
 
 
@@ -119,7 +131,7 @@ function mostrarNoCartoon(){
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },3000);
+  },2000);
 }
 
 function initWebGL(canvas) {

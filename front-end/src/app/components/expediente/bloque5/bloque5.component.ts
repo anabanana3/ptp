@@ -57,6 +57,7 @@ export class Bloque5Component implements OnInit {
       //Aqui ya tengo los datos necesareos recogidos del formulario
       console.log(this.form.value);
       // this._expedienteService.addbloque5(this.form.value).subscribe(data=>{
+      this.form.value.ID_Expediente = sessionStorage.IDExp;
       this._expedienteService.updatebloque5(this.form.value).subscribe(data=>{
         if(data.Codigo == 501){
           location.href = '/expired';
@@ -65,12 +66,12 @@ export class Bloque5Component implements OnInit {
           console.log(data);
           //Recupero el id del bloque que se acaba de generar
           let idBloque = sessionStorage.bloque5;
+          let exp = sessionStorage.IDExp;
           if(this.createIndicadores == false){
             this.obtenerSelecionados();
             if(this.selecionados.length>0){
               console.log('añado los indicadores');
               //Los almaceno => necesito almacenar en la sessionStorage el id Expediente que se crea en el bloque 1
-              var exp = sessionStorage.IDExp;
               this._expedienteService.addIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
                 this.createIndicadores = true;
                 console.log(data);
@@ -86,7 +87,7 @@ export class Bloque5Component implements OnInit {
             }
           }
 
-          this.terminar();
+         this.terminar();
 
         }
       });

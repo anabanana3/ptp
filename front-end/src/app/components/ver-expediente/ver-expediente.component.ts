@@ -104,6 +104,7 @@ export class VerExpedienteComponent implements OnInit {
         this.idPersona = data[0].ID_Persona;
         this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{
           this.persona = data;
+          //console.log(data);
         })
         //familiares de la persona
         this._expedientesService.getFamiliarPersona(this.idPersona).subscribe(data=>{
@@ -119,15 +120,20 @@ export class VerExpedienteComponent implements OnInit {
     })
     //obtenemos datos b1
     this._expedientesService.getBloque1(this.expID).subscribe(data=>{
-      this.bloque1 = data;
+    this.bloque1 = data;
+    console.log(data);
+    if(data.length > 0){
       this.curso = data[0].Curso.split("'")[1];
       //console.log("curso:"+ data[0].Curso.split("'")[1]);
       this.centro_Salud = data[0].Centro_Salud.split("'")[1];
+    }
     })
     //obtenemos datos b2
     this._expedientesService.getBloque2(this.expID).subscribe(data=>{
       this.bloque2 = data;
-      this.b2Otros = data[0].Otros.split("'")[1];
+      if(data.lenght > 0){
+        this.b2Otros = data[0].Otros.split("'")[1];
+      }
     })
     //obtenemos los partos del exp
     this._expedientesService.getPartos(this.expID).subscribe(data=>{

@@ -75,6 +75,7 @@ profesiones = new Array();
 
       if(sessionStorage.FTitulo != undefined){
         this.buscar2(1,10);
+        console.log("ENTRO");
       }
    }
 
