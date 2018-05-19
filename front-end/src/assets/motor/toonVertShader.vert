@@ -1,6 +1,6 @@
 
-//En este archivo simplemente hemos borrado el codigo que tenía que ver con las
-// texturas, ya que solo usamos el material y unicamente usamos la luz ambiental
+//En este archivo es similar a VertShader.vert pero dejando unicamente la
+//luz ambiental y direccional y sin texturas, ya que solo usamos el material
 
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
