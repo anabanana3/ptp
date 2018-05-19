@@ -46,6 +46,25 @@ class TFachadaMotor {
     nodoTrasla.entidad.trasladar(tx, ty, tz);
   }
 
+  crearAnimacion(nombre, padre, carpeta){
+    let nodo = new TNodo(nombre, padre);
+    let animacion = new TAnimacion();
+    nodo.setEntidad(animacion);
+    animacion.loadAnimacion(carpeta, nodo);
+
+    return nodo;
+  }
+
+  crearAnimacionCompleto(nombre, carpeta){
+    let escala = this.crearNodo("EscalaAnim", this.escena, this.crearTransform());
+    let rota = this.crearNodo("RotaAnim", escala, this.crearTransform());
+    let trasla = this.crearNodo("TraslaAnim", rota, this.crearTransform());
+    let animacion = this.crearAnimacion(nombre, trasla, carpeta);
+    escala.entidad.escalar(0.1,0.1,0.1);
+
+    return animacion;
+  }
+
   //---- Camara ----//
   crearCamara(nombre, padre){
     let nodo = new TNodo(nombre, padre);
@@ -112,7 +131,7 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaMalla", escala, this.crearTransform());
     let trasla = this.crearNodo("TraslaMalla", rota, this.crearTransform());
     let malla = this.crearMalla(nombre, ficheroMalla, ficheroMaterial, ficheroTextura, trasla);
-    escala.entidad.escalar(0.1,0.1,0.1);
+    // escala.entidad.escalar(0.1,0.1,0.1);
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
