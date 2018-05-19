@@ -9,7 +9,19 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class EditB3Component implements OnInit {
 
-  json;
+  json = {
+    ID_Expediente: '',
+    Exp_propias:'',
+    Exp_terceros:'',
+    Mant_MGF: 2,
+    Mant_MGF_texto: '',
+    Conoc_consecM:2,
+    Otros_consecM: '',
+    Conoc_consecH: 2,
+    Otros_consecH: '',
+    Formato_int: '',
+    Consejo: ''
+  }
   form:FormGroup;
 
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {

@@ -18,9 +18,11 @@ import { } from '@types/googlemaps';
 export class EditB1Component implements OnInit {
 
     id:number;
-    expediente;
-    bloque;
-    menor;
+    expediente
+
+    menor
+    bloque
+
     etnias;
     actividades;
     form2:FormGroup;

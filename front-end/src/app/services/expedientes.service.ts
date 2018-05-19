@@ -194,6 +194,8 @@ urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
       'Content-Type':'application/json',
       'Authorization':token
     });
+    console.log('Muestro lo que mnado al SErvicio');
+    console.log(parto);
     return this.http.post(this.urlPartos, parto, {headers}).map(res=>{
       console.log(res.json());
       return res.json();
