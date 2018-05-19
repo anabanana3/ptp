@@ -93,29 +93,38 @@ export class EditB2Component implements OnInit {
         console.log('Muestro los partos que devuelve la API')
         console.log(data);
         this.datosPartos = data;
+        console.log('********************');
+        console.log(data);
         console.log(data[0]);
         //Obtengo las consecuencias de cada parto
+
         for(let i = 0; i<data.length; i++){
           this._expedienteService.getConsecM(data[i].ID_Parto).subscribe(data=>{
-            console.log(data);
             this.consecMadreDB.push(data);
-            console.log(this.consecMadreDB);
+            console.log('Muestro las complicaciones que me devuelve la API para un Parto');
+            console.log(data);
+            this.datosPartos[i].compNacidoBD = data;
+            this.datosPartos[i].compNacido = this.compNacido;
+            this.datosPartos[i].compNacidoSel = new Array();
+            console.log(this.datosPartos[i]);
+            console.log(this.datosPartos[i].compNacidoBD);
+            console.log(this.datosPartos[i].compNacidoBD.length);
+            this.marcar(this.datosPartos[i],i);
           });
-          this.datosPartos[i].CompMadre = this.compMadre;
+          // this.datosPartos[i].CompMadre = this.compMadre;
 
           this._expedienteService.getConsecN(data[i].ID_Parto).subscribe(data=>{
             this.consecNacidoDB.push(data);
+            this.datosPartos[i].compMadreBD = data;
+            this.datosPartos[i].CompMadre = this.compMadre;
+            this.datosPartos[i].compMadreSel = new Array();
           })
-          this.datosPartos[i].compNacidoSel = new Array();
-          // this.datosPartos[i].compNacidoSel[0]=true;
-          // this.datosPartos[i].compNacidoSel[3]=false;
-          this.datosPartos[i].compNacido = this.compNacido;
-          this.datosPartos[0].compNacido[0].Checked = 1;
+          // this.datosPartos[i].compNacidoSel = new Array();
+          // this.datosPartos[i].compNacido = this.compNacido;
+          // this.datosPartos[0].compNacido[0].Checked = 1;
         };
 
-        console.log('Muestro las consecuencias que tienen los partos ');
-        console.log(this.consecMadreDB);
-        console.log(this.consecNacidoDB);
+
 
 
       })
@@ -133,6 +142,9 @@ export class EditB2Component implements OnInit {
   ngOnInit() {
 
   }
+
+
+
   guardarDatos(forma){
     console.log('Metodo para actualizar la informacion en la BD');
      console.log('Muestro el estado del bloque');
@@ -147,10 +159,31 @@ export class EditB2Component implements OnInit {
      this.bloque2.Pos_familia = this.form.value.Pos_familia;
      console.log('Muestro el bloque actualizado');
      console.log(this.bloque2);
+    // TODO: Falta terminar de seleccionar las consecuencias de la BB
+    //y revisar que va actualizar PArtos tanto aqui como en formulario de crear un parto
     //  this.marcarConsecuencias();
-    this._expedienteService.updateBloque2(this.bloque2, this.bloque2.ID_Bloque).subscribe(data=>{
-      console.log(data);
-    })
+    // this._expedienteService.updateBloque2(this.bloque2, this.bloque2.ID_Bloque).subscribe(data=>{
+    //   console.log(data);
+    //   if(data.Codigo == 501){
+    //     location.href = '/expired';
+    //     return;
+    //   }
+    //   //Actualizo los partos
+    //   if(this.datosPartos.length >0){
+    //     for(let i = 0; i<this.datosPartos.length; i++){
+    //       this._expedienteService.updateParto(this.datosPartos[i]).subscribe(data=>{
+    //         console.log(data);
+    //         //Actualizo las complicaciones delparto => ver si es necesario con un if
+    //         this._expedienteService.updateCompMadreParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compMadreSel).subscribe(data=>{
+    //           console.log(data);
+    //         });
+    //         this._expedienteService.updateCompNacidoParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compNacidoSel).subscribe(data=>{
+    //           console.log(data);
+    //         })
+    //       })
+    //     }
+    //   }
+    // })
    }
 
    // TODO: Falta hacer un metodo auxiliar para marcar las consecuencias que tiene cada parto
@@ -158,64 +191,99 @@ export class EditB2Component implements OnInit {
    todas las consecuencias y vamos a hacer la misma tecnica que en el bloque 4.
    añadir un campo cheked para luego poder marcalo */
 
-   marcarConsecuencias(){
-     console.log('Metodo axiliar para marcar todas las consecuencias que tengan ya almacenadas los partos');
+  //  marcarConsecuencias(){
+  //    console.log('Metodo axiliar para marcar todas las consecuencias que tengan ya almacenadas los partos');
+  //    console.log('Muestro los partos antes de marcar sus consecuencias');
+  //    console.log(this.datosPartos);
+  //   //  console.log('Complicaciones que sufre la madre');
+  //   //  console.log(this.consecMadreDB);
+  //    console.log('Complicaciones que sufre el recien nacido');
+  //    console.log(this.consecNacidoDB);
+  //    console.log(this.consecNacidoDB[0]);
+  //    console.log('Muestro todas las consecuencias posibles')
+  //    console.log('Para la madre');
+  //   //  console.log(this.compMadre);
+  //    console.log('Para el recien nacido');
+  //    console.log(this.compNacido);
+   //
+  //   //  Modifico el array de complicaciones que tiene cada partos
+  //   //Marco las complicaciones de la madre
+  //   // for(let i = 0; i<this.datosPartos.length; i++){
+  //   //   let  aux = this.datosPartos[i].CompMadre;
+  //   //       console.log('Todas las CPMadre de 1 parto');
+  //   //       console.log(aux);
+  //   //       //Recorro las selecionadas para buscar
+  //   //       for(let j = 0; j<this.consecMadreDB[i].length; j++){
+  //   //         let encontrada = false;
+  //   //         console.log('Muestro las complicaciones de la BD');
+  //   //         console.log(this.consecMadreDB[i][j])
+  //   //         //La busco en el array de todas del parto
+  //   //         for(let k=0; k<aux.length && encontrada == false; k++){
+  //   //           if(this.consecMadreDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
+  //   //             this.datosPartos[i].CompMadre[k].Checked = 1
+  //   //             encontrada = true;
+  //   //           }
+  //   //         }
+  //   //       }
+  //   //   }
+  //     //Marco las complicaciones del recien nacido
+   //
+  //     for(let i=0; i<this.datosPartos.length; i++){
+  //       let aux = this.datosPartos[i].compNacido;
+  //       console.log(aux);
+  //       for(let j = 0; j<this.consecNacidoDB[i].length; j++){
+  //         let encontrada = false;
+  //         for(let k = 0; k<aux.length && encontrada == false; k++){
+  //           if(this.consecNacidoDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
+  //             encontrada = true;
+  //             console.log(this.datosPartos[i]);
+  //             this.datosPartos[i].compNacido[k].Checked =1;
+  //             this.datosPartos[i].compNacidoSel[k] = true;
+  //           }
+  //         }
+  //       }
+  //     }
+   //
+  //   console.log('Muestro los partos despues de marcar sus complicaciones');
+  //   console.log(this.datosPartos);
+  //  }
+
+   marcar(p,pos){
+     console.log(pos)
+     console.log('Probando a ver si se ha guardado bien la info');
+     console.log(this.datosPartos[pos])
+     console.log(this.datosPartos[pos].compNacido);
+
+     console.log('////////////////////');
      console.log(this.datosPartos);
-     console.log('Complicaciones que sufre la madre');
-     console.log(this.consecMadreDB);
-     console.log(this.consecMadreDB[1]);
-     console.log(this.consecMadreDB.indexOf(0));
-     console.log('Complicaciones que sufre el recien nacido');
-     console.log(this.consecNacidoDB);
-     console.log(this.consecNacidoDB.length);
-     console.log('Muestro todas las consecuencias posibles')
-     console.log('Para la madre');
-     console.log(this.compMadre);
-     console.log('Para el recien nacido');
-     console.log(this.compNacido);
+     console.log(this.datosPartos[0]);
+     console.log(this.datosPartos[0].compNacidoBD);
+     console.log(this.datosPartos[0].compNacidoBD.length);
+     console.log(this.datosPartos[0].compNacidoBD[0]);
 
-    //  Modifico el array de complicaciones que tiene cada partos
-    //Marco las complicaciones de la madre
-    for(let i = 0; i<this.datosPartos.length; i++){
-      let  aux = this.datosPartos[i].CompMadre;
-          console.log('Todas las CPMadre de 1 parto');
-          console.log(aux);
-          //Recorro las selecionadas para buscar
-          for(let j = 0; j<this.consecMadreDB[i].length; j++){
-            let encontrada = false;
-            console.log('Muestro las complicaciones de la BD');
-            console.log(this.consecMadreDB[i][j])
-            //La busco en el array de todas del parto
-            for(let k=0; k<aux.length && encontrada == false; k++){
-              if(this.consecMadreDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
-                this.datosPartos[i].CompMadre[k].Checked = 1
-                encontrada = true;
-              }
-            }
-          }
-      }
-      //Marco las complicaciones del recien nacido
-      for(let i=0; i<this.datosPartos.length; i++){
-        let aux = this.datosPartos[i].compNacido;
-        console.log(aux);
-        for(let j = 0; j<this.consecNacidoDB[i].length; j++){
-          let encontrada = false;
-          for(let k = 0; k<aux.length && encontrada == false; k++){
-            if(this.consecNacidoDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
-              encontrada = true;
-              console.log(this.datosPartos[i]);
-              this.datosPartos[i].compNacido[k].Checked =1;
-              this.datosPartos[i].compNacidoSel = true;
-            }
-          }
-        }
-      }
-
-    console.log('Muestro los partos despues de marcar sus complicaciones');
-    console.log(this.datosPartos);
-    // this.datosPartos[0].CompMadre[0].Checked =1;
-    // this.datosPartos[1].CompMadre[1].Checked =1;
-    console.log(this.datosPartos[0]);
+     //Marco las complicaciones del recien nacido
+     for(let i = 0; i<this.datosPartos[pos].compNacido.length; i++){
+       let encontrada = false;
+       for(let j = 0; j<this.datosPartos[pos].compNacidoBD.length && encontrada == false; j++){
+         if(p.compNacido[i].ID_Complicacion == p.compNacidoBD[j].ID_Complicacion){
+           this.datosPartos[pos].compNacidoSel[i] = true;
+           this.datosPartos[pos].compNacido[i].Checked = 1;
+           encontrada = true;
+         }
+       }
+     }
+     //Marco las complicaciones de la madre
+     console.log(this.datosPartos[pos].CompMadre);
+     for(let i = 0; i<this.datosPartos[pos].CompMadre.length; i++){
+       let encontrada = false;
+       for(let j = 0; j<this.datosPartos[pos].compMadreBD.length && encontrada == false; j++){
+         if(p.CompMadre[i].ID_Complicacion == p.compMadreBD[j].ID_Complicacion){
+          this.datosPartos[pos].compMadreSel[i] = true;
+          this.datosPartos[pos].CompMadre[i].Checked = 1;
+         }
+       }
+     }
+     console.log(this.datosPartos);
    }
 
    prueba(n){
@@ -383,12 +451,18 @@ export class EditB2Component implements OnInit {
      ID_Tipo:number=1;
      ID_Mutilacion:number= 5;
      CompMadre:number[];
+     compMadreSel:number[];
+     compMadreBD:number[];
      compNacido:number[];
+     compNacidoBD:number[];
      compNacidoSel:number[];
 
      constructor(){
        this.CompMadre = new Array();
        this.compNacido = new Array();
        this.compNacidoSel = new Array();
+       this.compNacidoBD = new Array();
+       this.compMadreSel= new Array();
+       this.compMadreBD = new Array();
      }
    }
