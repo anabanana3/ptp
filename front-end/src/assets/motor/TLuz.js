@@ -2,15 +2,14 @@ class TLuz extends TEntidad{
 
   constructor(){
     super();
-    //this.intensidad = new TColor();
-    this.direccion = [10.5, 30.0, 1.0];
+  //Inicializamos los valores de las luces
+    this.direccion = [10.0, 10.0, 10.0];
     this.position = [10.0, 10.0, 10.0];
     this.emitida = [0.1,0.1,0.8,0.8];
   	this.ambiente = [0.8,0.8,0.8,1.0];
   	this.especular = [0.2,0.2,0.2,1.0];
   	this.difusa = [0.8,0.8,0.8,1.0];
   }
-
 
   setEmitida(emitida){
     this.emitida = emitida;
@@ -38,9 +37,9 @@ class TLuz extends TEntidad{
   }
 
   beginDraw(){
-    GLDifuso = this.difusa;
-    GLAmbiental = this.ambiente;
-    GLEspecular = this.especular;
+    // GLDifuso = this.difusa;
+    // GLAmbiental = this.ambiente;
+    // GLEspecular = this.especular;
   }
   endDraw(){}
 }

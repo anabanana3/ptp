@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit} from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { ProfesionesService } from '../../services/profesiones.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+
+
 
 @Component({
   selector: 'app-bib-expedientes',
@@ -45,7 +51,12 @@ profesiones = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService ) {
+  sitio;
+  idSitio;
+
+  @ViewChild('place') public searchElement: ElementRef;
+
+  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
       if(sessionStorage.length == 0){
         return;
       }
@@ -71,24 +82,24 @@ profesiones = new Array();
       }else if(sessionStorage.getItem('admin') != null){
         this.admin = true;
       }
+
+      if(sessionStorage.FTitulo != undefined){
+        this.buscar2(1,10);
+        console.log("ENTRO");
+      }
    }
 
    buscar2(pag, tam=this.tamPag){
+     //metodo para mantener la busqueda anterior
+     this.Filtros.Autor = sessionStorage.FAutor;
+     this.Filtros.Profesion = sessionStorage.FProfesion;
+     this.Filtros.Titulo = sessionStorage.FTitulo;
+     this.Filtros.Fecha1 = sessionStorage.FFecha1;
+     this.Filtros.Fecha2 = sessionStorage.FFecha2;
+     this.Filtros.Lugar = sessionStorage.FLugar;
+     this.Filtros.Etnia = sessionStorage.FEtnia;
+     this.Filtros.TipoMGF = sessionStorage.FTipoMGF;
      console.log(this.Filtros);
-   }
-
-   buscar(pag, tam=this.tamPag){
-     console.log(this.Filtros);
-     sessionStorage.setItem('FAutor', this.Filtros.Autor);
-     sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
-     sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
-     sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
-     sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
-     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
-     sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
-     sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
-     console.log(sessionStorage);
-
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
      if(sessionStorage.FAutor != ''){
@@ -167,6 +178,128 @@ profesiones = new Array();
     });
    }
 
+   buscar(pag, tam=this.tamPag){
+     console.log(this.Filtros);
+     sessionStorage.setItem('FAutor', this.Filtros.Autor);
+     sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
+     sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
+     sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
+     sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
+     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
+     sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
+     sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
+     console.log(sessionStorage);
+
+     //Obtengo el id del lugarde google
+     this.Filtros.Lugar = null;
+     if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
+       let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
+       this.Filtros.Lugar = idLugar;
+       sessionStorage.setItem('FLugar', idLugar);
+     }
+
+     this.url='https://www.aisha.ovh/api/publicos/search/';
+     let primero = 1;
+     if(sessionStorage.FAutor != ''){
+       // this.url += 'autor='+this.Filtros.Autor;
+       this.url += 'autor='+sessionStorage.FAutor;
+     }else{
+       this.url += 'autor='+null;
+     }
+     if(parseInt(sessionStorage.FProfesion) != 0){
+       this.url += '&profesion='+parseInt(sessionStorage.FProfesion);
+     }else{
+       this.url += '&profesion='+null ;
+     }
+     if(sessionStorage.FTitulo != ''){
+       //No son nulos => los pongo tal cual
+       this.url += '&titulo='+sessionStorage.FTitulo;
+     }else{
+       this.url += '&titulo='+null;
+     }
+     if(sessionStorage.FFecha1 != ''){
+       this.url += '&f1='+sessionStorage.FFecha1;
+     }else{
+       this.url += '&f1='+null;
+     }
+     if(sessionStorage.FFecha2 != ''){
+       this.url += '&f2='+sessionStorage.FFecha2;
+     }else{
+       this.  url += '&f2='+null;
+     }
+     //Lugar
+     if(this.Filtros.Lugar != null){
+      this.url += '&l='+sessionStorage.FLugar;
+    }else{
+      this.url += '&l='+null;
+    }
+    //  if(sessionStorage.FLugar != ''){
+    //    this.url += '&l='+sessionStorage.FLugar;
+    //  }else{
+    //    this.url += '&l='+null;
+    //  }
+     //Etnia
+     if(parseInt(sessionStorage.FEtnia) != 0){
+       this.url += '&e='+parseInt(sessionStorage.FEtnia)
+     }else{
+       this.  url += '&e='+null;
+     }
+     //TipoMGF
+     if(parseInt(sessionStorage.FTipoMGF) != 0){
+       this.url += '&tipo='+parseInt(sessionStorage.FTipoMGF);
+     }else{
+       this.url += '&tipo='+null;
+     }
+
+    //Añado los parametros de la paginacion
+    this.url += '/pag='+pag+'&n='+tam;
+
+    console.log('Muestro la url que mando al servicio');
+    console.log(this.url);
+    this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
+      console.log(data);
+      if(data.Resultado == 'OK'){
+        console.log('No hay resultados');
+        this.expedientes = new Array();
+        //Falta mostrar mensaje de no hay resultados
+        this.busqueda = true;
+        this.mensaje = 'No hay resultados para la busqueda solicitada';
+        document.getElementById('alert').className = 'alert alert-danger';
+        //return;
+
+      }else{
+        if(data.Codigo == 501 ){
+          location.href = '/expired';
+        }else{
+          console.log('Hay busqueda');
+          this.busqueda = true;
+          this.expedientes = data.Data;
+          this.mensaje = '';
+          //this.paginacion(data.Pagina, data.Paginas_Totales);
+        }
+      }
+    });
+   }
+   borrarBusqueda(){
+     this.Filtros.Autor = "";
+     sessionStorage.FAutor = "";
+     this.Filtros.Profesion = 0;
+     sessionStorage.FProfesion = "";
+     this.Filtros.Titulo = "";
+     sessionStorage.FTitulo = "";
+     this.Filtros.Fecha1 = "";
+     sessionStorage.FFecha1 = "";
+     this.Filtros.Fecha2 = "";
+     sessionStorage.FFecha2 = "";
+     this.Filtros.Lugar = "";
+     sessionStorage.FLugar = "";
+     this.Filtros.Etnia = 0;
+     sessionStorage.FEtnia = "";
+     this.Filtros.TipoMGF = 0;
+     sessionStorage.FTipoMGF = 0;
+     this.buscar(1,10);
+   }
+
    paginacion( paginaActual , pagTotales){
      //Total de paginas
      this.paginas = [];
@@ -206,6 +339,27 @@ profesiones = new Array();
    }
 
   ngOnInit() {
+    this.apiGoogle();
+  }
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
+
+        this.sitio.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+
+
+
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
   }
 
 }

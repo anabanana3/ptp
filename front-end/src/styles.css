@@ -41,7 +41,30 @@ br{
   content: " ";
   margin-top:8px;
 }
+#overlay{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1em;
+}
+#overlay div {
+  display: inline-grid;
+}
+#titulo{
+  font-weight: bold;
+}
+#text{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 10;
+}
 
+.content{
+  position: relative;
+}
 .espacio{
   padding: 20px;
 }
@@ -949,6 +972,8 @@ br{
   width: 70px;
   margin: 0 auto;
   /* margin-top: 40px; */
+  display: inline;
+  margin-left: 10%;
 }
 
 .gineblock{

@@ -1,0 +1,47 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+<div *ngIf="asociacion">
+  <app-header-asociacion></app-header-asociacion>
+</div>
+<div *ngIf="admin">
+  <app-header-admin></app-header-admin>
+</div>
+<div *ngIf="usuario">
+  <app-header></app-header>
+</div>
+
+<h1>Editar Expediente </h1>
+<div class="divBlanco bgColorWhite">
+  <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
+    <mat-tab label="Datos sociodemográficos"  id="bloque1">
+      <div class="divBloqueExp2">
+        <!-- {{ cambiarColorBl1() }} -->
+        <app-edit-b1></app-edit-b1>
+    </div>
+    </mat-tab>
+    <mat-tab label="Acerca de MGF"  id="bloque2">
+      <div class="divBloqueExp2">
+          <app-edit-b2></app-edit-b2>
+      </div>
+    </mat-tab>
+    <mat-tab label="Experiencias con la titular"  id="bloque3">
+      <div class="divBloqueExp2">
+          <app-edit-b3></app-edit-b3>
+      </div>
+    </mat-tab>
+    <mat-tab label="Exploracion genital" id="bloque4">
+      <div class="divBloqueExp2">
+          <app-edit-b4></app-edit-b4>
+      </div>
+    </mat-tab>
+    <mat-tab label="Viajes"  id="bloque5">
+      <div class="divBloqueExp2">
+          <app-edit-b5></app-edit-b5>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<app-footer></app-footer>
+</div>

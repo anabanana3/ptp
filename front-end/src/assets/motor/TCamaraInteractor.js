@@ -1,5 +1,6 @@
 class TCamaraInteractor extends TEntidad {
-
+  //hemos creado esta nueva clase para registrar el movimiento del raton por el canvas
+  //nos hemos basado en el capitulo 4 (camara) del libro webgl, y en los ejemplos del mismo
   constructor(camera,canvas){
       super();
       this.camera = camera;
@@ -17,24 +18,24 @@ class TCamaraInteractor extends TEntidad {
 
       this.MOTION_FACTOR = 10.0;
   }
-
+  //cuando soltamos el raton
   onMouseUp(ev){
       this.dragging = false;
   }
-
+  //cuando mantenemos pulsado el ratón
   onMouseDown(ev){
     this.dragging = true;
     this.x = ev.clientX;
   	this.y = ev.clientY;
   	this.button = ev.button;
   }
-
+  //cuando movemos el raton
   onMouseMove(ev){
   	this.lastX = this.x;
   	this.lastY = this.y;
   	this.x = ev.clientX;
     this.y = ev.clientY;
-
+    //para que si no estamos pulsando y solo movemos no haga nada
   	if (!this.dragging) return;
 
   	this.ctrl = ev.ctrlKey;
@@ -44,15 +45,11 @@ class TCamaraInteractor extends TEntidad {
   	var dy = this.y - this.lastY;
 
   	if (this.button == 0) {
-  		if(this.ctrl){
-  			this.translate(dy);
-  		}
-  		else{
+      //llamamos a rotar
   			this.rotate(dx, dy);
-  		}
   	}
   }
-
+  //cuando apretamos una tecla -para el zoom
   onKeyDown(ev){
     var c = this.camera;
 
@@ -61,6 +58,7 @@ class TCamaraInteractor extends TEntidad {
     //tecla +
   	if(this.key == 187){
       this.zoomIn();
+      //tecla -
     }else if(this.key == 189){
       this.zoomOut();
     }
@@ -86,36 +84,20 @@ class TCamaraInteractor extends TEntidad {
   	canvas.onmousemove = function(ev) {
   		self.onMouseMove(ev);
     }
-
-  	// window.onkeydown = function(ev){
-  	// 	self.onKeyDown(ev);
-  	// }
-
-  	// window.onkeyup = function(ev){
-  	// 	self.onKeyUp(ev);
-  	// }
   }
-
-  // translate(value){
-  //   console.log("si que entro");
-  // 	var c = this.camera;
-  // 	var dv = 2 * this.MOTION_FACTOR * value / canvas.height;
-  //
-  // 	c.dolly(Math.pow(1.1,dv));
-  // }
-
+  //calculamos las variables para aplicar la rotacion
   rotate(dx, dy){
   	var camera = this.camera;
   	var canvas = this.canvas;
 
-  	var delta_elevation = -8.0 / canvas.height;
-  	var delta_azimuth   = -8.0 / canvas.width;
+  	var delta_x = -8.0 / canvas.height;
+  	var delta_y   = -8.0 / canvas.width;
 
-  	var nAzimuth = dx * delta_azimuth * this.MOTION_FACTOR;
-  	var nElevation = dy * delta_elevation * this.MOTION_FACTOR;
+  	var nY = dx * delta_y * this.MOTION_FACTOR;
+  	var nX = dy * delta_x * this.MOTION_FACTOR;
 
-  	camera.changeAzimuth(nAzimuth);
-  	camera.changeElevation(nElevation);
+  	camera.changeMovimentoY(nY);
+  	camera.changeMovimientoX(nX);
     camera.update();
   }
 }

@@ -5,122 +5,62 @@ class TCamara extends TEntidad {
 		this.esPrespectiva = false;//Boolean
 		this.cercano = null;//Float
 		this.lejano = null;//Float
-		this.home = vec3.create();
-		this.azimuth = 0.0;
-		this.elevation = 0.0;
-		this.steps = 0;
-
-		this.position = vec3.create();
-		this.matrix = mat4.create();
-		this.up = vec3.create();
-		this.right = vec3.create();
-		this.normal = vec3.create();
-		this.position = vec3.create();
-		this.focus = vec3.create();
-		this.interactor = null;
+		this.movY = 0.0;
+		this.movX = 0.0;
 
 		this.projectionMatrix = mat4.create();
 		this.viewMatrix = mat4.create();
 	}
-
-	goHome(h){
-    if (h != null){
-        this.home = h;
-    }
-    this.setPosition(this.home);
-    this.setAzimuth(0);
-    this.setElevation(0);
-    this.steps = 0;
+	//las funciones para hacer girar el modelo setMovimentoY, setMovimentoX, changeMovimentoY, changeMovimentoX y update()
+	//las hemos sacado del capitulo 4 (camaras) del libro de webgl
+	//nos hemos basado en los ejemplos - ejercicios del libro
+	setMovimentoY(y){
+		this.changeMovimentoY(y - this.movY);
 	}
 
-	// dolly(s){
-	// 	var c = this;
-	//
-  //   var p =  vec3.create();
-  //   var n = vec3.create();
-	//
-  //   p = c.position;
-	//
-  //   var step = s - c.steps;
-	//
-  //   vec3.normalize(c.normal,n);
-	//
-  //   var newPosition = vec3.create();
-	//
-  //   /*if(c.type == CAMERA_TRACKING_TYPE){
-  //       newPosition[0] = p[0] - step*n[0];
-  //       newPosition[1] = p[1] - step*n[1];
-  //       newPosition[2] = p[2] - step*n[2];
-  //   }
-  //   else{*/
-  //       newPosition[0] = p[0];
-  //       newPosition[1] = p[1];
-  //       newPosition[2] = p[2] - step;
-  //   //}
-	//
-  //   c.setPosition(newPosition);
-  //   c.steps = s;
-	// }
+//usamos esta funcion para calcular lo que se va a rotar el modelo en el eje y
+	changeMovimentoY(y){
+    this.movY +=y;
 
-	setPosition(p){
-		this.position = vec3.fromValues(p[0], p[1], p[2]);
-    this.update();
-	}
-
-	setFocus(f){
-		this.position = vec3.fromValues(f[0], f[1], f[2]);
-    this.update();
-	}
-
-	setAzimuth(az){
-		this.changeAzimuth(az - this.azimuth);
-	}
-
-	changeAzimuth(az){
-    this.azimuth +=az;
-
-    if (this.azimuth > 360 || this.azimuth <-360) {
-			this.azimuth = this.azimuth % 360;
+    if (this.movY > 360 || this.movY <-360) {
+			this.movY = this.movY % 360;
 		}
 	}
 
-	setElevation(el){
-		this.changeElevation(el - this.elevation);
+	setMovimientoX(x){
+		this.changeMovimientoX(x - this.movX);
 	}
 
-	changeElevation(el){
-		this.elevation +=el;
+	//usamos esta funcion para calcular lo que se va a rotar el modelo en el eje x
+	changeMovimientoX(x){
+		this.movX +=x;
 
-    if (this.elevation > 360 || this.elevation <-360) {
-			this.elevation = this.elevation % 360;
+    if (this.movX > 360 || this.movX <-360) {
+			this.movX = this.movX % 360;
 		}
 	}
 
+	//aqui es donde vamos cambiando los valores para que cambie la posicion y se mueva
 	update(){
 
 		let rotaCamara = GFachada.regCamaras[0].getPadre().getPadre().entidad;
 		//let traslaCamara = GFachada.regCamaras[0].getPadre().entidad;
-		rotaCamara.rotar(this.azimuth * Math.PI/180, 0, 1, 0);
-		rotaCamara.rotar(this.elevation * Math.PI/180, 1, 0, 0);
-		//traslaCamara.trasladar(this.position[0], this.position[1], this.position[2]);
+		rotaCamara.rotar(this.movY * Math.PI/180, 0, 1, 0);
+		rotaCamara.rotar(this.movX * Math.PI/180, 1, 0, 0);
 
-		// rotaCamara.rotar(0.3, 0, 1, 0);
 		GFachada.draw();
 	}
-
+	//utilizamos la funcion perspective() de glmatrix
 	//fovy => Angulo de vision en radianes
 	//aspect => Relacion de aspecto
 	setPerspectiva (fovy, aspect, near, far){
 		this.esPrespectiva = true;
-		let out = mat4.create();
-		mat4.perspective(out, fovy, aspect, near, far)
-		this.projectionMatrix = out;
-		console.log(this.projectionMatrix);
+		mat4.perspective(this.projectionMatrix, fovy, aspect, near, far)
 		this.cercano = near;
 		this.lejano = far;
 	}
 
-	//left, right y top ?????
+	//utilizamos la funcion ortho() de glmatrix
 	setParalela (near, far, left, right, top, bottom){
 		this.esPrespectiva = false;
 		let out = mat4.create();
@@ -134,6 +74,7 @@ class TCamara extends TEntidad {
 	getProjectionMatrix(){
 		return this.projectionMatrix;
 	}
+	//para obtener si es perspectiva o paralela
 	getTipo(){
 		return this.esPrespectiva;
 	}

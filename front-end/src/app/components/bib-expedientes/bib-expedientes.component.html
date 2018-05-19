@@ -13,14 +13,15 @@
   </div>
   <div class="gridContainer">
     <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
-      <div class="headerMisExp">
+      <!-- <div class="headerMisExp">
         <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
-      </div>
+      </div> -->
       <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
       <div *ngIf="expedientes.length>0" class="expediente-container">
         <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
           <div class="expediente-body-exp">
-            <p class="tituloExp">{{e.Titulo}}</p>
+            <p *ngIf="e.Titulo != undefined" class="tituloExp">{{e.Titulo}}</p>
+            <p *ngIf="e.Titulo == undefined">Expediente {{e.ID_Expediente}}</p>
             <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
           </div>
         </div>
@@ -107,8 +108,8 @@
           <div class="divExpDeUnoSearch">
             <label for="lugar"> Lugar de detección </label>
           </div>
-          <div class="divExpDeUnoSearch">
-            <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
+          <div divExpDeUnoSearch id="locationField">
+            <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
           </div>
           <br>
         </div>
@@ -133,14 +134,15 @@
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
               <option value="0">Seleccione el tipo de MGF</option>
-              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
             </select>
           </div>
           <br>
         </div>
-
+        <div class="espacio"></div>
         <div class="SubmitSearch">
           <button class="btn-relleno" type="submit" name="button">Buscar</button>
+          <button class="btn-relleno" type="submit" name="button" (click)="borrarBusqueda()">Limpiar búsqueda</button>
         </div>
       </form>
     </div>

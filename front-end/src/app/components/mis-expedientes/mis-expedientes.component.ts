@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { CarpetasService } from '../../services/carpetas.service';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 
 @Component({
@@ -18,7 +21,7 @@ export class MisExpedientesComponent implements OnInit {
   pagNext:number;
   pagBack:number;
   pagActual:number;
-  tamPag:number=28;
+  tamPag:number=10;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -33,7 +36,7 @@ etnias = new Array();
   //Variable para mostrar expedientes publicos, privados o ambos => 1:privados, 2:publicos, 3:ambos
   tipoExp:number=1;
   tiposMGF = new Array();
-    Filtros ={
+  Filtros ={
     Titulo:'',
     Fecha1:'',
     Fecha2:'',
@@ -58,7 +61,11 @@ etnias = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
+  sitio;
+  idSitio;
+  @ViewChild('place') public searchElement: ElementRef;
+
+  constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     if(sessionStorage.length == 0){
       return;
     }else{
@@ -81,48 +88,55 @@ etnias = new Array();
       this.getRaizUser(sessionStorage.iD);
       this.getExpedientesUser(1, this.tamPag, 1);
 
+      //para mantener la busqueda
+      if(sessionStorage.FTitulo != undefined){
+        this.buscar2(1,10);
+        console.log("ENTRO");
+      }
+
     }
    }
 
   ngOnInit() {
-  }
-
-// TODO: Funcion para cargar los expedientes privados, publicos o ambos
-cambio(n){
-  this.n = n;
-  this.paginas = new Array();
-  switch(this.n){
-    case 1:
-    this.tipoExp = 1;
-      console.log('Modo Arbol');
-      document.getElementById("arb").style.fontWeight = "bold";
-      document.getElementById("priv").style.fontWeight = "normal";
-      document.getElementById("publ").style.fontWeight = "normal";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag);
-
-    break;
-    case 2:
-      console.log("Expedientes Privados");
-      this.tipoExp = 2;
-      //TODO: Faltan estos metodos
-      document.getElementById("arb").style.fontWeight = "normal";
-      document.getElementById("priv").style.fontWeight = "bold";
-      document.getElementById("publ").style.fontWeight = "normal";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-    break;
-    case 3:
-      console.log("Expedientes Publicos");
-      this.tipoExp = 3;
-      //TODO: Faltan estos metodos
-      document.getElementById("priv").style.fontWeight = "normal";
-      document.getElementById("publ").style.fontWeight = "bold";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-    break;
-
+    this.apiGoogle();
 
   }
-}
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
 
+        this.sitio.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+
+
+
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
+  }
+
+
+  elegirTipo(tipo){
+    switch(tipo){
+      case 1:
+        this.tipoExp = 1;
+        document.getElementById("privF").style.fontWeight = "bold";
+        document.getElementById("publF").style.fontWeight = "normal";
+      break;
+      case 2:
+        this.tipoExp = 2;
+        document.getElementById("privF").style.fontWeight = "normal";
+        document.getElementById("publF").style.fontWeight = "bold";
+      break
+    }
+  }
 
 mostrarOpciones() {
     var x = document.getElementById("desplegable");
@@ -281,11 +295,192 @@ getExpedientesUser(tipo,pag, tam){
 
 
   buscar(pag, tamPag=this.tamPag){
+    console.log('Metodo para buscar');
     console.log(this.Filtros);
-    console.log('Muestro el estado de la url antes de pillar los datos');
-    console.log(this.url);
-    console.log('Muestro el tipo de expediente que voy a buscar');
+    console.log(this.sitio);
     console.log(this.tipoExp);
+    sessionStorage.setItem('F2Titulo', this.Filtros.Titulo);
+    sessionStorage.setItem('F2Fecha1', this.Filtros.Fecha1);
+    sessionStorage.setItem('F2Fecha2', this.Filtros.Fecha2);
+    // if(this.Filtros.Lugar !== undefined)
+    console.log(this.sitio.gm_accessors_.place.gd.b);
+    this.Filtros.Lugar = null;
+    if(this.sitio.gm_accessors_.place.gd.b ==true && this.sitio.gm_accessors_.place.gd.l != ''){
+      //Hay que sacar el lugar de google
+      let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
+      this.Filtros.Lugar = idLugar;
+      sessionStorage.setItem('F2Lugar', idLugar);
+    }
+    if(this.Filtros.Etnia.toString() !== undefined){
+      sessionStorage.setItem('F2Etnia', this.Filtros.Etnia.toString());
+    }
+
+    sessionStorage.setItem('F2TipoMGF', this.Filtros.TipoMGF.toString());
+    //En funcion del tipo Exp que quiero buscar creo la url => por defecto Privados
+    this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
+    if(this.tipoExp == 2){
+      //Publicos
+      this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
+    }
+
+    let primero = 1;
+      if(this.Filtros.Titulo != ''){
+        //No son nulos => los pongo tal cual
+        this.url += 'titulo='+sessionStorage.F2Titulo;
+      }else{
+        this.url += 'titulo='+null;
+      }
+      if(this.Filtros.Fecha1 != ''){
+        this.url += '&f1='+sessionStorage.F2Fecha1;
+      }else{
+        this.url += '&f1='+null;
+      }
+      if(this.Filtros.Fecha2 != ''){
+        this.url += '&f2='+sessionStorage.F2Fecha2;
+      }else{
+        this.  url += '&f2='+null;
+      }
+      if(this.Filtros.Lugar != null){
+        this.url += '&l='+sessionStorage.F2Lugar;
+      }else{
+        this.url += '&l='+null;
+      }
+      //Etnia
+      if(this.Filtros.Etnia != 0){
+        this.url += '&e='+sessionStorage.F2Etnia
+      }else{
+        this.  url += '&e='+null;
+      }
+      //TipoMGF
+      if(this.Filtros.TipoMGF != 0){
+        this.url += '&tipo='+sessionStorage.F2TipoMGF;
+      }else{
+        this.url += '&tipo='+null;
+      }
+
+     //Añado los parametros de la paginacion
+     this.url += '/pag='+pag+'&n='+tamPag;
+
+     console.log(this.url);
+
+     this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
+       if(data.Codigo == 501){
+         location.href = '/expired';
+         return;
+       }
+       if(data.Resultado == 'OK'){
+         this.contenido  = new Array();
+          //Falta mostrar mensaje de no hay resultados
+          this.busqueda = true;
+          this.mensaje = 'No hay resultados para la busqueda solicitada';
+          if(document.getElementById('alert'))
+           document.getElementById('alert').className = 'alert alert-danger';
+          //return;
+       }else{
+         this.busqueda = true;
+         //this.expedientes = data.Data;
+        this.contenido = data.Data;
+        this.mensaje = '';
+        this.paginacion(data.Pagina, data.Paginas_Totales);
+       }
+     })
+
+  //   console.log(this.Filtros);
+  //   console.log('Muestro el estado de la url antes de pillar los datos');
+  //   console.log(this.url);
+  //   console.log('Muestro el tipo de expediente que voy a buscar');
+  //   console.log(this.tipoExp);
+  //   sessionStorage.setItem('F2Titulo', this.Filtros.Titulo);
+  //   sessionStorage.setItem('F2Fecha1', this.Filtros.Fecha1);
+  //   sessionStorage.setItem('F2Fecha2', this.Filtros.Fecha2);
+  //   if(this.Filtros.Lugar !== undefined)
+  //   sessionStorage.setItem('F2Lugar', this.Filtros.Lugar);
+  //   if(this.Filtros.Etnia.toString() !== undefined)
+  //   sessionStorage.setItem('F2Etnia', this.Filtros.Etnia.toString());
+  //   sessionStorage.setItem('F2TipoMGF', this.Filtros.TipoMGF.toString());
+  //   //Cambiar la URL en funcion del tipo seleccionado
+  //   this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
+  //   if(this.tipoExp == 3){
+  //     //Busco expedientes privados
+  //     this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
+  //   }
+  //   console.log(this.url);
+  //   let primero = 1;
+  //   if(this.Filtros.Titulo != ''){
+  //     //No son nulos => los pongo tal cual
+  //     this.url += 'titulo='+sessionStorage.F2Titulo;
+  //   }else{
+  //     this.url += 'titulo='+null;
+  //   }
+  //   if(this.Filtros.Fecha1 != ''){
+  //     this.url += '&f1='+sessionStorage.F2Fecha1;
+  //   }else{
+  //     this.url += '&f1='+null;
+  //   }
+  //   if(this.Filtros.Fecha2 != ''){
+  //     this.url += '&f2='+sessionStorage.F2Fecha2;
+  //   }else{
+  //     this.  url += '&f2='+null;
+  //   }
+  //   //Lugar
+  //   if(this.Filtros.Lugar != ''){
+  //     this.url += '&l='+sessionStorage.F2Lugar;
+  //   }else{
+  //     this.url += '&l='+null;
+  //   }
+  //   //Etnia
+  //   if(this.Filtros.Etnia != 0){
+  //     this.url += '&e='+sessionStorage.F2Etnia
+  //   }else{
+  //     this.  url += '&e='+null;
+  //   }
+  //   //TipoMGF
+  //   if(this.Filtros.TipoMGF != 0){
+  //     this.url += '&tipo='+sessionStorage.F2TipoMGF;
+  //   }else{
+  //     this.url += '&tipo='+null;
+  //   }
+   //
+  //  //Añado los parametros de la paginacion
+  //  this.url += '/pag='+pag+'&n='+tamPag;
+   //
+  //  console.log('Muestro la url que mando al servicio');
+  //  console.log(this.url);
+   //
+  //  this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
+  //    console.log(data);
+  //    if(data.Resultado == 'OK'){
+  //      console.log('No hay resultados');
+  //     //  this.expedientes = new Array();
+  //      this.contenido  = new Array();
+  //      //Falta mostrar mensaje de no hay resultados
+  //      this.busqueda = true;
+  //      this.mensaje = 'No hay resultados para la busqueda solicitada';
+  //      if(document.getElementById('alert'))
+  //       document.getElementById('alert').className = 'alert alert-danger';
+  //      //return;
+  //    }else{
+  //      if(data.Codigo == 501){
+  //        location.href = '/expired';
+  //      }else{
+  //        console.log('Hay busqueda');
+  //        this.busqueda = true;
+  //        //this.expedientes = data.Data;
+  //        this.contenido = data.Data;
+  //        this.mensaje = '';
+  //        this.paginacion(data.Pagina, data.Paginas_Totales);
+  //      }
+  //     }
+  //  });
+  }
+  buscar2(pag, tamPag=this.tamPag){
+    //metodo para mantener la busqueda anterior
+    this.Filtros.Titulo = sessionStorage.F2Titulo;
+    this.Filtros.Fecha1 = sessionStorage.F2Fecha1;
+    this.Filtros.Fecha2 = sessionStorage.F2Fecha2;
+    this.Filtros.Lugar = sessionStorage.F2Lugar;
+    this.Filtros.Etnia = sessionStorage.F2Etnia;
+    this.Filtros.TipoMGF = sessionStorage.F2TipoMGF;
     //Cambiar la URL en funcion del tipo seleccionado
     this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
     if(this.tipoExp == 3){
@@ -296,35 +491,35 @@ getExpedientesUser(tipo,pag, tam){
     let primero = 1;
     if(this.Filtros.Titulo != ''){
       //No son nulos => los pongo tal cual
-      this.url += 'titulo='+this.Filtros.Titulo;
+      this.url += 'titulo='+sessionStorage.F2Titulo;
     }else{
       this.url += 'titulo='+null;
     }
     if(this.Filtros.Fecha1 != ''){
-      this.url += '&f1='+this.Filtros.Fecha1;
+      this.url += '&f1='+sessionStorage.F2Fecha1;
     }else{
       this.url += '&f1='+null;
     }
     if(this.Filtros.Fecha2 != ''){
-      this.url += '&f2='+this.Filtros.Fecha2;
+      this.url += '&f2='+sessionStorage.F2Fecha2;
     }else{
       this.  url += '&f2='+null;
     }
     //Lugar
     if(this.Filtros.Lugar != ''){
-      this.url += '&l='+this.Filtros.Lugar;
+      this.url += '&l='+sessionStorage.F2Lugar;
     }else{
       this.url += '&l='+null;
     }
     //Etnia
     if(this.Filtros.Etnia != 0){
-      this.url += '&e='+this.Filtros.Etnia
+      this.url += '&e='+sessionStorage.F2Etnia
     }else{
       this.  url += '&e='+null;
     }
     //TipoMGF
     if(this.Filtros.TipoMGF != 0){
-      this.url += '&tipo='+this.Filtros.TipoMGF;
+      this.url += '&tipo='+sessionStorage.F2TipoMGF;
     }else{
       this.url += '&tipo='+null;
     }
@@ -360,9 +555,20 @@ getExpedientesUser(tipo,pag, tam){
       }
    });
   }
-  buscar2(pag, tamPag=this.tamPag){
-    console.log(this.Filtros);
-    console.log(this.tipoExp);
+  borrarBusqueda(){
+    this.Filtros.Titulo = "";
+    sessionStorage.F2Titulo = "";
+    this.Filtros.Fecha1 = "";
+    sessionStorage.F2Fecha1 = "";
+    this.Filtros.Fecha2 = "";
+    sessionStorage.F2Fecha2 = "";
+    this.Filtros.Lugar = "";
+    sessionStorage.F2Lugar = "";
+    this.Filtros.Etnia = 0;
+    sessionStorage.F2Etnia = "";
+    this.Filtros.TipoMGF = 0;
+    sessionStorage.F2TipoMGF = 0;
+    this.buscar(1,10);
   }
   //Funcion para generar las variables de la paginacion
   paginacion( paginaActual , pagTotales){
@@ -406,7 +612,7 @@ getRaizUser(id){
       location.href = '/expired';
       return;
     }
-    document.getElementById('arb').style.fontWeight = 'bold';
+    //document.getElementById('arb').style.fontWeight = 'bold';
     console.log(data);
     this.contenido = data.Data;
     this.carpetaActual = data.ID_Carpeta;

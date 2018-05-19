@@ -8,6 +8,7 @@ uniform mat4 NormalMatrix;
 
 uniform vec3 uLightDirection; //Directional light
 uniform vec3 uLightPosition; //Positional light
+uniform vec3 uLight;
 uniform vec4 uLightDiffuse;
 uniform vec4 uLightAmbient;
 uniform vec4 uMaterialDiffuse;

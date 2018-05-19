@@ -3,50 +3,47 @@
 precision highp float;
 #endif
 
-uniform float uShininess;
-
+//Para el cartoon solo usamos la luz direccional y luz y material ambiental
 uniform vec3 uLightDirection;
-uniform vec3 uLightPosition;
 uniform vec4 uLightAmbient;
-uniform vec4 uLightDiffuse;
-uniform vec4 uLightSpecular;
 
 uniform vec4 uMaterialAmbient;
-uniform vec4 uMaterialDiffuse;
-uniform vec4 uMaterialSpecular;
-uniform sampler2D uSampler;
 
 varying vec3 vNormal;
 varying vec3 vEyeVec;
-varying vec2 vTextureCoord;
 
 void main(void)
 {
-	vec3 L = normalize(uLightPosition);	//Positional light
+ 	vec3 L = normalize(uLightDirection);	//Directional light
 	vec3 N = normalize(vNormal);
 
-	float lambertTerm = dot(N,-L);
-
 	vec4 Ia = uLightAmbient * uMaterialAmbient;
-	vec4 Is = vec4(0.0, 0.0, 0.0, 1.0);
-	vec4 Id = vec4(0.0, 0.0, 0.0, 1.0);
 
-	if(lambertTerm > 0.0){
-		Id = uLightDiffuse * uMaterialDiffuse * lambertTerm;
-
-		vec3 E = normalize(vEyeVec);
-		vec3 R = reflect(L, N);
-		float specular = pow(max(dot(R, E), 0.0), uShininess);
+  //el color final es la multiplicacion de la luz y material ambiental, sin
+  //tener en cuenta la difusa ni la especular
+	vec4 finalColor = Ia;
 
 
-		Is = uLightSpecular * (0.5, 0.3, 0.3, 1.0) * specular;
-	}
+	//Fuente: http://www.lighthouse3d.com/tutorials/glsl-12-tutorial/toon-shading-version-iii/
+  //Aqui comprobamos si el color es mas claro o mas oscuro, separando por cuatro
+  //franjas distintas de tonalidades y adjudicando un tono comun del material
+  //a dicha franja
+		float intensity = dot(vec3(L), N);
 
-	vec4 finalColor = Ia + Id + Is;
-//	finalColor.r = 1.0;
-  //finalColor.g = 0.4;
-  //finalColor.b = 0.7;
-  //finalColor.a = 1.0;
+		if (intensity > 0.3){             //tono mas oscuro
+			finalColor = finalColor * 0.5;
+		}
+		else if (intensity > -0.3){
+			finalColor = finalColor * 1.0;
+		}
+		else if (intensity > -0.85){
+			finalColor = finalColor * 1.06;
+		}
+	 	else{                              //tono mas claro
+			finalColor = finalColor * 1.15;
+		}
 
-	gl_FragColor = finalColor * texture2D(uSampler, vTextureCoord);
+//finalmente ponemos la transparencia a 1.0
+	finalColor.a = 1.0;
+	gl_FragColor = finalColor;
 }

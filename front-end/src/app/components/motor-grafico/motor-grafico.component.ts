@@ -6,8 +6,10 @@ declare var mostrarTipo2;
 declare var mostrarTipo3;
 declare var mostrarReal;
 declare var mostrarCartoon;
+declare var mostrarNoCartoon;
 declare var borrarLuzCompleto;
 declare var moverCamara;
+declare var mostrarAnimacion;
 
 @Component({
   selector: 'app-motor-grafico',
@@ -80,10 +82,28 @@ export class MotorGraficoComponent implements AfterViewInit {
   }
 
   cartoon(){
-    if(this.nombre === "CARTOON")
+    if(this.nombre === "CARTOON"){
       this.nombre = "NO CARTOON"
-    else
+      new mostrarCartoon();
+    }
+    else{
       this.nombre = "CARTOON"
-    new mostrarCartoon();
+      new mostrarNoCartoon();
+    }
   }
+
+  animacion(){
+    new mostrarAnimacion();
+  }
+
+  // cambiaLuz(num){
+  //   console.log(num);
+  //   if(num == 1){
+  //       document.getElementById("label-dir").setAttribute("class", "cambio-switch");
+  //       document.getElementById("label-pos").setAttribute("class", "");
+  //   }else{
+  //     document.getElementById("label-pos").setAttribute("class", "cambio-switch");
+  //     document.getElementById("label-dir").setAttribute("class", "");
+  //   }
+  // }
 }
