@@ -18,7 +18,7 @@
       <h2>Contactos</h2>
       <p>
         <button type="button" (click)="buscarUsuarios(search.value)" class="pointer icon-search btn-buscador "></button>
-        <input type="text" class="lineaCampo" (keyup)="escribiendo($event, search.value)" placeholder="Busca a un contacto" style="width:80%;" #search>
+        <input type="text" class="lineaCampo" (keyup)="escribiendo($event, search.value)" placeholder="Busque a un contacto" style="width:80%;" #search>
       </p>
     </header>
     <div *ngIf="resultSearch.length > 0" class="busquedachat">
@@ -72,7 +72,7 @@
 
       <footer class ="formChat bgColorPink">
         <form>
-          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
+          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escriba su mensaje aquí..." autocomplete="false">
           <button type="submit" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
         </form>
       </footer>

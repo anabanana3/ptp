@@ -5,7 +5,7 @@
 
     <div class="divLabels">
       <div class="divExp">
-        <label>Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:</label>
+        <label>Las personas implicadas en este expediente tienen planificado realizar un viaje proximamente:</label>
         <!-- <select id="viajeP" formControlName="ViajesPlanifiacados">
           <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
         </select> -->
@@ -20,7 +20,7 @@
       </div>
 
       <div class="divExp">
-        <label>Realiza viajes al país de origen en vacaciones:</label>
+        <label>La titular realiza viajes al país de origen en vacaciones:</label>
         <!-- <select id=viajes formControlName="Viajes">
           <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
         </select> -->
@@ -38,11 +38,11 @@
     <br>
 
     <label for="formato">Descripción del formato de intervención:</label>
-    <textarea class="textareaBl2" formControlName="Intervencion" placeholder="Descripción" id="formato"></textarea>
+    <textarea class="textareaBl2" formControlName="Intervencion" placeholder="Escriba aquí..." id="formato"></textarea>
     <br>
 
     <label for="consejo">Consejo para otros profesionales:</label>
-    <textarea class="textareaBl2" formControlName="Consejos" id="consejo" placeholder="Consejos"></textarea>
+    <textarea class="textareaBl2" formControlName="Consejos" id="consejo" placeholder="Escriba aquí..."></textarea>
     <br>
   </div>
 
@@ -52,7 +52,7 @@
   </h2>
 
   <div *ngIf="mostrar == true">
-    <p>A continuación seleccione los indicadores que se dan la titular del expediente:</p>
+    <p>A continuación seleccione los indicadores que se dan en la titular del expediente:</p>
     <br>
       <div formGroupName="indicadores">
         <!-- <div class="divContainerPopUp">
@@ -69,7 +69,8 @@
       <div class="divContainerBl4">
         <div *ngFor="let in of indicadores; let i = index;">
             <div class="divPrueba">
-              <input class="checktrans" formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+              <input class="checktrans" formControlName="indicador{{i+1}}"
+                type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
               <label class="labeltrans" for="indicador{{i}}">{{in.Nombre}}</label>
             </div>
         </div>

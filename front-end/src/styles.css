@@ -690,6 +690,10 @@ br{
   margin: auto;
 }
 
+.crearExpediente{
+  width: 70%!important;
+}
+
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: #880042;
 }
@@ -1217,7 +1221,7 @@ option{
   padding: 3%;
 }
 .divError p{
-  padding-top: 20%;
+  padding-top: 30px;
   padding-bottom: 10%;
 }
 
