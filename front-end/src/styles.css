@@ -11,7 +11,7 @@ html{
   font-family: HiraKakuPro-W3, Verdana;
   font-size: 16px;
   color: #333333;
-  background: #F2F2F2;
+  /* background: #F2F2F2; */
   text-align: center;
 }
 
@@ -28,8 +28,6 @@ h1, h2, h3{
   font-weight: lighter;
 }
 h1{
-  color:#880042;
-  font-weight: bold;
   margin: 20px;
 }
 th, td{padding: 15px;}
@@ -89,7 +87,7 @@ br{
   margin-bottom: 25px;
 }
 
-.Eslogan{
+/* .Eslogan{
   margin: 0 auto;
   width:40%;
   margin-top: 5%;
@@ -104,7 +102,7 @@ br{
   width: 40%;
   margin: 0 auto;
   margin-top: 20px;
-}
+} */
 
 /** CAROUSEL **/
 
@@ -153,6 +151,79 @@ br{
 }
 
 /** CAROUSEL **/
+
+.cabecera{
+  height: 465px;
+}
+
+.imgCabecera{
+  width: 60%;
+  /* float: right; */
+  /* top: 0; */
+  right: 0;
+  z-index: -999;
+  position: absolute;
+  /* position: relative; */
+}
+
+.textosCabecera{
+  position: absolute;
+  width: 41%;
+  margin-left: 90px;
+  margin-top: 37px;
+  text-align: left;
+  z-index: 1;
+  margin-bottom: 24px;
+}
+
+.tituloCabecera{
+  text-align: left;
+  font-size: 24px;
+  color: #333333;
+  line-height: 31px;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.50);
+}
+
+.subtituloCabecera{
+  opacity: 0.5;
+  text-align: left;
+  font-size: 18px;
+  color: #1C233F;
+  font-weight: lighter;
+  line-height: 24px;
+  margin: 0;
+}
+
+/* .funcionalidades{
+  background-color: #EFEFEF;
+  padding: 40px 0px;
+} */
+
+.funcionalidadesContainer{
+  background-color: #EFEFEFEF;
+  padding: 20px 0;
+}
+
+.listadoFuncionesContainer{
+  background-color: #EFEFEFEF;
+}
+
+.funcionalidades{
+  height: 271px;
+  /* border: dotted; */
+  background-size: contain;
+
+  background-repeat: no-repeat;
+  /* background-size: 33% 50%; */
+  /* background: #EFEFEFEF; */
+  background-position: center;
+  background-image:url("assets/img/Bolitas.png");
+}
+
+/* .imgFunciones{
+  width: 80%;
+  max-width: 800px;
+} */
 
 .language{
   float:right;
@@ -300,7 +371,7 @@ br{
 .alert-danger{background-color: #f8d7da;}
 .alert-success{background-color: #d4edda;}
 
-.noticias{
+/* .noticias{
   width: 100%;
 }
 
@@ -309,15 +380,15 @@ br{
   width:300px;
   margin:0px 1%;
   height: 30px;
-}
+} */
 
-.noticiasText{
+/* .noticiasText{
   width:50%;
   padding-bottom: 20px;
   text-align: left;
   float:left;
-}
-
+} */
+/*
 .noticiasConIcon{
   width: 970px;
   margin: 0 auto;
@@ -340,7 +411,7 @@ br{
 
 .masNoticias:hover{
   filter: invert(100%);
-}
+} */
 
 .botonesPrincipal{
   float:right;
@@ -356,6 +427,64 @@ br{
   margin-top:30px;
   padding-top:30px;
   padding-bottom:40px;
+}
+
+.listadoFunciones{
+  display: flex;
+  justify-content: space-around;
+}
+
+.imgListadoContainer{
+  width: 60%;
+  /* border: dotted; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* background-size: 33% 50%; */
+  /* background: #EFEFEFEF; */
+  background-position: center;
+}
+
+.imgListado1{
+  background-image:url("assets/img/MisExpedientesF2.png");
+  height: 540px;
+}
+
+.imgListado2{
+  background-image:url("assets/img/BiblioRecu.png");
+  height: 530px;
+}
+
+.imgListado3{
+  background-image:url("assets/img/Estadisticas.png");
+  height: 308px;
+}
+
+.imgListado4{
+  background-image:url("assets/img/Chat.png");
+  height: 530px;
+}
+
+.imgListado5{
+  background-image:url("assets/img/AulaVirtual.png");
+  height: 530px;
+}
+
+.conMargen{
+  margin-bottom:50px;
+}
+
+.textoListado{
+  width: 40%;
+  text-align: left;
+  padding:20px 90px;
+}
+
+.textoP{
+  font-size: 36px;
+  line-height: 38px;
+  color: #9C0C54;
+  margin-top: 30px;
+  margin-bottom: 16px;
 }
 
 .recurso{
