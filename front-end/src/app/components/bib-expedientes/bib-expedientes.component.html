@@ -20,7 +20,8 @@
       <div *ngIf="expedientes.length>0" class="expediente-container">
         <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
           <div class="expediente-body-exp">
-            <p class="tituloExp">{{e.Titulo}}</p>
+            <p *ngIf="e.Titulo != undefined" class="tituloExp">{{e.Titulo}}</p>
+            <p *ngIf="e.Titulo == undefined">Expediente {{e.ID_Expediente}}</p>
             <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
           </div>
         </div>
@@ -133,7 +134,7 @@
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
               <option value="0">Seleccione el tipo de MGF</option>
-              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
             </select>
           </div>
           <br>
