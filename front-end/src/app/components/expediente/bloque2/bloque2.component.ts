@@ -74,6 +74,7 @@ partosCreate = false;
   }
 
   guardarDatos2(form){
+    //this.cambiarBloque();
     console.log(this.bloque2);
     console.log(this.datosPartos);
   }
@@ -382,7 +383,14 @@ export class Popup2 {
     console.log(year - yearSelec);
     let edad = year - yearSelec;
     console.log(this.data)
+
+
+
+
+
   }
+
+
 
 }
 
@@ -404,10 +412,13 @@ class Parto{
    compNacido:number[];
 
 
+
    constructor(){
      this.CompMadre = new Array();
      this.compNacido = new Array();
    }
+
+
 
 
  }

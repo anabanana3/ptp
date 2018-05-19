@@ -27,20 +27,20 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
       <div class="divExp">
         <div id="locationField">
-          <input type="text"  id="lugarD" class="sizeinput" placeholder="Introduzca un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+          <input type="text"  id="lugarD" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
         </div>
       </div>
     </div>
 
     <label for="descripcion">Breve descripción:</label>
-    <textarea class="textareaBl2" [(ngModel)]="expediente.Descripcion" type="text"  placeholder="Escriba una breve descripción..."  name="descripcion" id="descripcion" formControlName="descripcion"></textarea>
+    <textarea class="textareaBl2" [(ngModel)]="expediente.Descripcion" type="text"  placeholder="Escribe una breve descripción..."  name="descripcion" id="descripcion" formControlName="descripcion"></textarea>
   </div>
   <!--<hr>-->
   <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
   <div class="grupoForm" formGroupName = "menor">
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-    <h2 class="text16 textPink">DATOS SOBRE LA TITULAR DEL EXPEDIENTE</h2>
+    <h2 class="text16 textPink">DATOS SOBRE EL TITULAR DEL EXPEDIENTE</h2>
     <div class="divLabels">
       <div class="divExp">
         <label for="nombreM">Nombre completo:</label>
@@ -145,6 +145,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
     </div>
   </div>
+
+  <!-- <hr> -->
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
@@ -273,15 +275,15 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       <div class="divLabels">
         <div class="divExp">
           <label for="otrosM">Otros motivos:</label>
-          <span matTooltip="Introduzca motivos más concretos sobre la cita" class="pointer icon-info info"></span>
+          <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
         </div>
-        <textarea class="textareaBl2" type="text" id="otrosM" name="otros" placeholder="Escriba aquí..."formControlName="Otros"></textarea>
+        <textarea class="textareaBl2" type="text" id="otrosM" name="otros" formControlName="Otros"></textarea>
 
         </div>
       </div>
     <!-- <hr> -->
     <div>
-      <h2 class="text16 textPink">ASISTENTES DURANTE LA CITA</h2>
+      <h2 class="text16 textPink">PERSONAS DURANTE LA CITA</h2>
 
       <div class="divLabels">
         <div class="divExp">
@@ -334,7 +336,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
           <label for="otrosA">Otros acompañantes:</label>
         </div>
 
-        <textarea class="textareaBl2" type="text" placeholder="Escriba aquí..." id="otrosA" formControlName="Acomp_O"></textarea>
+        <textarea class="textareaBl2" type="text" placeholder="Introduzca otros acompañantes" id="otrosA" formControlName="Acomp_O"></textarea>
       </div>
     </div>
     <!-- <hr> -->

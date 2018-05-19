@@ -35,7 +35,7 @@
 
 <div class="divLabelsDeUno">
     <div class="divExpDeUno">
-      <label for="cicatriz_genital">Cicatrices en la zona genital:</label>
+      <label for="cicatriz_genital">Cicatrices en la zona genital:</label> <!-- si/no y luego un textarea porque -->
 
       <!-- <select [(ngModel)]='json.Cicatriz_genital' name="cicatriz_genital" id="cicatriz_genital" >
         <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
@@ -53,17 +53,14 @@
     </div>
     <div *ngIf="json.Cicatriz_genital==1">
       <label for="descripcion">Descripción:</label>
-      <textarea class="textareaBl2" [(ngModel)]='json.Descripcion' type="descripcion"
-        name="descripcion" id="descripcion" placeholder="Escriba aquí...">
+      <textarea class="textareaBl2" [(ngModel)]='json.Descripcion' type="descripcion" name="descripcion" id="descripcion">
       </textarea>
     </div>
 
   <br>
 
     <label for="elasticidad">Elasticidad:</label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Elasticidad' type="elasticidad"
-      name="elasticidad" id="elasticidad" placeholder="Escriba aquí...">
-    </textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Elasticidad' type="elasticidad" name="elasticidad" id="elasticidad"></textarea>
 
     <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
 
@@ -86,8 +83,7 @@
               </div>-->
 
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]'
-                  name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
 
@@ -109,8 +105,7 @@
           <div *ngFor="let k of consecuenciasSalud | keys;">
             <div *ngIf="consecuenciasSalud[k].Tipo==2">
               <div class="divPrueba">
-                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]'
-                  name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
+                <input class="checktrans" [(ngModel)]='consecuencia[consecuenciasSalud[k].ID_Consecuencia]' name="consecuencia{{k}}" type="checkbox" value="{{consecuenciasSalud[k].ID_Consecuencia}}" id="consecuencia{{k}}">
                 <label class="labeltrans" for="consecuencia{{k}}">{{consecuenciasSalud[k].Nombre}}</label>
               </div>
             </div>
@@ -179,8 +174,7 @@
 
     <label for="otros">Otros:</label>
     <br>
-    <textarea class="textareaBl2" [(ngModel)]='json.Otros' type="otros"
-      name="otros" id="otros" placeholder="Escriba aquí...">
+    <textarea class="textareaBl2" [(ngModel)]='json.Otros' type="otros" name="otros" id="otros" placeholder="Texto libre">
     </textarea>
 
     <h2 class="cherry">INTERVENCIÓN
@@ -188,12 +182,10 @@
     </h2>
 
     <label for="exp_propias">Formato de la intervención:</label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int"
-      name="formato_int" id="formato_int" placeholder="Escriba aquí...">
+    <textarea class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" placeholder="Escriba su texto aquí...">
     </textarea>
     <label for="exp_propias">Consejos para otros profesionales:</label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Consejos' type="consejo"
-    name="consejo" id="consejo" placeholder="Escriba aquí...">
+    <textarea class="textareaBl2" [(ngModel)]='json.Consejos' type="consejo" name="consejo" id="consejo" placeholder="Escriba su texto aquí...">
     </textarea>
 
     <div class="centrar">

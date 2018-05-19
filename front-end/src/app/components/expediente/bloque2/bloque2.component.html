@@ -3,9 +3,6 @@ almacene en la base de datos
 el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
 <form (ngSubmit)="guardarDatos(form)"#form="ngForm">
   <div id="alert">{{mensaje}}</div>
-  <p class="textGreyDarken">* Si usted pone el ratón sobre la casilla con la "i" podrá encontrar
-    recomendaciones sobre posibles preguntas que puede realizarle a la Titular.</p>
-    <hr>
   <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
   <div class="divLabels">
     <div class="divExp">
@@ -97,19 +94,18 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     </div>
 
     <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:</label>
-    <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Escriba aquí..."></textarea>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros" placeholder="Otros aspectos destacables"></textarea>
 
-    <label>Significado de la MGF para la titular del expediente:</label>
-    <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Escriba aquí..."></textarea>
+    <label>Significado de la MGF para el titular en el expediente:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Descripcion del significado de la MGF para los implicados"></textarea>
 
-<!-- TODO: WHAAT? -->
     <label>Formato de intervención:</label>
-    <span matTooltip="Indique cuál ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
-    <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Escriba aquí..."></textarea>
+    <span matTooltip="Texto libre para indicar cual ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Formato de intervención"></textarea>
 
     <label>Consejos para otros profesionales:</label>
-    <span matTooltip="Estos consejos podrán ayudar a otros profesionales pertenecientes a Aisha en caso de que publique este expediente." class="pointer icon-info info"></span>
-    <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Escriba aquí..."></textarea>
+    <span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Consejos para otros profesionales"></textarea>
     <!-- <hr> -->
 
     <div class="grupoForm">

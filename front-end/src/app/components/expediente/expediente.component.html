@@ -11,7 +11,7 @@
 <div *ngIf="usuario">
   <app-header></app-header>
 </div>
-  <div class="divBlanco bgColorWhite crearExpediente">
+  <div class="divBlanco bgColorWhite">
 <!-- TODO: No pudes voler para atras -->
     <!-- <div class="tabsExpediente">
       <button id="bl1" class="tabItem" (click)="bloque=1">
@@ -48,7 +48,7 @@
             <app-bloque3></app-bloque3>
         </div>
       </mat-tab>
-      <mat-tab label="Exploración genital" id="bloque4">
+      <mat-tab label="Exploracion genital" id="bloque4">
         <div class="divBloqueExp2">
             <app-bloque4></app-bloque4>
         </div>
@@ -88,12 +88,12 @@
 
     </div>-->
   <!-- Div para poner el boton de terminar -->
-    <button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
+  <button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
 
-    <div class="espacio"></div>
+      <div class="espacio"></div>
 
 
-  </div>
+    </div>
 
 
   <app-footer></app-footer>

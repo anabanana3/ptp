@@ -43,7 +43,7 @@
             <div class="popUpBorrar" id="popupBorrar">
               <div class="popupBorrar-content">
                 <span id="close">&times;</span>
-                <p class="seguro">¿Está seguro/a de que quiere eliminar de forma permanente este recurso?</p>
+                <p class="seguro">¿Estás seguro de que quieres eliminar de forma permanente este recuros?</p>
                 <button class="btn-relleno" id="siBorrar" type="submit" (click)="borrar(r.ID_Material, r.Path)" name="button">Sí</button>
                 <button class="btn-border" id="noBorrar" type="submit" [routerLink]="['/recursos']" name="button">No</button>
               </div>
@@ -87,7 +87,7 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label>Formato del recurso:</label>
+            <label>Formato del recurso</label>
           </div>
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" name="formatos" id="formatos" [(ngModel)]="selectFormato" (change)="buscar($event)">
