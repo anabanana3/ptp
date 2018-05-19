@@ -54,7 +54,7 @@ export class Bloque1Component implements OnInit {
     ID_Persona:null,
     Nombre:'',
     Edad:0,
-    ID_Sexo:3,
+    ID_Sexo:1,
     ID_Etnia:164,
     ID_Lugar:0,
     ID_Actividad:27
@@ -63,7 +63,7 @@ export class Bloque1Component implements OnInit {
     ID_Persona:null,
     Nombre:'',
     Edad:0,
-    ID_Sexo:3,
+    ID_Sexo:2,
     ID_Etnia:164,
     ID_Lugar:0,
     ID_Actividad:27
@@ -220,6 +220,8 @@ export class Bloque1Component implements OnInit {
     console.log(this.lugarDetec);
     console.log('Probando cosas');
     console.log(this.expediente);
+    console.log(this.madre);
+    console.log(this.padre);
   }
 // TODO: Ahora los metodos de addPersona y addExpediente van a ser UPDATES, ya que el expiente ya lo voy a tener creado de antemano
 guardarDatos(){
@@ -261,7 +263,11 @@ guardarDatos(){
             this.MadreCreate = true;
           }else{
             //Update Madre
-            this._expedienteService.updatePersona(this.madre, this.madre.ID_Persona)
+            console.log('Actualizo la madre');
+            console.log(this.madre);
+            this._expedienteService.updatePersona(this.madre, this.madre.ID_Persona).subscribe(data=>{
+              console.log(data);
+            })
           }
         }
         if(this.HayPadre == true){
@@ -270,7 +276,11 @@ guardarDatos(){
             this.PadreCreate = true;
           }else{
             //Update Padre
-            this._expedienteService.updatePersona(this.padre, this.padre.ID_Persona);
+            console.log('Actualizo el padre');
+            console.log(this.padre);
+            this._expedienteService.updatePersona(this.padre, this.padre.ID_Persona).subscribe(data=>{
+              console.log(data);
+            })
           }
         }
         //Una vez creadas las relaciones de perentesco creamos los campos del bloque 1
@@ -279,6 +289,8 @@ guardarDatos(){
           //Una vez tengo guardado el expediente y la persona asociada guardo los datos del bloque
           //sessionStorage.IDExp = data.insertId;
           //this._expedienteService.addBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
+          console.log('Actualizo el bloque');
+          console.log(this.bloque);
           this._expedienteService.updateBloque(this.bloque,this.expediente.ID_Expediente).subscribe(data=>{
             console.log(data)
             //Por último => todo correcto cambiamos de bloque
@@ -359,6 +371,11 @@ addFamiliar(persona, familiar, tipo){
     console.log('Creamos la madre o padre');
     console.log(data.insertId);
     //una vez creo la persona creo la relacion de parentesco
+    if(tipo == 1){
+      this.madre.ID_Persona = data.insertId;
+    }else if(tipo == 2){
+      this.padre.ID_Persona = data.insertId;
+    }
     this._expedienteService.addFamiliar(data.insertId, familiar, tipo).subscribe(data=>{
       console.log('Creamos la relacion de parentesco');
       console.log(data);

@@ -113,7 +113,7 @@
         </div>
         <div class="divExpPopUpCheck">
           <!-- [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" -->
-          <input id="{{data.pagina}}compMadre{{k}}" [checked]="c.Checked == 1"  name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
+          <input id="{{data.pagina}}compMadre{{k}}" [checked]="c.Checked == 1" [(ngModel)]="data.datosPartos[data.pagina].compMadreSel[k]"  name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
           <!-- <label class="checktrans" for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label> -->
         </div>
       </div>
@@ -131,7 +131,7 @@
     <div class="divContainerPopUp">
       <div *ngFor="let c of data.datosPartos[data.pagina].compNacido; let j= index">
         <div class="divExpPopUp">
-          <label for="{{data.pagina}}compNacido{{j}}">{{c.Nombre}}  {{c.Checked}} de la pag{{data.pagina}}</label>
+          <label for="{{data.pagina}}compNacido{{j}}">{{c.Nombre}}  {{c.Checked}}</label>
         </div>
         <div class="divExpPopUpCheck">
           <!-- [(ngModel)]="data.datosPartos[data.pagina].compNacido[j]" -->

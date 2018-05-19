@@ -119,6 +119,7 @@ guardarDatos2(form){
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
     console.log(this.consecuencias);
+    this.json.ID_Expediente = sessionStorage.IDExp;
     if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || forma.valid == false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
@@ -166,6 +167,23 @@ guardarDatos2(form){
 
   }
 
+guardarDatos3(forma){
+  this.json.ID_Expediente = sessionStorage.IDExp;
+  console.log(this.json);
+  console.log(forma);
+  //Reviso lo de la consecuenciasSalud
+  if(this.consecuencia.length > 0){
+    console.log("entro"+ this.consecuenciasSalud.length);
+    for(var i=1; i< this.consecuenciasSalud.length+1; i++){
+      if(this.consecuencia[i] == true){
+        console.log("entro"+ this.consecuencias[i]);
+        this.consecuencias.push(i);
+
+      }
+    }
+  }
+  console.log(this.consecuencias);
+}
   cambiarBloque(){
      this.expedienteComponent.selectedTab = 4;
     //  this.expedienteComponent.bloquearPestanya(4);
