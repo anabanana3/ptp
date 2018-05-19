@@ -260,12 +260,12 @@
     <div>
       <h2 class="text16 textPink">PERSONAS DURANTE LA CITA</h2>
 
-      <div [formGroup]="form2" class="divLabels">
+      <div  class="divLabels">
         <div class="divExp">
           <label>Acompañado/a por el padre:</label>
         </div>
 
-        <div class="divExp">
+        <div [formGroup]="form2" class="divExp">
           <input class="radiotrans" formControlName="Acomp_P" [checked]="bloque.Acomp_P == 1"  type="radio" name="Acomp_P" value="1" id="acomPSI">
           <label class="labeltransr" for="acomPSI">Sí</label>
           <input class="radiotrans" formControlName="Acomp_P" [checked]="bloque.Acomp_P == 0" type="radio" name="Acomp_P" value="0" id="acomPNO">
@@ -276,7 +276,7 @@
           <label for="acomM">Acompañado/a por la madre:</label>
         </div>
 
-        <div class="divExp">
+        <div [formGroup]="form2" class="divExp">
           <input class="radiotrans" formControlName="Acomp_M" [checked]="bloque.Acomp_M == 1" type="radio" name="Acomp_M" value="1" id="acomMSI">
           <label class="labeltransr" for="acomMSI">Sí</label>
           <input class="radiotrans" formControlName="Acomp_M" [checked]="bloque.Acomp_M == 0" value="0" id="acomMNO">

@@ -9,7 +9,18 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class EditB4Component implements OnInit {
 
-  json;
+  json = {
+    ID_Bloque: '',
+    ID_Expediente: '',
+    Detec_MGF: 2,
+    ID_Mutilacion: 5,
+    Cicatriz_genital: 2,
+    Descripcion: '',
+    Elasticidad: '',
+    Otros: '',
+    Formato_int: '',
+    Consejos: ''
+  }
   tiposMutilacion = new Array();
   consecuenciasSalud = new Array();
   consecuencia = new Array();
@@ -52,7 +63,7 @@ export class EditB4Component implements OnInit {
         this.json.Consejos = '';
       }else{
         this.json.Consejos = this.json.Consejos.split("'")[1];
-        console.log(this.json.Consejo)
+        console.log(this.json.Consejos)
       }
       if(this.json.Otros == "''"){
         this.json.Otros = '';

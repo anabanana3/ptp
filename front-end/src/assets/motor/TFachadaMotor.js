@@ -3,13 +3,15 @@ class TFachadaMotor {
   constructor(){
     this.escena = new TNodo("Escena");
     this.gestor = new TGestorRecursos();
-    //Registros objetos
+  //Registro para objetos
     this.regLuces = new Array();
     this.regCamaras = new Array();
     this.animaciones = [];
     this.objetos = [];
   }
-
+//En nuestro motor creamos los nodos con un nombre asignado que le damos
+//nosotras, por lo que para crear, borrar etc necesitamos pasarle el nombre
+//del nodo.
   crearNodo(nombre, padre, entidad){
     let nodo = new TNodo(nombre, padre);
     if (entidad != null){
@@ -26,7 +28,7 @@ class TFachadaMotor {
     let padre = nodo.getPadre();
     padre.removeHijo(nodo);
   }
-
+//este metodo lo usamos para crear los nodos transformacion en el arbol
   crearTransform(){
     let trans = new TTransformacion();
     return trans;
@@ -47,6 +49,17 @@ class TFachadaMotor {
     nodoTrasla.entidad.trasladar(tx, ty, tz);
   }
 
+
+//Para crear los objetos Animacion, Camara, Luz y Malla
+//tenemos dos metodos distintos, uno crea unicamente el nodo donde se
+//encuentra dicho objeto y otro llamado CrearXCompleto, en el cual
+//creamos el objeto con todos sus nodos padre desde el nodo escena.
+//Estos son: (Escalar) + Rotar + TRasladar + Objeto
+
+//Por lo general usamos CrearXCompleto pero los demas nos dan la posibilidad
+//de crear un objeto independientemente.
+
+  //---- Animacion ----/
   crearAnimacion(nombre, padre, carpeta){
     let nodo = new TNodo(nombre, padre);
     let animacion = new TAnimacion();
@@ -86,6 +99,7 @@ class TFachadaMotor {
     return cam;
   }
 
+//Metodo para borrar todas las camaras de la escena desde la raiz
   borrarCamaraCompleto(){
     for(let i=0; i<this.regCamaras.length; i++){
       this.escena.removeHijo(this.regCamaras[i].getPadre().getPadre());
@@ -137,13 +151,15 @@ class TFachadaMotor {
     // trasla.entidad.trasladar(0,-2,0);
     // rota.entidad.rotar(1.41372, 0, 1, 0);
 
-    //Guardo las matrices de forma global para obtenerlas en el shader
+    //Guardamos las matrices de forma global para obtenerlas en el shader
     malla.entidad.modelMatrix = trasla.entidad.modelMatrix;
 
     this.objetos.push(malla);
     return malla;
   }
 
+//Creamos el shader pasandole el FragmentShader.frag, VertexShader.vert,
+//ToonFragmentShader.frag y ToonVertexShader.vert
   crearShader(frag, vert, toonfrag, toonvert){
     let shader = new TShader();
     shader.cargarFichero(frag);

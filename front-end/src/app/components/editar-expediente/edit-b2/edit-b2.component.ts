@@ -34,11 +34,8 @@ export class EditB2Component implements OnInit {
   compMadreSel = new Array();
   compNacidoSel = new Array();
   form: FormGroup;
+  //Variable de contro para el HTML
   hayParto:boolean = false;
-
-  //Variables para guaradr las consecuencias que tiene el Parto cuando viene de LA BD
-  consecMadreDB = new Array();
-  consecNacidoDB = new Array();
 
   partos = new Array(0);
   datosPartos = new Array();
@@ -65,6 +62,7 @@ export class EditB2Component implements OnInit {
       console.log(data);
       this.bloque2 = data[0];
       console.log(this.bloque2);
+      this.bloque2.Sintomas_MGF ='';
       //Limpio las comillas que me devuelve la BD
       if(this.bloque2.Consejos =="''"){
         this.bloque2.Consejos = ''
@@ -77,59 +75,43 @@ export class EditB2Component implements OnInit {
       }else{
         this.bloque2.Formato_intervencion = this.bloque2.Formato_intervencion.split("'")[1];
       }
-      // if(this.bloque2.Otros == "''"){
-      //   this.bloque2.Otros = ''
-      // }else{
-      //   this.bloque2.Otros = this.bloque2.Otros.split("''")[1];
-      // }
-      // if(this.bloque2.Significado_MGF == "''"){
-      //   this.bloque2.Significado_MGF ='';
-      // }else{
-      //   this.bloque2.Significado_MGF = this.bloque2.Significado_MGF.split("''")[1];
-      // }
+      if(this.bloque2.Otros == "''"){
+        this.bloque2.Otros = ''
+      }else{
+        this.bloque2.Otros = this.bloque2.Otros.split("'")[1];
+      }
+      if(this.bloque2.Significado_MGF == "''"){
+        this.bloque2.Significado_MGF ='';
+      }else{
+        this.bloque2.Significado_MGF = this.bloque2.Significado_MGF.split("'")[1];
+      }
       this.numPartos = this.bloque2.Num_Partos;
       //Recuepro los partos del bloque 2
       this._expedienteService.getPartos(this.id).subscribe(data=>{
-        console.log('Muestro los partos que devuelve la API')
-        console.log(data);
         this.datosPartos = data;
-        console.log('********************');
-        console.log(data);
-        console.log(data[0]);
         //Obtengo las consecuencias de cada parto
-
         for(let i = 0; i<data.length; i++){
-          this._expedienteService.getConsecM(data[i].ID_Parto).subscribe(data=>{
-            this.consecMadreDB.push(data);
-            console.log('Muestro las complicaciones que me devuelve la API para un Parto');
-            console.log(data);
+          //Obtengo las complicaciones del nacido de un parto y las marco
+          this._expedienteService.getConsecN(data[i].ID_Parto).subscribe(data=>{
+            //Arrays de control que tiene cada parto
             this.datosPartos[i].compNacidoBD = data;
             this.datosPartos[i].compNacido = this.compNacido;
             this.datosPartos[i].compNacidoSel = new Array();
-            console.log(this.datosPartos[i]);
-            console.log(this.datosPartos[i].compNacidoBD);
-            console.log(this.datosPartos[i].compNacidoBD.length);
-            this.marcar(this.datosPartos[i],i);
+              this.marcarConsecNacido(this.datosPartos[i],i);
           });
-          // this.datosPartos[i].CompMadre = this.compMadre;
-
-          this._expedienteService.getConsecN(data[i].ID_Parto).subscribe(data=>{
-            this.consecNacidoDB.push(data);
+          //Obtengo las complicaciones de la madre de un parto y las marco
+          this._expedienteService.getConsecM(data[i].ID_Parto).subscribe(data=>{
+            //Variables de control que tiene cada parto
             this.datosPartos[i].compMadreBD = data;
             this.datosPartos[i].CompMadre = this.compMadre;
             this.datosPartos[i].compMadreSel = new Array();
+            this.marcarConsecMadre(this.datosPartos[i],i);
           })
-          // this.datosPartos[i].compNacidoSel = new Array();
-          // this.datosPartos[i].compNacido = this.compNacido;
-          // this.datosPartos[0].compNacido[0].Checked = 1;
         };
-
-
-
-
       })
       //TODO: Necesito un FromControl para poder Marcar los valores de SI/NO/NS en el formulario
     })
+    // Necesito un FromControl para poder Marcar los valores de SI/NO/NS en el formulario
     this.form = new FormGroup({
       "Conoce_MGF": new FormControl(this.bloque2.Conoce_MGF),
       "MGF_realizada_com_origen": new FormControl(this.bloque2.MGF_realizada_com_origen),
@@ -147,120 +129,71 @@ export class EditB2Component implements OnInit {
 
   guardarDatos(forma){
     console.log('Metodo para actualizar la informacion en la BD');
-     console.log('Muestro el estado del bloque');
-     console.log(this.bloque2);
-    //  console.log('Muestro el formControl');
-    //  console.log(this.form);
-     //Actualizo los valores de SI/NO en el json que voy a mandar a la API
-     this.bloque2.Conoce_MGF = this.form.value.Conoce_MGF;
-     this.bloque2.MGF_realizada_com_origen = this.form.value.MGF_realizada_com_origen;
-     this.bloque2.Pos_padre = this.form.value.Pos_padre;
-     this.bloque2.Pos_madre = this.form.value.Pos_madre;
-     this.bloque2.Pos_familia = this.form.value.Pos_familia;
-     console.log('Muestro el bloque actualizado');
-     console.log(this.bloque2);
+    console.log('Muestro el estado del bloque');
+    console.log(this.bloque2);
+    //Actualizo los valores de SI/NO en el json que voy a mandar a la API
+    this.bloque2.Conoce_MGF = this.form.value.Conoce_MGF;
+    this.bloque2.MGF_realizada_com_origen = this.form.value.MGF_realizada_com_origen;
+    this.bloque2.Pos_padre = this.form.value.Pos_padre;
+    this.bloque2.Pos_madre = this.form.value.Pos_madre;
+    this.bloque2.Pos_familia = this.form.value.Pos_familia;
+    console.log('Muestro el bloque actualizado');
+    console.log(this.bloque2);
     // TODO: Falta terminar de seleccionar las consecuencias de la BB
     //y revisar que va actualizar PArtos tanto aqui como en formulario de crear un parto
     //  this.marcarConsecuencias();
-    // this._expedienteService.updateBloque2(this.bloque2, this.bloque2.ID_Bloque).subscribe(data=>{
-    //   console.log(data);
-    //   if(data.Codigo == 501){
-    //     location.href = '/expired';
-    //     return;
-    //   }
-    //   //Actualizo los partos
-    //   if(this.datosPartos.length >0){
-    //     for(let i = 0; i<this.datosPartos.length; i++){
-    //       this._expedienteService.updateParto(this.datosPartos[i]).subscribe(data=>{
-    //         console.log(data);
-    //         //Actualizo las complicaciones delparto => ver si es necesario con un if
-    //         this._expedienteService.updateCompMadreParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compMadreSel).subscribe(data=>{
-    //           console.log(data);
-    //         });
-    //         this._expedienteService.updateCompNacidoParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compNacidoSel).subscribe(data=>{
-    //           console.log(data);
-    //         })
-    //       })
-    //     }
-    //   }
-    // })
+    this._expedienteService.updateBloque2(this.bloque2, this.bloque2.ID_Bloque).subscribe(data=>{
+      console.log(data);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      //Actualizo los partos
+      if(this.datosPartos.length > 0){
+        for(let i = 0; i<this.datosPartos.length; i++){
+          //Si tiene ID_Parto => ya esta creado lo actualizo
+          if(this.datosPartos[i].ID_Parto != null){
+            this._expedienteService.updateParto(this.datosPartos[i]).subscribe(data=>{
+              console.log(data);
+              //Actualizo las complicaciones delparto => ver si es necesario con un if
+              this.getCompMadreSend(i);
+              this._expedienteService.updateCompMadreParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compMadreSend).subscribe(data=>{
+                console.log(data);
+              });
+              this.getCompNacidoSend(i);
+              this._expedienteService.updateCompNacidoParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compNacidoSend).subscribe(data=>{
+                console.log(data);
+              })
+            })
+          }else{
+            //No tiene ID_Parto => lo creo
+            console.log(this.bloque2.ID_Bloque);
+            this.datosPartos[i].Id_Bloque =this.bloque2.ID_Bloque;
+            this.datosPartos[i].ID_Expediente = this.id;
+            console.log(this.datosPartos[i].ID_Bloque);
+            this._expedienteService.addParto(this.datosPartos[i]).subscribe(data=>{
+              this.datosPartos[i].ID_Parto = data.ID_Parto;
+              let idParto = data.ID_Parto;
+              //Creo las complicaciones de la madre
+              this.getCompMadreSend(i);
+              this._expedienteService.addCompMadreParto(idParto,this.datosPartos[i].compMadreSend).subscribe(data=>{
+                console.log(data);
+              })
+              //Creo las complicaciones del recien nacido
+              this.getCompNacidoSend(i);
+              this._expedienteService.addCompNacidoParto(idParto, this.datosPartos[i].compNacidoSend).subscribe(data=>{
+                console.log(data);
+              })
+            })
+          }
+        }
+      }
+    })
    }
 
-   // TODO: Falta hacer un metodo auxiliar para marcar las consecuencias que tiene cada parto
-   /** para que salgan marcadas en el popUp, para ello cada parto va a tener un array con
-   todas las consecuencias y vamos a hacer la misma tecnica que en el bloque 4.
-   añadir un campo cheked para luego poder marcalo */
 
-  //  marcarConsecuencias(){
-  //    console.log('Metodo axiliar para marcar todas las consecuencias que tengan ya almacenadas los partos');
-  //    console.log('Muestro los partos antes de marcar sus consecuencias');
-  //    console.log(this.datosPartos);
-  //   //  console.log('Complicaciones que sufre la madre');
-  //   //  console.log(this.consecMadreDB);
-  //    console.log('Complicaciones que sufre el recien nacido');
-  //    console.log(this.consecNacidoDB);
-  //    console.log(this.consecNacidoDB[0]);
-  //    console.log('Muestro todas las consecuencias posibles')
-  //    console.log('Para la madre');
-  //   //  console.log(this.compMadre);
-  //    console.log('Para el recien nacido');
-  //    console.log(this.compNacido);
-   //
-  //   //  Modifico el array de complicaciones que tiene cada partos
-  //   //Marco las complicaciones de la madre
-  //   // for(let i = 0; i<this.datosPartos.length; i++){
-  //   //   let  aux = this.datosPartos[i].CompMadre;
-  //   //       console.log('Todas las CPMadre de 1 parto');
-  //   //       console.log(aux);
-  //   //       //Recorro las selecionadas para buscar
-  //   //       for(let j = 0; j<this.consecMadreDB[i].length; j++){
-  //   //         let encontrada = false;
-  //   //         console.log('Muestro las complicaciones de la BD');
-  //   //         console.log(this.consecMadreDB[i][j])
-  //   //         //La busco en el array de todas del parto
-  //   //         for(let k=0; k<aux.length && encontrada == false; k++){
-  //   //           if(this.consecMadreDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
-  //   //             this.datosPartos[i].CompMadre[k].Checked = 1
-  //   //             encontrada = true;
-  //   //           }
-  //   //         }
-  //   //       }
-  //   //   }
-  //     //Marco las complicaciones del recien nacido
-   //
-  //     for(let i=0; i<this.datosPartos.length; i++){
-  //       let aux = this.datosPartos[i].compNacido;
-  //       console.log(aux);
-  //       for(let j = 0; j<this.consecNacidoDB[i].length; j++){
-  //         let encontrada = false;
-  //         for(let k = 0; k<aux.length && encontrada == false; k++){
-  //           if(this.consecNacidoDB[i][j].ID_Complicacion == aux[k].ID_Complicacion){
-  //             encontrada = true;
-  //             console.log(this.datosPartos[i]);
-  //             this.datosPartos[i].compNacido[k].Checked =1;
-  //             this.datosPartos[i].compNacidoSel[k] = true;
-  //           }
-  //         }
-  //       }
-  //     }
-   //
-  //   console.log('Muestro los partos despues de marcar sus complicaciones');
-  //   console.log(this.datosPartos);
-  //  }
-
-   marcar(p,pos){
-     console.log(pos)
-     console.log('Probando a ver si se ha guardado bien la info');
-     console.log(this.datosPartos[pos])
-     console.log(this.datosPartos[pos].compNacido);
-
-     console.log('////////////////////');
-     console.log(this.datosPartos);
-     console.log(this.datosPartos[0]);
-     console.log(this.datosPartos[0].compNacidoBD);
-     console.log(this.datosPartos[0].compNacidoBD.length);
-     console.log(this.datosPartos[0].compNacidoBD[0]);
-
+   marcarConsecNacido(p,pos){
+     console.log('Metodo para marcar las complicaciones del recien nacido asociadas a un parto')
      //Marco las complicaciones del recien nacido
      for(let i = 0; i<this.datosPartos[pos].compNacido.length; i++){
        let encontrada = false;
@@ -272,6 +205,11 @@ export class EditB2Component implements OnInit {
          }
        }
      }
+     console.log('Muestro los partos despues de marcar las consecNAcido');
+     console.log(this.datosPartos);
+   }
+   marcarConsecMadre(p,pos){
+     console.log('Metodo para marcar las consecuencias que sufre la madre durante el parto');
      //Marco las complicaciones de la madre
      console.log(this.datosPartos[pos].CompMadre);
      for(let i = 0; i<this.datosPartos[pos].CompMadre.length; i++){
@@ -283,7 +221,39 @@ export class EditB2Component implements OnInit {
          }
        }
      }
+     console.log('Muestro los partos despues de marcar las consecMadre');
      console.log(this.datosPartos);
+   }
+
+   getCompMadreSend(pos){
+     this.datosPartos[pos].compMadreSend = new Array();
+     for(let i=0; i<this.datosPartos[pos].compMadreSel.length; i++){
+       if(this.datosPartos[pos].compMadreSel[i] == true){
+         this.datosPartos[pos].compMadreSend.push(i+1);
+       }
+     }
+     //Añado las que ya estaban marcadas => ese cambio no se detecta
+     for(let i=0;i < this.datosPartos[pos].compMadreBD; i++){
+       this.datosPartos[pos].compMadreSend.push(this.datosPartos[pos].compMadreBD[i].ID_Complicacion);
+     }
+     console.log('Muestro las complicaciones que voy a mandar a la API');
+     console.log(this.datosPartos[pos].compMadreSend);
+
+
+   }
+   getCompNacidoSend(pos){
+     this.datosPartos[pos].compNacidoSend = new Array();
+     for(let i=0; i<this.datosPartos[pos].compNacidoSel.length; i++){
+       if(this.datosPartos[pos].compNacidoSel[i] == true){
+         this.datosPartos[pos].compNacidoSend.push(i+1);
+       }
+     }
+     //Añado las que ya estaban marcadas => ese cambio no se detecta
+     for(let i=0;i < this.datosPartos[pos].compNacidoBD; i++){
+       this.datosPartos[pos].compNacidoSend.push(this.datosPartos[pos].compNacidoBD[i].ID_Complicacion);
+     }
+     console.log('Muestro las complicaciones que voy a mandar a la API');
+     console.log(this.datosPartos[pos].compNacidoSend);
    }
 
    prueba(n){
@@ -308,17 +278,22 @@ export class EditB2Component implements OnInit {
 
   openDialog(nPartos): void {
       console.log(nPartos);
+      this.bloque2.Num_Partos = nPartos;
       if(nPartos != ''){
         if(this.datosPartos.length >= 1){
           console.log('Aqui tengo que modificar el tamaño si borrar datos');
           console.log(nPartos);
           console.log(this.datosPartos.length);
-          let aux = nPartos-this.datosPartos.length;
+          let aux = nPartos - this.datosPartos.length;
           console.log(aux);
           if(aux > 0){
             //Anyado partos
             for(let i = 0; i<aux; i++){
-              // this.datosPartos.push(new Parto);
+              //Le asigno todas las complicaciones para mostrarlas
+              let p = new Parto;
+              p.CompMadre = this.compMadre;
+              p.compNacido = this.compNacido
+              this.datosPartos.push(p);
             }
 
           }else{
@@ -438,24 +413,26 @@ export class EditB2Component implements OnInit {
   //
   class Parto{
     ID_Parto = null;
-     ID_Expediente:number=sessionStorage.IDExp;
-     Id_Bloque:number;
-     Edad_Madre:number=0;
-     Fecha:Date=null;
-     Edad_Nacido:number=0;
-     Tiempo_Expulsivo:number=0;
-     Tiempo_Dilatacion:number=0;
-     Duracion_Parto:number=0;
-     ID_Formula:number = 6;
-     Test_APGAR:number=0;
-     ID_Tipo:number=1;
-     ID_Mutilacion:number= 5;
-     CompMadre:number[];
-     compMadreSel:number[];
-     compMadreBD:number[];
-     compNacido:number[];
-     compNacidoBD:number[];
-     compNacidoSel:number[];
+    ID_Expediente:number=sessionStorage.IDExp;
+    Id_Bloque:number;
+    Edad_Madre:number=0;
+    Fecha:Date=null;
+    Edad_Nacido:number=0;
+    Tiempo_Expulsivo:number=0;
+    Tiempo_Dilatacion:number=0;
+    Duracion_Parto:number=0;
+    ID_Formula:number = 6;
+    Test_APGAR:number=0;
+    ID_Tipo:number=1;
+    ID_Mutilacion:number= 5;
+    CompMadre:number[];
+    compMadreSel:number[];
+    compMadreBD:number[];
+    compMadreSend:number[];
+    compNacido:number[];
+    compNacidoBD:number[];
+    compNacidoSel:number[];
+    compNacidoSend:number[];
 
      constructor(){
        this.CompMadre = new Array();
@@ -464,5 +441,7 @@ export class EditB2Component implements OnInit {
        this.compNacidoBD = new Array();
        this.compMadreSel= new Array();
        this.compMadreBD = new Array();
+       this.compMadreSend = new Array();
+       this.compNacidoSend = new Array();
      }
    }

@@ -245,7 +245,7 @@
   }
 
   /**** FOOTER ****/
-  .socialNetworks>a>img{
+  .socialNetworks > a > img{
     width: 30px;
     margin-bottom: 10px;
   }
@@ -254,7 +254,7 @@
     font-size: 10px;
   }
 
-  .infoFooter> .divpFooter> p{
+  .infoFooter > .divpFooter > p{
     font-size: 12px;
   }
 
@@ -300,39 +300,31 @@
     padding: 0 10px;
   }
 
-  .header{
-    height: 70px;
-  }
-
   .divExp{width: 50%;}
   .sizeinput{width: 100%;}
   .divLabelsDeUno{width: 100%;}
 }
 
 /****** HEADER *****/
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 1040px) {
-  .menuNav a, .menuNav button{ display:none;}
+  .menuNav a, .menuNav button{display:none;}
   .menuNav a.icon {
     float: right;
     display: block;
   }
-}
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 1040px) {
-  .menuNav.responsive {position: relative;}
   .menuNav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
-  .menuNav.responsive a, .menuNav.responsive button{
+  .menuNav.responsive a, .menuNav.responsive button, .menuNav.responsive.logout a{
     float: none;
-    display: block;
+    display: block!important;
     text-align: left;
-  }
-  .menuNav.responsive .dropdown-content{
     position: relative;
+    clear: both;
   }
-
+  .menuNav.responsive .dropdown, .menuNav.responsive button{
+    width: 100%;
+  }
 }
