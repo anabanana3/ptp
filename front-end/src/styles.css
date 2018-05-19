@@ -11,7 +11,7 @@ html{
   font-family: HiraKakuPro-W3, Verdana;
   font-size: 16px;
   color: #333333;
-  /* background: #F2F2F2; */
+  background: #F2F2F2;
   text-align: center;
 }
 
@@ -28,6 +28,8 @@ h1, h2, h3{
   font-weight: lighter;
 }
 h1{
+  color:#880042;
+  /* font-weight: bold; */
   margin: 20px;
 }
 th, td{padding: 15px;}
@@ -110,7 +112,7 @@ br{
   margin-bottom: 25px;
 }
 
-/* .Eslogan{
+.Eslogan{
   margin: 0 auto;
   width:40%;
   margin-top: 5%;
@@ -125,7 +127,7 @@ br{
   width: 40%;
   margin: 0 auto;
   margin-top: 20px;
-} */
+}
 
 /** CAROUSEL **/
 
@@ -387,7 +389,7 @@ br{
 .alert-danger{background-color: #f8d7da;}
 .alert-success{background-color: #d4edda;}
 
-/* .noticias{
+.noticias{
   width: 100%;
 }
 
@@ -396,15 +398,15 @@ br{
   width:300px;
   margin:0px 1%;
   height: 30px;
-} */
+}
 
-/* .noticiasText{
+.noticiasText{
   width:50%;
   padding-bottom: 20px;
   text-align: left;
   float:left;
-} */
-/*
+}
+
 .noticiasConIcon{
   width: 970px;
   margin: 0 auto;
@@ -427,7 +429,7 @@ br{
 
 .masNoticias:hover{
   filter: invert(100%);
-} */
+}
 
 .botonesPrincipal{
   float:right;
@@ -437,13 +439,6 @@ br{
   justify-content: right;
 }
 
-.suscripcion{
-  margin: 0 auto;
-  width:40%;
-  margin-top:30px;
-  padding-top:30px;
-  padding-bottom:40px;
-}
 
 .listadoFunciones{
   display: flex;
@@ -471,7 +466,7 @@ br{
 }
 
 .imgListado3{
-  background-image:url("assets/img/Estadisticas.png");
+  background-image:url("assets/img/Estadi.png");
   height: 308px;
 }
 
@@ -501,6 +496,14 @@ br{
   color: #9C0C54;
   margin-top: 30px;
   margin-bottom: 16px;
+}
+
+.suscripcion{
+  margin: 0 auto;
+  width:40%;
+  margin-top:30px;
+  padding-top:30px;
+  padding-bottom:40px;
 }
 
 .recurso{
@@ -810,6 +813,10 @@ br{
 #bloqueHeader{
   /* width: 70%; */
   margin: auto;
+}
+
+.crearExpediente{
+  width: 70%!important;
 }
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
@@ -1339,7 +1346,7 @@ option{
   padding: 3%;
 }
 .divError p{
-  padding-top: 20%;
+  padding-top: 30px;
   padding-bottom: 10%;
 }
 

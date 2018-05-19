@@ -161,9 +161,9 @@
     font-size: 20px;
     margin-top: 10px;
   }
-
-  .suscripcion{width: 90%;}
-
+  .suscripcion{
+    width: 90%;
+  }
 }
 
 
@@ -196,6 +196,7 @@
   }
 
   .recursosDiv{height:500px;}
+
 }
 
 @media (max-width:1025px) {
@@ -322,6 +323,9 @@
   }
 
   /*** EXPEDIENTES ****/
+  .crearExpediente{
+    width: 100%!important;
+  }
   .tabsExpediente{
     width: 90%;
   }

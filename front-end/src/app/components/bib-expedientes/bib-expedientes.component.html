@@ -20,8 +20,7 @@
       <div *ngIf="expedientes.length>0" class="expediente-container">
         <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
           <div class="expediente-body-exp">
-            <p *ngIf="e.Titulo != undefined" class="tituloExp">{{e.Titulo}}</p>
-            <p *ngIf="e.Titulo == undefined">Expediente {{e.ID_Expediente}}</p>
+            <p class="tituloExp">{{e.Titulo}}</p>
             <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
           </div>
         </div>
@@ -56,27 +55,28 @@
 
           <div class="inputSearchDiv">
             <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
-            <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
+            <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text"
+              placeholder="Título del expediente" name="Titulo" id="titulo">
             <br>
           </div>
         </div>
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="autor">Autor</label>
+            <label for="autor">Autor:</label>
           </div>
           <div class="divExpDeUnoSearch">
-            <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor">
+            <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor:">
             <br>
           </div>
         </div>
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="profesion">Profesion del autor</label>
+            <label for="profesion">Profesion del autor:</label>
           </div>
           <div class="divExpDeUnoSearch">
-            <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesion">
+            <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesión:">
               <option value="0">Selecione una profesión</option>
               <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
             </select>
@@ -86,7 +86,7 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="f1">Desde</label>
+            <label for="f1">Desde:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
@@ -96,7 +96,7 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="f2">Hasta</label>
+            <label for="f2">Hasta:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
@@ -106,17 +106,17 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="lugar"> Lugar de detección </label>
+            <label for="lugar">Lugar de detección:</label>
           </div>
-          <div divExpDeUnoSearch id="locationField">
-            <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar">
           </div>
           <br>
         </div>
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="etnia">Etnia de origen</label>
+            <label for="etnia">Etnia de origen:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
@@ -129,12 +129,12 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="tipoMGF">Tipo de MGF</label>
+            <label for="tipoMGF">Tipo de MGF:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
-              <option value="0">Seleccione el tipo de MGF</option>
-              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
+              <option value="0">Seleccione el tipo de MGF:</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
             </select>
           </div>
           <br>

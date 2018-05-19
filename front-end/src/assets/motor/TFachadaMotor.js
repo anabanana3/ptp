@@ -6,7 +6,6 @@ class TFachadaMotor {
   //Registro para objetos
     this.regLuces = new Array();
     this.regCamaras = new Array();
-    this.animaciones = [];
     this.objetos = [];
   }
 //En nuestro motor creamos los nodos con un nombre asignado que le damos
@@ -76,7 +75,6 @@ class TFachadaMotor {
     let animacion = this.crearAnimacion(nombre, trasla, carpeta);
     escala.entidad.escalar(0.1,0.1,0.1);
 
-    this.animaciones.push(animacion);
     return animacion;
   }
 

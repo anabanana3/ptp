@@ -1,6 +1,6 @@
 class TEntidad {
-  //creamos clase virtual de la que heredan todos los tipos de entidad
-  
+
+  //clase virtual
   constructor(){
     this.modelMatrix = mat4.create();
     this.viewMatrix = mat4.create();

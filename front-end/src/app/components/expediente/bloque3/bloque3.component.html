@@ -6,19 +6,19 @@
 
     <div class="divExpDeUno">
       <label for="exp_propias">Experiencias propias:</label>
-      <span matTooltip="¿Tiene usted la ablación realizada? ¿Qué sobre esta práctica?" class="pointer icon-info info"></span>
+      <span matTooltip="¿Tiene usted la ablación realizada? ¿Qué sabe sobre esta práctica?" class="pointer icon-info info"></span>
     </div>
-    <textarea class="textareaBl2" [(ngModel)]='json.Exp_propias' type="exp_propias" name="exp_propias" id="exp_propias" placeholder="Experiencias propias acerca de la ablación..." ></textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Exp_propias' type="exp_propias" name="exp_propias" id="exp_propias" placeholder="Escriba aquí..." ></textarea>
 
     <div class="divExpDeUno">
       <label for="exp_terceros">Experiencias de terceros:</label>
       <span matTooltip="¿Conoce a alguna mujer que tenga la ablación realizada?" class="pointer icon-info info"></span>
     </div>
-    <textarea class="textareaBl2" [(ngModel)]='json.Exp_terceros' type="exp_terceros" name="exp_terceros" id="exp_terceros" placeholder="Experiencias de terceros..." ></textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Exp_terceros' type="exp_terceros" name="exp_terceros" id="exp_terceros" placeholder="Escriba aquí..." ></textarea>
 
 <!-- AQUI -->
     <label for="mant_MGF">Mantenimiento de la MGF:</label> <!-- si/no y luego un textarea porque -->
-    <span matTooltip="¿Cree que su hija debería ser cortada? ¿Qué piensa sobre realizarsela a su hija?" class="pointer icon-info info"></span>
+    <span matTooltip="¿Cree que su hija debería ser cortada? ¿Qué piensa sobre realizársela a su hija?" class="pointer icon-info info"></span>
     <!-- <select [(ngModel)]='json.Mant_MGF' name="mant_MGF" id="mant_MGF" >
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
@@ -49,7 +49,8 @@
     <label class="labeltransr" for="conoc_consecMNS">N/S</label>
 
     <label for="otros_consecM">¿Por qué?: </label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecM' type="otros_consecM" name="otros_consecM" id="otros_consecM"></textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecM' type="otros_consecM"
+    name="otros_consecM" id="otros_consecM" placeholder="Escriba aquí..."></textarea>
 
     <br>
 
@@ -66,14 +67,20 @@
       <option *ngFor="let k of opciones | keys;" value="{{opciones[k].id}}">{{opciones[k].opcion}}</option>
     </select> -->
     <label for="otros_consecH">¿Por qué?: </label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecH' type="otros_consecH" name="otros_consecH" id="otros_consecH"></textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecH' type="otros_consecH"
+    name="otros_consecH" id="otros_consecH" placeholder="Escriba aquí..."></textarea>
 
-    <h2 class="text16 textPink">INTERVENCIÓN  <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span></h2>
+    <h2 class="text16 textPink">INTERVENCIÓN
+      <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación
+      favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span>
+    </h2>
     <label for="exp_propias">Formato de la intervención: </label>
-    <textarea  class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" placeholder="Formato de la intervención..." ></textarea>
+    <textarea  class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int"
+    name="formato_int" id="formato_int" placeholder="Escriba aquí..." ></textarea>
 
     <label for="exp_propias">Consejos para otros profesionales: </label>
-    <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" placeholder="Consejos para otros profesionales..." ></textarea>
+    <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo"
+    name="consejo" id="consejo" placeholder="Escriba aquí..." ></textarea>
 
     <div class="centrar">
       <button class="btn-relleno" type="submit">Guardar</button>

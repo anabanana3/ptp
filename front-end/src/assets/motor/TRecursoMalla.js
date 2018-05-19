@@ -78,6 +78,7 @@ class TRecursoMalla extends TRecurso{
   }
 
   draw(textura){
+    console.log(this);
     let buffers = this.initBuffers(this);
     let programa = GShader.programa;
     //vertices
@@ -90,6 +91,7 @@ class TRecursoMalla extends TRecurso{
     gl.vertexAttribPointer(programa.aVertexNormal, 3, gl.FLOAT, false, 0, 0);
 
     if(textura !== null && cargando == false && GCartoon == false){
+      console.log(textura);
       //texturas
       gl.enableVertexAttribArray(programa.aVertexTextureCoords);
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers.tb);
@@ -97,6 +99,7 @@ class TRecursoMalla extends TRecurso{
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, textura.imagen.texture);
       gl.uniform1i(programa.uSampler, 0);
+      console.log(textura);
     }
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ib);
     gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);

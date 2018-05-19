@@ -90,7 +90,7 @@ button:hover{
 }
 
 .verMas{
-  margin-top: 10.5%;
+  margin-top: 1.5%;
   margin-bottom:10%;
 }
 
@@ -208,12 +208,6 @@ button:hover{
   background: #880042;
   margin-left: 340px;
   width: 120px;
-}
-#animacion {
-  background: #880042;
-  margin-left: 465px;
-  width: 100px;
-
 }
 #span {
   text-align: center;
