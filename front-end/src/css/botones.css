@@ -209,6 +209,12 @@ button:hover{
   margin-left: 340px;
   width: 120px;
 }
+#animacion {
+  background: #880042;
+  margin-left: 465px;
+  width: 100px;
+
+}
 #span {
   text-align: center;
   transition: .5s;
