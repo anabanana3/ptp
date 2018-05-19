@@ -21,6 +21,7 @@
             <label><b>Título</b></label>
           </div>
           <div class="divExpVer">
+            <!--  a veces no hay titulo-->
             <p>{{e.Titulo}}</p>
           </div>
         </div>
@@ -38,7 +39,7 @@
             <label><b>Lugar de detección</b></label>
           </div>
           <div class="divExpVer">
-            <p>{{e.Nombre}}</p>
+            <p>{{e.Nombre}}</p> <!-- No se que hay que poner -->
           </div>
         </div>
         <div class="divLabelsVer">
@@ -46,7 +47,7 @@
             <label><b>Fecha de detección</b></label>
           </div>
           <div class="divExpVer">
-            <p>{{e.Fecha.split("T")[0]}}</p>
+            <p>{{e.FechaCreacion.split("T")[0]}}</p>
           </div>
         </div>
         <div class="divLabelsVer">
@@ -150,6 +151,7 @@
                       <label>Lugar de nacimiento:</label>
                   </div>
                   <div class="divExpDeUno">
+                    <!-- el sitio llega como null -->
                       <label>{{p.Sitio}}, {{p.Pais}}</label>
                   </div>
                 </div>
@@ -169,6 +171,7 @@
                   <label>Edad:</label>
                 </div>
                 <div class="divExpDeUno">
+                  <!-- no se guarda la edad -->
                   <label>{{p.Edad}}</label>
                 </div>
               </div>
@@ -193,7 +196,7 @@
                   <label>Lugar de nacimiento:</label>
                 </div>
                 <div class="divExpDeUno">
-                  <label>{{p.ID_Lugar.split("'")[1]}}</label>
+                  <label>{{p.Sitio}}, {{p.Pais}}</label>
                 </div>
               </div>
 
@@ -233,7 +236,8 @@
                     <label>Lugar de nacimiento:</label>
                   </div>
                   <div class="divExpDeUno">
-                    <label>{{m.ID_Lugar.split("'")[1]}}</label>
+                    <!-- tampoco se guarda bien porque no tiene lo de google-->
+                    <label>{{m.Sitio}}, {{m.Pais}}</label>
                   </div>
                 </div>
               </div>
@@ -242,9 +246,9 @@
               </div>
 
               <h2 class="cherry">CONTEXTO DE LA CITA</h2>
-              <h2 class="text16 textPink perfilForm">TIPO DE CITA</h2>
 
             <div *ngFor="let k of bloque1" class="bloque1">
+              <h2 class="text16 textPink perfilForm">TIPO DE CITA</h2>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Citación por abordaje de riesgo de la MGF:</label>
@@ -385,13 +389,16 @@
               </div>
 
             </div>
+            <div *ngIf="!bloque1?.length" class="madre textleft">
+              <label>No hay datos registrados</label>
+            </div>
           </div>
           </mat-tab>
           <mat-tab label="Acerca de MGF">
             <div class="contentVerExp">
-            <div *ngIf="bloque2.length != 0">
-              <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
 
+              <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
+              <div *ngIf="bloque2.length != 0">
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>El implicado tiene conocimientos sobre la MGF:</label>
@@ -489,9 +496,8 @@
           </mat-tab>
           <mat-tab label="Experiencias con la titular">
             <div class="contentVerExp">
-            <div *ngFor="let w of bloque3">
               <h2 class="cherry">EXPERIENCIAS CON MGF</h2>
-
+              <div *ngFor="let w of bloque3">
               <div *ngIf="w.Exp_propias !=''">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
@@ -611,16 +617,16 @@
             </div>
 
             <div *ngIf="bloque3.length == 0">
-              <label>No hay datos</label>
+              <H3>No hay datos</H3>
             </div>
           </div>
           </mat-tab>
 
           <mat-tab label="Exploracion genital">
             <div class="contentVerExp">
-            <div *ngFor="let w of bloque4">
-              <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
 
+              <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
+              <div *ngFor="let w of bloque4">
               <div *ngIf="w.Detec_MGF == 1 || w.Detec_MGF == 0">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
@@ -738,14 +744,14 @@
               </p>
             </div>
             <div *ngIf="bloque4.length == 0">
-              <h3>No hay datos :(</h3>
+              <h3>No hay datos</h3>
             </div>
           </div>
           </mat-tab>
           <mat-tab label="Viajes">
             <div class="contentVerExp">
-            <div *ngFor="let w of bloque5">
               <h3>Valoración sobre posibles viajes</h3>
+              <div *ngFor="let w of bloque5">
               <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
                 <b *ngIf="w.Viajes == 1">Sí</b>
                 <b *ngIf="w.Viajes == 0">No</b>
@@ -766,10 +772,7 @@
               <p>{{i.Nombre}}</p>
             </div>
             <div *ngIf="!indicadores?.length">
-              <p>No hay registros</p>
-            </div>
-            <div *ngIf="bloque5.length == 0">
-              <h3>No hay datos :(</h3>
+              <h3>No hay datos</h3>
             </div>
           </div>
           </mat-tab>
