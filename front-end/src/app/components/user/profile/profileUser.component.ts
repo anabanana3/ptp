@@ -19,7 +19,7 @@ export class ProfileUserComponent {
 
   id:number = -1;
   change:boolean = false;
-// TODO: Recuperar los valores de google Maps para ponerlos por defecto en el campo de direccion
+//Recuperar los valores de google Maps para ponerlos por defecto en el campo de direccion
   user:User ={
     Nombre:'',
     Apellidos: '',
@@ -235,7 +235,7 @@ export class ProfileUserComponent {
   }
 
   save3(forma:NgForm){
-    // TODO: Campos que se pueden modificar
+    //Campos que se pueden modificar
       /*
         => Nombre
         => Apellidos

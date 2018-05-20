@@ -5,109 +5,95 @@
   <app-header></app-header>
 </div>
 <div *ngIf="!error">
-  <div class="editarPerfil divBlanco bgColorWhite">
+  <div class="divBlanco bgColorWhite perfilDiv">
     <h1 class="textPink text20">Mi Perfil</h1>
     <hr>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
 
-    <div style="width: 60%; float: left;margin-left: 3%; margin-top: 2%;">
-      <!-- TODO: La función buena es save -->
-      <!-- save2 -->
-      <form (ngSubmit)="save2(forma, place.value)" #forma="ngForm" style="display: inline-grid; width: 80%;margin-bottom: 5%; ">
+    <!-- <div style="width: 60%; float: left;margin-left: 3%; margin-top: 2%;"> -->
 
-        <!-- [(ngModel)]="" -->
-        <label for="nombre" class="perfilForm">Nombre *</label>
-          <input [(ngModel)]="user.Nombre" class="lineaPerfil" type="text"
-                 value="user[0].Nombre" name="nombre" id="nombre" required>
-        <label for="apellido" class="perfilForm">Apellidos *</label>
-          <input [(ngModel)]="user.Apellidos" class="lineaCampo" type="text"
-                 value="user[0].Apellidos" name="apellido" id="apellido" required>
-        <label for="apellido" class="perfilForm">Email</label>
-          <input [(ngModel)]="user.Email" class="lineaCampo" type="text"
-                 value="user[0].Email" name="email" id="email" disabled="false">
-         <label for="nacimiento" class="perfilForm">Fecha de Nacimiento *</label>
-           <input [(ngModel)]="user.F_Nacimiento" class="lineaCampo" type="date"
-                  value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
-        <label for="sexo" class="perfilForm">Sexo</label>
-        <div class="radioButtons">
-          <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="1" id="mujer">
-            <label for="mujer">Mujer</label>
-          <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="2" id="hombre">
-            <label for="hombre">Hombre</label>
-          <input class="inputProfileUser" [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
-            <label for="otro">Prefiero no especificar</label>
-        </div>
-        <label for="dni" class="perfilForm">DNI *</label>
-          <input [(ngModel)]="user.DNI" class="lineaCampo" type="text"
-                 value="user[0].DNI" name="dni" id="dni" required>
-       <label for="asociacion" class="perfilForm">Asociacion</label>
-          <input [(ngModel)]="user.Asociacion" class="lineaCampo" type="text"
-                value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
-        <label for="profesion" class="perfilForm">Profesion</label>
-        <select [(ngModel)]="user.ID_Profesion" class="lineaCampo" name="Profesion" id="profesion">
-          <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
-            {{profesiones[k].Nombre}}
-          </option>
-        </select>
-       <label for="direccion" class="perfilForm">Dirección</label>
-       <div id="locationField">
-         <input type="text"  id="direccion" class="lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
-       </div>
-         <!-- <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text" -->
-                <!-- value="user[0].Direccion" name="direccion" id="direccion" required> -->
+      <form (ngSubmit)="save2(forma, place.value)" #forma="ngForm" class="editarPerfil">
+        <div class="columnaPerfil">
+          <label for="nombre" class="perfilLabel">Nombre: *</label>
+            <input [(ngModel)]="user.Nombre" class="lineaPerfil lineaCampo" type="text"
+                   value="user[0].Nombre" name="nombre" id="nombre" style="width: 80%;" required>
 
-        <label for="fotoP">Foto de perfil</label>
-        <input class="lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
+          <label for="apellido" class="perfilLabel">Apellidos: *</label>
+            <input [(ngModel)]="user.Apellidos" class="lineaPerfil lineaCampo" type="text"
+                   value="user[0].Apellidos" name="apellido" id="apellido" required>
 
-        <!-- Cambio Contrasenya  -->
-        <button (click)="change = !change" type="button" name="button"
-                class="btn-border" style="margin-bottom:5%;">
-                Cambiar Contraseña
-        </button>
+          <label for="apellido" class="perfilLabel">Email:</label>
+            <input [(ngModel)]="user.Email" class="lineaPerfil lineaCampo" type="text"
+                   value="user[0].Email" name="email" id="email" disabled="false">
 
-        <div *ngIf="change" style="display: inline-grid;">
-          <label for="contra">Contraseña *</label>
-          <!-- (keyup)="validate(pass.newpass)" -->
-          <input [(ngModel)]="pass.newpass" class="lineaCampo" type="password"
-          name="contra" id="contra" required>
-          <label for="repeatcontra">Repita la Contraseña *</label>
-          <input [(ngModel)]="pass.repeatpass" class="lineaCampo" type="password"
-          name="repeatcontra" id="repeatcontra" required>
-             <!-- (keyup)="validate(pas.repeatpass)" -->
-          <div class="progress">
-            <div id="value" style="background-color:black;"></div>
+          <label for="nacimiento" class="fechaPerfilLabel perfilLabel">Fecha de Nacimiento: *</label>
+            <input [(ngModel)]="user.F_Nacimiento" class="fechaPerfilInput lineaPerfil lineaCampo" type="date"
+                    value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
+
+          <label for="sexo" class="perfilLabel sexoPerfil">Sexo:</label>
+          <!-- <div class="radioButtons"> -->
+            <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="1" id="mujer">
+              <label for="mujer" class="text12">Mujer</label>
+            <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="2" id="hombre">
+              <label for="hombre" class="text12">Hombre</label>
+            <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
+              <label for="otro" class="text12">Prefiero no especificar</label>
+          <!-- </div> -->
+          <br>
+          <label for="dni" class="perfilLabel">DNI: *</label>
+            <input [(ngModel)]="user.DNI" class="lineaPerfil lineaCampo" type="text"
+                   value="user[0].DNI" name="dni" id="dni" required>
+
+         <label for="asociacion" class="perfilLabel">Asociación:</label>
+            <input [(ngModel)]="user.Asociacion" class="lineaPerfil lineaCampo" type="text"
+              value="user[0].Asociacion" name="asociacion" id="asociacion" disabled="false" required>
+
+          <label for="profesion" class="perfilLabel">Profesión:</label>
+          <select [(ngModel)]="user.ID_Profesion" class="lineaPerfil lineaCampo" name="Profesion" id="profesion">
+            <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
+              {{profesiones[k].Nombre}}
+            </option>
+          </select>
+
+         <label for="direccion" class="perfilLabel">Dirección:</label>
+         <div id="locationField">
+           <input type="text"  id="direccion" class="lineaPerfil lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
+         </div>
+           <!-- <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text" -->
+                  <!-- value="user[0].Direccion" name="direccion" id="direccion" required> -->
+
+          <label for="fotoP" class="perfilLabel">Foto de perfil:</label>
+          <input class="lineaPerfil lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
+
+          <!-- Cambio Contrasenya  -->
+          <button (click)="change = !change" type="button" name="button"
+                  class="btn-border" style="margin-bottom:5%; margin-left:10%;">
+                  Cambiar Contraseña
+          </button>
+        </div> <!-- columna -->
+
+          <div *ngIf="change" style="display: inline-grid;">
+            <label for="contra" class="perfilLabel">Contraseña: *</label>
+            <!-- (keyup)="validate(pass.newpass)" -->
+            <input [(ngModel)]="pass.newpass" class="lineaPerfil lineaCampo" type="password"
+            name="contra" id="contra" required>
+            <label for="repeatcontra" class="perfilLabel">Repita la Contraseña: *</label>
+            <input [(ngModel)]="pass.repeatpass" class="lineaPerfil lineaCampo" type="password"
+            name="repeatcontra" id="repeatcontra" required>
+               <!-- (keyup)="validate(pas.repeatpass)" -->
+            <div class="progress">
+              <div id="value" style="background-color:black;"></div>
+            </div>
+          </div>
+
+        <div class="columnaPerfil">
+          <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
+          <div style="margin-top: 10%;margin-left:10%;">
+            <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Atrás</button>
+            <button type="submit" name="button" class="btn-relleno">GUARDAR</button>
           </div>
         </div>
-        <div>
-          <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Atrás</button>
-          <button type="submit" name="button" class="btn-relleno">GUARDAR</button>
-        </div>
     </form>
-
-    </div>
-    <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
-
-    <!-- Permisos -->
-      <div class="permisos" style="width: 30%; float:left; margin-left:3%; display: inline-grid; margin-top: 5%;">
-        <div class="headerPermisos">
-          <p class="textWhite">Permisos</p>
-        </div>
-        <div class="labelpermisos">
-          <label  for="subir">Subir expedientes</label>
-            <input class="inputProfileUser" type="checkbox" name="" value="" id="subir">
-        </div>
-        <div class="labelpermisos">
-          <label
-          for="comentar">Comentar expedientes</label>
-            <input class="inputProfileUser" type="checkbox" name="" value="" id="comentar">
-        </div>
-        <div class="labelpermisos">
-          <label for="api">Ver API</label>
-            <input class="inputProfileUser" type="checkbox" name="" value="" id="api">
-        </div>
-
-        <button type="button" name="button" class="btn-border" style="margin:5%;">Solicitar</button>
-      </div>
   </div>
 </div>
