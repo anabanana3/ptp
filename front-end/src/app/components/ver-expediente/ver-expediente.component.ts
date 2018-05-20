@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { ComentarioService } from '../../services/comentario.service';
+import { CarpetasService } from '../../services/carpetas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -62,7 +63,7 @@ export class VerExpedienteComponent implements OnInit {
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
-    public dialog: MatDialog, private _comentarioService:ComentarioService) {
+    public dialog: MatDialog, private _comentarioService:ComentarioService, private _carpetasService:CarpetasService) {
       if(sessionStorage.length === 0){
         return;
       }
@@ -327,6 +328,32 @@ export class VerExpedienteComponent implements OnInit {
         }
       })
     }
+  }
+
+  borrarExpediente(){
+    console.log('Método para borrar Expediente');
+    let id = this.expID;
+    this._expedientesService.deleteExpediente(id).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      //Eliminado correctamente
+      console.log(data);
+    })
+  }
+
+  //Es un metodo para mover los expedientes de las carpetas
+  addExpedienteToFolder(idCarpeta){
+    console.log('Metodo para añadir un expediente a una carpeta');
+    this._carpetasService.addExpedienteToFolder(this.expID, idCarpeta).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      //Añadido correctamente
+      console.log(data);
+    })
   }
 }
 

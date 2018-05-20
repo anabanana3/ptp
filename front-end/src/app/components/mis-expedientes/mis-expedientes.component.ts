@@ -61,6 +61,7 @@ etnias = new Array();
 
   mostrarForm:boolean = false;
 
+
   sitio;
   idSitio;
   @ViewChild('place') public searchElement: ElementRef;

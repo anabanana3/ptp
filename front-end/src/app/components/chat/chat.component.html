@@ -22,19 +22,37 @@
       </p>
     </header>
     <div *ngIf="resultSearch.length > 0" class="busquedachat">
-      <div *ngFor="let s of resultSearch" class="conversacioness" (click) = "setConversation(s.ID_Usuario,s.Nombre)">
-        <p class="text16">{{s.Nombre.split("'")[1]}}</p>
+      <div *ngFor="let s of resultSearch" class="conversacioness" (click) = "setConversation(s.ID_Usuario,s.Nombre, s.Foto)">
+        <div>
+          <img class="fotoChat" src="https://aisha.ovh{{s.Foto}}">
+        </div>
+        <div class="infoChat">
+          <p class="text16 textLeft">{{s.Nombre.split("'")[1]}}
+            <br>
+            <small>{{s.Email.split("'")[1]}}</small>
+            <small>-</small>
+            <small>{{s.Profesion}}</small>
+          </p>
+        </div>
+        <!-- <p class="text16 textLeft">{{s.Nombre.split("'")[1]}}</p>
         <small>{{s.Email.split("'")[1]}}</small>
         <small>-</small>
-        <small>{{s.Profesion}}</small>
+        <small>{{s.Profesion}}</small> -->
       </div>
     </div>
     <div *ngIf="conversaciones.length > 0" class="busquedachat">
-      <div *ngFor="let c of conversaciones" class="conversacioness" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre, c.Destinatario)">
-        <p class="text16">{{c.Nombre.split("'")[1]}}</p>
-        <small>{{c.Email.split("'")[1]}}</small>
-        <small>-</small>
-        <small>{{c.Profesion}}</small>
+      <div *ngFor="let c of conversaciones" class="conversacioness" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre, c.Destinatario, c.Foto)">
+        <div>
+          <img class="fotoChat" src="https://aisha.ovh{{c.Foto}}">
+        </div>
+        <div class="infoChat">
+          <p class="text16 textLeft">{{c.Nombre.split("'")[1]}}
+            <br>
+            <small>{{c.Email.split("'")[1]}}</small>
+            <small>-</small>
+            <small>{{c.Profesion}}</small>
+          </p>
+        </div>
       </div>
     </div>
     <!-- <footer> <button (click)=salir() type="button" class="btn btn-relleno btn-salirchat" [routerLink]="['/home']">Salir</button>
@@ -45,7 +63,7 @@
     <div class="ocultar chat-container bgColorWhite" id="chat">
       <header>
         <button (click)="volver()" class="btn-chat-volver icon-left-big"></button>
-        <h2>{{conversacion.Nombre.split("'")[1]}}</h2>
+        <h2 class="tituloChat"><img *ngIf="inicio != true" class="fotoChat" src="https://aisha.ovh{{conversacion.Foto}}"> {{conversacion.Nombre.split("'")[1]}}</h2>
       </header>
       <hr>
       <div class="message-container">
@@ -72,7 +90,7 @@
 
       <footer class ="formChat bgColorPink">
         <form>
-          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" autocomplete="false">
+          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" id="input" autocomplete="off">
           <button type="submit" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
         </form>
       </footer>

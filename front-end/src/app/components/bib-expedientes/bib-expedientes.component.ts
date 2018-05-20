@@ -55,6 +55,7 @@ profesiones = new Array();
   idSitio;
 
   @ViewChild('place') public searchElement: ElementRef;
+  
 
   constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
       if(sessionStorage.length == 0){

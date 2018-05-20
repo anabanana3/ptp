@@ -45,6 +45,7 @@ export class ExpedientesAdminComponent {
 
   sitio;
   idSitio;
+  
   @ViewChild('place') public searchElement: ElementRef;
 
   constructor(private _expedientesServices:ExpedientesService, private _profService:ProfesionesService,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader){
