@@ -8,7 +8,7 @@
     <h2 class="cherry">PARTO Nº {{i+1}}</h2>
 
     <div *ngIf="parto.Fecha != NULL">
-      <div class="divLabelsVerExp">
+      <div class="divLabelsVerPartos">
         <div class="divExpDeUno">
           <label>Fecha del parto:</label>
         </div>
@@ -109,13 +109,33 @@
           <label>{{parto.Test_APGAR}} min.</label>
         </div>
       </div>
-    </div>    
+    </div>
 
-    <p *ngIf="data.auxM[i] != NULL">Complicaciones de la madre durante el parte:
-      <b *ngFor="let cm of data.auxM[i]">{{cm.Nombre}} </b>
-    </p>
-    <p *ngIf="data.auxN[i] != NULL">Complicaciones del recién nacido durante el parte:
-      <b *ngFor="let cn of data.auxN[i]">{{cn.Nombre}} </b>
-    </p>
+    <div *ngIf="data.auxM[i] != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUnoC">
+          <label>Complicaciones de la madre durante el parto:</label>
+          <br>
+        </div>
+         <div class="complicaciones" *ngFor="let cm of data.auxM[i]">
+          <label>- {{cm.Nombre}}</label>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.auxN[i] != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUnoC">
+          <label>Complicaciones del recién nacido durante el parto:</label>
+          <br>
+        </div>
+         <div class="complicaciones" *ngFor="let cn of data.auxN[i]">
+          <label>- {{cn.Nombre}}</label>
+          <br>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -26,12 +26,12 @@ export class PrincipalComponent implements OnInit {
   asociacion:boolean = false;
   constructor(private _noticiasService:NoticiasService) {
 
-    console.log(sessionStorage);
+    // console.log(sessionStorage);
 
     if(sessionStorage.length !== 0){
       this.logueado = true;
 
-      console.log(sessionStorage.getItem('iD'));
+      // console.log(sessionStorage.getItem('iD'));
       if(sessionStorage.getItem('iD') == '44'){
         this.admin = true;
       }
@@ -41,65 +41,64 @@ export class PrincipalComponent implements OnInit {
     }
 
     this._noticiasService.getNoticias().subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       this.noticias = data; //Creo que no sirve pa na
-      console.log(data[0]);
+      // console.log(data[0]);
 
       for(let i=0;i<3;i++){
         this.aux.push(data[i]);
 
-      console.log("aux["+0+"] = " + this.aux[0]);
+      // console.log("aux["+0+"] = " + this.aux[0]);
 
       }
-     console.log("numnoticias" + this.aux);
+     // console.log("numnoticias" + this.aux);
     });
 
     this._noticiasService.getPhotos().subscribe(dataPhoto=>{
     //  console.log("dataPhoto: " +dataPhoto);
       this.photos = dataPhoto;
-     console.log("aux value[0]: " + this.aux[0].id);
-      console.log("aux value[1]: " + this.aux[1].id);
-      console.log("aux value[2]: " + this.aux[2].id);
-
-      console.log("dataPhoto.length: " + dataPhoto.length);
+     // console.log("aux value[0]: " + this.aux[0].id);
+     //  console.log("aux value[1]: " + this.aux[1].id);
+     //  console.log("aux value[2]: " + this.aux[2].id);
+     //
+     //  console.log("dataPhoto.length: " + dataPhoto.length);
       for(let i=0;i<3;i++){
         if(i==0){
           this.aux2.push(dataPhoto[i]);
         }else{
           let k=i-1;
-          console.log("i " + i +  "k " + k);
-          console.log("this.aux2[i].post = " + this.aux2[i-1].post);
+          // console.log("i " + i +  "k " + k);
+          // console.log("this.aux2[i].post = " + this.aux2[i-1].post);
 
           if(this.aux2[i-1].post == this.aux2[k].post){
-            console.log("YA HAY UN POST CON ESE ID");
+            // console.log("YA HAY UN POST CON ESE ID");
             this.aux2.push(dataPhoto[i+1]);
           }
         }
-       console.log("Se queda aux2 post: " + this.aux2[i].post);
+       // console.log("Se queda aux2 post: " + this.aux2[i].post);
       }
 
-      console.log("long de aux2:" + this.aux2.length);
+      // console.log("long de aux2:" + this.aux2.length);
       for(let j=0; j < 3; j++){
-        console.log("j: " + j);
-        console.log("aux value["+j+"]:" + this.aux[j].id);
-        console.log("aux2 value["+j+"]:" + this.aux2[j].post);
+        // console.log("j: " + j);
+        // console.log("aux value["+j+"]:" + this.aux[j].id);
+        // console.log("aux2 value["+j+"]:" + this.aux2[j].post);
         if(this.aux[j].id == this.aux2[j].post){
 
           this.arrayIds.push(this.aux2[j].guid.rendered);
-          console.log("yes papi es igual");
+          // console.log("yes papi es igual");
         }else{
-
-          console.log("no es igual");
-          console.log("j antes era: " + j);
+          // console.log("no es igual");
+          // console.log("j antes era: " + j);
           j=j+1;
-          console.log("j ahora es: " + j );
+          // console.log("j ahora es: " + j );
         }
       }
 
-     console.log("mediaaa" + this.aux2);
-      console.log("mediaa post id:" + this.arrayIds[0]);
-      console.log("mediaa post id2:" + this.arrayIds[1]);
-      console.log("mediaa post id3:" + this.arrayIds[2]);
+     // console.log("mediaaa" + this.aux2);
+     //  console.log("mediaa post id:" + this.arrayIds[0]);
+     //  console.log("mediaa post id2:" + this.arrayIds[1]);
+     //  console.log("mediaa post id3:" + this.arrayIds[2]);
 
       var caca =   document.getElementById("paraImg");
       var caca2 =   document.getElementById("paraImg2");
@@ -118,12 +117,12 @@ export class PrincipalComponent implements OnInit {
   }
 
   plusDivs(n) {
-    console.log("entro en plusDivs()");
+    // console.log("entro en plusDivs()");
     this.showDivs(this.slideIndex += n);
   }
 
   showDivs(n) {
-    console.log("entro en showDivs()");
+    // console.log("entro en showDivs()");
     var x = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
 
     if (n > x.length) {
@@ -142,39 +141,5 @@ export class PrincipalComponent implements OnInit {
     x[this.slideIndex-1].style.transition = "opacity 2s ease-in-out";*/
 
   }
-
-//   showSlides() {
-//
-//     console.log("::::::::::::::::::::::::::::::::::::");
-//     console.log("SHOWSLIDES()");
-//
-//     var slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
-//     console.log("num de slides: " + slides.length);
-//
-//     for (let i = 0; i < slides.length; i++) {
-//        slides[i].style.display = "none";
-//        console.log("entro en bucle for");
-//        console.log("slides["+i+"]: " + slides[i]);
-//     }
-//
-//     console.log("antes valia  " + this.slideIndexAuto);
-//     this.slideIndexAuto++;
-//     console.log(" ahora this.slideIndex ++ :" + this.slideIndexAuto);
-//
-//     if (this.slideIndexAuto > slides.length) {
-//       console.log("IF");
-//       console.log("this.slideIndexAuto: " + this.slideIndexAuto);
-//       console.log("this.slide: " + this.slide);
-//       this.slideIndexAuto = 1;
-//     }
-//
-//     console.log("VA A DIBUJAR");
-//     console.log(this.slideIndexAuto - 1);
-//
-//     slides[this.slideIndexAuto-1].style.display = "block";
-//     console.log("DIBUJA -> slides["+ (this.slideIndexAuto - 1) +"].style.display = block");
-//      setTimeout(this.showSlides, 4000);
-// }
-
 
 }

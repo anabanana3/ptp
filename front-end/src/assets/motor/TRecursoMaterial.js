@@ -1,5 +1,8 @@
 class TRecursoMaterial extends TRecurso{
-
+  /*
+  Clase TRecursoMaterial, la cual se crear al asignar un TRecurso de un material
+  añadimos a este recurso todas las caracteristicas necesarias para luego pasarle al shader.
+  */
   constructor(){
     super();
     this.colorDifuso;
@@ -14,6 +17,10 @@ class TRecursoMaterial extends TRecurso{
   //almacenar color difuso, color especular, etc
 
   request(url) {
+    /*
+    Creamos una promesa la cual cuando acabamos de cargar el fichero .mtl devuelve el resultado
+    necesario por la sincronicidad de JS
+    */
     return new Promise(function (resolve, reject) {
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
@@ -28,8 +35,15 @@ class TRecursoMaterial extends TRecurso{
   }
 
   cargarFichero(nombre){
+    //metodo que carga un fichero .mtl a partir de un nombre pasado por parametro
     let datos;
+    //llamamos al metodo anterior request pasandole por parametro la ruta del archivo
     let request = this.request('/assets/motor/' + nombre).then((e) => {
+      /*
+      una vez tenemos la informacion del archivo cargado hacemos un split() por partes
+      para guardarnos los datos que queremos y creamos los vectores correspondientes
+      para añadirlos luego al shader para mostrar el material
+      */
       datos = e;
       let partes = datos.split('\n');
       //console.log(partes);
@@ -66,12 +80,7 @@ class TRecursoMaterial extends TRecurso{
       //le paso las 3 coordenadas de la suma de los colores y la transparencia
 
       //Guardo los valores del material para mandarlos al shader
-      GDifuso = vec4.fromValues(this.colorDifuso[0],this.colorDifuso[1], this.colorDifuso[2],1.0);
-      GAmbiental = this.colorAmbiente;
-      GEspecular = this.colorEspecular;
-      GBrillo = this.iluminacion;
-      GIntensidadLuz = this.intensidad;
-      this.colorDifuso = GDifuso;
+      this.colorDifuso = vec4.fromValues(this.colorDifuso[0],this.colorDifuso[1], this.colorDifuso[2],1.0);
       this.colorEspecular = vec4.fromValues(this.colorEspecular[0],this.colorEspecular[1], this.colorEspecular[2],1.0);
       this.colorAmbiente = vec4.fromValues(this.colorAmbiente[0],this.colorAmbiente[1], this.colorAmbiente[2],1.0);
     })

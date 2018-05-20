@@ -28,9 +28,7 @@ class TMalla extends TEntidad{
 
   beginDraw(){
     if(!GAnimacion){
-      /*
-      cuando hacemos este beginDraw estamos asignando los valores al shader
-      */
+      //cuando hacemos este beginDraw estamos asignando los valores al shader
       let gl = GShader.gl;
       let programa = GShader.programa;
 
@@ -61,7 +59,7 @@ class TMalla extends TEntidad{
       aqui estamos llamando al metodo draw de TRecursoMalla para que finalmente pinte la malla
       (pasandole la textura por parametro)
       */
-      this.malla.draw(this.textura);  
+      this.malla.draw(this.textura);
     }
   }
 
