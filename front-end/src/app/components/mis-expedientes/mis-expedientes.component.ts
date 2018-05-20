@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit} from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { CarpetasService } from '../../services/carpetas.service';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 
 @Component({
