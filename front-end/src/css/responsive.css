@@ -101,6 +101,69 @@
     display: none;
   }
   .recursos-container{padding: 0;}
+
+  /*Principal*/
+
+  .cabecera{height: 305px;}
+
+  .textosCabecera{
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .tituloCabecera{
+    text-align: center;
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 20px;
+  }
+
+  .subtituloCabecera{
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .imgCabecera{
+    display: none;
+  }
+
+  .imgFunciones{display: none;}
+
+  .imgFunciones2{
+    display: block;
+    width: 45%;
+    margin: 0 auto;
+  }
+
+  .imgListadoContainer{width: 100%;}
+
+  .imgListado1{height: 263px;}
+
+  .imgListado2{height: 262px;}
+
+  .imgListado3{height: 159px;}
+
+  .imgListado4{height: 277px;}
+
+  .imgListado5{height: 264px;}
+
+  .listadoFunciones{display: inline-block;}
+
+  .textoListado{
+    width: 100%;
+    padding: 10px;
+  }
+
+  .textoP{
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .suscripcion{
+    width: 90%;
+  }
 }
 
 
@@ -133,6 +196,7 @@
   }
 
   .recursosDiv{height:500px;}
+
 }
 
 @media (max-width:1025px) {
@@ -259,6 +323,9 @@
   }
 
   /*** EXPEDIENTES ****/
+  .crearExpediente{
+    width: 100%!important;
+  }
   .tabsExpediente{
     width: 90%;
   }
@@ -303,6 +370,11 @@
   .divExp{width: 50%;}
   .sizeinput{width: 100%;}
   .divLabelsDeUno{width: 100%;}
+
+  #overlay{
+    font-size: 10%;
+    width: 80%;
+  }
 }
 
 /****** HEADER *****/

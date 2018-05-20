@@ -28,14 +28,13 @@
           </div>
         </div>
 
-        <!-- <div class="optionsRight" >
-          <p (click) = "cambio(1)" id="arb"> Todo |</p>
+        <div class="optionsRight" >
+          <p (click) = "cambio(1)" id="arb"> Todo|</p>
           <p (click) = "cambio(2)" id="priv"> Privados </p>
           <p>  | </p>
-          <p (click) = "cambio(3)" id=publ> Publicos</p>
-          <p (click) = "cambio(4)" id="todos"> |Todos </p>
-        </div> -->
-
+          <p (click) = "cambio(3)" id=publ> Públicos</p>
+          <!-- <p (click) = "cambio(4)" id="todos"> |Todos </p> -->
+        </div>
       </div>
       <div class="carpetasDiv">
       <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
@@ -74,7 +73,7 @@
                   </div>
               </div>
           </div>
-          <!-- TODO: Expedientes -->
+          <!-- Expedientes -->
           <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
             <div class="expediente-body-exp">
               <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
@@ -85,7 +84,7 @@
         </div>
       </div>
       <div class="paginationContainer">
-        <!-- TODO: paginacion -->
+        <!-- paginacion -->
         <ul class="pagination" *ngIf="paginas.length >1">
           <!--Boton de pagina anterior-->
           <li>
@@ -123,7 +122,7 @@
         <div class="popupBorrar-contentExp">
           <span id="closeCarpeta">&times;</span>
           <div class="insidePopExp">
-            <p>¿Estás seguro de eliminar la carpeta?</p>
+            <p>¿Seguro que desea eliminar la carpeta?</p>
           </div>
           <button class="btn-relleno" (click)="borrarCarpeta()">SÍ</button>
           <button class="btn-border" id="noBorrarCarpeta" type="submit" [routerLink]="['/misexpedientes']" name="button">NO</button>
@@ -133,7 +132,7 @@
         <div class="popupBorrar-contentExp">
           <span id="closeModifyCarpeta">&times;</span>
           <div class="insidePopExp">
-            <p>Introduzca el nuevo nombre</p>
+            <p>Introduzca el nuevo nombre:</p>
             <div class="paraInput">
               <input placeholder="Nombre" class="sizeinput" type="text" #nombreNuevo>
             </div>
@@ -146,8 +145,8 @@
       <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
       <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
       <form (ngSubmit)="buscar(1,10)" id="formFilter" class="ocultar-form">
-
         <div class="divLabelsDeUnoSearch">
+
           <div class="inputSearchDiv">
             <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
             <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text" placeholder="Título del expediente" name="Titulo" id="titulo">
@@ -155,17 +154,9 @@
           </div>
         </div>
 
-        <!-- Falta maquetar  -->
-        <div class="optionsRight" >
-          <p (click) = "elegirTipo(1)" id="privF"> Privados </p>
-          <p>  | </p>
-          <p (click) = "elegirTipo(2)" id=publF> Publicos</p>
-        </div>
-        <!-- Falta maquetar -->
-
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="f1">Desde</label>
+            <label for="f1">Desde:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" data-date-inline-picker="true" type="date" id="f1" name="Fecha1">
@@ -175,7 +166,7 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="f2">Hasta</label>
+            <label for="f2">Hasta:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" data-date-inline-picker="true" type="date" id="f2" name="Fecha2">
@@ -188,7 +179,7 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="lugar">Lugar de detección</label>
+            <label for="lugar">Lugar de detección:</label>
           </div>
           
           <div divExpDeUnoSearch id="locationField">
@@ -198,11 +189,11 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="etnia">Etnia de origen</label>
+            <label for="etnia">Etnia de origen:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
-              <option value="0">Seleccione la etnia</option>
+              <option value="0">Seleccione la etnia:</option>
               <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
             </select>
             <br>
@@ -211,12 +202,12 @@
 
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
-            <label for="tipoMGF">Tipo de MGF</label>
+            <label for="tipoMGF">Tipo de MGF:</label>
           </div>
           <div class="divExpDeUnoSearch">
             <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
-              <option value="0">Seleccione el tipo de MGF</option>
-              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
+              <option value="0">Seleccione el tipo de MGF:</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
             </select>
           </div>
         </div>

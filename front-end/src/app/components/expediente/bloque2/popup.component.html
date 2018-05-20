@@ -16,14 +16,14 @@
 
   <div class="divLabels">
     <div class="divExp">
-      <label>Edad de la madre en el parto</label> <!--  en el momento del parto-->
+      <label>Edad de la madre en el parto:</label> <!--  en el momento del parto-->
     </div>
     <div class="divExp">
       <input id="edadMPopup" min = "1" max="99" [(ngModel)]="data.datosPartos[data.pagina].Edad_Madre"  name="Edad_Madre" type="number">
     </div>
 
     <div class="divExp">
-      <label>Fecha del parto</label>
+      <label>Fecha del parto:</label>
     </div>
     <div class="divExp">
       <input id="fechaMPopup" (change)="calculaEdad($event, fecha )" #fecha [(ngModel)]="data.datosPartos[data.pagina].Fecha" type="date">
@@ -33,14 +33,14 @@
   <div class="divLabels">
     <div class="divExp">
       <!-- Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
-      <label>Edad del nacido</label>  <!--(Ver si lo podemos hacer automatico)-->
+      <label>Edad del nacido:</label>  <!--(Ver si lo podemos hacer automatico)-->
     </div>
     <div class="divExp">
       <input id="edadNPopup" [(ngModel)]="data.datosPartos[data.pagina].Edad_Nacido" name="Edad_Nacido" type="number">
     </div>
 
     <div class="divExp">
-      <label> Tiempo expulsivo</label>
+      <label> Tiempo expulsivo:</label>
       <span matTooltip="Si desconoce el tiempo expulsivo introduzca valor 0" class="pointer icon-info info"></span>
     </div>
     <div class="divExp">
@@ -50,7 +50,7 @@
 
   <div class="divLabels">
     <div class="divExp">
-      <label> Tiempo de dilatación</label>
+      <label> Tiempo de dilatación:</label>
       <span matTooltip="Si desconoce el tiempo de dilatación introduzca valor 0" class="pointer icon-info info"></span>
     </div>
     <div class="divExp">
@@ -58,7 +58,7 @@
     </div>
 
     <div class="divExp">
-      <label> Duración del parto</label>
+      <label> Duración del parto:</label>
       <span matTooltip="Si desconoce la duracion del parto introduzca valor 0" class="pointer icon-info info"></span>
     </div>
     <div class="divExp">
@@ -68,17 +68,17 @@
 
   <div class="divLabels">
     <div class="divExp">
-      <label id="formulaObs">Fórmula obstretica realizada</label>
+      <label id="formulaObs">Fórmula obstretica realizada:</label>
     </div>
     <div class="divExp">
       <select id="formulaObsSelect" required [(ngModel)]="data.datosPartos[data.pagina].ID_Formula" name="ID_Formula">
-        <<option value="6">Desconce la formula obstrétrica realizada</option>
+        <<option value="6">Desconce la fórmula obstétrica realizada:</option>
         <option *ngFor="let f of data.formulas" [value]="f.ID_Formula">{{f.Nombre}}</option>
       </select>
     </div>
 
     <div class="divExp">
-      <label>Test APGAR</label>
+      <label>Test APGAR:</label>
     </div>
     <div class="divExp">
       <input id="testAPGAR" [(ngModel)]="data.datosPartos[data.pagina].Test_APGAR" name="Test_APGAR" type="number">
@@ -87,11 +87,11 @@
 
   <div class="divLabelsDeUno">
     <div class="divExpDeUno">
-      <label>Tipo de mutilación de la madre en el parto</label>
+      <label>Tipo de mutilación de la madre en el parto:</label>
     </div>
     <div class="divExpDeUno">
       <select [(ngModel)]="data.datosPartos[data.pagina].ID_Mutilacion" name="ID_Mutilacion" required>
-          <option *ngFor="let t of data.tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
+          <option *ngFor="let t of data.tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
       </select>
     </div>
   </div>
@@ -120,7 +120,7 @@
   </div>
 
   <h2 class="text16 textPink">COMPLICACIONES DEL NIÑO DURANTE EL PARTO
-    <span matTooltip="Seleccione todas las complicaciones que sufrió el recién nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
+    <span matTooltip="Seleccione todas las complicaciones que sufrió el recién nacido durante el parto. Puede selecionar más de una." class="pointer icon-info info"></span>
     <span id="iconPlusN" (click)="mostrarNinio();" class="pointer icon-plus"></span>
     <span id="iconMinusN" style="display:none;" (click)="ocultarNinio();" class="pointer icon-minus"></span>
   </h2>

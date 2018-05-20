@@ -6,8 +6,7 @@ import {ExpedienteComponent} from '../expediente.component';
 
 @Component({
   selector: 'app-bloque4',
-  templateUrl: './bloque4.component.html',
-  styleUrls: ['./bloque4.component.css']
+  templateUrl: './bloque4.component.html'
 })
 export class Bloque4Component implements OnInit {
 

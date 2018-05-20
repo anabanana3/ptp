@@ -1,10 +1,7 @@
-import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {ExpedientesService} from '../../services/expedientes.service';
 import { ProfesionesService } from '../../services/profesiones.service';
-
-import { MapsAPILoader } from '@agm/core';
-import { } from '@types/googlemaps';
 
 @Component({
   selector: 'app-expedientes',
@@ -71,12 +68,7 @@ export class ExpedientesAdminComponent {
     let tam = this.tamPag;
     console.log(this.Filtros);
     this.url='https://www.aisha.ovh/api/publicos/search/';
-    //Recupero la informacion del lugar de google Maps
-    if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
-      let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
-      this.Filtros.Lugar = idLugar;
-    }
-
+    let primero = 1;
     if(this.Filtros.Autor != ''){
       this.url += 'autor='+this.Filtros.Autor;
     }else{
@@ -199,29 +191,5 @@ export class ExpedientesAdminComponent {
 
   borrarExpediente(id){
     console.log('Borrar' + id);
-  }
-
-  ngOnInit() {
-    this.apiGoogle();
-  }
-  apiGoogle(){
-    this.mapsAPILoader.load().then(
-      () =>{
-        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
-
-        this.sitio.addListener('place_change', () => {
-            this.ngZone.run(()=>{
-              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
-              this.idSitio = place.id;
-
-
-
-              if(place.geometry === undefined || place.geometry === null){
-                return
-              }
-            });
-        })
-      }
-    );
   }
 }

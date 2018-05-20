@@ -22,7 +22,7 @@
           </div>
           <div class="divExpVer">
             <!--  a veces no hay titulo-->
-            <p>Expediente {{e.ID_Expediente}}</p>
+            <p>{{e.Titulo}}</p>
           </div>
         </div>
         <div class="divLabelsVer">
@@ -58,13 +58,15 @@
             <p>{{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
-        <div *ngIf="sessionStorageID == e.ID_Usuario" class="permisosVerExp">
-          <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
-          <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
-          <div *ngIf="coment==1" class="coment" id="coment">
-            <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
-            <label class="labeltrans" for="comentarios">Permitir comentarios</label>
-          </div>
+
+      </div>
+
+      <div class="permisosVerExp">
+        <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+        <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+        <div *ngIf="coment==1" class="coment" id="coment">
+          <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
+          <label class="labeltrans" for="comentarios">Permitir comentarios</label>
         </div>
       </div>
 
@@ -255,7 +257,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Citacion == 1">Sí</label>
                   <label *ngIf="k.Citacion == 0">No</label>
-                  <label *ngIf="k.Citacion == 2">N/S</label>
                 </div>
               </div>
 
@@ -267,7 +268,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Deriv_Riesgo == 1">Sí</label>
                   <label *ngIf="k.Deriv_Riesgo == 0">No</label>
-                  <label *ngIf="k.Deriv_Riesgo == 2">N/S</label>
                 </div>
               </div>
 
@@ -279,7 +279,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Deriv_Sospecha == 1">Sí</label>
                   <label *ngIf="k.Deriv_Sospecha == 0">No</label>
-                  <label *ngIf="k.Deriv_Sospecha == 2">N/S</label>
                 </div>
               </div>
 
@@ -344,7 +343,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Dif_Idi_M == 1">Sí</label>
                   <label *ngIf="k.Dif_Idi_M == 0">No</label>
-                  <label *ngIf="k.Dif_Idi_M == 2">N/S</label>
                 </div>
               </div>
 
@@ -355,21 +353,41 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Traduccion == 1">Sí</label>
                   <label *ngIf="k.Traduccion == 0">No</label>
-                  <label *ngIf="k.Traduccion == 2">N/S</label>
                 </div>
               </div>
 
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
-                  <label>Precisa mediación intercultural:</label>
+                  <label>Precisa mediación intercultural::</label>
                 </div>
                 <div class="divExpDeUno">
                   <label *ngIf="k.Mediacion == 1">Sí</label>
                   <label *ngIf="k.Mediacion == 0">No</label>
-                  <label *ngIf="k.Mediacion == 2">N/S</label>
-                  <label *ngIf="k.Mediacion != 0 && k.Mediacion != 1 && k.Mediacion != 2 ">No registrado</label>
                 </div>
               </div>
+
+              <div *ngIf="curso != 'NULL'">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Curso de la menor:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{k.Curso}}</label>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="centro_Salud != 'NULL'">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Centro de salud de la menor:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{k.Centro_Salud}}</label>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div *ngIf="!bloque1?.length" class="madre textleft">
               <label>No hay datos registrados</label>
@@ -388,7 +406,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="bloque2[0].Conoce_MGF == 1">Sí</label>
                   <label *ngIf="bloque2[0].Conoce_MGF == 0">No</label>
-                  <label *ngIf="bloque2[0].Conoce_MGF == 2">N/S</label>
                 </div>
               </div>
 
@@ -399,7 +416,6 @@
                 <div class="divExpDeUno">
                   <label *ngIf="bloque2[0].MGF_realizada_com_origen == 1">Sí</label>
                   <label *ngIf="bloque2[0].MGF_realizada_com_origen == 0">No</label>
-                  <label *ngIf="bloque2[0].MGF_realizada_com_origen == 2">N/S</label>
                 </div>
               </div>
 
@@ -411,7 +427,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="bloque2[0].Pos_padre == 1">A favor</label>
                     <label *ngIf="bloque2[0].Pos_padre == 0">En contra</label>
-                    <label *ngIf="bloque2[0].Pos_padre == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -424,7 +439,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="bloque2[0].Pos_madre == 1">A favor</label>
                     <label *ngIf="bloque2[0].Pos_madre == 0">En contra</label>
-                    <label *ngIf="bloque2[0].Pos_madre == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -437,7 +451,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="bloque2[0].Pos_familia == 1">A favor</label>
                     <label *ngIf="bloque2[0].Pos_familia == 0">En contra</label>
-                    <label *ngIf="bloque2[0].Pos_familia == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -515,7 +528,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Mant_MGF == 1">Sí</label>
                     <label *ngIf="w.Mant_MGF == 0">No</label>
-                    <label *ngIf="w.Mant_MGF == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -541,7 +553,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Conoc_consecM == 1">Sí</label>
                     <label *ngIf="w.Conoc_consecM == 0">No</label>
-                    <label *ngIf="w.Conoc_consecM == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -565,7 +576,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Conoc_consecH == 1">Sí</label>
                     <label *ngIf="w.Conoc_consecH == 0">No</label>
-                    <label *ngIf="w.Conoc_consecH == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -625,7 +635,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Detec_MGF == 1">Sí</label>
                     <label *ngIf="w.Detec_MGF == 0">No</label>
-                    <label *ngIf="w.Detec_MGF == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -649,7 +658,6 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Cicatriz_genital == 1">Sí</label>
                     <label *ngIf="w.Cicatriz_genital == 0">No</label>
-                    <label *ngIf="w.Cicatriz_genital == 2">N/S</label>
                   </div>
                 </div>
               </div>
@@ -744,15 +752,13 @@
             <div class="contentVerExp">
               <h3>Valoración sobre posibles viajes</h3>
               <div *ngFor="let w of bloque5">
-              <p *ngIf="w.Viajes == 1 || w.Viajes == 0 || w.Viajes == 2">Realiza viajes al país de origen en vacaciones:
+              <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
                 <b *ngIf="w.Viajes == 1">Sí</b>
                 <b *ngIf="w.Viajes == 0">No</b>
-                <b *ngIf="w.Viajes == 2">N/S</b>
               </p>
-              <p *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0 || w.ViajesPlanificados ==2">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:
+              <p *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:
                 <b *ngIf="w.ViajesPlanificados == 1">Sí</b>
                 <b *ngIf="w.ViajesPlanificados == 0">No</b>
-                <b *ngIf="w.ViajesPlanificados == 2">N/S</b>
               </p>
               <p *ngIf="w.Intervencion != ''">Descripción del formato de la intervención:
                 <b>{{w.Intervencion}}</b>

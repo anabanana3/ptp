@@ -15,6 +15,7 @@
   <link rel="canonical" href="https://www.aisha.ovh/principal/"/>
 </head>
 
+<div style="background:white;z-index:-999;">
 <div class="headerPrincipal">
   <div class="logoPrincipalDiv">
     <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
@@ -40,14 +41,14 @@
 </div>
 
 <!-- CAROUSEL -->
-<div class="carouselDiv">
+<!-- <div class="carouselDiv">
 
   <div class="LeftDiv" id="LeftArrow" (click)="plusDivs(-1)">
     <img style="width:30px;" src="../assets/img/Left.png" alt="Left">
   </div>
 
   <div class="CarouselImage">
-    <!--  <div class="mySlides slide1" style="display:block"></div> -->
+
     <img class="mySlides fade" style="display:block; width:100%;" src="../assets/img/MisExp1920.png" alt="MisExp">
     <img class="mySlides fade" style="width:100%;" src="../assets/img/BiblioExp1920.png" alt="BiblioExp">
     <img class="mySlides fade" style="width:100%;" src="../assets/img/Estadisticas1920.png" alt="Estadisticas">
@@ -60,19 +61,25 @@
     <img style="width:30px;" src="../assets/img/Right.png" alt="right">
   </div>
 
+</div> -->
+
+<div class="cabecera">
+  <div class="textosCabecera">
+    <h2 class="tituloCabecera">La red de profesionales a nivel mundial que cambiará la vida de muchas personas</h2>
+    <h1 class="subtituloCabecera">Aisha es una plataforma web que ayuda a profesionales que trabajan con la mutilación genital femenina a gestionar su trabajo y ponerse en contacto con otros profesionales</h1>
+    <button type="submit" name="button" class="btn-border verMas" [routerLink]="['/vermas']">VER MÁS</button>
+  </div>
+  <img class="imgCabecera" src="../assets/img/Mapa.png" alt="Mapa">
 </div>
 
 
-<div class="Eslogan">
-  <p>La red de profesionales a nivel mundial que cambiará la vida
-    de muchas personas.</p>
-  <div class="lineaEslogan"></div>
+<div class="funcionalidadesContainer">
+  <img class="imgFunciones" src="../assets/img/Bolitas.png" alt="MisExp">
+  <img class="imgFunciones2" src="../assets/img/BolitasMvl.png" alt="MisExp">
+</div>
 </div>
 
-
-<button type="submit" name="button" class="btn-border verMas" [routerLink]="['/vermas']">VER MÁS</button>
-
-<div class="noticias">
+<!-- <div class="noticias">
 
   <div class="noticiasConIcon">
     <h2 class="noticiasText">NOTICIAS</h2>
@@ -81,7 +88,6 @@
 
   <div class="noticia">
 
-    <!--<a href="{{aux[0].link}}"><img style="width:300px;" src="{{arrayIds[0]}}" alt="noticia1"></a>-->
     <a href="{{aux[0].link}}"><div id="paraImg" style="width:300px;height:200px;"></div></a>
 
     <a href="{{aux[0].link}}"><p class="noticiaTitle">{{aux[0].title.rendered}}</p></a>
@@ -89,21 +95,19 @@
 
   </div>
   <div class="noticia">
-      <!--<a href="{{aux[1].link}}"><img  style="width:300px;" src="{{arrayIds[1]}}" alt="noticia2"></a>-->
       <a href="{{aux[1].link}}"><div id="paraImg2" style="width:300px;height:200px;"></div></a>
       <a href="{{aux[1].link}}"><p class="noticiaTitle">{{aux[1].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
 
   </div>
   <div class="noticia">
-      <!--<a href="{{aux[2].link}}"><img  style="width:300px;" src="{{arrayIds[2]}}" alt="noticia3"></a>-->
       <a href="{{aux[2].link}}"><div id="paraImg3" style="width:300px;height:200px;"></div></a>
       <a href="{{aux[2].link}}"><p class="noticiaTitle">{{aux[2].title.rendered}}</p></a>
       <div class="lineaNoticia"></div>
 
   </div>
 
-</div>
+</div> -->
 
 
 <div class="bgColorWhite">
@@ -112,6 +116,58 @@
     <button type="submit" name="button" class="btn-relleno suscribirse">SUSCRIBIRSE</button>
   </div>
 
+<div class="listadoFuncionesContainer">
+  <div class="listadoFunciones">
+    <div class="imgListadoContainer imgListado1">
+    </div>
+    <div class="textoListado">
+      <p class="textoP">MIS EXPEDIENTES</p>
+      <p>Acceda a sus expedientes y organízalos por carpetas para mejorar la gestión documental y cree nuevos expedientes para llevar un seguimiento de los casos.</p>
+      <br>
+      <p>Además, accede a la <span style="color:#9C0C54">biblioteca de expedientes</span> para consultar los que otros profesionales han realizado y compartido en la plataforma.</p>
+    </div>
+  </div>
+</div>
+
+<div class="listadoFunciones">
+  <div class="textoListado">
+    <p class="textoP">BIBLIOTECA DE RECURSOS</p>
+    <p>Acceda a todo tipo de recursos como PDFs, imágenes o vídeos propios o <span style="color:#9C0C54">compartidos</span> por otros profesionales.</p>
+  </div>
+  <div class="imgListadoContainer imgListado2">
+  </div>
+</div>
+
+<div class="listadoFuncionesContainer">
+  <div class="listadoFunciones">
+    <div class="imgListadoContainer imgListado3">
+    </div>
+    <div class="textoListado">
+      <p class="textoP">ESTADÍSTICAS</p>
+      <p>Visualice de forma gráfica las distintas estadísticas que ayudarán a la <span style="color:#9C0C54">predicción del riesgo</span> de ablación en mujeres.</p>
+    </div>
+  </div>
+</div>
+
+<div class="listadoFunciones">
+  <div class="textoListado">
+    <p class="textoP">CHAT</p>
+    <p>Póngase en <span style="color:#9C0C54">contacto</span>con otros profesionales registrados en la plataforma mediante nuestro chat.</p>
+  </div>
+  <div class="imgListadoContainer imgListado4">
+  </div>
+</div>
+
+<div class="listadoFuncionesContainer conMargen">
+  <div class="listadoFunciones">
+    <div class="textoListado">
+      <p class="textoP">AULA VIRTUAL</p>
+      <p>Interactúe con el modelo en 3D de una vagina con los diferentes tipos de mutilación y utilícelo en formación para conocer mejor las causas de la <span style="color:#9C0C54">mutilación genital femenina</span>.</p>
+    </div>
+    <div class="imgListadoContainer imgListado5">
+    </div>
+  </div>
+</div>
 
 <div class=recursosDiv>
   <h2 class="recursosText">RECURSOS <b>MULTIMEDIA</b></h2>

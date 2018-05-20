@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit{
         console.log(this.socketID);
     });
     this.conversacion = {
-      Nombre: "'Busca a un contacto y empieza a chatear!'",
+      Nombre: "'Busque a un contacto y empiece a chatear!'",
     }
     if(sessionStorage.getItem('asociacion') != null){
       this.asociacion = true;
