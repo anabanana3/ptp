@@ -32,6 +32,7 @@ urlTieneConsecSalud:string = 'https://aisha.ovh/api/tieneConsecuencias';
 urlTieneIndicadores:string = 'https://aisha.ovh/api/tieneIndicadores';
 urlPublicar:string = 'https://aisha.ovh/api/privados/publicar';
 
+
   constructor(private http:Http) { }
 
 
@@ -758,4 +759,18 @@ desactivarComentarios(bod, id){
     return res.json();
   })
 }
+
+deleteExpediente(id){
+  let token = sessionStorage.token;
+  let headers = new Headers({
+    'Content-Type':'application/json',
+    'Authorization':token
+  });
+  let url = this.urlExp+'/id='+id;
+  return this.http.delete(url, {headers}).map(res=>{
+    return res.json();
+  })
+}
+
+
 }

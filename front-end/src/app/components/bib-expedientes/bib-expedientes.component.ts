@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit} from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { ProfesionesService } from '../../services/profesiones.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+
 
 @Component({
   selector: 'app-bib-expedientes',
@@ -46,7 +50,13 @@ profesiones = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute) {
+  sitio;
+  idSitio;
+
+  @ViewChild('place') public searchElement: ElementRef;
+
+
+  constructor(private _expedientesService:ExpedientesService, private _profService:ProfesionesService, private router:ActivatedRoute,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
       if(sessionStorage.length == 0){
         return;
       }
@@ -89,6 +99,9 @@ profesiones = new Array();
      this.Filtros.Lugar = sessionStorage.FLugar;
      this.Filtros.Etnia = sessionStorage.FEtnia;
      this.Filtros.TipoMGF = sessionStorage.FTipoMGF;
+
+     //Obtengo los datos de Google Maps
+
      console.log(this.Filtros);
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
@@ -120,7 +133,7 @@ profesiones = new Array();
        this.  url += '&f2='+null;
      }
      //Lugar
-     if(sessionStorage.FLugar != ''){
+     if(sessionStorage.FLugar != null){
        this.url += '&l='+sessionStorage.FLugar;
      }else{
        this.url += '&l='+null;
@@ -180,6 +193,13 @@ profesiones = new Array();
      sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
      console.log(sessionStorage);
 
+     this.Filtros.Lugar = null;
+     if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
+       let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
+       this.Filtros.Lugar = idLugar;
+       sessionStorage.setItem('FLugar', idLugar);
+     }
+
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
      if(sessionStorage.FAutor != ''){
@@ -210,11 +230,16 @@ profesiones = new Array();
        this.  url += '&f2='+null;
      }
      //Lugar
-     if(sessionStorage.FLugar != ''){
+     if(this.Filtros.Lugar != null){
        this.url += '&l='+sessionStorage.FLugar;
-     }else{
-       this.url += '&l='+null;
-     }
+      }else{
+        this.url += '&l='+null;
+      }
+    //  if(sessionStorage.FLugar != ''){
+    //    this.url += '&l='+sessionStorage.FLugar;
+    //  }else{
+    //    this.url += '&l='+null;
+    //  }
      //Etnia
      if(parseInt(sessionStorage.FEtnia) != 0){
        this.url += '&e='+parseInt(sessionStorage.FEtnia)
@@ -268,7 +293,7 @@ profesiones = new Array();
      sessionStorage.FFecha1 = "";
      this.Filtros.Fecha2 = "";
      sessionStorage.FFecha2 = "";
-     this.Filtros.Lugar = "";
+     this.Filtros.Lugar = null;
      sessionStorage.FLugar = "";
      this.Filtros.Etnia = 0;
      sessionStorage.FEtnia = "";
@@ -315,7 +340,28 @@ profesiones = new Array();
      }
    }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.apiGoogle();
+  }
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
+
+        this.sitio.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+
+
+
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
   }
 
 }

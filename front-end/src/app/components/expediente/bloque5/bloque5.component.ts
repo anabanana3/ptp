@@ -75,6 +75,7 @@ export class Bloque5Component implements OnInit {
               this._expedienteService.addIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
                 this.createIndicadores = true;
                 console.log(data);
+                this.terminar();
               })
             }
 
@@ -83,11 +84,11 @@ export class Bloque5Component implements OnInit {
             if(this.selecionados.length > 0){
                 this._expedienteService.updateIndicadores(exp, idBloque, this.selecionados).subscribe(data=>{
                   console.log(data);
+                  this.terminar();
                 });
             }
           }
 
-         this.terminar();
 
         }
       });
