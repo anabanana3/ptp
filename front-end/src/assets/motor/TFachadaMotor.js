@@ -3,15 +3,16 @@ class TFachadaMotor {
   constructor(){
     this.escena = new TNodo("Escena");
     this.gestor = new TGestorRecursos();
-  //Registro para objetos
+    //Registro para objetos
     this.regLuces = new Array();
     this.regCamaras = new Array();
     this.animaciones = [];
     this.objetos = [];
   }
-//En nuestro motor creamos los nodos con un nombre asignado que le damos
-//nosotras, por lo que para crear, borrar etc necesitamos pasarle el nombre
-//del nodo.
+
+  //En nuestro motor creamos los nodos con un nombre asignado que le damos
+  //nosotras, por lo que para crear, borrar etc necesitamos pasarle el nombre
+  //del nodo.
   crearNodo(nombre, padre, entidad){
     let nodo = new TNodo(nombre, padre);
     if (entidad != null){
@@ -19,6 +20,7 @@ class TFachadaMotor {
     }
     return nodo;
   }
+
   borrarNodo(nodo){
     for (var i = 0; i < this.objetos.length; i++) {
       if(this.objetos[i].nombre != "Piernas"){
@@ -28,7 +30,8 @@ class TFachadaMotor {
     let padre = nodo.getPadre();
     padre.removeHijo(nodo);
   }
-//este metodo lo usamos para crear los nodos transformacion en el arbol
+
+  //este metodo lo usamos para crear los nodos transformacion en el arbol
   crearTransform(){
     let trans = new TTransformacion();
     return trans;
@@ -49,15 +52,14 @@ class TFachadaMotor {
     nodoTrasla.entidad.trasladar(tx, ty, tz);
   }
 
+  //Para crear los objetos Animacion, Camara, Luz y Malla
+  //tenemos dos metodos distintos, uno crea unicamente el nodo donde se
+  //encuentra dicho objeto y otro llamado CrearXCompleto, en el cual
+  //creamos el objeto con todos sus nodos padre desde el nodo escena.
+  //Estos son: (Escalar) + Rotar + TRasladar + Objeto
 
-//Para crear los objetos Animacion, Camara, Luz y Malla
-//tenemos dos metodos distintos, uno crea unicamente el nodo donde se
-//encuentra dicho objeto y otro llamado CrearXCompleto, en el cual
-//creamos el objeto con todos sus nodos padre desde el nodo escena.
-//Estos son: (Escalar) + Rotar + TRasladar + Objeto
-
-//Por lo general usamos CrearXCompleto pero los demas nos dan la posibilidad
-//de crear un objeto independientemente.
+  //Por lo general usamos CrearXCompleto pero los demas nos dan la posibilidad
+  //de crear un objeto independientemente.
 
   //---- Animacion ----/
   crearAnimacion(nombre, padre, carpeta){
@@ -99,7 +101,7 @@ class TFachadaMotor {
     return cam;
   }
 
-//Metodo para borrar todas las camaras de la escena desde la raiz
+  //Metodo para borrar todas las camaras de la escena desde la raiz
   borrarCamaraCompleto(){
     for(let i=0; i<this.regCamaras.length; i++){
       this.escena.removeHijo(this.regCamaras[i].getPadre().getPadre());
@@ -158,8 +160,8 @@ class TFachadaMotor {
     return malla;
   }
 
-//Creamos el shader pasandole el FragmentShader.frag, VertexShader.vert,
-//ToonFragmentShader.frag y ToonVertexShader.vert
+  //Creamos el shader pasandole el FragmentShader.frag, VertexShader.vert,
+  //ToonFragmentShader.frag y ToonVertexShader.vert
   crearShader(frag, vert, toonfrag, toonvert){
     let shader = new TShader();
     shader.cargarFichero(frag);
