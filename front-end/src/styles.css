@@ -64,6 +64,21 @@ br{
   z-index: 10;
 }
 
+.dropdown-motor{
+  overflow: hidden;
+  width: 100px;
+  height: 150px;
+}
+
+.dropdown-content-motor{
+  display: none;
+  z-index: 2;
+}
+
+.dropdown-motor:hover .dropdown-content-motor{
+  display: block;
+}
+
 .content{
   position: relative;
 }
@@ -1001,7 +1016,7 @@ br{
   margin: 0 auto;
   /* margin-top: 40px; */
   display: inline;
-  margin-left: 10%;
+  /* margin-left: 10%; */
 }
 
 .gineblock{

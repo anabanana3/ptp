@@ -13,21 +13,33 @@
   </div>-->
     <div class="content">
       <div class="contenedor">
-        <button class="boton-flotante" id="tipo0" (click)="real()">
-          <span id="span">SIN MGF</span>
-        </button>
-        <button class="boton-flotante" id="tipo1" (click)="tipo1()">
-          <span id="span">TIPO 1</span>
-        </button>
-        <button class="boton-flotante" id="tipo2" (click)="tipo2()">
-          <span id="span">TIPO 2</span>
-        </button>
-        <button class="boton-flotante" id="tipo3" (click)="tipo3()">
-          <span id="span">TIPO 3</span>
-        </button>
+        <div class="dropdown-motor">
+          <button class="boton-flotante" id="tipos">
+            <span id="span">TIPOS</span>
+          </button>
+          <div class="dropdown-content-motor">
+            <button class="boton-flotante" id="tipo0" (click)="real()">
+              <span id="span">SIN MGF</span>
+            </button>
+            <button class="boton-flotante" id="tipo1" (click)="tipo1()">
+              <span id="span">TIPO 1</span>
+            </button>
+            <button class="boton-flotante" id="tipo2" (click)="tipo2()">
+              <span id="span">TIPO 2</span>
+            </button>
+            <button class="boton-flotante" id="tipo3" (click)="tipo3()">
+              <span id="span">TIPO 3</span>
+            </button>
+          </div>
+        </div>
+
         <button class="boton-flotante" id="tipo4" (click)="cartoon()">
           <span id="span">{{nombre}}</span>
         </button>
+        <button class="boton-flotante" id="animacion" (click)="animacion()">
+          <span id="span">ANIMACIÓN</span>
+        </button>
+
       </div>
       <!-- <div class="">
         <button class="boton-flotante" id="tipoLuz" (click)="cambiarLuz()">

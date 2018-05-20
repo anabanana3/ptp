@@ -396,6 +396,11 @@
   .divExp{width: 50%;}
   .sizeinput{width: 100%;}
   .divLabelsDeUno{width: 100%;}
+
+  #overlay{
+    font-size: 10%;
+    width: 80%;
+  }
 }
 
 /****** HEADER *****/

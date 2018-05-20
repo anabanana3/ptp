@@ -80,9 +80,23 @@ export class CarpetasService {
       'Content-Type':'application/json',
       'Authorization': token
     });
-    let url = this.carpetaExpURL2+'/delete/'+idC;
+    //Falta poner el tipo de borrado
+    let url = this.carpetaExpURL2+'/delete/idC='+idC+'&t=1&u='+sessionStorage.iD;
 
     return this.http.delete(url, {headers}).map(res=> res.json());
+  }
+
+  addExpedienteToFolder(idExp, idCarpeta){
+    let token = sessionStorage.token,
+    headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    let url = this.carpetaExpURL2+'/add';
+    return this.http.post(url, {headers}).map(res=>{
+      return res.json();
+    })
+
   }
 
 }

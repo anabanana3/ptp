@@ -181,7 +181,7 @@ button:hover{
   position:absolute;
   width: 76px;
   height: 20px;
-  margin-left:16px;
+  margin-left:10px;
   margin-top:16px;
   border:none;
   outline:none;
@@ -189,29 +189,39 @@ button:hover{
   /* font-size:36px; */
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   /* transition:.3s; */
-  padding-bottom: 5%;
+  /* padding-bottom: 5%; */
   z-index: 15;
+}
+#tipo0 {
+  background: #0C8A9C;
+  margin-top: 40px;
 }
 #tipo1 {
   background: #0C8A9C;
-  margin-left: 100px;
+  margin-top: 65px;
 }
 #tipo2 {
   background: #0C8A9C;
-  margin-left: 180px;
+  margin-top: 90px;
 }
 #tipo3 {
   background: #0C8A9C;
-  margin-left: 260px;
+  margin-top: 115px;
 }
 #tipo4 {
   background: #880042;
-  margin-left: 340px;
+  margin-left: 90px;
   width: 120px;
 }
 #span {
   text-align: center;
   transition: .5s;
+}
+
+#animacion {
+  background: #880042;
+  margin-left: 215px;
+  width: 100px;
 }
 
 .switch{
@@ -261,14 +271,14 @@ button:hover{
   border-radius: 10px;
   transition: all 200ms ease;
 }
-
+/*
 .btn-activo{
   background: grey;
-}
+} */
 
 .contenedor{
-  width: 240px;
-  height: 90px;
+  width: 100%;
+  height: 50%;
   position: absolute;
   left: 0;
   top: 0;

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit} from '@angular/core';
 import { ExpedientesService } from '../../services/expedientes.service';
 import { CarpetasService } from '../../services/carpetas.service';
+
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
 
 
 @Component({
@@ -58,7 +61,12 @@ etnias = new Array();
 
   mostrarForm:boolean = false;
 
-  constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService) {
+
+  sitio;
+  idSitio;
+  @ViewChild('place') public searchElement: ElementRef;
+
+  constructor(private _expedientesService:ExpedientesService, private _carpetaService:CarpetasService,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
     if(sessionStorage.length == 0){
       return;
     }else{

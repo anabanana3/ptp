@@ -14,6 +14,7 @@
 
 }
 .conversacioness{
+  display: flex;
   border-bottom: 1px solid #DBDBDB;
   padding: 7px;
   cursor: pointer;
@@ -81,6 +82,25 @@
 }
 
 .btn-chat-volver{display: none}
+
+.fotoChat{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+}
+.textLeft{
+  text-align: left;
+}
+.infoChat{
+  margin-left: 2%;
+}
+.tituloChat{
+  text-align: left;
+  margin-left: 5%;
+}
 
 @media (max-width: 481px) {
   .chat-contactos{

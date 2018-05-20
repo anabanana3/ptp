@@ -9,6 +9,7 @@ declare var mostrarCartoon;
 declare var mostrarNoCartoon;
 declare var borrarLuzCompleto;
 declare var moverCamara;
+declare var mostrarAnimacion;
 
 @Component({
   selector: 'app-motor-grafico',
@@ -89,6 +90,10 @@ export class MotorGraficoComponent implements AfterViewInit {
       this.nombre = "CARTOON"
       new mostrarNoCartoon();
     }
+  }
+
+  animacion(){
+    new mostrarAnimacion();
   }
 
   // cambiaLuz(num){
