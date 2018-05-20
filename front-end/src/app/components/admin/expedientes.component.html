@@ -13,7 +13,7 @@
       <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1" placeholder="Desde">
       <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2" placeholder="Hasta">
       <!-- <div class="sizeinput" id="locationField"> -->
-      
+
         <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
       <!-- </div> -->
       <!-- <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar" placeholder="Lugar"> -->
@@ -43,7 +43,8 @@
           </ng-container>
           <ng-container matColumnDef="autor">
             <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Autor.split("'")[1]}} </mat-cell>
+            <!-- .split("'")[1] -->
+            <mat-cell *matCellDef="let element"> {{element.Autor}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="fecha">
             <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>

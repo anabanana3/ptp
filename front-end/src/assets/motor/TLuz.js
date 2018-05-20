@@ -36,10 +36,7 @@ class TLuz extends TEntidad{
     return this.difusa;
   }
 
-  beginDraw(){
-    // GLDifuso = this.difusa;
-    // GLAmbiental = this.ambiente;
-    // GLEspecular = this.especular;
-  }
+  beginDraw(){}
+  
   endDraw(){}
 }

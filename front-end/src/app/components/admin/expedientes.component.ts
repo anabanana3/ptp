@@ -54,7 +54,7 @@ export class ExpedientesAdminComponent {
     this._expedientesServices.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
     this._profService.getProfesiones().subscribe(data=>this.profesiones = data);
     //Recupero los 10 ultimos expedientes
-    let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
+    let url = 'https://aisha.ovh/api/expedientes/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
     this._expedientesServices.buscar2Exp(url).subscribe(data =>{
       if(data.Codigo == 501){
         location.href = '/expired';
@@ -70,7 +70,7 @@ export class ExpedientesAdminComponent {
   buscar(pag){
     let tam = this.tamPag;
     console.log(this.Filtros);
-    this.url='https://www.aisha.ovh/api/publicos/search/';
+    this.url='https://www.aisha.ovh/api/expedientes/search/';
     //Recupero la informacion del lugar de google Maps
     if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
       let idLugar = this.sitio.gm_accessors_.place.gd.place.id;

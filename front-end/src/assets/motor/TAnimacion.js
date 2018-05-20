@@ -1,5 +1,9 @@
 class TAnimacion extends TEntidad {
-
+  /*
+  La clase TAnimacion es un tipo de entidad, por ello hereda de ella
+  la entidad animacion tiene, un array de mallasy lo necesario para cambiar el frame
+  a mostrar y correr el reloj.
+  */
   constructor(){
     super();
     this.mallas = [];
@@ -10,26 +14,34 @@ class TAnimacion extends TEntidad {
   }
 
   loadAnimacion(carpeta, padre){
+    //cargamos la animacion, hacemos un bucle para cargar cada modelo de la carpeta de la animacion
     for(let i = 0; i<4; i++){
-      let malla = {
+      //cada modelo tiene una malla, un material y una textura
+      let modelo = {
         malla: {},
         material: {},
         textura: {}
       }
 
-      malla.malla = GFachada.gestor.getRecurso(carpeta + "/" + i + ".obj", "malla");
-      malla.material = GFachada.gestor.getRecurso("VaginaCarne.mtl", "material");
+      modelo.malla = GFachada.gestor.getRecurso(carpeta + "/" + i + ".obj", "malla");
+      modelo.material = GFachada.gestor.getRecurso("VaginaCarne.mtl", "material");
       // malla.textura = GFachada.gestor.getRecurso("textura.jpg", "textura");
-      malla.textura = null;
-      console.log(malla);
-      this.mallas.push(malla);
+      modelo.textura = null;
+      console.log(modelo);
+      this.mallas.push(modelo);
     }
   }
 
   beginDraw(){
+    //añadimos al program los datos de los materiales
     if(this.currentFrame + 1 === this.mallas.length){
-        quitarAnimacion();
-        return;
+      /*
+      cuando vamos a pintar el ultimo frame, paralizamos la ejecucion
+      quitarAnimacion -> funcion que esta en funciones.js que para la animacion y muestra
+      el modelo por defecto
+      */
+      quitarAnimacion();
+      return;
     }
 
     // console.log(this.currentFrame);
@@ -37,7 +49,7 @@ class TAnimacion extends TEntidad {
     let malla = this.mallas[this.currentFrame]
     let gl = GShader.gl;
     let programa = GShader.programa;
-// console.log(malla.material);
+    // console.log(malla.material);
     gl.uniform4fv(programa.uMaterialDiffuse, malla.material.colorDifuso);
     gl.uniform4fv(programa.uMaterialSpecular, malla.material.colorEspecular);
     gl.uniform4fv(programa.uMaterialAmbient, malla.material.colorAmbiente);
@@ -57,16 +69,22 @@ class TAnimacion extends TEntidad {
     mat4.transpose(normalMatrix, normalMatrix);
     gl.uniformMatrix4fv(programa.NormalMatrix, false, normalMatrix);
 
+    //cambiamos el tiempo al actual
     let segundos = new Date().getSeconds();
     this.time = segundos;
 
     if((this.time - this.lastTime) >= this.frameTime){
+      /*
+      en este if comprobamos si ha pasado el tiempo que hemos indicado como frameTime
+      para mostrar el siguiente frame
+      */
       console.log('siguiente frame');
       // gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       this.currentFrame ++;
       this.lastTime = this.time;
     }
 
+    //llamamos al draw de TRecursoMalla para añadir el modelo del frame correspondiente y la textura
     this.mallas[this.currentFrame].malla.draw(malla.textura);
   }
 }
