@@ -2,7 +2,7 @@ export interface Asociacion{
   Nombre:string;
   Direccion: string;
   ID_Lugar?: string;
-  Lugar?: string;
+  Sitio?: string;
   Pais?: string;
   Email: string;
   Password: string;

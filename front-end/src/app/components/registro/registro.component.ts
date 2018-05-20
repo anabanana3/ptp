@@ -127,16 +127,17 @@ export class RegistroComponent implements OnInit {
   guardarDatos(form, place){
 
 
-    // console.log(this.sitio.gm_accessors_.place.Jc.place.id);
+    // console.log(this.sitio.gm_accessors_.place.gd.place.id);
     console.log('Obtengo el id del sitio');
-    console.log(this.sitio.gm_accessors_.place.Jc.place.id);
+    console.log(this.sitio);
+    console.log(this.sitio.gm_accessors_.place.gd.place.id);
 
     console.log('Obtenfo el nombre del sitio');
-    console.log(this.sitio.gm_accessors_.place.Jc.place.name);
+    console.log(this.sitio.gm_accessors_.place.gd.place.name);
 
     console.log(place.value);
     console.log('Calculo el puto pais al que pertenece el sitio');
-    let aux = this.sitio.gm_accessors_.place.Jc.place.address_components;
+    let aux = this.sitio.gm_accessors_.place.gd.place.address_components;
     console.log('Prueba');
     if(aux.length >=5 ){
       console.log(aux[aux.length-2]);
@@ -144,7 +145,7 @@ export class RegistroComponent implements OnInit {
       console.log(aux[aux.length-1]);
     }
     //Muestro el pais del sitio seleccionado => el ultimo valor del array
-    let datos = this.sitio.gm_accessors_.place.Jc.place.address_components;
+    let datos = this.sitio.gm_accessors_.place.gd.place.address_components;
     console.log(datos);
     console.log(this.idSitio)
   }
@@ -152,9 +153,9 @@ export class RegistroComponent implements OnInit {
   getDataGoogle(l){
     console.log(l)
     let pais,
-        nombre=this.sitio.gm_accessors_.place.Jc.place.name ,
-        id = this.sitio.gm_accessors_.place.Jc.place.id,
-        aux = this.sitio.gm_accessors_.place.Jc.place.address_components;
+        nombre=this.sitio.gm_accessors_.place.gd.place.name ,
+        id = this.sitio.gm_accessors_.place.gd.place.id,
+        aux = this.sitio.gm_accessors_.place.gd.place.address_components;
     if(aux.length >=5 ){
       pais = aux[aux.length-2].long_name;
     }else{
@@ -165,12 +166,12 @@ export class RegistroComponent implements OnInit {
       //Usuario
       this.usuario.Pais = pais;
       this.usuario.ID_Lugar = id;
-      this.usuario.Lugar = nombre;
+      this.usuario.Sitio = nombre;
     }else{
       //Asociacion
       this.asociacion.Pais = pais;
       this.asociacion.ID_Lugar = id;
-      this.asociacion.Lugar = nombre;
+      this.asociacion.Sitio = nombre;
     }
   }
 

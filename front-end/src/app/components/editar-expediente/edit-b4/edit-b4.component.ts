@@ -28,6 +28,8 @@ export class EditB4Component implements OnInit {
   consecBD;
   consecuencias = new Array();
 
+  cSel = new Array();
+
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
     let id:number;
     activatedRoute.params.subscribe(params=>{
@@ -71,6 +73,8 @@ export class EditB4Component implements OnInit {
         this.json.Otros = this.json.Otros.split("'")[1];
       }
 
+      // this.marcarConsecuencias();
+
       this.form = new FormGroup({
         'Detec_MGF': new FormControl(),
         'Cicatriz_genital': new FormControl()
@@ -90,30 +94,37 @@ export class EditB4Component implements OnInit {
   }
 
   guardarDatos(forma){
-    console.log('Metodo para guardar los datos');
-    console.log(forma);
-    if(this.consecuencia.length > 0){
-      console.log("entro 1"+ this.consecuenciasSalud.length);
-      for(var i=1; i< this.consecuenciasSalud.length+1; i++){
-        if(this.consecuencia[i] == true){
-          console.log("entro 2 "+ this.consecuencias[i]);
-          this.consecuencias.push(i);
-          console.log(this.consecuencias);
-        }
-      }
-    }
+    console.log(this.cSel);
+    console.log(this.consecuenciasSalud);
+    console.log(this.consecBD);
+    console.log(this.consecuencia);
+    this.obtenerSel();
+    //this.selecionarCampos();
+
+    // console.log('Metodo para guardar los datos');
+    // console.log(forma);
+    // if(this.consecuencia.length > 0){
+    //   console.log("entro 1"+ this.consecuenciasSalud.length);
+    //   for(var i=1; i< this.consecuenciasSalud.length+1; i++){
+    //     if(this.consecuencia[i] == true){
+    //       console.log("entro 2 "+ this.consecuencias[i]);
+    //       this.consecuencias.push(i);
+    //       console.log(this.consecuencias);
+    //     }
+    //   }
+    // }
     //Tengo que añadir las que habia en la BD
-    for(let i=0; i<this.consecBD.length; i++){
-      this.consecuencias.push(this.consecBD[i].ID_Consecuencia);
-    }
-    console.log(this.consecuencias);//Consecuencias selecionadas por el usuario
+    // for(let i=0; i<this.consecBD.length; i++){
+    //   this.consecuencias.push(this.consecBD[i].ID_Consecuencia);
+    // }
+    console.log(this.consecuencia);//Consecuencias selecionadas por el usuario
     console.log(this.json);
     this._expedientesService.updateBloque4(this.json).subscribe(data=>{
       if(data.Codigo == 501){
         location.href = '/expired';
         return;
       }
-      this._expedientesService.updateConsecuenciasSalud(this.json.ID_Expediente, this.json.ID_Bloque, this.consecuencias).subscribe(data => {
+      this._expedientesService.updateConsecuenciasSalud(this.json.ID_Expediente, this.json.ID_Bloque, this.consecuencia).subscribe(data => {
         console.log(data);
       });
     })
@@ -134,6 +145,7 @@ export class EditB4Component implements OnInit {
         if(aux.ID_Consecuencia == this.consecuenciasSalud[j].ID_Consecuencia){
           //Encontrada
           this.consecuenciasSalud[j].Cheked = 1;
+          this.cSel[j] = true;
           encontrada = true;
         }
       }
@@ -141,6 +153,19 @@ export class EditB4Component implements OnInit {
     console.log('Muestro las consecuenciasSalud despues de los bucles');
     console.log(this.consecuenciasSalud);
   }
+
+  obtenerSel(){
+    console.log('prueba');
+    for(let i=0; i<this.cSel.length; i++){
+      if(this.cSel[i] == true){
+        this.consecuencia.push(this.consecuenciasSalud[i].ID_Consecuencia);
+      }else{
+        this.consecuencia.splice(this.consecuenciasSalud[i].ID_Consecuencia,1);
+      }
+    }
+    console.log(this.consecuencia);
+  }
+
   //guardo los id
   loadConsecuencias(id){
     if(this.consecuencia.length > 0){

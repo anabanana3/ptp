@@ -8,7 +8,7 @@ export interface User{
   ID_Asociacion?: number;
   ID_Profesion?: number;
   ID_Lugar: string;
-  Lugar?:string;
+  Sitio?:string;
   Pais?:string;
   Direccion: string;
   DNI: string;
