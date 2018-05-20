@@ -60,11 +60,15 @@
     display: block;
   }
 
-  .botonesPrincipal{
+  /* .botonesPrincipal{
     padding-top:0px;
     display: flex;
     justify-content: center;
     margin-top:20px;
+  } */
+
+  .botonesPrincipal{
+    margin-top:0px;
   }
 
   .registro{
@@ -126,7 +130,7 @@
     line-height: 20px;
   }
 
-  .imgCabecera{
+  .imgCabeceraContainer{
     display: none;
   }
 
@@ -224,6 +228,12 @@
   }
 }
 
+@media (max-width: 320px) {
+  .botonesPrincipal{
+    width: 100%;
+  }
+}
+
 @media (max-width: 481px) {
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
   /* html{
@@ -241,10 +251,26 @@
   }
 
   .botonesPrincipal{
-    width:321px;
-    margin-bottom:30px;
+    /* width: 100%; */
+    /* width: 321px; */
+    margin-bottom: 30px;
+    /* border: dotted; */
+    margin: 0 auto;
+    /* margin-top: 30px; */
   }
 
+  .containerVerMas{
+
+  }
+
+  .dchaVerMas{
+
+  }
+
+  .izqVerMas{
+
+  }
+  
   .recursosDiv{padding: 0px;}
 
   .recursosText{margin-left:8px;}

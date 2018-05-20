@@ -58,7 +58,6 @@
             <p>{{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
-
       </div>
 
       <div class="permisosVerExp">
@@ -358,33 +357,11 @@
 
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
-                  <label>Precisa mediación intercultural::</label>
+                  <label>Precisa mediación intercultural:</label>
                 </div>
                 <div class="divExpDeUno">
                   <label *ngIf="k.Mediacion == 1">Sí</label>
                   <label *ngIf="k.Mediacion == 0">No</label>
-                </div>
-              </div>
-
-              <div *ngIf="curso != 'NULL'">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Curso de la menor:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{k.Curso}}</label>
-                  </div>
-                </div>
-              </div>
-
-              <div *ngIf="centro_Salud != 'NULL'">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Centro de salud de la menor:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{k.Centro_Salud}}</label>
-                  </div>
                 </div>
               </div>
 
@@ -458,7 +435,7 @@
               <div *ngIf="b2Otros != ''">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
-                    <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:</label>
+                    <label>Otros aspectos a tener en cuenta:</label>
                   </div>
                   <div class="divExpDeUno">
                     <label>{{b2Otros}}</label>
@@ -684,96 +661,170 @@
                 </div>
               </div>
 
-
               <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
               <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS INMEDIATAS</h2>
 
+              <div class="complicaciones" *ngFor="let c of consecSalud1">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
 
-              <div *ngFor="let c of consecSalud1">
-                <div>
-                  <label>{{c.Nombre}}</label>
+              <div class="complicaciones" *ngIf="!consecSalud1?.length">
+                <label>No hay registros</label>
+              </div>
+
+              <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS A LARGO PLAZO</h2>
+
+
+              <div class="complicaciones" *ngFor="let c of consecSalud2">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud2?.length">
+                <label>No hay registros</label>
+              </div>
+
+              <h2 class="text16 textPink perfilForm">CONSECUENCIAS OBSTÉTRICO GINECOLÓGICAS</h2>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud4">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud4?.length">
+                <label>No hay registros</label>
+              </div>
+
+              <h2 class="text16 textPink perfilForm">CONSECUENCIAS PSICOSOCIALES</h2>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud5">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud5?.length">
+                <label>No hay registros</label>
+              </div>
+
+              <h2 class="text16 textPink perfilForm">CONSECUENCIAS SOBRE LA SEXUALIDAD</h2>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud6">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud6?.length">
+                <label>No hay registros</label>
+              </div>
+
+              <div *ngIf="w.Otros != ''">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Otras:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.Otros}}</label>
+                  </div>
                 </div>
               </div>
-              <div *ngIf="!consecSalud1?.length">
-                <p>No hay registros</p>
-              </div>
-              <h4>Consecuencias Físicas A Largo Plazo</h4>
-              <div *ngFor="let c of consecSalud2">
-                <div>
-                  <p>{{c.Nombre}}</p>
+
+              <h2 class="cherry">INTERVENCIÓN</h2>
+
+              <div *ngIf="w.Formato_int != ''">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Formato de la intervención:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.Formato_int}}</label>
+                  </div>
                 </div>
               </div>
-              <div *ngIf="!consecSalud2?.length">
-                <p>No hay registros</p>
-              </div>
-              <h4>Consecuencias Obstétrico Ginecológicas</h4>
-              <div *ngFor="let c of consecSalud4">
-                <div>
-                  <p>{{c.Nombre}}</p>
+
+              <div *ngIf="w.Consejos != ''">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Consejos:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.Consejos}}</label>
+                  </div>
                 </div>
               </div>
-              <div *ngIf="!consecSalud4?.length">
-                <p>No hay registros</p>
-              </div>
-              <h4>Consecuencias Psicosociales</h4>
-              <div *ngFor="let c of consecSalud5">
-                <div>
-                  <p>{{c.Nombre}}</p>
-                </div>
-              </div>
-              <div *ngIf="!consecSalud5?.length">
-                <p>No hay registros</p>
-              </div>
-              <h4>Consecuencias sobre la Sexualidad</h4>
-              <div *ngFor="let c of consecSalud6">
-                <div>
-                  <p>{{c.Nombre}}</p>
-                </div>
-              </div>
-              <div *ngIf="!consecSalud6?.length">
-                <p>No hay registros</p>
-              </div>
-              <h4 *ngIf="w.Otros != ''">Otras</h4>
-              <p *ngIf="w.Otros != ''">{{w.Otros}}</p>
-              <h3>Intervención</h3>
-              <p *ngIf="w.Formato_int != ''">Formato de la intervención:
-                <b>{{w.Formato_int}}</b>
-              </p>
-              <p *ngIf="w.Consejos != ''">Consejos:
-                <b>{{w.Consejos}}</b>
-              </p>
+
             </div>
             <div *ngIf="bloque4.length == 0">
               <h3>No hay datos</h3>
             </div>
           </div>
           </mat-tab>
+
           <mat-tab label="Viajes">
             <div class="contentVerExp">
-              <h3>Valoración sobre posibles viajes</h3>
+
+              <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
+
               <div *ngFor="let w of bloque5">
-              <p *ngIf="w.Viajes == 1 || w.Viajes == 0">Realiza viajes al país de origen en vacaciones:
-                <b *ngIf="w.Viajes == 1">Sí</b>
-                <b *ngIf="w.Viajes == 0">No</b>
-              </p>
-              <p *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:
-                <b *ngIf="w.ViajesPlanificados == 1">Sí</b>
-                <b *ngIf="w.ViajesPlanificados == 0">No</b>
-              </p>
-              <p *ngIf="w.Intervencion != ''">Descripción del formato de la intervención:
-                <b>{{w.Intervencion}}</b>
-              </p>
-              <p *ngIf="w.Consejos != ''">Consejos:
-                <b>{{w.Consejos}}</b>
-              </p>
+
+                <div *ngIf="w.Viajes == 1 || w.Viajes == 0">
+                  <div class="divLabelsVerExp">
+                    <div class="divExpDeUno">
+                      <label>Realiza viajes al país de origen en vacaciones:</label>
+                    </div>
+                    <div class="divExpDeUno">
+                      <label *ngIf="w.Viajes == 1">Sí</label>
+                      <label *ngIf="w.Viajes == 0">No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">
+                  <div class="divLabelsVerExp">
+                    <div class="divExpDeUno">
+                      <label>Tienen planificado realizar un viaje proximamente:</label>
+                    </div>
+                    <div class="divExpDeUno">
+                      <label *ngIf="w.ViajesPlanificados == 1">Sí</label>
+                      <label *ngIf="w.ViajesPlanificados == 0">No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="w.Intervencion != ''">
+                  <div class="divLabelsVerExp">
+                    <div class="divExpDeUno">
+                      <label>Descripción del formato de la intervención:</label>
+                    </div>
+                    <div class="divExpDeUno">
+                      <label>{{w.Intervencion}}</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="w.Consejos != ''">
+                  <div class="divLabelsVerExp">
+                    <div class="divExpDeUno">
+                      <label>Consejos:</label>
+                    </div>
+                    <div class="divExpDeUno">
+                      <label>{{w.Consejos}}</label>
+                    </div>
+                  </div>
+                </div>
             </div>
-            <h3>Indicadores de sospecha de MGF en el ambito escolar</h3>
-            <div *ngFor="let i of indicadores">
-              <p>{{i.Nombre}}</p>
+
+            <h2 class="text16 textPink perfilForm">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR</h2>
+
+            <div class="complicaciones" *ngFor="let i of indicadores">
+             <label>- {{i.Nombre}}</label>
+             <br>
             </div>
-            <div *ngIf="!indicadores?.length">
-              <h3>No hay datos</h3>
+
+            <div class="complicaciones" *ngIf="!indicadores?.length">
+              <label>No hay registros</label>
             </div>
+
           </div>
           </mat-tab>
 

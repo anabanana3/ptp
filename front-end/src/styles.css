@@ -181,15 +181,22 @@ br{
   height: 465px;
 }
 
-.imgCabecera{
+.imgCabeceraContainer{
+  width: 59%;
+  float: right;
+  background-image: url("assets/img/Mapa.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  height: 466px;
+}
+
+/* .imgCabecera{
   width: 60%;
-  /* float: right; */
-  /* top: 0; */
   right: 0;
   z-index: -999;
   position: absolute;
-  /* position: relative; */
-}
+} */
 
 .textosCabecera{
   position: absolute;
@@ -217,6 +224,7 @@ br{
   font-weight: lighter;
   line-height: 24px;
   margin: 0;
+  margin-bottom: 30px;
 }
 
 /* .funcionalidades{
@@ -711,7 +719,7 @@ br{
 
 .containerVerMas{
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: 100vh;
 }
 
@@ -723,17 +731,17 @@ br{
   height: 100vh;
   background-repeat:no-repeat;
   background-size:cover;
+  background-position: center;
   background-image:url("assets/img/ninios.jpg");
 }
 
-.flujo{
+/* .flujo{
   width: 100%;
   float:left;
-}
+}*/
 
 .containerFlujo{
   width: 90%;
-  /* border: dotted; */
   float: left;
   margin-top: -35px;
   position: relative;
@@ -745,7 +753,9 @@ br{
   grid-column-end:3;
   grid-row: 1;
   width: 100%;
-  background: #FFFFFF;
+  background-image: url("assets/img/Flujo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   box-shadow: -1px 0 12px 0 rgba(89,89,89,0.50);
 }
 
@@ -929,6 +939,11 @@ br{
   width: 45.7%;
 }
 
+.divExpDeUnoC{
+  margin-bottom: 3px;
+  width: 100%%;
+}
+
 .divExpDeUnoSearch{
   margin-bottom: 3px;
   /* width: 50%; */
@@ -957,6 +972,19 @@ br{
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 71%;
+  text-align: left;
+}
+
+.divLabelsVerExp{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 105%;
   text-align: left;
 }
 
@@ -1313,6 +1341,11 @@ option{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.complicaciones{
+  width: 100%;
+  text-align: left;
 }
 
 .partoContainer{

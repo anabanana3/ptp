@@ -15,30 +15,30 @@
   <link rel="canonical" href="https://www.aisha.ovh/principal/"/>
 </head>
 
-<div style="background:white;z-index:-999;">
-<div class="headerPrincipal">
-  <div class="logoPrincipalDiv">
-    <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
-    <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
-  </div>
+<div class="bgColorWhite">
+  <div class="headerPrincipal">
+    <div class="logoPrincipalDiv">
+      <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
+      <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
+    </div>
 
-  <div *ngIf="!logueado">
-    <div class="botonesPrincipal">
-      <button type="submit" name="button" class="btn-relleno login" [routerLink]="['/login']">INICIA SESIÓN</button>
-      <button type="submit" name="button" class="btn-border login" [routerLink]="['/registro']">REGÍSTRATE</button>
-      <p class="language text12 textPink">ES | EN</p>
+    <div *ngIf="!logueado">
+      <div class="botonesPrincipal">
+        <button type="submit" name="button" class="btn-relleno login" [routerLink]="['/login']">INICIA SESIÓN</button>
+        <button type="submit" name="button" class="btn-border login" [routerLink]="['/registro']">REGÍSTRATE</button>
+        <p class="language text12 textPink">ES | EN</p>
+      </div>
+    </div>
+    <div *ngIf="logueado && !admin && !asociacion">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/home']">MENU</button>
+    </div>
+    <div *ngIf="admin">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/admin']">ADMIN</button>
+    </div>
+    <div *ngIf="asociacion">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/asociacion']">ASOCIACIÓN</button>
     </div>
   </div>
-  <div *ngIf="logueado && !admin && !asociacion">
-    <button type="submit" name="button" class="btn-border login" [routerLink]="['/home']">MENU</button>
-  </div>
-  <div *ngIf="admin">
-    <button type="submit" name="button" class="btn-border login" [routerLink]="['/admin']">ADMIN</button>
-  </div>
-  <div *ngIf="asociacion">
-    <button type="submit" name="button" class="btn-border login" [routerLink]="['/asociacion']">ASOCIACIÓN</button>
-  </div>
-</div>
 
 <!-- CAROUSEL -->
 <!-- <div class="carouselDiv">
@@ -63,20 +63,21 @@
 
 </div> -->
 
-<div class="cabecera">
-  <div class="textosCabecera">
-    <h2 class="tituloCabecera">La red de profesionales a nivel mundial que cambiará la vida de muchas personas</h2>
-    <h1 class="subtituloCabecera">Aisha es una plataforma web que ayuda a profesionales que trabajan con la mutilación genital femenina a gestionar su trabajo y ponerse en contacto con otros profesionales</h1>
-    <button type="submit" name="button" class="btn-border verMas" [routerLink]="['/vermas']">VER MÁS</button>
+  <div class="cabecera">
+    <div class="textosCabecera">
+      <h2 class="tituloCabecera">La red de profesionales a nivel mundial que cambiará la vida de muchas personas</h2>
+      <h1 class="subtituloCabecera">Aisha es una plataforma web que ayuda a profesionales que trabajan con la mutilación genital femenina a gestionar su trabajo y ponerse en contacto con otros profesionales</h1>
+      <button type="submit" name="button" class="btn-border verMas" [routerLink]="['/vermas']">VER MÁS</button>
+    </div>
+    <div class="imgCabeceraContainer">
+      <!-- <img class="imgCabecera" src="../assets/img/Mapa.png" alt="Mapa"> -->
+    </div>
   </div>
-  <img class="imgCabecera" src="../assets/img/Mapa.png" alt="Mapa">
-</div>
 
-
-<div class="funcionalidadesContainer">
-  <img class="imgFunciones" src="../assets/img/Bolitas.png" alt="MisExp">
-  <img class="imgFunciones2" src="../assets/img/BolitasMvl.png" alt="MisExp">
-</div>
+  <div class="funcionalidadesContainer">
+    <img class="imgFunciones" src="../assets/img/Bolitas.png" alt="MisExp">
+    <img class="imgFunciones2" src="../assets/img/BolitasMvl.png" alt="MisExp">
+  </div>
 </div>
 
 <!-- <div class="noticias">
@@ -152,7 +153,7 @@
 <div class="listadoFunciones">
   <div class="textoListado">
     <p class="textoP">CHAT</p>
-    <p>Póngase en <span style="color:#9C0C54">contacto</span>con otros profesionales registrados en la plataforma mediante nuestro chat.</p>
+    <p>Póngase en <span style="color:#9C0C54">contacto</span> con otros profesionales registrados en la plataforma mediante nuestro chat.</p>
   </div>
   <div class="imgListadoContainer imgListado4">
   </div>
@@ -203,6 +204,7 @@
     </div>
 
   </div>
+</div>
 </div>
 
 <app-footer></app-footer>
