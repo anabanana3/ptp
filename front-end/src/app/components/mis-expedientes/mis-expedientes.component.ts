@@ -21,7 +21,7 @@ export class MisExpedientesComponent implements OnInit {
   pagNext:number;
   pagBack:number;
   pagActual:number;
-  tamPag:number=28;
+  tamPag:number=10;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -98,44 +98,77 @@ etnias = new Array();
     }
    }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.apiGoogle();
+  }
+  apiGoogle(){
+    this.mapsAPILoader.load().then(
+      () =>{
+        this.sitio = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["geocode"] });
+
+        this.sitio.addListener('place_change', () => {
+            this.ngZone.run(()=>{
+              let place: google.maps.places.PlaceResult = this.sitio.getPlace();
+              this.idSitio = place.id;
+              if(place.geometry === undefined || place.geometry === null){
+                return
+              }
+            });
+        })
+      }
+    );
   }
 
 // TODO: Funcion para cargar los expedientes privados, publicos o ambos
-cambio(n){
-  this.n = n;
-  this.paginas = new Array();
-  switch(this.n){
-    case 1:
-    this.tipoExp = 1;
-      console.log('Modo Arbol');
-      document.getElementById("arb").style.fontWeight = "bold";
-      document.getElementById("priv").style.fontWeight = "normal";
-      document.getElementById("publ").style.fontWeight = "normal";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag);
+// cambio(n){
+//   this.n = n;
+//   this.paginas = new Array();
+//   switch(this.n){
+//     case 1:
+//     this.tipoExp = 1;
+//       console.log('Modo Arbol');
+//       document.getElementById("arb").style.fontWeight = "bold";
+//       document.getElementById("priv").style.fontWeight = "normal";
+//       document.getElementById("publ").style.fontWeight = "normal";
+//       this.getExpedientesUser(this.tipoExp,1, this.tamPag);
+//
+//     break;
+//     case 2:
+//       console.log("Expedientes Privados");
+//       this.tipoExp = 2;
+//       //TODO: Faltan estos metodos
+//       document.getElementById("arb").style.fontWeight = "normal";
+//       document.getElementById("priv").style.fontWeight = "bold";
+//       document.getElementById("publ").style.fontWeight = "normal";
+//       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
+//     break;
+//     case 3:
+//       console.log("Expedientes Publicos");
+//       this.tipoExp = 3;
+//       //TODO: Faltan estos metodos
+//       document.getElementById("priv").style.fontWeight = "normal";
+//       document.getElementById("publ").style.fontWeight = "bold";
+//       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
+//     break;
+//
+//
+//   }
+// }
 
-    break;
-    case 2:
-      console.log("Expedientes Privados");
-      this.tipoExp = 2;
-      //TODO: Faltan estos metodos
-      document.getElementById("arb").style.fontWeight = "normal";
-      document.getElementById("priv").style.fontWeight = "bold";
-      document.getElementById("publ").style.fontWeight = "normal";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-    break;
-    case 3:
-      console.log("Expedientes Publicos");
-      this.tipoExp = 3;
-      //TODO: Faltan estos metodos
-      document.getElementById("priv").style.fontWeight = "normal";
-      document.getElementById("publ").style.fontWeight = "bold";
-      this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-    break;
-
-
-  }
-}
+elegirTipo(tipo){
+   switch(tipo){
+     case 1:
+       this.tipoExp = 1;
+       document.getElementById("privF").style.fontWeight = "bold";
+       document.getElementById("publF").style.fontWeight = "normal";
+     break;
+     case 2:
+       this.tipoExp = 2;
+       document.getElementById("privF").style.fontWeight = "normal";
+       document.getElementById("publF").style.fontWeight = "bold";
+     break
+   }
+ }
 
 
 mostrarOpciones() {
@@ -294,7 +327,7 @@ getExpedientesUser(tipo,pag, tam){
 }
 
 
-  buscar(pag, tamPag=this.tamPag){
+buscar(pag, tamPag=this.tamPag){
     console.log(this.Filtros);
     console.log('Muestro el estado de la url antes de pillar los datos');
     console.log(this.url);
@@ -303,14 +336,24 @@ getExpedientesUser(tipo,pag, tam){
     sessionStorage.setItem('F2Titulo', this.Filtros.Titulo);
     sessionStorage.setItem('F2Fecha1', this.Filtros.Fecha1);
     sessionStorage.setItem('F2Fecha2', this.Filtros.Fecha2);
-    if(this.Filtros.Lugar !== undefined)
-    sessionStorage.setItem('F2Lugar', this.Filtros.Lugar);
-    if(this.Filtros.Etnia.toString() !== undefined)
-    sessionStorage.setItem('F2Etnia', this.Filtros.Etnia.toString());
+
+    // if(this.Filtros.Lugar !== undefined){
+    //   sessionStorage.setItem('F2Lugar', this.Filtros.Lugar);
+    // }
+    //Obtengo los datos de google maps
+    this.Filtros.Lugar = null;
+    if(this.sitio.gm_accessors_.place.gd.b ==true && this.sitio.gm_accessors_.place.gd.l != ''){
+      let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
+      this.Filtros.Lugar = idLugar;
+      sessionStorage.setItem('F2Lugar', idLugar);
+    }
+    if(this.Filtros.Etnia.toString() !== undefined){
+      sessionStorage.setItem('F2Etnia', this.Filtros.Etnia.toString());
+    }
     sessionStorage.setItem('F2TipoMGF', this.Filtros.TipoMGF.toString());
     //Cambiar la URL en funcion del tipo seleccionado
     this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
-    if(this.tipoExp == 3){
+    if(this.tipoExp == 2){
       //Busco expedientes privados
       this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
     }
@@ -333,8 +376,9 @@ getExpedientesUser(tipo,pag, tam){
       this.  url += '&f2='+null;
     }
     //Lugar
-    if(this.Filtros.Lugar != ''){
-      this.url += '&l='+sessionStorage.F2Lugar;
+    if(this.Filtros.Lugar != null){
+      // this.url += '&l='+sessionStorage.F2Lugar;
+      this.url += '&l='+this.Filtros.Lugar;
     }else{
       this.url += '&l='+null;
     }
@@ -383,6 +427,7 @@ getExpedientesUser(tipo,pag, tam){
       }
    });
   }
+
   buscar2(pag, tamPag=this.tamPag){
     //metodo para mantener la busqueda anterior
     this.Filtros.Titulo = sessionStorage.F2Titulo;
@@ -522,7 +567,8 @@ getRaizUser(id){
       location.href = '/expired';
       return;
     }
-    document.getElementById('arb').style.fontWeight = 'bold';
+    // document.getElementById('arb').style.fontWeight = 'bold';
+    document.getElementById('privF').style.fontWeight = 'bold';
     console.log(data);
     this.contenido = data.Data;
     this.carpetaActual = data.ID_Carpeta;
