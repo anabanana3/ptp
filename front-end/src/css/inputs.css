@@ -62,14 +62,5 @@ textarea:hover{ border-bottom: 2px solid;}
 }
 
 .lineaCampo:hover{
-  border-bottom: 2px solid;
-}
-
-.inputProfileUser{
-  width: 30px;
-  margin-left: 3%;
-}
-.labelpermisos .inputProfileUser{
-  float: right;
-  margin-right: 5%;
+  background-color: #f2f2f2;
 }

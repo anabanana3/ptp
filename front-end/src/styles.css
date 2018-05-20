@@ -363,11 +363,6 @@ br{
   margin-bottom: 1rem;
   display: flex;
 }
-.headerPermisos{
-  background: #9C0C54;
-  border: 2px solid #9C0C54;
-  border-radius: 2px;
-}
 
 .headerPrincipal{
   display: block;
@@ -377,14 +372,42 @@ br{
 .perfilForm{
   text-align: left;
 }
-.lineaPerfil{
-  float: left;
-  width: 30%;
+
+/* PERFIL */
+/* Formulario */
+.perfilDiv{
+  width: 60%;
 }
-.permisos{
-  background-color: none;
-  border: 2px solid #9C0C54;
-  border-radius: 4px;
+.editarPerfil{
+  text-align: left;
+  padding: 5% 5% 5% 10%;
+  overflow: hidden;
+}
+.columnaPerfil, .perfilLabel, .lineaPerfil{float:left;}
+
+.columnaPerfil:first-child{
+  width: 60%;
+  padding-right: 4%;
+}
+.columnaPerfil{
+  height: 550px;
+  overflow: hidden;
+  width: calc(100% - 60%);
+}
+.perfilLabel:not(.sexoPerfil){
+  width: 150px!important;
+}
+.lineaPerfil{
+  width: calc(100% - 150px)!important;
+}
+.fechaPerfilLabel:not(.sexoPerfil){width: 210px!important;}
+.fechaPerfilInput{width: calc(100% - 210px)!important;}
+.inputProfileUser{
+  width: 30px;
+  float: left;
+}
+.sexoPerfil{
+  width: 100%;
 }
 .fotoPerfil{
   width: 20%;
@@ -392,14 +415,8 @@ br{
 }
 .fotoPerfil:hover{background: rgba(191,191,191,0.50);}
 
-.editarPerfil{
-  width: 70%;
-}
-.labelpermisos{
-  margin-top: 5%;
-  margin-left: 5%;
-  text-align: left;
-}
+/**/
+
 
 .alert{
   position: relative;
@@ -656,9 +673,6 @@ br{
 .itemColor:hover .itemText{
   display: inherit;
 }
-
-
-
 
 
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

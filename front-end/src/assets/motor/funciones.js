@@ -20,7 +20,7 @@ function iniciarMotor(){
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
   let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "piel.jpg");
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
+  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "piel.jpg");
   GFachada.escalar(piernas, 0.1,0.1,0.1);
   GFachada.escalar(real, 0.1,0.1,0.1);
 
@@ -106,7 +106,7 @@ function mostrarReal(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "textura.jpg");
+  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl");
   GFachada.escalar(real, 0.1,0.1,0.1);
 
   setTimeout(() => {
