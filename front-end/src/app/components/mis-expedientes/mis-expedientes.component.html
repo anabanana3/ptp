@@ -28,13 +28,13 @@
           </div>
         </div>
 
-        <div class="optionsRight" >
+        <!-- <div class="optionsRight" >
           <p (click) = "cambio(1)" id="arb"> Todo|</p>
           <p (click) = "cambio(2)" id="priv"> Privados </p>
           <p>  | </p>
           <p (click) = "cambio(3)" id=publ> Públicos</p>
-          <!-- <p (click) = "cambio(4)" id="todos"> |Todos </p> -->
-        </div>
+          <p (click) = "cambio(4)" id="todos"> |Todos </p>
+        </div> -->
       </div>
       <div class="carpetasDiv">
       <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
@@ -154,6 +154,14 @@
           </div>
         </div>
 
+        <!-- Falta maquetar  -->
+        <div class="optionsRight" >
+          <p (click) = "elegirTipo(1)" id="privF"> Privados </p>
+          <p>  | </p>
+          <p (click) = "elegirTipo(2)" id=publF> Publicos</p>
+        </div>
+        <!-- Falta maquetar -->
+
         <div class="divLabelsDeUnoSearch">
           <div class="divExpDeUnoSearch">
             <label for="f1">Desde:</label>
@@ -181,7 +189,7 @@
           <div class="divExpDeUnoSearch">
             <label for="lugar">Lugar de detección:</label>
           </div>
-          
+
           <div divExpDeUnoSearch id="locationField">
             <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
           </div>
