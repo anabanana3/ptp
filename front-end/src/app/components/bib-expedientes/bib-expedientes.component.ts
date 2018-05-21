@@ -191,7 +191,6 @@ profesiones = new Array();
      sessionStorage.setItem('FLugar', this.Filtros.Lugar);
      sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
      sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
-     console.log(sessionStorage);
 
      this.Filtros.Lugar = null;
      if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
@@ -199,7 +198,7 @@ profesiones = new Array();
        this.Filtros.Lugar = idLugar;
        sessionStorage.setItem('FLugar', idLugar);
      }
-
+     console.log(sessionStorage);
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
      if(sessionStorage.FAutor != ''){
