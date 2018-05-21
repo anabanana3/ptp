@@ -3,14 +3,20 @@
     <a [routerLink]="['/asociacion']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" alt="LogoAisha"></a>
 
   <div class="menuNav" id="myTopnav">
-    <a [routerLink]="['/recursos']" (click)="activo(1)" id="1" class="">Recursos</a>
-    <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes</a>
-    <a [routerLink]="['/aulavirtual']" (click)="activo(3)" id="3" class="">Aula Virtual</a>
+    <a [routerLink]="['/bibexpedientes']" (click)="activo(1)" id="1" class="">Expedientes</a>
     <div class="dropdown">
-      <button class="dropbtn">Perfil
+      <button [routerLink]="['/recursos']" (click)="activo(2)" id="2" class="">Recursos
       </button>
       <div class="dropdown-content">
-        <a [routerLink]="['/asociacion/profile']" (click)="activo(4)" id="4" class="">Editar Perfil</a>
+        <a [routerLink]="['/recurso']" (click)="activo(2)" class="">Nuevo Recurso</a>
+      </div>
+    </div>
+
+    <a [routerLink]="['/aulavirtual']" (click)="activo(3)" id="3" class="">Aula Virtual</a>
+    <div class="dropdown">
+      <button [routerLink]="['/asociacion/profile']" (click)="activo(4)" id="4" class="">Perfil
+      </button>
+      <div class="dropdown-content">
         <a (click)="cerrarSesion();">Cerrar Sesión</a>
       </div>
     </div>

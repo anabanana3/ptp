@@ -34,7 +34,9 @@
       <textarea class="textareaBl2" [(ngModel)]='json.Mant_MGF_texto' type="mant_MGF_texto" name="mant_MGF_texto" id="mant_MGF_texto"></textarea>
     </div>
 
-    <h2 class="text16 textPink">CONOCIMIENTO SOBRE CONSECUENCIAS DE LA MGF  <span matTooltip="¿Conoce las consecuencias para la salud que lleva una ablación?" class="pointer icon-info info"></span></h2>
+    <h3 class="text16 textPink">Conocimiento sobre consecuencias de la MGF
+      <span matTooltip="¿Conoce las consecuencias para la salud que lleva una ablación?" class="pointer icon-info info"></span>
+    </h3>
 
     <label>Sobre la salud de las mujeres: </label>
 
@@ -70,10 +72,10 @@
     <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecH' type="otros_consecH"
     name="otros_consecH" id="otros_consecH" placeholder="Escriba aquí..."></textarea>
 
-    <h2 class="text16 textPink">INTERVENCIÓN
+    <h3 class="text16 textPink">Intervención
       <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación
       favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span>
-    </h2>
+    </h3>
     <label for="exp_propias">Formato de la intervención: </label>
     <textarea  class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int"
     name="formato_int" id="formato_int" placeholder="Escriba aquí..." ></textarea>
@@ -86,3 +88,15 @@
       <button class="btn-relleno" type="submit">Guardar</button>
     </div>
 </form>
+<!-- Boton flotante -->
+<div id="container-floating">
+  <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout"></span></p></div>
+  <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos(form)"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+  </div>
+  <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+    <p class="plus">+</p>
+    <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+  </div>
+</div>
+<!--Fin boton flotante -->

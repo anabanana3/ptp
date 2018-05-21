@@ -161,6 +161,12 @@
       "css": "folder-open",
       "code": 59409,
       "src": "fontawesome"
+    },
+    {
+      "uid": "f4445feb55521283572ee88bc304f928",
+      "css": "floppy",
+      "code": 59410,
+      "src": "fontawesome"
     }
   ]
 }

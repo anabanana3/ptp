@@ -32,11 +32,11 @@ export class Bloque3Component implements OnInit {
 
   guardarDatos(forma:NgForm){
     console.log(this.json); //para ver lo que guarda el json
-    if(forma.valid === false){
-      this.mensaje = 'Completa todos los campos obligatorios';
-      document.getElementById('alert').className = 'alert alert-danger';
-      return;
-    }else{
+    // if(forma.valid === false){
+    //   this.mensaje = 'Completa todos los campos obligatorios';
+    //   document.getElementById('alert').className = 'alert alert-danger';
+    //   return;
+    // }else{
       this.json.ID_Expediente = sessionStorage.IDExp;
       this._expedienteService.updateBloque3(this.json).subscribe(data =>{ console.log(data);
         if(data.Codigo == 501){
@@ -50,7 +50,7 @@ export class Bloque3Component implements OnInit {
           }
         }
       });
-    }
+    //}
   }
   guardarDatos2(form){
     //this.cambiarBloque();
@@ -61,5 +61,18 @@ export class Bloque3Component implements OnInit {
     //  this.expedienteComponent.bloquearPestanya(3);
     //  this.expedienteComponent.desbloquearPestaña(4);
   }
+
+  terminar(){
+    //Borro todos los campos auxiliares que tiene el formulario de expedientes
+    sessionStorage.removeItem('IDExp');
+    sessionStorage.removeItem('IDPer');
+    sessionStorage.removeItem('bloque1');
+    sessionStorage.removeItem('bloque2');
+    sessionStorage.removeItem('bloque3');
+    sessionStorage.removeItem('bloque4');
+    sessionStorage.removeItem('bloque5');
+    location.href = '/home';
+  }
+
   ngOnInit() {}
 }

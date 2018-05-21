@@ -52,7 +52,7 @@ export class Bloque5Component implements OnInit {
   }
 
   guardarDatos(){
-    if(this.form.valid == true){
+    // if(this.form.valid == true){
       console.log('A continuacionhay que recoger los datos para mandarlos al servidor');
       //Aqui ya tengo los datos necesareos recogidos del formulario
       console.log(this.form.value);
@@ -77,6 +77,8 @@ export class Bloque5Component implements OnInit {
                 console.log(data);
                 this.terminar();
               })
+            }else{
+              this.terminar();
             }
 
           }else{
@@ -86,16 +88,16 @@ export class Bloque5Component implements OnInit {
                   console.log(data);
                   this.terminar();
                 });
+            }else{
+              this.terminar();
             }
           }
-
-
         }
       });
-    }else{
-      this.mensaje = 'Completa todos los campos obligatorios';
-      document.getElementById('alert').className = 'alert alert-danger';
-    }
+    // }else{
+    //   this.mensaje = 'Completa todos los campos obligatorios';
+    //   document.getElementById('alert').className = 'alert alert-danger';
+    // }
 
   }
   //Funcion que genera un array con todos los indicadores que el usuario ha selecionado

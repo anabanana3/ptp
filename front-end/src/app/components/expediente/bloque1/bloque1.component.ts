@@ -394,6 +394,17 @@ cambiarBloque(){
   //  this.expedienteComponent.desbloquearPestaña(2);
 
 }
+terminar(){
+  //Borro todos los campos auxiliares que tiene el formulario de expedientes
+  sessionStorage.removeItem('IDExp');
+  sessionStorage.removeItem('IDPer');
+  sessionStorage.removeItem('bloque1');
+  sessionStorage.removeItem('bloque2');
+  sessionStorage.removeItem('bloque3');
+  sessionStorage.removeItem('bloque4');
+  sessionStorage.removeItem('bloque5');
+  location.href = '/home';
+}
 
 
 
