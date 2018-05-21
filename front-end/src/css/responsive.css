@@ -239,7 +239,9 @@
   /* html{
     max-width: 320px;
   } */
-
+  #canvas{
+    height: 500px !important;
+  }
   .ocultar{display: none;}
   .mostrar{display: block;}
 
@@ -270,7 +272,7 @@
   .izqVerMas{
 
   }
-  
+
   .recursosDiv{padding: 0px;}
 
   .recursosText{margin-left:8px;}
