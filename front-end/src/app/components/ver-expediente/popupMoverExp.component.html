@@ -1,0 +1,10 @@
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
+</div>
+<h1 mat-dialog-title>Mover expediente {{data.ID_Expediente}} </h1>
+
+<p class="seguro"> Seleccione la carpeta donde desea mover su expediente:</p>
+<select class="sizeinput" #carp>
+  <option *ngFor="let c of data.Carpetas"  value="{{c.ID_Gestor}}">{{c.Nombre}}</option>
+</select>
+<button (click)="pruebaMover(data.ID_Expediente,carp.value)" class="btn-relleno" id="siBorrar" type="submit"name="button">Mover</button>

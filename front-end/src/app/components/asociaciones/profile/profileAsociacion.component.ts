@@ -149,7 +149,7 @@ oldPlaceId;
         return;
       }
     }
-    if(this.sitio.gm_accessors_.place.Jc.b == true){
+    if(this.sitio.gm_accessors_.place.gd.b == true){
       this.datos.append('ChangePais', '1');
       this.getDataGoogle(place);
     }else{
@@ -180,9 +180,9 @@ oldPlaceId;
     console.log(l);
     if(l != ''){
       let pais,
-      nombre=this.sitio.gm_accessors_.place.Jc.place.name ,
-      id = this.sitio.gm_accessors_.place.Jc.place.id,
-      aux = this.sitio.gm_accessors_.place.Jc.place.address_components;
+      nombre=this.sitio.gm_accessors_.place.gd.place.name ,
+      id = this.sitio.gm_accessors_.place.gd.place.id,
+      aux = this.sitio.gm_accessors_.place.gd.place.address_components;
       if(aux.length >=5 ){
         pais = aux[aux.length-2].long_name;
       }else{
@@ -193,7 +193,7 @@ oldPlaceId;
       this.datos.append('Pais',pais);
       this.asociacion.ID_Lugar = id;
       this.datos.append('ID_Lugar', id);
-      this.asociacion.Lugar = nombre;
+      this.asociacion.Sitio = nombre;
       this.datos.append('Lugar', nombre);
       console.log(this.asociacion);
     }

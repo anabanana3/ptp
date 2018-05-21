@@ -1371,6 +1371,10 @@ option{
   padding: 0;
 }
 
+.mat-tab-body.mat-tab-body-active {
+  z-index: 0 !important;
+}
+
 .partos{
   display: flex;
   flex-wrap: wrap;
@@ -1429,6 +1433,9 @@ option{
   height: 40px;
 }
 
+.icon-trash, .icon-folder-open{
+  font-size:large;
+}
 /*Ver Exp **/
 
 .gridVerExp{

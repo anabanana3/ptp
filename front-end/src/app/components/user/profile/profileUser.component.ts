@@ -209,7 +209,7 @@ export class ProfileUserComponent {
       }
 
       //Obtengo el valor de google Maps
-      if(this.sitio.gm_accessors_.place.Jc.b == true){
+      if(this.sitio.gm_accessors_.place.gd.b == true){
         this.datos.append('ChangePais', '1');
         this.getDataGoogle(place);
       }else{
@@ -268,7 +268,7 @@ export class ProfileUserComponent {
   save4(forma, place){
     console.log(forma.value);
     console.log(place);
-    console.log(this.sitio.gm_accessors_.place.Jc.b);
+    console.log(this.sitio.gm_accessors_.place.gd.b);
     console.log(this.datos)
     // this.getDataGoogle(place);
   }
@@ -277,9 +277,9 @@ export class ProfileUserComponent {
     console.log(l);
     if(l != ''){
       let pais,
-      nombre=this.sitio.gm_accessors_.place.Jc.place.name ,
-      id = this.sitio.gm_accessors_.place.Jc.place.id,
-      aux = this.sitio.gm_accessors_.place.Jc.place.address_components;
+      nombre=this.sitio.gm_accessors_.place.gd.place.name ,
+      id = this.sitio.gm_accessors_.place.gd.place.id,
+      aux = this.sitio.gm_accessors_.place.gd.place.address_components;
       if(aux.length >=5 ){
         pais = aux[aux.length-2].long_name;
       }else{
@@ -290,7 +290,7 @@ export class ProfileUserComponent {
       this.datos.append('Pais',pais);
       this.user.ID_Lugar = id;
       this.datos.append('ID_Lugar', id);
-      this.user.Lugar = nombre;
+      this.user.Sitio = nombre;
       this.datos.append('Lugar', nombre);
       console.log(this.user);
     }

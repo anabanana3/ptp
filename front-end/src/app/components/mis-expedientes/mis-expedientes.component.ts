@@ -603,7 +603,7 @@ getCarpeta(id, name){
 }
 
 getCarpetasUser(idU){
-  this._carpetaService.getCarpetasUser(idU, this.tamPag, 1).subscribe(data =>{
+  this._carpetaService.getCarpetasUser(idU).subscribe(data =>{
     if(data.Codigo == 501){
       location.href = '/expired';
       return;

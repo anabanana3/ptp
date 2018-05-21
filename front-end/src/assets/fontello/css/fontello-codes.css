@@ -16,10 +16,12 @@
 .icon-left-open:before { content: '\e80e'; } /* '' */
 .icon-right-open:before { content: '\e80f'; } /* '' */
 .icon-left-big:before { content: '\e810'; } /* '' */
+.icon-folder-open:before { content: '\e811'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-info:before { content: '\f129'; } /* '' */
 .icon-doc-text-inv:before { content: '\f15c'; } /* '' */
 .icon-box:before { content: '\f187'; } /* '' */
 .icon-cubes:before { content: '\f1b3'; } /* '' */
+.icon-trash:before { content: '\f1f8'; } /* '' */
 .icon-snapchat-ghost:before { content: '\f2ac'; } /* '' */
 .icon-envelope-open:before { content: '\f2b6'; } /* '' */

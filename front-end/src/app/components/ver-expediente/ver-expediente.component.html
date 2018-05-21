@@ -120,6 +120,7 @@
   </div>
 
 
+
     <div class="datosExp">
       <div class="divBlancoVerExp">
         <mat-tab-group>
@@ -834,7 +835,24 @@
 
     </div>
 
-  </div>
+    <!-- Boton flotante -->
+    <div id="container-floating">
+      <div class="nd4 nds" data-toggle="tooltip" data-placement="left" data-original-title="borrar expediente" (click)="borrarExpediente()"><img class="reminder">
+        <p class="letter"><span class="icon-trash textWhite"></span></p>
+      </div>
+      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="editarExpediente()"><p class="letter"><img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></p></div>
+      <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="moverExpediente()"><p class="letter"><span class="icon-folder-open textWhite"></span></p>
+      </div>
+      <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+        <p class="plus">+</p>
+        <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+      </div>
+    </div>
+  <!--Fin boton flotante -->
+
+    </div>
+
   <!-- DIV DEL ERROR-->
 </div>
 <app-footer></app-footer>

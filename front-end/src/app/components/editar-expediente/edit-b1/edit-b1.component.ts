@@ -114,8 +114,8 @@ export class EditB1Component implements OnInit {
         })
       })
       this._expedientesService.getPersonaById(idPersona).subscribe(data=>{
-        // console.log('Muestro la menor')
-        // console.log(data);
+        console.log('Muestro la menor')
+        console.log(data);
         this.menor = data[0];
         this.menor.ID_Sexo = 1;
         this.menor.Nombre = this.menor.Nombre.split("'")[1];
@@ -169,7 +169,10 @@ export class EditB1Component implements OnInit {
        }else{
          this.expediente.Pais = aux[aux.length-1].long_name;
        }
+     }else{
+       this.expediente.ID_Lugar= 0;
      }
+
      if(this.lugarVict.gm_accessors_.place.gd.b == true){
        //Hay datos => obtengo el pais y el lugar
        this.menor.ID_Lugar = this.lugarVict.gm_accessors_.place.gd.place.id;
@@ -180,7 +183,11 @@ export class EditB1Component implements OnInit {
        }else{
          this.menor.Pais = aux[aux.length-1].long_name;
        }
+     }else{
+       this.menor.ID_Lugar = 0;
      }
+    console.log(this.expediente);
+    console.log(this.menor);
    }
    guardarDatos(form){
     //  console.log('-*-*-*--*-*-*-*-*-***-*-*-*-*-*-*-*-*-*-*-');
