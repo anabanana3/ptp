@@ -11,7 +11,6 @@
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
 
-    <!-- <div style="width: 60%; float: left;margin-left: 3%; margin-top: 2%;"> -->
 
       <form (ngSubmit)="save2(forma, place.value)" #forma="ngForm" class="editarPerfil">
         <div class="columnaPerfil">
@@ -71,9 +70,9 @@
                   class="btn-border" style="margin-bottom:5%; margin-left:10%;">
                   Cambiar Contraseña
           </button>
-        </div> <!-- columna -->
 
-          <div *ngIf="change" style="display: inline-grid;">
+
+          <div *ngIf="change" class="cambioContra">
             <label for="contra" class="perfilLabel">Contraseña: *</label>
             <!-- (keyup)="validate(pass.newpass)" -->
             <input [(ngModel)]="pass.newpass" class="lineaPerfil lineaCampo" type="password"
@@ -81,17 +80,19 @@
             <label for="repeatcontra" class="perfilLabel">Repita la Contraseña: *</label>
             <input [(ngModel)]="pass.repeatpass" class="lineaPerfil lineaCampo" type="password"
             name="repeatcontra" id="repeatcontra" required>
+            <br>
                <!-- (keyup)="validate(pas.repeatpass)" -->
             <div class="progress">
               <div id="value" style="background-color:black;"></div>
             </div>
           </div>
+        </div> <!-- columna -->
 
         <div class="columnaPerfil">
           <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfil" alt="imagen perfil">
           <div style="margin-top: 10%;margin-left:10%;">
-            <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Atrás</button>
-            <button type="submit" name="button" class="btn-relleno">GUARDAR</button>
+            <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Descartar</button>
+            <button type="submit" name="button" class="btn-relleno">Guardar cambios</button>
           </div>
         </div>
     </form>

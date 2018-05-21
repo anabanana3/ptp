@@ -102,7 +102,6 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <label>Significado de la MGF para la titular del expediente:</label>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Escriba aquí..."></textarea>
 
-<!-- TODO: WHAAT? -->
     <label>Formato de intervención:</label>
     <span matTooltip="Indique cuál ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Escriba aquí..."></textarea>
@@ -110,13 +109,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <label>Consejos para otros profesionales:</label>
     <span matTooltip="Estos consejos podrán ayudar a otros profesionales pertenecientes a Aisha en caso de que publique este expediente." class="pointer icon-info info"></span>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Escriba aquí..."></textarea>
-    <!-- <hr> -->
 
     <div class="grupoForm">
-      <h2 class="text16 textPink">HISTORIA DE PARTOS
+      <h3 class="text16 textPink">Historia de partos
         <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
         <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
-      </h2>
+      </h3>
       <div *ngIf="hayParto==true">
         <label>Número de partos de los que desea guardar información:</label>
         <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
@@ -148,10 +146,3 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
   </div>
   <!--Fin boton flotante -->
 </form>
-
- <!-- esto es lo que sale : false INVALID
- <p>
-   {{this.form.valid}}
-
-   {{this.form.status}}
- </p>-->
