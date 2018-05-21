@@ -393,11 +393,25 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   </div>
   <!-- <hr> -->
 
-  <div class="centrar">
+  <!-- <div class="centrar"> -->
     <!-- TODO: Volver a poner esto para que no deje mandar si no esta lo required relleno -->
     <!-- [disabled]="!this.form.valid" -->
-    <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button>
+    <!-- <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button> -->
+  <!-- </div> -->
+
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
   </div>
+  <!--Fin boton flotante -->
+
 </form>
 <!-- esto es lo que sale : false INVALID-->
 <!-- <p>

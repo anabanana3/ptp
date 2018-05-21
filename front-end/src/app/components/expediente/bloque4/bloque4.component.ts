@@ -119,11 +119,11 @@ guardarDatos2(form){
     console.log(this.json); //para ver lo que guarda el json
     console.log(this.consecuencias);
     this.json.ID_Expediente = sessionStorage.IDExp;
-    if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || forma.valid == false){
-      this.mensaje = 'Campos Incompletos';
-      document.getElementById('alert').className = 'alert alert-danger';
-      return;
-    }
+    // if(this.json.ID_Mutilacion == 0 || this.json.ID_Mutilacion == null || forma.valid == false){
+    //   this.mensaje = 'Campos Incompletos';
+    //   document.getElementById('alert').className = 'alert alert-danger';
+    //   return;
+    // }
     if(this.consecuencia.length > 0){
       console.log("entro"+ this.consecuenciasSalud.length);
       for(var i=1; i< this.consecuenciasSalud.length+1; i++){
@@ -189,6 +189,18 @@ guardarDatos3(forma){
     //  this.expedienteComponent.desbloquearPestaña(5);
   }
 
+
+  terminar(){
+    //Borro todos los campos auxiliares que tiene el formulario de expedientes
+    sessionStorage.removeItem('IDExp');
+    sessionStorage.removeItem('IDPer');
+    sessionStorage.removeItem('bloque1');
+    sessionStorage.removeItem('bloque2');
+    sessionStorage.removeItem('bloque3');
+    sessionStorage.removeItem('bloque4');
+    sessionStorage.removeItem('bloque5');
+    location.href = '/home';
+  }
   ngOnInit() {
   }
 

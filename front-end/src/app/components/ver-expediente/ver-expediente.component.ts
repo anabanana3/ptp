@@ -383,13 +383,13 @@ export class VerExpedienteComponent implements OnInit {
   openDialogBorrar(): void {
     let dialogRef = this.dialog.open(PopupBorrarExp, {
       width: '550px',
-      data: { ID_Expediete: this.expID }
+      data: { ID_Expediente: this.expID }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       //this.animal = result;
-    });
+      });
   }
   openDialogMoverExp(): void {
     let dialogRef = this.dialog.open(popupMoverExp, {
@@ -411,10 +411,20 @@ export class PopupBorrarExp {
 
   constructor(
     public dialogRef: MatDialogRef<PopupBorrarExp>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _expedientesService:ExpedientesService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  borrarExpediente(id){
+    this._expedientesService.deleteExpediente(id).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      console.log(data);
+      location.href ="/misexpedientes";
+    })
   }
 
 }
@@ -436,10 +446,10 @@ export class popupMoverExp {
     console.log(carp)
     this._carpetasService.addExpedienteToFolder(idE, carp).subscribe(data =>{
       console.log(data);
-      // if(data.Codigo == 501){
-      //   location.href = '/expired';
-      //   return;
-      // }
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
       console.log(data);
     })
   }
