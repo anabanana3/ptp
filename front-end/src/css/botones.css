@@ -289,7 +289,7 @@ button:hover{
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background: #db4437;
+  background: #0C8697;
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -311,7 +311,7 @@ button:hover{
   line-height: 55px;
   font-size: 38px;
   font-family: 'Roboto';
-  font-weight: 300;
+  font-weight: 500;
   animation: plus-out 0.3s;
   transition: all 0.3s;
 }
@@ -345,7 +345,7 @@ button:hover{
   padding: 0;
   opacity: 0;
   margin: auto;
-  line-height: 65px;
+  line-height: 56px;
   transform: rotateZ(-70deg);
   transition: all 0.3s;
   animation: edit-out 0.3s;
@@ -388,7 +388,7 @@ button:hover{
 }
 
 .nd1{
-  background: #d3a411;
+  background: #0A7382;
   right: 40px;
   bottom: 120px;
   animation-delay: 0.2s;
@@ -397,16 +397,16 @@ button:hover{
 }
 
 .nd3{
-  background: #3c80f6;
+  background: #085964;
   right: 40px;
   bottom: 180px;
   animation-delay: 0.15s;
-    animation: bounce-out-nds 0.15s linear;
+  animation: bounce-out-nds 0.15s linear;
   animation-fill-mode:  forwards;
 }
 
 .nd4{
-  background: #ba68c8;
+  background: #06464F;
   right: 40px;
   bottom: 240px;
   animation-delay: 0.1s;
