@@ -330,17 +330,28 @@ export class VerExpedienteComponent implements OnInit {
     }
   }
 
+
+
+
   borrarExpediente(){
     console.log('Método para borrar Expediente');
-    let id = this.expID;
-    this._expedientesService.deleteExpediente(id).subscribe(data=>{
-      if(data.Codigo == 501){
-        location.href = '/expired';
-        return;
-      }
-      //Eliminado correctamente
-      console.log(data);
-    })
+    // let id = this.expID;
+    // this._expedientesService.deleteExpediente(id).subscribe(data=>{
+    //   if(data.Codigo == 501){
+    //     location.href = '/expired';
+    //     return;
+    //   }
+    //   //Eliminado correctamente
+    //   console.log(data);
+    // })
+  }
+  editarExpediente(){
+    console.log('Editar Expediente');
+    location.href = '/editar-expediente/'+this.expID;
+  }
+  moverExpediente(){
+    console.log('Metodo para mover expediente')
+    //Cargar un popUp con un desplegable con las carpetas que tiene el usuario
   }
 
   //Es un metodo para mover los expedientes de las carpetas
