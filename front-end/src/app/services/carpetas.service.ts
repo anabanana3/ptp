@@ -93,8 +93,13 @@ export class CarpetasService {
       'Content-Type':'application/json',
       'Authorization': token
     });
+    let body = {
+      ID_Carpeta: idCarpeta,
+      ID_Expediente: idExp
+    }
+    console.log(token);
     let url = this.carpetaExpURL2+'/add';
-    return this.http.post(url, {headers}).map(res=>{
+    return this.http.post(url,body, {headers}).map(res=>{
       return res.json();
     })
 

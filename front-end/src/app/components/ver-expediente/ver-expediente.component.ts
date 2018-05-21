@@ -366,6 +366,7 @@ export class VerExpedienteComponent implements OnInit {
     //Cargar un popUp con un desplegable con las carpetas que tiene el usuario
     this.openDialogMoverExp();
   }
+
   //Es un metodo para mover los expedientes de las carpetas
   addExpedienteToFolder(idCarpeta){
     console.log('Metodo para añadir un expediente a una carpeta');
@@ -397,7 +398,7 @@ export class VerExpedienteComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('Pop Up Mover expediente cerrado');
       //this.animal = result;
     });
   }
@@ -425,10 +426,22 @@ export class popupMoverExp {
 
   constructor(
     public dialogRef: MatDialogRef<popupMoverExp>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _carpetasService:CarpetasService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  pruebaMover(idE, carp){
+    console.log('Metodo de confirmar mover Expediente');
+    console.log(carp)
+    this._carpetasService.addExpedienteToFolder(idE, carp).subscribe(data =>{
+      console.log(data);
+      // if(data.Codigo == 501){
+      //   location.href = '/expired';
+      //   return;
+      // }
+      console.log(data);
+    })
   }
 
 }
