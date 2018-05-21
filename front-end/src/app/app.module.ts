@@ -59,7 +59,7 @@ import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
 import {ComentarioService} from "./services/comentario.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
-import { VerExpedienteComponent, Popup } from './components/ver-expediente/ver-expediente.component';
+import { VerExpedienteComponent, Popup, PopupBorrarExp, popupMoverExp } from './components/ver-expediente/ver-expediente.component';
 import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
@@ -129,7 +129,9 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     EditB3Component,
     EditB4Component,
     EditB5Component,
-    PopupEditB2
+    PopupEditB2,
+    PopupBorrarExp,
+    popupMoverExp
   ],
   imports: [
     BrowserModule,
@@ -156,7 +158,9 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     ContactPopup,
     ProfilePopUp,
     ProfilePopUp2,
-    PopupEditB2
+    PopupEditB2,
+    PopupBorrarExp,
+    popupMoverExp
   ],
   providers: [
     ProfesionesService,

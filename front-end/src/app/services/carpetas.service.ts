@@ -31,9 +31,10 @@ export class CarpetasService {
         return this.http.get(url, {headers}).map(res=> res.json());
   }
 
-  getCarpetasUser(idU, tamPag, pag){
+  getCarpetasUser(idU){
+    // /exp1/get/carpetas/:id
     let token = sessionStorage.token,
-        url = this.carpetaExpURL+'/user/'+idU+'/pag='+pag+'&n='+tamPag,
+        url = this.carpetaExpURL2+'/get/carpetas/'+idU,
         headers = new Headers({
           'Content-Type':'application/json',
           'Authorization': token
