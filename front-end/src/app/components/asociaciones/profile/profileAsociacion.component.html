@@ -3,58 +3,54 @@
 </div>
 <div *ngIf="!error">
     <app-header-asociacion></app-header-asociacion>
-  <div class="editarPerfil divBlanco bgColorWhite">
-
-    <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
+  <div class="perfilDiv divBlanco bgColorWhite">
+    <h1 class="textPink text20">Mi Perfil</h1>
     <hr>
-
     <div id="alert">{{mensaje}}</div>
-    <form (ngSubmit)="save(form, place)" #form="ngForm" style="display: inline-grid; margin-top:5%; width:70%;">
-      <div style="margin-right:10%;">
-        <label for="nombre">Nombre Asociación:</label>
-        <input [(ngModel)]="asociacion.Nombre" type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaCampo" disabled>
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="{{asociacion.Email}}" id="email"
-              [(ngModel)]="asociacion.Email" class="lineaCampo" required>
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="direccion">Dirección:</label>
-        <div id="locationField">
-          <input type="text"  id="direccion" class="lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
-        </div>
-        <!-- <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" -->
-                <!-- [(ngModel)]="asociacion.Direccion" class="lineaCampo" required> -->
-      <div>
-        <label for="tel"> Teléfono </label>
-        <input type="tel" [(ngModel)]="asociacion.Telefono" class="lineaCampo" name="tel" id="tel" required>
-      </div>
-      </div>
-      <div class="" style="margin-right:10%;">
-        <label for="cif">CIF:</label>
-        <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaCampo" disabled>
-      </div>
 
-      <button type="button" name="button" class="btn-border" style="width:160px; margin: 0 auto;" (click)="change = !change">
-        Cambiar Contraseña
-      </button>
-      <div class="" *ngIf="change" style="display: inline-grid;">
-        <div class="" style="margin-right:10%;">
-          <label for="pass">Antigua Contraseña:</label>
-          <input type="password" [(ngModel)]="oldPassword" name="password" value="" id="pass" class="lineaCampo">
+    <form (ngSubmit)="save(form, place)" #form="ngForm" class="editarPerfil">
+      <div class="columnaPerfil">
+        <label for="nombre" class="perfilLabel">Nombre Asociación:</label>
+        <input [(ngModel)]="asociacion.Nombre" type="text" name="nombre" value="{{(asociacion.Nombre)}}" class="lineaPerfil lineaCampo" disabled>
+
+        <label for="email" class="perfilLabel">Email:</label>
+        <input type="email" name="email" value="{{asociacion.Email}}" id="email"
+              [(ngModel)]="asociacion.Email" class="lineaPerfil lineaCampo" required>
+
+        <label for="direccion" class="perfilLabel">Dirección:</label>
+        <div id="locationField">
+          <input type="text"  id="direccion" class="lineaPerfil lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
+          <!-- <input type="text" name="direc" value="{{asociacion.Direccion}}" id="direc" -->
+                  <!-- [(ngModel)]="asociacion.Direccion" class="lineaCampo" required> -->
+          <label for="tel" class="perfilLabel"> Teléfono </label>
+          <input type="tel" [(ngModel)]="asociacion.Telefono" class="lineaPerfil lineaCampo" name="tel" id="tel" required>
         </div>
-        <div class="" style="margin-right:10%;">
-          <label for="newpass">Nueva Contraseña:</label>
-          <input type="password" [(ngModel)]="asociacion.Password" name="newpassword" value="" id="newpass" class="lineaCampo">
+
+        <label for="cif" class="perfilLabel">CIF:</label>
+        <input type="text" name="cif" value="{{asociacion.CIF}}" id="cif" class="lineaPerfil lineaCampo" disabled>
+
+        <label for="fotoP" class="perfilLabel">Foto de perfil:</label>
+        <input class="lineaPerfil lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
+
+        <!-- Cambio contrasenya -->
+        <button (click)="change = !change" type="button" name="button"
+                class="btn-border" style="margin-bottom:5%; margin-left:10%;">
+                Cambiar Contraseña
+        </button>
+        <div *ngIf="change" class="cambioContra">
+            <label for="pass" class="perfilLabel">Contraseña Actual:</label>
+            <input type="password" [(ngModel)]="oldPassword" name="password" value="" id="pass" class="lineaPerfil lineaCampo">
+            <label for="newpass" class="perfilLabel">Nueva contraseña:</label>
+            <input type="password" [(ngModel)]="asociacion.Password" name="newpassword" value="" id="newpass" class="lineaPerfil lineaCampo">
         </div>
-      </div>
-      <div>
-        <label for="fotoP">Foto de perfil</label>
-        <input class="inputfile" name="fotoP" id="fotoP" type="file" (change)="onFileChange($event)" #fileInput>
-        <label class="btn-relleno-negro" for="fotoP">Elige un archivo</label>
-      <br>
-        <button type="submit" name="button" class="btn-relleno">Guardar cambios</button>
+      </div> <!-- columna -->
+
+      <div class="columnaPerfil">
+        <img src="https://aisha.ovh{{asociacion.Foto}}" class="fotoPerfil" alt="imagen asociacion">
+        <div style="margin-top: 10%;margin-left:10%;">
+          <button [routerLink]="['/home']" type="button" name="button" class="btn-relleno-negro">Descartar</button>
+          <button type="submit" name="button" class="btn-relleno">Guardar cambios</button>
+        </div>
       </div>
     </form>
   </div>

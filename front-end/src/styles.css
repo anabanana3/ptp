@@ -386,13 +386,16 @@ br{
 .columnaPerfil, .perfilLabel, .lineaPerfil{float:left;}
 
 .columnaPerfil:first-child{
-  width: 60%;
+  width: 65%;
   padding-right: 4%;
 }
 .columnaPerfil{
-  height: 550px;
+  height: 79%;
   overflow: hidden;
-  width: calc(100% - 60%);
+  width: calc(100% - 65%);
+}
+.columnaPerfil .cambioContra{
+  overflow: hidden;
 }
 .perfilLabel:not(.sexoPerfil){
   width: 150px!important;
@@ -410,10 +413,12 @@ br{
   width: 100%;
 }
 .fotoPerfil{
-  width: 20%;
-  margin-top: 2%;
+  float: right;
+  width: 50%;
+  padding: 5%;
+  margin-right:30%;
+  margin-bottom: 10%;
 }
-.fotoPerfil:hover{background: rgba(191,191,191,0.50);}
 
 /**/
 
