@@ -6,9 +6,7 @@
     <div class="divLabels">
       <div class="divExp">
         <label>Las personas implicadas en este expediente tienen planificado realizar un viaje proximamente:</label>
-        <!-- <select id="viajeP" formControlName="ViajesPlanifiacados">
-          <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-        </select> -->
+
       </div>
       <div class="divExp">
         <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
@@ -21,9 +19,7 @@
 
       <div class="divExp">
         <label>La titular realiza viajes al país de origen en vacaciones:</label>
-        <!-- <select id=viajes formControlName="Viajes">
-          <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-        </select> -->
+
       </div>
       <div class="divExp">
         <input class="radiotrans"  type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
@@ -46,10 +42,10 @@
     <br>
   </div>
 
-  <h2 class="text16 textPink">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR
+  <h3 class="text16 textPink">Indicadores de sospecha de MGF en el ámbito escolar
       <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus"></span>
       <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus"></span>
-  </h2>
+  </h3>
 
   <div *ngIf="mostrar == true">
     <p>A continuación seleccione los indicadores que se dan en la titular del expediente:</p>

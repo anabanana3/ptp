@@ -38,7 +38,9 @@
       </div>
       <div class="carpetasDiv">
       <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
-        <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Todo /</span><span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span></p>
+        <p *ngIf="tipoExp == 1"><span (click)="getRaizUser(idU)">Todo /</span>
+          <span *ngFor="let r of NameRuta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} / </span>
+        </p>
       </div>
 
       <!-- Mensaje de que no tienes nada almacenado -->
@@ -49,7 +51,7 @@
       <div class="expediente-container">
         <div *ngFor="let c of contenido" class="carpeta">
           <div *ngIf="c.Tipo == 0" class="carpetaIF">
-            <!-- TODO: Carpetas -->
+            <!-- Carpetas -->
             <div class="izqCarpeta sideBySide">
               <div class="imgCircle" (click) = "getCarpeta(c.ID_Gestor, c.Nombre)">
                 <img class="imgExp" src="/assets/img/carpeta.png" alt="logo carpeta">
