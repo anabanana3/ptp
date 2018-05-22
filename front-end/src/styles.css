@@ -532,7 +532,7 @@ br{
 .textoListado{
   width: 40%;
   text-align: left;
-  padding:20px 90px;
+  padding: 20px;
 }
 
 .textoP{
@@ -1549,7 +1549,6 @@ option{
 .carpeta{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
-  /* width: 41%; */
   width: 204px;
   margin: 8px;
   height: 62px;
@@ -1708,7 +1707,8 @@ option{
 .optionsRight{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content:center;
+  margin-bottom: 2%;
 }
 
 .desplegableContainer{
