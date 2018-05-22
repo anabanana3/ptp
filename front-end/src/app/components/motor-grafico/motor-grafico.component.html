@@ -2,33 +2,21 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <!-- <div *ngIf="asociacion">
-    <app-header-asociacion></app-header-asociacion>
-  </div>
-  <div *ngIf="admin">
-    <app-header-admin></app-header-admin>
-  </div>
-  <div *ngIf="usuario">
-   <app-header></app-header>
-  </div>-->
     <div class="content">
       <div class="contenedor">
         <div class="dropdown-motor">
-          <button class="boton-flotante" id="tipos">
-            <span id="span">TIPOS</span>
+          <button class="boton-flotante" id="tipos" (click)="click(sinMGF)">
+            <span id="span">{{sinMGF}}</span>
           </button>
           <div class="dropdown-content-motor">
-            <button class="boton-flotante" id="tipo0" (click)="real()">
-              <span id="span">SIN MGF</span>
+            <button class="boton-flotante" id="tipo0" (click)="click(tipo_1)">
+              <span id="span">{{tipo_1}}</span>
             </button>
-            <button class="boton-flotante" id="tipo1" (click)="tipo1()">
-              <span id="span">TIPO 1</span>
+            <button class="boton-flotante" id="tipo1" (click)="click(tipo_2)">
+              <span id="span">{{tipo_2}}</span>
             </button>
-            <button class="boton-flotante" id="tipo2" (click)="tipo2()">
-              <span id="span">TIPO 2</span>
-            </button>
-            <button class="boton-flotante" id="tipo3" (click)="tipo3()">
-              <span id="span">TIPO 3</span>
+            <button class="boton-flotante" id="tipo2" (click)="click(tipo_3)">
+              <span id="span">{{tipo_3}}</span>
             </button>
           </div>
         </div>
@@ -41,13 +29,7 @@
         </button>
 
       </div>
-      <!-- <div class="">
-        <button class="boton-flotante" id="tipoLuz" (click)="cambiarLuz()">
-          <span id="span">{{nombreLuz}}</span>
-        </button>
-      </div> -->
       <canvas id="canvas" width="1800" height="1000" style="width:100%; height:100%;"></canvas>
-      <!-- <canvas id="text" width="1800" height="1000" style="width:100%; height:100%;"></canvas> -->
       <!-- TEXTO MOTOR -->
       <!-- creamos los contenedores para mostrar el tipo de mutilacion y una breve descripcion -->
       <div id="overlay">

@@ -22,7 +22,11 @@ export class MotorGraficoComponent implements AfterViewInit {
   admin:boolean = false;
   usuario:boolean = false;
   nombre:string = "CARTOON";
-  tipo = 0;
+
+  sinMGF:string = "SIN MGF";
+  tipo_1:string = "TIPO 1";
+  tipo_2:string = "TIPO 2";
+  tipo_3:string = "TIPO 3";
 
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
@@ -47,38 +51,34 @@ export class MotorGraficoComponent implements AfterViewInit {
     }
     this._userService.visitasModelo3D(visita).subscribe(data=>{
     });
-    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante btn-activo");
   }
 
-  tipo1(){
-    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
-    this.tipo = 1;
-    document.getElementById('tipo1').setAttribute("class", "boton-flotante btn-activo");
-    new mostrarTipo1();
-  }
+  click(tipo){
+    if(tipo == "SIN MGF" && this.sinMGF !== tipo) {
+      if(this.tipo_1 === "SIN MGF") this.tipo_1 = this.sinMGF;
+      if(this.tipo_2 === "SIN MGF") this.tipo_2 = this.sinMGF;
+      if(this.tipo_3 === "SIN MGF") this.tipo_3 = this.sinMGF;
+      this.sinMGF = tipo;
+      new mostrarReal();
+    }
 
-  tipo2(){
-    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
-    this.tipo = 2;
-    document.getElementById('tipo2').setAttribute("class", "boton-flotante btn-activo");
+    if(tipo == "TIPO 1" && this.sinMGF !== tipo)  {
+      this.tipo_1 = this.sinMGF;
+      this.sinMGF = tipo;
+      new mostrarTipo1();
+    }
 
-    new mostrarTipo2();
-  }
+    if(tipo == "TIPO 2" && this.sinMGF !== tipo)  {
+      this.tipo_2 = this.sinMGF;
+      this.sinMGF = tipo;
+      new mostrarTipo2();
+    }
 
-  tipo3(){
-    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
-    this.tipo = 3;
-    document.getElementById('tipo3').setAttribute("class", "boton-flotante btn-activo");
-
-    new mostrarTipo3();
-  }
-
-  real(){
-    document.getElementById('tipo' + this.tipo).setAttribute("class", "boton-flotante");
-    this.tipo = 0;
-    document.getElementById('tipo0').setAttribute("class", "boton-flotante btn-activo");
-
-    new mostrarReal();
+    if(tipo == "TIPO 3" && this.sinMGF !== tipo)  {
+      this.tipo_3 = this.sinMGF;
+      this.sinMGF = tipo;
+      new mostrarTipo3();
+    }
   }
 
   cartoon(){
@@ -95,15 +95,4 @@ export class MotorGraficoComponent implements AfterViewInit {
   animacion(){
     new mostrarAnimacion();
   }
-
-  // cambiaLuz(num){
-  //   console.log(num);
-  //   if(num == 1){
-  //       document.getElementById("label-dir").setAttribute("class", "cambio-switch");
-  //       document.getElementById("label-pos").setAttribute("class", "");
-  //   }else{
-  //     document.getElementById("label-pos").setAttribute("class", "cambio-switch");
-  //     document.getElementById("label-dir").setAttribute("class", "");
-  //   }
-  // }
 }
