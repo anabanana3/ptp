@@ -199,7 +199,7 @@ export class VerExpedienteComponent implements OnInit {
       if(data.length >0 && data[0].ID_Publico == this.expID){
         console.log(data[0].ID_Publico);
         this.publico = true;
-        this.mostrarComentarios();
+        this.mostrarComentarios(this.expID);
         this._expedientesService.getComents(this.expID).subscribe(data=>{
           if(data[0].Comentario == 0){
             this.estaComent = false;
@@ -287,7 +287,7 @@ export class VerExpedienteComponent implements OnInit {
     this.tamPag=tam;
     this.getComentarios();
   }
-  mostrarComentarios(){
+  mostrarComentarios(id){
     this.coment = 1;
     if(this.publico){
       this.estaCheck = true;
@@ -295,12 +295,12 @@ export class VerExpedienteComponent implements OnInit {
     }else{
       this.estaCheck = true;
       this.labelPublico = "Expediente público";
-      this.publicar();
+      this.publicar(id);
     }
   }
-  publicar(){
+  publicar(id){
     let body = {
-      ID_Publico: this.expID,
+      ID_Publico: id,
       Comentario: 0
     }
     console.log(body);
@@ -310,6 +310,7 @@ export class VerExpedienteComponent implements OnInit {
       }else{
         //this.publico = this.expID;
         console.log("Publicar");
+        location.href = '/verexpediente;id='+id;
       }
     })
   }
@@ -346,8 +347,6 @@ export class VerExpedienteComponent implements OnInit {
   }
 
 
-
-
   borrarExpediente(){
     console.log('Método para borrar Expediente');
     this.openDialogBorrar();
@@ -373,7 +372,6 @@ export class VerExpedienteComponent implements OnInit {
     //Cargar un popUp con un desplegable con las carpetas que tiene el usuario
     this.openDialogMoverExp();
   }
-
   //Es un metodo para mover los expedientes de las carpetas
   addExpedienteToFolder(idCarpeta){
     console.log('Metodo para añadir un expediente a una carpeta');
@@ -409,6 +407,36 @@ export class VerExpedienteComponent implements OnInit {
       console.log('Pop Up Mover expediente cerrado');
       //this.animal = result;
     });
+  }
+  openDialogPublicarExp(): void {
+    let dialogRef = this.dialog.open(PopupPublicarExp, {
+      width: '550px',
+      data: { ID_Expediente: this.expID }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Pop Up Publicar expediente');
+      //this.animal = result;
+    });
+  }
+}
+@Component({
+  selector: 'popupPublicarExp',
+  templateUrl: 'popupPublicarExp.component.html',
+})
+export class PopupPublicarExp {
+
+  constructor(
+    public dialogRef: MatDialogRef<PopupPublicarExp>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private _verExpedienteComponent:VerExpedienteComponent) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  mostrarComentarios(){
+    this._verExpedienteComponent.mostrarComentarios(this.data.ID_Expediente);
+    this._verExpedienteComponent.coment =1;
+    this.dialogRef.close();
   }
 }
 @Component({

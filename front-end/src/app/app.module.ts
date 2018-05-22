@@ -59,7 +59,7 @@ import {NoticiasService} from "./services/noticias.service";
 import {MaterialService} from "./services/material.service";
 import {ComentarioService} from "./services/comentario.service";
 import { BibExpedientesComponent } from './components/bib-expedientes/bib-expedientes.component';
-import { VerExpedienteComponent, Popup, PopupBorrarExp, popupMoverExp } from './components/ver-expediente/ver-expediente.component';
+import { VerExpedienteComponent, Popup, PopupBorrarExp, popupMoverExp, PopupPublicarExp } from './components/ver-expediente/ver-expediente.component';
 import { ChatService } from './services/chat.service';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { ExpiredSessionComponent } from './components/expired-session/expired-session.component';
@@ -131,7 +131,8 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     EditB5Component,
     PopupEditB2,
     PopupBorrarExp,
-    popupMoverExp
+    popupMoverExp,
+    PopupPublicarExp
   ],
   imports: [
     BrowserModule,
@@ -160,7 +161,8 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     ProfilePopUp2,
     PopupEditB2,
     PopupBorrarExp,
-    popupMoverExp
+    popupMoverExp,
+    PopupPublicarExp
   ],
   providers: [
     ProfesionesService,
@@ -171,7 +173,8 @@ import { EditB5Component } from './components/editar-expediente/edit-b5/edit-b5.
     MaterialService,
     ComentarioService,
     ChatService,
-    CarpetasService
+    CarpetasService,
+    VerExpedienteComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,9 @@
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
+</div>
+<h1 mat-dialog-title>Publicar Expediente {{data.ID_Expediente}}</h1>
+
+<p class="seguro"> Está a punto de realizar una acción <strong> ireversible </strong></p>
+<p class="seguro"> ¿Está seguro de que desea hacer público para todos los usuarios el expediente con toda su información?</p>
+<button class="btn-relleno" id="siBorrar" (click)="mostrarComentarios()" type="submit"name="button">Sí</button>
+<button class="btn-border" id="noBorrar" type="submit" name="button" [mat-dialog-close]="data.animal">No</button>
