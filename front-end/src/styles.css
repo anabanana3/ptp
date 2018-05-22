@@ -1445,16 +1445,6 @@ option{
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
-.infoExp{
-  grid-column-start: 1;
-  /* autoprefixer: off */
-  grid-column-end: 2;
-  grid-row-start: 1;
-  /* autoprefixer: off */
-  grid-row-end:2;
-  padding: 10px 0px 0px 20px;
-}
-
 .datosExp{
   grid-column-start: 2;
   /* autoprefixer: off */
@@ -2026,6 +2016,12 @@ option{
   margin-top: 2%;
 }
 
+.verComentarios{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+
 .sliderComentarios{
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2033,7 +2029,7 @@ option{
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
-  height: 100vh;
+  height: 500px;
   padding-bottom:10px;
   overflow: scroll;
 }

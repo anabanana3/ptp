@@ -404,6 +404,10 @@
     font-size: 10%;
     width: 80%;
   }
+
+  .gridVerExp{
+    display: inherit;
+  }
 }
 
 /****** HEADER *****/
