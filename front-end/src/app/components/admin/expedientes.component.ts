@@ -15,12 +15,7 @@ export class ExpedientesAdminComponent {
   mensaje:string = '';
   expediente = [];
   view:number = 1;
-  //Para la paginacion
-  paginas = new Array(3);
-  pagNext;
-  pagBack;
   tamPag:number=10;
-  pagActual;
 
   displayedColumns = ['titulo', 'autor', 'fecha', 'options'];
 
@@ -46,6 +41,15 @@ export class ExpedientesAdminComponent {
   sitio;
   idSitio;
 
+  //Para la paginacion
+  paginas = new Array();
+  totalPag;
+  pagActual;
+  pagInicio;
+  pagFinal;
+  startIndex;
+  endIndex;
+
   @ViewChild('place') public searchElement: ElementRef;
 
   constructor(private _expedientesServices:ExpedientesService, private _profService:ProfesionesService,private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader){
@@ -62,7 +66,7 @@ export class ExpedientesAdminComponent {
         this.expediente = data.Data;
         console.log(this.expediente);
         this.loading = false;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.paginacion(data.Paginas_Totales,data.Pagina,this.tamPag)
       }
     })
   }
@@ -112,7 +116,7 @@ export class ExpedientesAdminComponent {
     if(this.Filtros.Etnia != 0){
       this.url += '&e='+this.Filtros.Etnia
     }else{
-      this.  url += '&e='+null;
+      this.url += '&e='+null;
     }
     //TipoMGF
     if(this.Filtros.TipoMGF != 0){
@@ -145,50 +149,11 @@ export class ExpedientesAdminComponent {
          this.busqueda = true;
          this.expediente = data.Data;
          this.mensaje = '';
-         //this.paginacion(data.Pagina, data.Paginas_Totales);
+         this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
+
        }
      }
    });
-  }
-
-  //Funcion para generar las variables de la paginacion
-  paginacion( paginaActual , pagTotales){
-    //Total de paginas
-    this.paginas = [];
-    for(let i=0; i<pagTotales; i++){
-      this.paginas.push(i);
-    }
-    //Pagina anterior
-    if(paginaActual >= 2){
-      this.pagBack = (paginaActual-1);
-    }else{
-      this.pagBack = paginaActual;
-    }
-    //Pagina Siguiente
-    if(paginaActual < pagTotales){
-      this.pagNext = (paginaActual+1);
-    }else{
-      this.pagNext = paginaActual;
-    }
-  }
-
-  pasarPagina(pag){
-    console.log(pag);
-    this._expedientesServices.getExpedientes(pag, this.tamPag).subscribe(data => {
-      if(data.Codigo == 501){
-        location.href == '/expired';
-      }else{
-        console.log(data);
-        this.expediente = data.Data;
-        this.loading = false;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
-      }
-    })
-  }
-
-  cambiarTamPag(tam){
-    console.log(tam);
-    this.tamPag=tam;
   }
 
   changeView(view){
@@ -222,4 +187,57 @@ export class ExpedientesAdminComponent {
      }
    );
  }
+
+ paginacion(totalPag, pagActual, tamPag){
+   let pagInicio, pagFinal;
+   if(totalPag <= 10){
+     pagInicio = 1;
+     pagFinal = totalPag;
+   }else{
+     if(pagActual <= 6){
+       pagInicio = 1;
+       pagFinal = 10;
+     }else if(pagActual + 4 >= totalPag){
+       pagInicio = totalPag - 9;
+       pagFinal = totalPag;
+     }else{
+       pagInicio = pagActual - 5;
+       pagFinal = pagActual + 4;
+     }
+   }
+
+   let startIndex = (pagActual -1)*tamPag;
+   let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
+
+   let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+
+   //Despues de tener todo calculado guardo los datos
+   this.pagActual = pagActual;
+   this.pagInicio = pagInicio;
+   this.pagFinal = pagFinal;
+   this.startIndex = startIndex;
+   this.paginas = pages;
+   this.totalPag = totalPag;
+ }
+
+
+pasarPagina(pag){
+  console.log('Paso a la pagina');
+  console.log(pag);
+  //Tengo que ver si hay busqueda hecha
+  if(this.busqueda == true){
+    this.buscar(pag);
+  }else{
+    this._expedientesServices.getExpedientes(pag, this.tamPag).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href='/expired';
+        return;
+      }
+      this.expediente = data.Data;
+      this.loading = false;
+      this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
+    })
+  }
+}
+
 }

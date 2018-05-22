@@ -65,27 +65,21 @@
         </mat-table>
       </div>
 
-      <!-- PAGINACION -->
-    <ul class="pagination" *ngIf="paginas.length >1">
-    <!--Boton de pagina anterior-->
-      <li>
-        <a (click)="pasarPagina(pagBack)">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li *ngFor="let pag of paginas; let i=index">
-        <a (click)="pasarPagina(i+1)">
-          <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-          <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-        </a>
-      </li>
-      <!--Boton de pagina siguiente-->
-      <li>
-        <a (click)="pasarPagina(pagNext);">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+    <!-- Paginacion -->
+    <div>
+      <div *ngIf="paginas.length > 1" class="container">
+        <div class="text-center">
+          <ul class="pagination">
+            <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+            <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+            <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+            <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+            <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
 
       <div  *ngIf="expediente.length === 0 && !loading"
             class="alert alert-info" role="alert">

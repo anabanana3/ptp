@@ -17,11 +17,15 @@ export class RecursosAdminComponent{
   fieldSearch = null;
   formatos = [];
   //Para la paginacion
-  paginas = new Array(1);
-  pagNext;
-  pagBack;
-  tamPag:number=10;
+  paginas = new Array();
+  totalPag;
   pagActual;
+  pagInicio;
+  pagFinal;
+  startIndex;
+  endIndex;
+  tamPag:number=10;
+  busqueda:boolean = false;
   displayedColumns = ['titulo', 'estado', 'opciones'];
   mensaje;
 
@@ -46,7 +50,7 @@ export class RecursosAdminComponent{
       }else{
         this.recursos = data.Data;
         this.loading = false;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.paginacion(data.Paginas_Totales,data.Pagina, this.tamPag);
         this.pagActual = data.Pagina;
       }
     }, error => {
@@ -54,28 +58,44 @@ export class RecursosAdminComponent{
     })
   }
 
-  paginacion( paginaActual , pagTotales){
-    //Total de paginas
-    this.paginas = [];
-    for(let i=0; i<pagTotales; i++){
-      this.paginas.push(i);
-    }
-    //Pagina anterior
-    if(paginaActual >= 2){
-      this.pagBack = (paginaActual-1);
+  paginacion(totalPag, pagActual, tamPag){
+    let pagInicio, pagFinal;
+    if(totalPag <= 10){
+      pagInicio = 1;
+      pagFinal = totalPag;
     }else{
-      this.pagBack = paginaActual;
+      if(pagActual <= 6){
+        pagInicio = 1;
+        pagFinal = 10;
+      }else if(pagActual + 4 >= totalPag){
+        pagInicio = totalPag - 9;
+        pagFinal = totalPag;
+      }else{
+        pagInicio = pagActual - 5;
+        pagFinal = pagActual + 4;
+      }
     }
-    //Pagina Siguiente
-    if(paginaActual < pagTotales){
-      this.pagNext = (paginaActual+1);
-    }else{
-      this.pagNext = paginaActual;
-    }
+
+    let startIndex = (pagActual -1)*tamPag;
+    let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
+
+    let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+
+    //Despues de tener todo calculado guardo los datos
+    this.pagActual = pagActual;
+    this.pagInicio = pagInicio;
+    this.pagFinal = pagFinal;
+    this.startIndex = startIndex;
+    this.paginas = pages;
+    this.totalPag = totalPag;
   }
 
   pasarPagina(pag){
-    this.getMateriales(pag, this.tamPag);
+    if(this.busqueda == false){
+      this.getMateriales(pag, this.tamPag);
+    }else{
+      this.buscar();
+    }
   }
 
   buscar(e?){
@@ -97,7 +117,8 @@ export class RecursosAdminComponent{
         location.href = '/expired';
       }else{
         this.recursos = data.Data;
-        this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.busqueda = true;
+        this.paginacion(data.Paginas_Totales,data.Pagina, this.tamPag);
       }
     })
   }
