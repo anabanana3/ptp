@@ -68,7 +68,9 @@
   } */
 
   .botonesPrincipal{
-    margin-top:0px;
+    margin-top: 0px;
+    margin: 0 auto;
+    float: none;
   }
 
   .registro{
@@ -270,7 +272,7 @@
   .izqVerMas{
 
   }
-  
+
   .recursosDiv{padding: 0px;}
 
   .recursosText{margin-left:8px;}
