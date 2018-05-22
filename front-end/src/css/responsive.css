@@ -170,6 +170,7 @@
   .suscripcion{
     width: 90%;
   }
+
 }
 
 
@@ -264,15 +265,20 @@
   }
 
   .containerVerMas{
-
+    grid-template-rows: 10% 521px;
+    grid-template-columns: 100%;
   }
 
   .dchaVerMas{
-
+    grid-column: 1;
+    grid-row-start:2;
+    grid-row-end: 3;
   }
 
   .izqVerMas{
-
+    grid-column: 1;
+    grid-row-start:1;
+    grid-row-end: 2;
   }
 
   .recursosDiv{padding: 0px;}
