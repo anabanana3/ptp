@@ -1,6 +1,9 @@
 class TCamaraInteractor extends TEntidad {
-  //hemos creado esta nueva clase para registrar el movimiento del raton por el canvas
-  //nos hemos basado en el capitulo 4 (camara) del libro webgl, y en los ejemplos del mismo
+  /*hemos creado esta nueva clase para registrar el movimiento del raton por el canvas
+  nos hemos basado en el capitulo 4 (camara) del libro webgl, y en los ejemplos del mismo
+  para hacer que gire en las pantallas tactiles he utilizado como referencia la
+  siguiente página: https://developer.mozilla.org/en-US/docs/Web/API/Touch/clientX */ 
+
   constructor(camera,canvas){
       super();
       this.camera = camera;
@@ -23,6 +26,7 @@ class TCamaraInteractor extends TEntidad {
   onMouseUp(ev){
       this.dragging = false;
   }
+  //cuando terminado de pulsar en la pantalla tactil (como mouseup)
   onTouchEnd(ev){
     this.dragging = false;
     console.log("END 2");
@@ -61,7 +65,7 @@ class TCamaraInteractor extends TEntidad {
   			this.rotate(dx, dy);
   	}
   }
-
+//cuando movemos el dedo por la pantalla tactil
   onTouchMove(ev){
     this.lastX = this.x;
   	this.lastY = this.y;
@@ -96,7 +100,7 @@ class TCamaraInteractor extends TEntidad {
     		this.ctrl = false;
     	}
   }
-
+  //para ir llamando todo el rato a las funciones correspondientes para mover el modelo
   update(){
     var self = this;
   	var canvas = this.canvas;

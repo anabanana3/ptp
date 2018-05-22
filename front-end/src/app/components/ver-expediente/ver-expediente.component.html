@@ -63,6 +63,7 @@
       <div class="permisosVerExp">
         <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
         <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+        <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
         <div *ngIf="coment==1" class="coment" id="coment">
           <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
           <label class="labeltrans" for="comentarios">Permitir comentarios</label>
