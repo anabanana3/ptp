@@ -15,14 +15,30 @@ export class LateralOptionsComponent{
       return;
     }
     this.error = false;
+
   }
 
   logout(){
     sessionStorage.clear();
     location.href = '/login';
   }
-
+  activo(num){
+    sessionStorage.setItem('ventana', num);
+    if( sessionStorage.ventana != 0){
+      document.getElementById(num).className = "active";
+    }
+  }
   changeOption(option){
     this.option = option;
   }
+
+    myFunction() {
+        var x = document.getElementById("myTopnav");
+          if (x.className === "menuNav") {
+              x.className += " responsive";
+          } else {
+              x.className = "menuNav";
+          }
+
+    }
 }

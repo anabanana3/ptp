@@ -410,7 +410,7 @@
 
 /****** HEADER *****/
 @media screen and (max-width: 1040px) {
-  .menuNav a, .menuNav button{display:none;}
+  .menuNav a, .menuNav button, .divAdmin{display:none;}
   .menuNav a.icon {
     float: right;
     display: block;
@@ -429,5 +429,8 @@
   }
   .menuNav.responsive .dropdown, .menuNav.responsive button{
     width: 100%;
+  }
+  .latAdmin{
+    display: block;
   }
 }
