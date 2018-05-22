@@ -7,6 +7,8 @@ class TCamara extends TEntidad {
 		this.lejano = null;//Float
 		this.movY = 0.0;
 		this.movX = 0.0;
+		this.step = 0;
+		this.position = vec3.create();
 
 		this.projectionMatrix = mat4.create();
 		this.viewMatrix = mat4.create();
@@ -27,6 +29,11 @@ class TCamara extends TEntidad {
 		}
 	}
 
+	setPosition(p){
+    vec3.set(p, this.position);
+    this.update();
+	}
+
 	setMovimientoX(x){
 		this.changeMovimientoX(x - this.movX);
 	}
@@ -39,12 +46,11 @@ class TCamara extends TEntidad {
 			this.movX = this.movX % 360;
 		}
 	}
-
+	
 	//aqui es donde vamos cambiando los valores para que cambie la posicion y se mueva
 	update(){
 
 		let rotaCamara = GFachada.regCamaras[0].getPadre().getPadre().entidad;
-		//let traslaCamara = GFachada.regCamaras[0].getPadre().entidad;
 		rotaCamara.rotar(this.movY * Math.PI/180, 0, 1, 0);
 		rotaCamara.rotar(this.movX * Math.PI/180, 1, 0, 0);
 

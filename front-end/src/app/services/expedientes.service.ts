@@ -760,13 +760,14 @@ desactivarComentarios(bod, id){
   })
 }
 
+// TODO:
 deleteExpediente(id){
   let token = sessionStorage.token;
   let headers = new Headers({
     'Content-Type':'application/json',
     'Authorization':token
   });
-  let url = this.urlExp+'/id='+id;
+  let url = this.urlExpediente+'/id='+id;
   return this.http.delete(url, {headers}).map(res=>{
     return res.json();
   })

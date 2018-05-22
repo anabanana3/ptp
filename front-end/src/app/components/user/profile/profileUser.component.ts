@@ -209,13 +209,16 @@ export class ProfileUserComponent {
       }
 
       //Obtengo el valor de google Maps
-      if(this.sitio.gm_accessors_.place.gd.b == true){
+      console.log(this.sitio);
+      if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != '' && this.sitio.gm_accessors_.place.gd.place != undefined){
+        console.log('Cambio el lugar');
         this.datos.append('ChangePais', '1');
         this.getDataGoogle(place);
       }else{
+        console.log('No cambio el lugar');
         this.datos.append('Pais',this.oldPais);
         this.datos.append('ID_Lugar', this.oldPlaceId);
-        this.datos.append('Lugar', this.oldPlaceName);
+        this.datos.append('Sitio', this.oldPlaceName);
         this.datos.append('ChangePais', '0');
       }
       //Tengo todos los datos => hago la peticion
@@ -291,7 +294,7 @@ export class ProfileUserComponent {
       this.user.ID_Lugar = id;
       this.datos.append('ID_Lugar', id);
       this.user.Sitio = nombre;
-      this.datos.append('Lugar', nombre);
+      this.datos.append('Sitio', nombre);
       console.log(this.user);
     }
   }
@@ -317,6 +320,7 @@ export class ProfileUserComponent {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        location.href='/home';
       });
     }
 

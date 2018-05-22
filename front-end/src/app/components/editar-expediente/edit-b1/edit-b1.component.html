@@ -32,7 +32,7 @@
   <div class="grupoForm" >
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-    <h2 class="text16 textPink">DATOS SOBRE EL TITULAR DEL EXPEDIENTE</h2>
+  <h3 class="text16 textPink">Datos sobre la titular del expediente</h3>
     <div class="divLabels">
       <div class="divExp">
         <label for="nombreM">Nombre completo:</label>
@@ -77,7 +77,7 @@
 
   <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <div class="grupoForm" >
-    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre">DATOS SOBRE LA MADRE
+    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre">Datos sobre la madre
       <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
       <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
     </h2>
@@ -139,7 +139,7 @@
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  >
-    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre">DATOS SOBRE EL PADRE
+    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre">Datos sobre el padre
       <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
       <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
     </h2>
@@ -201,7 +201,7 @@
   <div>
     <h2 class="cherry">CONTEXTO DE LA CITA {{Deriv_RiesgoCheckSi}}</h2>
     <div>
-      <h2 class="text16 textPink">TIPO DE CITA</h2>
+      <h3 class="text16 textPink">Tipo de cita</h3>
         <div class="divLabels">
           <div class="divExp">
             <label>Citación por abordaje de riesgo de MGF:</label>
@@ -258,7 +258,7 @@
       </div>
 
     <div>
-      <h2 class="text16 textPink">PERSONAS DURANTE LA CITA</h2>
+      <h3 class="text16 textPink">Asistentes durante la cita</h3>
 
       <div  class="divLabels">
         <div class="divExp">
@@ -306,7 +306,7 @@
       </div>
     </div>
 
-    <h2 class="text16 textPink">DIFICULTAD CON EL IDIOMA</h2>
+    <h3 class="text16 textPink">Dificultad con el idioma</h3>
     <div  class="divLabels">
       <div class="divExp">
         <label >Dificultad con el idioma materno:</label>

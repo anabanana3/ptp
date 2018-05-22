@@ -102,7 +102,6 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <label>Significado de la MGF para la titular del expediente:</label>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" placeholder="Escriba aquí..."></textarea>
 
-<!-- TODO: WHAAT? -->
     <label>Formato de intervención:</label>
     <span matTooltip="Indique cuál ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" placeholder="Escriba aquí..."></textarea>
@@ -110,13 +109,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <label>Consejos para otros profesionales:</label>
     <span matTooltip="Estos consejos podrán ayudar a otros profesionales pertenecientes a Aisha en caso de que publique este expediente." class="pointer icon-info info"></span>
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Escriba aquí..."></textarea>
-    <!-- <hr> -->
 
     <div class="grupoForm">
-      <h2 class="text16 textPink">HISTORIA DE PARTOS
+      <h3 class="text16 textPink">Historia de partos
         <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
         <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
-      </h2>
+      </h3>
       <div *ngIf="hayParto==true">
         <label>Número de partos de los que desea guardar información:</label>
         <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
@@ -124,59 +122,9 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
         <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Añadir partos</button>
         <button *ngIf="datosPartos.length>=1" mat-raised-button (click)="modificarPartos()"  type="button" name="button" class="btn-border bgColorPink">Modificar partos</button>
 
- <!-- <div class="partos">
-   <div class="partoContainer" *ngFor="let p of partos; let i= index">
-     <p> parto numero {{i+1}}</p>
-     <label>Edad de la madre en el momento del parto </label>
-     <input [(ngModel)]="datosPartos[i].Edad_Madre"  name="Edad_Madre" type="number">
-     <br>
-     <label>Fecha del parto</label>
-     <input type="date">
-     <br> -->
-     <!--Este valor lo voy a calcular en funcion de la fecha que introduzca el usuario-->
-     <!-- <label>Edad del nacido(Ver si lo podemos hacer automatico)</label>
-     <input [(ngModel)]="datosPartos[i].Edad_Nacido" name="Edad_Nacido" type="number">
-     <br>
-     <label> Tiempo expulsivo</label>
-     <input [(ngModel)]="datosPartos[i].Tiempo_Expulsivo" name="Tiempo_Expulsivo" type="number">
-     <br>
-     <label> Tiempo de dialtación</label>
-     <input [(ngModel)]="datosPartos[i].Tiempo_Dilatacion" name="Tiempo_Dilatacion" type="number">
-     <br>
-     <label> Duración del parto</label>
-     <input [(ngModel)]="datosPartos[i].Duracion_Parto" name="Duracion_Parto" type="number">
-     <br>
-     <label>Formula obstretica realizada</label>
-     <select [(ngModel)]="datosPartos[i].ID_Formula" name="ID_Formula">
-       <option *ngFor="let f of formulas" [value]="f.ID_Formula">{{f.Nombre}}</option>
-     </select>
-   <br>
-   <label>Test APGAR</label>
-   <input [(ngModel)]="datosPartos[i].Test_APGAR" name="Test_APGAR" type="number">
-   <br>
-   <label>Tipo de mutilación que padece la madre en el momento del parto</label>
-   <select [(ngModel)]="datosPartos[i].ID_Mutilacion" name="ID_Mutilacion">
-       <option *ngFor="let t of tiposMutilacion" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
-   </select>
-   <br>
 
-   <p>Seleccione las complicaciones sufrió la madre durante el parto</p>
-   <span matTooltip="Seleccione todas las complicaciones que sufra la madre ddurante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
-   <div *ngFor="let c of compMadre; let k = index">
-     <label for="{{i}}compMadre{{k}}">{{c.Nombre}}</label> -->
-     <!-- [(ngModel)]="datosPartos[i].compMadre" -->
-     <!-- <input id="{{i}}compMadre{{k}}" [(ngModel)]="datosPartos[i].CompMadre[k]" name="{{i}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
-   </div>
-   <br><br>
-   <p>Seleccione las complicaciones sufrió el recien nacido durante el parto</p>
-   <span matTooltip="Seleccione todas las complicaciones que sufrioel recien nacido durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
-   <div *ngFor="let c of compNacido let j= index">
-     <label for="{{i}}compNacido{{j}}">{{c.Nombre}}</label>
-     <input id="{{i}}compNacido{{j}}" [(ngModel)]="datosPartos[i].compNacido[j]" name="{{i}}compNacido{{j}}" type="checkbox">
-   </div>
- </div>
 
- </div> -->
+
 
 
      </div>
@@ -185,11 +133,16 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
    <div class="centrar">
     <button class="btn-relleno" type="submit">Guardar</button>
   </div>
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos(form)"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
+  </div>
+  <!--Fin boton flotante -->
 </form>
-
- <!-- esto es lo que sale : false INVALID
- <p>
-   {{this.form.valid}}
-
-   {{this.form.status}}
- </p>-->

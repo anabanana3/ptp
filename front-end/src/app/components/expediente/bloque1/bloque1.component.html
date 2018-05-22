@@ -35,12 +35,12 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     <label for="descripcion">Breve descripción:</label>
     <textarea class="textareaBl2" [(ngModel)]="expediente.Descripcion" type="text"  placeholder="Escriba una breve descripción..."  name="descripcion" id="descripcion" formControlName="descripcion"></textarea>
   </div>
-  <!--<hr>-->
+
   <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
   <div class="grupoForm" formGroupName = "menor">
 
   <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-    <h2 class="text16 textPink">DATOS SOBRE LA TITULAR DEL EXPEDIENTE</h2>
+    <h3 class="text16 textPink">Datos sobre la titular del expediente</h3>
     <div class="divLabels">
       <div class="divExp">
         <label for="nombreM">Nombre completo:</label>
@@ -86,10 +86,10 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   <!-- <hr> -->
   <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <div class="grupoForm" formGroupName="madre">
-    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre">DATOS SOBRE LA MADRE
+    <h3 class="text16 textPink" (click)="HayMadre = !HayMadre">Datos sobre la madre
       <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
       <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
-    </h2>
+    </h3>
     <div *ngIf="HayMadre==true">
 
       <div class="divLabels">
@@ -148,10 +148,10 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
-    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre">DATOS SOBRE EL PADRE
+    <h3 class="text16 textPink" (click)="HayPadre = !HayPadre">Datos sobre el padre
       <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
       <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
-    </h2>
+    </h3>
     <div *ngIf="HayPadre==true">
       <div class="divLabels">
         <div class="divExp">
@@ -214,21 +214,14 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   </div>
 
   <!--CONTEXTO DE LA CITA -->
-  <!-- <hr> -->
   <div formGroupName="bloque">
     <h2 class="cherry">CONTEXTO DE LA CITA</h2>
     <div>
-      <h2 class="text16 textPink">TIPO DE CITA</h2>
+      <h3 class="text16 textPink">Tipo de cita</h3>
         <div class="divLabels">
           <div class="divExp">
             <label>Citación por abordaje de riesgo de MGF:</label>
           </div>
-
-          <!-- <div class="divExp">
-            <select id="citaAboMGF" formControlName="Citacion">
-              <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-            </select>
-          </div> -->
 
           <div class="divExp">
             <div class="divPruebaRadio">
@@ -279,9 +272,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
         </div>
       </div>
-    <!-- <hr> -->
     <div>
-      <h2 class="text16 textPink">ASISTENTES DURANTE LA CITA</h2>
+      <h3 class="text16 textPink">Asistentes durante la cita</h3>
 
       <div class="divLabels">
         <div class="divExp">
@@ -337,9 +329,8 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <textarea class="textareaBl2" type="text" placeholder="Escriba aquí..." id="otrosA" formControlName="Acomp_O"></textarea>
       </div>
     </div>
-    <!-- <hr> -->
 
-    <h2 class="text16 textPink">DIFICULTAD CON EL IDIOMA</h2>
+    <h3 class="text16 textPink">Dificultad con el idioma</h3>
     <div class="divLabels">
       <div class="divExp">
         <label >Dificultad con el idioma materno:</label>
@@ -391,17 +382,24 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
     </div>
   </div>
-  <!-- <hr> -->
 
-  <div class="centrar">
+  <!-- <div class="centrar"> -->
     <!-- TODO: Volver a poner esto para que no deje mandar si no esta lo required relleno -->
     <!-- [disabled]="!this.form.valid" -->
-    <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button>
-  </div>
-</form>
-<!-- esto es lo que sale : false INVALID-->
-<!-- <p>
-  {{this.form.valid}}
+    <!-- <button style="text-align:center;" class="btn-relleno"  type="submit">Guardar</button> -->
+  <!-- </div> -->
 
-  {{this.form.status}}
-</p> -->
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
+  </div>
+  <!--Fin boton flotante -->
+
+</form>

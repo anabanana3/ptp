@@ -366,6 +366,7 @@ export class VerExpedienteComponent implements OnInit {
     //Cargar un popUp con un desplegable con las carpetas que tiene el usuario
     this.openDialogMoverExp();
   }
+
   //Es un metodo para mover los expedientes de las carpetas
   addExpedienteToFolder(idCarpeta){
     console.log('Metodo para añadir un expediente a una carpeta');
@@ -382,13 +383,13 @@ export class VerExpedienteComponent implements OnInit {
   openDialogBorrar(): void {
     let dialogRef = this.dialog.open(PopupBorrarExp, {
       width: '550px',
-      data: { ID_Expediete: this.expID }
+      data: { ID_Expediente: this.expID }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       //this.animal = result;
-    });
+      });
   }
   openDialogMoverExp(): void {
     let dialogRef = this.dialog.open(popupMoverExp, {
@@ -397,7 +398,7 @@ export class VerExpedienteComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('Pop Up Mover expediente cerrado');
       //this.animal = result;
     });
   }
@@ -410,10 +411,20 @@ export class PopupBorrarExp {
 
   constructor(
     public dialogRef: MatDialogRef<PopupBorrarExp>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _expedientesService:ExpedientesService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  borrarExpediente(id){
+    this._expedientesService.deleteExpediente(id).subscribe(data=>{
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      console.log(data);
+      location.href ="/misexpedientes";
+    })
   }
 
 }
@@ -425,10 +436,22 @@ export class popupMoverExp {
 
   constructor(
     public dialogRef: MatDialogRef<popupMoverExp>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _carpetasService:CarpetasService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  pruebaMover(idE, carp){
+    console.log('Metodo de confirmar mover Expediente');
+    console.log(carp)
+    this._carpetasService.addExpedienteToFolder(idE, carp).subscribe(data =>{
+      console.log(data);
+      if(data.Codigo == 501){
+        location.href = '/expired';
+        return;
+      }
+      console.log(data);
+    })
   }
 
 }
