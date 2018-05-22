@@ -76,7 +76,6 @@ class TFachadaMotor {
     let rota = this.crearNodo("RotaAnim", escala, this.crearTransform());
     let trasla = this.crearNodo("TraslaAnim", rota, this.crearTransform());
     let animacion = this.crearAnimacion(nombre, trasla, carpeta);
-    escala.entidad.escalar(0.1,0.1,0.1);
 
     this.animaciones.push(animacion);
     return animacion;

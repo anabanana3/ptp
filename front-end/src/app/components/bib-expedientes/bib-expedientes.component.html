@@ -20,8 +20,9 @@
       <div *ngIf="expedientes.length>0" class="expediente-container">
         <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
           <div class="expediente-body-exp">
-            <p class="tituloExp">{{e.Titulo}}</p>
-            <p class="fechaExp">{{e.Fecha.split('T')[0]}}</p>
+            <p class="tituloExp">Expediente {{e.ID_Publico}} <span class="fechaExp">{{e.FechaCreacion.split('T')[0]}}</span></p>
+            <p class="fechaExp">{{e.Sitio}}, {{e.Pais}}</p>
+            <p class="fechaExp"> {{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
       </div>
@@ -108,7 +109,7 @@
           <div class="divExpDeUnoSearch">
             <label for="lugar">Lugar de detección:</label>
           </div>
-          
+
           <div divExpDeUnoSearch id="locationField">
             <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
           </div>

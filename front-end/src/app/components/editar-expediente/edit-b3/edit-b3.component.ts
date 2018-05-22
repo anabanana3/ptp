@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../../services/expedientes.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EditarExpedienteComponent } from '../editar-expediente.component';
 
 @Component({
   selector: 'app-edit-b3',
@@ -23,14 +24,14 @@ export class EditB3Component implements OnInit {
     Consejo: ''
   }
   form:FormGroup;
+  id:number;
 
-  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
-    let id:number;
+  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private _EditarExpedienteComponent:EditarExpedienteComponent) {
     activatedRoute.params.subscribe(params=>{
-      id = params['id'];
+      this.id = params['id'];
     });
 
-    this._expedientesService.getBloque3(id).subscribe(data=>{
+    this._expedientesService.getBloque3(this.id).subscribe(data=>{
       console.log('Muestro el bloque 3')
       console.log(data);
       this.json=data[0];
@@ -93,9 +94,18 @@ export class EditB3Component implements OnInit {
         location.href='/expired';
         return;
       }
+      this.cambiarBloque();
       console.log(data);
     })
 
+  }
+
+  cambiarBloque(){
+     console.log('Cambio de bloque');
+     this._EditarExpedienteComponent.selectedTab = 3;
+  }
+  terminar(){
+    location.href="/verexpediente;id="+this.id;
   }
 
 }

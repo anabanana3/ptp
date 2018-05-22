@@ -93,6 +93,11 @@ class TCamaraInteractor extends TEntidad {
     }else if(this.key == 189){
       this.zoomOut();
     }
+    // else if(this.key == 39){
+    //  tecla para mover el frame de la animacion
+    //   GFrame++;
+    //   GFachada.animaciones[0].draw();
+    // }
   }
 
   onKeyUp(ev){

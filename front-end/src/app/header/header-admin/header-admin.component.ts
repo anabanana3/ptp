@@ -35,6 +35,5 @@ export class HeaderAdminComponent implements OnInit {
         } else {
             x.className = "menuNav";
         }
-
   }
 }

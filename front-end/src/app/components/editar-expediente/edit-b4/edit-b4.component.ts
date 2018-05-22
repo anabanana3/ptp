@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExpedientesService } from '../../../services/expedientes.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { EditarExpedienteComponent } from '../editar-expediente.component';
 
 @Component({
   selector: 'app-edit-b4',
@@ -29,18 +30,18 @@ export class EditB4Component implements OnInit {
   consecuencias = new Array();
 
   cSel = new Array();
+  id:number;
 
-  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
-    let id:number;
+  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private _EditarExpedienteComponent:EditarExpedienteComponent) {
     activatedRoute.params.subscribe(params=>{
-      id = params['id'];
+      this.id = params['id'];
     });
     this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMutilacion=data);
     this._expedientesService.getConsecuenciasSalud().subscribe(data =>{
         this.consecuenciasSalud = data;
         console.log(this.consecuenciasSalud);
     });
-    this._expedientesService.getBloque4(id).subscribe(data=>{
+    this._expedientesService.getBloque4(this.id).subscribe(data=>{
 
       console.log(data);
       this.json=data[0];
@@ -82,7 +83,7 @@ export class EditB4Component implements OnInit {
       })
     })
 
-    this._expedientesService.getTieneConsecSalud(id).subscribe(data=>{
+    this._expedientesService.getTieneConsecSalud(this.id).subscribe(data=>{
       console.log('***********************************')
       console.log(data);
       this.consecBD = data;
@@ -126,6 +127,7 @@ export class EditB4Component implements OnInit {
       }
       this._expedientesService.updateConsecuenciasSalud(this.json.ID_Expediente, this.json.ID_Bloque, this.consecuencia).subscribe(data => {
         console.log(data);
+        this.cambiarBloque();
       });
     })
 
@@ -238,6 +240,14 @@ export class EditB4Component implements OnInit {
     document.getElementById("iconMinusSex").style.display="none";
     document.getElementById("iconPlusSex").style.display="block";
     document.getElementById("consSex").style.display="none";
+  }
+
+  terminar(){
+    location.href="/verexpediente;id="+this.id;
+  }
+  cambiarBloque(){
+     console.log('Cambio de bloque');
+     this._EditarExpedienteComponent.selectedTab = 4;
   }
 
 }

@@ -17,3 +17,5 @@ var GtituloElement;
 var GtituloNode;
 var GdescripcionElement;
 var GdescripcionNode;
+
+var GFrame = 0;

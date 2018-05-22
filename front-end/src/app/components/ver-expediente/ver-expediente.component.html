@@ -52,12 +52,14 @@
         </div>
         <div class="divLabelsVer">
           <div class="divExpVer">
-            <label><b>Autor</b></label>
+            <label><b>Autor </b></label>
           </div>
           <div class="divExpVer">
             <p>{{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
+
+    
       </div>
 
       <div class="permisosVerExp">
@@ -72,52 +74,62 @@
 
       <div class="lineaDiv"></div>
 
-    <div *ngIf="estaComent" class="sliderComentarios" id="sliderComentarios">
-      <a name="arriba"></a>
-      <div id="alert">{{mensaje}}</div>
-      <div class="comentario comentarioNuevo">
-        <h2>Nuevo comentario</h2>
-        <textarea
-          [(ngModel)]='comentario' type="text" id="comentario"
-          placeholder="Escriba su comentario aquí...">
-        </textarea>
-        <div>
-          <button type="submit" name="button" class="btn-border" (click)="comentar()">Comentar</button>
-        </div>
+      <div class="grupoForm" *ngIf="estaComent">
+        <h3 class="text16 textPink pointer verComentarios" (click)="verComentarios = !verComentarios">Comentarios
+          <span *ngIf="verComentarios==false" class="pointer icon-plus"></span>
+          <span *ngIf="verComentarios==true" class="pointer icon-minus"></span>
+        </h3>
+        <div *ngIf="verComentarios==true">
+          <div class="sliderComentarios" id="sliderComentarios">
+            <a name="arriba"></a>
+            <div id="alert">{{mensaje}}</div>
+            <div class="comentario comentarioNuevo">
+              <h2>Nuevo comentario</h2>
+              <textarea
+                [(ngModel)]='comentario' type="text" id="comentario"
+                placeholder="Escriba su comentario aquí...">
+              </textarea>
+              <div>
+                <button type="submit" name="button" class="btn-border" (click)="comentar()">Comentar</button>
+              </div>
+            </div>
+
+            <div style="width:100%;" *ngFor="let comentario of comentarios">
+              <div class="comentario">
+                <div class="comentarioTitulo">
+                  <h3>{{comentario.Nombre.split("'")[1]}} - {{comentario.Fecha.split("T")[0]}}</h3>
+                  <button *ngIf="comentario.ID_Usuario == sessionStorageID"type="submit" name="button" class="btn span icon-trash-empty"
+                    (click)="borrarComentario(comentario.ID_Comentario)"></button>
+                </div>
+                <p>{{comentario.Comentario.split("'")[1]}}</p>
+              </div>
+            </div>
+            <!-- PAGINACION -->
+            <ul class="pagination" *ngIf="paginas.length >1">
+            <!--Boton de pagina anterior-->
+              <li>
+                <a (click)="pasarPagina(pagBack)">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li *ngFor="let pag of paginas; let i=index">
+                <a (click)="pasarPagina(i+1)">
+                  <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+                  <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+                </a>
+              </li>
+              <!--Boton de pagina siguiente-->
+              <li>
+                <a (click)="pasarPagina(pagNext);">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+       </div>
       </div>
 
-      <div style="width:100%;" *ngFor="let comentario of comentarios">
-        <div class="comentario">
-          <div class="comentarioTitulo">
-            <h3>{{comentario.Nombre.split("'")[1]}} - {{comentario.Fecha.split("T")[0]}}</h3>
-            <button *ngIf="comentario.ID_Usuario == sessionStorageID"type="submit" name="button" class="btn span icon-trash-empty"
-              (click)="borrarComentario(comentario.ID_Comentario)"></button>
-          </div>
-          <p>{{comentario.Comentario.split("'")[1]}}</p>
-        </div>
-      </div>
-      <!-- PAGINACION -->
-      <ul class="pagination" *ngIf="paginas.length >1">
-      <!--Boton de pagina anterior-->
-        <li>
-          <a (click)="pasarPagina(pagBack)">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li *ngFor="let pag of paginas; let i=index">
-          <a (click)="pasarPagina(i+1)">
-            <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-            <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-          </a>
-        </li>
-        <!--Boton de pagina siguiente-->
-        <li>
-          <a (click)="pasarPagina(pagNext);">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
 
 
@@ -129,7 +141,7 @@
           <mat-tab label="Datos sociodemográficos">
             <div class="contentVerExp">
             <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE EL TITULAR DEL EXPEDIENTE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre la titular del expediente</h3>
               <div *ngFor="let p of persona" class="persona">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
@@ -165,7 +177,7 @@
                   </div>
                 </div>
               </div>
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE EL PADRE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre el padre</h3>
             <div *ngFor="let p of padre" class="padre">
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
@@ -206,7 +218,7 @@
               <label>No hay datos registrados</label>
             </div>
 
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE LA MADRE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre la madre</h3>
             <div *ngFor="let m of madre" class="madre">
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
@@ -249,7 +261,7 @@
               <h2 class="cherry">CONTEXTO DE LA CITA</h2>
 
             <div *ngFor="let k of bloque1" class="bloque1">
-              <h2 class="text16 textPink perfilForm">TIPO DE CITA</h2>
+              <h3 class="text16 textPink perfilForm">Tipo de cita</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Citación por abordaje de riesgo de la MGF:</label>
@@ -294,7 +306,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">PERSONAS DURANTE LA CITA</h2>
+              <h3 class="text16 textPink perfilForm">Personas durante la cita</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Acompañada por la madre:</label>
@@ -336,7 +348,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">DIFICULTAD CON EL IDIOMA</h2>
+              <h3 class="text16 textPink perfilForm">Dificultad con el idioma</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Dificultad con el idioma materno:</label>
@@ -522,7 +534,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONOCIMIENTO SOBRE CONSECUENCIAS MGF</h2>
+              <h3 class="text16 textPink perfilForm">Conocimiento sobre consecuencias MGF</h3>
 
               <div *ngIf= "w.Conoc_consecM ==1 || w.Conoc_consecM ==0">
                 <div class="divLabelsVerExp">
@@ -570,7 +582,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">INTERVENCIÓN</h2>
+              <h3 class="text16 textPink perfilForm">Intervención</h3>
 
               <div *ngIf="w.Formato_int != ''">
                 <div class="divLabelsVerExp">
@@ -664,7 +676,7 @@
               </div>
 
               <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS INMEDIATAS</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas inmediatas</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud1">
                <label>- {{c.Nombre}}</label>
@@ -675,7 +687,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS A LARGO PLAZO</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas a largo plazo</h3>
 
 
               <div class="complicaciones" *ngFor="let c of consecSalud2">
@@ -687,7 +699,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS OBSTÉTRICO GINECOLÓGICAS</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias obstétrico ginecológicas</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud4">
                <label>- {{c.Nombre}}</label>
@@ -698,7 +710,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS PSICOSOCIALES</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias psicosociales</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud5">
                <label>- {{c.Nombre}}</label>
@@ -709,7 +721,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS SOBRE LA SEXUALIDAD</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias sobre la sexualidad</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud6">
                <label>- {{c.Nombre}}</label>
@@ -816,7 +828,7 @@
                 </div>
             </div>
 
-            <h2 class="text16 textPink perfilForm">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR</h2>
+            <h3 class="text16 textPink perfilForm">Indicadores de sospecha de MGF en el ámbito escolar</h3>
 
             <div class="complicaciones" *ngFor="let i of indicadores">
              <label>- {{i.Nombre}}</label>

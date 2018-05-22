@@ -181,8 +181,17 @@
     <textarea class="textareaBl2" [(ngModel)]='json.Consejos' type="consejo" name="consejo" id="consejo" placeholder="Escriba su texto aquí...">
     </textarea>
 
-    <div class="centrar">
-      <button class="btn-relleno" type="submit">Guardar</button>
-    </div>
+  
+    <!-- Boton flotante -->
+    <div id="container-floating">
+      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
+      <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+      </div>
+      <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+        <p class="plus">+</p>
+        <p class="edit"><span class="icon-cancel textWhite"></span></p>
 
+      </div>
+    </div>
+    <!--Fin boton flotante -->
 </form>
