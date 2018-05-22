@@ -74,7 +74,8 @@
               </div>
           </div>
           <!-- Expedientes -->
-          <div *ngIf="c.Tipo != 0" [routerLink]="['/verexpediente', {id:c.ID_Expediente}]">
+          <!-- [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" -->
+          <div *ngIf="c.Tipo != 0" (click)="saveRuta(c.ID_Expediente)" >
             <div class="expediente-body-exp">
               <p class="tituloExp">Expediente {{c.ID_Expediente}}</p>
               <p class="fechaExp">{{c.ID_Lugar}}</p>

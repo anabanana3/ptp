@@ -62,6 +62,7 @@ export class VerExpedienteComponent implements OnInit {
   usuario:boolean = false;
 
   carpetas;
+  ruta;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
@@ -86,6 +87,7 @@ export class VerExpedienteComponent implements OnInit {
         this.carpetas = data;
         console.log(this.carpetas);
       })
+
   }
 
   getComentarios(){
@@ -205,6 +207,11 @@ export class VerExpedienteComponent implements OnInit {
       }
       console.log(data);
     })
+
+    if(sessionStorage.Ruta != undefined){
+      this.ruta = JSON.parse(sessionStorage.Ruta);
+      console.log(this.ruta);
+    }
   }
 
   openDialog(): void {

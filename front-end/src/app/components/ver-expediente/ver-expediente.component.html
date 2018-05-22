@@ -52,10 +52,19 @@
         </div>
         <div class="divLabelsVer">
           <div class="divExpVer">
-            <label><b>Autor</b></label>
+            <label><b>Autor </b></label>
           </div>
           <div class="divExpVer">
             <p>{{e.Autor.split("'")[1]}}</p>
+          </div>
+        </div>
+
+        <div *ngIf="sessionStorageID == e.ID_Usuario" class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Ruta:</b></label>
+          </div>
+          <div class="divExpVer">
+            <label><span>Todo > </span><span *ngFor="let r of ruta" (click)="getCarpeta(r.ID_Carpeta)">{{r.Nombre}} > </span></label>
           </div>
         </div>
       </div>

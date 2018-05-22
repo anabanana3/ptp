@@ -119,6 +119,16 @@ etnias = new Array();
     );
   }
 
+saveRuta(idExp){
+  console.log('Prueba para pasar la ruta a ver-expediente');
+  console.log(this.NameRuta);
+  sessionStorage.setItem('Ruta', JSON.stringify(this.NameRuta));
+  location.href = '/verexpediente;id='+idExp;
+  let prueba = JSON.parse(sessionStorage.Ruta);
+  console.log(prueba);
+
+
+}
 // TODO: Funcion para cargar los expedientes privados, publicos o ambos
 // cambio(n){
 //   this.n = n;
