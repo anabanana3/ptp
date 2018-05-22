@@ -21,7 +21,6 @@
             <label><b>Título</b></label>
           </div>
           <div class="divExpVer">
-            <!--  a veces no hay titulo-->
             <p>{{e.Titulo}}</p>
           </div>
         </div>
@@ -30,8 +29,8 @@
             <label><b>Descripción</b></label>
           </div>
           <div class="divExpVer">
-            <!-- <p>{{e.Descripcion.split("'")[1]}}</p> -->
-            <p>{{e.Descripcion}}</p>
+            <p *ngIf="e.Descripcion != ''">{{e.Descripcion}}</p>
+            <p *ngIf="e.Descripcion == ''">No hay datos registrados</p>
           </div>
         </div>
         <div class="divLabelsVer">
@@ -39,7 +38,7 @@
             <label><b>Lugar de detección</b></label>
           </div>
           <div class="divExpVer">
-            <p>{{e.Nombre}}</p> <!-- No se que hay que poner -->
+            <p>{{e.Nombre}}{{e.Pais}}</p> <!-- No se que hay que poner -->
           </div>
         </div>
         <div class="divLabelsVer">
@@ -59,7 +58,7 @@
           </div>
         </div>
 
-    
+
       </div>
 
       <div class="permisosVerExp">
@@ -148,7 +147,8 @@
                     <label>Edad:</label>
                   </div>
                   <div class="divExpDeUno">
-                    <label>{{p.Edad}}</label>
+                    <label *ngIf="p.Edad != 0">{{p.Edad}}</label>
+                    <label *ngIf="p.Edad == 0">No hay datos registrados</label>
                   </div>
                 </div>
                 <div class="divLabelsVerExp">
@@ -170,10 +170,11 @@
                 </div>
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
-                    <label *ngIf="p.Actividad != NULL">Actividad Laboral:</label>
+                    <label>Actividad Laboral:</label>
                   </div>
                   <div class="divExpDeUno">
-                    <label>{{p.Actividad}}</label>
+                    <label *ngIf="p.Actividad != NULL">{{p.Actividad}}</label>
+                    <label *ngIf="p.Actividad == NULL">No hay datos registrados</label>
                   </div>
                 </div>
               </div>
@@ -184,16 +185,17 @@
                   <label>Edad:</label>
                 </div>
                 <div class="divExpDeUno">
-                  <!-- no se guarda la edad -->
-                  <label>{{p.Edad}}</label>
+                  <label *ngIf="p.Edad != 0">{{p.Edad}}</label>
+                  <label *ngIf="p.Edad == 0">No hay datos registrados</label>
                 </div>
               </div>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
-                  <label *ngIf="p.Actividad != NULL">Actividad Laboral:</label>
+                  <label>Actividad Laboral:</label>
                 </div>
                 <div class="divExpDeUno">
-                  <label>{{p.Actividad}}</label>
+                  <label *ngIf="p.Actividad != NULL">{{p.Actividad}}</label>
+                  <label *ngIf="p.Actividad == NULL">No hay datos registrados</label>
                 </div>
               </div>
               <div class="divLabelsVerExp">
@@ -225,15 +227,17 @@
                   <label>Edad:</label>
                 </div>
                 <div class="divExpDeUno">
-                  <label>{{m.Edad}}</label>
+                  <label *ngIf="m.Edad != 0">{{m.Edad}}</label>
+                  <label *ngIf="m.Edad == 0">No hay datos registrados</label>
                 </div>
               </div>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
-                  <label *ngIf="m.Actividad != NULL">Actividad Laboral:</label>
+                  <label>Actividad Laboral:</label>
                 </div>
                 <div class="divExpDeUno">
-                    <label>{{m.Actividad}}</label>
+                  <label *ngIf="m.Actividad != NULL">{{m.Actividad}}</label>
+                    <label *ngIf="m.Actividad == NULL">No hay datos registrados</label>
                   </div>
                 </div>
                 <div class="divLabelsVerExp">
@@ -270,6 +274,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Citacion == 1">Sí</label>
                   <label *ngIf="k.Citacion == 0">No</label>
+                  <label *ngIf="k.Citacion == 2">N/S</label>
                 </div>
               </div>
 
@@ -281,6 +286,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Deriv_Riesgo == 1">Sí</label>
                   <label *ngIf="k.Deriv_Riesgo == 0">No</label>
+                  <label *ngIf="k.Deriv_Riesgo == 2">N/S</label>
                 </div>
               </div>
 
@@ -292,6 +298,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Deriv_Sospecha == 1">Sí</label>
                   <label *ngIf="k.Deriv_Sospecha == 0">No</label>
+                  <label *ngIf="k.Deriv_Sospecha == 2">N/S</label>
                 </div>
               </div>
 
@@ -314,6 +321,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Acomp_M == 1">Sí</label>
                   <label *ngIf="k.Acomp_M == 0">No</label>
+                  <label *ngIf="k.Acomp_M == 2">N/S</label>
                 </div>
               </div>
 
@@ -324,6 +332,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Acomp_P == 1">Sí</label>
                   <label *ngIf="k.Acomp_P == 0">No</label>
+                  <label *ngIf="k.Acomp_P == 2">N/S</label>
                 </div>
               </div>
 
@@ -334,17 +343,16 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Acomp_H == 1">Sí</label>
                   <label *ngIf="k.Acomp_H == 0">No</label>
+                  <label *ngIf="k.Acomp_H == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="k.Acomp_O != 'NULL'">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Acompañado por otros:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{k.Acomp_O}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Acompañado por otros:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{k.Acomp_O}}</label>
                 </div>
               </div>
 
@@ -356,6 +364,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Dif_Idi_M == 1">Sí</label>
                   <label *ngIf="k.Dif_Idi_M == 0">No</label>
+                  <label *ngIf="k.Dif_Idi_M == 2">N/S</label>
                 </div>
               </div>
 
@@ -366,6 +375,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Traduccion == 1">Sí</label>
                   <label *ngIf="k.Traduccion == 0">No</label>
+                  <label *ngIf="k.Traduccion == 2">N/S</label>
                 </div>
               </div>
 
@@ -376,6 +386,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="k.Mediacion == 1">Sí</label>
                   <label *ngIf="k.Mediacion == 0">No</label>
+                  <label *ngIf="k.Mediacion == 2">N/S</label>
                 </div>
               </div>
 
@@ -397,6 +408,7 @@
                 <div class="divExpDeUno">
                   <label *ngIf="bloque2[0].Conoce_MGF == 1">Sí</label>
                   <label *ngIf="bloque2[0].Conoce_MGF == 0">No</label>
+                  <label *ngIf="bloque2[0].Conoce_MGF == 2">N/S</label>
                 </div>
               </div>
 
@@ -407,64 +419,76 @@
                 <div class="divExpDeUno">
                   <label *ngIf="bloque2[0].MGF_realizada_com_origen == 1">Sí</label>
                   <label *ngIf="bloque2[0].MGF_realizada_com_origen == 0">No</label>
+                  <label *ngIf="bloque2[0].MGF_realizada_com_origen == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="bloque2[0].Pos_padre != NULL">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Posicionamiento del padre frente a la MGF:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="bloque2[0].Pos_padre == 1">A favor</label>
-                    <label *ngIf="bloque2[0].Pos_padre == 0">En contra</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento del padre frente a la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_padre == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_padre == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_padre == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="bloque2[0].Pos_madre != NULL">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Posicionamiento de la madre frente a la MGF:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="bloque2[0].Pos_madre == 1">A favor</label>
-                    <label *ngIf="bloque2[0].Pos_madre == 0">En contra</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento de la madre frente a la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_madre == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_madre == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_madre == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="bloque2[0].Pos_familia != NULL">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Posicionamiento de la familia en el pais de origen:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="bloque2[0].Pos_familia == 1">A favor</label>
-                    <label *ngIf="bloque2[0].Pos_familia == 0">En contra</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento de la familia en el pais de origen:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_familia == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_familia == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_familia == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="b2Otros != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Otros aspectos a tener en cuenta:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{b2Otros}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Otros aspectos a tener en cuenta:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{b2Otros}}</label>
                 </div>
               </div>
 
-              <div *ngIf="bloque2[0].Sintomas_MGF != 'NULL'">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Significado de la MGF para el implicado en el expediente:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{bloque2[0].Sintomas_MGF}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Significado de la MGF para el implicado en el expediente:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Significado_MGF}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato de intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Formato_intervencion}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Consejos}}</label>
                 </div>
               </div>
 
@@ -481,7 +505,7 @@
 
             </div>
             <div *ngIf="bloque2.length == 0">
-              <h3>No hay datos</h3>
+              <h3>No hay datos registrados</h3>
             </div>
           </div>
           </mat-tab>
@@ -511,104 +535,89 @@
                 </div>
               </div>
 
-              <div *ngIf= "w.Mant_MGF ==1 || w.Mant_MGF ==0">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Matenimiento de la MGF:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="w.Mant_MGF == 1">Sí</label>
-                    <label *ngIf="w.Mant_MGF == 0">No</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Matenimiento de la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Mant_MGF == 1">Sí</label>
+                  <label *ngIf="w.Mant_MGF == 0">No</label>
+                  <label *ngIf="w.Mant_MGF == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Mant_MGF_texto != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>¿Por qué?:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Mant_MGF_texto}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Mant_MGF_texto}}</label>
                 </div>
               </div>
 
               <h3 class="text16 textPink perfilForm">Conocimiento sobre consecuencias MGF</h3>
-
-              <div *ngIf= "w.Conoc_consecM ==1 || w.Conoc_consecM ==0">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Sobre la salud de las mujeres:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="w.Conoc_consecM == 1">Sí</label>
-                    <label *ngIf="w.Conoc_consecM == 0">No</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Sobre la salud de las mujeres:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Conoc_consecM == 1">Sí</label>
+                  <label *ngIf="w.Conoc_consecM == 0">No</label>
+                  <label *ngIf="w.Conoc_consecM == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Otros_consecM == ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>¿Por qué?:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Otros_consecM}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Otros_consecM}}</label>
                 </div>
               </div>
 
-              <div *ngIf= "w.Conoc_consecH ==1 || w.Conoc_consecH ==0">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Sobre la salud de los hombres:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="w.Conoc_consecH == 1">Sí</label>
-                    <label *ngIf="w.Conoc_consecH == 0">No</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Sobre la salud de los hombres:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Conoc_consecH == 1">Sí</label>
+                  <label *ngIf="w.Conoc_consecH == 0">No</label>
+                  <label *ngIf="w.Conoc_consecH == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Otros_consecH == ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>¿Por qué?:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Otros_consecH}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Otros_consecH}}</label>
                 </div>
               </div>
 
               <h3 class="text16 textPink perfilForm">Intervención</h3>
-
-              <div *ngIf="w.Formato_int != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Formato intervención:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Formato_int}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Formato_int}}</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Consejo != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Consejo para otros profesionales:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Consejo}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejo para otros profesionales:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejo}}</label>
                 </div>
               </div>
             </div>
 
             <div *ngIf="bloque3.length == 0">
-              <H3>No hay datos</H3>
+              <H3>No hay datos registrados</H3>
             </div>
           </div>
           </mat-tab>
@@ -618,7 +627,6 @@
 
               <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
               <div *ngFor="let w of bloque4">
-              <div *ngIf="w.Detec_MGF == 1 || w.Detec_MGF == 0">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
                     <label>Detección MGF:</label>
@@ -626,11 +634,10 @@
                   <div class="divExpDeUno">
                     <label *ngIf="w.Detec_MGF == 1">Sí</label>
                     <label *ngIf="w.Detec_MGF == 0">No</label>
+                    <label *ngIf="w.Detec_MGF == 2">N/S</label>
                   </div>
-                </div>
               </div>
 
-              <div *ngIf="w.ID_Mutilacion != ''">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
                     <label>Tipo de MGF:</label>
@@ -638,40 +645,34 @@
                   <div class="divExpDeUno">
                     <label>{{w.ID_Mutilacion}}</label>
                   </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Cicatrices en la zona genital:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Cicatriz_genital == 1">Sí</label>
+                  <label *ngIf="w.Cicatriz_genital == 0">No</label>
+                  <label *ngIf="w.Cicatriz_genital == 2">N/S</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Cicatriz_genital == 1 || w.Cicatriz_genital == 0">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Cicatrices en la zona genital:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label *ngIf="w.Cicatriz_genital == 1">Sí</label>
-                    <label *ngIf="w.Cicatriz_genital == 0">No</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Descripción:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Descripcion}}</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Cicatriz_genital == 1">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Descripción:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Descripcion}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Elasticidad:</label>
                 </div>
-              </div>
-
-              <div *ngIf="w.Elasticidad != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Elasticidad:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Elasticidad}}</label>
-                  </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Elasticidad}}</label>
                 </div>
               </div>
 
@@ -684,7 +685,7 @@
               </div>
 
               <div class="complicaciones" *ngIf="!consecSalud1?.length">
-                <label>No hay registros</label>
+                <label>No hay datos registrados</label>
               </div>
 
               <h3 class="text16 textPink perfilForm">Consecuencias físicas a largo plazo</h3>
@@ -696,7 +697,7 @@
               </div>
 
               <div class="complicaciones" *ngIf="!consecSalud2?.length">
-                <label>No hay registros</label>
+                <label>No hay datos registrados</label>
               </div>
 
               <h3 class="text16 textPink perfilForm">Consecuencias obstétrico ginecológicas</h3>
@@ -707,7 +708,7 @@
               </div>
 
               <div class="complicaciones" *ngIf="!consecSalud4?.length">
-                <label>No hay registros</label>
+                <label>No hay datos registrados</label>
               </div>
 
               <h3 class="text16 textPink perfilForm">Consecuencias psicosociales</h3>
@@ -718,7 +719,7 @@
               </div>
 
               <div class="complicaciones" *ngIf="!consecSalud5?.length">
-                <label>No hay registros</label>
+                <label>No hay datos registrados</label>
               </div>
 
               <h3 class="text16 textPink perfilForm">Consecuencias sobre la sexualidad</h3>
@@ -729,41 +730,30 @@
               </div>
 
               <div class="complicaciones" *ngIf="!consecSalud6?.length">
-                <label>No hay registros</label>
+                <label>No hay datos registrados</label>
               </div>
 
-              <div *ngIf="w.Otros != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Otras:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Otros}}</label>
-                  </div>
-                </div>
+              <h3 class="text16 textPink perfilForm">Otras</h3>
+              <div class="divExpDeUno">
+                <label>{{w.Otros}}</label>
               </div>
 
               <h2 class="cherry">INTERVENCIÓN</h2>
-
-              <div *ngIf="w.Formato_int != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Formato de la intervención:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Formato_int}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato de la intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Formato_int}}</label>
                 </div>
               </div>
 
-              <div *ngIf="w.Consejos != ''">
-                <div class="divLabelsVerExp">
-                  <div class="divExpDeUno">
-                    <label>Consejos:</label>
-                  </div>
-                  <div class="divExpDeUno">
-                    <label>{{w.Consejos}}</label>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejos}}</label>
                 </div>
               </div>
 
@@ -780,52 +770,45 @@
               <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
 
               <div *ngFor="let w of bloque5">
-
-                <div *ngIf="w.Viajes == 1 || w.Viajes == 0">
-                  <div class="divLabelsVerExp">
-                    <div class="divExpDeUno">
-                      <label>Realiza viajes al país de origen en vacaciones:</label>
-                    </div>
-                    <div class="divExpDeUno">
-                      <label *ngIf="w.Viajes == 1">Sí</label>
-                      <label *ngIf="w.Viajes == 0">No</label>
-                    </div>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Realiza viajes al país de origen en vacaciones:</label>
                 </div>
-
-                <div *ngIf="w.ViajesPlanificados == 1 || w.ViajesPlanificados == 0">
-                  <div class="divLabelsVerExp">
-                    <div class="divExpDeUno">
-                      <label>Tienen planificado realizar un viaje proximamente:</label>
-                    </div>
-                    <div class="divExpDeUno">
-                      <label *ngIf="w.ViajesPlanificados == 1">Sí</label>
-                      <label *ngIf="w.ViajesPlanificados == 0">No</label>
-                    </div>
-                  </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Viajes == 1">Sí</label>
+                  <label *ngIf="w.Viajes == 0">No</label>
+                  <label *ngIf="w.Viajes == 2">N/S</label>
                 </div>
+              </div>
 
-                <div *ngIf="w.Intervencion != ''">
-                  <div class="divLabelsVerExp">
-                    <div class="divExpDeUno">
-                      <label>Descripción del formato de la intervención:</label>
-                    </div>
-                    <div class="divExpDeUno">
-                      <label>{{w.Intervencion}}</label>
-                    </div>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Tienen planificado realizar un viaje proximamente:</label>
                 </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.ViajesPlanificados == 1">Sí</label>
+                  <label *ngIf="w.ViajesPlanificados == 0">No</label>
+                  <label *ngIf="w.ViajesPlanificados == 2">N/S</label>
+                </div>
+              </div>
 
-                <div *ngIf="w.Consejos != ''">
-                  <div class="divLabelsVerExp">
-                    <div class="divExpDeUno">
-                      <label>Consejos:</label>
-                    </div>
-                    <div class="divExpDeUno">
-                      <label>{{w.Consejos}}</label>
-                    </div>
-                  </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Descripción del formato de la intervención:</label>
                 </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Intervencion}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejos}}</label>
+                </div>
+              </div>
             </div>
 
             <h3 class="text16 textPink perfilForm">Indicadores de sospecha de MGF en el ámbito escolar</h3>
@@ -836,7 +819,7 @@
             </div>
 
             <div class="complicaciones" *ngIf="!indicadores?.length">
-              <label>No hay registros</label>
+              <label>No hay datos registrados</label>
             </div>
 
           </div>
