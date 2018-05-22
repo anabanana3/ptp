@@ -32,10 +32,6 @@ class TMalla extends TEntidad{
       let gl = GShader.gl;
       let programa = GShader.programa;
 
-      console.log(this.material);
-      console.log(this.malla);
-      console.log(this.textura);
-
       gl.uniform4fv(programa.uMaterialDiffuse, this.material.colorDifuso);
       gl.uniform4fv(programa.uMaterialSpecular, this.material.colorEspecular);
       gl.uniform4fv(programa.uMaterialAmbient, this.material.colorAmbiente);

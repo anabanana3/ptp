@@ -124,9 +124,6 @@ function mostrarCartoon(){
   },2000);
 }
 
-
-
-
 function mostrarNoCartoon(){
   //Funcion que llamamos desde la interfaz de angular que cambia el shader CARTOON al shader NOCARTOON
   GCartoon = false;
@@ -147,12 +144,14 @@ function mostrarAnimacion(){
   GAnimacion = true;
 
   let animacion = GFachada.crearAnimacionCompleto("animacion1", "animacion-box");
+  GFachada.escalar(animacion, 0.3, 0.3, 0.3);
 
   GShader.mainShader();
   setTimeout(() => {
     // creamos un while para ejecutar el dibujado de la animacion
+    GFachada.draw();
     do {
-      GFachada.draw();
+      GFachada.animaciones[0].draw();
     } while (GAnimacion);
   },1000);
 }
