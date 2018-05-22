@@ -31,11 +31,13 @@ export class UsuariosAdminComponent {
   profesiones;
   asociaciones;
 
-  //Para la paginacion
-  paginas= new Array(1);
-  pagNext;
-  pagBack;
+  paginas = new Array();
+  totalPag;
   pagActual;
+  pagInicio;
+  pagFinal;
+  startIndex;
+  endIndex;
   tamPag:number = 10;
 
   loading:boolean = true;
@@ -89,7 +91,7 @@ export class UsuariosAdminComponent {
         this.resultado = data;
         this.usuarios= this.resultado.Data;
         this.pagActual = this.resultado.Pagina;
-        this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+        this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag)
         this.tamPag = this.resultado.Elementos_Pagina;
       }
     })
@@ -138,7 +140,7 @@ export class UsuariosAdminComponent {
           this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
           this.pagActual = this.resultado.Pagina;
-          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+          this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag)
         }
       })
       return;
@@ -154,40 +156,58 @@ export class UsuariosAdminComponent {
           this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
           this.pagActual = this.resultado.Pagina;
-          this.paginacion(this.resultado.Pagina, this.resultado.Paginas_Totales);
+          this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag);
         }
       })
       return;
     }
   }
 
-  //Funcion para generar las variables de la paginacion
-  paginacion( paginaActual , pagTotales){
-    //Total de paginas
-    this.paginas = [];
-    for(let i=0; i<pagTotales; i++){
-      this.paginas.push(i);
-    }
-    //Pagina anterior
-    if(paginaActual >= 2){
-      this.pagBack = (paginaActual-1);
+  paginacion(totalPag, pagActual, tamPag){
+    let pagInicio, pagFinal;
+    if(totalPag <= 10){
+      pagInicio = 1;
+      pagFinal = totalPag;
     }else{
-      this.pagBack = paginaActual;
+      if(pagActual <= 6){
+        pagInicio = 1;
+        pagFinal = 10;
+      }else if(pagActual + 4 >= totalPag){
+        pagInicio = totalPag - 9;
+        pagFinal = totalPag;
+      }else{
+        pagInicio = pagActual - 5;
+        pagFinal = pagActual + 4;
+      }
     }
-    //Pagina Siguiente
-    if(paginaActual < pagTotales){
-      this.pagNext = (paginaActual+1);
-    }else{
-      this.pagNext = paginaActual;
-    }
+
+    let startIndex = (pagActual -1)*tamPag;
+    let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
+
+    let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+
+    //Despues de tener todo calculado guardo los datos
+    this.pagActual = pagActual;
+    this.pagInicio = pagInicio;
+    this.pagFinal = pagFinal;
+    this.startIndex = startIndex;
+    this.paginas = pages;
+    this.totalPag = totalPag;
   }
 
-  pasarPagina(pag){
-    this.view(this.tabla, pag);
-    this.pagActual = pag;
-  }
 
-  filter(){
+ pasarPagina(pag){
+   console.log('Paso a la pagina');
+   console.log(pag);
+   this.filter(pag);
+ }
+
+  // pasarPagina(pag){
+  //   this.view(this.tabla, pag);
+  //   this.pagActual = pag;
+  // }
+
+  filter(pag){
     let searchProfesion = null;
     let searchAsociacion = null;
     if(this.searchEmail === '')
@@ -200,18 +220,18 @@ export class UsuariosAdminComponent {
       searchAsociacion = this.searchAsociacion;
 
     if(this.searchNombre === null && this.searchEmail === null && searchProfesion === null && searchAsociacion === null){
-      this.view(this.tabla, 1);
+      this.view(this.tabla, pag);
       return;
     }
 
-    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, searchAsociacion, 1, this.tamPag)
+    this._userService.filtroUsuarios(this.tabla, this.searchNombre, this.searchEmail, searchProfesion, searchAsociacion, pag, this.tamPag)
       .subscribe(data => {
         if(data.Codigo == 501){
             location.href = '/expired';
         }else{
           this.loading = false;
           this.usuarios = data.Data;
-          this.paginacion(data.Pagina, data.Paginas_Totales);
+          this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag)
         }
       })
   }
