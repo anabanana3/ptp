@@ -119,51 +119,6 @@ etnias = new Array();
     );
   }
 
-saveRuta(idExp){
-  console.log('Prueba para pasar la ruta a ver-expediente');
-  console.log(this.NameRuta);
-  sessionStorage.setItem('Ruta', JSON.stringify(this.NameRuta));
-  location.href = '/verexpediente;id='+idExp;
-  let prueba = JSON.parse(sessionStorage.Ruta);
-  console.log(prueba);
-
-
-}
-// TODO: Funcion para cargar los expedientes privados, publicos o ambos
-// cambio(n){
-//   this.n = n;
-//   this.paginas = new Array();
-//   switch(this.n){
-//     case 1:
-//     this.tipoExp = 1;
-//       console.log('Modo Arbol');
-//       document.getElementById("arb").style.fontWeight = "bold";
-//       document.getElementById("priv").style.fontWeight = "normal";
-//       document.getElementById("publ").style.fontWeight = "normal";
-//       this.getExpedientesUser(this.tipoExp,1, this.tamPag);
-//
-//     break;
-//     case 2:
-//       console.log("Expedientes Privados");
-//       this.tipoExp = 2;
-//       //TODO: Faltan estos metodos
-//       document.getElementById("arb").style.fontWeight = "normal";
-//       document.getElementById("priv").style.fontWeight = "bold";
-//       document.getElementById("publ").style.fontWeight = "normal";
-//       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-//     break;
-//     case 3:
-//       console.log("Expedientes Publicos");
-//       this.tipoExp = 3;
-//       //TODO: Faltan estos metodos
-//       document.getElementById("priv").style.fontWeight = "normal";
-//       document.getElementById("publ").style.fontWeight = "bold";
-//       this.getExpedientesUser(this.tipoExp,1, this.tamPag)
-//     break;
-//
-//
-//   }
-// }
 
 elegirTipo(tipo){
    switch(tipo){

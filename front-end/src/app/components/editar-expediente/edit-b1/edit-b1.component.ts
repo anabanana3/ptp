@@ -1,6 +1,7 @@
 import { Component, ElementRef, AfterViewInit, NgZone, ViewChild, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExpedientesService } from '../../../services/expedientes.service';
+import { EditarExpedienteComponent } from '../editar-expediente.component';
 import { Persona } from '../../../interfaces/persona';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
@@ -17,11 +18,46 @@ import { } from '@types/googlemaps';
 
 export class EditB1Component implements OnInit {
 
-    id:number;
-    expediente
+  id:number;
+  expediente={
+    Titulo:'',
+    ID_Expediente:null,
+    Fecha:'',
+    Descripcion:'',
+    ID_Persona:'',
+    ID_Lugar:0,
+    ID_Usuario:'',
+    Sitio:'',
+    Pais:''
 
-    menor
-    bloque
+  };
+
+  menor:Persona = {
+    ID_Persona:null,
+    Nombre:'',
+    Edad:0,
+    ID_Sexo:1,
+    ID_Etnia:164,
+    ID_Lugar:0,
+    ID_Actividad:27
+  };
+
+  bloque:any = {
+    ID_Expediente:'',
+    Citacion:2,
+    Deriv_Riesgo:2,
+    Deriv_Sospecha:2,
+    Otros:'',
+    Acomp_P:2,
+    Acomp_M:2,
+    Acomp_H:2,
+    Acomp_O:'',
+    Dif_Idi_M:2,
+    Traduccion:2,
+    Mediacion:2,
+    Curso:'No empleado',
+    Centro_Salud:'No empleado'
+  }
 
     etnias;
     actividades;
@@ -50,6 +86,7 @@ export class EditB1Component implements OnInit {
       ID_Lugar:0,
       ID_Actividad:27
     }
+    //form2:FormGroup;
 
     //Para marcar los valores que vienen en la BD
 
@@ -58,7 +95,7 @@ export class EditB1Component implements OnInit {
     lugarDetec;
     lugarVict;
 
-  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
+  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader, private _EditarExpedienteComponent:EditarExpedienteComponent) {
 
     activatedRoute.params.subscribe(params=>{
       this.id = params['id'];
@@ -78,13 +115,17 @@ export class EditB1Component implements OnInit {
       // console.log('Muestro la informacion basica del expediente');
       this.expediente = data[0];
       // console.log(this.expediente);
-      this.expediente.Fecha = this.expediente.Fecha.split('T')[0];
+      if(this.expediente.Fecha != null){
+
+        this.expediente.Fecha = this.expediente.Fecha.split('T')[0];
+      }
       // this.expediente.Descripcion = this.expediente.Descripcion.split("'")[1];
 
       //Recupero el id de la menor implicada
       let idPersona = this.expediente.ID_Persona;
+      console.log(idPersona);
       //Recupero el bloque 1
-      // console.log('////////////////////////////////////////');
+      console.log('////////////////////////////////////////');
       this._expedientesService.getBloque1(this.id).subscribe(data =>{
         console.log(data);
         // console.log('Muestro la informacion del bloque 1');
@@ -112,51 +153,52 @@ export class EditB1Component implements OnInit {
           'Traduccion': new FormControl(this.bloque.Traduccion),
           'Mediacion': new FormControl(this.bloque.Mediacion),
         })
-      })
-      this._expedientesService.getPersonaById(idPersona).subscribe(data=>{
-        console.log('Muestro la menor')
-        console.log(data);
-        this.menor = data[0];
-        this.menor.ID_Sexo = 1;
-        this.menor.Nombre = this.menor.Nombre.split("'")[1];
-        // console.log(this.menor.Nombre);
-        // console.log(this.menor.Edad);
-      })
+        console.log(this.form2);
 
-      this._expedientesService.getFamiliarPersona(idPersona).subscribe(data=>{
-        // console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
-        // console.log(data);
-        // console.log(data.length);
-        if(data.length >0){
-          for(let i = 0; i< data.length; i++){
-            if(data[i].Tipo == 1){
-              // this.madre.push(data[i]);
-              this.madre = data[i];
-              this.madre.ID_Sexo = 1;
-              this.madre.Nombre = this.madre.Nombre.split("'")[1]
-            }else if(data[i].Tipo == 2){
-              // this.padre.push(data[i]);
-              this.padre = data[i];
-              this.padre.ID_Sexo = 2;
-              this.padre.Nombre=this.padre.Nombre.split("'")[1];
+
+        //Recupero la menor implicada en el Expediente
+        this._expedientesService.getPersonaById(idPersona).subscribe(data=>{
+          console.log('Muestro la menor')
+          console.log(data);
+          this.menor = data[0];
+          this.menor.ID_Sexo = 1;
+          this.menor.Nombre = this.menor.Nombre.split("'")[1];
+          // console.log(this.menor.Nombre);
+          // console.log(this.menor.Edad);
+        })
+
+        this._expedientesService.getFamiliarPersona(idPersona).subscribe(data=>{
+          // console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
+          // console.log(data);
+          // console.log(data.length);
+          if(data.length >0){
+            for(let i = 0; i< data.length; i++){
+              if(data[i].Tipo == 1){
+                // this.madre.push(data[i]);
+                this.madre = data[i];
+                this.madre.ID_Sexo = 1;
+                this.madre.Nombre = this.madre.Nombre.split("'")[1]
+              }else if(data[i].Tipo == 2){
+                // this.padre.push(data[i]);
+                this.padre = data[i];
+                this.padre.ID_Sexo = 2;
+                this.padre.Nombre=this.padre.Nombre.split("'")[1];
+              }
             }
+          }else{
+            // console.log('Padre');
+            // console.log(this.padre);
+            // console.log('Madre');
+            // console.log(this.madre);
           }
-        }else{
-          // console.log('Padre');
-          // console.log(this.padre);
-          // console.log('Madre');
-          // console.log(this.madre);
-        }
+        })
       })
-
-      //Recupero la menor implicada en el Expediente
-      // this._expedientesService.g
     })
 
 
    }
    getDataGoogle(){
-    //  console.log(this.lugarVict);
+     console.log(this.lugarVict);
     //  console.log(this.lugarDetec);
     //  console.log(this.menor);
      if(this.lugarDetec.gm_accessors_.place.gd.b == true){
@@ -189,26 +231,25 @@ export class EditB1Component implements OnInit {
     console.log(this.expediente);
     console.log(this.menor);
    }
-   guardarDatos(form){
+   guardarDatos(){
     //  console.log('-*-*-*--*-*-*-*-*-***-*-*-*-*-*-*-*-*-*-*-');
      //Miro si se han tocado los campos con fromControl
      this.getDataGoogle();
     // console.log(this.lugarVict);
     // console.log(this.lugarDetec);
      let changeBloque = false;
-     if(this.form2.touched == true){
-       //Actualizo los datos del bloque
-       this.bloque.Citacion = parseInt(this.form2.value.Citacion);
-       this.bloque.Acomp_H = parseInt(this.form2.value.Acomp_H);
-       this.bloque.Acomp_M = parseInt(this.form2.value.Acomp_M);
-       this.bloque.Acomp_P = parseInt(this.form2.value.Acomp_P);
-       this.bloque.Deriv_Riesgo = parseInt(this.form2.value.Deriv_Riesgo);
-       this.bloque.Deriv_Sospecha = parseInt(this.form2.value.Deriv_Sospecha);
-       this.bloque.Dif_Idi_M = parseInt(this.form2.value.Dif_Idi_M);
-       this.bloque.Mediacion = parseInt(this.form2.value.Mediacion);
-       this.bloque.Traduccion = parseInt(this.form2.value.Traduccion);
-       changeBloque = true;
-     }
+      //Actualizo los datos del bloque
+     this.bloque.Citacion = parseInt(this.form2.value.Citacion);
+     this.bloque.Acomp_H = parseInt(this.form2.value.Acomp_H);
+     this.bloque.Acomp_M = parseInt(this.form2.value.Acomp_M);
+     this.bloque.Acomp_P = parseInt(this.form2.value.Acomp_P);
+     this.bloque.Deriv_Riesgo = parseInt(this.form2.value.Deriv_Riesgo);
+     this.bloque.Deriv_Sospecha = parseInt(this.form2.value.Deriv_Sospecha);
+     this.bloque.Dif_Idi_M = parseInt(this.form2.value.Dif_Idi_M);
+     this.bloque.Mediacion = parseInt(this.form2.value.Mediacion);
+     this.bloque.Traduccion = parseInt(this.form2.value.Traduccion);
+     changeBloque = true;
+
      console.log(this.expediente);
      console.log(this.id);
     //  Actualizo los datos del expediente
@@ -241,8 +282,10 @@ export class EditB1Component implements OnInit {
            this._expedientesService.updateBloque(this.bloque, this.id).subscribe(data=>{
             //  console.log('Actualizo los datos del bloque');
             //  console.log(data);
+            this.cambiarBloque();
            })
          }
+         this.cambiarBloque();
        })
      })
 
@@ -283,6 +326,16 @@ export class EditB1Component implements OnInit {
 
       }
     );
+  }
+
+  cambiarBloque(){
+    console.log('Muestro el selectedTab actual');
+     this._EditarExpedienteComponent.selectedTab = 1;
+
+  }
+
+  terminar(){
+    location.href="/verexpediente;id="+this.id;
   }
 
 

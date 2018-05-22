@@ -64,7 +64,8 @@ export class VerExpedienteComponent implements OnInit {
   verComentarios:boolean = false;
 
   carpetas;
-  ruta;
+
+  movResult = 0;
 
   constructor(
     private _expedientesService:ExpedientesService, private router:ActivatedRoute,
@@ -210,10 +211,7 @@ export class VerExpedienteComponent implements OnInit {
       console.log(data);
     })
 
-    if(sessionStorage.Ruta != undefined){
-      this.ruta = JSON.parse(sessionStorage.Ruta);
-      console.log(this.ruta);
-    }
+    
   }
 
   openDialog(): void {
@@ -401,9 +399,10 @@ export class VerExpedienteComponent implements OnInit {
       });
   }
   openDialogMoverExp(): void {
+    this.movResult = 0;
     let dialogRef = this.dialog.open(popupMoverExp, {
       width: '550px',
-      data: { ID_Expediente: this.expID, Carpetas:this.carpetas }
+      data: { ID_Expediente: this.expID, Carpetas:this.carpetas, Resultado: this.movResult }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -459,6 +458,9 @@ export class popupMoverExp {
         location.href = '/expired';
         return;
       }
+
+      this.data.Resultado = 1;
+      console.log(this.data.Resultado)
       console.log(data);
     })
   }

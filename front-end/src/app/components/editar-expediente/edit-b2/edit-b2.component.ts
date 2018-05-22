@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ExpedientesService} from '../../../services/expedientes.service';
 import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { EditarExpedienteComponent } from '../editar-expediente.component';
 
 @Component({
   selector: 'app-edit-b2',
@@ -41,7 +42,7 @@ export class EditB2Component implements OnInit {
   datosPartos = new Array();
   numPartos:number = 0;
 
-  constructor(private _expedienteService:ExpedientesService,public dialog: MatDialog, private activatedRoute: ActivatedRoute) {
+  constructor(private _expedienteService:ExpedientesService,public dialog: MatDialog, private activatedRoute: ActivatedRoute, private _EditarExpedienteComponent:EditarExpedienteComponent) {
     console.log('Contructor');
     //Recupero la informacion => para los desplegables
     this._expedienteService.getFormulasObstreticas().subscribe(data=>this.formulas = data);
@@ -91,6 +92,10 @@ export class EditB2Component implements OnInit {
         this.datosPartos = data;
         //Obtengo las consecuencias de cada parto
         for(let i = 0; i<data.length; i++){
+          //Limpio el formato de la fecha de cada parto
+          if(data[i].Fecha != null){
+            data[i].Fecha = data[i].Fecha.split('T')[0];
+          }
           //Obtengo las complicaciones del nacido de un parto y las marco
           this._expedienteService.getConsecN(data[i].ID_Parto).subscribe(data=>{
             //Arrays de control que tiene cada parto
@@ -163,6 +168,7 @@ export class EditB2Component implements OnInit {
               this.getCompNacidoSend(i);
               this._expedienteService.updateCompNacidoParto(this.datosPartos[i].ID_Parto, this.datosPartos[i].compNacidoSend).subscribe(data=>{
                 console.log(data);
+                this.cambiarBloque()
               })
             })
           }else{
@@ -183,11 +189,13 @@ export class EditB2Component implements OnInit {
               this.getCompNacidoSend(i);
               this._expedienteService.addCompNacidoParto(idParto, this.datosPartos[i].compNacidoSend).subscribe(data=>{
                 console.log(data);
+                this.cambiarBloque();
               })
             })
           }
         }
       }
+      this.cambiarBloque();
     })
    }
 
@@ -341,6 +349,14 @@ export class EditB2Component implements OnInit {
     modificarPartos(){
       console.log('Funcion para modificar los partos');
       this.openDialog2(this.datosPartos.length);
+    }
+
+    cambiarBloque(){
+       console.log('Cambio de bloque');
+       this._EditarExpedienteComponent.selectedTab = 2;
+    }
+    terminar(){
+      location.href="/verexpediente;id="+this.id;
     }
 
   }

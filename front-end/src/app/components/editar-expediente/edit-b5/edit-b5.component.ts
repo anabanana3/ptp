@@ -88,6 +88,7 @@ export class EditB5Component implements OnInit {
       this._expedientesService.updateIndicadores(this.bloque5.ID_Expediente, this.bloque5.ID_CAMPOS, this.indicadoresSel).subscribe(data=>{
         //todo actualizado conrrectamente
         console.log(data);
+        this.terminar();
       })
     })
 
@@ -132,6 +133,10 @@ export class EditB5Component implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  terminar(){
+    location.href="/verexpediente;id="+this.id;
   }
 
 }

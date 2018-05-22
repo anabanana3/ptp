@@ -1371,9 +1371,7 @@ option{
   padding: 0;
 }
 
-.mat-tab-body.mat-tab-body-active {
-  z-index: 0 !important;
-}
+
 
 .partos{
   display: flex;

@@ -15,6 +15,7 @@ export class EditarExpedienteComponent implements OnInit {
   error:boolean = true;
 
   expediente;
+  selectedTab = 0;
 
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
     //Recupero la información del expediente

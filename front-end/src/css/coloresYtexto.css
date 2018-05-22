@@ -5,7 +5,10 @@
   color:#880042;
   font-weight: bold;
 }
-.textWhite{ color:#FFFFFF !important;}
+.textWhite{
+  color:#FFFFFF !important;
+  font-size: 100%;
+}
 .textDarkenWhite{ color:#ededed;}
 .textGrey{ color: #DDDDDD;}
 .textGreyDarken{ color: #ABABAB;}
