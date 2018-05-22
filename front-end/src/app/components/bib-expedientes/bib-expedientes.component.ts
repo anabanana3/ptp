@@ -352,8 +352,6 @@ profesiones = new Array();
               let place: google.maps.places.PlaceResult = this.sitio.getPlace();
               this.idSitio = place.id;
 
-
-
               if(place.geometry === undefined || place.geometry === null){
                 return
               }

@@ -128,7 +128,7 @@
           <mat-tab label="Datos sociodemográficos">
             <div class="contentVerExp">
             <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE EL TITULAR DEL EXPEDIENTE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre la titular del expediente</h3>
               <div *ngFor="let p of persona" class="persona">
                 <div class="divLabelsVerExp">
                   <div class="divExpDeUno">
@@ -164,7 +164,7 @@
                   </div>
                 </div>
               </div>
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE EL PADRE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre el padre</h3>
             <div *ngFor="let p of padre" class="padre">
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
@@ -205,7 +205,7 @@
               <label>No hay datos registrados</label>
             </div>
 
-            <h2 class="text16 textPink perfilForm">DATOS SOBRE LA MADRE</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre la madre</h3>
             <div *ngFor="let m of madre" class="madre">
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
@@ -248,7 +248,7 @@
               <h2 class="cherry">CONTEXTO DE LA CITA</h2>
 
             <div *ngFor="let k of bloque1" class="bloque1">
-              <h2 class="text16 textPink perfilForm">TIPO DE CITA</h2>
+              <h3 class="text16 textPink perfilForm">Tipo de cita</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Citación por abordaje de riesgo de la MGF:</label>
@@ -293,7 +293,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">PERSONAS DURANTE LA CITA</h2>
+              <h3 class="text16 textPink perfilForm">Personas durante la cita</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Acompañada por la madre:</label>
@@ -335,7 +335,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">DIFICULTAD CON EL IDIOMA</h2>
+              <h3 class="text16 textPink perfilForm">Dificultad con el idioma</h3>
               <div class="divLabelsVerExp">
                 <div class="divExpDeUno">
                   <label>Dificultad con el idioma materno:</label>
@@ -521,7 +521,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONOCIMIENTO SOBRE CONSECUENCIAS MGF</h2>
+              <h3 class="text16 textPink perfilForm">Conocimiento sobre consecuencias MGF</h3>
 
               <div *ngIf= "w.Conoc_consecM ==1 || w.Conoc_consecM ==0">
                 <div class="divLabelsVerExp">
@@ -569,7 +569,7 @@
                 </div>
               </div>
 
-              <h2 class="text16 textPink perfilForm">INTERVENCIÓN</h2>
+              <h3 class="text16 textPink perfilForm">Intervención</h3>
 
               <div *ngIf="w.Formato_int != ''">
                 <div class="divLabelsVerExp">
@@ -663,7 +663,7 @@
               </div>
 
               <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS INMEDIATAS</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas inmediatas</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud1">
                <label>- {{c.Nombre}}</label>
@@ -674,7 +674,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS FÍSICAS A LARGO PLAZO</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas a largo plazo</h3>
 
 
               <div class="complicaciones" *ngFor="let c of consecSalud2">
@@ -686,7 +686,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS OBSTÉTRICO GINECOLÓGICAS</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias obstétrico ginecológicas</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud4">
                <label>- {{c.Nombre}}</label>
@@ -697,7 +697,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS PSICOSOCIALES</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias psicosociales</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud5">
                <label>- {{c.Nombre}}</label>
@@ -708,7 +708,7 @@
                 <label>No hay registros</label>
               </div>
 
-              <h2 class="text16 textPink perfilForm">CONSECUENCIAS SOBRE LA SEXUALIDAD</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias sobre la sexualidad</h3>
 
               <div class="complicaciones" *ngFor="let c of consecSalud6">
                <label>- {{c.Nombre}}</label>
@@ -815,7 +815,7 @@
                 </div>
             </div>
 
-            <h2 class="text16 textPink perfilForm">INDICADORES DE SOSPECHA DE MGF EN EL ÁMBITO ESCOLAR</h2>
+            <h3 class="text16 textPink perfilForm">Indicadores de sospecha de MGF en el ámbito escolar</h3>
 
             <div class="complicaciones" *ngFor="let i of indicadores">
              <label>- {{i.Nombre}}</label>
