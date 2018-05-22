@@ -61,6 +61,8 @@ export class VerExpedienteComponent implements OnInit {
   admin:boolean = false;
   usuario:boolean = false;
 
+  verComentarios:boolean = false;
+
   carpetas;
   ruta;
 

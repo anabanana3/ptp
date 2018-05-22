@@ -106,7 +106,7 @@ function mostrarReal(){
       GFachada.borrarNodo(GFachada.objetos[i]);
     }
   }
-  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl");
+  let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "piel.jpg");
   GFachada.escalar(real, 0.1,0.1,0.1);
 
   setTimeout(() => {

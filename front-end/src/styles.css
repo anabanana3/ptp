@@ -532,7 +532,7 @@ br{
 .textoListado{
   width: 40%;
   text-align: left;
-  padding:20px 90px;
+  padding: 20px;
 }
 
 .textoP{
@@ -1445,16 +1445,6 @@ option{
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
-.infoExp{
-  grid-column-start: 1;
-  /* autoprefixer: off */
-  grid-column-end: 2;
-  grid-row-start: 1;
-  /* autoprefixer: off */
-  grid-row-end:2;
-  padding: 10px 0px 0px 20px;
-}
-
 .datosExp{
   grid-column-start: 2;
   /* autoprefixer: off */
@@ -1559,7 +1549,6 @@ option{
 .carpeta{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
-  /* width: 41%; */
   width: 204px;
   margin: 8px;
   height: 62px;
@@ -1718,7 +1707,8 @@ option{
 .optionsRight{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content:center;
+  margin-bottom: 2%;
 }
 
 .desplegableContainer{
@@ -2026,6 +2016,12 @@ option{
   margin-top: 2%;
 }
 
+.verComentarios{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+}
+
 .sliderComentarios{
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2033,7 +2029,7 @@ option{
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
-  height: 100vh;
+  height: 500px;
   padding-bottom:10px;
   overflow: scroll;
 }
