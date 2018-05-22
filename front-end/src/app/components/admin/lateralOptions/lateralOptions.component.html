@@ -2,27 +2,32 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <app-header-admin></app-header-admin>
 
-  <!-- <div class="divAdmin-menuExpanded" *ngIf="expanded">
-    <ul>
-      <li><a class="pointer icon-home" (click)="changeOption(1)">Home</a></li>
-      <li><a class="pointer icon-user" (click)="changeOption(2)">Usuarios</a></li>
-      <li><a class="pointer icon-users" (click)="changeOption(3)">Asociaciones</a></li>
-      <li><a class="pointer icon-box" (click)="changeOption(4)">Recursos</a></li>
-      <li><a class="pointer icon-doc-text-inv" (click)="changeOption(5)">Expedientes</a></li>
-      <li><a class="pointer icon-envelope-open">Notificaciones</a></li>
-    </ul>
-  </div> -->
+  <div class="header bgColorBlack">
+    <a [routerLink]="['/admin']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" alt="LogoAisha"></a>
+
+  <div class="menuNav" id="myTopnav">
+    <a class="pointer icon-user latAdmin" (click)="changeOption(2)">Usuarios</a>
+    <a class="pointer icon-users latAdmin" (click)="changeOption(3)">Asociaciones</a>
+    <a class="pointer icon-box latAdmin" (click)="changeOption(4)">Recursos</a>
+    <a class="pointer icon-doc-text-inv latAdmin" (click)="changeOption(5)">Expedientes</a>
+    <a [routerLink]="['/admin']" (click)="activo(4)" id="4" class="">Home</a>
+    <a [routerLink]="['/recursos']" (click)="activo(1)" id="1" class="">Recursos</a>
+    <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes</a>
+    <a [routerLink]="['/aulavirtual']" (click)="activo(3)" id="3" class="">Aula Virtual</a>
+    <a (click)="logout();" style="float:right;">Cerrar Sesión</a>
+
+    <a href="javascript:void(0);" class="icon" (click)="myFunction()">&#9776;</a>
+  </div>
+  </div>
+
 
   <div class="divAdmin">
     <ul>
-      <!-- <li><a class="pointer icon-home" (click)="changeOption(1)"><span>Home</span></a></li> -->
       <li><a class="pointer icon-user" (click)="changeOption(2)"><span>Usuarios</span></a></li>
       <li><a class="pointer icon-users" (click)="changeOption(3)"><span>Asociaciones</span></a></li>
       <li><a class="pointer icon-box" (click)="changeOption(4)"><span>Recursos</span></a></li>
       <li><a class="pointer icon-doc-text-inv" (click)="changeOption(5)"><span>Expedientes</span></a></li>
-      <li><a class="pointer icon-envelope-open"><span>Notificaciones</span></a></li>
     </ul>
   </div>
 

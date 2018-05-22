@@ -363,6 +363,7 @@ br{
   margin-bottom: 1rem;
   display: flex;
 }
+.latAdmin{display: none!important;}
 
 .headerPrincipal{
   display: block;
