@@ -208,6 +208,7 @@ export class UsuariosAdminComponent {
   // }
 
   filter(pag){
+    console.log("bucando..")
     let searchProfesion = null;
     let searchAsociacion = null;
     if(this.searchEmail === '')

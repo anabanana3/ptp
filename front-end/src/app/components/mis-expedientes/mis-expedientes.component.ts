@@ -298,28 +298,31 @@ buscar(pag, tamPag=this.tamPag){
     console.log(this.url);
     console.log('Muestro el tipo de expediente que voy a buscar');
     console.log(this.tipoExp);
+    if(this.tipoExp)
+    sessionStorage.setItem('F2TipoExp', this.tipoExp.toString());
     sessionStorage.setItem('F2Titulo', this.Filtros.Titulo);
     sessionStorage.setItem('F2Fecha1', this.Filtros.Fecha1);
     sessionStorage.setItem('F2Fecha2', this.Filtros.Fecha2);
-
-    // if(this.Filtros.Lugar !== undefined){
-    //   sessionStorage.setItem('F2Lugar', this.Filtros.Lugar);
-    // }
     //Obtengo los datos de google maps
     this.Filtros.Lugar = null;
     if(this.sitio.gm_accessors_.place.gd.b ==true && this.sitio.gm_accessors_.place.gd.l != ''){
       let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
       this.Filtros.Lugar = idLugar;
       sessionStorage.setItem('F2Lugar', idLugar);
+    }else{
+      sessionStorage.setItem('F2Lugar', null);
     }
-    if(this.Filtros.Etnia.toString() !== undefined){
+    //creo que esto no es necesario - undefined
+    if(this.Filtros.Etnia !== undefined){
       sessionStorage.setItem('F2Etnia', this.Filtros.Etnia.toString());
     }
-    sessionStorage.setItem('F2TipoMGF', this.Filtros.TipoMGF.toString());
+    if(this.Filtros.TipoMGF !== undefined){
+      sessionStorage.setItem('F2TipoMGF', this.Filtros.TipoMGF.toString());
+    }
     //Cambiar la URL en funcion del tipo seleccionado
     this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
     if(this.tipoExp == 2){
-      //Busco expedientes privados
+      //Busco expedientes publicos
       this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
     }
     console.log(this.url);
@@ -395,6 +398,7 @@ buscar(pag, tamPag=this.tamPag){
 
   buscar2(pag, tamPag=this.tamPag){
     //metodo para mantener la busqueda anterior
+    this.tipoExp = sessionStorage.F2TipoExp;
     this.Filtros.Titulo = sessionStorage.F2Titulo;
     this.Filtros.Fecha1 = sessionStorage.F2Fecha1;
     this.Filtros.Fecha2 = sessionStorage.F2Fecha2;
@@ -403,7 +407,7 @@ buscar(pag, tamPag=this.tamPag){
     this.Filtros.TipoMGF = sessionStorage.F2TipoMGF;
     //Cambiar la URL en funcion del tipo seleccionado
     this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
-    if(this.tipoExp == 3){
+    if(this.tipoExp == 2){
       //Busco expedientes privados
       this.url='https://www.aisha.ovh/api/publicos/user='+sessionStorage.iD+'/search/';
     }
