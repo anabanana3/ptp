@@ -42,7 +42,7 @@
       </div>
 
       <!-- Mensaje de que no tienes nada almacenado -->
-      <div *ngIf="contenido.length == 0 && busqueda==false" id="alert">{{mensaje}}</div>
+      <div *ngIf="!contenido?.length == 0 && busqueda==false" id="alert">{{mensaje}}</div>
       <!-- Mensaje de que no hay resultados de busqueda -->
       <div *ngIf="busqueda == true" id="alert">{{mensaje}}</div>
 

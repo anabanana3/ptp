@@ -58,7 +58,7 @@
           </div>
         </div>
         <div *ngIf="sessionStorageID == e.ID_Usuario" class="permisosVerExp">
-          <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+          <input class="checktrans" (click)="openDialogPublicarExp()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
           <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
           <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
           <div *ngIf="coment==1" class="coment" id="coment">

@@ -26,7 +26,7 @@ export class RecursoComponent {
   asociacion:boolean = false;
   admin:boolean = false;
   usuario:boolean = false;
-  
+
   constructor(private _materialService:MaterialService,
               private activatedRoute: ActivatedRoute) {
     if(sessionStorage.length === 0){
@@ -66,8 +66,8 @@ export class RecursoComponent {
           location.href ='/expired';
         }else{
           console.log(data);
-          this.recurso.Titulo = data[0].Titulo.split("'");
-          this.recurso.Descripcion = data[0].Descripcion.split("'");
+          this.recurso.Titulo = data[0].Titulo.split("'")[1];
+          this.recurso.Descripcion = data[0].Descripcion.split("'")[1];
           this.recurso.Publico = data[0].Publico;
           this.recurso.Archivo = data[0].Path;
           this.recurso.ID_Formato = data[0].ID_Formato;
