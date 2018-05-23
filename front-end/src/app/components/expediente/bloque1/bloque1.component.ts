@@ -95,8 +95,8 @@ export class Bloque1Component implements OnInit {
 
   @ViewChild('place') public searchElement: ElementRef;
   @ViewChild('place2') public searchElement2: ElementRef;
-  // @ViewChild('place3') public searchElement3: ElementRef;
-  // @ViewChild('place4') public searchElement4: ElementRef;
+  @ViewChild('place3') public searchElement3: ElementRef;
+  @ViewChild('place4') public searchElement4: ElementRef;
 
   //TODO => las validaciones de los campos que se pueden ocultar hay que hacerlas en el html
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader) {
@@ -358,10 +358,64 @@ getDataGoogle(){
       this.menor.Pais = aux[aux.length-1].long_name;
     }
   }
+  //Obtengo el lugar de la madre
+  if(this.lugarMadre != undefined && this.lugarMadre.gm_accessors_.place.gd.b == true && this.lugarMadre.gm_accessors_.place.gd.l != ''){
+    //hay datos
+    this.madre.ID_Lugar = this.lugarMadre.gm_accessors_.place.gd.place.id;
+    this.madre.Sitio = this.lugarMadre.gm_accessors_.place.gd.place.name;
+    let aux = this.lugarMadre.gm_accessors_.place.gd.place.address_components;
+    if(aux.length >=5 ){
+      this.madre.Pais = aux[aux.length-2].long_name;
+    }else{
+      this.madre.Pais = aux[aux.length-1].long_name;
+    }
+
+  }else{
+    // TODO:
+    //Vacio o el que ya habia
+  }
+  //Obtengo el lugar de la madre
+  if(this.lugarPadre != undefined && this.lugarPadre.gm_accessors_.place.gd.b == true && this.lugarPadre.gm_accessors_.place.gd.l != ''){
+    //hay datos
+    this.padre.ID_Lugar = this.lugarPadre.gm_accessors_.place.gd.place.id;
+    this.padre.Sitio = this.lugarPadre.gm_accessors_.place.gd.place.name;
+    let aux = this.lugarPadre.gm_accessors_.place.gd.place.address_components;
+    if(aux.length >=5 ){
+      this.padre.Pais = aux[aux.length-2].long_name;
+    }else{
+      this.padre.Pais = aux[aux.length-1].long_name;
+    }
+  }
+
   console.log(this.expediente);
   console.log(this.menor);
 }
 
+cargaMapsMadre(){
+console.log('Cargo Maps Madre')
+  //Time Out para que carge el html y pille la refercia
+   setTimeout(() => {
+     this.lugarMadre = new google.maps.places.Autocomplete(this.searchElement3.nativeElement,{types:["geocode"]});
+       this.lugarMadre.addListener('place_change', ()=>{
+         this.ngZone.run(()=>{
+           let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
+         })
+       })
+   },2000);
+}
+
+cargaMapsPadre(){
+  //Time Out para que carge el html
+  console.log('Cargo Maps Padre')
+  setTimeout(()=>{
+    this.lugarPadre = new google.maps.places.Autocomplete(this.searchElement4.nativeElement,{types:["geocode"]});
+    this.lugarPadre.addListener('place_change', ()=>{
+      this.ngZone.run(()=>{
+        let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
+      })
+    })
+  },2000);
+}
 
 addFamiliar(persona, familiar, tipo){
   console.log('Probando a crear la madre/padre');

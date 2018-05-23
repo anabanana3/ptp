@@ -1,4 +1,4 @@
-<form  (ngSubmit)="guardarDatos()">
+<form  (ngSubmit)="guardarDatos2()">
   <div id="alert">{{mensaje}}</div>
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
@@ -77,11 +77,11 @@
 
   <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
   <div class="grupoForm" >
-    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre">Datos sobre la madre
+    <h2 class="text16 textPink" (click)="HayMadre = !HayMadre; cargaMapsMadre()">Datos sobre la madre
       <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
       <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
     </h2>
-    <div *ngIf="HayMadre==true">
+    <div *ngIf="HayMadre==true" >
 
       <div class="divLabels">
         <div class="divExp">
@@ -139,7 +139,7 @@
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  >
-    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre">Datos sobre el padre
+    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre; cargaMapsPadre()">Datos sobre el padre
       <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
       <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
     </h2>
@@ -351,7 +351,7 @@
     </div>
   </div>
 
-  
+
   <!-- Boton flotante -->
   <div id="container-floating">
     <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
