@@ -6,10 +6,11 @@
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
     <div>
-      <form method="post" (ngSubmit)="filter()" class="formAdmin">
+      <form method="post" (ngSubmit)="filter(1)" class="formAdmin">
         <input class="sizeinput" [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre" placeholder="Nombre">
         <input class="sizeinput" [(ngModel)]="searchEmail" type="text" name="Email" id="email" placeholder="Email">
-        <button type="submit" name="button" class="icon-search span"></button>
+        <!-- <button type="submit" name="button" class="icon-search span"></button> -->
+        <button class="btn-relleno" type="submit" name="button">Buscar</button>
       </form>
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="asociacion">
@@ -69,7 +70,7 @@
           </div>
         </div>
       </div>
-      
+
     <div  *ngIf="(asociacion | keys).length === 0 && !loading"
           class="alert alert-info" role="alert">
       <strong>No hay</strong> registros que mostrar

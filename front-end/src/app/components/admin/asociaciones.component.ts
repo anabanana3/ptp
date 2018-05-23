@@ -118,8 +118,10 @@ export class AsociacionesAdminComponent {
     let startIndex = (pagActual -1)*tamPag;
     let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
 
-    let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
-
+    let pages = new Array();
+    if(totalPag != undefined){
+       pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+    }
     //Despues de tener todo calculado guardo los datos
     this.pagActual = pagActual;
     this.pagInicio = pagInicio;
@@ -154,6 +156,7 @@ filter(pag){
       }else{
         this.loading = false;
         this.asociacion = data.Data;
+        console.log(this.asociacion);
         this.busqueda = true;
         this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag)
       }

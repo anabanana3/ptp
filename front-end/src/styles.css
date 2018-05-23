@@ -495,6 +495,10 @@ br{
   justify-content: space-around;
 }
 
+.Espacio{
+  height: 60px;
+}
+
 .imgListadoContainer{
   width: 60%;
   /* border: dotted; */
@@ -1438,8 +1442,8 @@ option{
 }
 
 .icon-logout{
-  font-size: 140%;
-  color: white;
+  font-size: 104%;
+  margin-left: 5px;
 }
 
 .icon-cancel{
@@ -1447,6 +1451,10 @@ option{
   background: none;
   border: none;
   height: 40px;
+}
+
+.marginIcon-cancel{
+  margin-left: 14px;
 }
 
 .icon-trash, .icon-folder-open{

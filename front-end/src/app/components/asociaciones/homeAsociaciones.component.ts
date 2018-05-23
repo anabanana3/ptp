@@ -166,8 +166,10 @@ export class HomeAsociaciones{
     let startIndex = (pagActual -1)*tamPag;
     let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
 
-    let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
-
+    let pages = new Array();
+    if(totalPag != undefined){
+       pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+    }
     //Despues de tener todo calculado guardo los datos
     this.pagActual = pagActual;
     this.pagInicio = pagInicio;
