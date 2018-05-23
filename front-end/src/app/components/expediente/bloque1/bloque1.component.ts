@@ -399,7 +399,7 @@ console.log('Cargo Maps Madre')
            let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
          })
        })
-   },2000);
+   },1000);
 }
 
 cargaMapsPadre(){
@@ -412,7 +412,7 @@ cargaMapsPadre(){
         let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
       })
     })
-  },2000);
+  },1000);
 }
 
 addFamiliar(persona, familiar, tipo){

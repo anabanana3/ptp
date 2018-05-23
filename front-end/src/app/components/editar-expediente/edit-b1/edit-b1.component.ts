@@ -401,11 +401,12 @@ export class EditB1Component implements OnInit {
              let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
            })
          })
-     },2000);
+     },1000);
   }
 
   cargaMapsPadre(){
     //Time Out para que carge el html
+    console.log('Prueba');
     setTimeout(()=>{
       this.lugarPadre = new google.maps.places.Autocomplete(this.searchElement4.nativeElement,{types:["geocode"]});
       this.lugarPadre.addListener('place_change', ()=>{
@@ -413,7 +414,7 @@ export class EditB1Component implements OnInit {
           let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
         })
       })
-    },2000);
+    },1000);
   }
 
   addFamiliar(persona, familiar, tipo){

@@ -143,7 +143,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
-    <div class="desplegables"(click)="HayPadre = !HayPadre ; cargaMapsMadre()">
+    <div class="desplegables"(click)="HayPadre = !HayPadre;cargaMapsPadre()">
       <h3 class="text16 textPink" >Datos sobre el padre
         <span *ngIf="HayPadre == false" class="pointer icon-plus"></span>
         <span *ngIf="HayPadre == true" class="pointer icon-minus"></span>
