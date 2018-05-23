@@ -92,7 +92,7 @@ export class UsuariosAdminComponent {
         this.usuarios= this.resultado.Data;
         this.pagActual = this.resultado.Pagina;
         this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag)
-        this.tamPag = this.resultado.Elementos_Pagina;
+      //  this.tamPag = this.resultado.Elementos_Pagina;
       }
     })
   }
@@ -127,7 +127,10 @@ export class UsuariosAdminComponent {
       this.getSolicitantes(pagina, this.tamPag);
       return;
     }
-
+    console.log('*****');
+    console.log(pagina);
+    console.log(number);
+    console.log(this.tamPag);
     if(number == 1){
       this._userService.getRegistrados(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
@@ -183,8 +186,10 @@ export class UsuariosAdminComponent {
 
     let startIndex = (pagActual -1)*tamPag;
     let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
-
-    let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+    let pages = new Array();
+    if(totalPag != undefined){
+       pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+    }
 
     //Despues de tener todo calculado guardo los datos
     this.pagActual = pagActual;
@@ -193,6 +198,7 @@ export class UsuariosAdminComponent {
     this.startIndex = startIndex;
     this.paginas = pages;
     this.totalPag = totalPag;
+    console.log(this.paginas);
   }
 
 
