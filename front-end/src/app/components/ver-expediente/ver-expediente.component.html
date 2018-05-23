@@ -58,7 +58,7 @@
           </div>
         </div>
         <div *ngIf="sessionStorageID == e.ID_Usuario" class="permisosVerExp">
-          <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+          <input class="checktrans" (click)="openDialogPublicarExp()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
           <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
           <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
           <div *ngIf="coment==1" class="coment" id="coment">
@@ -836,7 +836,8 @@
       <div class="nd4 nds" data-toggle="tooltip" data-placement="left" data-original-title="borrar expediente" (click)="borrarExpediente()"><img class="reminder">
         <p class="letter"><span class="icon-trash textWhite"></span></p>
       </div>
-      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="editarExpediente()"><p class="letter"><img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></p></div>
+      <!-- [routerLink]="['/editar-expediente',{expID}]"  -->
+      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="editarExpediente()"  ><p class="letter"><img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></p></div>
       <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="moverExpediente()"><p class="letter"><span class="icon-folder-open textWhite"></span></p>
       </div>
       <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >

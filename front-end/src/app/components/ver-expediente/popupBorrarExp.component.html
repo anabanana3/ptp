@@ -3,7 +3,7 @@
 </div>
 <h1 mat-dialog-title>Borrar Expediente {{data.ID_Expediente}}</h1>
 
-<p class="seguro"> Esta a punto de realizar una acción <strong> ireversible </strong></p>
+<p class="seguro"> Esta a punto de realizar una acción <strong> irreversible </strong></p>
 <p class="seguro"> Esta seguro de que desea eliminar el expediente con toda su información</p>
-<button class="btn-relleno" id="siBorrar" (click)="borrarExpediente(data.ID_Expediente)" type="submit"name="button">Sí</button>
-<button class="btn-border" id="noBorrar" type="submit" name="button" [mat-dialog-close]="data.animal">No</button>
+<button class="btn-relleno" id="siBorrar" (click)="borrarExpediente(data.ID_Expediente)" type="submit"name="button">Aceptar</button>
+<button class="btn-border" id="noBorrar" type="submit" name="button" [mat-dialog-close]="data.animal">Cancelar</button>

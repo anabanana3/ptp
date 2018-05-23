@@ -66,8 +66,11 @@ export class EditB1Component implements OnInit {
     // padre;
     HayMadre:boolean = false;
     HayPadre:boolean = false;
+    madreCreate:boolean = false;;
+    padreCreate:boolean =false;
 
     //Valores por defecto de la madre en el caso de que no haya nada guardado en la BD
+
     madre:Persona ={
       ID_Persona:null,
       Nombre:'',
@@ -92,11 +95,14 @@ export class EditB1Component implements OnInit {
 
     @ViewChild('place') public searchElement: ElementRef;
     @ViewChild('place2') public searchElement2: ElementRef;
+    @ViewChild('place3') public searchElement3:ElementRef;
+    @ViewChild('place4') public searchElement4:ElementRef;
     lugarDetec;
     lugarVict;
+    lugarMadre;
+    lugarPadre;
 
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader, private _EditarExpedienteComponent:EditarExpedienteComponent) {
-
     activatedRoute.params.subscribe(params=>{
       this.id = params['id'];
     });
@@ -168,8 +174,8 @@ export class EditB1Component implements OnInit {
         })
 
         this._expedientesService.getFamiliarPersona(idPersona).subscribe(data=>{
-          // console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
-          // console.log(data);
+          console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
+          console.log(data);
           // console.log(data.length);
           if(data.length >0){
             for(let i = 0; i< data.length; i++){
@@ -178,11 +184,15 @@ export class EditB1Component implements OnInit {
                 this.madre = data[i];
                 this.madre.ID_Sexo = 1;
                 this.madre.Nombre = this.madre.Nombre.split("'")[1]
+                this.madre.ID_Persona = data[i].ID_Persona;
+                this.madreCreate = true;
               }else if(data[i].Tipo == 2){
                 // this.padre.push(data[i]);
                 this.padre = data[i];
                 this.padre.ID_Sexo = 2;
                 this.padre.Nombre=this.padre.Nombre.split("'")[1];
+                this.padre.ID_Persona = data[i].ID_Persona
+                this.padreCreate = false;
               }
             }
           }else{
@@ -228,8 +238,42 @@ export class EditB1Component implements OnInit {
      }else{
        this.menor.ID_Lugar = 0;
      }
+     //Obtengo el lugar de la madre
+     if(this.lugarMadre != undefined && this.lugarMadre.gm_accessors_.place.gd.b == true && this.lugarMadre.gm_accessors_.place.gd.l != ''){
+       //hay datos
+       this.madre.ID_Lugar = this.lugarMadre.gm_accessors_.place.gd.place.id;
+       this.madre.Sitio = this.lugarMadre.gm_accessors_.place.gd.place.name;
+       let aux = this.lugarMadre.gm_accessors_.place.gd.place.address_components;
+       if(aux.length >=5 ){
+         this.madre.Pais = aux[aux.length-2].long_name;
+       }else{
+         this.madre.Pais = aux[aux.length-1].long_name;
+       }
+
+     }else{
+       // TODO:
+       //Vacio o el que ya habia
+     }
+     //Obtengo el lugar de la madre
+     if(this.lugarPadre != undefined && this.lugarPadre.gm_accessors_.place.gd.b == true && this.lugarPadre.gm_accessors_.place.gd.l != ''){
+       //hay datos
+       this.padre.ID_Lugar = this.lugarPadre.gm_accessors_.place.gd.place.id;
+       this.padre.Sitio = this.lugarPadre.gm_accessors_.place.gd.place.name;
+       let aux = this.lugarPadre.gm_accessors_.place.gd.place.address_components;
+       if(aux.length >=5 ){
+         this.padre.Pais = aux[aux.length-2].long_name;
+       }else{
+         this.padre.Pais = aux[aux.length-1].long_name;
+       }
+     }
+
+
     console.log(this.expediente);
     console.log(this.menor);
+    console.log('Madre');
+    console.log(this.madre);
+    console.log('Padre');
+    console.log(this.padre);
    }
    guardarDatos(){
     //  console.log('-*-*-*--*-*-*-*-*-***-*-*-*-*-*-*-*-*-*-*-');
@@ -261,22 +305,32 @@ export class EditB1Component implements OnInit {
        }
       //  //Ahora actualizo la informacion de la persona
        this._expedientesService.updatePersona(this.menor, this.menor.ID_Persona).subscribe(data=>{
-        //  console.log('Menor actualizada')
-        //  console.log(data);
-         //Ahora Actualizo la madre de la implicada
-        //  if(this.HayMadre == true){
-        //    this._expedientesService.updatePersona(this.madre, this.madre.ID_Persona).subscribe(data=>{
-        //      console.log('MAdre Actualizada');
-        //      console.log(data);
-        //    })
-        //  }
-         //Ahora actualizo el padre de la implicada
-        //  if(this.HayPadre == true){
-        //    this._expedientesService.updatePersona(this.padre, this.padre.ID_Persona).subscribe(data=>{
-        //      console.log('Padre Actualizado');
-        //      console.log(data);
-        //    })
-        //  }
+         console.log('Menor actualizada')
+         if(this.HayMadre == true){
+          if(this.madreCreate == true){
+           //Actualizo la Madre
+           console.log('Actualizo Madre');
+           this._expedientesService.updatePersona(this.madre, this.madre.ID_Persona).subscribe(data=>{
+             console.log('Madre Actualizada');
+           })
+         }else{
+           //No existe Madre la creo
+           console.log('Creo la Madre');
+           this.addFamiliar(this.madre, this.menor.ID_Persona, 1);
+          }
+         }
+
+         if(this.HayPadre == true ){
+            if(this.padreCreate == true){
+              //Actualizo el padre
+              this._expedientesService.updatePersona(this.padre, this.padre.ID_Persona).subscribe(data=>{
+                console.log('Padre Actualizado');
+              })
+            }else{
+              //Creo el padre
+              this.addFamiliar(this.padre, this.menor.ID_Persona, 2);
+            }
+         }
          //Actualizo la infomracion del bloque
          if(changeBloque == true){
            this._expedientesService.updateBloque(this.bloque, this.id).subscribe(data=>{
@@ -288,7 +342,6 @@ export class EditB1Component implements OnInit {
          this.cambiarBloque();
        })
      })
-
    }
 
    guardarDatos2(){
@@ -298,11 +351,16 @@ export class EditB1Component implements OnInit {
      console.log(this.menor);
      console.log(this.madre);
      console.log(this.padre);
+     console.log('Prueba para los lugares de la madre y el padre');
+     console.log(this.lugarMadre);
+     console.log(this.lugarPadre);
+     this.getDataGoogle();
    }
   ngOnInit() {
     this.apiGoogle();
   }
   apiGoogle(){
+
     this.mapsAPILoader.load().then(
       () =>{
         //Para el primer campo de google Maps => Lugar de detecion del expediente
@@ -324,8 +382,60 @@ export class EditB1Component implements OnInit {
           })
         })
 
+      // this.lugarMadre = new google.maps.places.Autocomplete(this.searchElement3.nativeElement,{types:["geocode"]});
+      //   this.lugarMadre.addListener('place_change', ()=>{
+      //     this.ngZone.run(()=>{
+      //       let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
+      //     })
+      //   })
       }
     );
+  }
+
+  cargaMapsMadre(){
+    //Time Out para que carge el html y pille la refercia
+     setTimeout(() => {
+       this.lugarMadre = new google.maps.places.Autocomplete(this.searchElement3.nativeElement,{types:["geocode"]});
+         this.lugarMadre.addListener('place_change', ()=>{
+           this.ngZone.run(()=>{
+             let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
+           })
+         })
+     },1000);
+  }
+
+  cargaMapsPadre(){
+    //Time Out para que carge el html
+    console.log('Prueba');
+    setTimeout(()=>{
+      this.lugarPadre = new google.maps.places.Autocomplete(this.searchElement4.nativeElement,{types:["geocode"]});
+      this.lugarPadre.addListener('place_change', ()=>{
+        this.ngZone.run(()=>{
+          let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
+        })
+      })
+    },1000);
+  }
+
+  addFamiliar(persona, familiar, tipo){
+    console.log('Probando a crear la madre/padre');
+    console.log(persona);
+    console.log(familiar);
+    this._expedientesService.addPersona(persona).subscribe(data =>{
+      console.log('Creamos la madre o padre');
+      console.log(data);
+      console.log(data.insertId);
+      //una vez creo la persona creo la relacion de parentesco
+      if(tipo == 1){
+        this.madre.ID_Persona = data.insertId;
+      }else if(tipo == 2){
+        this.padre.ID_Persona = data.insertId;
+      }
+      this._expedientesService.addFamiliar(data.insertId, familiar, tipo).subscribe(data=>{
+        console.log('Creamos la relacion de parentesco');
+        console.log(data);
+      })
+    })
   }
 
   cambiarBloque(){

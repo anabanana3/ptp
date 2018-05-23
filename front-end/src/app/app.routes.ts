@@ -150,6 +150,7 @@ const app_routes: Routes = [
     component: PoliticaPrivacidadComponent,
     data:{title: 'Politica Privacidad'}
   },
+    // path: 'editar-expediente/:id',
   {
     path: 'editar-expediente/:id',
     component: EditarExpedienteComponent,

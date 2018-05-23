@@ -154,11 +154,6 @@ export class VerExpedienteComponent implements OnInit {
       data[0].Acomp_O = data[0].Acomp_O.split("'")[1];
     }
     this.bloque1 = data;
-    // if(data.length > 0){
-    //   this.curso = data[0].Curso.split("'")[1];
-    //   //console.log("curso:"+ data[0].Curso.split("'")[1]);
-    //   this.centro_Salud = data[0].Centro_Salud.split("'")[1];
-    // }
     })
     //obtenemos datos b2
     this._expedientesService.getBloque2(this.expID).subscribe(data=>{
@@ -453,7 +448,6 @@ export class VerExpedienteComponent implements OnInit {
       }else{
         //this.publico = this.expID;
         console.log("Publicar");
-        location.href = '/verexpediente;id='+id;
       }
     })
   }
@@ -557,9 +551,13 @@ export class VerExpedienteComponent implements OnInit {
       data: { ID_Expediente: this.expID }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Pop Up Publicar expediente');
+    dialogRef.afterClosed().subscribe((publicar: boolean) => {
       //this.animal = result;
+      if(publicar){
+        this.mostrarComentarios(this.expID);
+      }else{
+        location.href = "/verexpediente;id="+this.expID;
+      }
     });
   }
 }
@@ -574,12 +572,13 @@ export class PopupPublicarExp {
     @Inject(MAT_DIALOG_DATA) public data: any, private _verExpedienteComponent:VerExpedienteComponent) { }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   mostrarComentarios(){
-    this._verExpedienteComponent.mostrarComentarios(this.data.ID_Expediente);
-    this._verExpedienteComponent.coment =1;
-    this.dialogRef.close();
+    // this._verExpedienteComponent.mostrarComentarios(this.data.ID_Expediente);
+    // this._verExpedienteComponent.coment =1;
+    // this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
 @Component({
