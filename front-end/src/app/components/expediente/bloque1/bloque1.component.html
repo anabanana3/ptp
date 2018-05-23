@@ -39,7 +39,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
   <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
   <div class="grupoForm" formGroupName = "menor">
 
-  <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
+  <!-- DATOS DE LA INVOLUCRADA EN EL EXPEDIENTE-->
     <h3 class="text16 textPink">Datos sobre la titular del expediente</h3>
     <div class="divLabels">
       <div class="divExp">
@@ -83,15 +83,17 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
     </div>
   </div>
-  <!-- <hr> -->
-  <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
-  <div class="grupoForm" formGroupName="madre">
-    <h3 class="text16 textPink" (click)="HayMadre = !HayMadre">Datos sobre la madre
-      <span *ngIf="HayMadre==false" (click)="HayMadre = !HayMadre" class="pointer icon-plus"></span>
-      <span *ngIf="HayMadre==true" (click)="HayMadre = !HayMadre" class="pointer icon-minus"></span>
-    </h3>
-    <div *ngIf="HayMadre==true">
 
+  <!-- DATOS SOBRE LA MADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
+  <div class="grupoForm" formGroupName="madre" >
+    <div class="desplegables"(click)="HayMadre = !HayMadre; cargaMapsMadre()">
+      <h3 class="text16 textPink" >Datos sobre la madre
+        <span *ngIf="HayMadre==false" class="pointer icon-plus"></span>
+        <span *ngIf="HayMadre==true" class="pointer icon-minus"></span>
+      </h3>
+    </div>
+
+    <div *ngIf="HayMadre==true">
       <div class="divLabels">
         <div class="divExp">
           <label for="nombreMa">Nombre de la madre:</label>
@@ -100,11 +102,9 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <div class="divExp">
           <input class="sizeinput" [(ngModel)]="madre.Nombre" required type="text" id="nombreMa" placeholder="Nombre" formControlName="nombre" >
         </div>
-
         <div class="divExp">
           <label for="actividadM">Actividad laboral:</label>
         </div>
-
         <div class="divExp">
           <select [(ngModel)]="madre.ID_Actividad" id="actividadM" formControlName="actividad">
             <option value="27">Desconoce la actividad</option>
@@ -117,15 +117,12 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <div class="divExp">
           <label for="lugarNM">Lugar de nacimiento:</label>
         </div>
-
         <div id="locationField3">
           <input type="text"  id="lugarNM" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place3>
         </div>
-
         <div class="divExp">
           <label for="etniaMa">Etina de origen:</label>
         </div>
-
         <div class="divExp">
           <select [(ngModel)]="madre.ID_Etnia" id="etniaMa" formControlName="etnia">
             <option value="164" id="selectOption">Desconoce la etnia de procedencia</option>
@@ -133,12 +130,10 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
           </select>
         </div>
       </div>
-
       <div class="divLabelsDeUno">
         <div class="divExpDeUno">
           <label for="edadMa">Edad:</label>
         </div>
-
         <div class="divExpDeUno">
           <input class="sizeinput" [(ngModel)]="madre.Edad" min="1" max="99" type="number" id="edadMa" formControlName="edad">
         </div>
@@ -148,10 +143,13 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
 
   <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
   <div class="grupoForm"  formGroupName="padre">
-    <h3 class="text16 textPink" (click)="HayPadre = !HayPadre">Datos sobre el padre
-      <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
-      <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
-    </h3>
+    <div class="desplegables"(click)="HayPadre = !HayPadre;cargaMapsPadre()">
+      <h3 class="text16 textPink" >Datos sobre el padre
+        <span *ngIf="HayPadre == false" class="pointer icon-plus"></span>
+        <span *ngIf="HayPadre == true" class="pointer icon-minus"></span>
+      </h3>
+    </div>
+
     <div *ngIf="HayPadre==true">
       <div class="divLabels">
         <div class="divExp">
@@ -231,7 +229,6 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
               <label class="labeltransr" for="citaAborMGFNO">No</label>
               <input class="radiotrans" type="radio" name="Citacion" value="2" id="citaAborMGFNS" formControlName="Citacion" checked>
               <label class="labeltransr" for="citaAborMGFNS">N/S</label>
-
             </div>
           </div>
 
