@@ -2,7 +2,7 @@ class TCamaraInteractor extends TEntidad {
   /*hemos creado esta nueva clase para registrar el movimiento del raton por el canvas
   nos hemos basado en el capitulo 4 (camara) del libro webgl, y en los ejemplos del mismo
   para hacer que gire en las pantallas tactiles he utilizado como referencia la
-  siguiente página: https://developer.mozilla.org/en-US/docs/Web/API/Touch/clientX */ 
+  siguiente página: https://developer.mozilla.org/en-US/docs/Web/API/Touch/clientX */
 
   constructor(camera,canvas){
       super();
@@ -19,6 +19,11 @@ class TCamaraInteractor extends TEntidad {
       this.ctrl = false;
       this.key = 0;
       this.zoom = 0;
+
+      this.count_zoomIn = 0;
+      this.count_zoomOut = 0;
+      this.aux_zoomIn = 6;
+      this.aux_zoomOut = 5;
 
       this.MOTION_FACTOR = 10.0;
   }
@@ -155,17 +160,30 @@ class TCamaraInteractor extends TEntidad {
   }
   //funcion para acercar el modelo
   zoomIn(){
-    console.log("acercando");
-    this.zoom += 1;
-		let traslaCamara = GFachada.regCamaras[0].getPadre().entidad;
-    console.log(this.zoom);
+    if(this.count_zoomIn < this.aux_zoomIn){
+      for(let i=0; i<GFachada.objetos.length; i++){
+        GFachada.escalar(GFachada.objetos[i], 1.2, 1.2, 1.2);
+      }
 
-		traslaCamara.trasladar(0, 0, 2*this.zoom);
-    GFachada.draw();
+      GFachada.trasladar(GFachada.regCamaras[0], 0.4, 0, 0);
+      GFachada.draw();
 
+      this.count_zoomIn++;
+      this.aux_zoomOut++;
+    }
   }
   //funcion para alejar el modelo
   zoomOut(){
-    console.log("alejando");
+    if(this.count_zoomOut < this.aux_zoomOut){
+      for(let i=0; i<GFachada.objetos.length; i++){
+        GFachada.escalar(GFachada.objetos[i], 0.8, 0.8, 0.8);
+      }
+
+      GFachada.trasladar(GFachada.regCamaras[0], -0.4, 0, 0);
+      GFachada.draw();
+
+      this.count_zoomOut++;
+      this.aux_zoomIn++;
+    }
   }
 }
