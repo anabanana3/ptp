@@ -105,6 +105,10 @@ br{
   border-radius: 2px;
 }
 
+.ancho{
+  width: inherit;
+}
+
 .lineaSearch{
   border: 1px solid #DBDBDB;
   margin: auto;
