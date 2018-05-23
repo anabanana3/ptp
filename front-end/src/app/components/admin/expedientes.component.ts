@@ -33,8 +33,8 @@ export class ExpedientesAdminComponent {
     Fecha1:'',
     Fecha2:'',
     Lugar:'',
-    Etnia:0,
-    TipoMGF:0,
+    ID_Etnia:0,
+    ID_Mutilacion:0,
     Orden:this.filtro
   }
 
@@ -73,6 +73,7 @@ export class ExpedientesAdminComponent {
 
   buscar(pag){
     let tam = this.tamPag;
+    this.Filtros.Lugar = '';
     console.log(this.Filtros);
     this.url='https://www.aisha.ovh/api/expedientes/search/';
     //Recupero la informacion del lugar de google Maps
@@ -113,14 +114,14 @@ export class ExpedientesAdminComponent {
       this.url += '&l='+null;
     }
     //Etnia
-    if(this.Filtros.Etnia != 0){
-      this.url += '&e='+this.Filtros.Etnia
+    if(this.Filtros.ID_Etnia != 0){
+      this.url += '&e='+this.Filtros.ID_Etnia
     }else{
       this.url += '&e='+null;
     }
     //TipoMGF
-    if(this.Filtros.TipoMGF != 0){
-      this.url += '&tipo='+this.Filtros.TipoMGF;
+    if(this.Filtros.ID_Mutilacion != 0){
+      this.url += '&tipo='+this.Filtros.ID_Mutilacion;
     }else{
       this.url += '&tipo='+null;
     }
@@ -188,6 +189,11 @@ export class ExpedientesAdminComponent {
    );
  }
 
+ buscar2(){
+   console.log('Busqueda Auz');
+   console.log(this.Filtros);
+ }
+
  paginacion(totalPag, pagActual, tamPag){
    let pagInicio, pagFinal;
    if(totalPag <= 10){
@@ -209,7 +215,10 @@ export class ExpedientesAdminComponent {
    let startIndex = (pagActual -1)*tamPag;
    let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
 
-   let pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+   let pages = new Array();
+   if(totalPag != undefined){
+      pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
+   }
 
    //Despues de tener todo calculado guardo los datos
    this.pagActual = pagActual;

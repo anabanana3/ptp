@@ -1563,7 +1563,7 @@ option{
   background-color: white;
   width: 204px;
   margin: 8px;
-  height: 62px;
+  height: 72px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1830,7 +1830,7 @@ option{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
   width: 20%;
-  height: 200px;
+  height: 210px;
   overflow: hidden;
   /* margin: 8px; */
   display: -ms-flexbox;

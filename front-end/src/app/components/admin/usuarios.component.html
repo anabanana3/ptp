@@ -19,16 +19,16 @@
   <div >
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
-    <form method="post" (ngSubmit)="filter()" class="formAdmin">
+    <form method="post" (ngSubmit)="filter(1)" class="formAdmin">
       <input [(ngModel)]="searchNombre" class="sizeinput" type="text" name="Nombre" id="nombre" placeholder="Nombre">
       <input [(ngModel)]="searchEmail" class="sizeinput" type="text" name="Email" id="email" placeholder="Email">
-      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" (change)="filter()">
+      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" (change)="filter(1)">
         <option value="0"> Seleccione Profesión </option>
         <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
           {{profesiones[k].Nombre}}
         </option>
       </select>
-      <select [(ngModel)]="searchAsociacion" name="asociacion" id="asociacion" (change)="filter()">
+      <select [(ngModel)]="searchAsociacion" name="asociacion" id="asociacion" (change)="filter(1)">
         <option value="0"> Seleccione Asociación </option>
         <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
           {{asociaciones[k].Nombre}}

@@ -18,12 +18,12 @@
       <!-- </div> -->
       <!-- <input class="sizeinput" [(ngModel)]="Filtros.Lugar" type="text" id="lugar" name="Lugar" placeholder="Lugar"> -->
 
-      <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
+      <select class="sizeinput" [(ngModel)]="Filtros.ID_Etnia" name="Etnia">
         <option value="0">Seleccione la etnia</option>
         <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
       </select>
 
-      <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+      <select class="sizeinput" [(ngModel)]="Filtros.ID_Mutilacion" name="TipoMGF">
         <option value="0">Seleccione el tipo de MGF</option>
         <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
       </select>
