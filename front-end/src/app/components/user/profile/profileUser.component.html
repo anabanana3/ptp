@@ -31,14 +31,12 @@
                     value="user[0].F_Nacimiento" name="nacimiento" id="nacimiento" required>
 
           <label for="sexo" class="perfilLabel sexoPerfil">Sexo:</label>
-          <!-- <div class="radioButtons"> -->
             <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="1" id="mujer">
               <label for="mujer" class="text12">Mujer</label>
             <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="2" id="hombre">
               <label for="hombre" class="text12">Hombre</label>
             <input [(ngModel)]="user.Sexo" type="radio" name="Sexo" value="3" id="otro">
               <label for="otro" class="text12">Prefiero no especificar</label>
-          <!-- </div> -->
           <br>
           <label for="dni" class="perfilLabel">DNI: *</label>
             <input [(ngModel)]="user.DNI" class="lineaPerfil lineaCampo" type="text"
@@ -59,8 +57,6 @@
          <div id="locationField">
            <input type="text"  id="direccion" class="lineaPerfil lineaCampo" value="{{oldPlaceName}}, {{oldPais}}" autocorrect ='off' autocapitalize='off' spellcheck="off"  #place>
          </div>
-           <!-- <input [(ngModel)]="user.Direccion" class="lineaCampo" type="text" -->
-                  <!-- value="user[0].Direccion" name="direccion" id="direccion" required> -->
 
           <label for="fotoP" class="perfilLabel">Foto de perfil:</label>
           <input class="lineaPerfil lineaCampo" name="fotoP" id="fotoP" type="file"  (change)="onFileChange($event)" #fileInput>
@@ -81,10 +77,6 @@
             <input [(ngModel)]="pass.repeatpass" class="lineaPerfil lineaCampo" type="password"
             name="repeatcontra" id="repeatcontra" required>
             <br>
-               <!-- (keyup)="validate(pas.repeatpass)" -->
-            <div class="progress">
-              <div id="value" style="background-color:black;"></div>
-            </div>
           </div>
         </div> <!-- columna -->
 

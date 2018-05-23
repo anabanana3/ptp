@@ -68,7 +68,7 @@ export class VerExpedienteComponent implements OnInit {
   movResult = 0;
 
   constructor(
-    private _expedientesService:ExpedientesService, private router:ActivatedRoute,
+    private _expedientesService:ExpedientesService, private router:ActivatedRoute,public router2: Router,
     public dialog: MatDialog, private _comentarioService:ComentarioService, private _carpetasService:CarpetasService) {
       if(sessionStorage.length === 0){
         return;

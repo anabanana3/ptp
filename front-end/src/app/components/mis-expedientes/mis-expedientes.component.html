@@ -75,7 +75,7 @@
           </div>
           <!-- Expedientes -->
           <!-- [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" -->
-          <div *ngIf="c.Tipo != 0"  [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" >
+          <div class="ancho" *ngIf="c.Tipo != 0"  [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" >
             <div class="expediente-body-exp">
               <p class="tituloExp">Expediente {{c.ID_Expediente}} <span class="fechaExp">{{c.FechaCreacion.split('T')[0]}}</span></p>
               <p class="fechaExp">{{c.Sitio}}, {{c.Pais}}</p>
