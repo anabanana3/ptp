@@ -84,13 +84,15 @@ etnias = new Array();
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
       //Recupero los expedientes del usuario que ha iniciado sesion
       //this.getExpedientesUser(1,1,this.tamPag);
-
-      //TODO: Obtengo la raiz del usuario que ha iniciado sesion
-      this.getRaizUser(sessionStorage.iD);
-      this.getExpedientesUser(1, this.tamPag, 1);
+      if(sessionStorage.F2Titulo == undefined){
+        //TODO: Obtengo la raiz del usuario que ha iniciado sesion
+        this.getRaizUser(sessionStorage.iD);
+        this.getExpedientesUser(1, this.tamPag, 1);
+        console.log("hollaaaaaaa")
+      }
 
       //para mantener la busqueda
-      if(sessionStorage.FTitulo != undefined){
+      if(sessionStorage.F2Titulo != undefined){
         this.buscar2(1,10);
         console.log("ENTRO");
       }
@@ -492,7 +494,8 @@ buscar(pag, tamPag=this.tamPag){
     sessionStorage.F2Etnia = "";
     this.Filtros.TipoMGF = 0;
     sessionStorage.F2TipoMGF = 0;
-    this.buscar(1,10);
+    this.getRaizUser(sessionStorage.iD);
+    this.getExpedientesUser(1, this.tamPag, 1);
   }
   //Funcion para generar las variables de la paginacion
   paginacion( paginaActual , pagTotales){

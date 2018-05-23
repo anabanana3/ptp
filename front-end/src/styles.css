@@ -105,6 +105,10 @@ br{
   border-radius: 2px;
 }
 
+.ancho{
+  width: inherit;
+}
+
 .lineaSearch{
   border: 1px solid #DBDBDB;
   margin: auto;
@@ -489,6 +493,10 @@ br{
 .listadoFunciones{
   display: flex;
   justify-content: space-around;
+}
+
+.Espacio{
+  height: 60px;
 }
 
 .imgListadoContainer{
@@ -1434,8 +1442,8 @@ option{
 }
 
 .icon-logout{
-  font-size: 140%;
-  color: white;
+  font-size: 104%;
+  margin-left: 5px;
 }
 
 .icon-cancel{
@@ -1443,6 +1451,10 @@ option{
   background: none;
   border: none;
   height: 40px;
+}
+
+.marginIcon-cancel{
+  margin-left: 14px;
 }
 
 .icon-trash, .icon-folder-open{
@@ -1830,7 +1842,7 @@ option{
   box-shadow: 1px 1px 1px 0 rgba(203,203,203,0.50);
   background-color: white;
   width: 20%;
-  height: 210px;
+  height: 200px;
   overflow: hidden;
   /* margin: 8px; */
   display: -ms-flexbox;
