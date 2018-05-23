@@ -38,7 +38,7 @@
             <label><b>Lugar de detección</b></label>
           </div>
           <div class="divExpVer">
-            <p>{{e.Nombre}}{{e.Pais}}</p> <!-- No se que hay que poner -->
+            <p>{{e.Nombre}}, {{e.Pais}}</p> <!-- No se que hay que poner -->
           </div>
         </div>
         <div class="divLabelsVer">
@@ -57,19 +57,19 @@
             <p>{{e.Autor.split("'")[1]}}</p>
           </div>
         </div>
-
-
-      </div>
-
-      <div *ngIf="sessionStorageID == expediente[0].ID_Usuario" class="permisosVerExp">
-        <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
-        <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
-        <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
-        <div *ngIf="coment==1" class="coment" id="coment">
-          <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
-          <label class="labeltrans" for="comentarios">Permitir comentarios</label>
+        <div *ngIf="sessionStorageID == e.ID_Usuario" class="permisosVerExp">
+          <input class="checktrans" (click)="mostrarComentarios()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+          <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+          <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
+          <div *ngIf="coment==1" class="coment" id="coment">
+            <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
+            <label class="labeltrans" for="comentarios">Permitir comentarios</label>
+          </div>
         </div>
+
       </div>
+
+
 
       <div class="lineaDiv"></div>
 

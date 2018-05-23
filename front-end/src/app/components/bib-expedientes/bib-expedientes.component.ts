@@ -164,6 +164,7 @@ profesiones = new Array();
         //Falta mostrar mensaje de no hay resultados
         this.busqueda = true;
         this.mensaje = 'No hay resultados para la busqueda solicitada';
+        if(document.getElementById('alert'))
         document.getElementById('alert').className = 'alert alert-danger';
         //return;
 
@@ -188,7 +189,7 @@ profesiones = new Array();
      sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
      sessionStorage.setItem('FFecha1', this.Filtros.Fecha1);
      sessionStorage.setItem('FFecha2', this.Filtros.Fecha2);
-     sessionStorage.setItem('FLugar', this.Filtros.Lugar);
+     // sessionStorage.setItem('FLugar', this.Filtros.Lugar);
      sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
      sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
 
@@ -197,6 +198,8 @@ profesiones = new Array();
        let idLugar = this.sitio.gm_accessors_.place.gd.place.id;
        this.Filtros.Lugar = idLugar;
        sessionStorage.setItem('FLugar', idLugar);
+     }else{
+       sessionStorage.setItem('FLugar', null);
      }
      console.log(sessionStorage);
      this.url='https://www.aisha.ovh/api/publicos/search/';
