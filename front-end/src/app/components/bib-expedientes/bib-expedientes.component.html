@@ -13,9 +13,7 @@
   </div>
   <div class="gridContainer">
     <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
-      <!-- <div class="headerMisExp">
-        <button class="btn-relleno" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
-      </div> -->
+
       <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
       <div *ngIf="expedientes.length>0" class="expediente-container">
         <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">

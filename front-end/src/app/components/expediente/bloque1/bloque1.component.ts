@@ -152,8 +152,6 @@ export class Bloque1Component implements OnInit {
       })
 
     });
-    //this.form.controls['bloque'].setValue(this.bloque);
-    // console.log(this.bloque);
    }
 
    ngOnInit(){
@@ -385,12 +383,12 @@ getDataGoogle(){
     }
   }
 
-  console.log(this.expediente);
-  console.log(this.menor);
+  // console.log(this.expediente);
+  // console.log(this.menor);
 }
 
 cargaMapsMadre(){
-console.log('Cargo Maps Madre')
+// console.log('Cargo Maps Madre')
   //Time Out para que carge el html y pille la refercia
    setTimeout(() => {
      this.lugarMadre = new google.maps.places.Autocomplete(this.searchElement3.nativeElement,{types:["geocode"]});
@@ -404,7 +402,7 @@ console.log('Cargo Maps Madre')
 
 cargaMapsPadre(){
   //Time Out para que carge el html
-  console.log('Cargo Maps Padre')
+  // console.log('Cargo Maps Padre')
   setTimeout(()=>{
     this.lugarPadre = new google.maps.places.Autocomplete(this.searchElement4.nativeElement,{types:["geocode"]});
     this.lugarPadre.addListener('place_change', ()=>{

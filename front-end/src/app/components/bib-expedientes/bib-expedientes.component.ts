@@ -85,7 +85,7 @@ profesiones = new Array();
 
       if(sessionStorage.FTitulo != undefined){
         this.buscar2(1,10);
-        console.log("ENTRO");
+        // console.log("ENTRO");
       }
    }
 
@@ -102,7 +102,7 @@ profesiones = new Array();
 
      //Obtengo los datos de Google Maps
 
-     console.log(this.Filtros);
+     // console.log(this.Filtros);
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
      if(sessionStorage.FAutor != ''){
@@ -154,12 +154,12 @@ profesiones = new Array();
     //Añado los parametros de la paginacion
     this.url += '/pag='+pag+'&n='+tam;
 
-    console.log('Muestro la url que mando al servicio');
-    console.log(this.url);
+    // console.log('Muestro la url que mando al servicio');
+    // console.log(this.url);
     this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       if(data.Resultado == 'OK'){
-        console.log('No hay resultados');
+        // console.log('No hay resultados');
         this.expedientes = new Array();
         //Falta mostrar mensaje de no hay resultados
         this.busqueda = true;
@@ -172,7 +172,7 @@ profesiones = new Array();
         if(data.Codigo == 501 ){
           location.href = '/expired';
         }else{
-          console.log('Hay busqueda');
+          // console.log('Hay busqueda');
           this.busqueda = true;
           this.expedientes = data.Data;
           this.mensaje = '';
@@ -183,7 +183,7 @@ profesiones = new Array();
    }
 
    buscar(pag, tam=this.tamPag){
-     console.log(this.Filtros);
+     // console.log(this.Filtros);
      sessionStorage.setItem('FAutor', this.Filtros.Autor);
      sessionStorage.setItem('FProfesion', this.Filtros.Profesion.toString());
      sessionStorage.setItem('FTitulo', this.Filtros.Titulo);
@@ -201,7 +201,7 @@ profesiones = new Array();
      }else{
        sessionStorage.setItem('FLugar', null);
      }
-     console.log(sessionStorage);
+     // console.log(sessionStorage);
      this.url='https://www.aisha.ovh/api/publicos/search/';
      let primero = 1;
      if(sessionStorage.FAutor != ''){
@@ -258,12 +258,12 @@ profesiones = new Array();
     //Añado los parametros de la paginacion
     this.url += '/pag='+pag+'&n='+tam;
 
-    console.log('Muestro la url que mando al servicio');
-    console.log(this.url);
+    // console.log('Muestro la url que mando al servicio');
+    // console.log(this.url);
     this._expedientesService.buscar2Exp(this.url).subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       if(data.Resultado == 'OK'){
-        console.log('No hay resultados');
+        // console.log('No hay resultados');
         this.expedientes = new Array();
         //Falta mostrar mensaje de no hay resultados
         this.busqueda = true;
@@ -275,7 +275,7 @@ profesiones = new Array();
         if(data.Codigo == 501 ){
           location.href = '/expired';
         }else{
-          console.log('Hay busqueda');
+          // console.log('Hay busqueda');
           this.busqueda = true;
           this.expedientes = data.Data;
           this.mensaje = '';

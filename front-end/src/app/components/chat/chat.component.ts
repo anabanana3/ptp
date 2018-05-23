@@ -28,7 +28,6 @@ export class ChatComponent implements OnInit{
   inicio:boolean = true;
 
 
-  // contactos:boolean = true;
 
   constructor(private _chatService: ChatService, private element:ElementRef ) {
     if(sessionStorage.length === 0){
@@ -114,8 +113,6 @@ export class ChatComponent implements OnInit{
     console.log(this.conversacion);
     this._chatService.getMessages(id1, id2).subscribe(data => {
       this.mensajes = data;
-      // let aux = p.lastElementChild;
-      // console.log(aux);
 
     });
     document.getElementById("chat").setAttribute("class", "mostrar chat-container bgColorWhite");

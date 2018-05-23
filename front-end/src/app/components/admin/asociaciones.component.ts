@@ -129,13 +129,13 @@ export class AsociacionesAdminComponent {
     this.startIndex = startIndex;
     this.paginas = pages;
     this.totalPag = totalPag;
-    console.log(pages);
+    // console.log(pages);
   }
 
 
  pasarPagina(pag){
-   console.log('Paso a la pagina');
-   console.log(pag);
+   // console.log('Paso a la pagina');
+   // console.log(pag);
    this.filter(pag);
  }
 
@@ -156,7 +156,7 @@ filter(pag){
       }else{
         this.loading = false;
         this.asociacion = data.Data;
-        console.log(this.asociacion);
+        // console.log(this.asociacion);
         this.busqueda = true;
         this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag)
       }

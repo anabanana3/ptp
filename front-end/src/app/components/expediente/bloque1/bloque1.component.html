@@ -8,11 +8,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
 
     <div class="divLabels">
-    <!-- <div class="divExp">
-        <label for="titulo">Título</label>--> <!-- num caso, guion etnia origen guion tipo de mutilacion-->
-      <!--  <span matTooltip="Título que le permita identificar rápidamente este expediente." class="pointer icon-info info"></span>
-        <input [(ngModel)]="expediente.Titulo" type="text" name="titulo" id="titulo" formControlName="titulo">
-      </div>-->
+
       <div class="divExp">
         <label for=fechaC>Fecha de detección del caso:</label>
       </div>
@@ -79,7 +75,6 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         <div id="locationField2">
           <input type="text"  id="lugarN" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place2>
         </div>
-        <!-- <input class="sizeinput" [(ngModel)]="menor.ID_Lugar" type="text" id="lugarN" name="lugarN" placeholder="Lugar" formControlName="lugarN"> -->
       </div>
     </div>
   </div>
@@ -278,9 +273,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExp">
-          <!-- <select id="acomP" formControlName="Acomp_P">
-            <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-          </select> -->
+
           <input class="radiotrans" type="radio" name="Acomp_P" value="1" id="acomPSI" formControlName="Acomp_P">
           <label class="labeltransr" for="acomPSI">Sí</label>
           <input class="radiotrans" type="radio" name="Acomp_P" value="0" id="acomPNO" formControlName="Acomp_P">
@@ -292,9 +285,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExp">
-          <!-- <select id="acomM" formControlName="Acomp_M">
-            <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-          </select> -->
+
           <input class="radiotrans" type="radio" name="Acomp_M" value="1" id="acomMSI" formControlName="Acomp_M">
           <label class="labeltransr" for="acomMSI">Sí</label>
           <input class="radiotrans" type="radio" name="Acomp_M" value="0" id="acomMNO" formControlName="Acomp_M">
@@ -308,9 +299,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
         </div>
 
         <div class="divExpDeUno">
-          <!-- <select id ="acomH" formControlName="Acomp_H">
-            <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-          </select> -->
+
           <input class="radiotrans" type="radio" name="Acomp_H" value="1" id="acomHSI" formControlName="Acomp_H">
           <label class="labeltransr" for="acomHSI">Sí</label>
           <input class="radiotrans" type="radio" name="Acomp_H" value="0" id="acomHNO" formControlName="Acomp_H">
@@ -334,9 +323,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <!-- <select id="dificultadM" formControlName="Dif_Idi_M">
-          <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-        </select> -->
+
         <input class="radiotrans" type="radio" name="Dif_Idi_M" value="1" id="dificultadMSI" formControlName="Dif_Idi_M">
         <label class="labeltransr" for="dificultadMSI">Sí</label>
         <input class="radiotrans" type="radio" name="Dif_Idi_M" value="0" id="dificultadMNO" formControlName="Dif_Idi_M">
@@ -350,9 +337,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExp">
-        <!-- <select id="traduccion" formControlName="Traduccion">
-          <option *ngFor="let op of opciones; let i = index" value="{{i}}">{{op}}</option>
-        </select> -->
+
         <input class="radiotrans" type="radio" name="Traduccion" value="1" id="traduccionSI" formControlName="Traduccion">
         <label class="labeltransr" for="traduccionSI">Sí</label>
         <input class="radiotrans" type="radio" name="Traduccion" value="0" id="traduccionNO" formControlName="Traduccion">
@@ -367,9 +352,7 @@ El metodo que hay ahora es para probar que pilla bien los valores de 0 y 1 -->
       </div>
 
       <div class="divExpDeUno">
-        <!-- <select id="mediacion" formControlName="Mediacion">
-          <option *ngFor="let op of opciones; let i = index"value="{{i}}">{{op}}</option>
-        </select> -->
+
         <input class="radiotrans" type="radio" name="Mediacion" value="1" id="mediacionSI" formControlName="Mediacion">
         <label class="labeltransr" for="mediacionSI">Sí</label>
         <input class="radiotrans"type="radio" name="Mediacion" value="0" id="mediacionNO" formControlName="Mediacion">
