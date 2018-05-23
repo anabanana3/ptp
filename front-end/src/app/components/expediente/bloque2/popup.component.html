@@ -96,11 +96,14 @@
     </div>
   </div>
 
-  <h3 class="text16 textPink">Complicaciones de la madre durante el parto
-    <span matTooltip="Seleccione todas las complicaciones que sufrió la madre durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
-    <span id="iconPlus" (click)="mostrarPartoMadre();" class="pointer icon-plus"></span>
-    <span id="iconMinus" style="display:none;" (click)="ocultarPartoMadre();" class="pointer icon-minus"></span>
-  </h3>
+  <div class="desplegables">
+    <h3 class="text16 textPink">Complicaciones de la madre durante el parto
+      <span matTooltip="Seleccione todas las complicaciones que sufrió la madre durante el parto. Puede selecionar más de una" class="pointer icon-info info"></span>
+      <span id="iconPlus" (click)="mostrarPartoMadre();" class="pointer icon-plus">Abrir</span>
+      <span id="iconMinus" style="display:none;" (click)="ocultarPartoMadre();" class="pointer icon-minus"></span>
+    </h3>
+  </div>
+
 
   <div style="display:none;" id="complMadreContainer">
 
@@ -120,8 +123,8 @@
 
   <h2 class="text16 textPink">Complicaciones del niño durante el parto
     <span matTooltip="Seleccione todas las complicaciones que sufrió el recién nacido durante el parto. Puede selecionar más de una." class="pointer icon-info info"></span>
-    <span id="iconPlusN" (click)="mostrarNinio();" class="pointer icon-plus"></span>
-    <span id="iconMinusN" style="display:none;" (click)="ocultarNinio();" class="pointer icon-minus"></span>
+    <span id="iconPlusN" (click)="mostrarNinio();" class="pointer icon-plus">Abrir</span>
+    <span id="iconMinusN" style="display:none;" (click)="ocultarNinio();" class="pointer icon-minus">Cerrar</span>
   </h2>
 
   <div style="display:none;" id="complNinioContainer">

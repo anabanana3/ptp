@@ -111,23 +111,19 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" placeholder="Escriba aquí..."></textarea>
 
     <div class="grupoForm">
-      <h3 class="text16 textPink">Historia de partos
-        <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
-        <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
-      </h3>
-      <div *ngIf="hayParto==true">
-        <label>Número de partos de los que desea guardar información:</label>
-        <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
-        <br>
-        <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Añadir partos</button>
-        <button *ngIf="datosPartos.length>=1" mat-raised-button (click)="modificarPartos()"  type="button" name="button" class="btn-border bgColorPink">Modificar partos</button>
-
-
-
-
-
-
-     </div>
+      <div class="desplegables" (click)="hayParto =!hayParto">
+        <h3 class="text16 textPink">Historia de partos
+          <span *ngIf="hayParto==false" class="pointer icon-plus"></span>
+          <span *ngIf="hayParto==true" class="pointer icon-minus"></span>
+        </h3>
+      </div>
+    <div *ngIf="hayParto==true">
+      <label>Número de partos de los que desea guardar información:</label>
+      <input class="sizeinput" id="numPartos" name=Num_Partos type="number" min="1" #Npartos>
+      <br>
+      <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Añadir partos</button>
+      <button *ngIf="datosPartos.length>=1" mat-raised-button (click)="modificarPartos()"  type="button" name="button" class="btn-border bgColorPink">Modificar partos</button>
+    </div>
    </div>
    <hr>
    <div class="centrar">
