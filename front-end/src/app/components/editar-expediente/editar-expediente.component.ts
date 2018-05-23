@@ -16,12 +16,17 @@ export class EditarExpedienteComponent implements OnInit {
 
   expediente;
   selectedTab = 0;
+  id;
 
   constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute) {
     //Recupero la información del expediente
     if(sessionStorage.length === 0){
       return;
     }
+    activatedRoute.params.subscribe(params=>{
+      this.id = params['id'];
+    });
+
     this.error = false;
 
     if(sessionStorage.getItem('asociacion') != null){
@@ -31,6 +36,17 @@ export class EditarExpedienteComponent implements OnInit {
     }else if(sessionStorage.getItem('admin') != null){
       this.admin = true;
     }
+    this._expedientesService.getExpedienteById(this.id).subscribe(data=>{
+      if(data.Codigo ==501){
+        this.router.navigate(['/expired']);
+        return;
+      }
+
+      this.expediente = data[0];
+      if(this.expediente.ID_Usuario != sessionStorage.iD){
+        this.error = true;
+      }
+    })
 
 
    }

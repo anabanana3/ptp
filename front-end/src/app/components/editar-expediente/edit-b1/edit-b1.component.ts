@@ -102,7 +102,8 @@ export class EditB1Component implements OnInit {
     lugarMadre;
     lugarPadre;
 
-  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private element:ElementRef, private ngZone:NgZone, private mapsAPILoader: MapsAPILoader, private _EditarExpedienteComponent:EditarExpedienteComponent) {
+  constructor(private router:Router, private _expedientesService: ExpedientesService, private activatedRoute: ActivatedRoute, private element:ElementRef,
+    private ngZone:NgZone, private mapsAPILoader: MapsAPILoader, private _EditarExpedienteComponent:EditarExpedienteComponent) {
     activatedRoute.params.subscribe(params=>{
       this.id = params['id'];
     });
@@ -116,94 +117,88 @@ export class EditB1Component implements OnInit {
         location.href = '/expired';
         return
       }
-      // console.log('************************************');
-      // console.log(data);
-      // console.log('Muestro la informacion basica del expediente');
       this.expediente = data[0];
-      // console.log(this.expediente);
-      if(this.expediente.Fecha != null){
+        // console.log(this.expediente);
+        if(this.expediente.Fecha != null){
 
-        this.expediente.Fecha = this.expediente.Fecha.split('T')[0];
-      }
-      // this.expediente.Descripcion = this.expediente.Descripcion.split("'")[1];
-
-      //Recupero el id de la menor implicada
-      let idPersona = this.expediente.ID_Persona;
-      console.log(idPersona);
-      //Recupero el bloque 1
-      console.log('////////////////////////////////////////');
-      this._expedientesService.getBloque1(this.id).subscribe(data =>{
-        console.log(data);
-        // console.log('Muestro la informacion del bloque 1');
-        this.bloque = data[0];
-        console.log(this.bloque)
-        if(this.bloque.Otros == 'NULL'){
-          this.bloque.Otros = '';
-        }else{
-            this.bloque.Otros = this.bloque.Otros.split("'")[1];
+          this.expediente.Fecha = this.expediente.Fecha.split('T')[0];
         }
-        if(this.bloque.Acomp_O == 'NULL'){
-          this.bloque.Acomp_O = '';
-        }else{
-          this.bloque.Acomp_O = this.bloque.Acomp_O.split("'")[1];
-        }
-        //Pongo los valores por defecto en el formulario para poder marcar por defecto
-        this.form2 = new FormGroup({
-          'Citacion': new FormControl(this.bloque.Citacion),
-          'Deriv_Riesgo': new FormControl(this.bloque.Deriv_Riesgo),
-          'Deriv_Sospecha': new FormControl(this.bloque.Deriv_Sospecha),
-          'Acomp_P': new FormControl(this.bloque.Acomp_P),
-          'Acomp_M': new FormControl(this.bloque.Acomp_M),
-          'Acomp_H': new FormControl(this.bloque.Acomp_H),
-          'Dif_Idi_M': new FormControl(this.bloque.Dif_Idi_M),
-          'Traduccion': new FormControl(this.bloque.Traduccion),
-          'Mediacion': new FormControl(this.bloque.Mediacion),
-        })
-        console.log(this.form2);
+        // this.expediente.Descripcion = this.expediente.Descripcion.split("'")[1];
 
-
-        //Recupero la menor implicada en el Expediente
-        this._expedientesService.getPersonaById(idPersona).subscribe(data=>{
-          console.log('Muestro la menor')
+        //Recupero el id de la menor implicada
+        let idPersona = this.expediente.ID_Persona;
+        console.log(idPersona);
+        //Recupero el bloque 1
+        console.log('////////////////////////////////////////');
+        this._expedientesService.getBloque1(this.id).subscribe(data =>{
           console.log(data);
-          this.menor = data[0];
-          this.menor.ID_Sexo = 1;
-          this.menor.Nombre = this.menor.Nombre.split("'")[1];
-          // console.log(this.menor.Nombre);
-          // console.log(this.menor.Edad);
-        })
-
-        this._expedientesService.getFamiliarPersona(idPersona).subscribe(data=>{
-          console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
-          console.log(data);
-          // console.log(data.length);
-          if(data.length >0){
-            for(let i = 0; i< data.length; i++){
-              if(data[i].Tipo == 1){
-                // this.madre.push(data[i]);
-                this.madre = data[i];
-                this.madre.ID_Sexo = 1;
-                this.madre.Nombre = this.madre.Nombre.split("'")[1]
-                this.madre.ID_Persona = data[i].ID_Persona;
-                this.madreCreate = true;
-              }else if(data[i].Tipo == 2){
-                // this.padre.push(data[i]);
-                this.padre = data[i];
-                this.padre.ID_Sexo = 2;
-                this.padre.Nombre=this.padre.Nombre.split("'")[1];
-                this.padre.ID_Persona = data[i].ID_Persona
-                this.padreCreate = false;
-              }
-            }
+          // console.log('Muestro la informacion del bloque 1');
+          this.bloque = data[0];
+          console.log(this.bloque)
+          if(this.bloque.Otros == 'NULL'){
+            this.bloque.Otros = '';
           }else{
-            // console.log('Padre');
-            // console.log(this.padre);
-            // console.log('Madre');
-            // console.log(this.madre);
+            this.bloque.Otros = this.bloque.Otros.split("'")[1];
           }
+          if(this.bloque.Acomp_O == 'NULL'){
+            this.bloque.Acomp_O = '';
+          }else{
+            this.bloque.Acomp_O = this.bloque.Acomp_O.split("'")[1];
+          }
+          //Pongo los valores por defecto en el formulario para poder marcar por defecto
+          this.form2 = new FormGroup({
+            'Citacion': new FormControl(this.bloque.Citacion),
+            'Deriv_Riesgo': new FormControl(this.bloque.Deriv_Riesgo),
+            'Deriv_Sospecha': new FormControl(this.bloque.Deriv_Sospecha),
+            'Acomp_P': new FormControl(this.bloque.Acomp_P),
+            'Acomp_M': new FormControl(this.bloque.Acomp_M),
+            'Acomp_H': new FormControl(this.bloque.Acomp_H),
+            'Dif_Idi_M': new FormControl(this.bloque.Dif_Idi_M),
+            'Traduccion': new FormControl(this.bloque.Traduccion),
+            'Mediacion': new FormControl(this.bloque.Mediacion),
+          })
+          console.log(this.form2);
+
+
+          //Recupero la menor implicada en el Expediente
+          this._expedientesService.getPersonaById(idPersona).subscribe(data=>{
+            console.log('Muestro la menor')
+            console.log(data);
+            this.menor = data[0];
+            this.menor.ID_Sexo = 1;
+            this.menor.Nombre = this.menor.Nombre.split("'")[1];
+            // console.log(this.menor.Nombre);
+            // console.log(this.menor.Edad);
+          })
+
+          this._expedientesService.getFamiliarPersona(idPersona).subscribe(data=>{
+            console.log('¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿');
+            console.log(data);
+            // console.log(data.length);
+            if(data.length >0){
+              for(let i = 0; i< data.length; i++){
+                if(data[i].Tipo == 1){
+                  // this.madre.push(data[i]);
+                  this.madre = data[i];
+                  this.madre.ID_Sexo = 1;
+                  this.madre.Nombre = this.madre.Nombre.split("'")[1]
+                  this.madre.ID_Persona = data[i].ID_Persona;
+                  this.madreCreate = true;
+                }else if(data[i].Tipo == 2){
+                  // this.padre.push(data[i]);
+                  this.padre = data[i];
+                  this.padre.ID_Sexo = 2;
+                  this.padre.Nombre=this.padre.Nombre.split("'")[1];
+                  this.padre.ID_Persona = data[i].ID_Persona
+                  this.padreCreate = false;
+                }
+              }
+            }else{
+            }
+          })
         })
-      })
     })
+
 
 
    }

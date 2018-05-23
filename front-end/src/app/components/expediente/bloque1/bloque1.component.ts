@@ -181,23 +181,7 @@ export class Bloque1Component implements OnInit {
              this.sitiosGoogle.push(place);
            })
          })
-         //Lugar de nacimiento de la Madre
-        //  this.lugarMadre = new  google.maps.places.Autocomplete(this.searchElement3.nativeElement, {types:["geocode"]});
-        //  this.lugarMadre.addListener('place_change', () =>{
-        //    this.ngZone.run(()=>{
-        //      let place: google.maps.places.PlaceResult = this.lugarMadre.getPlace();
-        //      this.sitiosGoogle.push(place);
-        //    })
-        //  })
-        //  //Lugar de nacimiento del Padre
-        //  //Lugar de nacimiento de la Madre
-        //  this.lugarPadre = new  google.maps.places.Autocomplete(this.searchElement4.nativeElement, {types:["geocode"]});
-        //  this.lugarPadre.addListener('place_change', () =>{
-        //    this.ngZone.run(()=>{
-        //      let place: google.maps.places.PlaceResult = this.lugarPadre.getPlace();
-        //      this.sitiosGoogle.push(place);
-        //    })
-        //  })
+
        }
      );
    }
