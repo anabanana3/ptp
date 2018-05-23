@@ -97,10 +97,12 @@ el metodo de guardarDatos3() es para ver que la informacion se actualiza bien --
     <!-- <hr> -->
 
     <div class="grupoForm">
-      <h3 class="text16 textPink">Historia de Partos
-        <span *ngIf="hayParto==false" (click)="hayParto =!hayParto" class="pointer icon-plus"></span>
-        <span *ngIf="hayParto==true" (click)="hayParto =!hayParto" class="pointer icon-minus"></span>
-      </h3>
+      <div class="desplegables" (click)="hayParto =!hayParto">
+        <h3 class="text16 textPink">Historia de partos
+          <span *ngIf="hayParto==false" class="pointer icon-plus"></span>
+          <span *ngIf="hayParto==true" class="pointer icon-minus"></span>
+        </h3>
+      </div>
       <div *ngIf="hayParto==true">
         <label>Número de partos de los que desea guardar información:</label>
         <input class="sizeinput" id="numPartos" [value]="bloque2.Num_Partos" name=Num_Partos type="number" min="1" #Npartos>
