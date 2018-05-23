@@ -43,8 +43,8 @@
   </div>
 
   <h3 class="text16 textPink">Indicadores de sospecha de MGF en el ámbito escolar
-      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus"></span>
-      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus"></span>
+      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus">Abrir</span>
+      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus">Cerrar</span>
   </h3>
 
   <div *ngIf="mostrar == true">
