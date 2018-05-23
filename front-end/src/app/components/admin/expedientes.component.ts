@@ -74,7 +74,6 @@ export class ExpedientesAdminComponent {
   buscar(pag){
     let tam = this.tamPag;
     this.Filtros.Lugar = '';
-    // console.log(this.Filtros);
     this.url='https://www.aisha.ovh/api/expedientes/search/';
     //Recupero la informacion del lugar de google Maps
     if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
@@ -158,13 +157,12 @@ export class ExpedientesAdminComponent {
   }
 
   changeView(view){
-    // console.log(view);
     this.view = view;
   }
 
-  borrarExpediente(id){
+  // borrarExpediente(id){
     // console.log('Borrar' + id);
-  }
+  // }
   ngOnInit() {
    this.apiGoogle();
  }
@@ -187,11 +185,6 @@ export class ExpedientesAdminComponent {
        })
      }
    );
- }
-
- buscar2(){
-   // console.log('Busqueda Auz');
-   // console.log(this.Filtros);
  }
 
  paginacion(totalPag, pagActual, tamPag){
@@ -231,9 +224,7 @@ export class ExpedientesAdminComponent {
 
 
 pasarPagina(pag){
-  // console.log('Paso a la pagina');
-  // console.log(pag);
-  //Tengo que ver si hay busqueda hecha
+
   if(this.busqueda == true){
     this.buscar(pag);
   }else{

@@ -126,10 +126,7 @@ export class UsuariosAdminComponent {
       this.getSolicitantes(pagina, this.tamPag);
       return;
     }
-    // console.log('*****');
-    // console.log(pagina);
-    // console.log(number);
-    // console.log(this.tamPag);
+
     if(number == 1){
       this._userService.getRegistrados(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
@@ -202,19 +199,14 @@ export class UsuariosAdminComponent {
 
 
  pasarPagina(pag){
-   // console.log('Paso a la pagina');
-   // console.log(pag);
+
    this.filter(pag);
  }
 
-  // pasarPagina(pag){
-  //   this.view(this.tabla, pag);
-  //   this.pagActual = pag;
-  // }
+
 
   filter(pag){
-    // console.log("bucando..")
-    // console.log(pag);
+
     let searchProfesion = null;
     let searchAsociacion = null;
     if(this.searchEmail === '')

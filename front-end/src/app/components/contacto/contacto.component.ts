@@ -21,7 +21,6 @@ export class ContactoComponent {
   constructor(private _userService:UserService, public dialog: MatDialog, private element:ElementRef) {}
 
   contactar(forma:NgForm){
-    // console.log(this.json);
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
       document.getElementById('alert').className = 'alert alert-danger';
@@ -36,7 +35,6 @@ export class ContactoComponent {
     }
 
     let captcha = this.element.nativeElement.querySelector('#g-recaptcha-response').value;
-    // console.log(captcha);
 
     this.json.Captcha = captcha;
     this._userService.sendEmail(this.json).subscribe(data =>{
@@ -59,7 +57,6 @@ export class ContactoComponent {
       width: '1000px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
       location.href = '/';
     });
   }
