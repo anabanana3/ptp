@@ -113,16 +113,23 @@ export class VerExpedienteComponent implements OnInit {
       if(data.Codigo == 501){
         location.href = '/expired';
       }else{
-        console.log(data);
         this.expediente = data;
         this.idPersona = data[0].ID_Persona;
         this._expedientesService.getPersonaById(this.idPersona).subscribe(data=>{
+          if(data[0] && data[0].Etnia.split(' ')[0] == 0){
+            // data[0].Etnia = "No hay datos registrados";
+            data[0].Etnia = "Desconoce la etnia de procedencia";
+          }
           this.persona = data;
           //console.log(data);
         })
         //familiares de la persona
         this._expedientesService.getFamiliarPersona(this.idPersona).subscribe(data=>{
           for(let i = 0; i< data.length; i++){
+            if(data[i] && data[i].Etnia.split(' ')[0] == 0){
+              // data[0].Etnia = "No hay datos registrados";
+              data[i].Etnia = "Desconoce la etnia de procedencia";
+            }
             if(data[i].Tipo == 1){
               this.madre.push(data[i]);
             }else if(data[i].Tipo == 2){
@@ -134,20 +141,53 @@ export class VerExpedienteComponent implements OnInit {
     })
     //obtenemos datos b1
     this._expedientesService.getBloque1(this.expID).subscribe(data=>{
-    this.bloque1 = data;
-    console.log(data);
-    if(data.length > 0){
-      this.curso = data[0].Curso.split("'")[1];
-      //console.log("curso:"+ data[0].Curso.split("'")[1]);
-      this.centro_Salud = data[0].Centro_Salud.split("'")[1];
+    if(data[0] && data[0].Otros == "''"){
+      data[0].Otros = "No hay datos registrados";
     }
+    else if(data[0] && data[0].Otros != "''"){
+      data[0].Otros = data[0].Otros.split("'")[1];
+    }
+    if(data[0] && data[0].Acomp_O == "''"){
+      data[0].Acomp_O = "No hay datos registrados";
+    }
+    else if(data[0] && data[0].Acomp_O != "''"){
+      data[0].Acomp_O = data[0].Acomp_O.split("'")[1];
+    }
+    this.bloque1 = data;
+    // if(data.length > 0){
+    //   this.curso = data[0].Curso.split("'")[1];
+    //   //console.log("curso:"+ data[0].Curso.split("'")[1]);
+    //   this.centro_Salud = data[0].Centro_Salud.split("'")[1];
+    // }
     })
     //obtenemos datos b2
     this._expedientesService.getBloque2(this.expID).subscribe(data=>{
-      this.bloque2 = data;
-      if(data.lenght > 0){
-        this.b2Otros = data[0].Otros.split("'")[1];
-      }
+    if(data[0]){
+      //SIGNIFICADO
+      if(data[0].Significado_MGF !="''"){
+       data[0].Significado_MGF = data[0].Significado_MGF.split("'")[1];
+      }else if(data[0].Significado_MGF =="''"){
+       data[0].Significado_MGF = "No hay datos registrados";
+     }
+     //FORMATO INT
+     if(data[0].Formato_intervencion !="''"){
+       data[0].Formato_intervencion = data[0].Formato_intervencion.split("'")[1];
+      }else if(data[0].Formato_intervencion =="''"){
+       data[0].Formato_intervencion = "No hay datos registrados";
+     }
+     //CONSEJOS
+     if(data[0].Consejos !="''"){
+       data[0].Consejos = data[0].Consejos.split("'")[1];
+      }else if(data[0].Consejos =="''"){
+       data[0].Consejos = "No hay datos registrados";
+     }
+   }
+   this.bloque2 = data;
+   if(data.lenght > 0 && data[0].Otros != "''"){
+       this.b2Otros = data[0].Otros.split("'")[1];
+     }else{
+       this.b2Otros = "No hay datos registrados";
+   }
     })
     //obtenemos los partos del exp
     this._expedientesService.getPartos(this.expID).subscribe(data=>{
@@ -166,13 +206,116 @@ export class VerExpedienteComponent implements OnInit {
       }
     })
     this._expedientesService.getBloque3(this.expID).subscribe(data=>{
+      if(data[0]){
+        //PROPIAS
+        if(data[0].Exp_propias != "''"){
+          data[0].Exp_propias = data[0].Exp_propias.split("'")[1];
+        }else if(data[0].Exp_propias == "''"){
+          data[0].Exp_propias = "No hay datos registrados";
+        }
+        //TERCEROS
+        if(data[0].Exp_terceros != "''"){
+          data[0].Exp_terceros = data[0].Exp_terceros.split("'")[1];
+        }else if(data[0].Exp_terceros == "''"){
+          data[0].Exp_terceros = "No hay datos registrados";
+        }
+        //WHY?
+        if(data[0].Mant_MGF_texto != "''"){
+          data[0].Mant_MGF_texto = data[0].Mant_MGF_texto.split("'")[1];
+        }else if(data[0].Mant_MGF_texto == "''"){
+          data[0].Mant_MGF_texto = "No hay datos registrados";
+        }
+        //CONSEC M
+        if(data[0].Otros_consecM != "''"){
+          data[0].Otros_consecM = data[0].Otros_consecM.split("'")[1];
+        }else if(data[0].Otros_consecM == "''"){
+          data[0].Otros_consecM = "No hay datos registrados";
+        }
+        //CONSEC H
+        if(data[0].Otros_consecH != "''"){
+          data[0].Otros_consecH = data[0].Otros_consecH.split("'")[1];
+        }else if(data[0].Otros_consecH == "''"){
+          data[0].Otros_consecH = "No hay datos registrados";
+        }
+        //INTERVENCION
+        if(data[0].Formato_int != "''"){
+          data[0].Formato_int = data[0].Formato_int.split("'")[1];
+        }else if(data[0].Formato_int == "''"){
+          data[0].Formato_int = "No hay datos registrados";
+        }
+        //CONSEJO
+        if(data[0].Consejo != "''"){
+          data[0].Consejo = data[0].Consejo.split("'")[1];
+        }else if(data[0].Consejo == "''"){
+          data[0].Consejo = "No hay datos registrados";
+        }
+      }
       this.bloque3 = data;
       //console.log('b3: '+this.bloque3);
     })
     this._expedientesService.getBloque4(this.expID).subscribe(data=>{
+      if(data[0]){
+        if(data[0].ID_Mutilacion == 1){
+          data[0].ID_Mutilacion = "Tipo 1";
+        }else if(data[0].ID_Mutilacion == 2){
+          data[0].ID_Mutilacion = "Tipo 2";
+        }else if(data[0].ID_Mutilacion == 3){
+          data[0].ID_Mutilacion = "Tipo 3";
+        }else if(data[0].ID_Mutilacion == 4){
+          data[0].ID_Mutilacion = "Tipo 4";
+        }else if(data[0].ID_Mutilacion == 5){
+          data[0].ID_Mutilacion = "No hay datos registrados";
+        }else if(data[0].ID_Mutilacion == 6){
+          data[0].ID_Mutilacion = "Otro";
+        }
+        //ELAST
+        if(data[0].Elasticidad != "''"){
+          data[0].Elasticidad = data[0].Elasticidad.split("'")[1];
+        }else if(data[0].Elasticidad == "''"){
+          data[0].Elasticidad = "No hay datos registrados";
+        }
+        //DESC
+        if(data[0].Descripcion != "''"){
+          data[0].Descripcion = data[0].Descripcion.split("'")[1];
+        }else if(data[0].Descripcion == "''"){
+          data[0].Descripcion = "No hay datos registrados";
+        }
+        //OTROS
+        if(data[0].Otros != "''"){
+          data[0].Otros = data[0].Otros.split("'")[1];
+        }else if(data[0].Otros == "''"){
+          data[0].Otros = "No hay datos registrados";
+        }
+        //FORMATO INT
+        if(data[0].Formato_int != "''"){
+          data[0].Formato_int = data[0].Formato_int.split("'")[1];
+        }else if(data[0].Formato_int == "''"){
+          data[0].Formato_int = "No hay datos registrados";
+        }
+        //CONSEJOS
+        if(data[0].Consejos != "''"){
+          data[0].Consejos = data[0].Consejos.split("'")[1];
+        }else if(data[0].Consejos == "''"){
+          data[0].Consejos = "No hay datos registrados";
+        }
+      }
       this.bloque4 = data;
     })
     this._expedientesService.getBloque5(this.expID).subscribe(data=>{
+      if(data[0]){
+        //FORMATO INT
+        if(data[0].Intervencion != "''"){
+          data[0].Intervencion = data[0].Intervencion.split("'")[1];
+        }else if(data[0].Intervencion == "''"){
+          data[0].Intervencion = "No hay datos registrados";
+        }
+        //CONSEJOS
+        if(data[0].Consejos != "''"){
+          data[0].Consejos = data[0].Consejos.split("'")[1];
+        }else if(data[0].Consejos == "''"){
+          data[0].Consejos = "No hay datos registrados";
+        }
+      }
       this.bloque5 = data;
     })
     this._expedientesService.getTieneConsecSalud(this.expID).subscribe(data=>{
@@ -199,7 +342,7 @@ export class VerExpedienteComponent implements OnInit {
       if(data.length >0 && data[0].ID_Publico == this.expID){
         console.log(data[0].ID_Publico);
         this.publico = true;
-        this.mostrarComentarios();
+        this.mostrarComentarios(this.expID);
         this._expedientesService.getComents(this.expID).subscribe(data=>{
           if(data[0].Comentario == 0){
             this.estaComent = false;
@@ -211,7 +354,7 @@ export class VerExpedienteComponent implements OnInit {
       console.log(data);
     })
 
-    
+
   }
 
   openDialog(): void {
@@ -287,7 +430,7 @@ export class VerExpedienteComponent implements OnInit {
     this.tamPag=tam;
     this.getComentarios();
   }
-  mostrarComentarios(){
+  mostrarComentarios(id){
     this.coment = 1;
     if(this.publico){
       this.estaCheck = true;
@@ -295,12 +438,12 @@ export class VerExpedienteComponent implements OnInit {
     }else{
       this.estaCheck = true;
       this.labelPublico = "Expediente público";
-      this.publicar();
+      this.publicar(id);
     }
   }
-  publicar(){
+  publicar(id){
     let body = {
-      ID_Publico: this.expID,
+      ID_Publico: id,
       Comentario: 0
     }
     console.log(body);
@@ -310,6 +453,7 @@ export class VerExpedienteComponent implements OnInit {
       }else{
         //this.publico = this.expID;
         console.log("Publicar");
+        location.href = '/verexpediente;id='+id;
       }
     })
   }
@@ -346,8 +490,6 @@ export class VerExpedienteComponent implements OnInit {
   }
 
 
-
-
   borrarExpediente(){
     console.log('Método para borrar Expediente');
     this.openDialogBorrar();
@@ -373,7 +515,6 @@ export class VerExpedienteComponent implements OnInit {
     //Cargar un popUp con un desplegable con las carpetas que tiene el usuario
     this.openDialogMoverExp();
   }
-
   //Es un metodo para mover los expedientes de las carpetas
   addExpedienteToFolder(idCarpeta){
     console.log('Metodo para añadir un expediente a una carpeta');
@@ -409,6 +550,36 @@ export class VerExpedienteComponent implements OnInit {
       console.log('Pop Up Mover expediente cerrado');
       //this.animal = result;
     });
+  }
+  openDialogPublicarExp(): void {
+    let dialogRef = this.dialog.open(PopupPublicarExp, {
+      width: '550px',
+      data: { ID_Expediente: this.expID }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Pop Up Publicar expediente');
+      //this.animal = result;
+    });
+  }
+}
+@Component({
+  selector: 'popupPublicarExp',
+  templateUrl: 'popupPublicarExp.component.html',
+})
+export class PopupPublicarExp {
+
+  constructor(
+    public dialogRef: MatDialogRef<PopupPublicarExp>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private _verExpedienteComponent:VerExpedienteComponent) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  mostrarComentarios(){
+    this._verExpedienteComponent.mostrarComentarios(this.data.ID_Expediente);
+    this._verExpedienteComponent.coment =1;
+    this.dialogRef.close();
   }
 }
 @Component({

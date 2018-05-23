@@ -1405,6 +1405,11 @@ option{
   cursor: pointer;
   border-bottom: solid #880042;
 }
+.pagination li.activeP{
+  cursor: pointer;
+  border-bottom: solid #880042;
+}
+
 
 .divError{
   display: inline-flex;

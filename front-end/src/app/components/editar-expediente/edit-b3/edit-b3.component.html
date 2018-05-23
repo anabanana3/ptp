@@ -28,7 +28,7 @@
       <label class="labeltransr" for="mant_MGFNS">N/S</label>
     </div>
 
-    <div *ngIf="json.Mant_MGF==1">
+    <div>
       <label for="mant_MGF_texto">¿Por qué?:</label>
       <textarea class="textareaBl2" [(ngModel)]='json.Mant_MGF_texto' type="mant_MGF_texto" name="mant_MGF_texto" id="mant_MGF_texto"></textarea>
     </div>
@@ -74,7 +74,7 @@
     <label for="exp_propias">Consejos para otros profesionales: </label>
     <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" [placeholder]="json.Consejo" ></textarea>
 
-  
+
     <!-- Boton flotante -->
     <div id="container-floating">
       <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>

@@ -18,9 +18,9 @@
       </div> -->
       <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
       <div *ngIf="expedientes.length>0" class="expediente-container">
-        <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Publico}]">
+        <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
           <div class="expediente-body-exp">
-            <p class="tituloExp">Expediente {{e.ID_Publico}} <span class="fechaExp">{{e.FechaCreacion.split('T')[0]}}</span></p>
+            <p class="tituloExp">Expediente {{e.ID_Expediente}} <span class="fechaExp">{{e.FechaCreacion.split('T')[0]}}</span></p>
             <p class="fechaExp">{{e.Sitio}}, {{e.Pais}}</p>
             <p class="fechaExp"> {{e.Autor.split("'")[1]}}</p>
           </div>

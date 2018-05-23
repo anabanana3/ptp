@@ -29,7 +29,7 @@
     <input class="radiotrans"  type="radio" [(ngModel)]="json.Mant_MGF" id="mant_MGFNS" value="2" name="mant_MGFNS">
     <label class="labeltransr" for="mant_MGFNS">N/S</label>
 
-    <div *ngIf="json.Mant_MGF==1">
+    <div>
       <label for="mant_MGF_texto">¿Por qué?:</label>
       <textarea class="textareaBl2" [(ngModel)]='json.Mant_MGF_texto' type="mant_MGF_texto" name="mant_MGF_texto" id="mant_MGF_texto"></textarea>
     </div>
