@@ -156,6 +156,7 @@ filter(pag){
       }else{
         this.loading = false;
         this.asociacion = data.Data;
+        console.log(this.asociacion);
         this.busqueda = true;
         this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag)
       }

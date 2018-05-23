@@ -215,6 +215,7 @@ export class UsuariosAdminComponent {
 
   filter(pag){
     console.log("bucando..")
+    console.log(pag);
     let searchProfesion = null;
     let searchAsociacion = null;
     if(this.searchEmail === '')
