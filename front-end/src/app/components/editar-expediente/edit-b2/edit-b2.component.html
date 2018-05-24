@@ -1,0 +1,127 @@
+<!-- TODO: Cambiar la funcion a guardarDatos() para que la informacion se
+almacene en la base de datos
+el metodo de guardarDatos3() es para ver que la informacion se actualiza bien -->
+<form (ngSubmit)="guardarDatos()"#form2="ngForm">
+  <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
+  <div class="divLabels">
+    <div class="divExp">
+      <label>El titular tiene conocimientos sobre la MGF:</label>
+      <span matTooltip='Posible pregunta:"Tengo entendido que en su país se realiza la ablación o el corte de los genitales de las
+       mujeres. ¿Conoce esta práctica?."' class="pointer icon-info info"></span>
+    </div>
+
+      <div [formGroup] = "form" class="divExp">
+        <!-- [(ngModel)]="bloque2.Conoce_MGF" -->
+      <input class="radiotrans" type="radio" [checked]="bloque2.Conoce_MGF == 1" formControlName="Conoce_MGF" id="Conoce_MGFSI" value="1" name="Conoce_MGF">
+      <label class="labeltransr"  for="Conoce_MGFSI">Sí</label>
+      <input class="radiotrans"  type="radio"[checked]="bloque2.Conoce_MGF == 0" formControlName="Conoce_MGF" id="Conoce_MGFNO" value="0" name="Conoce_MGF">
+      <label class="labeltransr" for="Conoce_MGFNO">No</label>
+      <input class="radiotrans"  type="radio"[checked]="bloque2.Conoce_MGF == 2" formControlName="Conoce_MGF" id="Conoce_MGFNS" value="2" name="Conoce_MGF">
+      <label class="labeltransr" for="Conoce_MGFNS">N/S</label>
+    </div>
+
+    <div class="divExp">
+     <label>La MGF se realiza en la comunidad de origen:</label>
+    </div>
+
+     <div [formGroup] = "form" class="divExp">
+       <input class="radiotrans" type="radio"  [checked]="bloque2.MGF_realizada_com_origen == 1" formControlName="MGF_realizada_com_origen" id="Realizada_MGFSI" value="1" name="MGF_realizada_com_origen">
+       <label class="labeltransr" for="Realizada_MGFSI">Sí</label>
+       <input class="radiotrans"type="radio"  [checked]="bloque2.MGF_realizada_com_origen == 0" formControlName="MGF_realizada_com_origen" id="Realizada_MGFNO" value="0" name="MGF_realizada_com_origen">
+       <label class="labeltransr"for="Realizada_MGFNO">No</label>
+       <input class="radiotrans"  type="radio" [checked]="bloque2.MGF_realizada_com_origen == 2" formControlName="MGF_realizada_com_origen" id="Realizada_MGFNS" value="2" name="MGF_realizada_com_origen">
+       <label class="labeltransr" for="Realizada_MGFNS">N/S</label>
+     </div>
+    </div>
+
+    <div class="divLabels">
+      <div class="divExp">
+         <label>Posicionamiento del padre frente a la MGF:</label>
+         <span matTooltip="¿Usted está de acuerdo con esta práctica? ¿Y su marido, y su
+         esposa, y su pareja? ¿Qué opina su familia sobre la ablación?" class="pointer icon-info info"></span>
+      </div>
+      <div [formGroup] = "form" class="divExp">
+
+        <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_padre == 1" formControlName="Pos_padre" id="Padre_MGFFavor" value="1" name="Pos_padre">
+        <label class="labeltransr" for="Padre_MGFFavor">A favor</label>
+        <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_padre == 0" formControlName="Pos_padre" id="Padre_MGFContra" value="0" name="Pos_padre">
+        <label class="labeltransr" for="Padre_MGFContra">En contra</label>
+        <input class="radiotrans"  type="radio" [checked]="bloque2.Pos_padre == 2"formControlName="Pos_padre" id="Padre_MGFNS" value="2" name="Pos_padre">
+        <label class="labeltransr" for="Padre_MGFNS">N/S</label>
+      </div>
+
+      <div class="divExp">
+       <label>Posicionamiento de la madre frente a la MGF:</label>
+     </div>
+     <div [formGroup] = "form" class="divExp">
+
+       <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_madre == 1" formControlName="Pos_madre" id="Madre_MGFFavor" value="1" name="Pos_madre">
+       <label class="labeltransr" for="Madre_MGFFavor">A favor</label>
+       <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_madre == 0" formControlName="Pos_madre" id="Madre_MGFContra" value="0" name="Pos_madre">
+       <label class="labeltransr" for="Madre_MGFContra">En contra</label>
+       <input class="radiotrans"  type="radio" [checked]="bloque2.Pos_madre == 2" formControlName="Pos_madre" id="Madre_MGFNS" value="2" name="Pos_madre">
+       <label class="labeltransr" for="Madre_MGFNS">N/S</label>
+      </div>
+    </div>
+
+    <div class="divLabelsDeUno">
+      <div class="divExpDeUno">
+        <label>Posicionamiento de la familia en el país de origen:</label>
+      </div>
+
+     <div [formGroup] = "form" class="divExpDeUno">
+
+       <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_familia == 1" formControlName="Pos_familia" id="Familia_MGFFavor" value="1" name="Pos_familia">
+       <label class="labeltransr" for="Familia_MGFFavor">A favor</label>
+       <input class="radiotrans" type="radio"  [checked]="bloque2.Pos_familia == 0" formControlName="Pos_familia" id="Familia_MGFContra" value="0" name="Pos_familia">
+       <label class="labeltransr" for="Familia_MGFContra">En contra</label>
+       <input class="radiotrans"  type="radio" [checked]="bloque2.Pos_familia == 2" formControlName="Pos_familia" id="Familia_MGFNS" value="2" name="Pos_familia">
+       <label class="labeltransr" for="Familia_MGFNS">N/S</label>
+     </div>
+    </div>
+
+    <label>Otros aspectos a tener en cuenta sobre el posicionamiento de la familia:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Otros" name="Otros"></textarea>
+
+    <label>Significado de la MGF para el titular en el expediente:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Significado_MGF" name="Significado_MGF" ></textarea>
+
+    <label>Formato de intervención:</label>
+    <span matTooltip="Texto libre para indicar cual ha sido el formato de intervención frente a las personas implicadas en el expediente" class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Formato_intervencion" name="Formato_intervencion" ></textarea>
+
+    <label>Consejos para otros profesionales:</label>
+    <span matTooltip="Texto libre para exponer consejos a otros profesionales que usen AISHA." class="pointer icon-info info"></span>
+    <textarea class="textareaBl2" [(ngModel)]="bloque2.Consejos" name="Consejos" ></textarea>
+    <!-- <hr> -->
+
+    <div class="grupoForm">
+      <div class="desplegables" (click)="hayParto =!hayParto">
+        <h3 class="text16 textPink">Historia de partos
+          <span *ngIf="hayParto==false" class="pointer icon-plus"></span>
+          <span *ngIf="hayParto==true" class="pointer icon-minus"></span>
+        </h3>
+      </div>
+      <div *ngIf="hayParto==true">
+        <label>Número de partos de los que desea guardar información:</label>
+        <input class="sizeinput" id="numPartos" [value]="bloque2.Num_Partos" name=Num_Partos type="number" min="1" #Npartos>
+        <br>
+        <button mat-raised-button (click)="openDialog(Npartos.value)" type="button" name="button" class="btn-border bgColorPink">Añadir partos</button>
+        <button *ngIf="datosPartos.length>=1" mat-raised-button (click)="modificarPartos()"  type="button" name="button" class="btn-border bgColorPink">Modificar partos</button>
+     </div>
+   </div>
+   <hr>
+
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
+  </div>
+  <!--Fin boton flotante -->
+</form>

@@ -2,47 +2,100 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
+<div *ngIf="asociacion">
+  <app-header-asociacion></app-header-asociacion>
+</div>
+<div *ngIf="admin">
+  <app-header-admin></app-header-admin>
+</div>
+<div *ngIf="usuario">
   <app-header></app-header>
-
-  <div>
-
-    <div class="tabsExpediente">
-      <button class="tabItem" (click)="bloque = 1">
+</div>
+  <div class="divBlanco bgColorWhite crearExpediente">
+<!-- TODO: No pudes voler para atras -->
+    <!-- <div class="tabsExpediente">
+      <button id="bl1" class="tabItem" (click)="bloque=1">
         Bloque 1
       </button>
-      <button class="tabItem" (click)="bloque = 2">
+      <button id="bl2" class="tabItem" (click)="bloque = 2">
         Bloque 2
       </button>
-      <button class="tabItem" (click)="bloque = 3">
+      <button id="bl3" class="tabItem" (click)="bloque = 3">
         Bloque 3
       </button>
-      <button class="tabItem" (click)="bloque = 4">
+      <button id="bl4" class="tabItem" (click)="bloque = 4">
         Bloque 4
       </button>
-      <button class="tabItem" (click)="bloque = 5">
+      <button id="bl5" class="tabItem" (click)="bloque = 5">
         Bloque 5
       </button>
-    </div>
+    </div> -->
 
-    <div class="divBloque">
+    <mat-tab-group id="bloqueHeader" [selectedIndex]="selectedTab" >
+      <mat-tab label="Datos sociodemográficos"  id="bloque1">
+        <div class="divBloqueExp2">
+          <!-- {{ cambiarColorBl1() }} -->
+          <app-bloque1></app-bloque1>
+      </div>
+      </mat-tab>
+      <mat-tab label="Acerca de MGF"  id="bloque2">
+        <div class="divBloqueExp2">
+            <app-bloque2></app-bloque2>
+        </div>
+      </mat-tab>
+      <mat-tab label="Experiencias con la titular"  id="bloque3">
+        <div class="divBloqueExp2">
+            <app-bloque3></app-bloque3>
+        </div>
+      </mat-tab>
+      <mat-tab label="Exploración genital" id="bloque4">
+        <div class="divBloqueExp2">
+            <app-bloque4></app-bloque4>
+        </div>
+      </mat-tab>
+      <mat-tab label="Viajes"  id="bloque5">
+        <div class="divBloqueExp2">
+            <app-bloque5></app-bloque5>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    
+
+<!-- <button (click) = "prueba()">Prueba</button> -->
+
+<!--
+
+     <div class="divBloque divBloqueExp">
       <div *ngIf="bloque === 1">
+        {{ cambiarColorBl1() }}
         <app-bloque1></app-bloque1>
       </div>
       <div *ngIf="bloque === 2">
+        {{ cambiarColorBl2() }}
         <app-bloque2></app-bloque2>
       </div>
       <div *ngIf="bloque === 3">
-        <p>Formulario Bloque 3</p>
+        {{ cambiarColorBl3() }}
+        <app-bloque3></app-bloque3>
       </div>
-      <div *ngIf="bloque === 4">
-        <p>Formulario Bloque 4</p>
+      <div *ngIf="bloque === 4 ">
+        {{ cambiarColorBl4() }}
+        <app-bloque4></app-bloque4>
       </div>
       <div *ngIf="bloque === 5">
+        {{ cambiarColorBl5() }}
         <app-bloque5></app-bloque5>
       </div>
-    </div>
+
+    </div>-->
+  <!-- Div para poner el boton de terminar -->
+    <button class="btn-border" (click)="terminar();" [routerLink]="['/home']" >Terminar</button>
+
+    <div class="espacio"></div>
+
 
   </div>
+
 
   <app-footer></app-footer>
 </div>

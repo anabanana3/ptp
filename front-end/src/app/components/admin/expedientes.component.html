@@ -1,0 +1,92 @@
+<div class="divAdmin-content">
+  <h1>Administración de Expedientes</h1>
+  <hr><br>
+  <div class="searchBar">
+    <form (ngSubmit)="buscar(1)" class="formAdmin">
+      <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor" placeholder="Autor">
+      <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesion">
+        <option value="0">Selecione una profesión</option>
+        <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+      </select>
+      <input class="sizeinput" [(ngModel)]="Filtros.Titulo" type="text" name="Titulo" id="titulo" placeholder="Titulo">
+
+      <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1" placeholder="Desde">
+      <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2" placeholder="Hasta">
+
+        <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+
+      <select class="sizeinput" [(ngModel)]="Filtros.ID_Etnia" name="Etnia">
+        <option value="0">Seleccione la etnia</option>
+        <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+      </select>
+
+      <select class="sizeinput" [(ngModel)]="Filtros.ID_Mutilacion" name="TipoMGF">
+        <option value="0">Seleccione el tipo de MGF</option>
+        <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}} {{t.Tipo}}</option>
+      </select>
+
+      <button class="btn-relleno" type="submit" name="button">Buscar</button>
+    </form>
+  </div>
+  <div>
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+    <div>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="expediente">
+          <ng-container matColumnDef="titulo">
+            <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Titulo}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="autor">
+            <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Autor}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Fecha.split('T')[0]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="options">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a [routerLink]="['/verexpediente', {id:element.ID_Publico}]" class="icon-eye" title="Visualizar expediente"></a>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="borrarExpediente(element.ID_Expediente)"
+                      title="Cancelar Usuario">
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+    <!-- Paginacion -->
+    <div>
+      <div *ngIf="paginas.length > 1" class="container">
+        <div class="text-center">
+          <ul class="pagination">
+            <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+            <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+            <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+            <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+            <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+      <div  *ngIf="expediente.length === 0 && !loading"
+            class="alert alert-info" role="alert">
+        <strong>No hay</strong> registros que mostrar
+      </div>
+
+      <div  *ngIf="loading" class="alert alert-info" role="alert">
+        <strong>Cargando...</strong>por favor espere
+      </div>
+
+    </div>
+
+  </div>
+</div>

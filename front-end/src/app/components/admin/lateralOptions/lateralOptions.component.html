@@ -1,27 +1,49 @@
-<div class="header bgColorBlack">
-  <a href="www.aisha.ovh/principal"><img style="width:50px; float:left;margin-left:75px;margin-top:23px" src="../assets/img/AISHA.png" alt=""></a>
-  <button (click)="logout();" type="button" name="button"
-    class="submitGris textoBlanco logoutAdmin"
-    style="float:right; margin-right:1%" >
-    Cerrar Sesión
-  </button>
+<div *ngIf="error">
+  <app-error></app-error>
 </div>
+<div *ngIf="!error">
 
-<div class="divAdmin"
-     style="width: 30%;float: left; border-top:none; position: absolute; height: 100%;">
-<!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
-  <ul>
-    <li>
-      <a class="pointer" href="/admin/usuarios">Usuarios</a>
-    </li>
-    <li>
-      <a class="pointer" href="/admin/asociaciones">Asociaciones</a>
-    </li>
-    <li>
-      <a class="pointer">Recursos</a>
-    </li>
-    <li>
-      <a class="pointer">Notificaciones</a>
-    </li>
-  </ul>
+  <div class="header bgColorBlack">
+    <a [routerLink]="['/admin']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" alt="LogoAisha"></a>
+
+  <div class="menuNav" id="myTopnav">
+    <a class="pointer icon-user latAdmin" (click)="changeOption(2)">Usuarios</a>
+    <a class="pointer icon-users latAdmin" (click)="changeOption(3)">Asociaciones</a>
+    <a class="pointer icon-box latAdmin" (click)="changeOption(4)">Recursos</a>
+    <a class="pointer icon-doc-text-inv latAdmin" (click)="changeOption(5)">Expedientes</a>
+    <a [routerLink]="['/admin']" (click)="activo(4)" id="4" class="">Home</a>
+    <a [routerLink]="['/recursos']" (click)="activo(1)" id="1" class="">Recursos</a>
+    <a [routerLink]="['/bibexpedientes']" (click)="activo(2)" id="2" class="">Expedientes</a>
+    <a [routerLink]="['/aulavirtual']" (click)="activo(3)" id="3" class="">Aula Virtual</a>
+    <a (click)="logout();" style="float:right;">Cerrar Sesión</a>
+
+    <a href="javascript:void(0);" class="icon" (click)="myFunction()">&#9776;</a>
+  </div>
+  </div>
+
+
+  <div class="divAdmin">
+    <ul>
+      <li><a class="pointer icon-user" (click)="changeOption(2)"><span>Usuarios</span></a></li>
+      <li><a class="pointer icon-users" (click)="changeOption(3)"><span>Asociaciones</span></a></li>
+      <li><a class="pointer icon-box" (click)="changeOption(4)"><span>Recursos</span></a></li>
+      <li><a class="pointer icon-doc-text-inv" (click)="changeOption(5)"><span>Expedientes</span></a></li>
+    </ul>
+  </div>
+
+  <div *ngIf="option == 1">
+
+  </div>
+  <div *ngIf="option == 2">
+    <app-usuarios></app-usuarios>
+  </div>
+  <div *ngIf="option == 3">
+    <app-asociaciones></app-asociaciones>
+  </div>
+  <div *ngIf="option == 4">
+    <app-recursos-admin></app-recursos-admin>
+  </div>
+  <div *ngIf="option == 5">
+    <app-expedientes></app-expedientes>
+  </div>
 </div>

@@ -1,0 +1,33 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+</div>
+
+<div class="divBlanco bgColorWhite estadisticas">
+  <mat-tab-group id="bloqueHeader" >
+    <mat-tab label="Estadísticas sobre Casos">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/4J0Ct6NWZh5TduEMiKAW3x1HevfaOy8g"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+    <mat-tab label="Acerca de AISHA">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/gKwTULVb6Cf8xUn4bLq9TW2GiRizsCA5"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+    <mat-tab label="Predicción de la MGF">
+      <iframe src="https://snapshot.raintank.io/dashboard/snapshot/sngsAIyVFGqWNS0feZ2TV66wDo3xfCSC"
+      width="1300" height="900">Su navegador no soporta iFrame</iframe>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,141 @@
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
+</div>
+<h1 mat-dialog-title>DATOS PARTO</h1>
+
+<div mat-dialog-content>
+  <div *ngFor="let parto of data.partos; let i = index">
+    <h2 class="cherry">PARTO Nº {{i+1}}</h2>
+
+    <div *ngIf="parto.Fecha != NULL">
+      <div class="divLabelsVerPartos">
+        <div class="divExpDeUno">
+          <label>Fecha del parto:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Fecha.split('T')[0]}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Edad_Madre != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Edad de la madre:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Edad_Madre}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Edad_Nacido != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Edad del nacido/a:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Edad_Nacido}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Tiempo_Expulsivo != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Tiempo de expulsión:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Tiempo_Expulsivo}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Tiempo_Dilatacion != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Tiempo de dilatación:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Tiempo_Dilatacion}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Duracion_Parto != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Duración del parto:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Duracion_Parto}} min.</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="divLabelsVerExp">
+      <div class="divExpDeUno">
+        <label>Fórmula obstétrica realizada:</label>
+      </div>
+      <div class="divExpDeUno">
+        <label>{{parto.Formula}}</label>
+      </div>
+    </div>
+
+    <div class="divLabelsVerExp">
+      <div class="divExpDeUno">
+        <label>Tipo de mutilación genital:</label>
+      </div>
+      <div class="divExpDeUno">
+        <label>{{parto.Mutilacion}}</label>
+      </div>
+    </div>
+
+    <div class="divLabelsVerExp">
+      <div class="divExpDeUno">
+        <label>Tipo de parto:</label>
+      </div>
+      <div class="divExpDeUno">
+        <label>{{parto.Tipo_Parto}}</label>
+      </div>
+    </div>
+
+    <div *ngIf="parto.Test_APGAR != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUno">
+          <label>Test APGAR:</label>
+        </div>
+        <div class="divExpDeUno">
+          <label>{{parto.Test_APGAR}} min.</label>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.auxM[i] != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUnoC">
+          <label>Complicaciones de la madre durante el parto:</label>
+          <br>
+        </div>
+         <div class="complicaciones" *ngFor="let cm of data.auxM[i]">
+          <label>- {{cm.Nombre}}</label>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.auxN[i] != NULL">
+      <div class="divLabelsVerExp">
+        <div class="divExpDeUnoC">
+          <label>Complicaciones del recién nacido durante el parto:</label>
+          <br>
+        </div>
+         <div class="complicaciones" *ngFor="let cn of data.auxN[i]">
+          <label>- {{cn.Nombre}}</label>
+          <br>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

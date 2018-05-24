@@ -1,39 +1,95 @@
 <form [formGroup]="form" (ngSubmit)="guardarDatos()">
-<div>
-  <h2>Valoración sobre posibles viajes</h2>
-  <label for="viajes">Realiza viajes al pais de origen en vacaciones</label>
-  <select id=viajes formControlName="Viajes">
-    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-  </select>
-  <br>
+  <div>
+    <div id="alert">{{mensaje}}</div>
+    <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
 
-  <label for="viajeP">Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente</label>
-  <select id="viajeP" formControlName="ViajesPlanifiacados">
-    <option *ngFor="let op of opciones; let i = index" [value]="i">{{op}}</option>
-  </select>
-  <br>
-  <label for="formato">Descripción del formato de intervención</label>
-  <textarea formControlName="Intervencion" placeholder="Descripcion" id="formato"></textarea>
-  <br>
-  <label for="consejo">Consejo para otros profesionales</label>
-  <textarea formControlName="Consejos" id="consejo" placeholder="consejos"></textarea>
-  <br>
-</div>
+    <div class="divLabels">
+      <div class="divExp">
+        <label>Las personas implicadas en este expediente tienen planificado realizar un viaje proximamente:</label>
 
-<h2>Indicadores de sospecha de MGF en el ambito escolar
-    <span *ngIf="mostrar == false" (click)="mostrar = !mostrar">Mostrar</span>
-    <span *ngIf="mostrar == true" (click)="mostrar = !mostrar">Ocultar</span>
-</h2>
-<div *ngIf="mostrar == true">
-  <p> A continuación seleccione los indicadores que se dan en la menor involucrada en el expediente</p>
-<div formGroupName="indicadores">
-  <div *ngFor="let in of indicadores; let i = index;">
-    <label for="indicador{{i}}">{{in.Nombre}}</label>
-    <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+      </div>
+      <div class="divExp">
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="1" id="viajePSI" >
+        <label class="labeltransr" for="viajePSI">Sí</label>
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="0" id="viajePNO" >
+        <label class="labeltransr" for="viajePNO">No</label>
+        <input class="radiotrans"  type="radio" formControlName="ViajesPlanifiacados" name="ViajesPlanifiacados" value="2" id="viajePNS" >
+        <label class="labeltransr" for="viajePNS">N/S</label>
+      </div>
+
+      <div class="divExp">
+        <label>La titular realiza viajes al país de origen en vacaciones:</label>
+
+      </div>
+      <div class="divExp">
+        <input class="radiotrans"  type="radio" name="viajes" value="1" id="viajesSI" formControlName="Viajes">
+        <label class="labeltransr" for="viajesSI">Sí</label>
+        <input class="radiotrans"  type="radio" name="viajes" value="0" id="viajesNO" formControlName="Viajes">
+        <label class="labeltransr" for="viajesNO">No</label>
+        <input class="radiotrans"  type="radio" name="viajes" value="2" id="viajesNS" formControlName="Viajes">
+        <label class="labeltransr" for="viajesNS">N/S</label>
+      </div>
+    </div>
+
+    <br>
+
+    <label for="formato">Descripción del formato de intervención:</label>
+    <textarea class="textareaBl2" formControlName="Intervencion" placeholder="Escriba aquí..." id="formato"></textarea>
+    <br>
+
+    <label for="consejo">Consejo para otros profesionales:</label>
+    <textarea class="textareaBl2" formControlName="Consejos" id="consejo" placeholder="Escriba aquí..."></textarea>
+    <br>
+  </div>
+
+  <h3 class="text16 textPink">Indicadores de sospecha de MGF en el ámbito escolar
+      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus">Abrir</span>
+      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus">Cerrar</span>
+  </h3>
+
+  <div *ngIf="mostrar == true">
+    <p>A continuación seleccione los indicadores que se dan en la titular del expediente:</p>
+    <br>
+      <div formGroupName="indicadores">
+        <!-- <div class="divContainerPopUp">
+        <div *ngFor="let in of indicadores; let i = index;">
+          <div class="divExpPopUp">
+            <label for="indicador{{i}}">{{in.Nombre}}</label>
+          </div>
+          <div class="divExpPopUpCheck">
+            <input formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+          </div>
+        </div>
+      </div> -->
+
+      <div class="divContainerBl4">
+        <div *ngFor="let in of indicadores; let i = index;">
+            <div class="divPrueba">
+              <input class="checktrans" formControlName="indicador{{i+1}}"
+                type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}">
+              <label class="labeltrans" for="indicador{{i}}">{{in.Nombre}}</label>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="centrar">
+    <button class="btn-relleno" type="submit">Guardar</button>
+  </div>
+
+</form>
+<!-- Boton flotante -->
+<div id="container-floating">
+  <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout"></span></p></div>
+  <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+  </div>
+  <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+    <p class="plus">+</p>
+    <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
   </div>
 </div>
-</div>
-  <div>
-  <button type="submit">Guardar</button>
-</div>
-</form>
+<!--Fin boton flotante -->

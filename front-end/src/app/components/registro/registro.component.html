@@ -1,18 +1,38 @@
-
+<a name="arriba"></a>
 <div class="divBlanco bgColorWhite">
   <header>
-    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="Logo">
+    <a href="principal.component.html"><img style="margin-top:20px; width:50px;" src="../assets/img/AISHA.png" alt="Logo"></a>
   </header>
-  <a name="arriba"></a>
   <div class="lineaDiv"></div>
 
   <div id="alert">{{mensaje}}</div>
-
-  <form (ngSubmit)="new(forma, usuarios)" #forma="ngForm">
+  <form  #forma="ngForm">
+    <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
+            style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Asociación
+    </button>
+    <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios"
+            style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Usuario
+    </button>
 
     <!-- Registro usuarios -->
     <div *ngIf="usuarios" class="camposForm">
+
       <p class="text12 textRed">* Campos obligatorios</p> <br>
+      <p class="text12 textGreyDarken">Si la asociación a la que pertenece no
+        está en la lista, debe registrarla primero.</p>
+
+<!-- TODO: Campo de prueba para la api de Google maps -->
+<!-- <div id="locationField">
+  <input type="text"  id="prueba" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
+</div> -->
+<!-- TODO:  Fin campo de prueba para la api de Google maps -->
+
+      <label for="asociacion">Asociación *</label>
+      <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
+          {{asociaciones[k].Nombre.split("'")[1]}}
+        </option>
+      </select>
 
       <label for="nombre">Nombre *</label>
         <input [(ngModel)]="usuario.Nombre" class="lineaCampo" type="text"
@@ -20,24 +40,13 @@
       <label for="apellido">Apellidos *</label>
         <input [(ngModel)]="usuario.Apellidos" class="lineaCampo" type="text"
                 name="apellido" id="apellido" minlength="3" maxlength="20" required>
-      <label for="fechaNacimiento">Fecha Nacimiento</label>
-        <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date"
-                name="fechaNacimiento" id="fechaNacimiento" required>
-      <label for="sexo">Sexo</label>
 
-      <div class="radioButtons">
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="mujer" value="1" id="mujer">
-          <label for="mujer">Mujer</label>
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="hombre" value="2" id="hombre">
-          <label for="hombre">Hombre</label>
-        <input [(ngModel)]="usuario.Sexo" type="radio" name="otro" value="3" id="otro">
-          <label for="otro">Prefiero no especificar</label>
-      </div>
+      <label for="fechaNacimiento">Fecha Nacimiento</label>
+        <input [(ngModel)]="usuario.F_Nacimiento" class="lineaCampo" type="date" name="fechaNacimiento" id="fechaNacimiento" required>
 
       <label for="dni">NIE/NIF *</label>
         <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni" required>
-      <label for="direccion">Dirección *</label>
-        <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion" required>
+
       <label for="email">Email *</label>
         <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="profesion">Profesión *</label>
@@ -47,51 +56,49 @@
         </option>
       </select>
 
-      <!-- Registro asociacion -->
-      <label for="asociacion">Asociación *</label>
-      <select [(ngModel)]="usuario.ID_Asociacion" class="lineaCampo" name="asociacion" id="asociacion" required>
-        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
-          {{asociaciones[k].Nombre}}
-        </option>
-      </select>
     </div>
-
+    <!-- Registro asociacion -->
     <div *ngIf="!usuarios" class="camposForm">
       <label for="nombre">Nombre Asociación *</label>
         <input [(ngModel)]="asociacion.Nombre" class="lineaCampo" type="text" name="nombre" id="nombre" required>
       <label for="direccion">Direccion *</label>
-        <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required>
+        <!-- <input [(ngModel)]="asociacion.Direccion" class="lineaCampo" type="text" name="direccion" id="direccion" required> -->
       <label for="email">Email *</label>
-        <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
-      <label for="cif">CIF *</label>
-        <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
-      <label for="contra">Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
-      <label for="repeatcontra">Repita la Contraseña *</label>
-        <input (keyup)="validate(asociacion.Password)" [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
+      <input [(ngModel)]="asociacion.Email" class="lineaCampo" type="email" name="email" id="email" required>
 
-      <div class="progress">
-        <div id="value" style="background-color:black;"></div>
-      </div>
+      <label for="tel"> Teléfono </label>
+      <input type="tel" [(ngModel)]="asociacion.Telefono" class="lineaCampo" name="tel" id="tel" required>
+
+      <label for="cif">CIF *</label>
+      <input [(ngModel)]="asociacion.CIF" class="lineaCampo" type="text" name="cif" id="cif" required>
+      <label for="contra">Contraseña *</label>
+        <input [(ngModel)]="asociacion.Password" class="lineaCampo" type="password" name="contra" id="contra" required>
+      <label for="repeatcontra">Repita la Contraseña *</label>
+        <input [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
     </div>
 
-    <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy una Asociación
-    </button>
-
-    <button *ngIf="!usuarios" type="button" name="button" (click)="usuarios = !usuarios"
-            class="submitGris bgColorBlack textWhite">Soy un Usuario
-    </button>
+    <!-- Lo pongo aqui para que no le afecte el ngIf y no pete la referencia => Buscando solucion -->
+    <div class="camposForm">
+      <label for="direccion">Dirección *</label>
+      <div id="locationField">
+        <input type="text"  id="direccion" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+      </div>
+      <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
+    </div>
 
     <div>
-    <!--  <input type="checkbox" name="acepto" value="acepto" id="check">
-        <label for="check" class="textoPeq">Acepto la política de privacidad</label> -->
-      <button type="submit" name="button" class="btn-inline bgColorPink textWhite">REGISTRAR</button>
+      <!-- new(forma, usuarios, place) -->
+      <!-- guardarDatos(forma,place) -->
+     <button (click)="new(forma, usuarios, place)" type="submit" name="button" class="btn-border">ACEPTAR</button>
     </div>
-
+    <br>
+    <p class="text12 textGreyDarken">Al registrarte, aceptas la
+      <a class="text12 textPink" [routerLink]="['/politica-privacidad']">Política de Privacidad</a>
+      de Aisha, incluyendo el Uso de Cookies.
+    </p>
   </form>
 
-  <footer class="footerDiv bgColorBlack">
+  <footer class="footerDivLogin bgColorGrey">
     <p>¿Ya estás registrado?</p>
     <a [routerLink]="['/login']"><p><b>Inicia Sesión</b></p></a>
   </footer>

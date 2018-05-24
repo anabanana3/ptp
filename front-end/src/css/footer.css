@@ -1,0 +1,36 @@
+.footerDiv{
+  clear:both;
+  margin:auto;
+  overflow: hidden;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width:100%;
+}
+
+.footerDivLogin{
+  padding: 10px 0;
+  margin-top:10px;
+}
+
+.infoFooter{
+  display: inline-block;
+  width: 100%;
+  padding-bottom:1%;
+}
+
+.divpFooter{
+  align-self: center;
+  display: inline-block;
+  width:32%;
+}
+
+.socialNetworks > a > img{
+  width: 30px;
+  margin: 6px;
+  margin-top: 17px;
+}
+
+.socialNetworks > a > img:hover{
+  width: 32px;
+}

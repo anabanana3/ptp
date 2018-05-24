@@ -15,68 +15,114 @@
   <link rel="canonical" href="https://www.aisha.ovh/principal/"/>
 </head>
 
-<div class="headerPrincipal">
-  <header>
-    <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
-  </header>
+<div class="bgColorWhite">
+  <div class="headerPrincipal">
+    <div class="logoPrincipalDiv">
+      <a href="principal.component.html"><img class="logoPrincipal" src="../assets/img/AishaLogo.png" alt="Aisha"></a>
+      <a href="principal.component.html"><img class="logoPrincipal2" src="../assets/img/AishaSinTexto.png" alt="Aisha"></a>
+    </div>
 
+    <div *ngIf="!logueado">
+      <div class="botonesPrincipal">
+        <button type="submit" name="button" class="btn-relleno login" [routerLink]="['/login']">INICIA SESIÓN</button>
+        <button type="submit" name="button" class="btn-border login" [routerLink]="['/registro']">REGÍSTRATE</button>
+        <p class="language text12 textPink">ES | EN</p>
+      </div>
+    </div>
+    <div *ngIf="logueado && !admin && !asociacion">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/home']">MENU</button>
+    </div>
+    <div *ngIf="admin">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/admin']">ADMIN</button>
+    </div>
+    <div *ngIf="asociacion">
+      <button type="submit" name="button" class="btn-border login" [routerLink]="['/asociacion']">ASOCIACIÓN</button>
+    </div>
+  </div>
 
-  <p class="language text12 textPink">ES | EN</p>
-  <button type="submit" name="button" class="btn-fill text12 textPink registro" [routerLink]="['/registro']">REGISTRO</button>
-  <button type="submit" name="button" class="btn-border bgColorPink login" [routerLink]="['/login']">INICIA SESIÓN</button>
+  <div class="cabecera">
+    <div class="textosCabecera">
+      <h2 class="tituloCabecera">La red de profesionales a nivel mundial que cambiará la vida de muchas personas</h2>
+      <h1 class="subtituloCabecera">Aisha es una plataforma web que ayuda a profesionales
+         que trabajan con la mutilación genital femenina a gestionar su trabajo y ponerse en contacto con otros profesionales</h1>
+      <button type="submit" name="button" class="btn-border verMas" [routerLink]="['/vermas']">VER MÁS</button>
+    </div>
+    <div class="imgCabeceraContainer">
+      <!-- <img class="imgCabecera" src="../assets/img/Mapa.png" alt="Mapa"> -->
+    </div>
+  </div>
+
+  <div class="funcionalidadesContainer">
+    <img class="imgFunciones" src="../assets/img/Bolitas.png" alt="MisExp">
+    <img class="imgFunciones2" src="../assets/img/BolitasMvl.png" alt="MisExp">
+  </div>
+</div>
+
+<div class="bgColorWhite Espacio">
 
 </div>
 
-<!--
-<div class="carrousel">
-  <img class="imgCarrousel" src="../assets/img/Carrousel.png" alt="Mapa mutilaciones">
-</div>
--->
+<div class="bgColorWhite">
 
-
-
-<div class="Eslogan">
-  <p>La red de profesionales a nivel mundial que cambiará la vida
-    de muchas personas.</p>
-  <div class="lineaEslogan"></div>
-</div>
-
-
-<button type="submit" name="button" class="btn-border bgColorPink verMas" [routerLink]="['/vermas']">VER MÁS</button>
-
-<div class="noticias">
-
-  <div class="noticia">
-    <h2 class="noticiasText">NOTICIAS</h2>
-    <a href="noticias.component.html"><img class="masNoticias" src="../assets/img/MasInfo.png" alt="masInfo"></a>
-    <img src="../assets/img/noticia1.png" alt="noticia 1">
-
-    <p class="noticiaTitle">NOTICIA 1</p>
-    <div class="lineaNoticia"></div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<div class="listadoFuncionesContainer">
+  <div class="listadoFunciones">
+    <div class="imgListadoContainer imgListado1">
+    </div>
+    <div class="textoListado">
+      <p class="textoP">MIS EXPEDIENTES</p>
+      <p>Acceda a sus expedientes y organízalos por carpetas para mejorar la
+        gestión documental y cree nuevos expedientes para llevar un seguimiento de los casos.</p>
+      <br>
+      <p>Además, accede a la <b>biblioteca de expedientes</b>
+        para consultar los que otros profesionales han realizado y compartido en la plataforma.</p>
+    </div>
   </div>
-  <div class="noticia">
-      <img src="../assets/img/noticia2.png" alt="noticia2">
-      <p class="noticiaTitle">NOTICIA 2</p>
-      <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  <div class="noticia">
-      <img src="../assets/img/noticia3.png" alt="noticia3">
-      <p class="noticiaTitle">NOTICIA 3</p>
-      <div class="lineaNoticia"></div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-
 </div>
 
-
-<div class="suscripcionbg bgColorWhite">
-  <div class="suscripcion">
-    <h1>SI QUIERES QUE TE MANTENGAMOS INFORMADO SUSCRÍBETE A NUESTRO <b>CANAL</b></h1>
-    <button type="submit" name="button" class="btn-fill text12 textPink suscribirse">SUSCRIBIRSE</button>
+<div class="listadoFunciones">
+  <div class="textoListado">
+    <p class="textoP">BIBLIOTECA DE RECURSOS</p>
+    <p>Acceda a todo tipo de recursos como PDFs, imágenes o vídeos propios o
+      <b>compartidos</b> por otros profesionales.</p>
   </div>
+  <div class="imgListadoContainer imgListado2">
+  </div>
+</div>
 
+<div class="listadoFuncionesContainer">
+  <div class="listadoFunciones">
+    <div class="imgListadoContainer imgListado3">
+    </div>
+    <div class="textoListado">
+      <p class="textoP">ESTADÍSTICAS</p>
+      <p>Visualice de forma gráfica las distintas estadísticas que ayudarán a la
+        <b>predicción del riesgo</b> de ablación en mujeres.</p>
+    </div>
+  </div>
+</div>
+
+<div class="listadoFunciones">
+  <div class="textoListado">
+    <p class="textoP">CHAT</p>
+    <p>Póngase en <b>contacto</b>
+      con otros profesionales registrados en la plataforma mediante nuestro chat.</p>
+  </div>
+  <div class="imgListadoContainer imgListado4">
+  </div>
+</div>
+
+<div class="listadoFuncionesContainer conMargen">
+  <div class="listadoFunciones">
+    <div class="textoListado">
+      <p class="textoP">AULA VIRTUAL</p>
+      <p>Interactúe con el modelo en 3D de una vagina con los diferentes tipos
+         de mutilación y utilícelo en formación para conocer mejor las causas de la
+         <b>mutilación genital femenina</b>.</p>
+    </div>
+    <div class="imgListadoContainer imgListado5">
+    </div>
+  </div>
+</div>
 
 <div class=recursosDiv>
   <h2 class="recursosText">RECURSOS <b>MULTIMEDIA</b></h2>
@@ -84,7 +130,7 @@
 
     <div class="divRecurso">
 
-      <img style="width:50px" class="recursoIcon" src="../assets/img/pdf.png" alt="">
+      <img style="width:50px" class="recursoIcon" src="../assets/img/PDFIconPink.png" alt="">
       <div class="textoRecursos">
         <p>Informes en formato <b>PDF</b></p>
         <p style="color:#8B8B8B; font-size:12px;">Consulta y descarga los informes de los casos.</p>
@@ -112,6 +158,7 @@
     </div>
 
   </div>
+</div>
 </div>
 
 <app-footer></app-footer>

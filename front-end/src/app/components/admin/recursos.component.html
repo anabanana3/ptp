@@ -1,0 +1,91 @@
+<div class="divAdmin-content">
+  <h1>Administración de Recursos</h1>
+  <hr><br>
+  <div class="formAdmin">
+    <select
+      class="sizeinput"
+      name="formatos"
+      id="formatos"
+      [(ngModel)]="selectFormato"
+      (change)="buscar($event)">
+      <option value="0">
+        Seleccione Formato
+      </option>
+      <option *ngFor="let k of formatos | keys;" value="{{formatos[k].ID_Formato}}">
+        {{formatos[k].Nombre}}
+      </option>
+    </select>
+    <form (ngSubmit)="buscar()" #forma="ngForm">
+      <input
+        id="fieldSearch"
+        class="sizeinput"
+        type="text"
+        name="fieldSearch"
+        placeholder="Buscar recurso..."
+        [(ngModel)]="fieldSearch"/>
+
+    </form>
+  </div>
+
+  <div>
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+    <div>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="recursos">
+          <ng-container matColumnDef="titulo">
+            <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Titulo.split("'")[1]}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="rect-success" *ngIf="element.Publico === 1">Publicado</span>
+              <span class="rect-danger" *ngIf="element.Publico === 0">No Publicado</span>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="opciones">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a href="{{element.Path}}" target="_blank" class="icon-eye" title="Visualizar recurso"></a>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="borrarMaterial(element.ID_Usuario, element.Path)"
+                      title="Cancelar Usuario">
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+
+          <!-- Paginacion -->
+          <div>
+            <div *ngIf="paginas.length > 1" class="container">
+              <div class="text-center">
+                <ul class="pagination">
+                  <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+                  <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+                  <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+                  <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+                  <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+      <div  *ngIf="(recursos | keys).length === 0 && !loading"
+            class="alert alert-info" role="alert">
+        <strong>No hay</strong> registros que mostrar
+      </div>
+
+      <div  *ngIf="loading"
+            class="alert alert-info" role="alert">
+        <strong>Cargando...</strong>por favor espere
+      </div>
+
+    </div>
+
+  </div>
+</div>

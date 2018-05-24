@@ -1,0 +1,92 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+
+  <div class="espacio"></div>
+  <div class="divBlanco bgColorWhite">
+    <div id="alert">{{mensaje}}</div>
+  <header>
+    <h1 class="textPink">Añadir un Recurso</h1>
+  </header>
+  <div class="lineaDiv"></div>
+
+    <form (ngSubmit)="newRecurso(forma)" #forma="ngForm">
+      <div class="camposForm">
+        <label for="titulo">Título*: </label>
+        <input
+          [(ngModel)]="recurso.Titulo"
+          class="lineaCampo"
+          type="text"
+          name="titulo"
+          id="titulo"
+          required
+          value="{{recurso.Titulo}}">
+        <label for="Archivo">Archivo*: </label>
+        <input
+          *ngIf="idEditar === undefined"
+          (change)="loadFile($event)"
+          class="lineaCampo"
+          type="file"
+          name="Archivo"
+          id="file"
+          accept=".jpg, .jpeg, .png, .pdf">
+        <p *ngIf="idEditar !== undefined"> * No se puede editar el fichero</p>
+        <label for="descripcion">Descripción*: </label>
+        <textarea
+          type="text"
+          name="descripcion"
+          id="descripcion"
+          [(ngModel)]="recurso.Descripcion"
+          value="{{recurso.Descripcion}}"
+          required>
+        </textarea>
+        <label for="publicar" *ngIf="idEditar === undefined">¿Quiere que su recurso se haga público para toda la comunidad Aisha?*:</label>
+        <div class="radioButtons" *ngIf="idEditar === undefined">
+          <label for="si">Sí</label>
+          <input [(ngModel)]="recurso.Publico" type="radio" name="si" value="1" id="si">
+          <label for="no">No</label>
+          <input [(ngModel)]="recurso.Publico" type="radio" name="no" value="0" id="no">
+        </div>
+        <div *ngIf="idEditar !== undefined && recurso.Publico === 0">
+          <button type="button">Publicar</button>
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        name="newRecurso"
+        class="btn-border"
+        style="margin:auto; display:block;"
+        *ngIf="idEditar === undefined">
+        Añadir Recurso
+      </button>
+      <button
+        type="submit"
+        name="newRecurso"
+        class="btn-border bgColorPink"
+        style="margin:auto; display:block;"
+        *ngIf="idEditar !== undefined">
+        Actualizar Recurso
+      </button>
+      <br>
+      <button [routerLink]="['/recursos']"type="button" name="button" class="btn-relleno-negro">
+        Cancelar
+      </button>
+      <div class="espacio"></div>
+    </form>
+  </div>
+  <div class="espacio"></div>
+
+  <app-footer></app-footer>
+</div>

@@ -10,16 +10,16 @@ export class UserService {
   canceladosURL:string = "https://www.aisha.ovh/api/cancelados/";
   registradosURL:string = "https://www.aisha.ovh/api/registrados/";
   usuariosURL:string = "https://www.aisha.ovh/api/usuario/";
-  loginURL:string = "https://www.aisha.ovh/api/registrados/signin";
   activarURL:string = "https://www.aisha.ovh/api/mail/send";
   mensajeURL:string = "https://www.aisha.ovh/api/mail/send/contacto";
+  loginURL2:string = "https://www.aisha.ovh/api/login";
+  visitasURL:string = "https://www.aisha.ovh/api/logs";
 
   constructor(private http:Http) { }
 
   newUsuario(usuario:User){
     let body = JSON.stringify(usuario);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -30,7 +30,14 @@ export class UserService {
           })
   }
 
-  updateUsuario(usu, id){
+  // TODO: Falta implementarlo en la API
+  updateUsuario(usuario){
+    let token = sessionStorage.token;
+    let url = this.usuariosURL + 'upload/'+token;
+    return this.http.post(url, usuario).map(res=>res.json())
+  }
+
+  updateUsuario2(usu, id){
     let body = JSON.stringify(usu);
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -98,24 +105,20 @@ export class UserService {
       return res.json()});
   }
 
-  loginUser(json){
-    let body = JSON.stringify(json);
-
-    console.log(json);
-
+  login(json){
+    let body =JSON.stringify(json);
     let headers = new Headers({
       'Content-Type':'application/json'
     });
-
-    return this.http.post(this.loginURL, body, {headers})
-        .map(res=>{
-          return res.json();
-        })
+    return this.http.post(this.loginURL2, body, {headers}).map(res =>{
+      return res.json();
+    })
   }
 
   getUsuarioSolicitantesAsociacion(id, numPag, tamPag){
     let url = `${this.solicitantesURL}asociacion/${id}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
+    console.log(url);
 
     let headers = new Headers({
       'Content-Type':'application/json',
@@ -128,6 +131,7 @@ export class UserService {
   getUsuarioRegistradosAsociacion(id$:number, numPag, tamPag){
     let url = `${this.registradosURL}asociacion/${id$}/pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
+    console.log(url);
 
     let headers = new Headers({
       'Content-Type':'application/json',
@@ -180,13 +184,11 @@ export class UserService {
     console.log('id: '+id+' email: '+email);
     let body = JSON.stringify({ID_Usuario: id, Email: email, });
 
-    console.log(token);
     let headers = new Headers({
       'Content-Type':'application/json',
       'Authorization': token
     });
 
-    console.log(body);
     return this.http.post(this.activarURL, body, {headers})
         .map(res=>{
           console.log(res.json());
@@ -195,10 +197,8 @@ export class UserService {
   }
 
   registrarSolicitante(json){
-    console.log(json);
     let body = JSON.stringify(json);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -212,7 +212,6 @@ export class UserService {
   sendEmail(json){
     let body = JSON.stringify(json);
 
-    console.log(body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -222,4 +221,52 @@ export class UserService {
             return res.json();
           })
   }
+
+  filtroUsuarios(tabla, nombre, email, profesion, asociacion, numPag, tamPag){
+    let urlAPI:string = "https://aisha.ovh/api/";
+    let url;
+    if(tabla === 0)
+      url = `${urlAPI}solicitantes/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
+    else if(tabla === 1)
+      url = `${urlAPI}registrados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
+    else if(tabla === 2)
+      url = `${urlAPI}cancelados/search/Nombre=${nombre}&Email=${email}&Profesion=${profesion}&Asociacion=${asociacion}/pag=${numPag}&n=${tamPag}`;
+
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+
+    return this.http.get(url, {headers}).map(res=>res.json());
+  }
+  visitasWeb(json){
+    let body =JSON.stringify(json);
+    let token = sessionStorage.getItem('token');
+    let visitas = this.visitasURL + "/visitas";
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    return this.http.post(visitas, body, {headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+  visitasModelo3D(json){
+    let body =JSON.stringify(json);
+    let token = sessionStorage.getItem('token');
+    let visitas = this.visitasURL + "/modelo3D";
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    return this.http.post(visitas, body, {headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+
+
 }

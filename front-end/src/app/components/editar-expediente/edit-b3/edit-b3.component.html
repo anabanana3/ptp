@@ -1,0 +1,87 @@
+<form (ngSubmit)="guardarDatos()" #forma="ngForm">
+
+  <h2 class="cherry">EXPERIENCIAS CON LA MGF DEL TITULAR</h2>
+    <div class="divExpDeUno">
+      <label for="exp_propias">Experiencias propias:</label>
+      <span matTooltip="¿Tiene usted la ablación realizada? ¿Qué sobre esta práctica?" class="pointer icon-info info"></span>
+    </div>
+    <textarea class="textareaBl2" [(ngModel)]='json.Exp_propias' type="exp_propias" name="exp_propias" id="exp_propias" [placeholder]="json.Exp_propias" ></textarea>
+
+    <div class="divExpDeUno">
+      <label for="exp_terceros">Experiencias de terceros:</label>
+      <span matTooltip="¿Conoce a alguna mujer que tenga la ablación realizada?" class="pointer icon-info info"></span>
+    </div>
+    <textarea class="textareaBl2" [(ngModel)]='json.Exp_terceros' type="exp_terceros" name="exp_terceros" id="exp_terceros" [placeholder]="json.Exp_terceros" ></textarea>
+
+    <div [formGroup]="form">
+      <label for="mant_MGF">Mantenimiento de la MGF:</label> <!-- si/no y luego un textarea porque -->
+      <span matTooltip="¿Cree que su hija debería ser cortada? ¿Qué piensa sobre realizarsela a su hija?" class="pointer icon-info info"></span>
+
+      <input class="radiotrans"  type="radio"  formControlName="Mant_MGF" [checked]="json.Mant_MGF == 1"  id="mant_MGFSI" value="1" name="Mant_MGF">
+      <label class="labeltransr" for="mant_MGFSI">Sí</label>
+      <input class="radiotrans"  type="radio" formControlName="Mant_MGF" [checked]="json.Mant_MGF == 0" id="mant_MGFNO" value="0" name="Mant_MGF">
+      <label class="labeltransr" for="mant_MGFNO">No</label>
+      <input class="radiotrans"  type="radio" formControlName="Mant_MGF" [checked]="json.Mant_MGF == 2" id="mant_MGFNS" value="2" name="Mant_MGF">
+      <label class="labeltransr" for="mant_MGFNS">N/S</label>
+    </div>
+
+    <div>
+      <label for="mant_MGF_texto">¿Por qué?:</label>
+      <textarea class="textareaBl2" [(ngModel)]='json.Mant_MGF_texto' type="mant_MGF_texto" name="mant_MGF_texto" id="mant_MGF_texto"></textarea>
+    </div>
+
+    <h3 class="text16 textPink">Conocimiento sobre consecuencias de la MGF
+      <span matTooltip="¿Conoce las consecuencias para la salud que lleva una ablación?" class="pointer icon-info info"></span>
+    </h3>
+    <div [formGroup]="form">
+      <label>Sobre la salud de las mujeres: </label>
+
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecM" [checked]="json.Conoc_consecM == 1" id="conoc_consecMSI" value="1" name="Conoc_consecM">
+      <label class="labeltransr" for="conoc_consecMSI">Sí</label>
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecM" [checked]="json.Conoc_consecM == 0" id="conoc_consecMNO" value="0" name="Conoc_consecM">
+      <label class="labeltransr" for="conoc_consecMNO">No</label>
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecM" [checked]="json.Conoc_consecM == 2" id="conoc_consecMNS" value="2" name="Conoc_consecM">
+      <label class="labeltransr" for="conoc_consecMNS">N/S</label>
+
+      <label for="otros_consecM">¿Por qué?: </label>
+    </div>
+    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecM' type="otros_consecM" name="otros_consecM" id="otros_consecM"></textarea>
+
+    <br>
+    <div [formGroup]="form">
+      <label for="conoc_consecM">Sobre la salud de los hombres: </label>
+
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecH" [checked]="json.Conoc_consecH == 1" id="Conoc_consecH" value="1" name="Conoc_consecH">
+      <label class="labeltransr" for="Conoc_consecH">Sí</label>
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecH" [checked]="json.Conoc_consecH == 0" id="Conoc_consecHNo" value="0" name="Conoc_consecH">
+      <label class="labeltransr" for="Conoc_consecHNo">No</label>
+      <input class="radiotrans"  type="radio" formControlName="Conoc_consecH" [checked]="json.Conoc_consecH == 2" id="Conoc_consecHNS" value="2" name="Conoc_consecH">
+      <label class="labeltransr" for="Conoc_consecHNS">N/S</label>
+
+      <label for="otros_consecH">¿Por qué?: </label>
+    </div>
+    <textarea class="textareaBl2" [(ngModel)]='json.Otros_consecH' type="otros_consecH" name="otros_consecH" id="otros_consecH"></textarea>
+
+    <h3 class="text16 textPink">Intervención
+      <span matTooltip="Este apartado es de respuesta abierta y libre, su cumplimentación
+      favorece la comunicación de intervenciones efectivas." class="pointer icon-info info"></span>
+    </h3>    <label for="exp_propias">Formato de la intervención: </label>
+    <textarea  class="textareaBl2" [(ngModel)]='json.Formato_int' type="formato_int" name="formato_int" id="formato_int" [placeholder]="json.Formato_int" ></textarea>
+
+    <label for="exp_propias">Consejos para otros profesionales: </label>
+    <textarea class="textareaBl2" [(ngModel)]='json.Consejo' type="consejo" name="consejo" id="consejo" [placeholder]="json.Consejo" ></textarea>
+
+
+    <!-- Boton flotante -->
+    <div id="container-floating">
+      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
+      <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+      </div>
+      <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+        <p class="plus">+</p>
+        <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+      </div>
+    </div>
+    <!--Fin boton flotante -->
+</form>

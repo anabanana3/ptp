@@ -1,0 +1,123 @@
+.main-Chat{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction:row;
+  overflow: hidden;
+}
+.chat-container{
+  flex-grow: 2;
+  border-left: 1px solid #DBDBDB;
+}
+
+.chat-contactos{
+
+}
+.conversacioness{
+  display: flex;
+  border-bottom: 1px solid #DBDBDB;
+  padding: 7px;
+  cursor: pointer;
+}
+.btn-buscador{
+  background: none;
+  border: none;
+  font-size: 15px;
+}
+.message-container div{
+  margin: 5px;
+  text-align: left;
+}
+.lineaChat{
+  width: 100%;
+  overflow: hidden;
+}
+.mensaje{
+  display: block;
+  padding: 7px;
+  margin: 10px;
+  min-width: 150px;
+  max-width: 400px;
+}
+.rigth{
+  float: right;
+  background-color: rgba(222,0,108,0.25);
+  border-radius: 10px 10px 0 10px;
+}
+.left{
+  float: left;
+  border-radius: 0 10px 10px 10px;
+  background-color: #F2F2F2;
+}
+.formChat{
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+.formChat input{
+  width: 80%;
+  border-radius: 3px;
+  border-style: none;
+  padding: 8px;
+}
+.formChat button{
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  background-color: white;
+}
+.btn-salirchat{
+  margin: 2%;
+}
+
+.message-container{
+   height: 550px;
+   overflow: scroll;
+   align-items: flex-start;
+}
+
+.busquedachat{
+  height: 100%;
+  overflow: scroll;
+}
+
+.btn-chat-volver{display: none}
+
+.fotoChat{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+}
+.textLeft{
+  text-align: left;
+}
+.infoChat{
+  margin-left: 2%;
+}
+.tituloChat{
+  text-align: left;
+  margin-left: 5%;
+}
+
+@media (max-width: 481px) {
+  .chat-contactos{
+    width: 100%;
+  }
+  .chat-container{
+    width: 100%;
+  }
+
+  .message-container{
+     height: 350px;
+     overflow: scroll;
+     align-items: flex-start;
+  }
+  .busquedachat{height: 400px;}
+  .btn-chat-volver{display: inherit;}
+  .chat-container header{
+    display: flex;
+  }
+}

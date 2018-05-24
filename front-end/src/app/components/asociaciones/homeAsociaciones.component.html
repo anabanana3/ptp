@@ -2,66 +2,85 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <h1>Asociacion {{asociacion}}</h1>
-  <button [routerLink]="['/asociacion/profile']" type="button" name="button"
-          class="submitGris textoBlanco">
-          Perfil
-  </button>
-  <button (click)="cerrarSesion()" type="button" name="button"
-          class="submitGris textoBlanco">
-          Cerrar Sesión
-  </button>
-  <div class="">
-    <button type="button" name="button" class="btn-inline textoBlanco"
+  <app-header-asociacion></app-header-asociacion>
+
+  <h1 class="textPink text20">Administrador de Usuarios</h1>
+  <div class="lineaDiv"></div>
+  <div class="buttons-asociacion buttons-asociacion-center">
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(0)">
             Solicitantes
     </button>
-    <button type="button" name="button" class="btn-inline textoBlanco"
+    <button type="button" name="button" class="btn-relleno-negro"
             style="margin-bottom: 2%;" (click)="view(1)">
             Registrados
     </button>
   </div>
-  <hr><br>
 
-  <div >
+  <div>
     <a name="arriba"></a>
     <div id="alert">{{mensaje}}</div>
+    <form method="post" (ngSubmit)="filter()" class="formAdmin">
+      <input [(ngModel)]="searchNombre" class="sizeinput" type="text" name="Nombre" id="nombre" placeholder="Nombre">
+      <input [(ngModel)]="searchEmail" class="sizeinput" type="text" name="Email" id="email" placeholder="Email">
+      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" (change)="filter()">
+        <option value="0"> Seleccione Profesión </option>
+        <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
+          {{profesiones[k].Nombre}}
+        </option>
+      </select>
+      <button type="submit" name="button" class="icon-search span"></button>
+    </form>
     <div >
-      <table class="table">
-        <thead class="thead">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col" *ngIf="tabla != 1">Apellidos</th>
-            <th scope="col">Profesión</th>
-            <th scope="col">Email</th>
-            <th scope="col">NIE/NIF</th>
-            <th class="text-right" scope="col">Opciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr *ngFor="let k of user | keys; let i = index;">
-            <!-- <td>{{i+1}}</td> -->
-            <td>{{user[k].ID_Usuario}}</td>
-            <td *ngIf="user[k].Nombre != undefined">{{user[k].Nombre.split("'")[1]}}</td>
-            <td *ngIf="user[k].Apellidos != undefined && tabla != 1">{{user[k].Apellidos.split("'")[1]}}</td>
-            <td>{{user[k].Profesion}}</td>
-            <td *ngIf="user[k].Email != undefined">{{user[k].Email.split("'")[1]}}</td>
-            <td *ngIf="user[k].DNI != undefined">{{user[k].DNI.split("'")[1]}}</td>
-            <td class="text-right w230">
-              <button type="button" class="btn btn-outline-success icon-ok span"
-                      (click)="activateUser(user[k].ID_Usuario, user[k].Email)"
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="user">
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Email.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dni">
+            <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.DNI.split("'")[1]}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="opciones">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a *ngIf="tabla !== 0" [routerLink]="['/asociacion/user', {id:element.ID_Usuario}]">histórico</a>
+              <button *ngIf="tabla == 0"
+                      type="button" class="btn btn-outline-success icon-ok span"
+                      (click)="activateUser(element.ID_Usuario, element.Email)"
                       title="Aceptar Usuarios">
               </button>
               <button type="button" class="btn btn-outline-danger icon-cancel span"
-                      (click)="cancelUser(user[k].ID_Usuario)"
+                      (click)="cancelUser(element.ID_Usuario)"
                       title="Cancelar Usuarios">
               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+      <!-- Paginacion -->
+      <div>
+        <div *ngIf="paginas.length > 1" class="container">
+          <div class="text-center">
+            <ul class="pagination">
+              <li [ngClass]="{disabled:pagActual === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+              <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+              <li [ngClass]="{disabled:pagActual === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div *ngIf="(user | keys).length === 0 && !loading"
            class="alert alert-info" role="alert">
@@ -72,7 +91,6 @@
            class="alert alert-info" role="alert">
         <strong>Cargando...</strong>por favor espere
       </div>
-
     </div>
   </div>
 </div>

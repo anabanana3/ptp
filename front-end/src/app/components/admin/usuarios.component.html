@@ -1,104 +1,112 @@
-<div *ngIf="error">
-  <app-error></app-error>
-</div>
-<div *ngIf="!error">
-  <app-lateralOptions></app-lateralOptions>
-  <br>
-  <br>
-  <br>
-  <div style="float:right; width:70%;">
-    <h1>Usuarios</h1>
-    <div class="">
-      <button type="button" name="button" class="btn-inline textoBlanco"
-              style="margin-bottom: 2%;" (click)="view(0)">
-              Solicitantes
-      </button>
-      <button type="button" name="button" class="btn-inline textoBlanco"
-              style="margin-bottom: 2%;" (click)="view(1)">
-              Registrados
-      </button>
-      <button type="button" name="button" class="btn-inline textoBlanco"
-              style="margin-bottom: 2%;" (click)="view(2)">
-              Cancelados
-      </button>
-    </div>
-    <hr><br>
+<div class="divAdmin-content">
+  <h1>Administración de Usuarios</h1>
+  <div>
+    <button type="button" name="button" class="btn-relleno-negro"
+            style="margin-bottom: 2%;" (click)="view(0)">
+            Solicitantes
+    </button>
+    <button type="button" name="button" class="btn-relleno-negro"
+            style="margin-bottom: 2%;" (click)="view(1)">
+            Registrados
+    </button>
+    <button type="button" name="button" class="btn-relleno-negro"
+            style="margin-bottom: 2%;" (click)="view(2)">
+            Cancelados
+    </button>
+  </div>
+  <hr><br>
 
-    <div >
-      <a name="arriba"></a>
-      <div id="alert">{{mensaje}}</div>
-      <div >
-        <div>
-        <form>
-          <label  for="tamPag">Tamaño página</label>
-          <input type="number" min="1" id=tamPag #tamPagV>
-          <button (click)="cambiarTamPag(tamPagV.value)" class="btn-inline">Cambiar tamaño</button>
-        </form>
-      </div>
-        <table class="table">
-          <thead class="thead">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Email</th>
-              <th scope="col">Profesión</th>
-              <th scope="col">Asociación</th>
-              <th *ngIf="tabla != 2" class="text-right" scope="col">Opciones</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr *ngFor="let k of usuarios | keys; let i = index;">
-              <!-- <td>{{i+1}}</td> -->
-              <td>{{usuarios[k].ID_Usuario}}</td>
-              <td *ngIf="usuarios[k].Nombre != undefined">{{usuarios[k].Nombre.split("'")[1]}}</td>
-              <td *ngIf="usuarios[k].Email != undefined">{{usuarios[k].Email.split("'")[1]}}</td>
-              <td>{{usuarios[k].Profesion}}</td>
-              <td *ngIf="usuarios[k].Asociacion != undefined">{{usuarios[k].Asociacion.split("'")[1]}}</td>
-              <td *ngIf="tabla != 2" class="text-right w230">
-                <button type="button" class="btn btn-outline-danger icon-cancel span"
-                        (click)="cancelUser(usuarios[k].ID_Usuario)"
-                        title="Cancelar Usuario">
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- PAGINACION -->
-     <ul class="pagination" *ngIf="paginas.length >1">
-     <!--Boton de pagina anterior-->
-       <li>
-         <a (click)="pasarPagina(pagBack)">
-           <span aria-hidden="true">&laquo;</span>
-         </a>
-       </li>
-       <li *ngFor="let pag of paginas; let i=index">
-         <a (click)="pasarPagina(i+1)">
-           <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
-           <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
-         </a>
-       </li>
-       <!--Boton de pagina siguiente-->
-       <li>
-         <a (click)="pasarPagina(pagNext);">
-           <span aria-hidden="true">&raquo;</span>
-         </a>
-       </li>
-     </ul>
-
-        <div  *ngIf="(user | keys).length === 0 && !loading"
-              class="alert alert-info" role="alert">
-          <strong>No hay</strong> registros que mostrar
-        </div>
-
-        <div  *ngIf="loading"
-              class="alert alert-info" role="alert">
-          <strong>Cargando...</strong>por favor espere
-        </div>
-
+  <div >
+    <a name="arriba"></a>
+    <div id="alert">{{mensaje}}</div>
+    <form method="post" (ngSubmit)="filter(1)" class="formAdmin">
+      <input [(ngModel)]="searchNombre" class="sizeinput" type="text" name="Nombre" id="nombre" placeholder="Nombre">
+      <input [(ngModel)]="searchEmail" class="sizeinput" type="text" name="Email" id="email" placeholder="Email">
+      <select [(ngModel)]="searchProfesion" name="profesion" id="profesion" (change)="filter(1)">
+        <option value="0"> Seleccione Profesión </option>
+        <option *ngFor="let k of profesiones | keys;" value="{{profesiones[k].ID_Profesion}}">
+          {{profesiones[k].Nombre}}
+        </option>
+      </select>
+      <select [(ngModel)]="searchAsociacion" name="asociacion" id="asociacion" (change)="filter(1)">
+        <option value="0"> Seleccione Asociación </option>
+        <option *ngFor="let k of asociaciones | keys;" value="{{asociaciones[k].ID_Asociacion}}">
+          {{asociaciones[k].Nombre}}
+        </option>
+      </select>
+      <input class="btn-relleno" type="submit" name="buscar" value="Buscar">
+    </form>
+    <div>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="usuarios">
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Nombre.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Email.split("'")[1]}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="profesion">
+            <mat-header-cell *matHeaderCellDef> Profesión </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Profesion}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="asociacion">
+            <mat-header-cell *matHeaderCellDef> Asociación </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Asociacion}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> Fecha Registro </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <p *ngIf="element.FechaRegistro !== null">{{element.FechaRegistro.split('T')[0]}}</p>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="opciones">
+            <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a *ngIf="tabla !== 0" [routerLink]="['/admin/user', {id:element.ID_Usuario}]">histórico</a>
+              <button *ngIf="tabla == 0"
+                      type="button" class="btn btn-outline-success span"
+                      (click)="activate(element.ID_Usuario, element.Email)"
+                      title="Aceptar Asociación">
+                <span class="icon-ok"></span>
+              </button>
+              <button type="button" class="btn btn-outline-danger icon-cancel span"
+                      (click)="cancelUser(element.ID_Usuario)"
+                      title="Cancelar Usuario">
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
       </div>
 
+      <div *ngIf="paginas.length > 1">
+        <div class="container">
+          <div class="text-center">
+            <ul class="pagination">
+              <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+              <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+              <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <div  *ngIf="(usuarios | keys).length === 0 && !loading"
+          class="alert alert-info" role="alert">
+      <strong>No hay</strong> registros que mostrar
     </div>
+
+    <div  *ngIf="loading"
+          class="alert alert-info" role="alert">
+      <strong>Cargando...</strong>por favor espere
+    </div>
+
+    </div>
+
   </div>
 </div>

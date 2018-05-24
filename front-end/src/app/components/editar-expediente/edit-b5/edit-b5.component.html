@@ -1,0 +1,81 @@
+<form (ngSubmit)="guardarDatos()">
+  <div>
+    <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label>Las personas implicadas en este expediente tiene planificado realizar un viaje proximamente:</label>
+
+      </div>
+      <div [formGroup]="form" class="divExp">
+        <input class="radiotrans"  type="radio"[checked]="bloque5.ViajesPlanificados == 1" formControlName="ViajesPlanificados" name="ViajesPlanificados" value="1" id="viajePSI" >
+        <label class="labeltransr" for="viajePSI">Sí</label>
+        <input class="radiotrans"  type="radio" [checked]="bloque5.ViajesPlanificados == 0" formControlName="ViajesPlanificados" name="ViajesPlanificados" value="0" id="viajePNO" >
+        <label class="labeltransr" for="viajePNO">No</label>
+        <input class="radiotrans"  type="radio" [checked]="bloque5.ViajesPlanificados == 2" formControlName="ViajesPlanificados" name="ViajesPlanificados" value="2" id="viajePNS" >
+        <label class="labeltransr" for="viajePNS">N/S</label>
+      </div>
+
+      <div class="divExp">
+        <label>Realiza viajes al país de origen en vacaciones:</label>
+
+      </div>
+      <div [formGroup]="form" class="divExp">
+        <input class="radiotrans"  type="radio" name="Viajes" id="viajesSI" formControlName="Viajes" [checked]="bloque5.Viajes == 1" value="1">
+        <label class="labeltransr" for="viajesSI">Sí</label>
+        <input class="radiotrans"  type="radio" name="Viajes" id="viajesNO" formControlName="Viajes" [checked]="bloque5.Viajes == 0" value="0">
+        <label class="labeltransr" for="viajesNO">No</label>
+        <input class="radiotrans"  type="radio" name="Viajes" id="viajesNS" formControlName="Viajes" [checked]="bloque5.Viajes == 2" value="2">
+        <label class="labeltransr" for="viajesNS">N/S</label>
+      </div>
+    </div>
+
+    <br>
+
+    <label for="formato">Descripción del formato de intervención:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque5.Intervencion" name="Intervencion"   id="formato"></textarea>
+    <br>
+
+    <label for="consejo">Consejo para otros profesionales:</label>
+    <textarea class="textareaBl2" [(ngModel)]="bloque5.Consejos" id="consejo" name="Consejos" ></textarea>
+    <br>
+  </div>
+
+  <h3 class="text16 textPink">Indicadores de sospecha de MGF en el ámbito escolar
+      <span *ngIf="mostrar == false" (click)="mostrar = !mostrar" class="pointer icon-plus"></span>
+      <span *ngIf="mostrar == true" (click)="mostrar = !mostrar" class="pointer icon-minus"></span>
+  </h3>
+
+  <div *ngIf="mostrar == true">
+    <p>A continuación seleccione los indicadores que se dan la titular del expediente:</p>
+    <br>
+      <div>
+
+      <div [formGroup] = "form" class="divContainerBl4">
+        <div formGroupName="indicadores" *ngFor="let in of indicadores; let i = index;">
+            <div class="divPrueba">
+              <!-- [(ngModel)]="indicadoresSel[i]" -->
+              <input class="checktrans" [checked]="in.Checked == 1" name="indicadores{{i+1}}" formControlName="indicador{{i+1}}" type="checkbox" value="{{in.ID_Indicador}}" id="indicador{{i}}" name="indicador{{i+1}}">
+              <label class="labeltrans" for="indicador{{i}}">{{in.Nombre}}</label>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
+  </div>
+  <!--Fin boton flotante -->
+</form>

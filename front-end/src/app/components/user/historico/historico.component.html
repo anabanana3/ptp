@@ -1,0 +1,50 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <app-header-asociacion *ngIf="tipo === 'asociacion'"></app-header-asociacion>
+  <app-header-admin *ngIf="tipo === 'admin'"></app-header-admin>
+  <h1 class="textPink text20">Usuario {{nombreUsuario}}</h1>
+  <div class="lineaDiv"></div>
+  <div class="buttons-asociacion buttons-asociacion-center">
+    <button type="button" name="button" class="btn-relleno-negro"
+            style="margin-bottom: 2%;" (click)="cambiarOpcion(1)">
+            Expedientes
+    </button>
+    <button type="button" name="button" class="btn-relleno-negro"
+            style="margin-bottom: 2%;" (click)="cambiarOpcion(2)">
+            Recursos
+    </button>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="data">
+      <ng-container matColumnDef="titulo">
+        <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Titulo.split("'")[1]}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Fecha.split("T")[0]}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="enlace">
+        <mat-header-cell *matHeaderCellDef> Enlace </mat-header-cell>
+        <mat-cell *matCellDef="let element"><a href="{{element.Path}}" target="_blank" class="icon-eye" title="Visualizar"></a></mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div *ngIf="(data | keys).length === 0 && loading"
+       class="alert alert-info" role="alert">
+    <strong>No hay</strong> registros que mostrar
+  </div>
+
+  <div *ngIf="!loading"
+       class="alert alert-info" role="alert">
+    <strong>Cargando... </strong>por favor espere
+  </div>
+
+</div>

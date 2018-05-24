@@ -1,0 +1,368 @@
+<form  (ngSubmit)="guardarDatos2()">
+  <div class="grupoForm">
+    <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
+
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label for=fechaC>Fecha de detección del caso:</label>
+      </div>
+
+      <div class="divExp">
+        <input class="sizeinput" [(ngModel)]="expediente.Fecha"  type="date"  name="fechaC" id="fechaC" >
+      </div>
+
+      <div class="divExp">
+        <label for="lugarD">Lugar de detección:</label>
+      </div>
+
+      <div class="divExp">
+        <div id="locationField">
+          <input type="text"  id="lugarD" class="sizeinput" [placeholder]="expediente.Sitio" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+        </div>
+      </div>
+    </div>
+
+    <label for="descripcion">Breve descripción:</label>
+    <textarea class="textareaBl2" [(ngModel)]="expediente.Descripcion" type="text"   name="descripcion" id="descripcion" ></textarea>
+  </div>
+
+  <h2 class="cherry ">DATOS SOCIODEMOGRÁFICOS</h2>
+  <div class="grupoForm" >
+
+  <!-- DATOS DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE-->
+  <h3 class="text16 textPink">Datos sobre la titular del expediente</h3>
+    <div class="divLabels">
+      <div class="divExp">
+        <label for="nombreM">Nombre completo:</label>
+      </div>
+
+      <div class="divExp">
+        <input class="sizeinput" [(ngModel)]="menor.Nombre" name="nombreM" type="text" id="nombreM" >
+      </div>
+
+      <div class="divExp">
+        <label for="etniaM">Etnia de origen:</label>
+      </div>
+
+      <div class="divExp">
+        <select [(ngModel)]='menor.ID_Etnia'name="etniaM" id="etniaM" >
+          <option value="164" id="selectOption">Desconoce la etnia de procedencia</option>
+          <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="divLabels">
+      <div class="divExp">
+        <label class="edad"  for="edadM">Edad:</label>
+      </div>
+
+      <div class="divExp">
+        <input class="sizeinput" [(ngModel)]="menor.Edad" name="edadM" min = "1" max="99" type="number" id="edadM" >
+      </div>
+
+      <div class="divExp">
+        <label for="lugarN">Lugar de nacimiento:</label>
+      </div>
+
+      <div class="divExp">
+        <div id="locationField2">
+          <input type="text"  id="lugarN" class="sizeinput" [placeholder]="menor.Sitio" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATOS SOBRE LA MADRE DE LA INVOLUCRADA EN EL EXPEDIENTE-->
+  <div class="grupoForm" >
+    <div class="desplegables"(click)="HayMadre = !HayMadre; cargaMapsMadre()">
+      <h3 class="text16 textPink" >Datos sobre la madre
+        <span *ngIf="HayMadre==false" class="pointer icon-plus"></span>
+        <span *ngIf="HayMadre==true" class="pointer icon-minus"></span>
+      </h3>
+    </div>
+    <div *ngIf="HayMadre==true" >
+
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="nombreMa">Nombre de la madre:</label>
+        </div>
+
+        <div class="divExp">
+          <input class="sizeinput" [(ngModel)]="madre.Nombre" name="nombreMa" required type="text" name="nombreMa" id="nombreMa" placeholder="Nombre">
+        </div>
+
+        <div class="divExp">
+          <label for="actividadM">Actividad laboral:</label>
+        </div>
+
+        <div class="divExp">
+          <select [(ngModel)]="madre.ID_Actividad" name="actividadM" id="actividadM">
+            <option value="27">Desconoce la actividad</option>
+            <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadM">{{a.Nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="lugarNM">Lugar de nacimiento:</label>
+        </div>
+
+        <div id="locationField3">
+          <input type="text"  id="lugarNM" class="sizeinput" [placeholder]="madre.Sitio" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place3>
+        </div>
+
+        <div class="divExp">
+          <label for="etniaMa">Etina de origen:</label>
+        </div>
+
+        <div class="divExp">
+          <select [(ngModel)]="madre.ID_Etnia" name="etniaMa" id="etniaMa" >
+            <option value="164" id="selectOption">Desconoce la etnia de procedencia</option>
+            <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno">
+        <div class="divExpDeUno">
+          <label for="edadMa">Edad:</label>
+        </div>
+
+        <div class="divExpDeUno">
+          <input class="sizeinput" [(ngModel)]="madre.Edad" name="edadMa" min="1" max="99" type="number" id="edadMa" >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATOS SOBRE EL PADRE DE LA MENOR INVOLUCRADA EN EL EXPEDIENTE -->
+  <div class="grupoForm"  >
+    <h2 class="text16 textPink" (click)="HayPadre = !HayPadre; cargaMapsPadre()">Datos sobre el padre
+      <span  *ngIf="HayPadre == false" (click)="HayPadre = !HayPadre" class="icon-plus" style="padding : 3px"></span>
+      <span *ngIf="HayPadre == true" (click)="HayPadre = !HayPadre" class="icon-minus" style="padding : 3px"></span>
+    </h2>
+    <div *ngIf="HayPadre==true">
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="nombrePa">Nombre del padre:</label>
+        </div>
+
+        <div class="divExp">
+          <input class="sizeinput" [(ngModel)]="padre.Nombre" required type="text" name="nombrePa" id="nombrePa" placeholder="Nombre">
+        </div>
+
+        <div class="divExp">
+          <label for="actividadP">Actividad laboral:</label>
+        </div>
+
+        <div class="divExp">
+          <select [(ngModel)]="padre.ID_Actividad" name="actividadP" id="actividadP" >
+            <option value="27">Desconoce la actividad</option>
+            <option *ngFor="let a of actividades" value="{{a.ID_Actividad}}" id="actividadP">{{a.Nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="lugarNP">Lugar de nacimiento:</label>
+        </div>
+
+        <div id="locationField4">
+          <input type="text"  id="lugarNP" class="sizeinput" [placeholder]="padre.Sitio" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place4>
+        </div>
+        <div class="divExp">
+          <label for="etniaPa">Etina de origen:</label>
+        </div>
+
+        <div class="divExp">
+          <select [(ngModel)]="padre.ID_Etnia" name="ID_Etnia" id="etniaPa" >
+            <option value="164" id="selectOption">Desconoce la etnia de procedencia</option>
+            <option *ngFor="let e of etnias" value="{{e.ID_Etnias}}">{{e.Etnia}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno">
+        <div class="divExpDeUno">
+          <label for="edadPa">Edad:</label>
+        </div>
+
+        <div class="divExpDeUno">
+          <input type="number" [(ngModel)]="padre.Edad" class="sizeinput" name="edadPa" min="1" max="99" id="edadPa" >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CONTEXTO DE LA CITA -->
+  <div>
+    <h2 class="cherry">CONTEXTO DE LA CITA</h2>
+    <div>
+      <h3 class="text16 textPink">Tipo de cita</h3>
+        <div class="divLabels">
+          <div class="divExp">
+            <label>Citación por abordaje de riesgo de MGF:</label>
+          </div>
+
+          <div class="divExp">
+            <div [formGroup]="form2" class="divPruebaRadio">
+              <input  class="radiotrans" type="radio" formControlName="Citacion" [checked]="bloque.Citacion == 1" name="Citacion" value="1" id="citaAborMGFSI">
+              <label class="labeltransr" for="citaAborMGFSI">Sí</label>
+              <input  class="radiotrans" type="radio" formControlName="Citacion" [checked]="bloque.Citacion == 0"  name="Citacion" value="0" id="citaAborMGFNO">
+              <label class="labeltransr" for="citaAborMGFNO">No</label>
+              <input  class="radiotrans" type="radio" formControlName="Citacion" [checked]="bloque.Citacion == 2" name="Citacion" value="2" id="citaAborMGFNS">
+              <label class="labeltransr" for="citaAborMGFNS">N/S</label>
+
+            </div>
+          </div>
+
+          <div class="divExp">
+            <label>Derivación por detección de riesgo de MGF: </label>
+          </div>
+
+          <div [formGroup]="form2" class="divExp">
+            <input class="radiotrans" formControlName="Deriv_Riesgo" type="radio" [checked]="bloque.Deriv_Riesgo == 1"  name="Deriv_Riesgo" value="1" id="deriDetMGFSI" checked >
+            <label class="labeltransr" for="deriDetMGFSI">Sí</label>
+            <input class="radiotrans" formControlName="Deriv_Riesgo"  type="radio" [checked]="bloque.Deriv_Riesgo == 0"  name="Deriv_Riesgo" value="0" id="deriDetMGFNO" >
+            <label class="labeltransr" for="deriDetMGFNO">No</label>
+            <input class="radiotrans" formControlName="Deriv_Riesgo" type="radio" [checked]="bloque.Deriv_Riesgo == 2" name="Deriv_Riesgo" value="2" id="deriDetMGFNS" >
+            <label class="labeltransr" for="deriDetMGFNS">N/S</label>
+          </div>
+      </div>
+
+      <div class="divLabelsDeUno">
+          <div class="divExpDeUno">
+            <label>Derivación por sospecha de MGF:</label>
+          </div>
+
+          <div [formGroup]="form2" class="divExpDeUno">
+            <input class="radiotrans" formControlName="Deriv_Sospecha" [checked]="bloque.Deriv_Sospecha == 1" type="radio" name="Deriv_Sospecha" value="1" id="deriSosMGFSI" >
+            <label class="labeltransr" for="deriSosMGFSI">Sí</label>
+            <input class="radiotrans" formControlName="Deriv_Sospecha" [checked]="bloque.Deriv_Sospecha == 0" type="radio" name="Deriv_Sospecha" value="0" id="deriSosMGFNO" >
+            <label class="labeltransr" for="deriSosMGFNO">No</label>
+            <input class="radiotrans" formControlName="Deriv_Sospecha" [checked]="bloque.Deriv_Sospecha == 2" type="radio" name="Deriv_Sospecha" value="2" id="deriSosMGFNS" >
+            <label class="labeltransr" for="deriSosMGFNS">N/S</label>
+          </div>
+      </div>
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="otrosM">Otros motivos:</label>
+          <span matTooltip="Campo de texto libre donde puede introducir motivos más concretos sobre la cita" class="pointer icon-info info"></span>
+        </div>
+        <textarea class="textareaBl2"[(ngModel)]="bloque.Otros" type="text" id="otrosM" name="otros"></textarea>
+
+        </div>
+      </div>
+
+    <div>
+      <h3 class="text16 textPink">Asistentes durante la cita</h3>
+
+      <div  class="divLabels">
+        <div class="divExp">
+          <label>Acompañado/a por el padre:</label>
+        </div>
+
+        <div [formGroup]="form2" class="divExp">
+          <input class="radiotrans" formControlName="Acomp_P" [checked]="bloque.Acomp_P == 1"  type="radio" name="Acomp_P" value="1" id="acomPSI">
+          <label class="labeltransr" for="acomPSI">Sí</label>
+          <input class="radiotrans" formControlName="Acomp_P" [checked]="bloque.Acomp_P == 0" type="radio" name="Acomp_P" value="0" id="acomPNO">
+          <label class="labeltransr" for="acomPNO">No</label>
+        </div>
+
+        <div class="divExp">
+          <label for="acomM">Acompañado/a por la madre:</label>
+        </div>
+
+        <div [formGroup]="form2" class="divExp">
+          <input class="radiotrans" formControlName="Acomp_M" [checked]="bloque.Acomp_M == 1" type="radio" name="Acomp_M" value="1" id="acomMSI">
+          <label class="labeltransr" for="acomMSI">Sí</label>
+          <input class="radiotrans" formControlName="Acomp_M" [checked]="bloque.Acomp_M == 0" value="0" id="acomMNO">
+          <label class="labeltransr" for="acomMNO">No</label>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno">
+        <div class="divExpDeUno">
+          <label for="acomH">Acompañado/a por hermanos/as:</label>
+        </div>
+
+        <div [formGroup]="form2" class="divExpDeUno">
+          <input class="radiotrans" formControlName="Acomp_H" [checked]="bloque.Acomp_H == 1" type="radio" name="Acomp_H" value="1" id="acomHSI">
+          <label class="labeltransr" for="acomHSI">Sí</label>
+          <input class="radiotrans" formControlName="Acomp_H" [checked]="bloque.Acomp_H == 0" type="radio" name="Acomp_H" value="0" id="acomHNO">
+          <label class="labeltransr" for="acomHNO">No</label>
+        </div>
+      </div>
+
+      <div class="divLabels">
+        <div class="divExp">
+          <label for="otrosA">Otros acompañantes:</label>
+        </div>
+
+        <textarea class="textareaBl2" [(ngModel)]="bloque.Acomp_O" name="otrosA" type="text"  id="otrosA" ></textarea>
+      </div>
+    </div>
+
+    <h3 class="text16 textPink">Dificultad con el idioma</h3>
+    <div  class="divLabels">
+      <div class="divExp">
+        <label >Dificultad con el idioma materno:</label>
+      </div>
+
+      <div [formGroup]="form2" class="divExp">
+        <input class="radiotrans" formControlName="Dif_Idi_M" [checked]="bloque.Dif_Idi_M == 1" type="radio" name="Dif_Idi_M" value="1" id="dificultadMSI" >
+        <label class="labeltransr" for="dificultadMSI">Sí</label>
+        <input class="radiotrans" formControlName="Dif_Idi_M" [checked]="bloque.Dif_Idi_M == 0"  type="radio" name="Dif_Idi_M" value="0" id="dificultadMNO" >
+        <label class="labeltransr" for="dificultadMNO">No</label>
+        <input class="radiotrans" formControlName="Dif_Idi_M" [checked]="bloque.Dif_Idi_M == 2" type="radio" name="Dif_Idi_M" value="2" id="dificultadMNS" >
+        <label class="labeltransr" for="dificultadMNS">N/S</label>
+      </div>
+
+      <div class="divExp">
+        <label>Precisa traducción:</label>
+      </div>
+
+      <div [formGroup]="form2" class="divExp">
+
+        <input class="radiotrans" formControlName="Traduccion" [checked]="bloque.Traduccion == 1" type="radio" name="Traduccion" value="1" id="traduccionSI" >
+        <label class="labeltransr" for="traduccionSI">Sí</label>
+        <input class="radiotrans" formControlName="Traduccion" [checked]="bloque.Traduccion == 0"  type="radio" name="Traduccion" value="0" id="traduccionNO" >
+        <label class="labeltransr" for="traduccionNO">No</label>
+        <input class="radiotrans" formControlName="Traduccion" [checked]="bloque.Traduccion == 2"  type="radio" name="Traduccion" value="2" id="traduccionNS" >
+        <label class="labeltransr" for="traduccionNS">N/S</label>
+      </div>
+    </div>
+    <div class="divLabelsDeUno">
+      <div class="divExpDeUno">
+        <label>Precisa de mediación intercultural:</label>
+      </div>
+
+      <div [formGroup]="form2" class="divExpDeUno">
+        <input class="radiotrans" formControlName="Mediacion" [checked]="bloque.Mediacion == 1" type="radio" name="Mediacion" value="1" id="mediacionSI" >
+        <label class="labeltransr" for="mediacionSI">Sí</label>
+        <input class="radiotrans"formControlName="Mediacion" [checked]="bloque.Mediacion == 0" type="radio" name="Mediacion" value="0" id="mediacionNO" >
+        <label class="labeltransr" for="mediacionNO">No</label>
+        <input class="radiotrans" formControlName="Mediacion" [checked]="bloque.Mediacion == 2" type="radio" name="Mediacion" value="2" id="mediacionNS" >
+        <label class="labeltransr" for="mediacionNS">N/S</label>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Boton flotante -->
+  <div id="container-floating">
+    <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>
+    <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="guardarDatos()"><p class="letter"><span class="icon-floppy textWhite"></span></p>
+    </div>
+    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+      <p class="plus">+</p>
+      <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+    </div>
+  </div>
+  <!--Fin boton flotante -->
+</form>

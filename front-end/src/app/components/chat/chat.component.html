@@ -1,0 +1,99 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+  <div class="main-Chat">
+    <!-- Chats -->
+  <div class="mostrar chat-contactos bgColorWhite" id="contactos">
+    <header>
+      <h2>Contactos</h2>
+      <p>
+        <button type="button" (click)="buscarUsuarios(search.value)" class="pointer icon-search btn-buscador "></button>
+        <input type="text" class="lineaCampo" (keyup)="escribiendo($event, search.value)" placeholder="Busque a un contacto" style="width:80%;" #search>
+      </p>
+    </header>
+    <div *ngIf="resultSearch.length > 0" class="busquedachat">
+      <div *ngFor="let s of resultSearch" class="conversacioness" (click) = "setConversation(s.ID_Usuario,s.Nombre, s.Foto)">
+        <div>
+          <img class="fotoChat" src="https://aisha.ovh{{s.Foto}}">
+        </div>
+        <div class="infoChat">
+          <p class="text16 textLeft">{{s.Nombre.split("'")[1]}}
+            <br>
+            <small>{{s.Email.split("'")[1]}}</small>
+            <small>-</small>
+            <small>{{s.Profesion}}</small>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <div *ngIf="conversaciones.length > 0" class="busquedachat">
+      <div *ngFor="let c of conversaciones" class="conversacioness" (click) = "getMessages(c.ID_Usuario1, c.ID_Usuario2, c.ID_Socket, c.Nombre, c.Destinatario, c.Foto)">
+        <div>
+          <img class="fotoChat" src="https://aisha.ovh{{c.Foto}}">
+        </div>
+        <div class="infoChat">
+          <p class="text16 textLeft">{{c.Nombre.split("'")[1]}}
+            <br>
+            <small>{{c.Email.split("'")[1]}}</small>
+            <small>-</small>
+            <small>{{c.Profesion}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Conversacion -->
+    <div class="ocultar chat-container bgColorWhite" id="chat">
+      <header>
+        <button (click)="volver()" class="btn-chat-volver icon-left-big"></button>
+        <h2 class="tituloChat"><img *ngIf="inicio != true" class="fotoChat" src="https://aisha.ovh{{conversacion.Foto}}"> {{conversacion.Nombre.split("'")[1]}}</h2>
+      </header>
+      <hr>
+      <div class="message-container">
+        <img>
+        <div *ngIf="mensajes.length > 0">
+        <div *ngFor="let m of mensajes">
+          <div class=lineaChat>
+            <div *ngIf="m.Autor == ID_Usuario" class=" mensaje rigth" >
+              <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
+              <span class="text16">{{m.Texto}}</span>
+              <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
+            </div>
+          </div>
+          <div class=lineaChat>
+            <div *ngIf="m.Autor != ID_Usuario" class=" mensaje left" >
+              <strong>{{m.Nombre.split("'")[1]}}:</strong><br>
+              <span class="text16">{{m.Texto}}</span>
+              <span class="text12 grey">{{m.Fecha.slice(11,-8)}}</span>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class ="formChat bgColorPink">
+        <form>
+          <input [(ngModel)]="mensaje" type="text" name="mensaje" placeholder="Escribe Aquí" id="input" autocomplete="off">
+          <button type="submit" (click) = "enviarMensaje(conversacion.ID_Usuario1, conversacion.ID_Usuario2, conversacion.SocketID)">Enviar</button>
+        </form>
+      </footer>
+      </div>
+    </div>
+    <div class="ocultar">
+      <app-footer></app-footer>
+    </div>
+
+</div>

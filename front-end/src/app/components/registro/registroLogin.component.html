@@ -1,6 +1,6 @@
-<div class="divBlanco" style="margin-top:7%;">
+<div class="divBlanco bgColorWhite">
   <header>
-    <img style="margin-top:20px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="Logo">
+    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/']" alt="Logo">
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
@@ -17,11 +17,11 @@
       <div id="value" style="background-color:black;"></div>
     </div>
     <div style="text-align:center; margin-bottom:5px;">
-      <button type="submit" name="button" class="submitGris textoBlanco">REGISTRAR</button>
+      <button type="submit" name="button" class="btn-border bgColorPink">REGISTRAR</button>
     </div>
   </form>
 
-  <footer class="footerDivGris">
+  <footer class="footerDiv bgColorGrey">
     <p>¿Ya estás registrado?</p>
     <a [routerLink]="['/login']"><p><b>Inicia Sesión</b></p></a>
   </footer>

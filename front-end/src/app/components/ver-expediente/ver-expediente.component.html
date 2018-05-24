@@ -1,0 +1,855 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+
+  <div class="gridVerExp">
+    <div class="infoExp">
+      <div style="padding-left:15px" *ngFor="let e of expediente">
+        <h2 class="cherry textleft">INFORMACIÓN BÁSICA DEL EXPEDIENTE</h2>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Título</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Titulo}}</p>
+          </div>
+        </div>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Descripción</b></label>
+          </div>
+          <div class="divExpVer">
+            <p *ngIf="e.Descripcion != ''">{{e.Descripcion}}</p>
+            <p *ngIf="e.Descripcion == ''">No hay datos registrados</p>
+          </div>
+        </div>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Lugar de detección</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Nombre}}, {{e.Pais}}</p> <!-- No se que hay que poner -->
+          </div>
+        </div>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Fecha de detección</b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.FechaCreacion.split("T")[0]}}</p>
+          </div>
+        </div>
+        <div class="divLabelsVer">
+          <div class="divExpVer">
+            <label><b>Autor </b></label>
+          </div>
+          <div class="divExpVer">
+            <p>{{e.Autor.split("'")[1]}}</p>
+          </div>
+        </div>
+        <div *ngIf="sessionStorageID == e.ID_Usuario" class="permisosVerExp">
+          <input class="checktrans" (click)="openDialogPublicarExp()" type="checkbox" name="publicar" id="publicar" [disabled]="estaCheck">
+          <label class="labeltrans" for="publicar" id="disabled">{{labelPublico}}</label>
+          <!-- <button type="button" class="btn-relleno" name="publicar" (click)="openDialogPublicarExp()" [disabled]="estaCheck">{{labelPublico}}</button> -->
+          <div *ngIf="coment==1" class="coment" id="coment">
+            <input class="checktrans" type="checkbox" name="comentarios" id="comentarios" (click)="permitirComent()" [checked]="estaComent">
+            <label class="labeltrans" for="comentarios">Permitir comentarios</label>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="lineaDiv"></div>
+
+      <div class="grupoForm" *ngIf="estaComent">
+        <h3 class="text16 textPink pointer verComentarios" (click)="verComentarios = !verComentarios">Comentarios
+          <span *ngIf="verComentarios==false" class="pointer icon-plus"></span>
+          <span *ngIf="verComentarios==true" class="pointer icon-minus"></span>
+        </h3>
+        <div *ngIf="verComentarios==true">
+          <div class="sliderComentarios" id="sliderComentarios">
+            <a name="arriba"></a>
+            <div id="alert">{{mensaje}}</div>
+            <div class="comentario comentarioNuevo">
+              <h2>Nuevo comentario</h2>
+              <textarea
+                [(ngModel)]='comentario' type="text" id="comentario"
+                placeholder="Escriba su comentario aquí...">
+              </textarea>
+              <div>
+                <button type="submit" name="button" class="btn-border" (click)="comentar()">Comentar</button>
+              </div>
+            </div>
+
+            <div style="width:100%;" *ngFor="let comentario of comentarios">
+              <div class="comentario">
+                <div class="comentarioTitulo">
+                  <h3>{{comentario.Nombre.split("'")[1]}} - {{comentario.Fecha.split("T")[0]}}</h3>
+                  <button *ngIf="comentario.ID_Usuario == sessionStorageID"type="submit" name="button" class="btn span icon-trash-empty"
+                    (click)="borrarComentario(comentario.ID_Comentario)"></button>
+                </div>
+                <p>{{comentario.Comentario.split("'")[1]}}</p>
+              </div>
+            </div>
+            <!-- PAGINACION -->
+            <ul class="pagination" *ngIf="paginas.length >1">
+            <!--Boton de pagina anterior-->
+              <li>
+                <a (click)="pasarPagina(pagBack)">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li *ngFor="let pag of paginas; let i=index">
+                <a (click)="pasarPagina(i+1)">
+                  <span *ngIf="(i+1)==pagActual" class="active">{{i+1}}</span>
+                  <span *ngIf="(i+1)!=pagActual" >{{i+1}}</span>
+                </a>
+              </li>
+              <!--Boton de pagina siguiente-->
+              <li>
+                <a (click)="pasarPagina(pagNext);">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+       </div>
+      </div>
+
+  </div>
+
+
+
+    <div class="datosExp">
+      <div class="divBlancoVerExp">
+        <mat-tab-group>
+
+          <mat-tab label="Datos sociodemográficos">
+            <div class="contentVerExp">
+            <h2 class="cherry">DATOS SOCIODEMOGRÁFICOS</h2>
+            <h3 class="text16 textPink perfilForm">Datos sobre la titular del expediente</h3>
+              <div *ngFor="let p of persona" class="persona">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Edad:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label *ngIf="p.Edad != 0">{{p.Edad}}</label>
+                    <label *ngIf="p.Edad == 0">No hay datos registrados</label>
+                  </div>
+                </div>
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Etnia de origen:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                      <label>{{p.Etnia}}</label>
+                  </div>
+                </div>
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                      <label>Lugar de nacimiento:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <!-- el sitio llega como null -->
+                      <label>{{p.Sitio}}, {{p.Pais}}</label>
+                  </div>
+                </div>
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Actividad Laboral:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label *ngIf="p.Actividad != NULL">{{p.Actividad}}</label>
+                    <label *ngIf="p.Actividad == NULL">No hay datos registrados</label>
+                  </div>
+                </div>
+              </div>
+            <h3 class="text16 textPink perfilForm">Datos sobre el padre</h3>
+            <div *ngFor="let p of padre" class="padre">
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Edad:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="p.Edad != 0">{{p.Edad}}</label>
+                  <label *ngIf="p.Edad == 0">No hay datos registrados</label>
+                </div>
+              </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Actividad Laboral:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="p.Actividad != NULL">{{p.Actividad}}</label>
+                  <label *ngIf="p.Actividad == NULL">No hay datos registrados</label>
+                </div>
+              </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Etnia de origen:</label>
+                </div>
+                <div class="divExpDeUno">
+                    <label>{{p.Etnia}}</label>
+                </div>
+              </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Lugar de nacimiento:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{p.Sitio}}, {{p.Pais}}</label>
+                </div>
+              </div>
+
+            </div>
+            <div *ngIf="!padre?.length" class="padre textleft">
+              <label>No hay datos registrados</label>
+            </div>
+
+            <h3 class="text16 textPink perfilForm">Datos sobre la madre</h3>
+            <div *ngFor="let m of madre" class="madre">
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Edad:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="m.Edad != 0">{{m.Edad}}</label>
+                  <label *ngIf="m.Edad == 0">No hay datos registrados</label>
+                </div>
+              </div>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Actividad Laboral:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="m.Actividad != NULL">{{m.Actividad}}</label>
+                    <label *ngIf="m.Actividad == NULL">No hay datos registrados</label>
+                  </div>
+                </div>
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Etnia de origen:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{m.Etnia}}</label>
+                  </div>
+                </div>
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Lugar de nacimiento:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <!-- tampoco se guarda bien porque no tiene lo de google-->
+                    <label>{{m.Sitio}}, {{m.Pais}}</label>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!madre?.length" class="madre textleft">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h2 class="cherry">CONTEXTO DE LA CITA</h2>
+
+            <div *ngFor="let k of bloque1" class="bloque1">
+              <h3 class="text16 textPink perfilForm">Tipo de cita</h3>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Citación por abordaje de riesgo de la MGF:</label>
+                </div>
+
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Citacion == 1">Sí</label>
+                  <label *ngIf="k.Citacion == 0">No</label>
+                  <label *ngIf="k.Citacion == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Derivación por detección de riesgo de MGF:</label>
+                </div>
+
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Deriv_Riesgo == 1">Sí</label>
+                  <label *ngIf="k.Deriv_Riesgo == 0">No</label>
+                  <label *ngIf="k.Deriv_Riesgo == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Derivación por sospecha de MGF:</label>
+                </div>
+
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Deriv_Sospecha == 1">Sí</label>
+                  <label *ngIf="k.Deriv_Sospecha == 0">No</label>
+                  <label *ngIf="k.Deriv_Sospecha == 2">N/S</label>
+                </div>
+              </div>
+
+              <div *ngIf="k.Otros != 'NULL'">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Otros motivos:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{k.Otros}}</label>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Personas durante la cita</h3>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Acompañada por la madre:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Acomp_M == 1">Sí</label>
+                  <label *ngIf="k.Acomp_M == 0">No</label>
+                  <label *ngIf="k.Acomp_M == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Acompañada por el padre:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Acomp_P == 1">Sí</label>
+                  <label *ngIf="k.Acomp_P == 0">No</label>
+                  <label *ngIf="k.Acomp_P == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Acompañada por hermano/a:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Acomp_H == 1">Sí</label>
+                  <label *ngIf="k.Acomp_H == 0">No</label>
+                  <label *ngIf="k.Acomp_H == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Acompañado por otros:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{k.Acomp_O}}</label>
+                </div>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Dificultad con el idioma</h3>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Dificultad con el idioma materno:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Dif_Idi_M == 1">Sí</label>
+                  <label *ngIf="k.Dif_Idi_M == 0">No</label>
+                  <label *ngIf="k.Dif_Idi_M == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Precisa traducción:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Traduccion == 1">Sí</label>
+                  <label *ngIf="k.Traduccion == 0">No</label>
+                  <label *ngIf="k.Traduccion == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Precisa mediación intercultural:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="k.Mediacion == 1">Sí</label>
+                  <label *ngIf="k.Mediacion == 0">No</label>
+                  <label *ngIf="k.Mediacion == 2">N/S</label>
+                </div>
+              </div>
+
+            </div>
+            <div *ngIf="!bloque1?.length" class="madre textleft">
+              <label>No hay datos registrados</label>
+            </div>
+          </div>
+          </mat-tab>
+          <mat-tab label="Acerca de MGF">
+            <div class="contentVerExp">
+
+              <h2 class="cherry">CONOCIMIENTO E INFORMACIÓN SOBRE LA MGF</h2>
+              <div *ngIf="bloque2.length != 0">
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>El implicado tiene conocimientos sobre la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Conoce_MGF == 1">Sí</label>
+                  <label *ngIf="bloque2[0].Conoce_MGF == 0">No</label>
+                  <label *ngIf="bloque2[0].Conoce_MGF == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>La MGF se realiza en la comunidad de origen:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].MGF_realizada_com_origen == 1">Sí</label>
+                  <label *ngIf="bloque2[0].MGF_realizada_com_origen == 0">No</label>
+                  <label *ngIf="bloque2[0].MGF_realizada_com_origen == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento del padre frente a la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_padre == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_padre == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_padre == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento de la madre frente a la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_madre == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_madre == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_madre == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Posicionamiento de la familia en el pais de origen:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="bloque2[0].Pos_familia == 1">A favor</label>
+                  <label *ngIf="bloque2[0].Pos_familia == 0">En contra</label>
+                  <label *ngIf="bloque2[0].Pos_familia == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Otros aspectos a tener en cuenta:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{b2Otros}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Significado de la MGF para el implicado en el expediente:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Significado_MGF}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato de intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Formato_intervencion}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Consejos}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Número de partos</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{bloque2[0].Num_Partos}}</label>
+                </div>
+              </div>
+
+              <button mat-raised-button *ngIf="bloque2[0].Num_Partos != 0" (click)="openDialog()" type="submit" name="button" class="btn-border bgColorPink">Ver Partos</button>
+
+            </div>
+            <div *ngIf="bloque2.length == 0">
+              <h3>No hay datos registrados</h3>
+            </div>
+          </div>
+          </mat-tab>
+          <mat-tab label="Experiencias con la titular">
+            <div class="contentVerExp">
+              <h2 class="cherry">EXPERIENCIAS CON MGF</h2>
+              <div *ngFor="let w of bloque3">
+              <div *ngIf="w.Exp_propias !=''">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Experiencias propias:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.Exp_propias}}</label>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="w.Exp_terceros !=''">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Experiencias de terceros:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.Exp_terceros}}</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Matenimiento de la MGF:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Mant_MGF == 1">Sí</label>
+                  <label *ngIf="w.Mant_MGF == 0">No</label>
+                  <label *ngIf="w.Mant_MGF == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Mant_MGF_texto}}</label>
+                </div>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Conocimiento sobre consecuencias MGF</h3>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Sobre la salud de las mujeres:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Conoc_consecM == 1">Sí</label>
+                  <label *ngIf="w.Conoc_consecM == 0">No</label>
+                  <label *ngIf="w.Conoc_consecM == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Otros_consecM}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Sobre la salud de los hombres:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Conoc_consecH == 1">Sí</label>
+                  <label *ngIf="w.Conoc_consecH == 0">No</label>
+                  <label *ngIf="w.Conoc_consecH == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>¿Por qué?:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Otros_consecH}}</label>
+                </div>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Intervención</h3>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Formato_int}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejo para otros profesionales:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejo}}</label>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="bloque3.length == 0">
+              <H3>No hay datos registrados</H3>
+            </div>
+          </div>
+          </mat-tab>
+
+          <mat-tab label="Exploracion genital">
+            <div class="contentVerExp">
+
+              <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
+              <div *ngFor="let w of bloque4">
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Detección MGF:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label *ngIf="w.Detec_MGF == 1">Sí</label>
+                    <label *ngIf="w.Detec_MGF == 0">No</label>
+                    <label *ngIf="w.Detec_MGF == 2">N/S</label>
+                  </div>
+              </div>
+
+                <div class="divLabelsVerExp">
+                  <div class="divExpDeUno">
+                    <label>Tipo de MGF:</label>
+                  </div>
+                  <div class="divExpDeUno">
+                    <label>{{w.ID_Mutilacion}}</label>
+                  </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Cicatrices en la zona genital:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Cicatriz_genital == 1">Sí</label>
+                  <label *ngIf="w.Cicatriz_genital == 0">No</label>
+                  <label *ngIf="w.Cicatriz_genital == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Descripción:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Descripcion}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Elasticidad:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Elasticidad}}</label>
+                </div>
+              </div>
+
+              <h2 class="cherry">POSIBLES CONSECUENCIAS PARA LA SALUD</h2>
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas inmediatas</h3>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud1">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud1?.length">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Consecuencias físicas a largo plazo</h3>
+
+
+              <div class="complicaciones" *ngFor="let c of consecSalud2">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud2?.length">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Consecuencias obstétrico ginecológicas</h3>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud4">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud4?.length">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Consecuencias psicosociales</h3>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud5">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud5?.length">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Consecuencias sobre la sexualidad</h3>
+
+              <div class="complicaciones" *ngFor="let c of consecSalud6">
+               <label>- {{c.Nombre}}</label>
+               <br>
+              </div>
+
+              <div class="complicaciones" *ngIf="!consecSalud6?.length">
+                <label>No hay datos registrados</label>
+              </div>
+
+              <h3 class="text16 textPink perfilForm">Otras</h3>
+              <div class="divExpDeUno">
+                <label>{{w.Otros}}</label>
+              </div>
+
+              <h2 class="cherry">INTERVENCIÓN</h2>
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Formato de la intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Formato_int}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejos}}</label>
+                </div>
+              </div>
+
+            </div>
+            <div *ngIf="bloque4.length == 0">
+              <h3>No hay datos</h3>
+            </div>
+          </div>
+          </mat-tab>
+
+          <mat-tab label="Viajes">
+            <div class="contentVerExp">
+
+              <h2 class="cherry">VALORACIÓN SOBRE POSIBLES VIAJES</h2>
+
+              <div *ngFor="let w of bloque5">
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Realiza viajes al país de origen en vacaciones:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.Viajes == 1">Sí</label>
+                  <label *ngIf="w.Viajes == 0">No</label>
+                  <label *ngIf="w.Viajes == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Tienen planificado realizar un viaje proximamente:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label *ngIf="w.ViajesPlanificados == 1">Sí</label>
+                  <label *ngIf="w.ViajesPlanificados == 0">No</label>
+                  <label *ngIf="w.ViajesPlanificados == 2">N/S</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Descripción del formato de la intervención:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Intervencion}}</label>
+                </div>
+              </div>
+
+              <div class="divLabelsVerExp">
+                <div class="divExpDeUno">
+                  <label>Consejos:</label>
+                </div>
+                <div class="divExpDeUno">
+                  <label>{{w.Consejos}}</label>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text16 textPink perfilForm">Indicadores de sospecha de MGF en el ámbito escolar</h3>
+
+            <div class="complicaciones" *ngFor="let i of indicadores">
+             <label>- {{i.Nombre}}</label>
+             <br>
+            </div>
+
+            <div class="complicaciones" *ngIf="!indicadores?.length">
+              <label>No hay datos registrados</label>
+            </div>
+
+          </div>
+          </mat-tab>
+
+        </mat-tab-group>
+
+      </div>
+
+    </div>
+
+    <!-- Boton flotante -->
+    <div id="container-floating">
+      <div class="nd4 nds" data-toggle="tooltip" data-placement="left" data-original-title="borrar expediente" (click)="borrarExpediente()"><img class="reminder">
+        <p class="letter"><span class="icon-trash textWhite"></span></p>
+      </div>
+      <!-- [routerLink]="['/editar-expediente',{expID}]"  -->
+      <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="editarExpediente()"  ><p class="letter"><img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png"></p></div>
+      <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Mover Expediente" (click)="moverExpediente()"><p class="letter"><span class="icon-folder-open textWhite"></span></p>
+      </div>
+      <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" >
+        <p class="plus">+</p>
+        <p class="edit"><span class="icon-cancel textWhite"></span></p>
+
+      </div>
+    </div>
+  <!--Fin boton flotante -->
+
+    </div>
+
+  <!-- DIV DEL ERROR-->
+</div>
+<app-footer></app-footer>

@@ -2,12 +2,71 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-  <h1>Hola, {{user.Nombre}}</h1>
+<app-header></app-header>
 
-  <button [routerLink]="['/user/profile']" type="button" name="button"
-          class="submitGris textoBlanco">
-          Perfil
-  </button>
+  <div class="itemTodo">
+  <a [routerLink]="['/misexpedientes']" (click)="activo(1)">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenAlta itemImagenWhite" src="../assets/img/Expediente.png" alt="iconExpediente">
+          <img class="itemImagenAlta itemImagenCherry" src="../assets/img/ExpedientePink.png" alt="iconExpediente">
+        <p class="itemTitle textPink">Mis Expedientes</p>
+        <p class="itemText">Lleve el seguimiento de sus casos con la creación de expedientes</p>
+      </div>
+  </a>
 
-  <button (click)="logout();" type="button" name="button" class="submitGris textoBlanco">Cerrar Sesión</button>
+  <a [routerLink]="['/bibexpedientes']" (click)="activo(2)">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/IconBiblioExp.png" alt="iconBiblioExpediente">
+          <img class="itemImagenCherry" src="../assets/img/BiblioIcon.png" alt="iconBiblioExpediente">
+        <p class="itemTitle textPink">Expedientes Públicos</p>
+
+        <p class="itemText">Consulte expedientes que otros profesionales hayan compartido</p>
+      </div>
+  </a>
+
+  <a [routerLink]="['/estadisticas']" (click)="activo(3)">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/ApiDatos.png" alt="iconApiDatos">
+          <img class="itemImagenCherry" src="../assets/img/estadisticas.png" alt="iconApiDatosCherry">
+        <p class="itemTitle textPink">Estadísticas</p>
+
+        <p class="itemText">Conozca el riesgo de ablación según estos factores</p>
+      </div>
+  </a>
+
+  <a [routerLink]="['/recursos']" (click)="activo(4)">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenAlta itemImagenWhite" src="../assets/img/PDFIcon.png" alt="iconPDF">
+          <img class="itemImagenAlta itemImagenCherry" src="../assets/img/PDFIconPink.png" alt="iconPDFCherry">
+          <!-- <img class="itemImagenWhite" src="../assets/img/ImgIcon2.png" alt="iconImg">
+          <img class="itemImagenCherry" src="../assets/img/ImgIcon2.png" alt="iconImg">
+          <img class="itemImagenWhite" src="../assets/img/VideoIcon.png" alt="iconImg">
+          <img class="itemImagenCherry" src="../assets/img/VideoIcon.png" alt="iconImg"> -->
+        <p class="itemTitle textPink">Biblioteca de Recursos</p>
+
+          <p class="itemText">Acceda a todo tipo de recursos como PDFs, imágenes o vídeos</p>
+      </div>
+  </a>
+
+  <a [routerLink]="['/aulavirtual']" (click)="activo(5)">
+      <div class="itemColor bgColorWhite">
+          <img class="itemImagenWhite" src="../assets/img/Cubes.png" alt="icon3D">
+          <img class="itemImagenCherry" src="../assets/img/ModeloIcon.png" alt="icon3DCherry">
+        <p class="itemTitle textPink">Aula virtual</p>
+
+        <p class="itemText">Modelo en 3D que muestra las causas de la MGF</p>
+      </div>
+  </a>
+
+  <a [routerLink]="['/chat']" (click)="activo(6)">
+      <div class="itemColor bgColorWhite">
+            <img class="itemImagenWhite" src="../assets/img/Foro.png" alt="iconChat">
+            <img class="itemImagenCherry" src="../assets/img/ChatIconPink.png" alt="iconChatCherry">
+          <p class="itemTitle textPink">Chat</p>
+
+          <p class="itemText">Póngase en contacto con otros profesionales mediante nuestro chat</p>
+      </div>
+  </a>
+  </div>
 </div>
+<app-footer></app-footer>

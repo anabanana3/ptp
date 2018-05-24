@@ -26,7 +26,6 @@ export class HomeComponent {
     Foto: ''
   };
   error:boolean = true;
-  // user:string = "";
 
   constructor(private _userService:UserService) {
     if(sessionStorage.length === 0){
@@ -34,11 +33,26 @@ export class HomeComponent {
     }
     this.error = false;
     this.id = parseInt(sessionStorage.getItem('iD'));
-
+    //visitas
+    let visita = {
+      ID_Usuario: this.id
+    }
+    this._userService.visitasWeb(visita).subscribe(data=>{
+    });
     this._userService.getUsuario(this.id).subscribe(data =>{
-      this.user = data[0];
-      this.user.Nombre = this.user.Nombre.split("'")[1];
-    })
+      if(data.Codigo == 501){
+        location.href = '/expired';
+      }else{
+        this.user = data[0];
+      }
+    });
+  }
+
+  activo(num){
+    sessionStorage.setItem('ventana', num);
+    if( sessionStorage.ventana != 0){
+      document.getElementById(num).className += " active";
+    }
   }
 
   logout(){

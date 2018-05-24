@@ -1,0 +1,145 @@
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div *ngIf="!error">
+  <div *ngIf="asociacion">
+    <app-header-asociacion></app-header-asociacion>
+  </div>
+  <div *ngIf="admin">
+    <app-header-admin></app-header-admin>
+  </div>
+  <div *ngIf="usuario">
+    <app-header></app-header>
+  </div>
+  <div class="gridContainer">
+    <div class="carpetasDivContainer mostrar-carpetasDivContainer" id="divContainer">
+
+      <div *ngIf="busqueda==true" id="alert">{{mensaje}}</div>
+      <div *ngIf="expedientes.length>0" class="expediente-container">
+        <div  *ngFor="let e of expedientes" class="carpeta" [routerLink]="['/verexpediente', {id:e.ID_Expediente}]">
+          <div class="expediente-body-exp">
+            <p class="tituloExp">Expediente {{e.ID_Expediente}} <span class="fechaExp">{{e.FechaCreacion.split('T')[0]}}</span></p>
+            <p class="fechaExp">{{e.Sitio}}, {{e.Pais}}</p>
+            <p class="fechaExp"> {{e.Autor.split("'")[1]}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Paginacion -->
+      <div>
+        <div *ngIf="paginas.length > 1" class="container">
+          <div class="text-center">
+            <ul class="pagination">
+              <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+              <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
+              <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lateralSearch ocultar-lateralSearch" id="lateralSearch">
+      <button class="formPlus icon-left-open" (click)="mostrarFilters()" *ngIf=!mostrarForm></button>
+      <button class="formPlus icon-right-open" (click)="mostrarFilters()" *ngIf=mostrarForm></button>
+      <form (ngSubmit)="buscar(1,10)" id="formFilter" class="ocultar-form">
+        <div class="divLabelsDeUnoSearch">
+
+          <div class="inputSearchDiv">
+            <img class="lupaIcon" src="../assets/img/SearchIcon.png"/>
+            <input class="inputSearch" [(ngModel)]="Filtros.Titulo" type="text"
+              placeholder="Título del expediente" name="Titulo" id="titulo">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="autor">Autor:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Autor" type="text" id='autor' name="Autor:">
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="profesion">Profesion del autor:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.Profesion" name="Profesión:">
+              <option value="0">Selecione una profesión</option>
+              <option *ngFor="let p of profesiones" [value]="p.ID_Profesion">{{p.Nombre}}</option>
+            </select>
+            <br>
+          </div>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f1">Desde:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha1" type="date" id="f1" name="Fecha1">
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="f2">Hasta:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <input class="sizeinput" [(ngModel)]="Filtros.Fecha2" type="date" id="f2" name="Fecha2">
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="lugar">Lugar de detección:</label>
+          </div>
+
+          <div divExpDeUnoSearch id="locationField">
+            <input type="text"  id="lugar" class="sizeinput" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="etnia">Etnia de origen:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.Etnia" name="Etnia">
+              <option value="0">Seleccione la etnia</option>
+              <option *ngFor="let e of etnias" [value]="e.ID_Etnias">{{e.Etnia}}</option>
+            </select>
+          </div>
+          <br>
+        </div>
+
+        <div class="divLabelsDeUnoSearch">
+          <div class="divExpDeUnoSearch">
+            <label for="tipoMGF">Tipo de MGF:</label>
+          </div>
+          <div class="divExpDeUnoSearch">
+            <select class="sizeinput" [(ngModel)]="Filtros.TipoMGF" name="TipoMGF">
+              <option value="0">Seleccione el tipo de MGF:</option>
+              <option *ngFor="let t of tiposMGF" [value]="t.ID_Mutilacion">{{t.Nombre}}</option>
+            </select>
+          </div>
+          <br>
+        </div>
+        <div class="espacio"></div>
+        <div class="SubmitSearch">
+          <button class="btn-relleno" type="submit" name="button">Buscar</button>
+          <button class="btn-relleno" type="submit" name="button" (click)="borrarBusqueda()">Limpiar búsqueda</button>
+        </div>
+      </form>
+    </div>
+    </div>
+  <app-footer></app-footer>
+</div>

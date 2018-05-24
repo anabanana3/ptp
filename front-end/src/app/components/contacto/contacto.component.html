@@ -1,23 +1,23 @@
 <div class="divBlanco bgColorWhite">
   <header>
-    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/principal']" alt="">
+    <img style="margin-top:20px; width:100px;" src="../assets/img/AISHA.png" [routerLink]="['/']" alt="">
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
+
   <form (ngSubmit)="contactar(forma)" #forma="ngForm">
+    <div class="text12 textRed">* Campos obligatorios</div><br>
     <div class="camposForm">
       <label for="email">Email*</label>
         <input [(ngModel)]="json.Email" class="lineaCampo" type="email" name="email" id="email" required>
-      <label for="asunto">Asunto*</label>
-        <input [(ngModel)]="json.Asunto" class="lineaCampo" type="asunto" name="asunto" id="asunto" required>
       <label for="mensaje">Mensaje*</label>
-        <textarea [(ngModel)]='json.Mensaje' type="mensaje" name="mensaje" id="mensaje" required rows="10" cols="120">
+        <textarea [(ngModel)]='json.Mensaje' type="mensaje" name="mensaje" id="mensaje" placeholder="Escriba su mensaje aquí..." required rows="10" cols="120">
         </textarea>
-
     </div>
-    <div>
-      <button type="submit" name="button" class="btn-inline btn-border bgColorPink textWhite">ENVIAR</button>
+    <div class="g-recaptcha" data-sitekey="6Lf7lFQUAAAAAC8Y5lrVC0PpkzAb2d91JNUhXSft" #captcha></div>
+    <div style="padding-bottom:1%;">
+      <button [routerLink]="['/principal']" type="reset" name="button" class="btn-relleno-negro">ATRÁS</button>
+      <button type="submit" name="button" class="btn-border">ENVIAR</button>
     </div>
   </form>
-
 </div>
