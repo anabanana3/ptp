@@ -1,5 +1,4 @@
 <form  (ngSubmit)="guardarDatos2()">
-  <div id="alert">{{mensaje}}</div>
   <div class="grupoForm">
     <h2 class="cherry">INFORMACIÓN BÁSICA SOBRE EL EXPEDIENTE</h2>
 
@@ -19,7 +18,7 @@
 
       <div class="divExp">
         <div id="locationField">
-          <input type="text"  id="lugarD" class="sizeinput" [placeholder]="expediente.Nombre" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
+          <input type="text"  id="lugarD" class="sizeinput" [placeholder]="expediente.Sitio" autocorrect ='off' autocapitalize='off' spellcheck="off" required #place>
         </div>
       </div>
     </div>
@@ -201,7 +200,7 @@
 
   <!--CONTEXTO DE LA CITA -->
   <div>
-    <h2 class="cherry">CONTEXTO DE LA CITA {{Deriv_RiesgoCheckSi}}</h2>
+    <h2 class="cherry">CONTEXTO DE LA CITA</h2>
     <div>
       <h3 class="text16 textPink">Tipo de cita</h3>
         <div class="divLabels">

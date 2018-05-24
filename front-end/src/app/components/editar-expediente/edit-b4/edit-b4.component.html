@@ -1,9 +1,6 @@
-<form (ngSubmit)="guardarDatos(forma)" #forma="ngForm">
+<form (ngSubmit)="guardarDatos()" #forma="ngForm">
 
     <h2 class="cherry">EXPLORACIÓN GENITAL</h2>
-    <!--mensaje error-->
-    <div id="alert">{{mensaje}}</div>
-
     <div class="divLabels">
       <div class="divExp">
         <label for="detec_MGF">Detección de MGF:</label>
@@ -181,7 +178,7 @@
     <textarea class="textareaBl2" [(ngModel)]='json.Consejos' type="consejo" name="consejo" id="consejo" placeholder="Escriba su texto aquí...">
     </textarea>
 
-  
+
     <!-- Boton flotante -->
     <div id="container-floating">
       <div class="nd3 nds" data-toggle="tooltip" data-placement="left" data-original-title="Editar expediente" (click)="terminar()"><p class="letter"><span class="icon-logout textWhite"></span></p></div>

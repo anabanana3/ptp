@@ -60,11 +60,11 @@
         <div class="container">
           <div class="text-center">
             <ul class="pagination">
-              <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
-              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
               <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
-              <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
-              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+              <li [ngClass]="{disabled:pagActual === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
             </ul>
           </div>
         </div>

@@ -94,32 +94,8 @@ export class EditB4Component implements OnInit {
   ngOnInit() {
   }
 
-  guardarDatos(forma){
-    console.log(this.cSel);
-    console.log(this.consecuenciasSalud);
-    console.log(this.consecBD);
-    console.log(this.consecuencia);
+  guardarDatos(){
     this.obtenerSel();
-    //this.selecionarCampos();
-
-    // console.log('Metodo para guardar los datos');
-    // console.log(forma);
-    // if(this.consecuencia.length > 0){
-    //   console.log("entro 1"+ this.consecuenciasSalud.length);
-    //   for(var i=1; i< this.consecuenciasSalud.length+1; i++){
-    //     if(this.consecuencia[i] == true){
-    //       console.log("entro 2 "+ this.consecuencias[i]);
-    //       this.consecuencias.push(i);
-    //       console.log(this.consecuencias);
-    //     }
-    //   }
-    // }
-    //Tengo que añadir las que habia en la BD
-    // for(let i=0; i<this.consecBD.length; i++){
-    //   this.consecuencias.push(this.consecBD[i].ID_Consecuencia);
-    // }
-    console.log(this.consecuencia);//Consecuencias selecionadas por el usuario
-    console.log(this.json);
     this._expedientesService.updateBloque4(this.json).subscribe(data=>{
       if(data.Codigo == 501){
         location.href = '/expired';

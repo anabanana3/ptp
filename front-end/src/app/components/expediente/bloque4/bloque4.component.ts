@@ -115,7 +115,7 @@ guardarDatos2(form){
     document.getElementById("consSex").style.display="none";
   }
 
-  guardarDatos(forma:NgForm){
+  guardarDatos(){
     console.log(this.json); //para ver lo que guarda el json
     console.log(this.consecuencias);
     this.json.ID_Expediente = sessionStorage.IDExp;
