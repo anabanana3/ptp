@@ -4,8 +4,7 @@
   </header>
   <div class="lineaDiv"></div>
   <div id="alert">{{mensaje}}</div>
-  <!-- (ngSubmit)="contactar(forma)"
-      (ngSubmit)="guardarDatos(forma, captcha.value)"-->
+
   <form (ngSubmit)="contactar(forma)" #forma="ngForm">
     <div class="text12 textRed">* Campos obligatorios</div><br>
     <div class="camposForm">

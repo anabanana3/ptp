@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-expired-session',
-  templateUrl: './expired-session.component.html'
+  selector: 'app-expired-session'
 })
 export class ExpiredSessionComponent implements OnInit {
 

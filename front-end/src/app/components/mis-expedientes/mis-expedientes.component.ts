@@ -176,14 +176,12 @@ openPopUp(){
   btnNo.onclick = function(){
     //Boton cancelar
     modal.style.display = "none";
-    // this.getCarpeta(this.carpetaActual);
   }
 
   span.onclick = function() {
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -206,14 +204,12 @@ popUpBorrarCarpeta(idCarpeta){
   btnNo.onclick = function(){
     //Boton cancelar
     modal.style.display = "none";
-    // this.getCarpeta(this.carpetaActual);
   }
 
   span.onclick = function() {
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -237,7 +233,6 @@ popUpModificarCarpeta(idCarpeta, nombre){
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -252,7 +247,6 @@ getExpedientesUser(tipo,pag, tam){
       //Privados
       this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
         if(data.Resultado == 'OK' || data == ''){
-            // this.expedientes = new Array();
             this.contenido = new Array();
             this.mensaje = 'No tienes almacenado ningún expediente privado';
             document.getElementById('alert').className = 'alert alert-danger';
@@ -261,7 +255,6 @@ getExpedientesUser(tipo,pag, tam){
             location.href ='/expired';
           }else{
             this.contenido = data.Data;
-            // this.expedientes = data.Data;
             console.log('Resultado de la funcion aux privados');
             console.log(data);
             this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
@@ -283,7 +276,6 @@ getExpedientesUser(tipo,pag, tam){
           if(data.Codigo == 501){
             location.href = '/expired';
           }else{
-            // this.expedientes = data.Data;
             this.contenido = data.Data;
             console.log('Resultado de la funcion aux publicos');
             console.log(data);
@@ -543,7 +535,7 @@ buscar(pag, tamPag=this.tamPag){
  }
 
 //GESTION DE LA CARPETAS
-// TODO: Obtengo la raiz del usuario
+// Obtengo la raiz del usuario
 
 getRaizUser(id){
   this._carpetaService.getRaizUser(id).subscribe(data=>{
@@ -600,7 +592,7 @@ getCarpetasUser(idU){
 }
 
 nuevaCarpeta(nombre){
-  //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos => Tener en cuenta la carpeta actual en la que nos encontramos
+  //TODO: Abrir un PopUp para crear la carpeta con el nombre que queramos => Tener en cuenta la carpeta actual en la que nos encontramos
   console.log("Nombre de la carpeta" + nombre);
   this._carpetaService.newCarpeta(nombre, this.carpetaActual).subscribe(data =>{
     if(data.Codigo == 501){
@@ -613,7 +605,6 @@ nuevaCarpeta(nombre){
 }
 
 borrarCarpeta(){
-  // console.log(idC);
   this._carpetaService.deleteCarpeta(this.carpetaSelect).subscribe(data =>{
     if(data.Codigo == 501){
       location.href = '/expired';

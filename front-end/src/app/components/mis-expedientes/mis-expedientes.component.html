@@ -28,13 +28,6 @@
           </div>
         </div>
 
-        <!-- <div class="optionsRight" >
-          <p (click) = "cambio(1)" id="arb"> Todo|</p>
-          <p (click) = "cambio(2)" id="priv"> Privados </p>
-          <p>  | </p>
-          <p (click) = "cambio(3)" id=publ> Públicos</p>
-          <p (click) = "cambio(4)" id="todos"> |Todos </p>
-        </div> -->
       </div>
       <div class="carpetasDiv">
       <!-- TODO: Lo suyo seria poner la ruta en la que estas -->
@@ -74,7 +67,6 @@
               </div>
           </div>
           <!-- Expedientes -->
-          <!-- [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" -->
           <div class="ancho" *ngIf="c.Tipo != 0"  [routerLink]="['/verexpediente', {id:c.ID_Expediente}]" >
             <div class="expediente-body-exp">
               <p class="tituloExp">Expediente {{c.ID_Expediente}} <span class="fechaExp">{{c.FechaCreacion.split('T')[0]}}</span></p>

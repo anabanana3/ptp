@@ -16,7 +16,6 @@ declare var mostrarAnimacion;
   templateUrl: './motor-grafico.component.html'
 })
 export class MotorGraficoComponent implements AfterViewInit {
-
   error:boolean = true;
   asociacion:boolean = false;
   admin:boolean = false;
@@ -38,7 +37,7 @@ export class MotorGraficoComponent implements AfterViewInit {
       this.asociacion = true;
     }else if(sessionStorage.getItem('usuario') != null){
       this.usuario = true;
-    }else{
+    }else if(sessionStorage.getItem('admin') != null){
       this.admin = true;
     }
   }

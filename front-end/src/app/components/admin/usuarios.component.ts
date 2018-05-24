@@ -76,7 +76,7 @@ export class UsuariosAdminComponent {
       if(data.Codigo == '501'){
         location.href = '/expired';
       }else{
-        console.log(data);
+        // console.log(data);
         this.asociaciones = data;
       }
     })
@@ -92,7 +92,6 @@ export class UsuariosAdminComponent {
         this.usuarios= this.resultado.Data;
         this.pagActual = this.resultado.Pagina;
         this.paginacion( this.resultado.Paginas_Totales,this.resultado.Pagina, this.tamPag)
-      //  this.tamPag = this.resultado.Elementos_Pagina;
       }
     })
   }
@@ -127,10 +126,7 @@ export class UsuariosAdminComponent {
       this.getSolicitantes(pagina, this.tamPag);
       return;
     }
-    console.log('*****');
-    console.log(pagina);
-    console.log(number);
-    console.log(this.tamPag);
+
     if(number == 1){
       this._userService.getRegistrados(pagina, this.tamPag).subscribe(data=>{
         if(data.Codigo == 501){
@@ -138,7 +134,7 @@ export class UsuariosAdminComponent {
         }else{
           this.loading = false;
           this.resultado = data;
-          console.log(data);
+          // console.log(data);
 
           this.usuariosOLD = data.Data;
           this.usuarios= this.resultado.Data;
@@ -198,24 +194,19 @@ export class UsuariosAdminComponent {
     this.startIndex = startIndex;
     this.paginas = pages;
     this.totalPag = totalPag;
-    console.log(this.paginas);
+    // console.log(this.paginas);
   }
 
 
  pasarPagina(pag){
-   console.log('Paso a la pagina');
-   console.log(pag);
+
    this.filter(pag);
  }
 
-  // pasarPagina(pag){
-  //   this.view(this.tabla, pag);
-  //   this.pagActual = pag;
-  // }
+
 
   filter(pag){
-    console.log("bucando..")
-    console.log(pag);
+
     let searchProfesion = null;
     let searchAsociacion = null;
     if(this.searchEmail === '')
@@ -249,7 +240,7 @@ export class UsuariosAdminComponent {
       if(data.Codigo == 501){
           location.href = '/expired';
       }else{
-        console.log(data);
+        // console.log(data);
         if(data.Resultado === 'OK'){
           this.loading = true;
           this.mensaje = 'Usuario validado Correctamente!';

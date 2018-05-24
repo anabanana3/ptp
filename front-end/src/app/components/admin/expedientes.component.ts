@@ -64,7 +64,7 @@ export class ExpedientesAdminComponent {
         location.href = '/expired';
       }else{
         this.expediente = data.Data;
-        console.log(this.expediente);
+        // console.log(this.expediente);
         this.loading = false;
         this.paginacion(data.Paginas_Totales,data.Pagina,this.tamPag)
       }
@@ -74,7 +74,6 @@ export class ExpedientesAdminComponent {
   buscar(pag){
     let tam = this.tamPag;
     this.Filtros.Lugar = '';
-    console.log(this.Filtros);
     this.url='https://www.aisha.ovh/api/expedientes/search/';
     //Recupero la informacion del lugar de google Maps
     if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
@@ -129,12 +128,12 @@ export class ExpedientesAdminComponent {
    //Añado los parametros de la paginacion
    this.url += '/pag='+pag+'&n='+tam;
 
-   console.log('Muestro la url que mando al servicio');
-   console.log(this.url);
+   // console.log('Muestro la url que mando al servicio');
+   // console.log(this.url);
    this._expedientesServices.buscar2Exp(this.url).subscribe(data=>{
-     console.log(data);
+     // console.log(data);
      if(data.Resultado == 'OK'){
-       console.log('No hay resultados');
+       // console.log('No hay resultados');
        this.expediente = new Array();
        //Falta mostrar mensaje de no hay resultados
        this.busqueda = true;
@@ -146,7 +145,7 @@ export class ExpedientesAdminComponent {
        if(data.Codigo == 501 ){
           location.href = '/expired';
        }else{
-         console.log('Hay busqueda');
+         // console.log('Hay busqueda');
          this.busqueda = true;
          this.expediente = data.Data;
          this.mensaje = '';
@@ -158,13 +157,12 @@ export class ExpedientesAdminComponent {
   }
 
   changeView(view){
-    console.log(view);
     this.view = view;
   }
 
-  borrarExpediente(id){
-    console.log('Borrar' + id);
-  }
+  // borrarExpediente(id){
+    // console.log('Borrar' + id);
+  // }
   ngOnInit() {
    this.apiGoogle();
  }

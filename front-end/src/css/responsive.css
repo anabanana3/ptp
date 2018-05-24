@@ -280,7 +280,7 @@
 
   .izqVerMas{
     grid-column: 1;
-    /* autoprefixer: off */ 
+    /* autoprefixer: off */
     grid-row-start:1;
     /* autoprefixer: off */
     grid-row-end: 2;
@@ -450,7 +450,12 @@
   }
 }
 @media screen and (max-width: 425px){
+/* perfil */
+  .columnaPerfil{
+    width: 100%!important;
+  }
 
+/* header */
   .divAdmin{
     display:none;
   }
