@@ -189,10 +189,7 @@ export class ExpedientesAdminComponent {
    );
  }
 
- buscar2(){
-   console.log('Busqueda Auz');
-   console.log(this.Filtros);
- }
+
 
  paginacion(totalPag, pagActual, tamPag){
    let pagInicio, pagFinal;
@@ -231,22 +228,10 @@ export class ExpedientesAdminComponent {
 
 
 pasarPagina(pag){
-  console.log('Paso a la pagina');
-  console.log(pag);
-  //Tengo que ver si hay busqueda hecha
-  if(this.busqueda == true){
-    this.buscar(pag);
-  }else{
-    this._expedientesServices.getExpedientes(pag, this.tamPag).subscribe(data=>{
-      if(data.Codigo == 501){
-        location.href='/expired';
-        return;
-      }
-      this.expediente = data.Data;
-      this.loading = false;
-      this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
-    })
-  }
+  this.buscar(pag)
 }
+
+
+
 
 }

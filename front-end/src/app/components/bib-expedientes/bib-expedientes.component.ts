@@ -15,10 +15,13 @@ export class BibExpedientesComponent implements OnInit {
   expedientes = new Array();
   //Para la paginacion
   paginas = new Array();
-  pagNext:number;
-  pagBack:number;
-  pagActual:number;
-  tamPag:number=10;
+  totalPag;
+  pagActual;
+  pagInicio;
+  pagFinal;
+  startIndex;
+  endIndex;
+  tamPag:number=15;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -66,12 +69,13 @@ profesiones = new Array();
       this._expedientesService.getTipoMutilacion().subscribe(data=>this.tiposMGF = data);
       this._profService.getProfesiones().subscribe(data=>this.profesiones = data);
       //Recupero los 10 ultimos expedientes
-      let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n=10';
+      let url = 'https://aisha.ovh/api/publicos/search/autor=null&profesion=null&titulo=null&f1=null&f2=null&l=null&e=null&tipo=null/pag=1&n='+this.tamPag;
       this._expedientesService.buscar2Exp(url).subscribe(data =>{
         if(data.Codigo == 501 ){
           location.href = '/expired';
         }else{
           this.expedientes = data.Data;
+          this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
         }
       })
 
@@ -84,7 +88,7 @@ profesiones = new Array();
       }
 
       if(sessionStorage.FTitulo != undefined){
-        this.buscar2(1,10);
+        this.buscar2(sessionStorage.FPagina,this.tamPag);
         console.log("ENTRO");
       }
    }
@@ -99,6 +103,7 @@ profesiones = new Array();
      this.Filtros.Lugar = sessionStorage.FLugar;
      this.Filtros.Etnia = sessionStorage.FEtnia;
      this.Filtros.TipoMGF = sessionStorage.FTipoMGF;
+     pag = sessionStorage.FPagina;
 
      //Obtengo los datos de Google Maps
 
@@ -175,6 +180,7 @@ profesiones = new Array();
           console.log('Hay busqueda');
           this.busqueda = true;
           this.expedientes = data.Data;
+          this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
           this.mensaje = '';
           //this.paginacion(data.Pagina, data.Paginas_Totales);
         }
@@ -192,6 +198,7 @@ profesiones = new Array();
      // sessionStorage.setItem('FLugar', this.Filtros.Lugar);
      sessionStorage.setItem('FEtnia', this.Filtros.Etnia.toString());
      sessionStorage.setItem('FTipoMGF', this.Filtros.TipoMGF.toString());
+     sessionStorage.setItem('FPagina', pag.toString());
 
      this.Filtros.Lugar = null;
      if(this.sitio.gm_accessors_.place.gd.b == true && this.sitio.gm_accessors_.place.gd.l != ''){
@@ -279,6 +286,7 @@ profesiones = new Array();
           this.busqueda = true;
           this.expedientes = data.Data;
           this.mensaje = '';
+          this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
           //this.paginacion(data.Pagina, data.Paginas_Totales);
         }
       }
@@ -301,32 +309,51 @@ profesiones = new Array();
      sessionStorage.FEtnia = "";
      this.Filtros.TipoMGF = 0;
      sessionStorage.FTipoMGF = 0;
-     this.buscar(1,10);
+     sessionStorage.FPagina = 1;
+     this.buscar(sessionStorage.FPagina,this.tamPag);
    }
 
-   paginacion( paginaActual , pagTotales){
-     //Total de paginas
-     this.paginas = [];
-     for(let i=0; i<pagTotales; i++){
-       this.paginas.push(i);
-     }
-     //Pagina anterior
-     if(paginaActual >= 2){
-       this.pagBack = (paginaActual-1);
+
+
+   paginacion(totalPag, pagActual, tamPag){
+     let pagInicio, pagFinal;
+     if(totalPag <= 10){
+       pagInicio = 1;
+       pagFinal = totalPag;
      }else{
-       this.pagBack = paginaActual;
+       if(pagActual <= 6){
+         pagInicio = 1;
+         pagFinal = 10;
+       }else if(pagActual + 4 >= totalPag){
+         pagInicio = totalPag - 9;
+         pagFinal = totalPag;
+       }else{
+         pagInicio = pagActual - 5;
+         pagFinal = pagActual + 4;
+       }
      }
-     //Pagina Siguiente
-     if(paginaActual < pagTotales){
-       this.pagNext = (paginaActual+1);
-     }else{
-       this.pagNext = paginaActual;
+
+     let startIndex = (pagActual -1)*tamPag;
+     let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
+
+     let pages = new Array();
+     if(totalPag != undefined){
+        pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
      }
+
+     //Despues de tener todo calculado guardo los datos
+     this.pagActual = pagActual;
+     this.pagInicio = pagInicio;
+     this.pagFinal = pagFinal;
+     this.startIndex = startIndex;
+     this.paginas = pages;
+     this.totalPag = totalPag;
    }
 
-   pasarPagina(pag){
-       this.buscar(pag);
-   }
+
+  pasarPagina(pag){
+    this.buscar(pag)
+  }
 
    mostrarFilters(){
      this.mostrarForm = !this.mostrarForm;
