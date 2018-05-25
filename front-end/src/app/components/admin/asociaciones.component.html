@@ -9,7 +9,6 @@
       <form method="post" (ngSubmit)="filter(1)" class="formAdmin">
         <input class="sizeinput" [(ngModel)]="searchNombre" type="text" name="Nombre" id="nombre" placeholder="Nombre">
         <input class="sizeinput" [(ngModel)]="searchEmail" type="text" name="Email" id="email" placeholder="Email">
-        <!-- <button type="submit" name="button" class="icon-search span"></button> -->
         <button class="btn-relleno" type="submit" name="button">Buscar</button>
       </form>
       <div class="example-container mat-elevation-z8">
@@ -61,11 +60,11 @@
         <div class="container">
           <div class="text-center">
             <ul class="pagination">
-              <li [ngClass]="{disabled:pagActual2 === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
-              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}" ><a (click)='pasarPagina(1)'> First</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(pagActual -1)">Previus</a></li>
               <li *ngFor="let p of paginas" [ngClass]="{activeP: pagActual === p}" ><a (click)="pasarPagina(p)">{{p}}</a>
-              <li [ngClass]="{disabled:pagActual2 === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
-              <li [ngClass]="{disabled:pagActual2 === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
+              <li [ngClass]="{disabled:pagActual === totalPag}"><a (click)="pasarPagina(pagActual +1)">Next</a></li>
+              <li [ngClass]="{disabled:pagActual === 1}"><a (click)="pasarPagina(totalPag)">Last</a></li>
             </ul>
           </div>
         </div>

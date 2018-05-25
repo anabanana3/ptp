@@ -18,10 +18,13 @@ export class MisExpedientesComponent implements OnInit {
   expedientes = new Array();
   //Para la paginacion
   paginas = new Array();
-  pagNext:number;
-  pagBack:number;
-  pagActual:number;
-  tamPag:number=10;
+  totalPag;
+  pagActual;
+  pagInicio;
+  pagFinal;
+  startIndex;
+  endIndex;
+  tamPag:number=12;
   error:boolean=true;
   busqueda:boolean = false;
   mensaje:string='';
@@ -93,7 +96,7 @@ etnias = new Array();
 
       //para mantener la busqueda
       if(sessionStorage.F2Titulo != undefined){
-        this.buscar2(1,10);
+        this.buscar2(sessionStorage.F2Pagina,this.tamPag);
         console.log("ENTRO");
       }
 
@@ -173,14 +176,12 @@ openPopUp(){
   btnNo.onclick = function(){
     //Boton cancelar
     modal.style.display = "none";
-    // this.getCarpeta(this.carpetaActual);
   }
 
   span.onclick = function() {
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -203,14 +204,12 @@ popUpBorrarCarpeta(idCarpeta){
   btnNo.onclick = function(){
     //Boton cancelar
     modal.style.display = "none";
-    // this.getCarpeta(this.carpetaActual);
   }
 
   span.onclick = function() {
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -234,7 +233,6 @@ popUpModificarCarpeta(idCarpeta, nombre){
     //Boton con la X
       console.log("entro en span.onclick");
       modal.style.display = "none";
-      // this.getCarpeta(this.carpetaActual);
   }
 }
 
@@ -249,7 +247,6 @@ getExpedientesUser(tipo,pag, tam){
       //Privados
       this._expedientesService.getExpedientesPrivUser(pag, tam).subscribe(data =>{
         if(data.Resultado == 'OK' || data == ''){
-            // this.expedientes = new Array();
             this.contenido = new Array();
             this.mensaje = 'No tienes almacenado ningún expediente privado';
             document.getElementById('alert').className = 'alert alert-danger';
@@ -258,10 +255,9 @@ getExpedientesUser(tipo,pag, tam){
             location.href ='/expired';
           }else{
             this.contenido = data.Data;
-            // this.expedientes = data.Data;
             console.log('Resultado de la funcion aux privados');
             console.log(data);
-            this.paginacion(data.Pagina, data.Paginas_Totales);
+            this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
           }
         }
         });
@@ -280,11 +276,10 @@ getExpedientesUser(tipo,pag, tam){
           if(data.Codigo == 501){
             location.href = '/expired';
           }else{
-            // this.expedientes = data.Data;
             this.contenido = data.Data;
             console.log('Resultado de la funcion aux publicos');
             console.log(data);
-            this.paginacion(data.Pagina, data.Paginas_Totales);
+            this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
           }
         }
       })
@@ -305,6 +300,7 @@ buscar(pag, tamPag=this.tamPag){
     sessionStorage.setItem('F2Titulo', this.Filtros.Titulo);
     sessionStorage.setItem('F2Fecha1', this.Filtros.Fecha1);
     sessionStorage.setItem('F2Fecha2', this.Filtros.Fecha2);
+    sessionStorage.setItem('F2Pagina', pag);
     //Obtengo los datos de google maps
     this.Filtros.Lugar = null;
     if(this.sitio.gm_accessors_.place.gd.b ==true && this.sitio.gm_accessors_.place.gd.l != ''){
@@ -392,7 +388,7 @@ buscar(pag, tamPag=this.tamPag){
          //this.expedientes = data.Data;
          this.contenido = data.Data;
          this.mensaje = '';
-         this.paginacion(data.Pagina, data.Paginas_Totales);
+         this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
        }
       }
    });
@@ -407,6 +403,7 @@ buscar(pag, tamPag=this.tamPag){
     this.Filtros.Lugar = sessionStorage.F2Lugar;
     this.Filtros.Etnia = sessionStorage.F2Etnia;
     this.Filtros.TipoMGF = sessionStorage.F2TipoMGF;
+    pag = sessionStorage.F2Pagina;
     //Cambiar la URL en funcion del tipo seleccionado
     this.url='https://www.aisha.ovh/api/privados/user='+sessionStorage.iD+'/search/';
     if(this.tipoExp == 2){
@@ -476,7 +473,7 @@ buscar(pag, tamPag=this.tamPag){
          //this.expedientes = data.Data;
          this.contenido = data.Data;
          this.mensaje = '';
-         this.paginacion(data.Pagina, data.Paginas_Totales);
+        this.paginacion(data.Paginas_Totales, data.Pagina, this.tamPag);
        }
       }
    });
@@ -497,41 +494,48 @@ buscar(pag, tamPag=this.tamPag){
     this.getRaizUser(sessionStorage.iD);
     this.getExpedientesUser(1, this.tamPag, 1);
   }
-  //Funcion para generar las variables de la paginacion
-  paginacion( paginaActual , pagTotales){
-    //Total de paginas
-    this.paginas = [];
-    for(let i=0; i<pagTotales; i++){
-      this.paginas.push(i);
-    }
-    //Pagina anterior
-    if(paginaActual >= 2){
-      this.pagBack = (paginaActual-1);
+  paginacion(totalPag, pagActual, tamPag){
+    let pagInicio, pagFinal;
+    if(totalPag <= 10){
+      pagInicio = 1;
+      pagFinal = totalPag;
     }else{
-      this.pagBack = paginaActual;
+      if(pagActual <= 6){
+        pagInicio = 1;
+        pagFinal = 10;
+      }else if(pagActual + 4 >= totalPag){
+        pagInicio = totalPag - 9;
+        pagFinal = totalPag;
+      }else{
+        pagInicio = pagActual - 5;
+        pagFinal = pagActual + 4;
+      }
     }
-    //Pagina Siguiente
-    if(paginaActual < pagTotales){
-      this.pagNext = (paginaActual+1);
-    }else{
-      this.pagNext = paginaActual;
+
+    let startIndex = (pagActual -1)*tamPag;
+    let endIndex = Math.min(startIndex + tamPag - 1, totalPag - 1);
+
+    let pages = new Array();
+    if(totalPag != undefined){
+       pages = Array.from(Array((pagFinal + 1) - pagInicio).keys()).map(i => pagInicio + i);
     }
+
+    //Despues de tener todo calculado guardo los datos
+    this.pagActual = pagActual;
+    this.pagInicio = pagInicio;
+    this.pagFinal = pagFinal;
+    this.startIndex = startIndex;
+    this.paginas = pages;
+    this.totalPag = totalPag;
   }
 
-  pasarPagina(pag){
 
-    if(this.busqueda == false){
-      console.log('No se ha buscado nada');
-      this.getExpedientesUser(this.tipoExp,pag, this.tamPag);
-      this.pagActual = pag;
-    }else{
-      console.log('Hay busqueda. Como paso la pagina de la busqueda');
-      this.buscar(pag);
-    }
-  }
+ pasarPagina(pag){
+   this.buscar(pag)
+ }
 
 //GESTION DE LA CARPETAS
-// TODO: Obtengo la raiz del usuario
+// Obtengo la raiz del usuario
 
 getRaizUser(id){
   this._carpetaService.getRaizUser(id).subscribe(data=>{
@@ -588,7 +592,7 @@ getCarpetasUser(idU){
 }
 
 nuevaCarpeta(nombre){
-  //TODO => Abrir un PopUp para crear la carpeta con el nombre que queramos => Tener en cuenta la carpeta actual en la que nos encontramos
+  //TODO: Abrir un PopUp para crear la carpeta con el nombre que queramos => Tener en cuenta la carpeta actual en la que nos encontramos
   console.log("Nombre de la carpeta" + nombre);
   this._carpetaService.newCarpeta(nombre, this.carpetaActual).subscribe(data =>{
     if(data.Codigo == 501){
@@ -601,7 +605,6 @@ nuevaCarpeta(nombre){
 }
 
 borrarCarpeta(){
-  // console.log(idC);
   this._carpetaService.deleteCarpeta(this.carpetaSelect).subscribe(data =>{
     if(data.Codigo == 501){
       location.href = '/expired';

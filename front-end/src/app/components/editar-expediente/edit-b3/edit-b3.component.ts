@@ -84,7 +84,7 @@ export class EditB3Component implements OnInit {
   ngOnInit() {
   }
 
-  guardarDatos(f){
+  guardarDatos(){
     this.json.Mant_MGF = parseInt(this.form.value.Mant_MGF);
     this.json.Conoc_consecH = parseInt(this.form.value.Conoc_consecH);
     this.json.Conoc_consecM = parseInt(this.form.value.Conoc_consecM);

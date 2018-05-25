@@ -132,7 +132,7 @@ export class EditB2Component implements OnInit {
 
 
 
-  guardarDatos(forma){
+  guardarDatos(){
     console.log('Metodo para actualizar la informacion en la BD');
     console.log('Muestro el estado del bloque');
     console.log(this.bloque2);

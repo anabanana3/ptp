@@ -95,19 +95,16 @@ oldPlaceId;
       this.asociacion = data[0];
       this.asociacion.Nombre = this.asociacion.Nombre.split("'")[1];
       this.asociacion.Email = this.asociacion.Email.split("'")[1];
-      //this.asociacion.Direccion = this.asociacion.Direccion.split("'")[1];
       this.asociacion.CIF = this.asociacion.CIF.split("'")[1];
       this.asociacion.Password = null;
       this.oldPlaceName = data[0].Sitio;
       this.oldPais = data[0].Pais;
       this.oldPlaceId = data[0].ID_Lugar;
-      console.log(this.oldPais);
-      console.log(this.asociacion.Password);
+
     })
   }
 
   save(forma:NgForm, place){
-    // let datos = new FormData();
     let idA = sessionStorage.iD;
     if(forma.valid === false){
       this.mensaje = 'Campos Incompletos';
@@ -126,10 +123,10 @@ oldPlaceId;
       let tipo = this.fP.type;
       let aux = tipo.split('/');
       let size = this.fP.size;
-      console.log(aux);
+      // console.log(aux);
       //Tamaño maximo 5MB
       if(aux[0]==='image' && size <= 5242880){
-        console.log('Seguimpos adelante');
+        // console.log('Seguimpos adelante');
         this.datos.append('fotoP', this.fP, this.fP.name);
 
       }else{
@@ -160,8 +157,6 @@ oldPlaceId;
     }
     this.datos.append('Telefono', this.asociacion.Telefono);
 
-    //console.log(datos);
-    console.log(forma.value);
     //Hago la peticion
     this._asociacionesService.upload(this.datos, idA).subscribe(data => {
       if(data.Codigo == 501){
@@ -169,7 +164,7 @@ oldPlaceId;
       }else{
         //PopUp
         this.openDialog();
-        console.log(data);
+        // console.log(data);
         this.mensaje = 'Cambios registrados correctamente';
         document.getElementById('alert').className = 'alert alert-success';
         this.cargarAsociacion(idA);
@@ -177,7 +172,6 @@ oldPlaceId;
     })
   }
   getDataGoogle(l){
-    console.log(l);
     if(l != ''){
       let pais,
       nombre=this.sitio.gm_accessors_.place.gd.place.name ,
@@ -195,7 +189,6 @@ oldPlaceId;
       this.datos.append('ID_Lugar', id);
       this.asociacion.Sitio = nombre;
       this.datos.append('Sitio', nombre);
-      console.log(this.asociacion);
     }
   }
 //Metodo para recuperar el fichero
@@ -206,10 +199,9 @@ oldPlaceId;
   openDialog(): void {
     let dialogRef = this.dialog.open(ProfilePopUp2, {
       width: '1000px',
-      //data: { partos: this.partos, auxM: this.auxM, auxN: this.auxN }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
 }

@@ -6,9 +6,7 @@
   <div class="lineaDiv"></div>
 
   <div id="alert">{{mensaje}}</div>
-<!-- (ngSubmit)="new(forma, usuarios)" -->
   <form  #forma="ngForm">
-    <!-- {{usuarios}} -->
     <button *ngIf="usuarios" type="button" name="button" (click)="usuarios = !usuarios"
             style="display:block; margin: auto; margin-bottom: 3%;" class="btn-relleno">Registrarme como Asociación
     </button>
@@ -49,13 +47,6 @@
       <label for="dni">NIE/NIF *</label>
         <input [(ngModel)]="usuario.DNI" class="lineaCampo" type="text" name="dni" id="dni" required>
 
-      <!-- <label for="direccion">Dirección *</label>
-        <input [(ngModel)]="usuario.ID_Lugar" id="direccion" class="lineaCampo" type="text" name="direccion" required>
-        <div id="locationField">
-          <input type="text"  id="prueba" class="lineaCampo" placeholder="Introduce un lugar" autocorrect ='off' autocapitalize='off' spellcheck="off" #place>
-        </div> -->
-
-
       <label for="email">Email *</label>
         <input [(ngModel)]="usuario.Email" class="lineaCampo" type="email" name="email" id="email" required>
       <label for="profesion">Profesión *</label>
@@ -86,7 +77,7 @@
         <input [(ngModel)]="repeatpass" class="lineaCampo" type="password" name="repeatcontra" id="repeatcontra" required>
     </div>
 
-    <!-- TODO: Lo pongo aqui para que no le afecte el ngIf y no pete la referencia => Buscando solucion -->
+    <!-- Lo pongo aqui para que no le afecte el ngIf y no pete la referencia => Buscando solucion -->
     <div class="camposForm">
       <label for="direccion">Dirección *</label>
       <div id="locationField">

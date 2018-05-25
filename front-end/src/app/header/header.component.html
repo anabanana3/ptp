@@ -1,7 +1,8 @@
 <div class="header bgColorBlack">
-  <a [routerLink]="['/home']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" class="" alt="LogoAisha"></a>
+  <a [routerLink]="['/principal']" (click)="activo(0)"><img src="../assets/img/AishaCherry.png" id="0" class="" alt="LogoAisha"></a>
 
 <div class="menuNav" id="myTopnav">
+  <a [routerLink]="['/home']" (click)="activo(9)" id="9" class="">Home</a>
   <div class="dropdown">
     <button [routerLink]="['/misexpedientes']" (click)="activo(1)" id="1" class="">Mis Expedientes
     </button>

@@ -30,7 +30,7 @@ export class Bloque3Component implements OnInit {
 
   constructor(private _expedienteService:ExpedientesService, private expedienteComponent:ExpedienteComponent) {}
 
-  guardarDatos(forma:NgForm){
+  guardarDatos(){
     console.log(this.json); //para ver lo que guarda el json
     // if(forma.valid === false){
     //   this.mensaje = 'Completa todos los campos obligatorios';
