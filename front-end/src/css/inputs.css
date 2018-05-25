@@ -51,8 +51,6 @@ textarea {
   margin-bottom: 25px;
 }
 
-textarea:hover{ border-bottom: 2px solid;}
-
 .lineaCampo{
   background: none;
   border: none;

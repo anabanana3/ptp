@@ -4,6 +4,7 @@
   <button mat-button [mat-dialog-close]="data.animal" class="icon-cancel" cdkFocusInitial></button>
 </div>
 
+<div class="Pueba">
 <div mat-dialog-content>
 
   <!--  data:{Npartos: nPartos, pagina: 20, partos: this.datosPartos, CompNacido: this.compNacido, CompMadre: this.compMadre, i:0} -->
@@ -105,18 +106,32 @@
   </div>
 
 
-  <div style="display:none;" id="complMadreContainer">
+  <!-- <div style="display:none;" id="complMadreContainer">
 
     <div class="divContainerPopUp">
       <div *ngFor="let c of data.compMadre; let k = index">
         <div class="divExpPopUp">
            <label for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
-          <!-- <input class="checktrans" id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox"> -->
         </div>
         <div class="divExpPopUpCheck">
           <input id="{{data.pagina}}compMadre{{k}}" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]" name="{{data.pagina}}compMadre{{k}}" value="c.ID_Complicacion" type="checkbox">
-          <!-- <label class="checktrans" for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label> -->
         </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div style="display:none;" id="complMadreContainer">
+
+    <div class="divContainerPopUp">
+      <div *ngFor="let c of data.compMadre; let k = index">
+
+        <div class="divPrueba">
+          <input class="checktrans" [(ngModel)]="data.datosPartos[data.pagina].CompMadre[k]"
+           name="{{data.pagina}}compMadre{{k}}" type="checkbox" value="c.ID_Complicacion" id="{{data.pagina}}compMadre{{k}}">
+          <label class="labeltrans" for="{{data.pagina}}compMadre{{k}}">{{c.Nombre}}</label>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -140,3 +155,5 @@
       </div>
     </div>
   </div>
+</div>
+</div>
