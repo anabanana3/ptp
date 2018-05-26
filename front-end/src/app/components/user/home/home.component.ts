@@ -23,10 +23,17 @@ export class HomeComponent {
     Direccion: '',
     Sexo: '',
     DNI: '',
-    Foto: ''
+    Foto: '',
+    Sitio:'',
+    Pais:'',
+    FechaRegistro:''
+
   };
 
-  numExp;
+  numExp={
+    Expediente:0,
+    Publicos:0
+  }
   error:boolean = true;
 
   constructor(private _userService:UserService) {
@@ -46,12 +53,12 @@ export class HomeComponent {
         location.href = '/expired';
       }else{
         this.user = data[0];
+        console.log(this.user);
         //Recupero los expedientes del usuario
         this._userService.getNumExp(this.id).subscribe(data=>{
             this.numExp = data;
             console.log(this.numExp);
         })
-        console.log(this.user);
       }
     });
   }

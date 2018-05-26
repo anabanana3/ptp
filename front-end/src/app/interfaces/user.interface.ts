@@ -16,4 +16,5 @@ export interface User{
   Foto?: string;
   ID_Usuario$?:string //? dato opcional
   Captcha?:string
+  FechaRegistro?:string
 }
