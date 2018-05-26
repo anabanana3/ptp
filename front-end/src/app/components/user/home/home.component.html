@@ -71,12 +71,12 @@
   <div class="perfilCard textBlack bgColorWhite">
     <div class="cabeceraPerfilCard">
       <div class="fotoPerfilCard">
-        <img src="../assets/img/noticia1.png" class="fotoPerfilImg" alt="imagen perfil">
+        <img src="https://aisha.ovh{{user.Foto}}" class="fotoPerfilImg" alt="imagen perfil">
       </div>
     </div>
-      <p class="text16"><b>Anabel Díez Martínez</b></p>
+      <p class="text16"><b>{{user.Nombre.split("'")[1]}} {{user.Apellidos.split("'")[1]}}</b></p>
     <br>
-      <p>Demusa</p>
+      <p>{{user.Asociacion.split("'")[1]}}</p>
       <br>
       <hr class="hrHome">
 
@@ -85,7 +85,7 @@
           <p class="text14"><b>Profesión</b></p>
         </div>
         <div class="divExpDeUno">
-          <p>Pediatría</p>
+          <p>{{user.Profesion}}</p>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
           <p class="text14"><b>Localidad</b></p>
         </div>
         <div class="divExpDeUno">
-          <p>Benidorm</p>
+          <p>{{user.Sitio}}, {{user.Pais}}</p>
         </div>
       </div>
 
@@ -103,7 +103,7 @@
           <p class="text14"><b>Fecha de registro</b></p>
         </div>
         <div class="divExpDeUno">
-          <p>14/10/2017</p>
+          <p>{{user.FechaRegistro.split("T")[0]}}</p>
         </div>
       </div>
 
@@ -114,7 +114,7 @@
           <p class="text14"><b>Nº expedientes</b></p>
         </div>
         <div class="divExpDeUno">
-          <p>27</p>
+          <p>{{numExp.Expedientes}}</p>
         </div>
       </div>
 
@@ -124,13 +124,13 @@
         </div>
 
         <div class="divExpDeUno">
-          <p>5</p>
+          <p>{{numExp.Publicos}}</p>
         </div>
       </div>
 
       <div class="botonesPerfilCard">
         <button class="btn-border"  [routerLink]="['/user/profile']">EDITAR PERFIL</button>
-        <button class="btn-border"  (click)="cerrarSesion();">CERRAR SESIÓN</button>
+        <button class="btn-border"  (click)="logout();">CERRAR SESIÓN</button>
       </div>
 
   </div>

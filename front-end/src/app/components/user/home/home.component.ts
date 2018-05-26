@@ -25,6 +25,8 @@ export class HomeComponent {
     DNI: '',
     Foto: ''
   };
+
+  numExp;
   error:boolean = true;
 
   constructor(private _userService:UserService) {
@@ -44,6 +46,12 @@ export class HomeComponent {
         location.href = '/expired';
       }else{
         this.user = data[0];
+        //Recupero los expedientes del usuario
+        this._userService.getNumExp(this.id).subscribe(data=>{
+            this.numExp = data;
+            console.log(this.numExp);
+        })
+        console.log(this.user);
       }
     });
   }

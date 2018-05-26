@@ -79,6 +79,18 @@ export class UserService {
     );
   }
 
+  getNumExp(id){
+    let url = this.usuariosURL+'/expedientes/'+id;
+    let token = sessionStorage.getItem('token');
+
+    let headers = new Headers({
+      'Content-Type':'application/json',
+      'Authorization': token
+    });
+    return this.http.get(url, {headers}).map(res=>res.json());
+
+  }
+
   getUsuarios(numPag, tamPag){
     let url = `${this.usuariosURL}pag=${numPag}&n=${tamPag}`;
     let token = sessionStorage.getItem('token');
