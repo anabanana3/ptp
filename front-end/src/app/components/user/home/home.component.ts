@@ -57,6 +57,7 @@ export class HomeComponent {
 
   logout(){
     sessionStorage.clear();
-    location.href = '/login';
+    location.href = '/';
   }
+
 }

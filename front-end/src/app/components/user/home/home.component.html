@@ -2,9 +2,9 @@
   <app-error></app-error>
 </div>
 <div *ngIf="!error">
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
-  <div class="itemTodo">
+  <!-- <div class="itemTodo">
   <a [routerLink]="['/misexpedientes']" (click)="activo(1)">
       <div class="itemColor bgColorWhite">
           <img class="itemImagenAlta itemImagenWhite" src="../assets/img/Expediente.png" alt="iconExpediente">
@@ -38,10 +38,7 @@
       <div class="itemColor bgColorWhite">
           <img class="itemImagenAlta itemImagenWhite" src="../assets/img/PDFIcon.png" alt="iconPDF">
           <img class="itemImagenAlta itemImagenCherry" src="../assets/img/PDFIconPink.png" alt="iconPDFCherry">
-          <!-- <img class="itemImagenWhite" src="../assets/img/ImgIcon2.png" alt="iconImg">
-          <img class="itemImagenCherry" src="../assets/img/ImgIcon2.png" alt="iconImg">
-          <img class="itemImagenWhite" src="../assets/img/VideoIcon.png" alt="iconImg">
-          <img class="itemImagenCherry" src="../assets/img/VideoIcon.png" alt="iconImg"> -->
+
         <p class="itemTitle textPink">Biblioteca de Recursos</p>
 
           <p class="itemText">Acceda a todo tipo de recursos como PDFs, imágenes o vídeos</p>
@@ -67,6 +64,143 @@
           <p class="itemText">Póngase en contacto con otros profesionales mediante nuestro chat</p>
       </div>
   </a>
-  </div>
+</div>-->
 </div>
-<app-footer></app-footer>
+
+<div class="containerCards">
+  <div class="perfilCard textBlack bgColorWhite">
+    <div class="cabeceraPerfilCard">
+      <div class="fotoPerfilCard">
+        <img src="../assets/img/noticia1.png" class="fotoPerfilImg" alt="imagen perfil">
+      </div>
+    </div>
+      <p class="text16"><b>Anabel Díez Martínez</b></p>
+    <br>
+      <p>Demusa</p>
+      <br>
+      <hr class="hrHome">
+
+      <div class="divLabelsDeUno divPerfiLabel">
+        <div class="divExpDeUno">
+          <p class="text14"><b>Profesión</b></p>
+        </div>
+        <div class="divExpDeUno">
+          <p>Pediatría</p>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno divPerfiLabel">
+        <div class="divExpDeUno">
+          <p class="text14"><b>Localidad</b></p>
+        </div>
+        <div class="divExpDeUno">
+          <p>Benidorm</p>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno divPerfiLabel">
+        <div class="divExpDeUno">
+          <p class="text14"><b>Fecha de registro</b></p>
+        </div>
+        <div class="divExpDeUno">
+          <p>14/10/2017</p>
+        </div>
+      </div>
+
+      <hr class="hrHome">
+
+      <div class="divLabelsDeUno divPerfiLabel">
+        <div class="divExpDeUno">
+          <p class="text14"><b>Nº expedientes</b></p>
+        </div>
+        <div class="divExpDeUno">
+          <p>27</p>
+        </div>
+      </div>
+
+      <div class="divLabelsDeUno divPerfiLabel">
+        <div class="divExpDeUno">
+          <p class="text14"><b>Nº expedientes públicos</b></p>
+        </div>
+
+        <div class="divExpDeUno">
+          <p>5</p>
+        </div>
+      </div>
+
+      <div class="botonesPerfilCard">
+        <button class="btn-border"  [routerLink]="['/user/profile']">EDITAR PERFIL</button>
+        <button class="btn-border"  (click)="cerrarSesion();">CERRAR SESIÓN</button>
+      </div>
+
+  </div>
+
+  <div class="footerCard">
+    <p class="text12">&copy; 2018 Aisha Project All Right Reserved</p>
+    <a class="text12" href="/contacto/">CONTACTO</a>
+    <a class="text12" href="https://www.aisha.ovh/fibbe/sobre-nosotros/">QUIENES SOMOS</a>
+    <a class="text12" [routerLink]="['/politica-privacidad']">POLÍTICA DE PRIVACIDAD</a>
+  </div>
+
+
+  <div class="biblioExpCard textWhite bgColorBlue" id="biblioExpCardid" style="margin-bottom:10px;">
+    <a class="textWhite" [routerLink]="['/bibexpedientes']">
+      <div class="textCard floatLeft">
+        <h2>EXPEDIENTES PÚBLICOS</h2>
+        <p>Consulte expedientes que otros profesionales hayan <b>compartido</b>.</p>
+      </div>
+    </a>
+
+    <div class="misExpCard textBlack bgColorWhite">
+      <div class="textCard">
+        <a [routerLink]="['/misexpedientes']">
+          <h2>MIS EXPEDIENTES</h2>
+          <p>Lleve el seguimiento de sus casos con la creación de <b>expedientes</b>.</p>
+        </a>
+        <button class="btn-relleno newExpButton" id="btn-options" [routerLink]="['/expediente']">NUEVO EXPEDIENTE</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="aulaCard textBlack bgColorWhite comunCard">
+    <a [routerLink]="['/aulavirtual']">
+      <div class="textCard">
+        <h2>AULA VIRTUAL</h2>
+        <p>Visualice el modelo 3D que muestra los distintos <b>tipos</b> de mutilación.</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="biblioRecursosCard textWhite bgColorBlue comunCard">
+    <a class="textWhite" [routerLink]="['/recursos']">
+      <div class="textCard">
+        <h2>BIBLIOTECA DE RECURSOS</h2>
+        <p>Acceda a todo tipo de recursos como <b>PDFs, imágenes </b> o <b>vídeos</b>.</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="estadisticasCard textWhite bgColorBlue comunCard">
+    <a class="textWhite" [routerLink]="['/estadisticas']">
+      <div class="textCard">
+        <h2>ESTADÍSTICAS</h2>
+        <p>Conozca el riesgo de la <b>mutilación genital femenina</b> según diversos factores.</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="chatCard textBlack bgColorWhite comunCard">
+    <a [routerLink]="['/aulavirtual']">
+      <div class="textCard">
+        <h2>CHAT</h2>
+        <p>Póngase en contacto con otros <b>profesionales</b> mediante el chat.</p>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+
+<!--
+<app-footer></app-footer> -->

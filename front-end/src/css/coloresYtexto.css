@@ -7,7 +7,7 @@
 }
 .textWhite{
   color:#FFFFFF !important;
-  font-size: 100%;
+  /* font-size: 100%; */
 }
 .textDarkenWhite{ color:#ededed;}
 .textGrey{ color: #DDDDDD;}
@@ -28,6 +28,7 @@
 /****** TEXT SIZE ******/
 
 .text12{font-size: 12px;}
+.text14{font-size: 14px;}
 .text16{ font-size: 16px;}
 .text18{ font-size: 18px;}
 .text20{ font-size: 20px;}
