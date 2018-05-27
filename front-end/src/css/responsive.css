@@ -388,7 +388,8 @@
   .nombreAsociacion{
     text-align: left;
     margin-left: 5%;
-    width: 50%;
+    width: 45%;
+    float: left;
     margin-bottom: 0px;
   }
 
