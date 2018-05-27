@@ -28,28 +28,28 @@ export class MotorGraficoComponent implements AfterViewInit {
   tipo_3:string = "TIPO 3";
 
   constructor(private _userService:UserService) {
-    if(sessionStorage.length === 0){
-      return;
-    }
-    this.error = false;
-
-    if(sessionStorage.getItem('asociacion') != null){
-      this.asociacion = true;
-    }else if(sessionStorage.getItem('usuario') != null){
-      this.usuario = true;
-    }else if(sessionStorage.getItem('admin') != null){
-      this.admin = true;
-    }
+    // if(sessionStorage.length === 0){
+    //   return;
+    // }
+    // this.error = false;
+    //
+    // if(sessionStorage.getItem('asociacion') != null){
+    //   this.asociacion = true;
+    // }else if(sessionStorage.getItem('usuario') != null){
+    //   this.usuario = true;
+    // }else if(sessionStorage.getItem('admin') != null){
+    //   this.admin = true;
+    // }
   }
 
   ngAfterViewInit(){
     new iniciarMotor();
     //contador visitas
-    let visita = {
-      ID_Usuario: sessionStorage.iD
-    }
-    this._userService.visitasModelo3D(visita).subscribe(data=>{
-    });
+    // let visita = {
+    //   ID_Usuario: sessionStorage.iD
+    // }
+    // this._userService.visitasModelo3D(visita).subscribe(data=>{
+    // });
   }
 
   click(tipo){
