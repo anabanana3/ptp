@@ -349,6 +349,184 @@
     width: 100%;
   }
 
+  /*** USUARIO HOME CLAU  *****/
+
+  .containerCards{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 10% 30% 30% 30%;
+    padding: 10px 0px;
+  }
+
+  .comunCard{
+    border-radius: 3pt;
+    width: 94%;
+    height: 89%;
+    align-self: center;
+    position: center;
+    margin: 0 auto;
+    padding-bottom: 6%;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  }
+
+  .perfilCard{
+    grid-column-start: 1;
+    /* autoprefixer: off */
+    grid-column-end: 3;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+    grid-row-end:2;
+    border-radius: 3pt;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 0;
+    padding-bottom: 8px;
+    padding-top:5%;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+  }
+
+  .nombreAsociacion{
+    text-align: left;
+    margin-left: 5%;
+    width: 50%;
+    margin-bottom: 0px;
+  }
+
+  #nombreCard{
+    font-size:16px;
+  }
+
+  .fotoPerfilCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 100%;
+    width: 70%;
+    width: 107px;
+    height: 103px;
+    object-fit: contain;
+  }
+
+  .fotoPerfilImg{
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .cabeceraPerfilCard{
+    display: none;
+  }
+
+  .divPerfiLabel{
+    display: none;
+  }
+
+  .botonesPerfilCard{
+    width: 185px;
+    line-height: 40px;
+    margin: 0 auto;
+    margin-top: 8px;
+  }
+
+  .hrHome{
+    display:none;
+  }
+
+  .footerCard{
+    display:none;
+  }
+
+  .biblioExpCard{
+    grid-column-start: 1;
+    /* autoprefixer: off */
+    grid-column-end: 3;
+    grid-row-start: 2;
+    /* autoprefixer: off */
+    grid-row-end:3;
+    width: 96%;
+    margin-top: 1.5%;
+    border-radius: 3pt;
+    margin-left: 2%;
+    margin-bottom: 3px !important;
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.22);
+    padding-bottom: 14px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .misExpCard{
+    width: 69.5%;
+    margin: 0 auto;
+    margin-top: 0;
+    border-radius: 3pt;
+  }
+
+  .misExpCard > .textCard > a > h2{
+    font-size:16px;
+    line-height: 22px;
+  }
+
+  .aulaCard{
+    grid-column-start: 1;
+    /* autoprefixer: off */
+    grid-column-end: 2;
+    grid-row-start: 3;
+    /* autoprefixer: off */
+    grid-row-end:4;
+  }
+
+  .biblioRecursosCard{
+    grid-column-start: 2;
+    /* autoprefixer: off */
+    grid-column-end: 3;
+    grid-row-start: 3;
+    /* autoprefixer: off */
+    grid-row-end:4;
+  }
+
+  .estadisticasCard{
+    grid-column-start: 1;
+    /* autoprefixer: off */
+    grid-column-end: 2;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+    grid-row-end:5;
+  }
+
+  .chatCard{
+    grid-column-start: 2;
+    /* autoprefixer: off */
+    grid-column-end: 3;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+    grid-row-end:5;
+  }
+
+  .textCard{
+    text-align: left;
+    margin: 10px 20px 10px;
+    width: 30%;
+    line-height: 22px;
+  }
+
+  .textCard > p,
+  .textCard > a > p{
+    display: none;
+  }
+
+  .textCard > h2{
+    font-size:16px;
+  }
+
+  .floatLeft{
+    float: left;
+    padding-bottom: 14%;
+  }
+
   /**** FOOTER ****/
   .socialNetworks > a > img{
     width: 30px;
