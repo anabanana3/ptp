@@ -10,6 +10,7 @@ class TCamara extends TEntidad {
 		this.step = 0;
 		this.position = vec3.create();
 
+		//projectionMatrix matriz entidad
 		this.projectionMatrix = mat4.create();
 		this.viewMatrix = mat4.create();
 	}
@@ -46,7 +47,7 @@ class TCamara extends TEntidad {
 			this.movX = this.movX % 360;
 		}
 	}
-	
+
 	//aqui es donde vamos cambiando los valores para que cambie la posicion y se mueva
 	update(){
 

@@ -19,7 +19,7 @@ function iniciarMotor(){
   GFachada.rotar(camara1, 1, 1, 0, 0);
   let luz1 = GFachada.crearLuzCompleto("luz1");
 
-  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas-old.obj", "VaginaCarne.mtl", "piel.jpg");
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaCarne.mtl", "piel.jpg");
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "piel.jpg");
   GFachada.escalar(piernas, 0.1,0.1,0.1);
   GFachada.escalar(real, 0.1,0.1,0.1);
@@ -50,69 +50,72 @@ function mostrarTipo1(){
   */
   texto("Tipo 1 o Clitoridectomia", "Consiste en la extirpación del prepucio del clítoris con o sin excisión parcial o total del glande del clítoris.");
 
-  for (var i = 0; i < GFachada.objetos.length; i++) {
-    if (GFachada.objetos[i].nombre != "Piernas") {
-      GFachada.borrarNodo(GFachada.objetos[i]);
-    }
-  }
+  //llamamos al metodo que borra tanto las piernas como el trocito de vagina (borramos modelo mostrado en el momento).
+  borrarModelo();
+
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaCarne.mtl", "piel.jpg");
+  GFachada.escalar(piernas, 0.1,0.1,0.1);
   let pieza1 = GFachada.crearMallaCompleto("tipo1", "Tipo1.obj", "VaginaCarne.mtl");
   GFachada.escalar(pieza1, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },1000);
+  },3000);
 }
 
 function mostrarTipo2(){
   //función igual que la anterior pero para mostrar el TIPO2
   texto("Tipo 2 o Excisión","La ablación parcial o total del clítoris y los labios menores, con o sin excisión de labios mayores.");
-  for (var i = 0; i < GFachada.objetos.length; i++) {
-    if (GFachada.objetos[i].nombre != "Piernas") {
-      GFachada.borrarNodo(GFachada.objetos[i]);
-    }
-  }
+
+  //llamamos al metodo que borra tanto las piernas como el trocito de vagina (borramos modelo mostrado en el momento).
+  borrarModelo();
+
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaCarne.mtl", "piel.jpg");
+  GFachada.escalar(piernas, 0.1,0.1,0.1);
   let pieza2 = GFachada.crearMallaCompleto("tipo2", "Tipo2.obj", "VaginaCarne.mtl");
   GFachada.escalar(pieza2, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },1000);
+  },3000);
 }
 
 function mostrarTipo3(){
   //función igual que las anteriores pero para mostrar el TIPO3
   texto("Tipo 3 o Infibulación", "Consiste en la extirpación del clítoris, labios menores y labios mayores, produciendo así un estrechamiento del orificio vaginal.");
-  for (var i = 0; i < GFachada.objetos.length; i++) {
-    if (GFachada.objetos[i].nombre != "Piernas") {
-      GFachada.borrarNodo(GFachada.objetos[i]);
-    }
-  }
+
+  //llamamos al metodo que borra tanto las piernas como el trocito de vagina (borramos modelo mostrado en el momento).
+  borrarModelo();
+
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaCarne.mtl", "piel.jpg");
+  GFachada.escalar(piernas, 0.1,0.1,0.1);
   let pieza3 = GFachada.crearMallaCompleto("tipo3", "Tipo3.obj", "VaginaCarne.mtl");
   GFachada.escalar(pieza3, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },1000);
+  },3000);
 }
 
 function mostrarReal(){
   //función igual que las anteriores pero para mostrar el modelo inicial SIN MGF
   texto("Vagina sin mutilación", "Aquella que no ha sufrido ningun tipo de procedimiento dañino.")
-  for (var i = 0; i < GFachada.objetos.length; i++) {
-    if (GFachada.objetos[i].nombre != "Piernas") {
-      GFachada.borrarNodo(GFachada.objetos[i]);
-    }
-  }
+
+  //llamamos al metodo que borra tanto las piernas como el trocito de vagina (borramos modelo mostrado en el momento).
+  borrarModelo();
+  
+  let piernas = GFachada.crearMallaCompleto("Piernas", "Piernas.obj", "VaginaCarne.mtl", "piel.jpg");
+  GFachada.escalar(piernas, 0.1,0.1,0.1);
   let real = GFachada.crearMallaCompleto("Normal", "Normal.obj", "VaginaCarne.mtl", "piel.jpg");
   GFachada.escalar(real, 0.1,0.1,0.1);
 
   setTimeout(() => {
     GShader.mainShader();
     GFachada.draw();
-  },1000);
+  },3000);
 }
 function mostrarCartoon(){
   //Funcion que llamamos desde la interfaz de angular que cambia el shader NOCARTOON al shader CARTOON
@@ -180,6 +183,19 @@ function texto(titulo, desc){
 
   GtituloElement.appendChild(GtituloNode);
   GdescripcionElement.appendChild(GdescripcionNode);
+}
+
+function borrarModelo(){
+  for (var i = 0; i < GFachada.objetos.length; i++) {
+    if (GFachada.objetos[i].nombre != "Piernas") {
+      GFachada.borrarNodo(GFachada.objetos[i]);
+    }
+  }
+  for (var i = 0; i < GFachada.objetos.length; i++) {
+    if (GFachada.objetos[i].nombre == "Piernas") {
+      GFachada.borrarNodo(GFachada.objetos[i]);
+    }
+  }
 }
 
 function initWebGL(canvas) {
