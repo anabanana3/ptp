@@ -660,21 +660,12 @@ br{
 }
 
 .fotoPerfilCard{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 100%;
-  width: 70%;
-  width: 107px;
-  height: 103px;
-  object-fit: contain;
+  width: 45%;
 }
 
 .fotoPerfilImg{
-  flex-shrink: 0;
-  min-width: 100%;
-  min-height: 100%;
+  clip-path: circle();
+  width: 100%;
 }
 
 .cabeceraPerfilCard{
