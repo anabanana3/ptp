@@ -31,7 +31,7 @@ export class HomeComponent {
   };
 
   numExp={
-    Expediente:0,
+    Expedientes:0,
     Publicos:0
   }
   error:boolean = true;
